@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partenariats — Groupe Solution</title>
+  <meta name="description" content="Groupe Solution cherche des partenaires métier. Vous connaissez le secteur, nous construisons le système, nous partageons la valeur créée par le volume. Modèles économiques, déroulement type, et comment détecter un processus automatisable." />
+  <link rel="icon" href="Logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pblock{padding:64px 0;background:var(--paper);border-top:1px solid var(--hair)}
+    .pblock.white{background:var(--white)}
+    .pblockHead{max-width:640px;margin-bottom:40px}
+    .pblockHead h2{font-size:clamp(30px,3.6vw,50px);line-height:1.02;margin-top:14px}
+    .pblockHead p{color:var(--secondary);line-height:1.75;font-size:15px;margin-top:16px}
+
+    /* équation */
+    .equation{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:20px;align-items:stretch}
+    .eqBox{border:1px solid var(--hair);background:var(--white);padding:30px 26px;display:flex;flex-direction:column;justify-content:center}
+    .eqBox.result{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .eqBox .k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    .eqBox.result .k{color:#AEB6AA}
+    .eqBox .v{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.1;margin-top:12px}
+    .eqOp{align-self:center;font-family:var(--serif);font-size:34px;color:var(--olive2)}
+
+    /* deux contributions */
+    .contrib{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--hair)}
+    .contribCol{padding:34px}
+    .contribCol:first-child{border-right:1px solid var(--hair);background:var(--white)}
+    .contribCol h3{font-size:clamp(22px,2.4vw,30px);margin-bottom:20px}
+    .contribCol ul{list-style:none}
+    .contribCol li{position:relative;padding-left:22px;font-size:14.5px;color:var(--secondary);line-height:1.5;margin-bottom:13px}
+    .contribCol li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--olive)}
+    .contribCol.partner li:before{background:var(--hair2);border:1px solid var(--olive)}
+
+    /* modèles */
+    .models{display:flex;flex-wrap:wrap;gap:12px}
+    .model{border:1px solid var(--hair2);background:var(--white);padding:14px 20px;font-size:14.5px;color:var(--ink);font-family:var(--serif)}
+
+    /* déroulement */
+    .process{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--hair)}
+    .pstep{border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:24px 20px;position:relative}
+    .pstep:last-child{border-right:0}
+    .pstep .num{font-family:var(--serif);font-size:15px;color:var(--olive2);margin-bottom:14px}
+    .pstep p{font-size:13.5px;color:var(--ink);line-height:1.45}
+
+    /* détecter */
+    .detect{display:grid;grid-template-columns:1fr .9fr;gap:56px;align-items:center}
+    .detect ul{list-style:none;margin-top:8px}
+    .detect li{position:relative;padding-left:28px;font-size:15.5px;color:var(--ink);line-height:1.5;margin-bottom:16px}
+    .detect li:before{content:"✓";position:absolute;left:0;top:0;color:var(--olive2);font-weight:700}
+    .detectCard{border:1px solid var(--hair);background:var(--white);padding:34px}
+    .detectCard h3{font-size:26px;line-height:1.1}
+    .detectCard p{color:var(--secondary);font-size:14px;line-height:1.7;margin:14px 0 22px}
+
+    @media(max-width:900px){
+      .equation{grid-template-columns:1fr;gap:14px}.eqOp{transform:rotate(90deg)}
+      .contrib{grid-template-columns:1fr}.contribCol:first-child{border-right:0;border-bottom:1px solid var(--hair)}
+      .process{grid-template-columns:1fr 1fr}.pstep:nth-child(2n){border-right:0}
+      .detect{grid-template-columns:1fr;gap:34px}
+    }
+    @media(max-width:560px){.process{grid-template-columns:1fr}.pstep{border-right:0}}
+  </style>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="index.html" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links">
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html" class="active">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a class="cta" href="echanger.html">Échanger ↗</a>
+  </nav>
+</div></header>
+
+<main>
+  <section class="phead"><div class="wrap">
+    <div class="kicker reveal">Partenariats</div>
+    <h1 class="reveal">Pas seulement<br>des clients. <i>Des partenaires.</i></h1>
+    <p class="lead reveal">Vous connaissez le secteur. Nous construisons le système. Vous conservez la relation et l’expertise humaine — et nous partageons la valeur créée par le volume supplémentaire.</p>
+  </div></section>
+
+  <section class="pblock white"><div class="wrap">
+    <div class="equation reveal">
+      <div class="eqBox"><div class="k">Le partenaire apporte</div><div class="v">Expertise métier</div></div>
+      <div class="eqOp" aria-hidden="true">+</div>
+      <div class="eqBox"><div class="k">Groupe Solution apporte</div><div class="v">La technologie</div></div>
+      <div class="eqOp" aria-hidden="true">=</div>
+      <div class="eqBox result"><div class="k">Ensemble</div><div class="v">Une nouvelle capacité de production</div></div>
+    </div>
+  </div></section>
+
+  <section class="pblock"><div class="wrap">
+    <div class="pblockHead reveal"><div class="kicker">Qui apporte quoi</div><h2>Deux moitiés d’un même système.</h2></div>
+    <div class="contrib reveal">
+      <div class="contribCol">
+        <h3>Ce que Groupe Solution apporte</h3>
+        <ul>
+          <li>La conception du système</li>
+          <li>Le développement</li>
+          <li>L’automatisation des tâches répétitives</li>
+          <li>L’analyse des données</li>
+          <li>L’amélioration continue du moteur</li>
+        </ul>
+      </div>
+      <div class="contribCol partner">
+        <h3>Ce que le partenaire apporte</h3>
+        <ul>
+          <li>L’expertise métier</li>
+          <li>Le processus réel, tel qu’il se pratique</li>
+          <li>Les cas d’usage</li>
+          <li>L’accès à des données conformes</li>
+          <li>Des utilisateurs pilotes</li>
+          <li>La commercialisation ou le volume</li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="pblock white"><div class="wrap">
+    <div class="pblockHead reveal"><div class="kicker">Modèles économiques</div><h2>Plusieurs façons de partager la valeur.</h2></div>
+    <div class="models reveal">
+      <span class="model">Partage du chiffre d’affaires</span>
+      <span class="model">Rémunération par dossier</span>
+      <span class="model">Abonnement + performance</span>
+      <span class="model">Licence en marque blanche</span>
+      <span class="model">Création d’une solution commune</span>
+    </div>
+  </div></section>
+
+  <section class="pblock"><div class="wrap">
+    <div class="pblockHead reveal"><div class="kicker">Déroulement type</div><h2>Du premier échange au partage de la valeur.</h2></div>
+    <div class="process reveal">
+      <div class="pstep"><div class="num">01</div><p>Échange métier</p></div>
+      <div class="pstep"><div class="num">02</div><p>Cartographie du processus</p></div>
+      <div class="pstep"><div class="num">03</div><p>Pilote restreint</p></div>
+      <div class="pstep"><div class="num">04</div><p>Mesure des résultats</p></div>
+      <div class="pstep"><div class="num">05</div><p>Déploiement</p></div>
+      <div class="pstep"><div class="num">06</div><p>Partage de la valeur</p></div>
+    </div>
+  </div></section>
+
+  <section class="pblock white"><div class="wrap">
+    <div class="detect">
+      <div class="reveal">
+        <div class="kicker">Comment se reconnaître</div>
+        <h2 class="pblockHead" style="margin-bottom:22px">Votre activité est probablement adaptée si…</h2>
+        <ul>
+          <li>chaque dossier suit globalement les mêmes étapes</li>
+          <li>votre revenu dépend du nombre de dossiers traités</li>
+          <li>vos équipes passent du temps à analyser ou qualifier</li>
+          <li>certaines demandes sont perdues faute de temps</li>
+          <li>l’humain est surtout indispensable à la fin du processus</li>
+        </ul>
+      </div>
+      <div class="detectCard reveal">
+        <h3>Voyons votre processus.</h3>
+        <p>Un diagnostic rapide donne un premier repère — puis on en discute de vive voix.</p>
+        <a class="btn" href="echanger.html#diagnostic">Analyser mon processus →</a>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution</span>
+  <nav>
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+
+<script src="site.js"></script>
+</body>
+</html>

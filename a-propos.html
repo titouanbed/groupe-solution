@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — Groupe Solution</title>
+  <meta name="description" content="D'un premier besoin métier à un moteur réutilisable : l'histoire du socle de Groupe Solution, construit comme une preuve avant d'être un discours, puis réappliqué à d'autres marchés." />
+  <link rel="icon" href="Logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .friseSection{padding:74px 0 100px;background:var(--white);border-top:1px solid var(--hair)}
+    .friseHead{max-width:640px;margin-bottom:56px}
+    .friseHead h2{font-size:clamp(30px,3.6vw,50px);line-height:1.02;margin-top:14px}
+
+    .frise{position:relative}
+    .friseSteps{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;position:relative}
+    .friseLine{position:absolute;left:0;right:0;top:7px;height:1.5px;background:var(--hair)}
+    .friseProgress{display:block;height:100%;width:0;background:var(--olive2);transition:width 1.6s var(--ease) .1s}
+    .frise.in .friseProgress{width:100%}
+    .milestone{position:relative;padding-top:30px;opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+    .frise.in .milestone{opacity:1;transform:none}
+    .frise.in .milestone:nth-child(1){transition-delay:.15s}
+    .frise.in .milestone:nth-child(2){transition-delay:.35s}
+    .frise.in .milestone:nth-child(3){transition-delay:.55s}
+    .frise.in .milestone:nth-child(4){transition-delay:.75s}
+    .frise.in .milestone:nth-child(5){transition-delay:.95s}
+    .mDot{position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;background:var(--white);border:2px solid var(--hair2);z-index:2;transition:border-color .4s var(--ease),background .4s}
+    .frise.in .milestone .mDot{border-color:var(--olive)}
+    .mNum{font-family:var(--serif);font-size:15px;color:var(--olive2);margin-bottom:10px}
+    .milestone p{font-size:14.5px;color:var(--ink);line-height:1.5}
+
+    .vision{padding:0 0 120px;background:var(--white)}
+    .visionGrid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .vCard{border:1px solid var(--hair);background:var(--paper);padding:36px}
+    .vCard .k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--olive2);font-weight:700;margin-bottom:16px}
+    .vCard h3{font-size:clamp(24px,2.6vw,32px);line-height:1.1}
+    .vCard p{color:var(--secondary);font-size:14.5px;line-height:1.75;margin-top:16px}
+    .aproCta{margin-top:60px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;padding-top:36px;border-top:1px solid var(--hair)}
+    .aproCta p{font-family:var(--serif);font-size:clamp(24px,3vw,38px);line-height:1.08;max-width:600px}
+
+    @media(max-width:820px){
+      .friseSteps{grid-template-columns:1fr;gap:0;padding-left:32px}
+      .friseLine{left:7px;right:auto;top:6px;bottom:20px;width:1.5px;height:auto}
+      .friseProgress{width:100%!important;height:100%}
+      .milestone{padding:22px 0 22px 0}
+      .mDot{left:-32px;top:22px}
+      .milestone:first-child{padding-top:6px}.milestone:first-child .mDot{top:4px}
+      .visionGrid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="index.html" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links">
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html" class="active">À propos</a>
+    <a class="cta" href="echanger.html">Échanger ↗</a>
+  </nav>
+</div></header>
+
+<main>
+  <section class="phead"><div class="wrap">
+    <div class="kicker reveal">À propos</div>
+    <h1 class="reveal">D’un premier besoin métier<br>à un <i>moteur réutilisable</i>.</h1>
+    <p class="lead reveal">Groupe Solution n’a pas commencé par une ambition abstraite, mais par un problème concret : rapprocher un profil des bonnes opportunités. De cette brique est né un moteur — qu’on réapplique, métier après métier.</p>
+  </div></section>
+
+  <section class="friseSection"><div class="wrap">
+    <div class="friseHead reveal"><div class="kicker">La trajectoire</div><h2>Une brique, puis un moteur.</h2></div>
+    <div class="frise reveal">
+      <div class="friseSteps">
+        <div class="friseLine"><span class="friseProgress"></span></div>
+        <div class="milestone"><span class="mDot"></span><div class="mNum">01</div><p>Analyser automatiquement un CV.</p></div>
+        <div class="milestone"><span class="mDot"></span><div class="mNum">02</div><p>Comprendre un profil, au-delà des mots-clés.</p></div>
+        <div class="milestone"><span class="mDot"></span><div class="mNum">03</div><p>Le comparer à des centaines de milliers d’opportunités.</p></div>
+        <div class="milestone"><span class="mDot"></span><div class="mNum">04</div><p>Construire une solution de placement — Solution Alternance.</p></div>
+        <div class="milestone"><span class="mDot"></span><div class="mNum">05</div><p>Appliquer le même moteur à d’autres métiers rémunérés au volume.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="vision"><div class="wrap">
+    <div class="visionGrid">
+      <div class="vCard reveal">
+        <div class="k">Notre méthode</div>
+        <h3>Construire la preuve avant le discours.</h3>
+        <p>Le choix a été de faire tourner le moteur avant de le vendre : le construire, le tester sur des profils réels, et vérifier qu’il tient sa promesse. Un système qui fonctionne d’abord, un pitch ensuite.</p>
+      </div>
+      <div class="vCard reveal">
+        <div class="k">Notre logique</div>
+        <h3>Un moteur, pas un produit unique.</h3>
+        <p>Le même socle — analyser, rapprocher, automatiser, expliquer — se transpose à toute activité rémunérée au volume de dossiers. Chaque nouveau métier est une spécialisation, pas une reconstruction.</p>
+      </div>
+    </div>
+    <div class="aproCta reveal">
+      <p>Un moteur qui tourne, prêt à s’appliquer à votre marché.</p>
+      <a class="btn" href="echanger.html">Échanger avec nous ↗</a>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution</span>
+  <nav>
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+
+<script src="site.js"></script>
+</body>
+</html>

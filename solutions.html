@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions — Groupe Solution</title>
+  <meta name="description" content="Un socle technologique commun, décliné par marché : formation, immobilier, financement, assurance, tourisme. Revenu, frein, automatisation, part humaine et modèle de partenariat pour chaque famille." />
+  <link rel="icon" href="Logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .famSection{padding:70px 0 120px;background:var(--paper)}
+    .families{border-top:1px solid var(--hair)}
+    .family{border-bottom:1px solid var(--hair)}
+    .familyHead{display:flex;align-items:center;gap:24px;padding:32px 0;cursor:pointer;background:none;border:0;width:100%;text-align:left;font:inherit;color:var(--ink)}
+    .familyNum{font-family:var(--serif);font-size:16px;color:var(--muted);width:34px;flex-shrink:0}
+    .familyHead h2{font-size:clamp(26px,3.2vw,42px);line-height:1.02;flex:1}
+    .familyState{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:8px}
+    .familyState.live{color:var(--olive2)}
+    .familyState .dots{display:inline-flex;gap:5px}
+    .familyPlus{width:24px;height:24px;position:relative;flex-shrink:0}
+    .familyPlus:before,.familyPlus:after{content:"";position:absolute;background:var(--olive2);transition:transform .35s var(--ease),opacity .35s}
+    .familyPlus:before{left:0;right:0;top:11px;height:1.5px}
+    .familyPlus:after{top:0;bottom:0;left:11px;width:1.5px}
+    .family.open .familyPlus:after{transform:scaleY(0);opacity:0}
+    .familyBody{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+    .family.open .familyBody{max-height:900px}
+    .attrGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:26px;padding:6px 0 40px 58px}
+    .attr .attrK{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--olive2);font-weight:700;margin-bottom:10px}
+    .attr p{font-size:13.5px;color:var(--secondary);line-height:1.6}
+    .attr.human .attrK{color:var(--muted)}
+    .solCta{margin-top:70px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;padding-top:36px;border-top:1px solid var(--hair)}
+    .solCta p{font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);line-height:1.08;max-width:640px}
+    .solCta .acts{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    @media(max-width:900px){.attrGrid{grid-template-columns:1fr 1fr;gap:22px;padding-left:0}.family.open .familyBody{max-height:1400px}}
+    @media(max-width:560px){.attrGrid{grid-template-columns:1fr}.familyNum{display:none}.familyState .txt{display:none}}
+  </style>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="index.html" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links">
+    <a href="solutions.html" class="active">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a class="cta" href="echanger.html">Échanger ↗</a>
+  </nav>
+</div></header>
+
+<main>
+  <section class="phead"><div class="wrap">
+    <div class="kicker reveal">Solutions</div>
+    <h1 class="reveal">Changer de secteur.<br><i>Pas de logique.</i></h1>
+    <p class="lead reveal">Le même socle — analyser, rapprocher, automatiser, expliquer — se décline par marché. Chaque famille suit la même structure : ce qui déclenche le revenu, ce qui freine aujourd’hui, ce que le système absorbe, ce qui reste humain, et le modèle de partenariat envisageable.</p>
+  </div></section>
+
+  <section class="famSection"><div class="wrap">
+    <div class="families" id="families">
+
+      <div class="family open">
+        <button class="familyHead" aria-expanded="true">
+          <span class="familyNum">01</span>
+          <h2>Formation &amp; emploi</h2>
+          <span class="familyState live"><span class="dots"><span class="pdot green"></span><span class="pdot blue"></span></span><span class="txt">Déployé</span></span>
+          <span class="familyPlus" aria-hidden="true"></span>
+        </button>
+        <div class="familyBody"><div class="attrGrid">
+          <div class="attr"><div class="attrK">Revenu</div><p>Chaque placement réussi ou mise en relation aboutie entre un profil et une opportunité.</p></div>
+          <div class="attr"><div class="attrK">Frein</div><p>Comparer des milliers de profils et d’offres à la main, sans jamais tout couvrir.</p></div>
+          <div class="attr"><div class="attrK">Automatisation</div><p>Analyse des profils, matching sémantique, explication de chaque rapprochement.</p></div>
+          <div class="attr human"><div class="attrK">Humain</div><p>L’accompagnement, l’entretien, la décision finale de mise en relation.</p></div>
+          <div class="attr"><div class="attrK">Modèle</div><p>Déjà déployé : Solution Alternance et Solution Recrutement, en ligne.</p></div>
+        </div></div>
+      </div>
+
+      <div class="family">
+        <button class="familyHead" aria-expanded="false">
+          <span class="familyNum">02</span>
+          <h2>Immobilier &amp; habitat</h2>
+          <span class="familyState"><span class="txt">Exploration sectorielle</span></span>
+          <span class="familyPlus" aria-hidden="true"></span>
+        </button>
+        <div class="familyBody"><div class="attrGrid">
+          <div class="attr"><div class="attrK">Revenu</div><p>Un dossier signé, un devis accepté, une vente conclue.</p></div>
+          <div class="attr"><div class="attrK">Frein</div><p>Qualifier les demandes et les rapprocher des bons intervenants ou des bons biens.</p></div>
+          <div class="attr"><div class="attrK">Automatisation</div><p>Qualification, rapprochement demande / intervenant, relances jusqu’au devis.</p></div>
+          <div class="attr human"><div class="attrK">Humain</div><p>La visite, l’expertise terrain, la négociation.</p></div>
+          <div class="attr"><div class="attrK">Modèle</div><p>Partenariat à construire avec un acteur du diagnostic, des travaux ou de la vente.</p></div>
+        </div></div>
+      </div>
+
+      <div class="family">
+        <button class="familyHead" aria-expanded="false">
+          <span class="familyNum">03</span>
+          <h2>Droit, conseil &amp; financement</h2>
+          <span class="familyState"><span class="txt">Exploration sectorielle</span></span>
+          <span class="familyPlus" aria-hidden="true"></span>
+        </button>
+        <div class="familyBody"><div class="attrGrid">
+          <div class="attr"><div class="attrK">Revenu</div><p>Un dossier accepté, une aide obtenue, une économie réalisée pour le client.</p></div>
+          <div class="attr"><div class="attrK">Frein</div><p>Détecter les opportunités et monter des dossiers conformes, en volume.</p></div>
+          <div class="attr"><div class="attrK">Automatisation</div><p>Veille et détection, pré-remplissage et mise en forme des dossiers.</p></div>
+          <div class="attr human"><div class="attrK">Humain</div><p>L’expertise réglementaire, l’arbitrage, la relation de conseil.</p></div>
+          <div class="attr"><div class="attrK">Modèle</div><p>Partenariat avec un cabinet ou un expert (marchés publics, subventions, optimisation).</p></div>
+        </div></div>
+      </div>
+
+      <div class="family">
+        <button class="familyHead" aria-expanded="false">
+          <span class="familyNum">04</span>
+          <h2>Assurance &amp; recouvrement</h2>
+          <span class="familyState"><span class="txt">Exploration sectorielle</span></span>
+          <span class="familyPlus" aria-hidden="true"></span>
+        </button>
+        <div class="familyBody"><div class="attrGrid">
+          <div class="attr"><div class="attrK">Revenu</div><p>Un contrat, un dossier traité, une créance recouvrée.</p></div>
+          <div class="attr"><div class="attrK">Frein</div><p>Traiter des dossiers récurrents à grande échelle et les prioriser justement.</p></div>
+          <div class="attr"><div class="attrK">Automatisation</div><p>Qualification, priorisation, relances et suivi des dossiers.</p></div>
+          <div class="attr human"><div class="attrK">Humain</div><p>L’appréciation des cas sensibles et la décision.</p></div>
+          <div class="attr"><div class="attrK">Modèle</div><p>Partenariat avec un acteur de l’assurance ou du recouvrement.</p></div>
+        </div></div>
+      </div>
+
+      <div class="family">
+        <button class="familyHead" aria-expanded="false">
+          <span class="familyNum">05</span>
+          <h2>Tourisme &amp; mobilité</h2>
+          <span class="familyState"><span class="txt">Exploration sectorielle</span></span>
+          <span class="familyPlus" aria-hidden="true"></span>
+        </button>
+        <div class="familyBody"><div class="attrGrid">
+          <div class="attr"><div class="attrK">Revenu</div><p>Une réservation, une prestation vendue, une mise en relation aboutie.</p></div>
+          <div class="attr"><div class="attrK">Frein</div><p>Orchestrer offres et demandes sur un territoire encore à structurer.</p></div>
+          <div class="attr"><div class="attrK">Automatisation</div><p>Agrégation, rapprochement offre / demande, relances.</p></div>
+          <div class="attr human"><div class="attrK">Humain</div><p>La connaissance du terrain, l’accueil, la relation.</p></div>
+          <div class="attr"><div class="attrK">Modèle</div><p>Partenariat local — notamment autour des projets à Mayotte.</p></div>
+        </div></div>
+      </div>
+
+    </div>
+
+    <div class="solCta reveal">
+      <p>Votre marché n’est pas là&nbsp;? Le socle s’y applique probablement.</p>
+      <div class="acts">
+        <a class="btn" href="echanger.html">Proposer mon secteur ↗</a>
+        <a class="ghost" href="echanger.html#diagnostic">Tester mon activité</a>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution</span>
+  <nav>
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+
+<script src="site.js"></script>
+<script>
+/* Accordéon des familles (révélation progressive, un seul ouvert à la fois) */
+(function(){
+  var fams = [].slice.call(document.querySelectorAll('.family'));
+  fams.forEach(function(f){
+    var head = f.querySelector('.familyHead');
+    head.addEventListener('click', function(){
+      var isOpen = f.classList.contains('open');
+      fams.forEach(function(o){ o.classList.remove('open'); o.querySelector('.familyHead').setAttribute('aria-expanded','false'); });
+      if(!isOpen){ f.classList.add('open'); head.setAttribute('aria-expanded','true'); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

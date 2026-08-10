@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réalisations — Groupe Solution</title>
+  <meta name="description" content="Deux systèmes déjà en ligne : Solution Alternance (+200 000 offres, matching en 2 minutes) et Solution Recrutement (+565 000 offres, chaque match expliqué). Démonstration du moteur de matching, étape par étape." />
+  <link rel="icon" href="Logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Produits déployés ── */
+    .proofs{padding:70px 0 40px;background:var(--paper)}
+    .proofGrid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .proof{border:1px solid var(--hair);background:var(--white);padding:34px;display:flex;flex-direction:column}
+    .proofTop{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+    .proofTop .prodMeta{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    .proofState{margin-left:auto;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--olive2);font-weight:700}
+    .proof h2{font-size:clamp(30px,3.4vw,44px);line-height:1}
+    .proof p.lead2{color:var(--secondary);font-size:14.5px;line-height:1.7;margin-top:14px}
+    .proofStats{display:flex;gap:30px;margin-top:26px;padding-top:22px;border-top:1px solid var(--hair)}
+    .proofStat b{display:block;font-family:var(--serif);font-size:30px;letter-spacing:-.03em}
+    .proofStat span{font-size:11px;color:var(--muted);letter-spacing:.04em}
+    .proofNote{font-size:12px;color:var(--muted);font-style:italic;margin-top:18px}
+    .proofLink{margin-top:auto;padding-top:22px}
+
+    /* ── Démo live du matching ── */
+    .demoSection{padding:60px 0 120px;background:var(--paper)}
+    .demoHead{display:grid;grid-template-columns:1fr .8fr;gap:70px;align-items:end;margin-bottom:34px}
+    .demoHead h2{font-size:clamp(40px,5vw,68px);line-height:1}
+    .demoHead p{justify-self:end;max-width:440px;color:var(--secondary);line-height:1.8;font-size:15px}
+    .demo{border:1px solid var(--hair);background:var(--white)}
+    .demoTopbar{display:flex;align-items:center;gap:14px;padding:15px 24px;border-bottom:1px solid var(--hair);background:var(--white)}
+    .demoTopbar .dLabel{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    .fictive{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--olive2);background:var(--oliveSoft);border:1px solid var(--hair);padding:6px 12px;letter-spacing:.02em}
+    .fictive:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--olive2)}
+    .demoStage{padding:34px;min-height:360px}
+    .stageStep{display:none}.stageStep.on{display:block;animation:fadeUp .5s var(--ease)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    .stepIntro{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--olive2);font-weight:700;margin-bottom:16px}
+    .stepTitle{font-family:var(--serif);font-size:clamp(24px,2.8vw,32px);line-height:1.1;margin-bottom:8px}
+    .stepText{color:var(--secondary);font-size:14.5px;line-height:1.7;max-width:560px}
+
+    /* profils */
+    .profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+    .dProfile{border:1px solid var(--hair);background:var(--white);padding:20px;cursor:pointer;text-align:left;font:inherit;color:var(--ink);transition:border-color .2s,background .2s}
+    .dProfile:hover{border-color:var(--hair2)}
+    .dProfile[aria-selected="true"]{border-color:var(--olive);background:var(--oliveSoft)}
+    .dProfile .pv{font-family:var(--serif);font-size:22px;line-height:1}
+    .dProfile .pr{font-size:13px;color:var(--secondary);margin-top:6px}
+    .dProfile .pe{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:10px}
+
+    /* compétences */
+    .skillWrap{margin-top:24px}
+    .skillWrap .who{font-family:var(--serif);font-size:20px;margin-bottom:14px}
+    .skills{display:flex;flex-wrap:wrap;gap:9px}
+    .dSkill{border:1px solid var(--hair2);padding:8px 13px;font-size:13px;color:var(--ink);background:var(--white);opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+    .dSkill.in{opacity:1;transform:none}
+
+    /* analyse volume */
+    .scan{margin-top:26px;border:1px solid var(--hair);background:var(--paper);padding:26px;position:relative;overflow:hidden}
+    .scanNum{font-family:var(--serif);font-size:clamp(38px,6vw,64px);letter-spacing:-.03em;line-height:1}
+    .scanLabel{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+    .scanLine{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--olive2),transparent);top:0;animation:scanMove 1.8s ease-in-out infinite}
+    @keyframes scanMove{0%,100%{top:12%;opacity:.2}50%{top:88%;opacity:.7}}
+
+    /* classement */
+    .ranks{margin-top:22px;display:grid;gap:10px}
+    .rank{display:flex;align-items:center;gap:16px;border:1px solid var(--hair);padding:16px 18px;background:var(--white)}
+    .rank.top{border-color:var(--olive)}
+    .rankPos{font-family:var(--serif);font-size:20px;color:var(--muted);width:28px;flex-shrink:0}
+    .rank.top .rankPos{color:var(--olive2)}
+    .rankBody{flex:1;min-width:0}
+    .rankBody b{font-weight:600;font-size:14.5px;display:block}
+    .rankBody span{font-size:12px;color:var(--muted)}
+    .rankScore{font-family:var(--serif);font-size:26px;letter-spacing:-.02em}
+    .rankBar{width:80px;height:4px;background:var(--hair);position:relative;flex-shrink:0}
+    .rankBar i{position:absolute;left:0;top:0;bottom:0;background:var(--olive2);width:0;transition:width .8s var(--ease)}
+
+    /* explication */
+    .explain{margin-top:22px;border:1px solid var(--hair);background:var(--white)}
+    .explainHead{padding:16px 20px;border-bottom:1px solid var(--hair);display:flex;align-items:center;gap:12px}
+    .explainHead b{font-weight:600}.explainHead .sc{margin-left:auto;font-family:var(--serif);font-size:22px}
+    .explainCols{display:grid;grid-template-columns:1fr 1fr}
+    .explainCol{padding:20px}
+    .explainCol:first-child{border-right:1px solid var(--hair)}
+    .explainCol .h{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+    .explainCol.forts .h{color:var(--olive2)}
+    .explainCol.vig .h{color:var(--muted)}
+    .explainCol li{list-style:none;font-size:13.5px;color:var(--secondary);line-height:1.5;padding-left:18px;position:relative;margin-bottom:9px}
+    .explainCol li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%}
+    .explainCol.forts li:before{background:var(--olive2)}
+    .explainCol.vig li:before{background:var(--hair2)}
+
+    /* transmission */
+    .transmit{margin-top:20px;text-align:center;padding:30px 20px}
+    .transmit .ic{width:46px;height:46px;border:1px solid var(--olive);border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;color:var(--olive2)}
+    .transmit h3{font-family:var(--serif);font-size:clamp(26px,3vw,36px)}
+    .transmit p{color:var(--secondary);margin-top:12px;font-size:14.5px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7}
+
+    /* nav de la démo */
+    .demoNav{display:flex;align-items:center;gap:18px;padding:18px 24px;border-top:1px solid var(--hair);background:var(--white)}
+    .demoProgress{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+    .demoDots{display:flex;gap:6px}
+    .demoDots i{width:7px;height:7px;border-radius:50%;background:var(--hair2)}
+    .demoDots i.on{background:var(--olive2)}
+    .demoStepName{font-weight:600;color:var(--secondary)}
+    .demoBtns{margin-left:auto;display:flex;gap:12px;align-items:center}
+    .demoBack{background:none;border:0;font:inherit;font-size:13px;font-weight:600;color:var(--secondary);cursor:pointer}
+    .demoBack[disabled]{opacity:.35;cursor:not-allowed}
+    .demoNext{cursor:pointer}.demoNext[disabled]{opacity:.4;cursor:not-allowed}
+
+    @media(max-width:900px){.proofGrid{grid-template-columns:1fr}.demoHead{grid-template-columns:1fr;gap:24px}.demoHead p{justify-self:start}}
+    @media(max-width:640px){
+      .proofs{padding:54px 0 30px}.proof{padding:26px}
+      .proofStats{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+      .proofStat b{font-size:26px}
+      .demoStage{padding:22px;min-height:0}
+      .profiles{grid-template-columns:1fr}
+      .explainCols{grid-template-columns:1fr}.explainCol:first-child{border-right:0;border-bottom:1px solid var(--hair)}
+      .rank{flex-wrap:wrap}.rankBar{display:none}
+      .demoNav{flex-wrap:wrap;gap:12px}.demoBtns{margin-left:0;width:100%;justify-content:space-between}
+      .demoStepName{display:none}
+    }
+  </style>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="index.html" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links">
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html" class="active">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a class="cta" href="echanger.html">Échanger ↗</a>
+  </nav>
+</div></header>
+
+<main>
+  <section class="phead"><div class="wrap">
+    <div class="kicker reveal">Réalisations</div>
+    <h1 class="reveal">Le système existe déjà.<br><i>La preuve avant le pitch.</i></h1>
+    <p class="lead reveal">Deux moteurs sont en ligne et opérationnels. Ils démontrent qu’un même socle se spécialise sur des marchés différents — et que le matching n’est pas une promesse, mais un mécanisme qui tourne.</p>
+  </div></section>
+
+  <section class="proofs"><div class="wrap">
+    <div class="proofGrid">
+      <div class="proof reveal">
+        <div class="proofTop"><span class="pdot green"></span><span class="prodMeta">Formation &amp; apprentissage</span><span class="proofState">Déployé</span></div>
+        <h2>Solution Alternance</h2>
+        <p class="lead2">Le moteur compare chaque profil étudiant à l’intégralité d’une base nationale et fait remonter les offres les plus pertinentes — un matching sémantique et IA, pas un filtre par mots-clés.</p>
+        <div class="proofStats">
+          <div class="proofStat"><b>+200 000</b><span>offres comparées</span></div>
+          <div class="proofStat"><b>2 min</b><span>du profil au match</span></div>
+          <div class="proofStat"><b>Top 5</b><span>offres par profil</span></div>
+        </div>
+        <div class="proofLink"><a class="ghost" href="https://solutionalternance.fr" target="_blank" rel="noopener">Voir solutionalternance.fr ↗</a></div>
+      </div>
+
+      <div class="proof reveal reveal">
+        <div class="proofTop"><span class="pdot blue"></span><span class="prodMeta">Emploi &amp; recrutement</span><span class="proofState">Déployé</span></div>
+        <h2>Solution Recrutement</h2>
+        <p class="lead2">Le même socle, appliqué au recrutement classique : chaque rapprochement est expliqué — points forts et points de vigilance — plutôt que simplement calculé.</p>
+        <div class="proofStats">
+          <div class="proofStat"><b>+565 000</b><span>offres disponibles</span></div>
+          <div class="proofStat"><b>Sémantique</b><span>+ IA, pas des mots-clés</span></div>
+          <div class="proofStat"><b>Expliqué</b><span>chaque match</span></div>
+        </div>
+        <p class="proofNote">Partenariat commercial en cours de validation.</p>
+        <div class="proofLink"><a class="ghost" href="https://solutionsrecrutement.fr" target="_blank" rel="noopener">Voir solutionsrecrutement.fr ↗</a></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="demoSection"><div class="wrap">
+    <div class="demoHead">
+      <div><div class="kicker reveal">Le matching en direct</div><h2 class="reveal">Voir le moteur<br>travailler.</h2></div>
+      <p class="reveal">Six étapes, d’un profil jusqu’à la transmission à un conseiller. Choisissez un profil et avancez pas à pas.</p>
+    </div>
+
+    <div class="demo reveal">
+      <div class="demoTopbar">
+        <span class="dLabel">Moteur de matching — séquence</span>
+        <span class="fictive">Démonstration avec données fictives</span>
+      </div>
+
+      <div class="demoStage" id="demoStage"><!-- injecté par le script --></div>
+
+      <div class="demoNav">
+        <div class="demoProgress">
+          <span class="demoDots" id="demoDots"></span>
+          <span class="demoStepName" id="demoStepName"></span>
+        </div>
+        <div class="demoBtns">
+          <button class="demoBack" id="demoBack" disabled>← Précédent</button>
+          <button class="btn demoNext" id="demoNext" disabled>Suivant →</button>
+        </div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution</span>
+  <nav>
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+
+<script src="site.js"></script>
+<script>
+/* ── Démo live du matching : 6 étapes, données fictives, contrôlée pas à pas ── */
+(function(){
+  var stage = document.getElementById('demoStage');
+  var dots = document.getElementById('demoDots');
+  var stepName = document.getElementById('demoStepName');
+  var back = document.getElementById('demoBack');
+  var next = document.getElementById('demoNext');
+  if(!stage) return;
+
+  var STEPS = ['Profil','Compétences','Analyse','Classement','Compatibilité','Transmission'];
+  var profiles = [
+    { id:'lea', name:'Léa', role:'Assistante marketing', exp:'2 ans d’expérience',
+      skills:['Community management','Rédaction web','Suivi de campagnes','Reporting','Créativité'],
+      matches:[
+        { title:'Alternance — Chargé(e) de communication', city:'Nantes', score:94,
+          forts:['Compétences rédactionnelles directement alignées','Expérience concrète du suivi de campagnes'],
+          vig:['Volet analytique (data) à approfondir'] },
+        { title:'Alternance — Assistant(e) marketing digital', city:'Rennes', score:88 },
+        { title:'Alternance — Community manager', city:'Angers', score:84 }
+      ] },
+    { id:'karim', name:'Karim', role:'Développeur web', exp:'Profil junior',
+      skills:['JavaScript','React','API REST','Git','Résolution de problèmes'],
+      matches:[
+        { title:'Alternance — Développeur front-end', city:'Lyon', score:92,
+          forts:['Stack technique correspondante (React)','Bonne autonomie sur les API REST'],
+          vig:['Peu d’expérience sur les tests automatisés'] },
+        { title:'Alternance — Intégrateur web', city:'Grenoble', score:86 },
+        { title:'Alternance — Développeur full-stack junior', city:'Saint-Étienne', score:81 }
+      ] },
+    { id:'sophie', name:'Sophie', role:'Chargée de recrutement', exp:'3 ans d’expérience',
+      skills:['Sourcing','Conduite d’entretien','ATS','Relation candidat','Organisation'],
+      matches:[
+        { title:'Poste — Chargé(e) de recrutement', city:'Bordeaux', score:91,
+          forts:['Maîtrise du sourcing et des outils ATS','Expérience candidat solide'],
+          vig:['Secteur cible à préciser avec l’entreprise'] },
+        { title:'Poste — Talent acquisition specialist', city:'Toulouse', score:85 },
+        { title:'Poste — Chargé(e) de recrutement IT', city:'Montpellier', score:80 }
+      ] }
+  ];
+
+  var state = { step:0, profile:null };
+  var esc = function(s){ return String(s==null?'':s).replace(/[<>&]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c];}); };
+
+  function renderDots(){
+    dots.innerHTML = STEPS.map(function(_,i){ return '<i class="'+(i<=state.step?'on':'')+'"></i>'; }).join('');
+    stepName.textContent = (state.step+1) + '/6 · ' + STEPS[state.step];
+  }
+
+  function render(){
+    renderDots();
+    back.disabled = state.step === 0;
+    next.disabled = (state.step === 0 && !state.profile);
+    next.textContent = state.step === STEPS.length-1 ? 'Relancer ↻' : 'Suivant →';
+    var p = state.profile;
+    var html = '';
+
+    if(state.step === 0){
+      html = '<div class="stageStep on">' +
+        '<div class="stepIntro">Étape 1 — Sélection</div>' +
+        '<div class="stepTitle">Choisissez un profil.</div>' +
+        '<div class="stepText">Trois profils fictifs pour illustrer la séquence.</div>' +
+        '<div class="profiles">' + profiles.map(function(pr){
+          return '<button type="button" class="dProfile" data-id="'+pr.id+'" aria-selected="'+(p&&p.id===pr.id?'true':'false')+'">' +
+            '<div class="pv">'+esc(pr.name)+'</div><div class="pr">'+esc(pr.role)+'</div><div class="pe">'+esc(pr.exp)+'</div></button>';
+        }).join('') + '</div></div>';
+    } else if(state.step === 1){
+      html = '<div class="stageStep on">' +
+        '<div class="stepIntro">Étape 2 — Extraction</div>' +
+        '<div class="stepTitle">Le profil est analysé.</div>' +
+        '<div class="stepText">Les compétences sont extraites du profil, prêtes à être comparées.</div>' +
+        '<div class="skillWrap"><div class="who">'+esc(p.name)+' — '+esc(p.role)+'</div><div class="skills" id="skills">' +
+          p.skills.map(function(s){ return '<span class="dSkill">'+esc(s)+'</span>'; }).join('') + '</div></div></div>';
+    } else if(state.step === 2){
+      html = '<div class="stageStep on">' +
+        '<div class="stepIntro">Étape 3 — Analyse</div>' +
+        '<div class="stepTitle">Comparaison à grande échelle.</div>' +
+        '<div class="stepText">Le profil est confronté à un large volume d’offres pour ne retenir que les plus pertinentes.</div>' +
+        '<div class="scan"><div class="scanLine"></div><div class="scanNum" id="scanNum">0</div><div class="scanLabel">offres balayées — valeur d’exemple, sans lien avec les chiffres réels</div></div></div>';
+    } else if(state.step === 3){
+      html = '<div class="stageStep on">' +
+        '<div class="stepIntro">Étape 4 — Classement</div>' +
+        '<div class="stepTitle">Les meilleures correspondances.</div>' +
+        '<div class="stepText">Le moteur classe les offres par pertinence pour '+esc(p.name)+'.</div>' +
+        '<div class="ranks">' + p.matches.map(function(m,i){
+          return '<div class="rank'+(i===0?' top':'')+'"><span class="rankPos">'+(i+1)+'</span>' +
+            '<span class="rankBody"><b>'+esc(m.title)+'</b><span>'+esc(m.city)+'</span></span>' +
+            '<span class="rankBar"><i data-w="'+m.score+'"></i></span><span class="rankScore">'+m.score+'%</span></div>';
+        }).join('') + '</div></div>';
+    } else if(state.step === 4){
+      var m = p.matches[0];
+      html = '<div class="stageStep on">' +
+        '<div class="stepIntro">Étape 5 — Compatibilité</div>' +
+        '<div class="stepTitle">Pourquoi ce match.</div>' +
+        '<div class="stepText">Chaque rapprochement est expliqué, pas seulement calculé.</div>' +
+        '<div class="explain"><div class="explainHead"><b>'+esc(m.title)+'</b><span class="sc">'+m.score+'%</span></div>' +
+          '<div class="explainCols"><div class="explainCol forts"><div class="h">Points forts</div><ul>' +
+            m.forts.map(function(f){ return '<li>'+esc(f)+'</li>'; }).join('') + '</ul></div>' +
+          '<div class="explainCol vig"><div class="h">Points de vigilance</div><ul>' +
+            m.vig.map(function(v){ return '<li>'+esc(v)+'</li>'; }).join('') + '</ul></div></div></div></div>';
+    } else if(state.step === 5){
+      html = '<div class="stageStep on"><div class="transmit">' +
+        '<div class="ic">→</div><h3>Transmis à un conseiller.</h3>' +
+        '<p>La sélection est envoyée à un humain, qui garde la décision finale et l’accompagnement. Le système prépare, l’expert tranche.</p></div></div>';
+    }
+    stage.innerHTML = html;
+    afterRender();
+  }
+
+  function afterRender(){
+    if(state.step === 0){
+      [].slice.call(stage.querySelectorAll('.dProfile')).forEach(function(b){
+        b.addEventListener('click', function(){
+          state.profile = profiles.filter(function(x){ return x.id === b.dataset.id; })[0];
+          [].slice.call(stage.querySelectorAll('.dProfile')).forEach(function(x){ x.setAttribute('aria-selected', x===b?'true':'false'); });
+          next.disabled = false;
+        });
+      });
+    } else if(state.step === 1){
+      var chips = [].slice.call(stage.querySelectorAll('.dSkill'));
+      chips.forEach(function(c,i){ setTimeout(function(){ c.classList.add('in'); }, 120 + i*130); });
+    } else if(state.step === 2){
+      countTo(document.getElementById('scanNum'), 1000000, 1400);
+    } else if(state.step === 3){
+      setTimeout(function(){ [].slice.call(stage.querySelectorAll('.rankBar i')).forEach(function(bar){ bar.style.width = bar.dataset.w + '%'; }); }, 60);
+    }
+  }
+
+  function countTo(el, target, dur){
+    if(!el) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = target.toLocaleString('fr-FR'); return; }
+    var start = performance.now();
+    function tick(t){
+      var k = Math.min(1,(t-start)/dur), v = Math.floor(target*(1-Math.pow(1-k,3)));
+      el.textContent = v.toLocaleString('fr-FR');
+      if(k<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  next.addEventListener('click', function(){
+    if(state.step === 0 && !state.profile) return;
+    if(state.step === STEPS.length-1){ state.step = 0; state.profile = null; render(); return; }
+    state.step++; render();
+  });
+  back.addEventListener('click', function(){ if(state.step>0){ state.step--; render(); } });
+
+  render();
+})();
+</script>
+</body>
+</html>

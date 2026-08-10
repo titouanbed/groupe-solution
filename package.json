@@ -1,0 +1,17 @@
+{
+  "name": "groupe-solution-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Site institutionnel Groupe Solution + prise de RDV Google Calendar (Vercel Functions).",
+  "scripts": {
+    "test:slots": "node scripts/test-slots.mjs",
+    "oauth:setup": "node scripts/google-oauth-setup.mjs"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "luxon": "^3.5.0"
+  }
+}

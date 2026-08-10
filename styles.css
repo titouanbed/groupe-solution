@@ -1,0 +1,76 @@
+/* ═══════════════════════════════════════════════════════════
+   Groupe Solution — design system partagé (pages secondaires)
+   Source Serif 4 (titres) + Plus Jakarta Sans (corps), olive, hairlines.
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --paper:#F7F7F4;--white:#FFFFFF;--ink:#111310;--secondary:#555952;--muted:#858A82;
+  --hair:#DCDDD8;--hair2:#C9CDC6;--olive:#626B5C;--olive2:#3F493D;--oliveSoft:#E9ECE5;
+  --green:#0E7A5A;--blue:#2368C7;--serif:"Source Serif 4",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.55}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1280px,calc(100% - 72px));margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.04em}
+h1 i,h2 i,h3 i{font-style:normal;color:var(--olive2)}
+
+/* ── NAV ── */
+.nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(247,247,244,.78);backdrop-filter:blur(18px) saturate(130%);border-bottom:1px solid rgba(220,221,216,.72)}
+.navin{height:82px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px}.brand img{height:42px;width:auto;display:block}
+.links{display:flex;align-items:center;gap:30px}
+.links a{font-size:13px;color:var(--secondary);font-weight:500;transition:color .16s}
+.links a:hover{color:var(--ink)}.links a.active{color:var(--ink)}
+.links .cta{padding:11px 17px;border:1px solid var(--hair2);border-radius:999px;color:var(--ink);background:rgba(255,255,255,.64)}
+.links .cta:hover{border-color:var(--olive)}
+
+/* ── Boutons ── */
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;border-radius:999px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;border:0;transition:transform .18s var(--ease),background .18s}
+.btn:hover{transform:translateY(-1px);background:#000}
+.ghost{font-size:13px;font-weight:600;border-bottom:1px solid var(--hair2);padding-bottom:2px}
+.ghost:hover{border-color:var(--olive)}
+
+/* ── Kicker ── */
+.kicker{font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:12px}
+.kicker:before{content:"";width:26px;height:1px;background:var(--olive)}
+
+/* ── En-tête de page ── */
+main{padding-top:82px}
+.phead{padding:74px 0 68px;border-bottom:1px solid var(--hair);background:var(--white)}
+.phead h1{font-size:clamp(46px,6.4vw,92px);line-height:.98;margin-top:24px;max-width:15ch}
+.phead .lead{font-size:17px;color:var(--secondary);line-height:1.75;max-width:600px;margin-top:26px}
+.phead .pheadActions{margin-top:30px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+
+/* ── Reveal ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ── Footer ── */
+footer{padding:42px 0 50px;border-top:1px solid var(--hair);background:var(--paper);font-size:12px;color:var(--secondary)}
+.foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+.foot .footBrand{display:flex;align-items:center;gap:12px}
+.foot .footBrand img{height:30px;width:auto}
+.foot nav{display:flex;gap:22px;flex-wrap:wrap}
+.foot nav a:hover{color:var(--ink)}
+
+/* ── Rappels famille (points colorés) ── */
+.pdot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+.pdot.green{background:var(--green)}.pdot.blue{background:var(--blue)}
+
+/* ── Responsive de base ── */
+@media(max-width:700px){
+  .wrap{width:min(100% - 34px,1280px)}
+  .links a:not(.cta){display:none}
+  .navin{height:70px}.brand img{height:34px}
+  main{padding-top:70px}
+  .phead{padding:54px 0 48px}
+  .foot{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}

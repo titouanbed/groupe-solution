@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Échanger — Groupe Solution</title>
+  <meta name="description" content="Six façons d'entrer en relation avec Groupe Solution, un diagnostic rapide de votre activité, et la prise de rendez-vous en trente minutes. Sans engagement." />
+  <link rel="icon" href="Logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="contact.css" />
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="index.html" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links">
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a class="cta" href="echanger.html">Échanger ↗</a>
+  </nav>
+</div></header>
+
+<main>
+  <section class="phead"><div class="wrap">
+    <div class="kicker reveal">Échanger</div>
+    <h1 class="reveal">Parlons de<br>votre <i>activité</i>.</h1>
+    <p class="lead reveal">Choisissez la porte d’entrée qui vous ressemble, testez votre activité en cinq questions, ou réservez directement un créneau. Sans engagement.</p>
+  </div></section>
+
+  <!-- CTA multiples (§12) -->
+  <section class="entries" id="entrees"><div class="wrap">
+    <div class="entriesHead">
+      <div><div class="kicker reveal">Par où commencer</div><h2 class="reveal">Six façons<br>d’entrer en relation.</h2></div>
+      <p class="reveal">Chaque entrée mène au bon échange, avec le contexte déjà en place — pas un formulaire générique de plus.</p>
+    </div>
+    <div class="entryGrid reveal">
+      <a class="entry" href="#rendez-vous" data-topic="Un processus à automatiser">
+        <div class="entryTop"><span class="entryNum">01</span><span class="entryArrow">↓</span></div>
+        <h3>J’ai un processus à automatiser</h3>
+        <p>Une étape manuelle vous coûte du temps ? Voyons ce que le système peut absorber.</p>
+      </a>
+      <a class="entry" href="#rendez-vous" data-topic="Recherche d’un partenaire technologique">
+        <div class="entryTop"><span class="entryNum">02</span><span class="entryArrow">↓</span></div>
+        <h3>Je cherche un partenaire technologique</h3>
+        <p>Vous connaissez un marché, nous construisons le système. Partageons la valeur créée.</p>
+      </a>
+      <a class="entry" href="#rendez-vous" data-topic="Démonstration">
+        <div class="entryTop"><span class="entryNum">03</span><span class="entryArrow">↓</span></div>
+        <h3>Je souhaite voir une démonstration</h3>
+        <p>Voir le moteur en conditions réelles, sur un cas concret et parlant.</p>
+      </a>
+      <a class="entry" href="#rendez-vous" data-topic="Proposition d’un secteur">
+        <div class="entryTop"><span class="entryNum">04</span><span class="entryArrow">↓</span></div>
+        <h3>Je veux proposer mon secteur</h3>
+        <p>Votre activité est rémunérée au volume ? Proposez-la comme terrain d’application.</p>
+      </a>
+      <a class="entry" href="realisations.html">
+        <div class="entryTop"><span class="entryNum">05</span><span class="entryArrow">↗</span></div>
+        <h3>Je cherche une solution déjà disponible</h3>
+        <p>Solution Alternance et Solution Recrutement sont déjà en ligne et opérationnelles.</p>
+      </a>
+      <a class="entry" href="#rendez-vous" data-topic="Création d’un site internet">
+        <div class="entryTop"><span class="entryNum">06</span><span class="entryArrow">↓</span></div>
+        <h3>Je veux un site internet</h3>
+        <p>Un site professionnel, conçu et livré sur mesure par Groupe Solution.</p>
+      </a>
+    </div>
+  </div></section>
+
+  <!-- Diagnostic scripté (§7) -->
+  <section class="diag" id="diagnostic"><div class="wrap">
+    <div class="diagHead">
+      <div class="kicker reveal" style="justify-content:center">Diagnostic express</div>
+      <h2 class="reveal">Votre activité est-elle automatisable ?</h2>
+      <p class="reveal">Cinq questions, une lecture indicative. Pas une analyse détaillée — un premier repère pour voir si votre modèle se prête à l’automatisation du volume.</p>
+    </div>
+    <div class="diagPanel reveal">
+      <div class="diagBar"><i id="diagProgress"></i></div>
+      <div class="diagInner" id="diagInner"><!-- injecté par le script --></div>
+    </div>
+  </div></section>
+
+  <!-- Prise de rendez-vous (Google Calendar) -->
+  <section class="booking" id="rendez-vous"><div class="wrap">
+    <div class="bookingHead">
+      <div><div class="kicker reveal">Prendre rendez-vous</div><h2 class="reveal">Trente minutes<br>pour votre marché.</h2></div>
+      <p class="reveal">Choisissez un créneau : nous échangeons en visioconférence sur votre activité, vos volumes et ce qui pourrait être automatisé. Sans engagement.</p>
+    </div>
+    <div class="bookingPanel reveal">
+      <div class="bkNotice" id="bkNotice" hidden></div>
+      <div class="bkGrid" id="bkGrid">
+        <div class="bkCol">
+          <div class="bkColHead"><span class="bkStep">01</span> Choisissez une date</div>
+          <div class="bkDayList" id="bkDayList"><div class="bkLoading">Chargement des disponibilités…</div></div>
+        </div>
+        <div class="bkCol">
+          <div class="bkColHead"><span class="bkStep">02</span> Choisissez un horaire</div>
+          <div class="bkTimeList" id="bkTimeList"><p class="bkHint">Sélectionnez d’abord une date.</p></div>
+        </div>
+        <div class="bkCol bkFormCol">
+          <div class="bkColHead"><span class="bkStep">03</span> Vos coordonnées</div>
+          <div class="bkRecap" id="bkRecap" hidden></div>
+          <form class="bkForm" id="bkForm" novalidate>
+            <label>Nom et prénom<input id="bkName" name="name" type="text" autocomplete="name" required></label>
+            <label>Email<input id="bkEmail" name="email" type="email" autocomplete="email" required></label>
+            <label>Sujet (optionnel)<textarea id="bkTopic" name="topic" placeholder="Votre secteur, vos volumes…"></textarea></label>
+            <button class="btn" type="submit" id="bkSubmit" disabled>Confirmer le rendez-vous</button>
+            <p class="bkMsg" id="bkMsg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution</span>
+  <nav>
+    <a href="solutions.html">Solutions</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="partenariats.html">Partenariats</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+
+<script src="site.js"></script>
+<script src="contact.js"></script>
+</body>
+</html>
