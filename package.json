@@ -9,7 +9,7 @@
     "oauth:setup": "node scripts/google-oauth-setup.mjs"
   },
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   },
   "dependencies": {
     "luxon": "^3.5.0"
