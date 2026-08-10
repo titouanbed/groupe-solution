@@ -518,7 +518,7 @@
       const data = await r.json().catch(()=>({}));
       if(r.ok && data.ok){ confirmView(data); return; }
       if(r.status === 409){ msg('Ce créneau vient d’être pris. Choisissez-en un autre.', 'err'); init(); }
-      else msg('Un problème est survenu. Réessayez, ou écrivez-nous à contact@groupe-solution.example.', 'err');
+      else msg('Un problème est survenu. Réessayez, ou écrivez-nous à contact@groupsolution.fr.', 'err');
     }catch(_){ msg('Connexion impossible. Réessayez dans un instant.', 'err'); }
     finally{ els.submit.disabled = false; els.submit.textContent = 'Confirmer le rendez-vous'; }
   });
@@ -531,7 +531,7 @@
     else els.notice.hidden = true;
     state.days = group(slots);
     if(!state.days.length){
-      els.dayList.innerHTML = '<div class="bkLoading">Aucun créneau disponible pour le moment.<br>Écrivez-nous à contact@groupe-solution.example.</div>';
+      els.dayList.innerHTML = '<div class="bkLoading">Aucun créneau disponible pour le moment.<br>Écrivez-nous à contact@groupsolution.fr.</div>';
       els.timeList.innerHTML = ''; return;
     }
     renderDays(); selectDay(state.days[0]);
