@@ -1,0 +1,94 @@
+/* ── Gabarit d'article — Groupe Solution (éditorial : Source Serif 4 + olive) ── */
+:root{
+  --paper:#F7F7F4;--white:#FFFFFF;--ink:#111310;--secondary:#555952;--muted:#858A82;
+  --hair:#DCDDD8;--hair2:#C9CDC6;--olive:#626B5C;--olive2:#3F493D;--oliveSoft:#E9ECE5;
+  --read:#2E322B;
+  --serif:"Source Serif 4",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.04em}
+h1 i,h2 i,h3 i{font-style:normal;color:var(--olive2)}
+.wrap{width:min(1280px,calc(100% - 72px));margin:0 auto}
+
+/* ── NAV ── */
+.nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(247,247,244,.78);backdrop-filter:blur(18px) saturate(130%);-webkit-backdrop-filter:blur(18px) saturate(130%);border-bottom:1px solid rgba(220,221,216,.72)}
+.navin{height:82px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px}.brand img{height:42px;width:auto}
+.links{display:flex;align-items:center;gap:30px}
+.links a{font-size:13px;color:var(--secondary);font-weight:500;transition:color .16s}
+.links a:hover,.links a.active{color:var(--ink)}
+.links .cta{padding:11px 17px;border:1px solid var(--hair2);border-radius:999px;color:var(--ink);background:rgba(255,255,255,.64)}
+.links .cta:hover{border-color:var(--olive)}
+
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;border-radius:999px;padding:14px 22px;font-size:13px;font-weight:600;cursor:pointer;border:0;transition:transform .18s var(--ease),background .18s}
+.btn:hover{transform:translateY(-1px);background:#000}
+
+.kicker{font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;font-weight:700;color:var(--muted);display:inline-flex;align-items:center;gap:12px}
+.kicker:before{content:"";width:26px;height:1px;background:var(--olive)}
+
+/* ── En-tête d'article ── */
+main{padding-top:82px}
+.article-head{padding:66px 0 46px;border-bottom:1px solid var(--hair);background:var(--white)}
+.breadcrumb{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.01em}
+.breadcrumb a{color:var(--muted)}.breadcrumb a:hover{color:var(--olive2)}
+.article-head .kicker{margin-top:22px}
+.article-head h1{font-size:clamp(38px,5.2vw,68px);line-height:1.02;margin-top:22px;max-width:17ch}
+.byline{margin-top:26px;display:flex;align-items:center;gap:13px;color:var(--muted);font-size:12.5px;font-weight:600;letter-spacing:.02em}
+.byline .dot{color:var(--hair2)}
+
+/* ── Corps ── */
+.article-body{padding:52px 0 22px;background:var(--paper)}
+.prose{max-width:720px}
+.prose>.lead{font-size:20px;line-height:1.75;color:var(--secondary);font-weight:400}
+.prose h2{font-size:clamp(26px,3vw,38px);line-height:1.12;margin:52px 0 0}
+.prose h3{font-size:20px;font-weight:600;font-family:var(--sans);letter-spacing:-.01em;line-height:1.35;margin:34px 0 0;color:var(--ink)}
+.prose p{margin-top:17px;font-size:16.5px;line-height:1.8;color:var(--read)}
+.prose ul{margin:18px 0 0;padding-left:0;list-style:none}
+.prose li{position:relative;padding-left:26px;margin-top:12px;font-size:16.5px;line-height:1.72;color:var(--read)}
+.prose li:before{content:"";position:absolute;left:2px;top:12px;width:7px;height:1px;background:var(--olive)}
+.prose strong{color:var(--ink);font-weight:600}
+.prose em{font-style:italic;color:var(--olive2)}
+
+.callout{margin:38px 0 0;background:var(--oliveSoft);border-left:2px solid var(--olive);padding:26px 30px}
+.callout p{margin:0;font-family:var(--serif);font-size:20px;line-height:1.5;color:var(--olive2);letter-spacing:-.02em}
+
+.article-cta{margin:58px 0 0;background:var(--white);border:1px solid var(--hair);padding:44px}
+.article-cta .kicker{color:var(--muted)}
+.article-cta h2{font-size:clamp(26px,3vw,36px);line-height:1.1;margin-top:16px}
+.article-cta p{margin-top:15px;color:var(--secondary);font-size:15.5px;line-height:1.7;max-width:540px}
+.article-cta .btn{margin-top:26px}
+
+/* ── Footer ── */
+.footer{border-top:1px solid var(--hair);background:var(--white);padding:44px 0;margin-top:78px}
+.footer-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--muted);font-size:12.5px;line-height:1.8}
+.footer strong{font-family:var(--serif);font-weight:400;font-size:16px;color:var(--ink);letter-spacing:-.02em}
+.footer a{color:var(--olive2);font-weight:600}
+
+/* ── Index des ressources ── */
+.res-head{padding:66px 0 50px;border-bottom:1px solid var(--hair);background:var(--white)}
+.res-head .kicker{margin-bottom:22px}
+.res-head h1{font-size:clamp(40px,5.6vw,76px);line-height:1;max-width:14ch}
+.res-head p{margin-top:24px;max-width:600px;font-size:17px;line-height:1.75;color:var(--secondary)}
+.res-list{padding:52px 0 22px;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair)}
+.res-card{display:flex;flex-direction:column;background:var(--white);padding:34px 32px;transition:background .2s}
+.res-card:hover{background:var(--oliveSoft)}
+.res-card .n{font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.res-card h2{font-size:24px;line-height:1.18;margin-top:14px;letter-spacing:-.03em}
+.res-card p{margin-top:12px;font-size:14.5px;line-height:1.62;color:var(--secondary);flex:1}
+.res-card .more{margin-top:18px;font-size:12.5px;font-weight:600;color:var(--olive2);border-bottom:1px solid var(--hair2);padding-bottom:2px;align-self:flex-start}
+.res-card:hover .more{border-color:var(--olive)}
+
+@media(max-width:760px){
+  .wrap{width:min(100% - 34px,1280px)}
+  .navin{height:70px}.brand img{height:34px}.links a:not(.cta){display:none}
+  main{padding-top:70px}
+  .article-head{padding:40px 0 30px}
+  .article-cta{padding:28px}
+  .res-list{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column}
+}
