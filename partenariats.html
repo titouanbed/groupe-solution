@@ -57,14 +57,69 @@
     .detectCard h3{font-size:26px;line-height:1.1}
     .detectCard p{color:var(--secondary);font-size:14px;line-height:1.7;margin:14px 0 22px}
 
+    /* FAQ */
+    .faq{border-top:1px solid var(--hair)}
+    .faqItem{border-bottom:1px solid var(--hair);padding:28px 0;display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
+    .faqItem h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;font-size:clamp(19px,2vw,25px);line-height:1.14;color:var(--ink)}
+    .faqItem p{color:var(--secondary);font-size:15px;line-height:1.78}
+
     @media(max-width:900px){
       .equation{grid-template-columns:1fr;gap:14px}.eqOp{transform:rotate(90deg)}
       .contrib{grid-template-columns:1fr}.contribCol:first-child{border-right:0;border-bottom:1px solid var(--hair)}
       .process{grid-template-columns:1fr 1fr}.pstep:nth-child(2n){border-right:0}
       .detect{grid-template-columns:1fr;gap:34px}
+      .faqItem{grid-template-columns:1fr;gap:12px;padding:24px 0}
     }
     @media(max-width:560px){.process{grid-template-columns:1fr}.pstep{border-right:0}}
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "En quoi consiste un partenariat avec Groupe Solution ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le partenaire apporte l'expertise métier, Groupe Solution apporte la technologie ; ensemble, cela crée une nouvelle capacité de production. Vous connaissez le secteur, nous construisons le système ; vous conservez la relation et l'expertise humaine, et nous partageons la valeur créée par le volume supplémentaire."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qui apporte quoi dans le partenariat ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Groupe Solution apporte la conception du système, le développement, l'automatisation des tâches répétitives, l'analyse des données et l'amélioration continue du moteur. Le partenaire apporte l'expertise métier, le processus réel tel qu'il se pratique, les cas d'usage, l'accès à des données conformes, des utilisateurs pilotes, ainsi que la commercialisation ou le volume."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment la valeur créée est-elle partagée ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Plusieurs modèles sont possibles : le partage du chiffre d'affaires, la rémunération par dossier, un abonnement assorti d'une part de performance, une licence en marque blanche, ou la création d'une solution commune."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment se déroule un partenariat, du premier échange au partage de la valeur ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En six étapes : un échange métier, la cartographie du processus, un pilote restreint, la mesure des résultats, le déploiement, puis le partage de la valeur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment savoir si mon activité s'y prête ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Votre activité est probablement adaptée si chaque dossier suit globalement les mêmes étapes, si votre revenu dépend du nombre de dossiers traités, si vos équipes passent du temps à analyser ou qualifier, si certaines demandes sont perdues faute de temps, et si l'humain est surtout indispensable à la fin du processus."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 <header class="nav"><div class="wrap navin">
@@ -162,6 +217,35 @@
         <h3>Voyons votre processus.</h3>
         <p>Un diagnostic rapide donne un premier repère — puis on en discute de vive voix.</p>
         <a class="btn" href="echanger.html#diagnostic">Analyser mon processus →</a>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="pblock" id="faq"><div class="wrap">
+    <div class="pblockHead reveal">
+      <div class="kicker">Questions fréquentes</div>
+      <h2>Le partenariat, en clair.</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faqItem">
+        <h3>En quoi consiste un partenariat avec Groupe Solution ?</h3>
+        <p>Le partenaire apporte l'expertise métier, Groupe Solution apporte la technologie ; ensemble, cela crée une nouvelle capacité de production. Vous connaissez le secteur, nous construisons le système ; vous conservez la relation et l'expertise humaine, et nous partageons la valeur créée par le volume supplémentaire.</p>
+      </div>
+      <div class="faqItem">
+        <h3>Qui apporte quoi dans le partenariat ?</h3>
+        <p>Groupe Solution apporte la conception du système, le développement, l'automatisation des tâches répétitives, l'analyse des données et l'amélioration continue du moteur. Le partenaire apporte l'expertise métier, le processus réel tel qu'il se pratique, les cas d'usage, l'accès à des données conformes, des utilisateurs pilotes, ainsi que la commercialisation ou le volume.</p>
+      </div>
+      <div class="faqItem">
+        <h3>Comment la valeur créée est-elle partagée ?</h3>
+        <p>Plusieurs modèles sont possibles : le partage du chiffre d'affaires, la rémunération par dossier, un abonnement assorti d'une part de performance, une licence en marque blanche, ou la création d'une solution commune.</p>
+      </div>
+      <div class="faqItem">
+        <h3>Comment se déroule un partenariat, du premier échange au partage de la valeur ?</h3>
+        <p>En six étapes : un échange métier, la cartographie du processus, un pilote restreint, la mesure des résultats, le déploiement, puis le partage de la valeur.</p>
+      </div>
+      <div class="faqItem">
+        <h3>Comment savoir si mon activité s'y prête ?</h3>
+        <p>Votre activité est probablement adaptée si chaque dossier suit globalement les mêmes étapes, si votre revenu dépend du nombre de dossiers traités, si vos équipes passent du temps à analyser ou qualifier, si certaines demandes sont perdues faute de temps, et si l'humain est surtout indispensable à la fin du processus.</p>
       </div>
     </div>
   </div></section>
