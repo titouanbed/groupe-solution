@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Site web professionnel pour votre commerce à Mayotte et partout en France. Livré en 48h, paiement à la livraison, 250€ tout compris." />
+<title>Titouan Bedos — Sites web & Automatisation | Livré en 48h</title>
+<style>
+  :root {
+    --bleu: #2563eb;
+    --bleu-fonce: #1e40af;
+    --vert: #16a34a;
+    --orange: #ea580c;
+    --gris-fonce: #1f2937;
+    --gris: #6b7280;
+    --gris-clair: #f3f4f6;
+    --blanc: #ffffff;
+    --ombre: 0 10px 30px rgba(0,0,0,0.08);
+    --ombre-forte: 0 20px 50px rgba(0,0,0,0.12);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--gris-fonce);
+    background: var(--blanc);
+    scroll-behavior: smooth;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--gris-clair);
+    padding: 16px 5%;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo { font-size: 1.3rem; font-weight: 800; color: var(--bleu-fonce); }
+  .logo span { color: var(--orange); }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; }
+  nav a:hover { color: var(--bleu); }
+  .nav-cta { background: var(--bleu); color: white !important; padding: 10px 20px; border-radius: 8px; font-weight: 600; }
+  .nav-cta:hover { background: var(--bleu-fonce); }
+
+  .hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white; padding: 90px 5% 70px; text-align: center;
+  }
+  .badge {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px;
+    border-radius: 999px; font-size: 0.85rem; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; margin-bottom: 18px; line-height: 1.15; }
+  .hero h1 span { color: #fbbf24; }
+  .hero p { font-size: 1.2rem; max-width: 680px; margin: 0 auto 32px; opacity: 0.95; }
+  .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 16px 32px; border-radius: 10px;
+    font-weight: 700; font-size: 1.05rem; text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-principal { background: var(--orange); color: white; box-shadow: var(--ombre); }
+  .btn-principal:hover { transform: translateY(-2px); box-shadow: var(--ombre-forte); }
+  .btn-secondaire { background: rgba(255,255,255,0.1); color: white; border: 2px solid white; }
+  .btn-secondaire:hover { background: white; color: var(--bleu-fonce); }
+
+  .stats {
+    display: flex; justify-content: center; gap: 50px;
+    padding: 40px 5%; background: var(--gris-clair); flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--bleu-fonce); }
+  .stat-label { color: var(--gris); font-weight: 500; }
+
+  section { padding: 70px 5%; }
+  .section-titre { text-align: center; max-width: 700px; margin: 0 auto 50px; }
+  .section-titre h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 14px; }
+  .section-titre h2 span { color: var(--bleu); }
+  .section-titre p { color: var(--gris); font-size: 1.1rem; }
+
+  .offres { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto; }
+  .offre {
+    background: white; border-radius: 16px; padding: 36px 28px;
+    box-shadow: var(--ombre); border: 2px solid transparent;
+    transition: transform 0.2s, border-color 0.2s; position: relative;
+  }
+  .offre:hover { transform: translateY(-6px); border-color: var(--bleu); }
+  .offre.populaire { border-color: var(--orange); }
+  .offre .tag {
+    position: absolute; top: -14px; right: 24px;
+    background: var(--orange); color: white; font-size: 0.8rem;
+    font-weight: 700; padding: 5px 14px; border-radius: 999px;
+  }
+  .offre h3 { font-size: 1.3rem; margin-bottom: 8px; }
+  .offre .prix { font-size: 2.8rem; font-weight: 800; color: var(--gris-fonce); margin: 12px 0; }
+  .offre .prix small { font-size: 1rem; color: var(--gris); font-weight: 500; }
+  .offre .delai { color: var(--vert); font-weight: 600; margin-bottom: 20px; font-size: 0.95rem; }
+  .offre ul { list-style: none; margin-bottom: 28px; }
+  .offre ul li { padding: 8px 0; padding-left: 28px; position: relative; color: var(--gris-fonce); }
+  .offre ul li::before { content: "✓"; position: absolute; left: 0; color: var(--vert); font-weight: 800; }
+  .offre .btn { width: 100%; text-align: center; }
+  .offre .btn:hover { transform: translateY(-2px); }
+
+  .preuves { background: var(--gris-clair); }
+  .preuve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
+  .preuve-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--ombre); text-decoration: none; color: inherit; transition: transform 0.2s; }
+  .preuve-card:hover { transform: translateY(-4px); }
+  .preuve-img { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; text-align: center; }
+  .preuve-body { padding: 22px; }
+  .preuve-body h4 { font-size: 1.1rem; margin-bottom: 6px; color: var(--bleu-fonce); }
+  .preuve-body p { color: var(--gris); font-size: 0.95rem; }
+  .preuve-lien { color: var(--bleu); font-weight: 600; font-size: 0.9rem; margin-top: 10px; display: inline-block; }
+
+  .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+  .step { text-align: center; position: relative; }
+  .step-num { width: 56px; height: 56px; background: var(--bleu); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 16px; }
+  .step h4 { font-size: 1.1rem; margin-bottom: 8px; }
+  .step p { color: var(--gris); font-size: 0.95rem; }
+
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq-item { background: white; border: 1px solid var(--gris-clair); border-radius: 10px; margin-bottom: 14px; overflow: hidden; }
+  .faq-q { padding: 20px 24px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: white; }
+  .faq-q::after { content: "+"; font-size: 1.4rem; color: var(--bleu); }
+  .faq-item.open .faq-q::after { content: "−"; }
+  .faq-r { max-height: 0; overflow: hidden; transition: max-height 0.3s; padding: 0 24px; color: var(--gris); }
+  .faq-item.open .faq-r { max-height: 300px; padding: 0 24px 20px; }
+
+  .cta-final { background: linear-gradient(135deg, #ea580c, #c2410c); color: white; text-align: center; padding: 80px 5%; }
+  .cta-final h2 { font-size: 2.4rem; font-weight: 800; margin-bottom: 16px; }
+  .cta-final p { font-size: 1.2rem; margin-bottom: 32px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .cta-final .btn { background: white; color: var(--orange); }
+
+  footer { background: var(--gris-fonce); color: white; padding: 50px 5% 30px; text-align: center; }
+  footer .logo { color: white; margin-bottom: 16px; }
+  footer a { color: #cbd5e1; text-decoration: none; margin: 0 14px; font-size: 0.95rem; }
+  footer a:hover { color: white; }
+  footer .copyright { margin-top: 24px; color: #94a3b8; font-size: 0.85rem; }
+
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+    .hero h1 { font-size: 2rem; }
+    .stats { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Titouan<span>.</span></div>
+  <ul>
+    <li><a href="#offres">Offres</a></li>
+    <li><a href="#preuves">Réalisations</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://wa.me/33782298559" class="nav-cta">Demander un devis</a>
+</nav>
+
+<div class="hero">
+  <span class="badge">⚡ Développeur web à Mayotte — Disponible cette semaine</span>
+  <h1>Votre site web pro, <span>livré en 48h</span><br>au prix le plus bas du marché</h1>
+  <p>On est moins cher, mais pas moins bons. Site web, automatisation, présence Google : je m'occupe de tout. Paiement à la livraison, zéro engagement.</p>
+  <div class="hero-ctas">
+    <a href="https://wa.me/33782298559" class="btn btn-principal">💬 Demander sur WhatsApp</a>
+    <a href="#preuves" class="btn btn-secondaire">Voir mes réalisations</a>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">48h</div><div class="stat-label">Délai de livraison</div></div>
+  <div class="stat"><div class="stat-num">250€</div><div class="stat-label">À partir de</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Paiement à la livraison</div></div>
+  <div class="stat"><div class="stat-num">0€</div><div class="stat-label">D'avance à payer</div></div>
+</div>
+
+<section id="offres">
+  <div class="section-titre">
+    <h2>Des offres <span>claires et pas chères</span></h2>
+    <p>Choisissez ce qui correspond à votre besoin. Tout est livré rapidement, sans surprise.</p>
+  </div>
+  <div class="offres">
+    <div class="offre">
+      <h3>Site One-Page</h3>
+      <div class="prix">250€ <small>TTC</small></div>
+      <div class="delai">⚡ Livré en 48h</div>
+      <ul>
+        <li>Site vitrine moderne, 100% mobile</li>
+        <li>Bouton WhatsApp / appel direct</li>
+        <li>Photos, menu, services inclus</li>
+        <li>Référencement Google de base</li>
+        <li>Hébergement + nom de domaine 1 an</li>
+        <li>Paiement à la livraison</li>
+      </ul>
+      <a href="https://wa.me/33782298559" class="btn btn-principal">Je veux ce pack</a>
+    </div>
+    <div class="offre populaire">
+      <span class="tag">Le plus demandé</span>
+      <h3>Pack Présence Numérique</h3>
+      <div class="prix">400€ <small>TTC</small></div>
+      <div class="delai">⚡ Livré en 3 jours</div>
+      <ul>
+        <li>Tout le pack Site One-Page</li>
+        <li>Fiche Google Business optimisée</li>
+        <li>Compte Instagram pro configuré</li>
+        <li>3 premiers posts rédigés</li>
+        <li>1 flyer PDF à imprimer</li>
+        <li>Formation 30 min pour gérer seul</li>
+      </ul>
+      <a href="https://wa.me/33782298559" class="btn btn-principal">Je veux ce pack</a>
+    </div>
+    <div class="offre">
+      <h3>Automatisation / IA</h3>
+      <div class="prix">600€ <small>à partir de</small></div>
+      <div class="delai">⚡ Livré en 1 semaine</div>
+      <ul>
+        <li>Relances WhatsApp automatiques</li>
+        <li>Confirmations de RDV par SMS</li>
+        <li>Réponses automatiques aux FAQs</li>
+        <li>Intégration avec votre site</li>
+        <li>Tableau de bord simple</li>
+        <li>Support 30 jours inclus</li>
+      </ul>
+      <a href="https://wa.me/33782298559" class="btn btn-principal">Je veux ce pack</a>
+    </div>
+  </div>
+</section>
+
+<section id="preuves" class="preuves">
+  <div class="section-titre">
+    <h2>Mes <span>réalisations</span> parlent pour moi</h2>
+    <p>Voici quelques projets récents. Vous pouvez les visiter pour voir la qualité du travail.</p>
+  </div>
+  <div class="preuve-grid">
+    <a class="preuve-card" href="https://twentythreeclean.com/" target="_blank">
+      <div class="preuve-img" style="background: linear-gradient(135deg, #0ea5e9, #0369a1);">🚗 Twenty-Three Clean<br>Lavage auto à domicile</div>
+      <div class="preuve-body">
+        <h4>Twenty-Three Clean</h4>
+        <p>Site de réservation en ligne pour service de lavage auto à domicile. Système de paiement et créneaux.</p>
+        <span class="preuve-lien">Voir le site →</span>
+      </div>
+    </a>
+    <a class="preuve-card" href="https://www.groupsolution.fr/" target="_blank">
+      <div class="preuve-img" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">💼 Group Solution<br>Services B2B</div>
+      <div class="preuve-body">
+        <h4>Group Solution</h4>
+        <p>Site vitrine et services pour entreprise. Présentation des offres, formulaires, architecture pro.</p>
+        <span class="preuve-lien">Voir le site →</span>
+      </div>
+    </a>
+    <a class="preuve-card" href="https://wa.me/33782298559">
+      <div class="preuve-img" style="background: linear-gradient(135deg, #ea580c, #c2410c);">🤖 Logiciel d'automatisation<br>(sur demande)</div>
+      <div class="preuve-body">
+        <h4>Outil d'automatisation sur-mesure</h4>
+        <p>Logiciel complet d'automatisation de processus business. Disponible en démo privée sur demande.</p>
+        <span class="preuve-lien">Demander une démo →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="process">
+  <div class="section-titre">
+    <h2>Comment ça <span>marche</span></h2>
+    <p>Simple, rapide, transparent. Vous validez à chaque étape.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>On échange 10 min</h4>
+      <p>WhatsApp ou appel. Vous me dites ce que vous voulez, je vous dis si c'est faisable en 48h.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Je vous montre une maquette</h4>
+      <p>Sous 24h, vous recevez une maquette. Vous validez ou demandez des ajustements.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Je livre le site</h4>
+      <p>48h après validation, votre site est en ligne. Vous ne payez qu'à ce moment-là.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Vous payez, c'est fini</h4>
+      <p>Paiement par virement, Lydia ou Stripe. Aucune surprise, aucune mauvaise nouvelle.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="preuves">
+  <div class="section-titre">
+    <h2>Questions <span>fréquentes</span></h2>
+  </div>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vraiment 250€ pour un site complet ?</div>
+      <div class="faq-r"><p>Oui. C'est un site one-page (une page), mais avec tout le nécessaire : design moderne, mobile, bouton WhatsApp, photos, référencement de base. Le paiement se fait à la livraison, vous ne prenez aucun risque.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi c'est moins cher que les autres ?</div>
+      <div class="faq-r"><p>Parce que je suis freelance, pas une agence avec des frais fixes. J'ai des templates et des process optimisés. "On est moins cher, mais pas moins bons" — la qualité est là, c'est juste le prix qui est juste.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ne paye vraiment rien à l'avance ?</div>
+      <div class="faq-r"><p>Pour le site one-page à 250€ : paiement 100% à la livraison. Pour les packs plus gros (400€ et +), c'est 50% à la commande et 50% à la livraison.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je n'ai pas de photos, c'est un problème ?</div>
+      <div class="faq-r"><p>Non. J'utilise des photos libres de droits professionnelles adaptées à votre activité. Si vous avez vos propres photos, c'est encore mieux.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je suis à Mayotte / La Réunion / Métropole ?</div>
+      <div class="faq-r"><p>Tout fonctionne à distance. J'ai des clients partout en France. Pour Mayotte, je peux même venir sur place si besoin.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-final" id="contact">
+  <h2>Prêt à lancer votre site cette semaine ?</h2>
+  <p>Contactez-moi maintenant. Je réponds en moins de 2h en journée. Premier échange gratuit, sans engagement.</p>
+  <a href="https://wa.me/33782298559" class="btn">💬 Discuter sur WhatsApp</a>
+</div>
+
+<footer>
+  <div class="logo">Titouan<span>.</span></div>
+  <p>
+    <a href="#offres">Offres</a>
+    <a href="#preuves">Réalisations</a>
+    <a href="#contact">Contact</a>
+  </p>
+  <p class="copyright">© Titouan Bedos — Développeur web freelance à Mayotte<br>Sites web • Automatisation • Présence numérique</p>
+</footer>
+
+</body>
+</html>
