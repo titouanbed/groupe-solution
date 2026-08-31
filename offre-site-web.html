@@ -3,119 +3,142 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Site web pro en 48h à 250€, automatisation IA, présence numérique. Développeur web freelance à Mayotte. Paiement à la livraison." />
-<title>Sites web & IA en 48h | 250€ paiement à la livraison</title>
+<meta name="description" content="Sites web pro en 48h, automatisation IA, présence numérique. Freelance à Mayotte. Paiement à la livraison, dès 250€." />
+<title>Sites web & IA en 48h | Dès 250€, paiement à la livraison</title>
 <style>
   :root {
     --rose: #F9A8D4;
     --rose-fonce: #EC4899;
     --rose-clair: #FDF2F8;
     --rose-vif: #DB2777;
-    --gris-fonce: #1f2937;
-    --gris: #6b7280;
-    --gris-clair: #f3f4f6;
+    --gris-fonce: #18181b;
+    --gris: #71717a;
+    --gris-clair: #f4f4f5;
     --blanc: #ffffff;
     --vert: #16a34a;
-    --ombre-sm: 0 4px 14px rgba(0,0,0,0.06);
-    --ombre: 0 10px 30px rgba(0,0,0,0.08);
-    --ombre-lg: 0 25px 60px rgba(236,72,153,0.15);
+    --ink: #09090b;
+    --ombre-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+    --ombre: 0 4px 24px rgba(0,0,0,0.06);
+    --ombre-lg: 0 30px 70px rgba(236,72,153,0.18);
     --gradient-rose: linear-gradient(135deg, #F9A8D4 0%, #EC4899 100%);
-    --gradient-hero: linear-gradient(135deg, #1f2937 0%, #312e81 50%, #831843 100%);
+    --gradient-hero: linear-gradient(135deg, #09090b 0%, #1e1b4b 45%, #831843 100%);
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --radius: 16px;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: var(--gris-fonce);
     background: var(--blanc);
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { line-height: 1.6; overflow-x: hidden; }
-  ::selection { background: var(--rose); color: white; }
+  ::selection { background: var(--rose-fonce); color: white; }
 
+  /* ===== ICÔNES SVG (style Airbnb : stroke fin, propres) ===== */
+  .icon { width: 24px; height: 24px; stroke-width: 1.6; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .icon-lg { width: 40px; height: 40px; stroke-width: 1.4; }
+  .icon-check { width: 18px; height: 18px; stroke-width: 2.4; }
+
+  /* ===== ANIMATIONS ===== */
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.5; } }
   @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
   @keyframes blob { 0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes drawLine { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+  @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* NAVBAR */
+  /* ===== NAVBAR (texte centré visuellement) ===== */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255,255,255,0.8); backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid rgba(236,72,153,0.08);
-    padding: 16px 5%; display: flex; justify-content: space-between; align-items: center;
-    transition: padding 0.3s var(--ease);
+    height: 68px; display: flex; align-items: center; padding: 0 5%;
+    transition: box-shadow 0.3s var(--ease);
   }
-  nav.scrolled { padding: 10px 5%; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-  .logo {
-    display: flex; align-items: center; gap: 12px; text-decoration: none;
-  }
+  nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+
+  /* Le logo à gauche */
+  .nav-logo { display: flex; align-items: center; text-decoration: none; flex: 0 0 auto; }
   .logo-mark {
-    width: 44px; height: 44px; border-radius: 50%;
+    width: 38px; height: 38px;
     background: var(--gradient-rose);
-    box-shadow: 0 4px 15px rgba(236,72,153,0.4);
+    /* Forme "croquée" : pas un rond parfait, un côté manquant */
+    clip-path: polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 0% 100%);
+    box-shadow: 0 4px 12px rgba(236,72,153,0.35);
     transition: transform 0.4s var(--ease);
+    position: relative;
   }
-  .logo:hover .logo-mark { transform: rotate(360deg) scale(1.1); }
-  nav ul { display: flex; gap: 32px; list-style: none; }
-  nav a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-  nav a:hover { color: var(--rose-fonce); }
+  .logo-mark::after {
+    content: ''; position: absolute; top: 30%; left: 28%; width: 44%; height: 44%;
+    background: rgba(255,255,255,0.92); border-radius: 50%;
+  }
+  .nav-logo:hover .logo-mark { transform: rotate(-8deg) scale(1.08); }
+
+  /* Le menu centré visuellement (absolute, centré sur la largeur totale) */
+  .nav-menu {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 36px; list-style: none;
+  }
+  .nav-menu a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; position: relative; }
+  .nav-menu a::after { content: ''; position: absolute; bottom: -6px; left: 0; right: 0; height: 2px; background: var(--rose-fonce); transform: scaleX(0); transition: transform 0.3s var(--ease); transform-origin: left; }
+  .nav-menu a:hover { color: var(--rose-fonce); }
+  .nav-menu a:hover::after { transform: scaleX(1); }
+
+  /* Le CTA à droite */
+  .nav-cta-wrap { margin-left: auto; flex: 0 0 auto; display: flex; align-items: center; gap: 14px; }
   .nav-cta {
-    background: var(--gradient-rose); color: white !important;
+    background: var(--gradient-rose); color: white;
     padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 0.9rem;
-    box-shadow: 0 4px 15px rgba(236,72,153,0.35);
+    box-shadow: 0 4px 15px rgba(236,72,153,0.35); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  .nav-cta:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 25px rgba(236,72,153,0.5); }
-  .nav-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--gris-fonce); }
+  .nav-cta:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 25px rgba(236,72,153,0.5); }
+  .nav-toggle { display: none; background: white; border: 1px solid var(--gris-clair); cursor: pointer; font-size: 1.2rem; color: var(--gris-fonce); padding: 8px 12px; border-radius: 10px; }
 
-  /* HERO */
+  /* ===== HERO ===== */
   .hero {
     position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    text-align: center; color: white; overflow: hidden;
+    text-align: center; color: white; overflow: hidden; padding: 100px 20px 80px;
     background: var(--gradient-hero); background-size: 200% 200%;
     animation: gradientShift 15s ease infinite;
   }
   .hero::before {
-    content: ''; position: absolute; width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(236,72,153,0.3), transparent 70%);
-    top: -100px; left: -100px; animation: blob 8s infinite;
+    content: ''; position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(236,72,153,0.28), transparent 70%);
+    top: -150px; left: -150px; animation: blob 8s infinite; filter: blur(20px);
   }
   .hero::after {
-    content: ''; position: absolute; width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(168,85,247,0.25), transparent 70%);
-    bottom: -50px; right: -50px; animation: blob 10s infinite reverse;
+    content: ''; position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(168,85,247,0.22), transparent 70%);
+    bottom: -100px; right: -100px; animation: blob 10s infinite reverse; filter: blur(20px);
   }
-  .hero-content { position: relative; z-index: 10; padding: 0 20px; max-width: 900px; }
+  .hero-content { position: relative; z-index: 10; max-width: 900px; }
   .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-    border: 1px solid rgba(236,72,153,0.4);
-    padding: 8px 18px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 28px;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+    border: 1px solid rgba(236,72,153,0.35);
+    padding: 8px 18px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 32px;
     animation: fadeInUp 0.8s var(--ease) both;
   }
-  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; animation: pulse 2s infinite; }
+  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; position: relative; }
+  .hero-badge .dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
   .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; line-height: 1.05; margin-bottom: 24px;
+    font-size: clamp(2.5rem, 6.5vw, 5.2rem); font-weight: 800; line-height: 1.05; margin-bottom: 24px; letter-spacing: -0.03em;
     animation: fadeInUp 0.8s var(--ease) 0.1s both;
   }
-  .hero h1 .accent {
-    background: var(--gradient-rose);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
+  .hero h1 .accent { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero h1 .underline { position: relative; display: inline-block; }
   .hero h1 .underline::after {
-    content: ''; position: absolute; bottom: 5px; left: 0; right: 0; height: 8px;
-    background: var(--gradient-rose); border-radius: 4px; opacity: 0.5; z-index: -1;
+    content: ''; position: absolute; bottom: 4px; left: -4px; right: -4px; height: 10px;
+    background: var(--gradient-rose); border-radius: 6px; opacity: 0.45; z-index: -1;
   }
-  .hero p {
-    font-size: 1.25rem; max-width: 620px; margin: 0 auto 40px; opacity: 0.95;
-    animation: fadeInUp 0.8s var(--ease) 0.2s both;
-  }
+  .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; opacity: 0.92; animation: fadeInUp 0.8s var(--ease) 0.2s both; }
   .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s var(--ease) 0.3s both; }
   .btn {
     display: inline-flex; align-items: center; gap: 10px;
@@ -125,127 +148,166 @@
   }
   .btn-primary { background: var(--gradient-rose); color: white; box-shadow: 0 10px 30px rgba(236,72,153,0.4); }
   .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 20px 50px rgba(236,72,153,0.5); }
-  .btn-ghost { background: rgba(255,255,255,0.08); color: white; border: 1.5px solid rgba(255,255,255,0.3); backdrop-filter: blur(10px); }
-  .btn-ghost:hover { background: rgba(255,255,255,0.15); transform: translateY(-3px); }
-  .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.5); font-size: 1.5rem; animation: float 2s infinite; }
+  .btn-ghost { background: rgba(255,255,255,0.08); color: white; border: 1.5px solid rgba(255,255,255,0.25); backdrop-filter: blur(10px); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.15); transform: translateY(-3px); border-color: rgba(255,255,255,0.5); }
+  .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); animation: float 2s infinite; }
 
-  /* MARQUEE */
-  .marquee { background: var(--gris-fonce); color: white; overflow: hidden; padding: 18px 0; display: flex; white-space: nowrap; }
-  .marquee-content { display: flex; gap: 50px; animation: marquee 30s linear infinite; font-weight: 600; font-size: 0.95rem; }
-  .marquee-content span { display: flex; align-items: center; gap: 12px; opacity: 0.7; }
-  .marquee-content .sep { color: var(--rose-fonce); }
+  /* ===== MARQUEE ===== */
+  .marquee { background: var(--ink); color: white; overflow: hidden; padding: 18px 0; display: flex; white-space: nowrap; }
+  .marquee-content { display: flex; gap: 50px; animation: marquee 30s linear infinite; font-weight: 500; font-size: 0.95rem; }
+  .marquee-content span { display: flex; align-items: center; gap: 12px; opacity: 0.65; }
+  .marquee-content .sep { color: var(--rose-fonce); opacity: 1; }
 
-  /* STATS */
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; padding: 0 5%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 10; }
-  .stat { text-align: center; padding: 50px 20px; border-right: 1px solid var(--gris-clair); transition: background 0.3s; }
+  /* ===== STATS ===== */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; padding: 0 5%; max-width: 1100px; margin: 0 auto; }
+  .stat { text-align: center; padding: 56px 20px; border-right: 1px solid var(--gris-clair); transition: background 0.3s; }
   .stat:last-child { border-right: none; }
   .stat:hover { background: var(--rose-clair); }
-  .stat-num { font-size: 3rem; font-weight: 800; background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
-  .stat-label { color: var(--gris); font-weight: 500; font-size: 0.95rem; }
+  .stat-num { font-size: 3rem; font-weight: 800; background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .stat-label { color: var(--gris); font-weight: 500; font-size: 0.92rem; }
 
-  /* SECTIONS */
-  section { padding: 100px 5%; position: relative; }
-  .section-titre { text-align: center; max-width: 720px; margin: 0 auto 60px; }
-  .section-titre h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
+  /* ===== SECTIONS ===== */
+  section { padding: 110px 5%; position: relative; }
+  .section-titre { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+  .section-titre h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; margin-bottom: 16px; line-height: 1.08; letter-spacing: -0.02em; }
   .section-titre h2 .accent { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .section-titre p { color: var(--gris); font-size: 1.15rem; }
-  .section-tag { display: inline-block; background: var(--rose-clair); color: var(--rose-vif); padding: 6px 16px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+  .section-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--rose-clair); color: var(--rose-vif); padding: 7px 16px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 18px; }
 
-  /* OFFRES */
-  .offres { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
-  .offre { background: white; border-radius: 24px; padding: 40px 32px; box-shadow: var(--ombre); border: 2px solid transparent; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s; position: relative; overflow: hidden; }
-  .offre::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-rose); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+  /* ===== OFFRES ===== */
+  .offres { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; max-width: 1140px; margin: 0 auto; }
+  .offre {
+    background: white; border-radius: var(--radius); padding: 40px 32px;
+    box-shadow: var(--ombre); border: 1.5px solid transparent;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .offre::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-rose); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
   .offre:hover { transform: translateY(-8px); box-shadow: var(--ombre-lg); border-color: var(--rose); }
   .offre:hover::before { transform: scaleX(1); }
   .offre.populaire { border-color: var(--rose-fonce); box-shadow: var(--ombre-lg); }
   .offre.populaire::before { transform: scaleX(1); }
-  .offre .tag { position: absolute; top: 20px; right: -30px; background: var(--gradient-rose); color: white; font-size: 0.75rem; font-weight: 700; padding: 6px 40px; transform: rotate(45deg); text-transform: uppercase; letter-spacing: 1px; }
-  .offre-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .offre .tag { position: absolute; top: 16px; right: -32px; background: var(--gradient-rose); color: white; font-size: 0.7rem; font-weight: 700; padding: 6px 40px; transform: rotate(45deg); text-transform: uppercase; letter-spacing: 1px; }
+  .offre-icon-wrap { width: 56px; height: 56px; border-radius: 14px; background: var(--rose-clair); display: flex; align-items: center; justify-content: center; color: var(--rose-fonce); margin-bottom: 20px; }
   .offre h3 { font-size: 1.4rem; margin-bottom: 4px; }
-  .offre .desc { color: var(--gris); font-size: 0.9rem; margin-bottom: 16px; }
-  .offre .prix { font-size: 3rem; font-weight: 800; margin: 16px 0; line-height: 1; }
+  .offre .desc { color: var(--gris); font-size: 0.92rem; margin-bottom: 16px; }
+  .offre .prix { font-size: 3rem; font-weight: 800; margin: 16px 0; line-height: 1; letter-spacing: -0.02em; }
   .offre .prix small { font-size: 1rem; color: var(--gris); font-weight: 500; }
-  .offre .delai { display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: var(--vert); font-weight: 600; padding: 6px 14px; border-radius: 999px; margin-bottom: 24px; font-size: 0.85rem; }
+  .offre .delai { display: inline-flex; align-items: center; gap: 8px; background: #dcfce7; color: var(--vert); font-weight: 600; padding: 7px 14px; border-radius: 999px; margin-bottom: 24px; font-size: 0.82rem; }
+  .offre .delai svg { width: 14px; height: 14px; stroke: var(--vert); }
   .offre ul { list-style: none; margin-bottom: 28px; }
-  .offre ul li { padding: 10px 0; padding-left: 32px; position: relative; color: var(--gris-fonce); font-size: 0.95rem; }
-  .offre ul li::before { content: "✓"; position: absolute; left: 0; top: 10px; width: 20px; height: 20px; background: var(--rose-clair); color: var(--rose-vif); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; }
+  .offre ul li { padding: 11px 0; padding-left: 32px; position: relative; color: var(--gris-fonce); font-size: 0.95rem; display: flex; align-items: flex-start; }
+  .offre ul li svg { position: absolute; left: 0; top: 12px; background: var(--rose-clair); color: var(--rose-vif); border-radius: 50%; padding: 3px; box-sizing: content-box; }
   .offre .btn { width: 100%; justify-content: center; }
 
-  /* PREUVES */
+  /* ===== PREUVES ===== */
   .preuves { background: var(--gris-clair); }
-  .preuve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto; }
-  .preuve-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--ombre); text-decoration: none; color: inherit; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+  .preuve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1140px; margin: 0 auto; }
+  .preuve-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--ombre); text-decoration: none; color: inherit; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); display: flex; flex-direction: column; }
   .preuve-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--ombre-lg); }
-  .preuve-img { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem; text-align: center; position: relative; overflow: hidden; }
-  .preuve-img::after { content: 'Voir le site →'; position: absolute; bottom: -40px; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 12px; text-align: center; font-size: 0.9rem; transition: bottom 0.3s var(--ease); }
-  .preuve-card:hover .preuve-img::after { bottom: 0; }
-  .preuve-body { padding: 28px; }
-  .preuve-body h4 { font-size: 1.2rem; margin-bottom: 8px; }
-  .preuve-body p { color: var(--gris); font-size: 0.95rem; margin-bottom: 12px; }
-  .preuve-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .preuve-tag { background: var(--rose-clair); color: var(--rose-vif); padding: 4px 12px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+  .preuve-img { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; text-align: center; position: relative; overflow: hidden; padding: 20px; }
+  .preuve-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.35), transparent 60%); }
+  .preuve-card .preuve-img svg { width: 48px; height: 48px; stroke-width: 1.2; opacity: 0.9; position: relative; z-index: 1; }
+  .preuve-img .preuve-label { position: relative; z-index: 1; }
+  .preuve-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .preuve-body h4 { font-size: 1.15rem; margin-bottom: 8px; }
+  .preuve-body p { color: var(--gris); font-size: 0.92rem; margin-bottom: 14px; flex: 1; }
+  .preuve-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .preuve-tag { background: var(--rose-clair); color: var(--rose-vif); padding: 4px 12px; border-radius: 999px; font-size: 0.72rem; font-weight: 600; }
+  .preuve-lien { display: inline-flex; align-items: center; gap: 6px; color: var(--rose-fonce); font-weight: 600; font-size: 0.88rem; }
 
-  /* PROCESS */
+  /* ===== PROCESS ===== */
   .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; position: relative; }
   .step { text-align: center; position: relative; }
   .step::before { content: ''; position: absolute; top: 40px; left: 50%; right: -50%; height: 2px; background: linear-gradient(to right, var(--rose), transparent); z-index: 0; }
   .step:last-child::before { display: none; }
   .step-num { width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 50%; background: var(--gradient-rose); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(236,72,153,0.3); transition: transform 0.3s var(--ease); }
-  .step:hover .step-num { transform: scale(1.15) rotate(10deg); }
-  .step h4 { font-size: 1.15rem; margin-bottom: 8px; }
-  .step p { color: var(--gris); font-size: 0.95rem; max-width: 200px; margin: 0 auto; }
+  .step:hover .step-num { transform: scale(1.12) rotate(6deg); }
+  .step h4 { font-size: 1.1rem; margin-bottom: 8px; }
+  .step p { color: var(--gris); font-size: 0.92rem; max-width: 210px; margin: 0 auto; }
 
-  /* FAQ */
-  .faq { max-width: 800px; margin: 0 auto; }
-  .faq-item { background: white; border: 2px solid var(--gris-clair); border-radius: 16px; margin-bottom: 16px; overflow: hidden; transition: border-color 0.3s; }
-  .faq-item.open { border-color: var(--rose); }
-  .faq-q { padding: 22px 28px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
-  .faq-q::after { content: "+"; font-size: 1.6rem; color: var(--rose-fonce); transition: transform 0.3s; font-weight: 300; }
-  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  /* ===== FAQ ===== */
+  .faq { max-width: 820px; margin: 0 auto; }
+  .faq-item { background: white; border: 1.5px solid var(--gris-clair); border-radius: 14px; margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s; }
+  .faq-item.open { border-color: var(--rose); box-shadow: var(--ombre-sm); }
+  .faq-q { padding: 22px 28px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.02rem; gap: 16px; }
+  .faq-q .faq-icon { width: 24px; height: 24px; flex-shrink: 0; transition: transform 0.3s var(--ease); stroke: var(--rose-fonce); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
   .faq-r { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.4s var(--ease); padding: 0 28px; color: var(--gris); }
   .faq-item.open .faq-r { max-height: 300px; padding: 0 28px 24px; }
 
-  /* CTA FINAL */
+  /* ===== CTA FINAL ===== */
   .cta-final { position: relative; text-align: center; padding: 120px 5%; color: white; overflow: hidden; background: var(--gradient-hero); background-size: 200% 200%; animation: gradientShift 10s ease infinite; }
-  .cta-final::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(236,72,153,0.2), transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: blob 12s infinite; }
-  .cta-final h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; position: relative; z-index: 1; }
-  .cta-final p { font-size: 1.25rem; margin-bottom: 40px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
-  .cta-final .btn { position: relative; z-index: 1; background: var(--gradient-rose); color: white; font-size: 1.2rem; padding: 20px 50px; }
+  .cta-final::before { content: ''; position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(236,72,153,0.2), transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: blob 12s infinite; filter: blur(30px); }
+  .cta-final h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; position: relative; z-index: 1; letter-spacing: -0.02em; }
+  .cta-final p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.92; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+  .cta-final .btn { position: relative; z-index: 1; background: var(--gradient-rose); color: white; font-size: 1.15rem; padding: 20px 48px; }
 
-  /* FOOTER */
-  footer { background: var(--gris-fonce); color: white; padding: 60px 5% 30px; text-align: center; }
-  footer .logo { justify-content: center; margin-bottom: 24px; }
-  footer a { color: #cbd5e1; text-decoration: none; margin: 0 16px; font-size: 0.95rem; transition: color 0.2s; }
+  /* ===== FOOTER ===== */
+  footer { background: var(--ink); color: white; padding: 60px 5% 30px; text-align: center; }
+  footer .logo-mark { margin: 0 auto 24px; }
+  footer a { color: #a1a1aa; text-decoration: none; margin: 0 16px; font-size: 0.92rem; transition: color 0.2s; }
   footer a:hover { color: var(--rose); }
-  footer .copyright { margin-top: 24px; color: #94a3b8; font-size: 0.85rem; }
+  footer .copyright { margin-top: 28px; color: #71717a; font-size: 0.85rem; line-height: 1.7; }
 
   @media (max-width: 768px) {
-    nav ul { display: none; }
-    .nav-toggle { display: block; }
-    nav ul.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: white; padding: 20px; box-shadow: var(--ombre); gap: 16px; }
-    .hero h1 { font-size: 2.5rem; }
+    nav { padding: 0 4%; }
+    .nav-menu { display: none; }
+    .nav-menu.open { display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: white; padding: 20px; box-shadow: var(--ombre); gap: 14px; transform: none; left: 0; }
+    .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    .nav-cta span { display: none; }
+    .nav-cta { padding: 11px 14px; }
+    .hero h1 { font-size: 2.4rem; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .stat:nth-child(2) { border-right: none; }
     .step::before { display: none; }
+    section { padding: 80px 5%; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR — logo symbole seul, PAS de "Titouan" -->
+<!-- ===== ICÔNES SVG (réutilisables, style Airbnb) ===== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="14" x2="22" y2="14"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="14" x2="4" y2="14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-shopping-bag" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3L13.5 8.5L19 10L13.5 11.5L12 17L10.5 11.5L5 10L10.5 8.5L12 3Z"/><path d="M19 16L19.7 18.3L22 19L19.7 19.7L19 22L18.3 19.7L16 19L18.3 18.3L19 16Z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+</svg>
+
+<!-- NAVBAR -->
 <nav id="nav">
-  <a class="logo" href="#hero">
+  <a class="nav-logo" href="#hero" aria-label="Accueil">
     <div class="logo-mark"></div>
   </a>
-  <ul id="navMenu">
+  <ul class="nav-menu" id="navMenu">
     <li><a href="#offres">Offres</a></li>
     <li><a href="#preuves">Réalisations</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="https://wa.me/33782298559" class="nav-cta">Devis gratuit</a>
-  <button class="nav-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+  <div class="nav-cta-wrap">
+    <a href="https://wa.me/33782298559" class="nav-cta">
+      <svg class="icon" style="width:16px;height:16px"><use href="#i-chat"/></svg>
+      <span>Devis gratuit</span>
+    </a>
+    <button class="nav-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu">
+      <svg class="icon"><use href="#i-plus"/></svg>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -253,7 +315,7 @@
   <div class="hero-content">
     <div class="hero-badge">
       <span class="dot"></span>
-      Disponible cette semaine • Basé à Mayotte
+      Disponible cette semaine — Basé à Mayotte, partout en France
     </div>
     <h1>
       Votre site web pro,<br>
@@ -262,26 +324,34 @@
     </h1>
     <p>On est moins cher, mais pas moins bons. Sites web, automatisation IA, présence Google. Tout est livré vite, bien, et vous ne payez qu'à la livraison.</p>
     <div class="hero-ctas">
-      <a href="https://wa.me/33782298559" class="btn btn-primary">💬 Discuter sur WhatsApp</a>
-      <a href="#preuves" class="btn btn-ghost">Voir mes réalisations →</a>
+      <a href="https://wa.me/33782298559" class="btn btn-primary">
+        <svg class="icon" style="width:18px;height:18px"><use href="#i-chat"/></svg>
+        Discuter sur WhatsApp
+      </a>
+      <a href="#preuves" class="btn btn-ghost">
+        Voir mes réalisations
+        <svg class="icon" style="width:18px;height:18px"><use href="#i-arrow-right"/></svg>
+      </a>
     </div>
   </div>
-  <div class="scroll-indicator">⌄</div>
+  <div class="scroll-indicator">
+    <svg class="icon" style="width:28px;height:28px;stroke:rgba(255,255,255,0.4)"><use href="#i-chevron-down"/></svg>
+  </div>
 </div>
 
 <!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-content">
-    <span> Livré en 48h</span><span class="sep">★</span>
-    <span> Paiement à la livraison</span><span class="sep">★</span>
-    <span> 100% mobile</span><span class="sep">★</span>
-    <span> Automatisation IA</span><span class="sep">★</span>
-    <span> Mayotte & partout en France</span><span class="sep">★</span>
-    <span> Livré en 48h</span><span class="sep">★</span>
-    <span> Paiement à la livraison</span><span class="sep">★</span>
-    <span> 100% mobile</span><span class="sep">★</span>
-    <span> Automatisation IA</span><span class="sep">★</span>
-    <span> Mayotte & partout en France</span><span class="sep">★</span>
+    <span>Livré en 48h</span><span class="sep">✦</span>
+    <span>Paiement à la livraison</span><span class="sep">✦</span>
+    <span>100% mobile</span><span class="sep">✦</span>
+    <span>Automatisation IA</span><span class="sep">✦</span>
+    <span>Mayotte & partout en France</span><span class="sep">✦</span>
+    <span>Livré en 48h</span><span class="sep">✦</span>
+    <span>Paiement à la livraison</span><span class="sep">✦</span>
+    <span>100% mobile</span><span class="sep">✦</span>
+    <span>Automatisation IA</span><span class="sep">✦</span>
+    <span>Mayotte & partout en France</span><span class="sep">✦</span>
   </div>
 </div>
 
@@ -296,57 +366,60 @@
 <!-- OFFRES -->
 <section id="offres">
   <div class="section-titre reveal">
-    <span class="section-tag">Nos offres</span>
+    <span class="section-tag">
+      <svg class="icon" style="width:14px;height:14px"><use href="#i-bolt"/></svg>
+      Nos offres
+    </span>
     <h2>Des offres <span class="accent">claires et accessibles</span></h2>
-    <p>Choisissez ce qui correspond à votre besoin. Tout est livré rapidement, sans surprise, sans caché.</p>
+    <p>Choisissez ce qui correspond à votre besoin. Tout est livré rapidement, sans surprise, sans frais cachés.</p>
   </div>
   <div class="offres">
     <div class="offre reveal">
-      <div class="offre-icon">🌐</div>
+      <div class="offre-icon-wrap"><svg class="icon icon-lg"><use href="#i-globe"/></svg></div>
       <h3>Site One-Page</h3>
       <p class="desc">Pour démarrer votre présence en ligne</p>
       <div class="prix">250€ <small>TTC</small></div>
-      <div class="delai"> Livré en 48h</div>
+      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> Livré en 48h</div>
       <ul>
-        <li>Site vitrine moderne, 100% mobile</li>
-        <li>Bouton WhatsApp / appel direct</li>
-        <li>Photos, menu, services inclus</li>
-        <li>Référencement Google de base</li>
-        <li>Hébergement + domaine 1 an</li>
-        <li>Paiement à la livraison</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Site vitrine moderne, 100% mobile</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Bouton WhatsApp / appel direct</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Photos, menu, services inclus</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Référencement Google de base</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Hébergement + domaine 1 an</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Paiement à la livraison</li>
       </ul>
       <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
     </div>
     <div class="offre populaire reveal">
       <div class="tag">Populaire</div>
-      <div class="offre-icon">🚀</div>
+      <div class="offre-icon-wrap"><svg class="icon icon-lg"><use href="#i-rocket"/></svg></div>
       <h3>Présence Numérique</h3>
       <p class="desc">Le pack complet pour exister en ligne</p>
       <div class="prix">400€ <small>TTC</small></div>
-      <div class="delai"> Livré en 3 jours</div>
+      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> Livré en 3 jours</div>
       <ul>
-        <li>Tout le pack Site One-Page</li>
-        <li>Fiche Google Business optimisée</li>
-        <li>Compte Instagram pro configuré</li>
-        <li>3 premiers posts rédigés</li>
-        <li>1 flyer PDF à imprimer</li>
-        <li>Formation 30 min pour gérer seul</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Tout le pack Site One-Page</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Fiche Google Business optimisée</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Compte Instagram pro configuré</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>3 premiers posts rédigés</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>1 flyer PDF à imprimer</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Formation 30 min pour gérer seul</li>
       </ul>
       <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
     </div>
     <div class="offre reveal">
-      <div class="offre-icon">🤖</div>
+      <div class="offre-icon-wrap"><svg class="icon icon-lg"><use href="#i-cpu"/></svg></div>
       <h3>Automatisation / IA</h3>
       <p class="desc">Gagnez du temps avec l'automatisation</p>
       <div class="prix">600€ <small>à partir de</small></div>
-      <div class="delai"> Livré en 1 semaine</div>
+      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> Livré en 1 semaine</div>
       <ul>
-        <li>Relances WhatsApp automatiques</li>
-        <li>Confirmations de RDV par SMS</li>
-        <li>Réponses automatiques aux FAQs</li>
-        <li>Intégration avec votre site</li>
-        <li>Tableau de bord simple</li>
-        <li>Support 30 jours inclus</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Relances WhatsApp automatiques</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Confirmations de RDV par SMS</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Réponses automatiques aux FAQs</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Intégration avec votre site</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Tableau de bord simple</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Support 30 jours inclus</li>
       </ul>
       <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
     </div>
@@ -356,13 +429,19 @@
 <!-- PREUVES -->
 <section id="preuves" class="preuves">
   <div class="section-titre reveal">
-    <span class="section-tag">Réalisations</span>
+    <span class="section-tag">
+      <svg class="icon" style="width:14px;height:14px"><use href="#i-sparkles"/></svg>
+      Réalisations
+    </span>
     <h2>Ce que je fais, <span class="accent">ça se voit</span></h2>
     <p>Des projets réels, en ligne, que vous pouvez visiter tout de suite. La meilleure preuve de qualité.</p>
   </div>
   <div class="preuve-grid">
     <a class="preuve-card reveal" href="https://twentythreeclean.com/" target="_blank">
-      <div class="preuve-img" style="background: linear-gradient(135deg, #0ea5e9, #0369a1);">🚗 Twenty-Three Clean<br>Lavage auto à domicile</div>
+      <div class="preuve-img" style="background: linear-gradient(135deg, #0ea5e9, #0369a1);">
+        <svg class="icon"><use href="#i-shopping-bag"/></svg>
+        <span class="preuve-label">Twenty-Three Clean</span>
+      </div>
       <div class="preuve-body">
         <h4>Twenty-Three Clean</h4>
         <p>Site de réservation en ligne avec paiement et créneaux. UX optimisée pour mobile.</p>
@@ -371,10 +450,16 @@
           <span class="preuve-tag">Paiement</span>
           <span class="preuve-tag">Mobile</span>
         </div>
+        <span class="preuve-lien">Voir le site
+          <svg class="icon" style="width:14px;height:14px"><use href="#i-arrow-right"/></svg>
+        </span>
       </div>
     </a>
     <a class="preuve-card reveal" href="https://www.groupsolution.fr/" target="_blank">
-      <div class="preuve-img" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">💼 Group Solution<br>Services B2B</div>
+      <div class="preuve-img" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">
+        <svg class="icon"><use href="#i-briefcase"/></svg>
+        <span class="preuve-label">Group Solution</span>
+      </div>
       <div class="preuve-body">
         <h4>Group Solution</h4>
         <p>Site vitrine pro multi-pages avec formulaires, SEO et architecture soignée.</p>
@@ -383,18 +468,63 @@
           <span class="preuve-tag">SEO</span>
           <span class="preuve-tag">B2B</span>
         </div>
+        <span class="preuve-lien">Voir le site
+          <svg class="icon" style="width:14px;height:14px"><use href="#i-arrow-right"/></svg>
+        </span>
+      </div>
+    </a>
+    <a class="preuve-card reveal" href="https://solutionalternance.fr/" target="_blank">
+      <div class="preuve-img" style="background: linear-gradient(135deg, #f59e0b, #b45309);">
+        <svg class="icon"><use href="#i-users"/></svg>
+        <span class="preuve-label">Solution Alternance</span>
+      </div>
+      <div class="preuve-body">
+        <h4>Solution Alternance</h4>
+        <p>Site CFA avec présentation des formations (logistique, équitation) et accompagnement.</p>
+        <div class="preuve-tags">
+          <span class="preuve-tag">Formation</span>
+          <span class="preuve-tag">CFA</span>
+          <span class="preuve-tag">Éducation</span>
+        </div>
+        <span class="preuve-lien">Voir le site
+          <svg class="icon" style="width:14px;height:14px"><use href="#i-arrow-right"/></svg>
+        </span>
+      </div>
+    </a>
+    <a class="preuve-card reveal" href="https://solutionsrecrutement.fr/" target="_blank">
+      <div class="preuve-img" style="background: linear-gradient(135deg, #10b981, #047857);">
+        <svg class="icon"><use href="#i-briefcase"/></svg>
+        <span class="preuve-label">Solutions Recrutement</span>
+      </div>
+      <div class="preuve-body">
+        <h4>Solutions Recrutement</h4>
+        <p>Site cabinet de recrutement multi-agences avec présentation des services et partenaires.</p>
+        <div class="preuve-tags">
+          <span class="preuve-tag">Recrutement</span>
+          <span class="preuve-tag">Multi-agences</span>
+          <span class="preuve-tag">RH</span>
+        </div>
+        <span class="preuve-lien">Voir le site
+          <svg class="icon" style="width:14px;height:14px"><use href="#i-arrow-right"/></svg>
+        </span>
       </div>
     </a>
     <a class="preuve-card reveal" href="https://wa.me/33782298559">
-      <div class="preuve-img" style="background: var(--gradient-rose);">🤖 Logiciel d'automatisation<br>(démo privée)</div>
+      <div class="preuve-img" style="background: var(--gradient-rose);">
+        <svg class="icon"><use href="#i-cpu"/></svg>
+        <span class="preuve-label">Automatisation sur-mesure</span>
+      </div>
       <div class="preuve-body">
-        <h4>Outil d'automatisation sur-mesure</h4>
-        <p>Logiciel complet d'automatisation de processus business. Disponible en démo privée.</p>
+        <h4>Outil d'automatisation IA</h4>
+        <p>Logiciel complet d'automatisation de processus business. Démo privée sur demande.</p>
         <div class="preuve-tags">
           <span class="preuve-tag">IA</span>
           <span class="preuve-tag">Automation</span>
           <span class="preuve-tag">Sur-mesure</span>
         </div>
+        <span class="preuve-lien">Demander une démo
+          <svg class="icon" style="width:14px;height:14px"><use href="#i-arrow-right"/></svg>
+        </span>
       </div>
     </a>
   </div>
@@ -403,7 +533,10 @@
 <!-- PROCESS -->
 <section id="process">
   <div class="section-titre reveal">
-    <span class="section-tag">Comment ça marche</span>
+    <span class="section-tag">
+      <svg class="icon" style="width:14px;height:14px"><use href="#i-clock"/></svg>
+      Comment ça marche
+    </span>
     <h2>Simple comme <span class="accent">bonjour</span></h2>
     <p>4 étapes, zéro friction. Vous validez à chaque moment, vous payez à la fin.</p>
   </div>
@@ -440,27 +573,27 @@
   </div>
   <div class="faq">
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vraiment 250€ pour un site complet ?</div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vraiment 250€ pour un site complet ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
       <div class="faq-r"><p>Oui. C'est un site one-page (une page), mais avec tout le nécessaire : design moderne, mobile, bouton WhatsApp, photos, référencement de base. Le paiement se fait à la livraison, vous ne prenez aucun risque.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi c'est moins cher que les autres ?</div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi c'est moins cher que les autres ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
       <div class="faq-r"><p>Parce que je suis freelance, pas une agence avec des frais fixes. J'ai des templates et des process optimisés. "On est moins cher, mais pas moins bons" — la qualité est là, c'est juste le prix qui est juste.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ne paye vraiment rien à l'avance ?</div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ne paye vraiment rien à l'avance ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
       <div class="faq-r"><p>Pour le site one-page à 250€ : paiement 100% à la livraison. Pour les packs plus gros (400€ et +), c'est 50% à la commande et 50% à la livraison.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je n'ai pas de photos, c'est un problème ?</div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je n'ai pas de photos, c'est un problème ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
       <div class="faq-r"><p>Non. J'utilise des photos libres de droits professionnelles adaptées à votre activité. Si vous avez vos propres photos, c'est encore mieux.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je suis à Mayotte, La Réunion ou en Métropole ?</div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je suis à Mayotte, La Réunion ou en Métropole ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
       <div class="faq-r"><p>Tout fonctionne à distance. J'ai des clients partout en France. Pour Mayotte, je peux même venir sur place si besoin.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et après la livraison, le site est maintenu ?</div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et après la livraison, le site est maintenu ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
       <div class="faq-r"><p>Oui. Le pack inclut l'hébergement et le nom de domaine 1 an. Après, je reste disponible pour des modifications (tarif horaire) ou je peux vous former à gérer le contenu vous-même.</p></div>
     </div>
   </div>
@@ -470,14 +603,15 @@
 <div class="cta-final" id="contact">
   <h2>Prêt à lancer votre site <span style="background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">cette semaine ?</span></h2>
   <p>Contactez-moi maintenant. Je réponds en moins de 2h en journée. Premier échange gratuit, sans engagement.</p>
-  <a href="https://wa.me/33782298559" class="btn">💬 Discuter sur WhatsApp</a>
+  <a href="https://wa.me/33782298559" class="btn">
+    <svg class="icon" style="width:20px;height:20px"><use href="#i-chat"/></svg>
+    Discuter sur WhatsApp
+  </a>
 </div>
 
-<!-- FOOTER — logo symbole seul, sans "Titouan" -->
+<!-- FOOTER -->
 <footer>
-  <a class="logo" href="#hero">
-    <div class="logo-mark"></div>
-  </a>
+  <div class="logo-mark" style="margin:0 auto 24px;"></div>
   <div class="links">
     <a href="#offres">Offres</a>
     <a href="#preuves">Réalisations</a>
