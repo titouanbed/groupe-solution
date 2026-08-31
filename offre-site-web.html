@@ -3,183 +3,308 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Site web professionnel pour votre commerce à Mayotte et partout en France. Livré en 48h, paiement à la livraison, 250€ tout compris." />
-<title>Titouan Bedos — Sites web & Automatisation | Livré en 48h</title>
+<meta name="description" content="Site web pro en 48h à 250€, automatisation IA, présence numérique. Développeur web freelance à Mayotte. Paiement à la livraison." />
+<title>Sites web & IA en 48h | 250€ paiement à la livraison</title>
 <style>
   :root {
-    --bleu: #2563eb;
-    --bleu-fonce: #1e40af;
-    --vert: #16a34a;
-    --orange: #ea580c;
+    --rose: #F9A8D4;
+    --rose-fonce: #EC4899;
+    --rose-clair: #FDF2F8;
+    --rose-vif: #DB2777;
     --gris-fonce: #1f2937;
     --gris: #6b7280;
     --gris-clair: #f3f4f6;
     --blanc: #ffffff;
+    --vert: #16a34a;
+    --ombre-sm: 0 4px 14px rgba(0,0,0,0.06);
     --ombre: 0 10px 30px rgba(0,0,0,0.08);
-    --ombre-forte: 0 20px 50px rgba(0,0,0,0.12);
+    --ombre-lg: 0 25px 60px rgba(236,72,153,0.15);
+    --gradient-rose: linear-gradient(135deg, #F9A8D4 0%, #EC4899 100%);
+    --gradient-hero: linear-gradient(135deg, #1f2937 0%, #312e81 50%, #831843 100%);
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: var(--gris-fonce);
     background: var(--blanc);
     scroll-behavior: smooth;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { line-height: 1.6; }
+  body { line-height: 1.6; overflow-x: hidden; }
+  ::selection { background: var(--rose); color: white; }
 
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  @keyframes blob { 0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* NAVBAR */
   nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--gris-clair);
-    padding: 16px 5%;
-    display: flex; justify-content: space-between; align-items: center;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(236,72,153,0.08);
+    padding: 16px 5%; display: flex; justify-content: space-between; align-items: center;
+    transition: padding 0.3s var(--ease);
   }
-  .logo { font-size: 1.3rem; font-weight: 800; color: var(--bleu-fonce); }
-  .logo span { color: var(--orange); }
-  nav ul { display: flex; gap: 28px; list-style: none; }
-  nav a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; }
-  nav a:hover { color: var(--bleu); }
-  .nav-cta { background: var(--bleu); color: white !important; padding: 10px 20px; border-radius: 8px; font-weight: 600; }
-  .nav-cta:hover { background: var(--bleu-fonce); }
+  nav.scrolled { padding: 10px 5%; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .logo-mark {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--gradient-rose);
+    box-shadow: 0 4px 15px rgba(236,72,153,0.4);
+    transition: transform 0.4s var(--ease);
+  }
+  .logo:hover .logo-mark { transform: rotate(360deg) scale(1.1); }
+  nav ul { display: flex; gap: 32px; list-style: none; }
+  nav a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+  nav a:hover { color: var(--rose-fonce); }
+  .nav-cta {
+    background: var(--gradient-rose); color: white !important;
+    padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(236,72,153,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 25px rgba(236,72,153,0.5); }
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--gris-fonce); }
 
+  /* HERO */
   .hero {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: white; padding: 90px 5% 70px; text-align: center;
+    position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; color: white; overflow: hidden;
+    background: var(--gradient-hero); background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
   }
-  .badge {
-    display: inline-block; background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px;
-    border-radius: 999px; font-size: 0.85rem; margin-bottom: 20px;
+  .hero::before {
+    content: ''; position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(236,72,153,0.3), transparent 70%);
+    top: -100px; left: -100px; animation: blob 8s infinite;
   }
-  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; margin-bottom: 18px; line-height: 1.15; }
-  .hero h1 span { color: #fbbf24; }
-  .hero p { font-size: 1.2rem; max-width: 680px; margin: 0 auto 32px; opacity: 0.95; }
-  .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .hero::after {
+    content: ''; position: absolute; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(168,85,247,0.25), transparent 70%);
+    bottom: -50px; right: -50px; animation: blob 10s infinite reverse;
+  }
+  .hero-content { position: relative; z-index: 10; padding: 0 20px; max-width: 900px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    border: 1px solid rgba(236,72,153,0.4);
+    padding: 8px 18px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 28px;
+    animation: fadeInUp 0.8s var(--ease) both;
+  }
+  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; animation: pulse 2s infinite; }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; line-height: 1.05; margin-bottom: 24px;
+    animation: fadeInUp 0.8s var(--ease) 0.1s both;
+  }
+  .hero h1 .accent {
+    background: var(--gradient-rose);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero h1 .underline { position: relative; display: inline-block; }
+  .hero h1 .underline::after {
+    content: ''; position: absolute; bottom: 5px; left: 0; right: 0; height: 8px;
+    background: var(--gradient-rose); border-radius: 4px; opacity: 0.5; z-index: -1;
+  }
+  .hero p {
+    font-size: 1.25rem; max-width: 620px; margin: 0 auto 40px; opacity: 0.95;
+    animation: fadeInUp 0.8s var(--ease) 0.2s both;
+  }
+  .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s var(--ease) 0.3s both; }
   .btn {
-    display: inline-block; padding: 16px 32px; border-radius: 10px;
-    font-weight: 700; font-size: 1.05rem; text-decoration: none;
-    transition: transform 0.15s, box-shadow 0.15s;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 17px 36px; border-radius: 999px; font-weight: 700; font-size: 1.05rem;
+    text-decoration: none; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    cursor: pointer; border: none;
   }
-  .btn-principal { background: var(--orange); color: white; box-shadow: var(--ombre); }
-  .btn-principal:hover { transform: translateY(-2px); box-shadow: var(--ombre-forte); }
-  .btn-secondaire { background: rgba(255,255,255,0.1); color: white; border: 2px solid white; }
-  .btn-secondaire:hover { background: white; color: var(--bleu-fonce); }
+  .btn-primary { background: var(--gradient-rose); color: white; box-shadow: 0 10px 30px rgba(236,72,153,0.4); }
+  .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 20px 50px rgba(236,72,153,0.5); }
+  .btn-ghost { background: rgba(255,255,255,0.08); color: white; border: 1.5px solid rgba(255,255,255,0.3); backdrop-filter: blur(10px); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.15); transform: translateY(-3px); }
+  .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.5); font-size: 1.5rem; animation: float 2s infinite; }
 
-  .stats {
-    display: flex; justify-content: center; gap: 50px;
-    padding: 40px 5%; background: var(--gris-clair); flex-wrap: wrap;
-  }
-  .stat { text-align: center; }
-  .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--bleu-fonce); }
-  .stat-label { color: var(--gris); font-weight: 500; }
+  /* MARQUEE */
+  .marquee { background: var(--gris-fonce); color: white; overflow: hidden; padding: 18px 0; display: flex; white-space: nowrap; }
+  .marquee-content { display: flex; gap: 50px; animation: marquee 30s linear infinite; font-weight: 600; font-size: 0.95rem; }
+  .marquee-content span { display: flex; align-items: center; gap: 12px; opacity: 0.7; }
+  .marquee-content .sep { color: var(--rose-fonce); }
 
-  section { padding: 70px 5%; }
-  .section-titre { text-align: center; max-width: 700px; margin: 0 auto 50px; }
-  .section-titre h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 14px; }
-  .section-titre h2 span { color: var(--bleu); }
-  .section-titre p { color: var(--gris); font-size: 1.1rem; }
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; padding: 0 5%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 10; }
+  .stat { text-align: center; padding: 50px 20px; border-right: 1px solid var(--gris-clair); transition: background 0.3s; }
+  .stat:last-child { border-right: none; }
+  .stat:hover { background: var(--rose-clair); }
+  .stat-num { font-size: 3rem; font-weight: 800; background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+  .stat-label { color: var(--gris); font-weight: 500; font-size: 0.95rem; }
 
-  .offres { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto; }
-  .offre {
-    background: white; border-radius: 16px; padding: 36px 28px;
-    box-shadow: var(--ombre); border: 2px solid transparent;
-    transition: transform 0.2s, border-color 0.2s; position: relative;
-  }
-  .offre:hover { transform: translateY(-6px); border-color: var(--bleu); }
-  .offre.populaire { border-color: var(--orange); }
-  .offre .tag {
-    position: absolute; top: -14px; right: 24px;
-    background: var(--orange); color: white; font-size: 0.8rem;
-    font-weight: 700; padding: 5px 14px; border-radius: 999px;
-  }
-  .offre h3 { font-size: 1.3rem; margin-bottom: 8px; }
-  .offre .prix { font-size: 2.8rem; font-weight: 800; color: var(--gris-fonce); margin: 12px 0; }
+  /* SECTIONS */
+  section { padding: 100px 5%; position: relative; }
+  .section-titre { text-align: center; max-width: 720px; margin: 0 auto 60px; }
+  .section-titre h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
+  .section-titre h2 .accent { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section-titre p { color: var(--gris); font-size: 1.15rem; }
+  .section-tag { display: inline-block; background: var(--rose-clair); color: var(--rose-vif); padding: 6px 16px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+
+  /* OFFRES */
+  .offres { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+  .offre { background: white; border-radius: 24px; padding: 40px 32px; box-shadow: var(--ombre); border: 2px solid transparent; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s; position: relative; overflow: hidden; }
+  .offre::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-rose); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+  .offre:hover { transform: translateY(-8px); box-shadow: var(--ombre-lg); border-color: var(--rose); }
+  .offre:hover::before { transform: scaleX(1); }
+  .offre.populaire { border-color: var(--rose-fonce); box-shadow: var(--ombre-lg); }
+  .offre.populaire::before { transform: scaleX(1); }
+  .offre .tag { position: absolute; top: 20px; right: -30px; background: var(--gradient-rose); color: white; font-size: 0.75rem; font-weight: 700; padding: 6px 40px; transform: rotate(45deg); text-transform: uppercase; letter-spacing: 1px; }
+  .offre-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .offre h3 { font-size: 1.4rem; margin-bottom: 4px; }
+  .offre .desc { color: var(--gris); font-size: 0.9rem; margin-bottom: 16px; }
+  .offre .prix { font-size: 3rem; font-weight: 800; margin: 16px 0; line-height: 1; }
   .offre .prix small { font-size: 1rem; color: var(--gris); font-weight: 500; }
-  .offre .delai { color: var(--vert); font-weight: 600; margin-bottom: 20px; font-size: 0.95rem; }
+  .offre .delai { display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: var(--vert); font-weight: 600; padding: 6px 14px; border-radius: 999px; margin-bottom: 24px; font-size: 0.85rem; }
   .offre ul { list-style: none; margin-bottom: 28px; }
-  .offre ul li { padding: 8px 0; padding-left: 28px; position: relative; color: var(--gris-fonce); }
-  .offre ul li::before { content: "✓"; position: absolute; left: 0; color: var(--vert); font-weight: 800; }
-  .offre .btn { width: 100%; text-align: center; }
-  .offre .btn:hover { transform: translateY(-2px); }
+  .offre ul li { padding: 10px 0; padding-left: 32px; position: relative; color: var(--gris-fonce); font-size: 0.95rem; }
+  .offre ul li::before { content: "✓"; position: absolute; left: 0; top: 10px; width: 20px; height: 20px; background: var(--rose-clair); color: var(--rose-vif); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; }
+  .offre .btn { width: 100%; justify-content: center; }
 
+  /* PREUVES */
   .preuves { background: var(--gris-clair); }
-  .preuve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
-  .preuve-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--ombre); text-decoration: none; color: inherit; transition: transform 0.2s; }
-  .preuve-card:hover { transform: translateY(-4px); }
-  .preuve-img { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; text-align: center; }
-  .preuve-body { padding: 22px; }
-  .preuve-body h4 { font-size: 1.1rem; margin-bottom: 6px; color: var(--bleu-fonce); }
-  .preuve-body p { color: var(--gris); font-size: 0.95rem; }
-  .preuve-lien { color: var(--bleu); font-weight: 600; font-size: 0.9rem; margin-top: 10px; display: inline-block; }
+  .preuve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto; }
+  .preuve-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--ombre); text-decoration: none; color: inherit; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+  .preuve-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--ombre-lg); }
+  .preuve-img { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem; text-align: center; position: relative; overflow: hidden; }
+  .preuve-img::after { content: 'Voir le site →'; position: absolute; bottom: -40px; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 12px; text-align: center; font-size: 0.9rem; transition: bottom 0.3s var(--ease); }
+  .preuve-card:hover .preuve-img::after { bottom: 0; }
+  .preuve-body { padding: 28px; }
+  .preuve-body h4 { font-size: 1.2rem; margin-bottom: 8px; }
+  .preuve-body p { color: var(--gris); font-size: 0.95rem; margin-bottom: 12px; }
+  .preuve-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .preuve-tag { background: var(--rose-clair); color: var(--rose-vif); padding: 4px 12px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
 
-  .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+  /* PROCESS */
+  .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; position: relative; }
   .step { text-align: center; position: relative; }
-  .step-num { width: 56px; height: 56px; background: var(--bleu); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 16px; }
-  .step h4 { font-size: 1.1rem; margin-bottom: 8px; }
-  .step p { color: var(--gris); font-size: 0.95rem; }
+  .step::before { content: ''; position: absolute; top: 40px; left: 50%; right: -50%; height: 2px; background: linear-gradient(to right, var(--rose), transparent); z-index: 0; }
+  .step:last-child::before { display: none; }
+  .step-num { width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 50%; background: var(--gradient-rose); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(236,72,153,0.3); transition: transform 0.3s var(--ease); }
+  .step:hover .step-num { transform: scale(1.15) rotate(10deg); }
+  .step h4 { font-size: 1.15rem; margin-bottom: 8px; }
+  .step p { color: var(--gris); font-size: 0.95rem; max-width: 200px; margin: 0 auto; }
 
-  .faq { max-width: 760px; margin: 0 auto; }
-  .faq-item { background: white; border: 1px solid var(--gris-clair); border-radius: 10px; margin-bottom: 14px; overflow: hidden; }
-  .faq-q { padding: 20px 24px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: white; }
-  .faq-q::after { content: "+"; font-size: 1.4rem; color: var(--bleu); }
-  .faq-item.open .faq-q::after { content: "−"; }
-  .faq-r { max-height: 0; overflow: hidden; transition: max-height 0.3s; padding: 0 24px; color: var(--gris); }
-  .faq-item.open .faq-r { max-height: 300px; padding: 0 24px 20px; }
+  /* FAQ */
+  .faq { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: white; border: 2px solid var(--gris-clair); border-radius: 16px; margin-bottom: 16px; overflow: hidden; transition: border-color 0.3s; }
+  .faq-item.open { border-color: var(--rose); }
+  .faq-q { padding: 22px 28px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
+  .faq-q::after { content: "+"; font-size: 1.6rem; color: var(--rose-fonce); transition: transform 0.3s; font-weight: 300; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-r { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.4s var(--ease); padding: 0 28px; color: var(--gris); }
+  .faq-item.open .faq-r { max-height: 300px; padding: 0 28px 24px; }
 
-  .cta-final { background: linear-gradient(135deg, #ea580c, #c2410c); color: white; text-align: center; padding: 80px 5%; }
-  .cta-final h2 { font-size: 2.4rem; font-weight: 800; margin-bottom: 16px; }
-  .cta-final p { font-size: 1.2rem; margin-bottom: 32px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; }
-  .cta-final .btn { background: white; color: var(--orange); }
+  /* CTA FINAL */
+  .cta-final { position: relative; text-align: center; padding: 120px 5%; color: white; overflow: hidden; background: var(--gradient-hero); background-size: 200% 200%; animation: gradientShift 10s ease infinite; }
+  .cta-final::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(236,72,153,0.2), transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: blob 12s infinite; }
+  .cta-final h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; position: relative; z-index: 1; }
+  .cta-final p { font-size: 1.25rem; margin-bottom: 40px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+  .cta-final .btn { position: relative; z-index: 1; background: var(--gradient-rose); color: white; font-size: 1.2rem; padding: 20px 50px; }
 
-  footer { background: var(--gris-fonce); color: white; padding: 50px 5% 30px; text-align: center; }
-  footer .logo { color: white; margin-bottom: 16px; }
-  footer a { color: #cbd5e1; text-decoration: none; margin: 0 14px; font-size: 0.95rem; }
-  footer a:hover { color: white; }
+  /* FOOTER */
+  footer { background: var(--gris-fonce); color: white; padding: 60px 5% 30px; text-align: center; }
+  footer .logo { justify-content: center; margin-bottom: 24px; }
+  footer a { color: #cbd5e1; text-decoration: none; margin: 0 16px; font-size: 0.95rem; transition: color 0.2s; }
+  footer a:hover { color: var(--rose); }
   footer .copyright { margin-top: 24px; color: #94a3b8; font-size: 0.85rem; }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     nav ul { display: none; }
-    .hero h1 { font-size: 2rem; }
-    .stats { gap: 24px; }
+    .nav-toggle { display: block; }
+    nav ul.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: white; padding: 20px; box-shadow: var(--ombre); gap: 16px; }
+    .hero h1 { font-size: 2.5rem; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .step::before { display: none; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">Titouan<span>.</span></div>
-  <ul>
+<!-- NAVBAR — logo symbole seul, PAS de "Titouan" -->
+<nav id="nav">
+  <a class="logo" href="#hero">
+    <div class="logo-mark"></div>
+  </a>
+  <ul id="navMenu">
     <li><a href="#offres">Offres</a></li>
     <li><a href="#preuves">Réalisations</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="https://wa.me/33782298559" class="nav-cta">Demander un devis</a>
+  <a href="https://wa.me/33782298559" class="nav-cta">💬 Devis gratuit</a>
+  <button class="nav-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
 </nav>
 
-<div class="hero">
-  <span class="badge">⚡ Développeur web à Mayotte — Disponible cette semaine</span>
-  <h1>Votre site web pro, <span>livré en 48h</span><br>au prix le plus bas du marché</h1>
-  <p>On est moins cher, mais pas moins bons. Site web, automatisation, présence Google : je m'occupe de tout. Paiement à la livraison, zéro engagement.</p>
-  <div class="hero-ctas">
-    <a href="https://wa.me/33782298559" class="btn btn-principal">💬 Demander sur WhatsApp</a>
-    <a href="#preuves" class="btn btn-secondaire">Voir mes réalisations</a>
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Disponible cette semaine • Basé à Mayotte
+    </div>
+    <h1>
+      Votre site web pro,<br>
+      <span class="accent">livré en 48h</span><br>
+      <span class="underline">au prix le plus juste</span>
+    </h1>
+    <p>On est moins cher, mais pas moins bons. Sites web, automatisation IA, présence Google. Tout est livré vite, bien, et vous ne payez qu'à la livraison.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/33782298559" class="btn btn-primary">💬 Discuter sur WhatsApp</a>
+      <a href="#preuves" class="btn btn-ghost">Voir mes réalisations →</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">⌄</div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-content">
+    <span>⚡ Livré en 48h</span><span class="sep">★</span>
+    <span>💰 Paiement à la livraison</span><span class="sep">★</span>
+    <span>📱 100% mobile</span><span class="sep">★</span>
+    <span>🤖 Automatisation IA</span><span class="sep">★</span>
+    <span>📍 Mayotte & partout en France</span><span class="sep">★</span>
+    <span>⚡ Livré en 48h</span><span class="sep">★</span>
+    <span>💰 Paiement à la livraison</span><span class="sep">★</span>
+    <span>📱 100% mobile</span><span class="sep">★</span>
+    <span>🤖 Automatisation IA</span><span class="sep">★</span>
+    <span>📍 Mayotte & partout en France</span><span class="sep">★</span>
   </div>
 </div>
 
-<div class="stats">
+<!-- STATS -->
+<div class="stats reveal">
   <div class="stat"><div class="stat-num">48h</div><div class="stat-label">Délai de livraison</div></div>
   <div class="stat"><div class="stat-num">250€</div><div class="stat-label">À partir de</div></div>
   <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Paiement à la livraison</div></div>
   <div class="stat"><div class="stat-num">0€</div><div class="stat-label">D'avance à payer</div></div>
 </div>
 
+<!-- OFFRES -->
 <section id="offres">
-  <div class="section-titre">
-    <h2>Des offres <span>claires et pas chères</span></h2>
-    <p>Choisissez ce qui correspond à votre besoin. Tout est livré rapidement, sans surprise.</p>
+  <div class="section-titre reveal">
+    <span class="section-tag">Nos offres</span>
+    <h2>Des offres <span class="accent">claires et accessibles</span></h2>
+    <p>Choisissez ce qui correspond à votre besoin. Tout est livré rapidement, sans surprise, sans caché.</p>
   </div>
   <div class="offres">
-    <div class="offre">
+    <div class="offre reveal">
+      <div class="offre-icon">🌐</div>
       <h3>Site One-Page</h3>
+      <p class="desc">Pour démarrer votre présence en ligne</p>
       <div class="prix">250€ <small>TTC</small></div>
       <div class="delai">⚡ Livré en 48h</div>
       <ul>
@@ -187,14 +312,16 @@
         <li>Bouton WhatsApp / appel direct</li>
         <li>Photos, menu, services inclus</li>
         <li>Référencement Google de base</li>
-        <li>Hébergement + nom de domaine 1 an</li>
+        <li>Hébergement + domaine 1 an</li>
         <li>Paiement à la livraison</li>
       </ul>
-      <a href="https://wa.me/33782298559" class="btn btn-principal">Je veux ce pack</a>
+      <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
     </div>
-    <div class="offre populaire">
-      <span class="tag">Le plus demandé</span>
-      <h3>Pack Présence Numérique</h3>
+    <div class="offre populaire reveal">
+      <div class="tag">Populaire</div>
+      <div class="offre-icon">🚀</div>
+      <h3>Présence Numérique</h3>
+      <p class="desc">Le pack complet pour exister en ligne</p>
       <div class="prix">400€ <small>TTC</small></div>
       <div class="delai">⚡ Livré en 3 jours</div>
       <ul>
@@ -205,10 +332,12 @@
         <li>1 flyer PDF à imprimer</li>
         <li>Formation 30 min pour gérer seul</li>
       </ul>
-      <a href="https://wa.me/33782298559" class="btn btn-principal">Je veux ce pack</a>
+      <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
     </div>
-    <div class="offre">
+    <div class="offre reveal">
+      <div class="offre-icon">🤖</div>
       <h3>Automatisation / IA</h3>
+      <p class="desc">Gagnez du temps avec l'automatisation</p>
       <div class="prix">600€ <small>à partir de</small></div>
       <div class="delai">⚡ Livré en 1 semaine</div>
       <ul>
@@ -219,116 +348,155 @@
         <li>Tableau de bord simple</li>
         <li>Support 30 jours inclus</li>
       </ul>
-      <a href="https://wa.me/33782298559" class="btn btn-principal">Je veux ce pack</a>
+      <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
     </div>
   </div>
 </section>
 
+<!-- PREUVES -->
 <section id="preuves" class="preuves">
-  <div class="section-titre">
-    <h2>Mes <span>réalisations</span> parlent pour moi</h2>
-    <p>Voici quelques projets récents. Vous pouvez les visiter pour voir la qualité du travail.</p>
+  <div class="section-titre reveal">
+    <span class="section-tag">Réalisations</span>
+    <h2>Ce que je fais, <span class="accent">ça se voit</span></h2>
+    <p>Des projets réels, en ligne, que vous pouvez visiter tout de suite. La meilleure preuve de qualité.</p>
   </div>
   <div class="preuve-grid">
-    <a class="preuve-card" href="https://twentythreeclean.com/" target="_blank">
+    <a class="preuve-card reveal" href="https://twentythreeclean.com/" target="_blank">
       <div class="preuve-img" style="background: linear-gradient(135deg, #0ea5e9, #0369a1);">🚗 Twenty-Three Clean<br>Lavage auto à domicile</div>
       <div class="preuve-body">
         <h4>Twenty-Three Clean</h4>
-        <p>Site de réservation en ligne pour service de lavage auto à domicile. Système de paiement et créneaux.</p>
-        <span class="preuve-lien">Voir le site →</span>
+        <p>Site de réservation en ligne avec paiement et créneaux. UX optimisée pour mobile.</p>
+        <div class="preuve-tags">
+          <span class="preuve-tag">Réservation</span>
+          <span class="preuve-tag">Paiement</span>
+          <span class="preuve-tag">Mobile</span>
+        </div>
       </div>
     </a>
-    <a class="preuve-card" href="https://www.groupsolution.fr/" target="_blank">
+    <a class="preuve-card reveal" href="https://www.groupsolution.fr/" target="_blank">
       <div class="preuve-img" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">💼 Group Solution<br>Services B2B</div>
       <div class="preuve-body">
         <h4>Group Solution</h4>
-        <p>Site vitrine et services pour entreprise. Présentation des offres, formulaires, architecture pro.</p>
-        <span class="preuve-lien">Voir le site →</span>
+        <p>Site vitrine pro multi-pages avec formulaires, SEO et architecture soignée.</p>
+        <div class="preuve-tags">
+          <span class="preuve-tag">Multi-pages</span>
+          <span class="preuve-tag">SEO</span>
+          <span class="preuve-tag">B2B</span>
+        </div>
       </div>
     </a>
-    <a class="preuve-card" href="https://wa.me/33782298559">
-      <div class="preuve-img" style="background: linear-gradient(135deg, #ea580c, #c2410c);">🤖 Logiciel d'automatisation<br>(sur demande)</div>
+    <a class="preuve-card reveal" href="https://wa.me/33782298559">
+      <div class="preuve-img" style="background: var(--gradient-rose);">🤖 Logiciel d'automatisation<br>(démo privée)</div>
       <div class="preuve-body">
         <h4>Outil d'automatisation sur-mesure</h4>
-        <p>Logiciel complet d'automatisation de processus business. Disponible en démo privée sur demande.</p>
-        <span class="preuve-lien">Demander une démo →</span>
+        <p>Logiciel complet d'automatisation de processus business. Disponible en démo privée.</p>
+        <div class="preuve-tags">
+          <span class="preuve-tag">IA</span>
+          <span class="preuve-tag">Automation</span>
+          <span class="preuve-tag">Sur-mesure</span>
+        </div>
       </div>
     </a>
   </div>
 </section>
 
+<!-- PROCESS -->
 <section id="process">
-  <div class="section-titre">
-    <h2>Comment ça <span>marche</span></h2>
-    <p>Simple, rapide, transparent. Vous validez à chaque étape.</p>
+  <div class="section-titre reveal">
+    <span class="section-tag">Comment ça marche</span>
+    <h2>Simple comme <span class="accent">bonjour</span></h2>
+    <p>4 étapes, zéro friction. Vous validez à chaque moment, vous payez à la fin.</p>
   </div>
   <div class="process-steps">
-    <div class="step">
+    <div class="step reveal">
       <div class="step-num">1</div>
       <h4>On échange 10 min</h4>
       <p>WhatsApp ou appel. Vous me dites ce que vous voulez, je vous dis si c'est faisable en 48h.</p>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <div class="step-num">2</div>
-      <h4>Je vous montre une maquette</h4>
-      <p>Sous 24h, vous recevez une maquette. Vous validez ou demandez des ajustements.</p>
+      <h4>Maquette en 24h</h4>
+      <p>Vous recevez une maquette. Vous validez ou demandez des ajustements. Gratuit.</p>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <div class="step-num">3</div>
-      <h4>Je livre le site</h4>
-      <p>48h après validation, votre site est en ligne. Vous ne payez qu'à ce moment-là.</p>
+      <h4>Livraison en 48h</h4>
+      <p>Votre site est en ligne. Vous ne payez qu'à ce moment-là. Aucun risque.</p>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <div class="step-num">4</div>
       <h4>Vous payez, c'est fini</h4>
-      <p>Paiement par virement, Lydia ou Stripe. Aucune surprise, aucune mauvaise nouvelle.</p>
+      <p>Virement, Lydia ou Stripe. Aucune surprise, aucune mauvaise nouvelle.</p>
     </div>
   </div>
 </section>
 
+<!-- FAQ -->
 <section id="faq" class="preuves">
-  <div class="section-titre">
-    <h2>Questions <span>fréquentes</span></h2>
+  <div class="section-titre reveal">
+    <span class="section-tag">FAQ</span>
+    <h2>Questions <span class="accent">fréquentes</span></h2>
+    <p>Tout ce que vous voulez savoir avant de vous lancer.</p>
   </div>
   <div class="faq">
-    <div class="faq-item">
+    <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vraiment 250€ pour un site complet ?</div>
       <div class="faq-r"><p>Oui. C'est un site one-page (une page), mais avec tout le nécessaire : design moderne, mobile, bouton WhatsApp, photos, référencement de base. Le paiement se fait à la livraison, vous ne prenez aucun risque.</p></div>
     </div>
-    <div class="faq-item">
+    <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi c'est moins cher que les autres ?</div>
       <div class="faq-r"><p>Parce que je suis freelance, pas une agence avec des frais fixes. J'ai des templates et des process optimisés. "On est moins cher, mais pas moins bons" — la qualité est là, c'est juste le prix qui est juste.</p></div>
     </div>
-    <div class="faq-item">
+    <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ne paye vraiment rien à l'avance ?</div>
       <div class="faq-r"><p>Pour le site one-page à 250€ : paiement 100% à la livraison. Pour les packs plus gros (400€ et +), c'est 50% à la commande et 50% à la livraison.</p></div>
     </div>
-    <div class="faq-item">
+    <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je n'ai pas de photos, c'est un problème ?</div>
       <div class="faq-r"><p>Non. J'utilise des photos libres de droits professionnelles adaptées à votre activité. Si vous avez vos propres photos, c'est encore mieux.</p></div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je suis à Mayotte / La Réunion / Métropole ?</div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je suis à Mayotte, La Réunion ou en Métropole ?</div>
       <div class="faq-r"><p>Tout fonctionne à distance. J'ai des clients partout en France. Pour Mayotte, je peux même venir sur place si besoin.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et après la livraison, le site est maintenu ?</div>
+      <div class="faq-r"><p>Oui. Le pack inclut l'hébergement et le nom de domaine 1 an. Après, je reste disponible pour des modifications (tarif horaire) ou je peux vous former à gérer le contenu vous-même.</p></div>
     </div>
   </div>
 </section>
 
+<!-- CTA FINAL -->
 <div class="cta-final" id="contact">
-  <h2>Prêt à lancer votre site cette semaine ?</h2>
+  <h2>Prêt à lancer votre site <span style="background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">cette semaine ?</span></h2>
   <p>Contactez-moi maintenant. Je réponds en moins de 2h en journée. Premier échange gratuit, sans engagement.</p>
   <a href="https://wa.me/33782298559" class="btn">💬 Discuter sur WhatsApp</a>
 </div>
 
+<!-- FOOTER — logo symbole seul, sans "Titouan" -->
 <footer>
-  <div class="logo">Titouan<span>.</span></div>
-  <p>
+  <a class="logo" href="#hero">
+    <div class="logo-mark"></div>
+  </a>
+  <div class="links">
     <a href="#offres">Offres</a>
     <a href="#preuves">Réalisations</a>
+    <a href="#process">Process</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
-  </p>
-  <p class="copyright">© Titouan Bedos — Développeur web freelance à Mayotte<br>Sites web • Automatisation • Présence numérique</p>
+  </div>
+  <p class="copyright">Développeur web freelance à Mayotte<br>Sites web • Automatisation IA • Présence numérique</p>
 </footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+  });
+</script>
 
 </body>
 </html>
