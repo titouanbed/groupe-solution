@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F9A8D4'/%3E%3Cstop offset='100%25' stop-color='%23EC4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ccircle cx='50' cy='50' r='22' fill='white' fill-opacity='0.92'/%3E%3C/svg%3E" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Sites web pro en 48h, automatisation IA, prÃ©sence numÃ©rique. Freelance Ã  Mayotte. Paiement Ã  la livraison, dÃ¨s 250â¬." />
-<title>Sites web & IA en 48h | DÃ¨s 250â¬, paiement Ã  la livraison</title>
+<meta name="description" content="Sites web pro en 48h, automatisation IA, présence numérique. Freelance à Mayotte. Paiement à la livraison, dès 250€." />
+<title>Sites web & IA en 48h | Dès 250€, paiement à la livraison</title>
 <style>
   :root {
     --rose: #F9A8D4;
@@ -35,7 +35,7 @@
   body { line-height: 1.6; overflow-x: hidden; }
   ::selection { background: var(--rose-fonce); color: white; }
 
-  /* ===== ICÃNES SVG (style Airbnb : stroke fin, propres) ===== */
+  /* ===== ICÔNES SVG (style Airbnb : stroke fin, propres) ===== */
   .icon { width: 24px; height: 24px; stroke-width: 1.6; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
   .icon-lg { width: 40px; height: 40px; stroke-width: 1.4; }
   .icon-check { width: 18px; height: 18px; stroke-width: 2.4; }
@@ -53,24 +53,24 @@
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ===== NAVBAR (texte centrÃ© visuellement) ===== */
+  /* ===== NAVBAR (sombre, cohérente avec le hero et le footer) ===== */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(255,255,255,0.8); backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(236,72,153,0.08);
+    background: rgba(9,9,11,0.88); backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(236,72,153,0.15);
     height: 68px; display: flex; align-items: center; padding: 0 5%;
     transition: box-shadow 0.3s var(--ease);
   }
-  nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 
-  /* Le logo Ã  gauche */
+  /* Le logo à gauche */
   .nav-logo { display: flex; align-items: center; text-decoration: none; flex: 0 0 auto; }
   .logo-mark {
     width: 38px; height: 38px;
     background: var(--gradient-rose);
-    /* Forme "croquÃ©e" : pas un rond parfait, un cÃ´tÃ© manquant */
+    /* Forme "croquée" : pas un rond parfait, un côté manquant */
     clip-path: polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 0% 100%);
-    box-shadow: 0 4px 12px rgba(236,72,153,0.35);
+    box-shadow: 0 4px 12px rgba(236,72,153,0.45);
     transition: transform 0.4s var(--ease);
     position: relative;
   }
@@ -80,27 +80,27 @@
   }
   .nav-logo:hover .logo-mark { transform: rotate(-8deg) scale(1.08); }
 
-  /* Le menu centrÃ© visuellement (absolute, centrÃ© sur la largeur totale) */
+  /* Le menu centré visuellement (absolute, centré sur la largeur totale) */
   .nav-menu {
     position: absolute; left: 50%; transform: translateX(-50%);
     display: flex; gap: 36px; list-style: none;
   }
-  .nav-menu a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; position: relative; }
+  .nav-menu a { text-decoration: none; color: #d4d4d8; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; position: relative; }
   .nav-menu a::after { content: ''; position: absolute; bottom: -6px; left: 0; right: 0; height: 2px; background: var(--rose-fonce); transform: scaleX(0); transition: transform 0.3s var(--ease); transform-origin: left; }
-  .nav-menu a:hover { color: var(--rose-fonce); }
+  .nav-menu a:hover { color: var(--rose); }
   .nav-menu a:hover::after { transform: scaleX(1); }
 
-  /* Le CTA Ã  droite */
+  /* Le CTA à droite */
   .nav-cta-wrap { margin-left: auto; flex: 0 0 auto; display: flex; align-items: center; gap: 14px; }
   .nav-cta {
     background: var(--gradient-rose); color: white;
     padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 0.9rem;
-    box-shadow: 0 4px 15px rgba(236,72,153,0.35); text-decoration: none;
+    box-shadow: 0 4px 15px rgba(236,72,153,0.45); text-decoration: none;
     display: inline-flex; align-items: center; gap: 8px;
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  .nav-cta:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 25px rgba(236,72,153,0.5); }
-  .nav-toggle { display: none; background: white; border: 1px solid var(--gris-clair); cursor: pointer; font-size: 1.2rem; color: var(--gris-fonce); padding: 8px 12px; border-radius: 10px; }
+  .nav-cta:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 25px rgba(236,72,153,0.6); }
+  .nav-toggle { display: none; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); cursor: pointer; font-size: 1.2rem; color: #d4d4d8; padding: 8px 12px; border-radius: 10px; }
 
   /* ===== HERO ===== */
   .hero {
@@ -254,7 +254,7 @@
   @media (max-width: 768px) {
     nav { padding: 0 4%; }
     .nav-menu { display: none; }
-    .nav-menu.open { display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: white; padding: 20px; box-shadow: var(--ombre); gap: 14px; transform: none; left: 0; }
+    .nav-menu.open { display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(9,9,11,0.98); padding: 20px; box-shadow: var(--ombre); gap: 14px; transform: none; left: 0; border-bottom: 1px solid rgba(236,72,153,0.15); }
     .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
     .nav-cta span { display: none; }
     .nav-cta { padding: 11px 14px; }
@@ -268,7 +268,7 @@
 </head>
 <body>
 
-<!-- ===== ICÃNES SVG (rÃ©utilisables, style Airbnb) ===== -->
+<!-- ===== ICÔNES SVG (réutilisables, style Airbnb) ===== -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
@@ -296,8 +296,8 @@
   </a>
   <ul class="nav-menu" id="navMenu">
     <li><a href="#offres">Offres</a></li>
-    <li><a href="#preuves">RÃ©alisations</a></li>
-    <li><a href="catalogue-demos.html">DÃ©mos</a></li>
+    <li><a href="#preuves">Réalisations</a></li>
+    <li><a href="catalogue-demos.html">Démos</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
@@ -317,14 +317,14 @@
   <div class="hero-content">
     <div class="hero-badge">
       <span class="dot"></span>
-      Disponible cette semaine â BasÃ© Ã  Mayotte, partout en France
+      Disponible cette semaine — Basé à Mayotte, partout en France
     </div>
     <h1>
       Votre site web pro,<br>
-      <span class="accent">livrÃ© en 48h</span><br>
+      <span class="accent">livré en 48h</span><br>
       <span class="underline">au prix le plus juste</span>
     </h1>
-    <p>On est moins cher, mais pas moins bons. Sites web, automatisation IA, prÃ©sence Google. Tout est livrÃ© vite, bien, et vous ne payez qu'Ã  la livraison.</p>
+    <p>On est moins cher, mais pas moins bons. Sites web, automatisation IA, présence Google. Tout est livré vite, bien, et vous ne payez qu'à la livraison.</p>
     <div class="hero-ctas">
       <a href="https://wa.me/33782298559" class="btn btn-primary">
         <svg class="icon" style="width:18px;height:18px"><use href="#i-chat"/></svg>
@@ -344,25 +344,25 @@
 <!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-content">
-    <span>LivrÃ© en 48h</span><span class="sep">â¦</span>
-    <span>Paiement Ã  la livraison</span><span class="sep">â¦</span>
-    <span>100% mobile</span><span class="sep">â¦</span>
-    <span>Automatisation IA</span><span class="sep">â¦</span>
-    <span>Mayotte & partout en France</span><span class="sep">â¦</span>
-    <span>LivrÃ© en 48h</span><span class="sep">â¦</span>
-    <span>Paiement Ã  la livraison</span><span class="sep">â¦</span>
-    <span>100% mobile</span><span class="sep">â¦</span>
-    <span>Automatisation IA</span><span class="sep">â¦</span>
-    <span>Mayotte & partout en France</span><span class="sep">â¦</span>
+    <span>Livré en 48h</span><span class="sep">✦</span>
+    <span>Paiement à la livraison</span><span class="sep">✦</span>
+    <span>100% mobile</span><span class="sep">✦</span>
+    <span>Automatisation IA</span><span class="sep">✦</span>
+    <span>Mayotte & partout en France</span><span class="sep">✦</span>
+    <span>Livré en 48h</span><span class="sep">✦</span>
+    <span>Paiement à la livraison</span><span class="sep">✦</span>
+    <span>100% mobile</span><span class="sep">✦</span>
+    <span>Automatisation IA</span><span class="sep">✦</span>
+    <span>Mayotte & partout en France</span><span class="sep">✦</span>
   </div>
 </div>
 
 <!-- STATS -->
 <div class="stats reveal">
-  <div class="stat"><div class="stat-num">48h</div><div class="stat-label">DÃ©lai de livraison</div></div>
-  <div class="stat"><div class="stat-num">250â¬</div><div class="stat-label">Ã partir de</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Paiement Ã  la livraison</div></div>
-  <div class="stat"><div class="stat-num">0â¬</div><div class="stat-label">D'avance Ã  payer</div></div>
+  <div class="stat"><div class="stat-num">48h</div><div class="stat-label">Délai de livraison</div></div>
+  <div class="stat"><div class="stat-num">250€</div><div class="stat-label">À partir de</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Paiement à la livraison</div></div>
+  <div class="stat"><div class="stat-num">0€</div><div class="stat-label">D'avance à payer</div></div>
 </div>
 
 <!-- OFFRES -->
@@ -373,39 +373,39 @@
       Nos offres
     </span>
     <h2>Des offres <span class="accent">claires et accessibles</span></h2>
-    <p>Choisissez ce qui correspond Ã  votre besoin. Tout est livrÃ© rapidement, sans surprise, sans frais cachÃ©s.</p>
+    <p>Choisissez ce qui correspond à votre besoin. Tout est livré rapidement, sans surprise, sans frais cachés.</p>
   </div>
   <div class="offres">
     <div class="offre reveal">
       <div class="offre-icon-wrap"><svg class="icon icon-lg"><use href="#i-globe"/></svg></div>
       <h3>Site One-Page</h3>
-      <p class="desc">Pour dÃ©marrer votre prÃ©sence en ligne</p>
-      <div class="prix">250â¬ <small>TTC</small></div>
-      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> LivrÃ© en 48h</div>
+      <p class="desc">Pour démarrer votre présence en ligne</p>
+      <div class="prix">250€ <small>TTC</small></div>
+      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> Livré en 48h</div>
       <ul>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Site vitrine moderne, 100% mobile</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Bouton WhatsApp / appel direct</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Photos, menu, services inclus</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>RÃ©fÃ©rencement Google de base</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>HÃ©bergement + domaine 1 an</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Paiement Ã  la livraison</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Référencement Google de base</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Hébergement + domaine 1 an</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Paiement à la livraison</li>
       </ul>
       <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
     </div>
     <div class="offre populaire reveal">
       <div class="tag">Populaire</div>
       <div class="offre-icon-wrap"><svg class="icon icon-lg"><use href="#i-rocket"/></svg></div>
-      <h3>PrÃ©sence NumÃ©rique</h3>
+      <h3>Présence Numérique</h3>
       <p class="desc">Le pack complet pour exister en ligne</p>
-      <div class="prix">400â¬ <small>TTC</small></div>
-      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> LivrÃ© en 3 jours</div>
+      <div class="prix">400€ <small>TTC</small></div>
+      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> Livré en 3 jours</div>
       <ul>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Tout le pack Site One-Page</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Fiche Google Business optimisÃ©e</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Compte Instagram pro configurÃ©</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>3 premiers posts rÃ©digÃ©s</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>1 flyer PDF Ã  imprimer</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Formation 30 min pour gÃ©rer seul</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Fiche Google Business optimisée</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Compte Instagram pro configuré</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>3 premiers posts rédigés</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>1 flyer PDF à imprimer</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Formation 30 min pour gérer seul</li>
       </ul>
       <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
     </div>
@@ -413,13 +413,13 @@
       <div class="offre-icon-wrap"><svg class="icon icon-lg"><use href="#i-cpu"/></svg></div>
       <h3>Automatisation / IA</h3>
       <p class="desc">Gagnez du temps avec l'automatisation</p>
-      <div class="prix">600â¬ <small>Ã  partir de</small></div>
-      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> LivrÃ© en 1 semaine</div>
+      <div class="prix">600€ <small>à partir de</small></div>
+      <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> Livré en 1 semaine</div>
       <ul>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Relances WhatsApp automatiques</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Confirmations de RDV par SMS</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>RÃ©ponses automatiques aux FAQs</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>IntÃ©gration avec votre site</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Réponses automatiques aux FAQs</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Intégration avec votre site</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Tableau de bord simple</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Support 30 jours inclus</li>
       </ul>
@@ -433,10 +433,10 @@
   <div class="section-titre reveal">
     <span class="section-tag">
       <svg class="icon" style="width:14px;height:14px"><use href="#i-sparkles"/></svg>
-      RÃ©alisations
+      Réalisations
     </span>
-    <h2>Ce que je fais, <span class="accent">Ã§a se voit</span></h2>
-    <p>Des projets rÃ©els, en ligne, que vous pouvez visiter tout de suite. La meilleure preuve de qualitÃ©.</p>
+    <h2>Ce que je fais, <span class="accent">ça se voit</span></h2>
+    <p>Des projets réels, en ligne, que vous pouvez visiter tout de suite. La meilleure preuve de qualité.</p>
   </div>
   <div class="preuve-grid">
     <a class="preuve-card reveal" href="https://twentythreeclean.com/" target="_blank">
@@ -446,9 +446,9 @@
       </div>
       <div class="preuve-body">
         <h4>Twenty-Three Clean</h4>
-        <p>Site de rÃ©servation en ligne avec paiement et crÃ©neaux. UX optimisÃ©e pour mobile.</p>
+        <p>Site de réservation en ligne avec paiement et créneaux. UX optimisée pour mobile.</p>
         <div class="preuve-tags">
-          <span class="preuve-tag">RÃ©servation</span>
+          <span class="preuve-tag">Réservation</span>
           <span class="preuve-tag">Paiement</span>
           <span class="preuve-tag">Mobile</span>
         </div>
@@ -464,7 +464,7 @@
       </div>
       <div class="preuve-body">
         <h4>Group Solution</h4>
-        <p>Site vitrine pro multi-pages avec formulaires, SEO et architecture soignÃ©e.</p>
+        <p>Site vitrine pro multi-pages avec formulaires, SEO et architecture soignée.</p>
         <div class="preuve-tags">
           <span class="preuve-tag">Multi-pages</span>
           <span class="preuve-tag">SEO</span>
@@ -482,11 +482,11 @@
       </div>
       <div class="preuve-body">
         <h4>Solution Alternance</h4>
-        <p>Site CFA avec prÃ©sentation des formations (logistique, Ã©quitation) et accompagnement.</p>
+        <p>Site CFA avec présentation des formations (logistique, équitation) et accompagnement.</p>
         <div class="preuve-tags">
           <span class="preuve-tag">Formation</span>
           <span class="preuve-tag">CFA</span>
-          <span class="preuve-tag">Ãducation</span>
+          <span class="preuve-tag">Éducation</span>
         </div>
         <span class="preuve-lien">Voir le site
           <svg class="icon" style="width:14px;height:14px"><use href="#i-arrow-right"/></svg>
@@ -500,7 +500,7 @@
       </div>
       <div class="preuve-body">
         <h4>Solutions Recrutement</h4>
-        <p>Site cabinet de recrutement multi-agences avec prÃ©sentation des services et partenaires.</p>
+        <p>Site cabinet de recrutement multi-agences avec présentation des services et partenaires.</p>
         <div class="preuve-tags">
           <span class="preuve-tag">Recrutement</span>
           <span class="preuve-tag">Multi-agences</span>
@@ -518,13 +518,13 @@
       </div>
       <div class="preuve-body">
         <h4>Outil d'automatisation IA</h4>
-        <p>Logiciel complet d'automatisation de processus business. DÃ©mo privÃ©e sur demande.</p>
+        <p>Logiciel complet d'automatisation de processus business. Démo privée sur demande.</p>
         <div class="preuve-tags">
           <span class="preuve-tag">IA</span>
           <span class="preuve-tag">Automation</span>
           <span class="preuve-tag">Sur-mesure</span>
         </div>
-        <span class="preuve-lien">Demander une dÃ©mo
+        <span class="preuve-lien">Demander une démo
           <svg class="icon" style="width:14px;height:14px"><use href="#i-arrow-right"/></svg>
         </span>
       </div>
@@ -532,15 +532,15 @@
     <a class="preuve-card reveal" href="catalogue-demos.html">
       <div class="preuve-img" style="background: linear-gradient(135deg, #F9A8D4, #DB2777);">
         <svg class="icon"><use href="#i-sparkles"/></svg>
-        <span class="preuve-label">18 styles en aperÃ§u</span>
+        <span class="preuve-label">18 styles en aperçu</span>
       </div>
       <div class="preuve-body">
-        <h4>Catalogue de dÃ©mos</h4>
-        <p>Restaurant, coiffeur, garage auto â 6 directions artistiques Ã  essayer directement dans un tÃ©lÃ©phone. Choisissez votre style.</p>
+        <h4>Catalogue de démos</h4>
+        <p>Restaurant, coiffeur, garage auto — 6 directions artistiques à essayer directement dans un téléphone. Choisissez votre style.</p>
         <div class="preuve-tags">
           <span class="preuve-tag">3 secteurs</span>
           <span class="preuve-tag">6 styles</span>
-          <span class="preuve-tag">AperÃ§u live</span>
+          <span class="preuve-tag">Aperçu live</span>
         </div>
         <span class="preuve-lien">Explorer le catalogue
           <svg class="icon" style="width:14px;height:14px"><use href="#i-arrow-right"/></svg>
@@ -555,15 +555,15 @@
   <div class="section-titre reveal">
     <span class="section-tag">
       <svg class="icon" style="width:14px;height:14px"><use href="#i-clock"/></svg>
-      Comment Ã§a marche
+      Comment ça marche
     </span>
     <h2>Simple comme <span class="accent">bonjour</span></h2>
-    <p>4 Ã©tapes, zÃ©ro friction. Vous validez Ã  chaque moment, vous payez Ã  la fin.</p>
+    <p>4 étapes, zéro friction. Vous validez à chaque moment, vous payez à la fin.</p>
   </div>
   <div class="process-steps">
     <div class="step reveal">
       <div class="step-num">1</div>
-      <h4>On Ã©change 10 min</h4>
+      <h4>On échange 10 min</h4>
       <p>WhatsApp ou appel. Vous me dites ce que vous voulez, je vous dis si c'est faisable en 48h.</p>
     </div>
     <div class="step reveal">
@@ -574,7 +574,7 @@
     <div class="step reveal">
       <div class="step-num">3</div>
       <h4>Livraison en 48h</h4>
-      <p>Votre site est en ligne. Vous ne payez qu'Ã  ce moment-lÃ . Aucun risque.</p>
+      <p>Votre site est en ligne. Vous ne payez qu'à ce moment-là. Aucun risque.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">4</div>
@@ -588,41 +588,41 @@
 <section id="faq" class="preuves">
   <div class="section-titre reveal">
     <span class="section-tag">FAQ</span>
-    <h2>Questions <span class="accent">frÃ©quentes</span></h2>
+    <h2>Questions <span class="accent">fréquentes</span></h2>
     <p>Tout ce que vous voulez savoir avant de vous lancer.</p>
   </div>
   <div class="faq">
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vraiment 250â¬ pour un site complet ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Oui. C'est un site one-page (une page), mais avec tout le nÃ©cessaire : design moderne, mobile, bouton WhatsApp, photos, rÃ©fÃ©rencement de base. Le paiement se fait Ã  la livraison, vous ne prenez aucun risque.</p></div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vraiment 250€ pour un site complet ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
+      <div class="faq-r"><p>Oui. C'est un site one-page (une page), mais avec tout le nécessaire : design moderne, mobile, bouton WhatsApp, photos, référencement de base. Le paiement se fait à la livraison, vous ne prenez aucun risque.</p></div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi c'est moins cher que les autres ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Parce que je suis freelance, pas une agence avec des frais fixes. J'ai des templates et des process optimisÃ©s. "On est moins cher, mais pas moins bons" â la qualitÃ© est lÃ , c'est juste le prix qui est juste.</p></div>
+      <div class="faq-r"><p>Parce que je suis freelance, pas une agence avec des frais fixes. J'ai des templates et des process optimisés. "On est moins cher, mais pas moins bons" — la qualité est là, c'est juste le prix qui est juste.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ne paye vraiment rien Ã  l'avance ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Pour le site one-page Ã  250â¬ : paiement 100% Ã  la livraison. Pour les packs plus gros (400â¬ et +), c'est 50% Ã  la commande et 50% Ã  la livraison.</p></div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ne paye vraiment rien à l'avance ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
+      <div class="faq-r"><p>Pour le site one-page à 250€ : paiement 100% à la livraison. Pour les packs plus gros (400€ et +), c'est 50% à la commande et 50% à la livraison.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je n'ai pas de photos, c'est un problÃ¨me ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Non. J'utilise des photos libres de droits professionnelles adaptÃ©es Ã  votre activitÃ©. Si vous avez vos propres photos, c'est encore mieux.</p></div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je n'ai pas de photos, c'est un problème ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
+      <div class="faq-r"><p>Non. J'utilise des photos libres de droits professionnelles adaptées à votre activité. Si vous avez vos propres photos, c'est encore mieux.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je suis Ã  Mayotte, La RÃ©union ou en MÃ©tropole ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Tout fonctionne Ã  distance. J'ai des clients partout en France. Pour Mayotte, je peux mÃªme venir sur place si besoin.</p></div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je suis à Mayotte, La Réunion ou en Métropole ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
+      <div class="faq-r"><p>Tout fonctionne à distance. J'ai des clients partout en France. Pour Mayotte, je peux même venir sur place si besoin.</p></div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et aprÃ¨s la livraison, le site est maintenu ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Oui. Le pack inclut l'hÃ©bergement et le nom de domaine 1 an. AprÃ¨s, je reste disponible pour des modifications (tarif horaire) ou je peux vous former Ã  gÃ©rer le contenu vous-mÃªme.</p></div>
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et après la livraison, le site est maintenu ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
+      <div class="faq-r"><p>Oui. Le pack inclut l'hébergement et le nom de domaine 1 an. Après, je reste disponible pour des modifications (tarif horaire) ou je peux vous former à gérer le contenu vous-même.</p></div>
     </div>
   </div>
 </section>
 
 <!-- CTA FINAL -->
 <div class="cta-final" id="contact">
-  <h2>PrÃªt Ã  lancer votre site <span style="background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">cette semaine ?</span></h2>
-  <p>Contactez-moi maintenant. Je rÃ©ponds en moins de 2h en journÃ©e. Premier Ã©change gratuit, sans engagement.</p>
+  <h2>Prêt à lancer votre site <span style="background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">cette semaine ?</span></h2>
+  <p>Contactez-moi maintenant. Je réponds en moins de 2h en journée. Premier échange gratuit, sans engagement.</p>
   <a href="https://wa.me/33782298559" class="btn">
     <svg class="icon" style="width:20px;height:20px"><use href="#i-chat"/></svg>
     Discuter sur WhatsApp
@@ -634,13 +634,13 @@
   <div class="logo-mark" style="margin:0 auto 24px;"></div>
   <div class="links">
     <a href="#offres">Offres</a>
-    <a href="#preuves">RÃ©alisations</a>
-    <a href="catalogue-demos.html">DÃ©mos</a>
+    <a href="#preuves">Réalisations</a>
+    <a href="catalogue-demos.html">Démos</a>
     <a href="#process">Process</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </div>
-  <p class="copyright">DÃ©veloppeur web freelance Ã  Mayotte<br>Sites web â¢ Automatisation IA â¢ PrÃ©sence numÃ©rique</p>
+  <p class="copyright">Développeur web freelance à Mayotte<br>Sites web • Automatisation IA • Présence numérique</p>
 </footer>
 
 <script>
