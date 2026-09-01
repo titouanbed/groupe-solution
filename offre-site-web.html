@@ -4,8 +4,31 @@
 <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F9A8D4'/%3E%3Cstop offset='100%25' stop-color='%23EC4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ccircle cx='50' cy='50' r='22' fill='white' fill-opacity='0.92'/%3E%3C/svg%3E" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Sites web pro en 48h, automatisation IA, présence numérique. Freelance à Mayotte. Paiement à la livraison, dès 250€." />
-<title>Sites web & IA en 48h | Dès 250€, paiement à la livraison</title>
+
+<!-- Optimisation SEO -->
+<title>Création de Site Internet & Automatisation IA à Mayotte | Dès 250€</title>
+<meta name="description" content="Expert en création de site internet à Mayotte et automatisation IA. Boostez votre présence digitale à Mayotte en 48h. Paiement à la livraison, dès 250€." />
+<meta name="keywords" content="site internet Mayotte, automatisation Mayotte, Mayotte digital, création site web Mayotte, développeur freelance Mayotte, agence web Mayotte" />
+
+<!-- Données Structurées pour Google (Local SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Création Site Internet & Automatisation Mayotte",
+  "description": "Expert digital spécialisé dans la création de sites internet rapides et l'automatisation IA pour les entreprises de Mayotte.",
+  "areaServed": "Mayotte",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mamoudzou",
+    "addressRegion": "Mayotte",
+    "addressCountry": "FR"
+  },
+  "priceRange": "250€ - 600€",
+  "url": "https://votre-nom-de-domaine.com"
+}
+</script>
+
 <style>
   :root {
     --rose: #F9A8D4;
@@ -35,7 +58,7 @@
   body { line-height: 1.6; overflow-x: hidden; }
   ::selection { background: var(--rose-fonce); color: white; }
 
-  /* ===== ICÔNES SVG (style Airbnb : stroke fin, propres) ===== */
+  /* ===== ICÔNES SVG ===== */
   .icon { width: 24px; height: 24px; stroke-width: 1.6; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
   .icon-lg { width: 40px; height: 40px; stroke-width: 1.4; }
   .icon-check { width: 18px; height: 18px; stroke-width: 2.4; }
@@ -47,13 +70,11 @@
   @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
   @keyframes blob { 0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes drawLine { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
-  @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ===== NAVBAR (sombre, cohérente avec le hero et le footer) ===== */
+  /* ===== NAVBAR ===== */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     background: rgba(9,9,11,0.88); backdrop-filter: blur(20px) saturate(180%);
@@ -62,13 +83,10 @@
     transition: box-shadow 0.3s var(--ease);
   }
   nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-
-  /* Le logo à gauche */
   .nav-logo { display: flex; align-items: center; text-decoration: none; flex: 0 0 auto; }
   .logo-mark {
     width: 38px; height: 38px;
     background: var(--gradient-rose);
-    /* Forme "croquée" : pas un rond parfait, un côté manquant */
     clip-path: polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 0% 100%);
     box-shadow: 0 4px 12px rgba(236,72,153,0.45);
     transition: transform 0.4s var(--ease);
@@ -79,18 +97,11 @@
     background: rgba(255,255,255,0.92); border-radius: 50%;
   }
   .nav-logo:hover .logo-mark { transform: rotate(-8deg) scale(1.08); }
-
-  /* Le menu centré visuellement (absolute, centré sur la largeur totale) */
-  .nav-menu {
-    position: absolute; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 36px; list-style: none;
-  }
+  .nav-menu { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 36px; list-style: none; }
   .nav-menu a { text-decoration: none; color: #d4d4d8; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; position: relative; }
   .nav-menu a::after { content: ''; position: absolute; bottom: -6px; left: 0; right: 0; height: 2px; background: var(--rose-fonce); transform: scaleX(0); transition: transform 0.3s var(--ease); transform-origin: left; }
   .nav-menu a:hover { color: var(--rose); }
   .nav-menu a:hover::after { transform: scaleX(1); }
-
-  /* Le CTA à droite */
   .nav-cta-wrap { margin-left: auto; flex: 0 0 auto; display: flex; align-items: center; gap: 14px; }
   .nav-cta {
     background: var(--gradient-rose); color: white;
@@ -109,44 +120,19 @@
     background: var(--gradient-hero); background-size: 200% 200%;
     animation: gradientShift 15s ease infinite;
   }
-  .hero::before {
-    content: ''; position: absolute; width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(236,72,153,0.28), transparent 70%);
-    top: -150px; left: -150px; animation: blob 8s infinite; filter: blur(20px);
-  }
-  .hero::after {
-    content: ''; position: absolute; width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(168,85,247,0.22), transparent 70%);
-    bottom: -100px; right: -100px; animation: blob 10s infinite reverse; filter: blur(20px);
-  }
+  .hero::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(236,72,153,0.28), transparent 70%); top: -150px; left: -150px; animation: blob 8s infinite; filter: blur(20px); }
+  .hero::after { content: ''; position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(168,85,247,0.22), transparent 70%); bottom: -100px; right: -100px; animation: blob 10s infinite reverse; filter: blur(20px); }
   .hero-content { position: relative; z-index: 10; max-width: 900px; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
-    border: 1px solid rgba(236,72,153,0.35);
-    padding: 8px 18px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 32px;
-    animation: fadeInUp 0.8s var(--ease) both;
-  }
+  .hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(236,72,153,0.35); padding: 8px 18px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 32px; animation: fadeInUp 0.8s var(--ease) both; }
   .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; position: relative; }
   .hero-badge .dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
-  .hero h1 {
-    font-size: clamp(2.5rem, 6.5vw, 5.2rem); font-weight: 800; line-height: 1.05; margin-bottom: 24px; letter-spacing: -0.03em;
-    animation: fadeInUp 0.8s var(--ease) 0.1s both;
-  }
+  .hero h1 { font-size: clamp(2.5rem, 6.5vw, 5.2rem); font-weight: 800; line-height: 1.05; margin-bottom: 24px; letter-spacing: -0.03em; animation: fadeInUp 0.8s var(--ease) 0.1s both; }
   .hero h1 .accent { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero h1 .underline { position: relative; display: inline-block; }
-  .hero h1 .underline::after {
-    content: ''; position: absolute; bottom: 4px; left: -4px; right: -4px; height: 10px;
-    background: var(--gradient-rose); border-radius: 6px; opacity: 0.45; z-index: -1;
-  }
+  .hero h1 .underline::after { content: ''; position: absolute; bottom: 4px; left: -4px; right: -4px; height: 10px; background: var(--gradient-rose); border-radius: 6px; opacity: 0.45; z-index: -1; }
   .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; opacity: 0.92; animation: fadeInUp 0.8s var(--ease) 0.2s both; }
   .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s var(--ease) 0.3s both; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 17px 36px; border-radius: 999px; font-weight: 700; font-size: 1.05rem;
-    text-decoration: none; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-    cursor: pointer; border: none;
-  }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 17px 36px; border-radius: 999px; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease); cursor: pointer; border: none; }
   .btn-primary { background: var(--gradient-rose); color: white; box-shadow: 0 10px 30px rgba(236,72,153,0.4); }
   .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 20px 50px rgba(236,72,153,0.5); }
   .btn-ghost { background: rgba(255,255,255,0.08); color: white; border: 1.5px solid rgba(255,255,255,0.25); backdrop-filter: blur(10px); }
@@ -227,6 +213,11 @@
   .step h4 { font-size: 1.1rem; margin-bottom: 8px; }
   .step p { color: var(--gris); font-size: 0.92rem; max-width: 210px; margin: 0 auto; }
 
+  /* ===== BLOC SEO MAYOTTE DIGITAL ===== */
+  .seo-block { background: var(--rose-clair); border-radius: var(--radius); padding: 60px 40px; max-width: 1140px; margin: 0 auto 80px; text-align: center; box-shadow: var(--ombre-sm); }
+  .seo-block h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; }
+  .seo-block p { color: var(--gris-fonce); font-size: 1.05rem; line-height: 1.8; max-width: 800px; margin: 0 auto; }
+
   /* ===== FAQ ===== */
   .faq { max-width: 820px; margin: 0 auto; }
   .faq-item { background: white; border: 1.5px solid var(--gris-clair); border-radius: 14px; margin-bottom: 14px; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s; }
@@ -268,7 +259,6 @@
 </head>
 <body>
 
-<!-- ===== ICÔNES SVG (réutilisables, style Airbnb) ===== -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
@@ -289,7 +279,6 @@
   <symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
 </svg>
 
-<!-- NAVBAR -->
 <nav id="nav">
   <a class="nav-logo" href="#hero" aria-label="Accueil">
     <div class="logo-mark"></div>
@@ -302,7 +291,7 @@
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="nav-cta-wrap">
-    <a href="https://wa.me/33782298559" class="nav-cta">
+    <a href="https://wa.me/33782298559" class="nav-cta" aria-label="Demander un devis gratuit pour votre site web à Mayotte via WhatsApp">
       <svg class="icon" style="width:16px;height:16px"><use href="#i-chat"/></svg>
       <span>Devis gratuit</span>
     </a>
@@ -317,20 +306,21 @@
   <div class="hero-content">
     <div class="hero-badge">
       <span class="dot"></span>
-      Disponible cette semaine — Basé à Mayotte, partout en France
+      Disponible cette semaine — Basé à Mayotte
     </div>
+    <!-- LE NOUVEAU H1 ULTRA-OPTIMISÉ -->
     <h1>
-      Votre site web pro,<br>
-      <span class="accent">livré en 48h</span><br>
-      <span class="underline">au prix le plus juste</span>
+      Votre <span class="accent">Site Internet à Mayotte</span><br>
+      & Automatisation IA<br>
+      <span class="underline">livré en 48h</span>
     </h1>
-    <p>On est moins cher, mais pas moins bons. Sites web, automatisation IA, présence Google. Tout est livré vite, bien, et vous ne payez qu'à la livraison.</p>
+    <p>On est moins cher, mais pas moins bons. Création de sites web professionnels à Mayotte, automatisation IA, et présence Google. Tout est livré vite, bien, et vous ne payez qu'à la livraison.</p>
     <div class="hero-ctas">
-      <a href="https://wa.me/33782298559" class="btn btn-primary">
+      <a href="https://wa.me/33782298559" class="btn btn-primary" aria-label="Discuter de votre projet web à Mayotte sur WhatsApp">
         <svg class="icon" style="width:18px;height:18px"><use href="#i-chat"/></svg>
         Discuter sur WhatsApp
       </a>
-      <a href="catalogue-demos.html" class="btn btn-ghost">
+      <a href="catalogue-demos.html" class="btn btn-ghost" aria-label="Voir le catalogue des modèles de sites web Mayotte">
         Voir les 18 styles de sites
         <svg class="icon" style="width:18px;height:18px"><use href="#i-arrow-right"/></svg>
       </a>
@@ -341,23 +331,21 @@
   </div>
 </div>
 
-<!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-content">
     <span>Livré en 48h</span><span class="sep">✦</span>
     <span>Paiement à la livraison</span><span class="sep">✦</span>
     <span>100% mobile</span><span class="sep">✦</span>
     <span>Automatisation IA</span><span class="sep">✦</span>
-    <span>Mayotte & partout en France</span><span class="sep">✦</span>
+    <span>Création de site Mayotte</span><span class="sep">✦</span>
     <span>Livré en 48h</span><span class="sep">✦</span>
     <span>Paiement à la livraison</span><span class="sep">✦</span>
     <span>100% mobile</span><span class="sep">✦</span>
     <span>Automatisation IA</span><span class="sep">✦</span>
-    <span>Mayotte & partout en France</span><span class="sep">✦</span>
+    <span>Création de site Mayotte</span><span class="sep">✦</span>
   </div>
 </div>
 
-<!-- STATS -->
 <div class="stats reveal">
   <div class="stat"><div class="stat-num">48h</div><div class="stat-label">Délai de livraison</div></div>
   <div class="stat"><div class="stat-num">250€</div><div class="stat-label">À partir de</div></div>
@@ -370,7 +358,7 @@
   <div class="section-titre reveal">
     <span class="section-tag">
       <svg class="icon" style="width:14px;height:14px"><use href="#i-bolt"/></svg>
-      Nos offres
+      Nos offres web à Mayotte
     </span>
     <h2>Des offres <span class="accent">claires et accessibles</span></h2>
     <p>Choisissez ce qui correspond à votre besoin. Tout est livré rapidement, sans surprise, sans frais cachés.</p>
@@ -386,11 +374,11 @@
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Site vitrine moderne, 100% mobile</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Bouton WhatsApp / appel direct</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Photos, menu, services inclus</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Référencement Google de base</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Référencement Google local</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Hébergement + domaine 1 an</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Paiement à la livraison</li>
       </ul>
-      <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
+      <a href="https://wa.me/33782298559" class="btn btn-primary" aria-label="Commander le pack Site One-Page Mayotte">Je veux ce pack</a>
     </div>
     <div class="offre populaire reveal">
       <div class="tag">Populaire</div>
@@ -401,13 +389,13 @@
       <div class="delai"><svg class="icon"><use href="#i-clock"/></svg> Livré en 3 jours</div>
       <ul>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Tout le pack Site One-Page</li>
-        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Fiche Google Business optimisée</li>
+        <li><svg class="icon icon-check"><use href="#i-check"/></svg>Fiche Google My Business optimisée</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Compte Instagram pro configuré</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>3 premiers posts rédigés</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>1 flyer PDF à imprimer</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Formation 30 min pour gérer seul</li>
       </ul>
-      <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
+      <a href="https://wa.me/33782298559" class="btn btn-primary" aria-label="Commander le pack Présence Numérique Mayotte">Je veux ce pack</a>
     </div>
     <div class="offre reveal">
       <div class="offre-icon-wrap"><svg class="icon icon-lg"><use href="#i-cpu"/></svg></div>
@@ -423,7 +411,7 @@
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Tableau de bord simple</li>
         <li><svg class="icon icon-check"><use href="#i-check"/></svg>Support 30 jours inclus</li>
       </ul>
-      <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
+      <a href="https://wa.me/33782298559" class="btn btn-primary" aria-label="Commander le pack Automatisation Mayotte">Je veux ce pack</a>
     </div>
   </div>
 </section>
@@ -439,7 +427,8 @@
     <p>Des projets réels, en ligne, que vous pouvez visiter tout de suite. La meilleure preuve de qualité.</p>
   </div>
   <div class="preuve-grid">
-    <a class="preuve-card reveal" href="https://twentythreeclean.com/" target="_blank">
+    <!-- Remarquez l'attribut aria-label : l'astuce SEO pour remplacer le alt="image" -->
+    <a class="preuve-card reveal" href="https://twentythreeclean.com/" target="_blank" aria-label="Création site internet Mayotte pour Twenty-Three Clean">
       <div class="preuve-img" style="background: linear-gradient(135deg, #0ea5e9, #0369a1);">
         <svg class="icon"><use href="#i-shopping-bag"/></svg>
         <span class="preuve-label">Twenty-Three Clean</span>
@@ -457,7 +446,7 @@
         </span>
       </div>
     </a>
-    <a class="preuve-card reveal" href="https://www.groupsolution.fr/" target="_blank">
+    <a class="preuve-card reveal" href="https://www.groupsolution.fr/" target="_blank" aria-label="Création site internet Mayotte pour Group Solution">
       <div class="preuve-img" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">
         <svg class="icon"><use href="#i-briefcase"/></svg>
         <span class="preuve-label">Group Solution</span>
@@ -475,7 +464,7 @@
         </span>
       </div>
     </a>
-    <a class="preuve-card reveal" href="https://solutionalternance.fr/" target="_blank">
+    <a class="preuve-card reveal" href="https://solutionalternance.fr/" target="_blank" aria-label="Création site internet pour Solution Alternance">
       <div class="preuve-img" style="background: linear-gradient(135deg, #f59e0b, #b45309);">
         <svg class="icon"><use href="#i-users"/></svg>
         <span class="preuve-label">Solution Alternance</span>
@@ -493,7 +482,7 @@
         </span>
       </div>
     </a>
-    <a class="preuve-card reveal" href="https://solutionsrecrutement.fr/" target="_blank">
+    <a class="preuve-card reveal" href="https://solutionsrecrutement.fr/" target="_blank" aria-label="Création site web recrutement pour Solutions Recrutement">
       <div class="preuve-img" style="background: linear-gradient(135deg, #10b981, #047857);">
         <svg class="icon"><use href="#i-briefcase"/></svg>
         <span class="preuve-label">Solutions Recrutement</span>
@@ -511,7 +500,7 @@
         </span>
       </div>
     </a>
-    <a class="preuve-card reveal" href="https://wa.me/33782298559">
+    <a class="preuve-card reveal" href="https://wa.me/33782298559" aria-label="Démo outil d'automatisation IA Mayotte">
       <div class="preuve-img" style="background: var(--gradient-rose);">
         <svg class="icon"><use href="#i-cpu"/></svg>
         <span class="preuve-label">Automatisation sur-mesure</span>
@@ -529,7 +518,7 @@
         </span>
       </div>
     </a>
-    <a class="preuve-card reveal" href="catalogue-demos.html">
+    <a class="preuve-card reveal" href="catalogue-demos.html" aria-label="Découvrez les modèles de sites internet pour commerces à Mayotte">
       <div class="preuve-img" style="background: linear-gradient(135deg, #F9A8D4, #DB2777);">
         <svg class="icon"><use href="#i-sparkles"/></svg>
         <span class="preuve-label">18 styles en aperçu</span>
@@ -584,12 +573,22 @@
   </div>
 </section>
 
+<!-- ============================================== -->
+<!-- 🚀 BLOC SEO : LA MÉTHODE "MAYOTTE DIGITAL" 🚀 -->
+<!-- ============================================== -->
+<div class="seo-block reveal">
+  <h2>Acteur de la <span class="accent">transition digitale à Mayotte</span></h2>
+  <p>
+    Je vous accompagne dans la <strong>création de votre site internet à Mayotte</strong>, de Mamoudzou à Kaweni, et partout sur l'île. Aujourd'hui, avoir une présence numérique forte et miser sur l'<strong>automatisation IA à Mayotte</strong> n'est plus un luxe, c'est une nécessité absolue pour gagner du temps et dominer votre marché face à la concurrence. Que vous cherchiez un développeur web, une agence de communication locale ou un expert en référencement SEO basé dans l'océan Indien, je conçois des solutions sur-mesure pour booster votre visibilité sur Google et convertir vos visiteurs en clients fidèles.
+  </p>
+</div>
+
 <!-- FAQ -->
 <section id="faq" class="preuves">
   <div class="section-titre reveal">
     <span class="section-tag">FAQ</span>
     <h2>Questions <span class="accent">fréquentes</span></h2>
-    <p>Tout ce que vous voulez savoir avant de vous lancer.</p>
+    <p>Tout ce que vous voulez savoir avant de vous lancer dans la création de votre site.</p>
   </div>
   <div class="faq">
     <div class="faq-item reveal">
@@ -598,7 +597,7 @@
     </div>
     <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi c'est moins cher que les autres ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Parce que je suis freelance, pas une agence avec des frais fixes. J'ai des templates et des process optimisés. "On est moins cher, mais pas moins bons" — la qualité est là, c'est juste le prix qui est juste.</p></div>
+      <div class="faq-r"><p>Parce que je suis freelance, pas une agence web classique avec des frais fixes. J'ai des templates et des process optimisés. "On est moins cher, mais pas moins bons" — la qualité est là, c'est juste le prix qui est juste.</p></div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ne paye vraiment rien à l'avance ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
@@ -606,11 +605,11 @@
     </div>
     <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je n'ai pas de photos, c'est un problème ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Non. J'utilise des photos libres de droits professionnelles adaptées à votre activité. Si vous avez vos propres photos, c'est encore mieux.</p></div>
+      <div class="faq-r"><p>Non. J'utilise des photos libres de droits professionnelles adaptées à votre activité. Si vous avez vos propres photos de votre entreprise à Mayotte, c'est encore mieux.</p></div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je suis à Mayotte, La Réunion ou en Métropole ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
-      <div class="faq-r"><p>Tout fonctionne à distance. J'ai des clients partout en France. Pour Mayotte, je peux même venir sur place si besoin.</p></div>
+      <div class="faq-r"><p>Tout fonctionne à distance. Je suis expert de la zone Océan Indien et particulièrement de Mayotte, mais j'ai des clients partout en France. Je peux même venir sur place si besoin.</p></div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et après la livraison, le site est maintenu ?<svg class="icon faq-icon"><use href="#i-plus"/></svg></div>
@@ -623,7 +622,7 @@
 <div class="cta-final" id="contact">
   <h2>Prêt à lancer votre site <span style="background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">cette semaine ?</span></h2>
   <p>Contactez-moi maintenant. Je réponds en moins de 2h en journée. Premier échange gratuit, sans engagement.</p>
-  <a href="https://wa.me/33782298559" class="btn">
+  <a href="https://wa.me/33782298559" class="btn" aria-label="Contacter votre développeur web à Mayotte">
     <svg class="icon" style="width:20px;height:20px"><use href="#i-chat"/></svg>
     Discuter sur WhatsApp
   </a>
@@ -640,7 +639,7 @@
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </div>
-  <p class="copyright">Développeur web freelance à Mayotte<br>Sites web • Automatisation IA • Présence numérique</p>
+  <p class="copyright">Développeur web freelance expert à Mayotte<br>Création de sites web • Automatisation IA • Présence numérique</p>
 </footer>
 
 <script>
