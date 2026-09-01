@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F9A8D4'/%3E%3Cstop offset='100%25' stop-color='%23EC4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ccircle cx='50' cy='50' r='22' fill='white' fill-opacity='0.92'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="Logo.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- Optimisation SEO -->
@@ -36,11 +36,14 @@
     --rose-clair: #FDF2F8;
     --rose-vif: #DB2777;
     --gris-fonce: #18181b;
-    --gris: #71717a;
+    --gris: #52525b;
     --gris-clair: #f4f4f5;
     --blanc: #ffffff;
     --vert: #16a34a;
     --ink: #09090b;
+    --sable: #E9ECE5;
+    --olive: #626B5C;
+    --olive-fonce: #3F493D;
     --ombre-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
     --ombre: 0 4px 24px rgba(0,0,0,0.06);
     --ombre-lg: 0 30px 70px rgba(236,72,153,0.18);
@@ -57,6 +60,12 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { line-height: 1.6; overflow-x: hidden; }
   ::selection { background: var(--rose-fonce); color: white; }
+
+  /* Scrollbar personnalisée */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--gris-clair); }
+  ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 10px; border: 2px solid var(--gris-clair); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--rose-fonce); }
 
   /* ===== ICÔNES SVG ===== */
   .icon { width: 24px; height: 24px; stroke-width: 1.6; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
@@ -83,20 +92,9 @@
     transition: box-shadow 0.3s var(--ease);
   }
   nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-  .nav-logo { display: flex; align-items: center; text-decoration: none; flex: 0 0 auto; }
-  .logo-mark {
-    width: 38px; height: 38px;
-    background: var(--gradient-rose);
-    clip-path: polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 0% 100%);
-    box-shadow: 0 4px 12px rgba(236,72,153,0.45);
-    transition: transform 0.4s var(--ease);
-    position: relative;
-  }
-  .logo-mark::after {
-    content: ''; position: absolute; top: 30%; left: 28%; width: 44%; height: 44%;
-    background: rgba(255,255,255,0.92); border-radius: 50%;
-  }
-  .nav-logo:hover .logo-mark { transform: rotate(-8deg) scale(1.08); }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; flex: 0 0 auto; gap: 10px; }
+  .nav-logo img { height: 38px; width: auto; display: block; filter: drop-shadow(0 4px 12px rgba(236,72,153,0.45)); transition: transform 0.4s var(--ease); }
+  .nav-logo:hover img { transform: rotate(-8deg) scale(1.08); }
   .nav-menu { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 36px; list-style: none; }
   .nav-menu a { text-decoration: none; color: #d4d4d8; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; position: relative; }
   .nav-menu a::after { content: ''; position: absolute; bottom: -6px; left: 0; right: 0; height: 2px; background: var(--rose-fonce); transform: scaleX(0); transition: transform 0.3s var(--ease); transform-origin: left; }
@@ -111,6 +109,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .nav-cta:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 25px rgba(236,72,153,0.6); }
+  .nav-cta:active { transform: scale(0.97); }
   .nav-toggle { display: none; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); cursor: pointer; font-size: 1.2rem; color: #d4d4d8; padding: 8px 12px; border-radius: 10px; }
 
   /* ===== HERO ===== */
@@ -135,9 +134,12 @@
   .btn { display: inline-flex; align-items: center; gap: 10px; padding: 17px 36px; border-radius: 999px; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease); cursor: pointer; border: none; }
   .btn-primary { background: var(--gradient-rose); color: white; box-shadow: 0 10px 30px rgba(236,72,153,0.4); }
   .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 20px 50px rgba(236,72,153,0.5); }
+  .btn-primary:active { transform: scale(0.97); }
   .btn-ghost { background: rgba(255,255,255,0.08); color: white; border: 1.5px solid rgba(255,255,255,0.25); backdrop-filter: blur(10px); }
   .btn-ghost:hover { background: rgba(255,255,255,0.15); transform: translateY(-3px); border-color: rgba(255,255,255,0.5); }
-  .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); animation: float 2s infinite; }
+  .btn-ghost:active { transform: scale(0.97); }
+  .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); animation: float 2s infinite; text-decoration: none; display: inline-flex; transition: color 0.2s; }
+  .scroll-indicator:hover { color: rgba(255,255,255,0.9); }
 
   /* ===== MARQUEE ===== */
   .marquee { background: var(--ink); color: white; overflow: hidden; padding: 18px 0; display: flex; white-space: nowrap; }
@@ -150,11 +152,12 @@
   .stat { text-align: center; padding: 56px 20px; border-right: 1px solid var(--gris-clair); transition: background 0.3s; }
   .stat:last-child { border-right: none; }
   .stat:hover { background: var(--rose-clair); }
-  .stat-num { font-size: 3rem; font-weight: 800; background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .stat-num { font-size: clamp(2.2rem, 8vw, 3rem); font-weight: 800; background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; letter-spacing: -0.02em; }
   .stat-label { color: var(--gris); font-weight: 500; font-size: 0.92rem; }
 
   /* ===== SECTIONS ===== */
   section { padding: 110px 5%; position: relative; }
+  section:first-of-type { padding-top: 80px; }
   .section-titre { text-align: center; max-width: 720px; margin: 0 auto 64px; }
   .section-titre h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; margin-bottom: 16px; line-height: 1.08; letter-spacing: -0.02em; }
   .section-titre h2 .accent { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -186,6 +189,7 @@
   .offre ul li { padding: 11px 0; padding-left: 32px; position: relative; color: var(--gris-fonce); font-size: 0.95rem; display: flex; align-items: flex-start; }
   .offre ul li svg { position: absolute; left: 0; top: 12px; background: var(--rose-clair); color: var(--rose-vif); border-radius: 50%; padding: 3px; box-sizing: content-box; }
   .offre .btn { width: 100%; justify-content: center; }
+  .offre .btn:active { transform: scale(0.97); }
 
   /* ===== PREUVES ===== */
   .preuves { background: var(--gris-clair); }
@@ -194,8 +198,11 @@
   .preuve-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--ombre-lg); }
   .preuve-img { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; text-align: center; position: relative; overflow: hidden; padding: 20px; }
   .preuve-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.35), transparent 60%); }
-  .preuve-card .preuve-img svg { width: 48px; height: 48px; stroke-width: 1.2; opacity: 0.9; position: relative; z-index: 1; }
+  .preuve-card .preuve-img svg { width: 48px; height: 48px; stroke-width: 1.2; opacity: 0.9; position: relative; z-index: 1; transition: transform 0.4s var(--ease); }
+  .preuve-card:hover .preuve-img svg { transform: scale(1.15) translateY(-4px); }
   .preuve-img .preuve-label { position: relative; z-index: 1; }
+  .preuve-img .preuve-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px; z-index: 2; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 80%); opacity: 0; transition: opacity 0.35s var(--ease); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; }
+  .preuve-card:hover .preuve-img .preuve-overlay { opacity: 1; }
   .preuve-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
   .preuve-body h4 { font-size: 1.15rem; margin-bottom: 8px; }
   .preuve-body p { color: var(--gris); font-size: 0.92rem; margin-bottom: 14px; flex: 1; }
@@ -216,7 +223,11 @@
   /* ===== BLOC SEO MAYOTTE DIGITAL ===== */
   .seo-block { background: var(--rose-clair); border-radius: var(--radius); padding: 60px 40px; max-width: 1140px; margin: 0 auto 80px; text-align: center; box-shadow: var(--ombre-sm); }
   .seo-block h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; }
+  .seo-block h2 .accent { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .seo-block p { color: var(--gris-fonce); font-size: 1.05rem; line-height: 1.8; max-width: 800px; margin: 0 auto; }
+  .seo-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  .seo-chip { display: inline-flex; align-items: center; gap: 6px; background: white; color: var(--rose-vif); padding: 8px 16px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; box-shadow: var(--ombre-sm); }
+  .seo-chip svg { width: 14px; height: 14px; }
 
   /* ===== FAQ ===== */
   .faq { max-width: 820px; margin: 0 auto; }
@@ -234,10 +245,11 @@
   .cta-final h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; position: relative; z-index: 1; letter-spacing: -0.02em; }
   .cta-final p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.92; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
   .cta-final .btn { position: relative; z-index: 1; background: var(--gradient-rose); color: white; font-size: 1.15rem; padding: 20px 48px; }
+  .cta-final .btn:active { transform: scale(0.97); }
 
   /* ===== FOOTER ===== */
   footer { background: var(--ink); color: white; padding: 60px 5% 30px; text-align: center; }
-  footer .logo-mark { margin: 0 auto 24px; }
+  footer img { height: 38px; width: auto; display: block; margin: 0 auto 24px; filter: drop-shadow(0 4px 12px rgba(236,72,153,0.45)); }
   footer a { color: #a1a1aa; text-decoration: none; margin: 0 16px; font-size: 0.92rem; transition: color 0.2s; }
   footer a:hover { color: var(--rose); }
   footer .copyright { margin-top: 28px; color: #71717a; font-size: 0.85rem; line-height: 1.7; }
@@ -254,6 +266,7 @@
     .stat:nth-child(2) { border-right: none; }
     .step::before { display: none; }
     section { padding: 80px 5%; }
+    footer a { display: inline-block; margin: 6px 10px; }
   }
 </style>
 </head>
@@ -281,7 +294,7 @@
 
 <nav id="nav">
   <a class="nav-logo" href="#hero" aria-label="Accueil">
-    <div class="logo-mark"></div>
+    <img src="Logo.svg" alt="Group Solution" />
   </a>
   <ul class="nav-menu" id="navMenu">
     <li><a href="#offres">Offres</a></li>
@@ -326,9 +339,9 @@
       </a>
     </div>
   </div>
-  <div class="scroll-indicator">
+  <a href="#offres" class="scroll-indicator" aria-label="Défiler vers le bas">
     <svg class="icon" style="width:28px;height:28px;stroke:rgba(255,255,255,0.4)"><use href="#i-chevron-down"/></svg>
-  </div>
+  </a>
 </div>
 
 <div class="marquee">
@@ -427,11 +440,11 @@
     <p>Des projets réels, en ligne, que vous pouvez visiter tout de suite. La meilleure preuve de qualité.</p>
   </div>
   <div class="preuve-grid">
-    <!-- Remarquez l'attribut aria-label : l'astuce SEO pour remplacer le alt="image" -->
     <a class="preuve-card reveal" href="https://twentythreeclean.com/" target="_blank" aria-label="Création site internet Mayotte pour Twenty-Three Clean">
       <div class="preuve-img" style="background: linear-gradient(135deg, #0ea5e9, #0369a1);">
         <svg class="icon"><use href="#i-shopping-bag"/></svg>
         <span class="preuve-label">Twenty-Three Clean</span>
+        <span class="preuve-overlay">Voir le site ↗</span>
       </div>
       <div class="preuve-body">
         <h4>Twenty-Three Clean</h4>
@@ -450,6 +463,7 @@
       <div class="preuve-img" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">
         <svg class="icon"><use href="#i-briefcase"/></svg>
         <span class="preuve-label">Group Solution</span>
+        <span class="preuve-overlay">Voir le site ↗</span>
       </div>
       <div class="preuve-body">
         <h4>Group Solution</h4>
@@ -468,6 +482,7 @@
       <div class="preuve-img" style="background: linear-gradient(135deg, #f59e0b, #b45309);">
         <svg class="icon"><use href="#i-users"/></svg>
         <span class="preuve-label">Solution Alternance</span>
+        <span class="preuve-overlay">Voir le site ↗</span>
       </div>
       <div class="preuve-body">
         <h4>Solution Alternance</h4>
@@ -486,6 +501,7 @@
       <div class="preuve-img" style="background: linear-gradient(135deg, #10b981, #047857);">
         <svg class="icon"><use href="#i-briefcase"/></svg>
         <span class="preuve-label">Solutions Recrutement</span>
+        <span class="preuve-overlay">Voir le site ↗</span>
       </div>
       <div class="preuve-body">
         <h4>Solutions Recrutement</h4>
@@ -504,6 +520,7 @@
       <div class="preuve-img" style="background: var(--gradient-rose);">
         <svg class="icon"><use href="#i-cpu"/></svg>
         <span class="preuve-label">Automatisation sur-mesure</span>
+        <span class="preuve-overlay">Demander une démo ↗</span>
       </div>
       <div class="preuve-body">
         <h4>Outil d'automatisation IA</h4>
@@ -522,6 +539,7 @@
       <div class="preuve-img" style="background: linear-gradient(135deg, #F9A8D4, #DB2777);">
         <svg class="icon"><use href="#i-sparkles"/></svg>
         <span class="preuve-label">18 styles en aperçu</span>
+        <span class="preuve-overlay">Explorer le catalogue ↗</span>
       </div>
       <div class="preuve-body">
         <h4>Catalogue de démos</h4>
@@ -581,6 +599,13 @@
   <p>
     Je vous accompagne dans la <strong>création de votre site internet à Mayotte</strong>, de Mamoudzou à Kaweni, et partout sur l'île. Aujourd'hui, avoir une présence numérique forte et miser sur l'<strong>automatisation IA à Mayotte</strong> n'est plus un luxe, c'est une nécessité absolue pour gagner du temps et dominer votre marché face à la concurrence. Que vous cherchiez un développeur web, une agence de communication locale ou un expert en référencement SEO basé dans l'océan Indien, je conçois des solutions sur-mesure pour booster votre visibilité sur Google et convertir vos visiteurs en clients fidèles.
   </p>
+  <div class="seo-chips">
+    <span class="seo-chip"><svg class="icon"><use href="#i-map-pin"/></svg> Mamoudzou</span>
+    <span class="seo-chip"><svg class="icon"><use href="#i-map-pin"/></svg> Kaweni</span>
+    <span class="seo-chip"><svg class="icon"><use href="#i-map-pin"/></svg> Dzaoudzi</span>
+    <span class="seo-chip"><svg class="icon"><use href="#i-map-pin"/></svg> Koungou</span>
+    <span class="seo-chip"><svg class="icon"><use href="#i-map-pin"/></svg> Dembeni</span>
+  </div>
 </div>
 
 <!-- FAQ -->
@@ -630,7 +655,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="logo-mark" style="margin:0 auto 24px;"></div>
+  <img src="Logo.svg" alt="Group Solution" />
   <div class="links">
     <a href="#offres">Offres</a>
     <a href="#preuves">Réalisations</a>
