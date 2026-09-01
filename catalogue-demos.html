@@ -13,7 +13,7 @@
 <style>
   :root {
     --rose: #F9A8D4; --rose-fonce: #EC4899; --rose-clair: #FDF2F8; --rose-vif: #DB2777;
-    --gris-fonce: #18181b; --gris: #71717a; --gris-clair: #f4f4f5; --blanc: #ffffff; --vert: #16a34a; --ink: #09090b;
+    --gris-fonce: #18181b; --gris: #52525b; --gris-clair: #f4f4f5; --blanc: #ffffff; --vert: #16a34a; --ink: #09090b;
     --sable: #E9ECE5; --sable-2: #F4F5EF; --olive: #626B5C; --olive-fonce: #3F493D;
     --ombre-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
     --ombre: 0 4px 24px rgba(0,0,0,0.06);
@@ -27,6 +27,13 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { line-height: 1.6; }
   ::selection { background: var(--rose-fonce); color: white; }
+
+  /* Scrollbar custom */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--gris-clair); }
+  ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 10px; border: 2px solid var(--gris-clair); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--rose); }
+
   .icon { width: 24px; height: 24px; stroke-width: 1.6; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
   .icon-lg { width: 40px; height: 40px; stroke-width: 1.4; }
   .icon-sm { width: 16px; height: 16px; }
@@ -34,17 +41,23 @@
   /* ===== NAVBAR (sable clair) ===== */
   nav { position: sticky; top: 0; z-index: 1000; background: rgba(233,236,229,0.92); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(98,107,92,0.15); height: 64px; display: flex; align-items: center; padding: 0 5%; gap: 16px; }
   .nav-logo { display: flex; align-items: center; text-decoration: none; }
-  .nav-logo img { height: 38px; width: auto; display: block; }
+  .nav-logo img { height: 38px; width: auto; display: block; transition: transform 0.4s var(--ease); }
+  .nav-logo:hover img { transform: rotate(-6deg) scale(1.06); }
   .nav-link { color: var(--olive-fonce); text-decoration: none; font-weight: 600; font-size: 0.88rem; padding: 8px 16px; border-radius: 999px; transition: all 0.2s var(--ease); display: inline-flex; align-items: center; gap: 6px; }
   .nav-link:hover { background: rgba(236,72,153,0.15); color: var(--rose-fonce); }
+  .nav-link:active { transform: scale(0.96); }
   .nav-link svg { width: 15px; height: 15px; }
-  .nav-tag { margin-left: auto; background: rgba(236,72,153,0.15); color: var(--rose-fonce); padding: 8px 16px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .nav-cta { margin-left: auto; background: var(--gradient-rose); color: white; padding: 9px 18px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 7px; text-decoration: none; box-shadow: 0 4px 15px rgba(236,72,153,0.35); transition: transform 0.2s, box-shadow 0.2s; }
+  .nav-cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 25px rgba(236,72,153,0.5); }
+  .nav-cta:active { transform: scale(0.96); }
+  .nav-cta svg { width: 15px; height: 15px; }
+  .nav-tag { background: rgba(236,72,153,0.15); color: var(--rose-fonce); padding: 8px 16px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
 
   /* ===== LAYOUT PRINCIPAL ===== */
   .layout { max-width: 1200px; margin: 0 auto; padding: 40px 5% 60px; display: grid; grid-template-columns: 1fr 420px; gap: 50px; align-items: start; }
   .col-left { position: sticky; top: 80px; }
 
-  .hero { margin-bottom: 28px; }
+  .hero { margin-bottom: 28px; animation: fadeInUp 0.7s var(--ease) both; }
   .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--rose-clair); color: var(--rose-vif); padding: 8px 18px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; }
   .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.08; margin-bottom: 14px; letter-spacing: -0.03em; }
   .hero h1 .accent { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -55,21 +68,24 @@
   .secteurs { display: flex; gap: 8px; flex-wrap: wrap; }
   .secteur-tab { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; background: white; border: 2px solid var(--gris-clair); border-radius: 999px; cursor: pointer; font-weight: 600; font-size: 0.92rem; color: var(--gris-fonce); transition: all 0.2s var(--ease); }
   .secteur-tab:hover { border-color: var(--rose); color: var(--rose-fonce); transform: translateY(-1px); }
+  .secteur-tab:active { transform: scale(0.97); }
   .secteur-tab.active { background: var(--ink); color: white; border-color: var(--ink); }
   .secteur-tab .icon { width: 18px; height: 18px; }
 
   .da-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .da-tab { padding: 10px 14px; background: white; border: 1.5px solid var(--gris-clair); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 0.85rem; color: var(--gris); transition: all 0.2s var(--ease); text-align: left; display: flex; align-items: center; gap: 8px; }
   .da-tab:hover { border-color: var(--rose); color: var(--rose-fonce); }
+  .da-tab:active { transform: scale(0.97); }
   .da-tab.active { background: var(--rose-clair); color: var(--rose-vif); border-color: var(--rose); }
-  .da-swatch { width: 16px; height: 16px; border-radius: 5px; flex-shrink: 0; }
+  .da-swatch { width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0; border: 1.5px solid rgba(0,0,0,0.08); box-shadow: var(--ombre-sm); }
 
-  .convert-box { margin-top: 28px; background: var(--ink); border-radius: var(--radius); padding: 24px; color: white; }
+  .convert-box { margin-top: 28px; background: var(--ink); border-radius: var(--radius); padding: 24px; color: white; animation: fadeInUp 0.7s var(--ease) 0.15s both; }
   .convert-box h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
   .convert-box h3 .a { color: var(--rose); }
   .convert-box p { font-size: 0.88rem; color: #a1a1aa; margin-bottom: 16px; }
   .convert-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-rose); color: white; padding: 13px 24px; border-radius: 999px; font-weight: 700; font-size: 0.9rem; text-decoration: none; box-shadow: 0 8px 25px rgba(236,72,153,0.4); transition: transform 0.2s; }
   .convert-cta:hover { transform: translateY(-2px) scale(1.03); }
+  .convert-cta:active { transform: scale(0.97); }
   .convert-sub { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: #a1a1aa; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: color 0.2s; }
   .convert-sub:hover { color: var(--rose); }
   .convert-sub svg { width: 14px; height: 14px; }
@@ -88,9 +104,12 @@
   .phone-scroll::-webkit-scrollbar-track { background: transparent; }
 
   .demo { display: none; }
-  .demo.active { display: block; }
+  .demo.active { display: block; animation: fadeIn 0.4s var(--ease); }
 
-  .hint { text-align: center; color: var(--gris); font-size: 0.78rem; margin-top: 14px; display: flex; align-items: center; gap: 6px; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hint { text-align: center; color: var(--gris); font-size: 0.78rem; margin-top: 14px; display: inline-flex; align-items: center; gap: 6px; background: var(--rose-clair); color: var(--rose-vif); padding: 6px 14px; border-radius: 999px; font-weight: 600; }
   .hint .icon { color: var(--rose-fonce); width: 14px; height: 14px; }
 
   /* CSS DES DÉMOS */
@@ -103,6 +122,7 @@
   .d-body { padding: 22px 18px; }
   .d-cta { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none; margin-top: 16px; transition: transform 0.2s; }
   .d-cta:hover { transform: translateY(-1px); }
+  .d-cta:active { transform: scale(0.97); }
   .d-sec-title { font-size: 1rem; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .d-info { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--gris); margin-bottom: 8px; }
   .d-info .icon { width: 14px; height: 14px; }
@@ -219,9 +239,12 @@
   /* ===== FOOTER (sable clair) ===== */
   footer { background: var(--sable); color: var(--olive-fonce); padding: 36px 5% 24px; text-align: center; border-top: 1px solid rgba(98,107,92,0.12); }
   footer img { height: 38px; width: auto; display: block; margin: 0 auto 16px; }
+  footer .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+  footer .footer-links a { color: var(--olive-fonce); text-decoration: none; font-weight: 600; font-size: 0.88rem; transition: color 0.2s; }
+  footer .footer-links a:hover { color: var(--rose-fonce); }
   footer .copy { margin-top: 16px; color: var(--olive); font-size: 0.82rem; line-height: 1.7; }
-  footer a { color: var(--rose-fonce); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
+  footer a.wa { color: var(--rose-fonce); text-decoration: none; font-weight: 700; }
+  footer a.wa:hover { text-decoration: underline; }
   
   @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; gap: 30px; padding: 30px 5% 50px; }
@@ -235,6 +258,8 @@
     .da-grid { grid-template-columns: 1fr; }
     .nav-link span { display: none; }
     .nav-link { padding: 8px 10px; }
+    .nav-cta span { display: none; }
+    .nav-cta { padding: 8px 12px; }
     .nav-tag { font-size: 0.72rem; padding: 6px 12px; }
   }
 </style>
@@ -262,6 +287,7 @@
   <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
   <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
   <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
 </svg>
 
 <nav>
@@ -270,6 +296,9 @@
   </a>
   <a href="offre-site-web.html" class="nav-link">
     <svg class="icon"><use href="#i-arrow-right"/></svg> <span>Voir les offres</span>
+  </a>
+  <a href="https://wa.me/33782298559?text=Bonjour%20Titouan%2C%20j%27ai%20vu%20ton%20catalogue%20de%20d%C3%A9mos%2C%20je%20veux%20un%20site%20pour%20mon%20activit%C3%A9" class="nav-cta">
+    <svg class="icon-sm"><use href="#i-chat"/></svg> <span>Devis gratuit</span>
   </a>
   <div class="nav-tag">
     <svg class="icon-sm"><use href="#i-layers"/></svg> 18 démos
@@ -538,22 +567,22 @@
 
 <!-- C-DA3 Naturel -->
 <div class="demo" data-s="1" data-d="3">
-  <div class="d-hero da3-hero" style="background:linear-gradient(160deg,#fef3c7,#fde68a,#b45309)"><div>
-    <div class="d-badge da3-badge"><span class="dot"></span> Soins naturels</div>
+  <div class="d-hero da3-hero"><div>
+    <div class="d-badge da3-badge"><span class="dot"></span> Fait main</div>
     <h2>May'<br><span class="a">Salon</span></h2>
-    <p>Coiffure au naturel — Mamoudzou</p>
+    <p>Coiffure naturelle — Mamoudzou</p>
   </div></div>
   <div class="d-body da3-body">
     <div class="d-sec-title da3-sec-title"><svg class="icon"><use href="#i-leaf"/></svg> Prestations</div>
-    <div class="d-card da3-card"><span class="d-tag da3-tag">Signature</span><div class="name">Coupe femme & brushage</div><div class="desc">Shampoing soin naturel, coupe, brushage.</div><span class="price">25€</span></div>
+    <div class="d-card da3-card"><span class="d-tag da3-tag">Bio</span><div class="name">Coupe femme & brushage</div><div class="desc">Shampoing soin, coupe personnalisée, brushage.</div><span class="price">25€</span></div>
     <div class="d-card da3-card"><div class="name">Coupe homme</div><div class="desc">Coupe précise, finitions soignées.</div><span class="price">15€</span></div>
-    <div class="d-card da3-card"><div class="name">Coloration végétale</div><div class="desc">Coloration naturelle, soin inclus.</div><span class="price">35€</span></div>
-    <div class="d-card da3-card"><div class="name">Soin profond</div><div class="desc">Masque, lissage naturel.</div><span class="price">45€</span></div>
+    <div class="d-card da3-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35€</span></div>
+    <div class="d-card da3-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45€</span></div>
     <div class="d-sec-title da3-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-map-pin"/></svg> Centre-ville, Mamoudzou</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> Mar–Sam, 9h–19h</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 45 67 89</div>
-    <a href="https://wa.me/33782298559?text=Coiffeur%20DA3" class="d-cta da3-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
+    <a href="https://wa.me/33782298559?text=Coiffeur%20DA3" class="d-cta da3-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre rendez-vous</a>
   </div>
   <div class="d-foot da3-foot">May'Salon — Mamoudzou</div>
 </div>
@@ -563,7 +592,7 @@
   <div class="d-hero da4-hero"><div>
     <div class="d-badge da4-badge"><span class="dot"></span> 3 créneaux dispo</div>
     <h2>May'<br><span class="a">Salon</span></h2>
-    <p>Coiffure • Style • Précision</p>
+    <p>Coiffure connectée — Mamoudzou</p>
   </div></div>
   <div class="d-body da4-body">
     <div class="d-sec-title da4-sec-title"><svg class="icon"><use href="#i-scissors"/></svg> Prestations</div>
@@ -583,21 +612,21 @@
 <!-- C-DA5 Vintage -->
 <div class="demo" data-s="1" data-d="5">
   <div class="d-hero da5-hero"><div>
-    <div class="d-badge da5-badge"><span class="dot"></span> Salon historique</div>
+    <div class="d-badge da5-badge"><span class="dot"></span> Depuis 2005</div>
     <h2>May'<br><span class="a">Salon</span></h2>
-    <p>Coiffure comme avant, qualité d'aujourd'hui</p>
+    <p>Coiffure comme au bon vieux temps</p>
   </div></div>
   <div class="d-body da5-body">
-    <div class="d-sec-title da5-sec-title"><svg class="icon"><use href="#i-scissors"/></svg> Prestations</div>
-    <div class="d-card da5-card"><span class="d-tag da5-tag">Classique</span><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25€</span></div>
-    <div class="d-card da5-card"><div class="name">Coupe homme tradition</div><div class="desc">Coupe précise, finitions soignées.</div><span class="price">15€</span></div>
+    <div class="d-sec-title da5-sec-title"><svg class="icon"><use href="#i-scissors"/></svg> Nos prestations</div>
+    <div class="d-card da5-card"><span class="d-tag da5-tag">Recette maison</span><div class="name">Coupe femme & brushage</div><div class="desc">Shampoing soin, coupe personnalisée, brushage.</div><span class="price">25€</span></div>
+    <div class="d-card da5-card"><div class="name">Coupe homme</div><div class="desc">Coupe précise, finitions soignées.</div><span class="price">15€</span></div>
     <div class="d-card da5-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35€</span></div>
-    <div class="d-card da5-card"><div class="name">Mise en plis</div><div class="desc">Brushing, boucles, chignon.</div><span class="price">45€</span></div>
+    <div class="d-card da5-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45€</span></div>
     <div class="d-sec-title da5-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-map-pin"/></svg> Centre-ville, Mamoudzou</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> Mar–Sam, 9h–19h</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 45 67 89</div>
-    <a href="https://wa.me/33782298559?text=Coiffeur%20DA5" class="d-cta da5-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
+    <a href="https://wa.me/33782298559?text=Coiffeur%20DA5" class="d-cta da5-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre rendez-vous</a>
   </div>
   <div class="d-foot da5-foot">May'Salon — Mamoudzou</div>
 </div>
@@ -605,176 +634,184 @@
 <!-- G-DA0 Moderne -->
 <div class="demo" data-s="2" data-d="0">
   <div class="d-hero da0-hero"><div>
-    <div class="d-badge da0-badge"><span class="dot"></span> Diagnostic gratuit</div>
-    <h2>Mécanique Auto<span class="sub">Réparation • Entretien • Dépannage</span></h2>
+    <div class="d-badge da0-badge"><span class="dot"></span> Ouvert aujourd'hui</div>
+    <h2>Auto'May<span class="sub">Garage auto — Mamoudzou</span></h2>
   </div></div>
   <div class="d-body">
     <div class="d-sec-title da0-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da0-card"><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da0-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da0-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da0-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da0-card"><span class="d-tag da0-tag">Populaire</span><div class="name">Vidange + filtre</div><div class="desc">Huile moteur, filtre à huile inclus.</div><span class="price">49€</span></div>
+    <div class="d-card da0-card"><div class="name">Révision complète</div><div class="desc">Diagnostic, 50 points de contrôle.</div><span class="price">89€</span></div>
+    <div class="d-card da0-card"><div class="name">Plaquettes de frein</div><div class="desc">Remplacement avant ou arrière.</div><span class="price">69€</span></div>
     <div class="d-sec-title da0-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
-    <div class="d-info da0-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da0-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
-    <div class="d-info da0-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
-    <a href="https://wa.me/33782298559?text=Garage%20DA0" class="d-cta da0-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis gratuit</a>
+    <div class="d-info da0-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Mamoudzou</div>
+    <div class="d-info da0-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 8h–18h</div>
+    <div class="d-info da0-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 12 34 56</div>
+    <a href="https://wa.me/33782298559?text=Garage%20DA0" class="d-cta da0-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
   </div>
-  <div class="d-foot da0-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da0-foot">Auto'May — Mamoudzou</div>
 </div>
 
 <!-- G-DA1 Élégant -->
 <div class="demo" data-s="2" data-d="1">
   <div class="d-hero da1-hero"><div>
-    <div class="d-badge da1-badge"><span class="dot"></span> Devis sous 24h</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>Expertise & précision — Mayotte</p>
+    <div class="d-badge da1-badge"><span class="dot"></span> Sur rendez-vous</div>
+    <h2>Auto'<br><span class="a">May</span></h2>
+    <p>Garage d'exception — Mamoudzou</p>
   </div></div>
   <div class="d-body da1-body">
     <div class="d-sec-title da1-sec-title">Services</div>
-    <div class="d-card da1-card"><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus, garantie 1 an.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da1-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins. Suivi carnet d'entretien.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da1-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou et alentours.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da1-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da1-card"><div class="name">Vidange & filtre</div><div class="desc">Huile moteur premium, filtre à huile inclus.</div><span class="price">49€</span></div>
+    <div class="d-card da1-card"><div class="name">Révision complète</div><div class="desc">Diagnostic électronique, 50 points de contrôle.</div><span class="price">89€</span></div>
+    <div class="d-card da1-card"><div class="name">Plaquettes de frein</div><div class="desc">Remplacement avant ou arrière, qualité OEM.</div><span class="price">69€</span></div>
     <div class="d-sec-title da1-sec-title" style="margin-top:18px">Nous trouver</div>
-    <div class="d-info da1-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da1-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
-    <div class="d-info da1-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
-    <a href="https://wa.me/33782298559?text=Garage%20DA1" class="d-cta da1-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Demander un devis</a>
+    <div class="d-info da1-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Mamoudzou</div>
+    <div class="d-info da1-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 8h–18h</div>
+    <div class="d-info da1-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 12 34 56</div>
+    <a href="https://wa.me/33782298559?text=Garage%20DA1" class="d-cta da1-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre rendez-vous</a>
   </div>
-  <div class="d-foot da1-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da1-foot">Auto'May — Mamoudzou</div>
 </div>
 
 <!-- G-DA2 Audacieux -->
 <div class="demo" data-s="2" data-d="2">
-  <div class="d-hero da2-hero" style="background:linear-gradient(135deg,#1c1917,#db2777)"><div>
-    <div class="d-badge da2-badge"><span class="dot"></span> Diagnostic gratuit</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>Votre voiture entre de bonnes mains</p>
+  <div class="d-hero da2-hero"><div>
+    <div class="d-badge da2-badge"><span class="dot"></span> Ouvert aujourd'hui</div>
+    <h2>Auto'<br><span class="a">May</span></h2>
+    <p>Le garage qui démarre vite</p>
   </div></div>
   <div class="d-body">
     <div class="d-sec-title da2-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da2-card"><span class="d-tag da2-tag">Garantie 1 an</span><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span><div class="d-stars">★★★★★</div></div>
-    <div class="d-card da2-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da2-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da2-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da2-card"><span class="d-tag da2-tag">Best-seller</span><div class="name">Vidange + filtre</div><div class="desc">Huile moteur, filtre à huile inclus.</div><span class="price">49€</span><div class="d-stars">★★★★★</div></div>
+    <div class="d-card da2-card"><div class="name">Révision complète</div><div class="desc">Diagnostic, 50 points de contrôle.</div><span class="price">89€</span></div>
+    <div class="d-card da2-card"><div class="name">Plaquettes de frein</div><div class="desc">Remplacement avant ou arrière.</div><span class="price">69€</span></div>
     <div class="d-sec-title da2-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
-    <div class="d-info da2-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da2-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
-    <div class="d-info da2-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
-    <a href="https://wa.me/33782298559?text=Garage%20DA2" class="d-cta da2-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis WhatsApp</a>
+    <div class="d-info da2-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Mamoudzou</div>
+    <div class="d-info da2-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 8h–18h</div>
+    <div class="d-info da2-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 12 34 56</div>
+    <a href="https://wa.me/33782298559?text=Garage%20DA2" class="d-cta da2-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
   </div>
-  <div class="d-foot da2-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da2-foot">Auto'May — Mamoudzou</div>
 </div>
 
 <!-- G-DA3 Naturel -->
 <div class="demo" data-s="2" data-d="3">
-  <div class="d-hero da3-hero" style="background:linear-gradient(160deg,#fef3c7,#fde68a,#92400e)"><div>
-    <div class="d-badge da3-badge"><span class="dot"></span> Atelier artisanal</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>L'entretien au juste prix — Mayotte</p>
+  <div class="d-hero da3-hero"><div>
+    <div class="d-badge da3-badge"><span class="dot"></span> Fait main</div>
+    <h2>Auto'<br><span class="a">May</span></h2>
+    <p>Garage de confiance — Mamoudzou</p>
   </div></div>
   <div class="d-body da3-body">
     <div class="d-sec-title da3-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da3-card"><span class="d-tag da3-tag">Garantie</span><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da3-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da3-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da3-card"><div class="name">Préparation contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da3-card"><span class="d-tag da3-tag">Maison</span><div class="name">Vidange & filtre</div><div class="desc">Huile moteur premium, filtre à huile inclus.</div><span class="price">49€</span></div>
+    <div class="d-card da3-card"><div class="name">Révision complète</div><div class="desc">Diagnostic électronique, 50 points de contrôle.</div><span class="price">89€</span></div>
+    <div class="d-card da3-card"><div class="name">Plaquettes de frein</div><div class="desc">Remplacement avant ou arrière, qualité OEM.</div><span class="price">69€</span></div>
     <div class="d-sec-title da3-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
-    <div class="d-info da3-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
-    <div class="d-info da3-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
-    <a href="https://wa.me/33782298559?text=Garage%20DA3" class="d-cta da3-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis gratuit</a>
+    <div class="d-info da3-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Mamoudzou</div>
+    <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 8h–18h</div>
+    <div class="d-info da3-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 12 34 56</div>
+    <a href="https://wa.me/33782298559?text=Garage%20DA3" class="d-cta da3-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre rendez-vous</a>
   </div>
-  <div class="d-foot da3-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da3-foot">Auto'May — Mamoudzou</div>
 </div>
 
 <!-- G-DA4 Tech néon -->
 <div class="demo" data-s="2" data-d="4">
   <div class="d-hero da4-hero"><div>
-    <div class="d-badge da4-badge"><span class="dot"></span> Diagnostic électronique</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>Diagnostic • Réparation • Entretien</p>
+    <div class="d-badge da4-badge"><span class="dot"></span> Ouvert aujourd'hui</div>
+    <h2>Auto'<br><span class="a">May</span></h2>
+    <p>Garage connecté — Mamoudzou</p>
   </div></div>
   <div class="d-body da4-body">
     <div class="d-sec-title da4-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da4-card"><span class="d-tag da4-tag">Diag inclus</span><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da4-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da4-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da4-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da4-card"><span class="d-tag da4-tag">Top</span><div class="name">Vidange + filtre</div><div class="desc">Huile moteur, filtre à huile inclus.</div><span class="price">49€</span></div>
+    <div class="d-card da4-card"><div class="name">Révision complète</div><div class="desc">Diagnostic, 50 points de contrôle.</div><span class="price">89€</span></div>
+    <div class="d-card da4-card"><div class="name">Plaquettes de frein</div><div class="desc">Remplacement avant ou arrière.</div><span class="price">69€</span></div>
     <div class="d-sec-title da4-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Localisation</div>
-    <div class="d-info da4-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da4-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
-    <div class="d-info da4-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
-    <a href="https://wa.me/33782298559?text=Garage%20DA4" class="d-cta da4-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis gratuit</a>
+    <div class="d-info da4-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Mamoudzou</div>
+    <div class="d-info da4-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 8h–18h</div>
+    <div class="d-info da4-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 12 34 56</div>
+    <a href="https://wa.me/33782298559?text=Garage%20DA4" class="d-cta da4-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
   </div>
-  <div class="d-foot da4-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da4-foot">Auto'May — Mamoudzou</div>
 </div>
 
 <!-- G-DA5 Vintage -->
 <div class="demo" data-s="2" data-d="5">
   <div class="d-hero da5-hero"><div>
-    <div class="d-badge da5-badge"><span class="dot"></span> Atelier depuis 1985</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>Le garage de confiance — Mayotte</p>
+    <div class="d-badge da5-badge"><span class="dot"></span> Depuis 1990</div>
+    <h2>Auto'<br><span class="a">May</span></h2>
+    <p>Garage comme au bon vieux temps</p>
   </div></div>
   <div class="d-body da5-body">
-    <div class="d-sec-title da5-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da5-card"><span class="d-tag da5-tag">Savoir-faire</span><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da5-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da5-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da5-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-sec-title da5-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Nos services</div>
+    <div class="d-card da5-card"><span class="d-tag da5-tag">Recette maison</span><div class="name">Vidange & filtre</div><div class="desc">Huile moteur premium, filtre à huile inclus.</div><span class="price">49€</span></div>
+    <div class="d-card da5-card"><div class="name">Révision complète</div><div class="desc">Diagnostic électronique, 50 points de contrôle.</div><span class="price">89€</span></div>
+    <div class="d-card da5-card"><div class="name">Plaquettes de frein</div><div class="desc">Remplacement avant ou arrière, qualité OEM.</div><span class="price">69€</span></div>
     <div class="d-sec-title da5-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
-    <div class="d-info da5-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
-    <div class="d-info da5-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
-    <a href="https://wa.me/33782298559?text=Garage%20DA5" class="d-cta da5-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis gratuit</a>
+    <div class="d-info da5-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Mamoudzou</div>
+    <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 8h–18h</div>
+    <div class="d-info da5-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 12 34 56</div>
+    <a href="https://wa.me/33782298559?text=Garage%20DA5" class="d-cta da5-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre rendez-vous</a>
   </div>
-  <div class="d-foot da5-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da5-foot">Auto'May — Mamoudzou</div>
 </div>
 
         </div>
       </div>
     </div>
     <div class="hint">
-      <svg class="icon"><use href="#i-phone"/></svg> Scrollez dans le téléphone pour explorer le site
+      <svg class="icon"><use href="#i-sparkles"/></svg> Faites défiler le contenu du téléphone
     </div>
   </div>
 </div>
 
 <footer>
-  <img src="Logo.svg" alt="Group Solution" />
-  <div class="copy">Catalogue de démos — Sites web livrés en 48h à Mayotte<br>Paiement à la livraison, dès 250€<br><a href="offre-site-web.html">Voir l'offre complète</a></div>
+  <a href="index.html"><img src="Logo.svg" alt="Group Solution" /></a>
+  <div class="footer-links">
+    <a href="offre-site-web.html">Offres & tarifs</a>
+    <a href="catalogue-demos.html">Catalogue de démos</a>
+    <a href="https://wa.me/33782298559" class="wa">WhatsApp</a>
+  </div>
+  <div class="copy">
+    Group Solution — Création de sites web & automatisation IA<br>
+    Basé à Mamoudzou, Mayotte • Livré en 48h • Paiement à la livraison<br>
+    © 2026 Titouan Bedos
+  </div>
 </footer>
 
 <script>
-  let currentSecteur = 0;
-  let currentDA = 0;
-
+  let curS = 0, curD = 0;
   const daLabels = [
-    { h: 'Moderne minimaliste', p: 'Lignes nettes, blanc, accent rose poudré' },
-    { h: 'Élégant premium', p: 'Fond sombre, doré, typographie serif raffinée' },
-    { h: 'Audacieux coloré', p: 'Dégradés vifs, formes marquées, énergie' },
-    { h: 'Naturel artisanal', p: 'Terracotta, beige, esprit fait-maison' },
-    { h: 'Tech néon', p: 'Sombre, accent électrique, ambiance futuriste' },
-    { h: 'Vintage rétro', p: 'Pastels, motifs pointillés, nostalgie' }
+    { t: 'Moderne minimaliste', d: 'Lignes nettes, blanc, accent rose poudré' },
+    { t: 'Élégant premium', d: 'Sombre, serif doré, ambiance haut de gamme' },
+    { t: 'Audacieux coloré', d: 'Dégradés vifs, contrastes, énergie' },
+    { t: 'Naturel artisanal', d: 'Tons chauds, matières, fait main' },
+    { t: 'Tech néon', d: 'Sombre, cyan néon, ambiance futuriste' },
+    { t: 'Vintage rétro', d: 'Rose poudré, serif, points vintage' }
   ];
 
-  function render() {
-    document.querySelectorAll('.demo').forEach(d => {
-      d.classList.toggle('active', +d.dataset.s === currentSecteur && +d.dataset.d === currentDA);
-    });
-    document.querySelectorAll('.secteur-tab').forEach((t, i) => t.classList.toggle('active', i === currentSecteur));
-    document.querySelectorAll('.da-tab').forEach((t, i) => t.classList.toggle('active', i === currentDA));
-    const lbl = daLabels[currentDA];
-    document.getElementById('daLabel').innerHTML = '<h3>' + lbl.h + '</h3><p>' + lbl.p + '</p>';
-    document.getElementById('phoneScroll').scrollTop = 0;
+  function showDemo() {
+    document.querySelectorAll('.demo').forEach(d => d.classList.remove('active'));
+    const target = document.querySelector('.demo[data-s="' + curS + '"][data-d="' + curD + '"]');
+    if (target) {
+      target.classList.add('active');
+      const ps = document.getElementById('phoneScroll');
+      if (ps) ps.scrollTop = 0;
+    }
+    document.getElementById('daLabel').innerHTML = '<h3>' + daLabels[curD].t + '</h3><p>' + daLabels[curD].d + '</p>';
   }
 
-  function showSecteur(i) { currentSecteur = i; render(); }
-  function showDA(i) { currentDA = i; render(); }
+  function showSecteur(s) {
+    curS = s;
+    document.querySelectorAll('.secteur-tab').forEach((t, i) => t.classList.toggle('active', i === s));
+    showDemo();
+  }
 
-  render();
+  function showDA(d) {
+    curD = d;
+    document.querySelectorAll('.da-tab').forEach((t, i) => t.classList.toggle('active', i === d));
+    showDemo();
+  }
 </script>
 
 </body>
