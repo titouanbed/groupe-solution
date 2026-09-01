@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Catalogue de maquettes de sites web — 3 secteurs, 6 directions artistiques. Choisissez votre style, livré en 48h." />
-<title>Catalogue de démos — 18 styles de sites en 48h</title>
+<meta name="description" content="Catalogue de maquettes de sites web â 3 secteurs, 6 directions artistiques. Choisissez votre style, livrÃ© en 48h." />
+<title>Catalogue de dÃ©mos â 18 styles de sites en 48h</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23F9A8D4'/%3E%3Ccircle cx='50' cy='50' r='18' fill='white' opacity='0.95'/%3E%3C/svg%3E" />
 <style>
   :root {
@@ -26,11 +26,15 @@
   .icon-lg { width: 40px; height: 40px; stroke-width: 1.4; }
   .icon-sm { width: 16px; height: 16px; }
 
-  /* ===== NAVBAR (logo seul, pas de texte) ===== */
-  nav { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(236,72,153,0.08); height: 64px; display: flex; align-items: center; padding: 0 5%; }
+  /* ===== NAVBAR (logo + lien offres + tag) ===== */
+  nav { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(236,72,153,0.08); height: 64px; display: flex; align-items: center; padding: 0 5%; gap: 16px; }
   .nav-logo { display: flex; align-items: center; text-decoration: none; }
-  .logo-mark { width: 36px; height: 36px; background: var(--gradient-rose); clip-path: polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 0% 100%); box-shadow: 0 4px 12px rgba(236,72,153,0.35); position: relative; }
+  .logo-mark { width: 36px; height: 36px; background: var(--gradient-rose); clip-path: polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 0% 100%); box-shadow: 0 4px 12px rgba(236,72,153,0.35); position: relative; transition: transform 0.4s var(--ease); }
   .logo-mark::after { content: ''; position: absolute; top: 30%; left: 28%; width: 44%; height: 44%; background: rgba(255,255,255,0.92); border-radius: 50%; }
+  .nav-logo:hover .logo-mark { transform: rotate(-8deg) scale(1.08); }
+  .nav-link { color: var(--gris-fonce); text-decoration: none; font-weight: 600; font-size: 0.88rem; padding: 8px 16px; border-radius: 999px; transition: all 0.2s var(--ease); display: inline-flex; align-items: center; gap: 6px; }
+  .nav-link:hover { background: var(--rose-clair); color: var(--rose-vif); }
+  .nav-link svg { width: 15px; height: 15px; }
   .nav-tag { margin-left: auto; background: var(--rose-clair); color: var(--rose-vif); padding: 8px 16px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
 
   /* ===== LAYOUT PRINCIPAL : 2 colonnes sur desktop ===== */
@@ -68,8 +72,11 @@
   .convert-box p { font-size: 0.88rem; color: #a1a1aa; margin-bottom: 16px; }
   .convert-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-rose); color: white; padding: 13px 24px; border-radius: 999px; font-weight: 700; font-size: 0.9rem; text-decoration: none; box-shadow: 0 8px 25px rgba(236,72,153,0.4); transition: transform 0.2s; }
   .convert-cta:hover { transform: translateY(-2px) scale(1.03); }
+  .convert-sub { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: #a1a1aa; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: color 0.2s; }
+  .convert-sub:hover { color: var(--rose); }
+  .convert-sub svg { width: 14px; height: 14px; }
 
-  /* ===== COLONNE DROITE : téléphone ===== */
+  /* ===== COLONNE DROITE : tÃ©lÃ©phone ===== */
   .col-right { display: flex; flex-direction: column; align-items: center; position: sticky; top: 80px; }
   .da-label { text-align: center; margin-bottom: 18px; min-height: 52px; }
   .da-label h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 2px; }
@@ -89,7 +96,7 @@
   .hint { text-align: center; color: var(--gris); font-size: 0.78rem; margin-top: 14px; display: flex; align-items: center; gap: 6px; }
   .hint .icon { color: var(--rose-fonce); width: 14px; height: 14px; }
 
-  /* ===== ÉLÉMENTS COMMUNS DES DÉMOS ===== */
+  /* ===== ÃLÃMENTS COMMUNS DES DÃMOS ===== */
   .d-hero { min-height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; position: relative; overflow: hidden; }
   .d-hero h2 { font-size: 1.7rem; font-weight: 800; line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.02em; }
   .d-hero p { font-size: 0.9rem; opacity: 0.92; }
@@ -125,7 +132,7 @@
   .da0-info .icon { color: var(--rose-fonce); }
   .da0-foot { color: var(--gris); }
 
-  /* ===== DA1: ÉLÉGANT PREMIUM (sombre + doré + serif) ===== */
+  /* ===== DA1: ÃLÃGANT PREMIUM (sombre + dorÃ© + serif) ===== */
   .da1-hero { background: linear-gradient(160deg, #1c1917 0%, #292524 100%); color: #fbbf24; }
   .da1-hero h2 { color: #fef3c7; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: 0.02em; }
   .da1-hero h2 .a { color: #fbbf24; font-style: italic; }
@@ -144,7 +151,7 @@
   .da1-foot { background: #1c1917; color: #78716c; border-color: #44403c; }
   .da1-tag { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
 
-  /* ===== DA2: AUDACIEUX COLORÉ (dégradés vifs, gras) ===== */
+  /* ===== DA2: AUDACIEUX COLORÃ (dÃ©gradÃ©s vifs, gras) ===== */
   .da2-hero { background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%); color: white; }
   .da2-hero h2 { text-shadow: 0 2px 20px rgba(0,0,0,0.15); }
   .da2-hero h2 .a { background: white; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -178,7 +185,7 @@
   .da3-foot { background: #fef9f3; color: #a16207; border-color: #fde68a; }
   .da3-tag { background: #fde68a; color: #78350f; }
 
-  /* ===== DA4: TECH & NÉON (sombre, accent électrique) ===== */
+  /* ===== DA4: TECH & NÃON (sombre, accent Ã©lectrique) ===== */
   .da4-hero { background: radial-gradient(ellipse at top, #1e1b4b 0%, #09090b 100%); color: #22d3ee; position: relative; }
   .da4-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(34,211,238,0.15), transparent 60%); }
   .da4-hero h2 { color: #f0f9ff; position: relative; z-index: 1; font-weight: 800; }
@@ -198,7 +205,7 @@
   .da4-foot { background: #09090b; color: #52525b; border-color: #27272a; }
   .da4-tag { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid rgba(34,211,238,0.3); }
 
-  /* ===== DA5: VINTAGE RÉTRO (pastel, motifs, nostalgie) ===== */
+  /* ===== DA5: VINTAGE RÃTRO (pastel, motifs, nostalgie) ===== */
   .da5-hero { background: linear-gradient(160deg, #fce7f3 0%, #fbcfe8 40%, #f9a8d4 100%); color: #831843; position: relative; }
   .da5-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(131,24,67,0.06) 1px, transparent 1px); background-size: 14px 14px; }
   .da5-hero h2 { color: #831843; font-family: Georgia, serif; position: relative; z-index: 1; }
@@ -235,12 +242,15 @@
     .phone-screen { border-radius: 24px; height: 600px; }
     .phone-frame::before { width: 90px; height: 22px; }
     .da-grid { grid-template-columns: 1fr; }
+    .nav-link span { display: none; }
+    .nav-link { padding: 8px 10px; }
+    .nav-tag { font-size: 0.72rem; padding: 6px 12px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ICÔNES SVG -->
+<!-- ICÃNES SVG -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M5 2v20"/><path d="M19 2v20M19 2h-3a3 3 0 0 0-3 3v5a3 3 0 0 0 3 3h3"/></symbol>
   <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></symbol>
@@ -268,8 +278,11 @@
   <a href="#" class="nav-logo">
     <div class="logo-mark"></div>
   </a>
+  <a href="offre-site-web.html" class="nav-link">
+    <svg class="icon"><use href="#i-arrow-right"/></svg> <span>Voir les offres</span>
+  </a>
   <div class="nav-tag">
-    <svg class="icon-sm"><use href="#i-layers"/></svg> 18 démos
+    <svg class="icon-sm"><use href="#i-layers"/></svg> 18 dÃ©mos
   </div>
 </nav>
 
@@ -278,10 +291,10 @@
   <div class="col-left">
     <div class="hero">
       <div class="hero-badge">
-        <svg class="icon-sm"><use href="#i-sparkles"/></svg> Livré en 48h — dès 250€
+        <svg class="icon-sm"><use href="#i-sparkles"/></svg> LivrÃ© en 48h â dÃ¨s 250â¬
       </div>
       <h1>Votre site,<br><span class="accent">18 styles possibles</span></h1>
-      <p>Choisissez votre secteur, puis le style qui vous ressemble. Chaque site est livré en 48h, sur-mesure, paiement à la livraison.</p>
+      <p>Choisissez votre secteur, puis le style qui vous ressemble. Chaque site est livrÃ© en 48h, sur-mesure, paiement Ã  la livraison.</p>
     </div>
 
     <div class="nav-section">
@@ -306,85 +319,88 @@
           <div class="da-swatch" style="background:linear-gradient(135deg,#fafafa,#F9A8D4)"></div> Moderne minimaliste
         </div>
         <div class="da-tab" onclick="showDA(1)">
-          <div class="da-swatch" style="background:linear-gradient(135deg,#1c1917,#fbbf24)"></div> Élégant premium
+          <div class="da-swatch" style="background:linear-gradient(135deg,#1c1917,#fbbf24)"></div> ÃlÃ©gant premium
         </div>
         <div class="da-tab" onclick="showDA(2)">
-          <div class="da-swatch" style="background:linear-gradient(135deg,#ec4899,#f59e0b)"></div> Audacieux coloré
+          <div class="da-swatch" style="background:linear-gradient(135deg,#ec4899,#f59e0b)"></div> Audacieux colorÃ©
         </div>
         <div class="da-tab" onclick="showDA(3)">
           <div class="da-swatch" style="background:linear-gradient(135deg,#fef3c7,#d97706)"></div> Naturel artisanal
         </div>
         <div class="da-tab" onclick="showDA(4)">
-          <div class="da-swatch" style="background:linear-gradient(135deg,#09090b,#22d3ee)"></div> Tech néon
+          <div class="da-swatch" style="background:linear-gradient(135deg,#09090b,#22d3ee)"></div> Tech nÃ©on
         </div>
         <div class="da-tab" onclick="showDA(5)">
-          <div class="da-swatch" style="background:linear-gradient(135deg,#fce7f3,#f9a8d4)"></div> Vintage rétro
+          <div class="da-swatch" style="background:linear-gradient(135deg,#fce7f3,#f9a8d4)"></div> Vintage rÃ©tro
         </div>
       </div>
     </div>
 
     <div class="convert-box">
-      <h3>Un style vous plaît ?<br><span class="a">Il est à vous en 48h.</span></h3>
-      <p>Je personnalise le nom, les services, les couleurs et les textes. Paiement à la livraison, sans surprise.</p>
+      <h3>Un style vous plaÃ®t ?<br><span class="a">Il est Ã  vous en 48h.</span></h3>
+      <p>Je personnalise le nom, les services, les couleurs et les textes. Paiement Ã  la livraison, sans surprise.</p>
       <a href="https://wa.me/33782298559?text=Bonjour%20Titouan%2C%20j%27ai%20vu%20ton%20catalogue%20de%20d%C3%A9mos%2C%20je%20veux%20un%20site%20pour%20mon%20activit%C3%A9" class="convert-cta">
         <svg class="icon-sm"><use href="#i-arrow-right"/></svg> Je veux le mien
+      </a>
+      <a href="offre-site-web.html" class="convert-sub">
+        <svg class="icon"><use href="#i-arrow-right"/></svg> Ou voir les tarifs et offres
       </a>
     </div>
   </div>
 
-  <!-- ===== COLONNE DROITE : TÉLÉPHONE ===== -->
+  <!-- ===== COLONNE DROITE : TÃLÃPHONE ===== -->
   <div class="col-right">
     <div class="da-label" id="daLabel">
       <h3>Moderne minimaliste</h3>
-      <p>Lignes nettes, blanc, accent rose poudré</p>
+      <p>Lignes nettes, blanc, accent rose poudrÃ©</p>
     </div>
     <div class="phone-frame">
       <div class="phone-screen">
         <div class="phone-scroll" id="phoneScroll">
 
 <!-- ============================================ -->
-<!-- SECTEUR 0: RESTAURANT — 6 DA -->
+<!-- SECTEUR 0: RESTAURANT â 6 DA -->
 <!-- ============================================ -->
 
 <!-- R-DA0 Moderne -->
 <div class="demo active" data-s="0" data-d="0">
   <div class="d-hero da0-hero"><div>
     <div class="d-badge da0-badge"><span class="dot"></span> Ouvert ce soir</div>
-    <h2>Le Petit Mahorais<span class="sub">Cuisine créole & fruits de mer</span></h2>
+    <h2>Le Petit Mahorais<span class="sub">Cuisine crÃ©ole & fruits de mer</span></h2>
   </div></div>
   <div class="d-body">
-    <div class="d-sec-title da0-sec-title"><svg class="icon"><use href="#i-utensils"/></svg> Spécialités</div>
-    <div class="d-card da0-card"><span class="d-tag da0-tag">Signature</span><div class="name">Poisson grillé au lait de coco</div><div class="desc">Pêché du jour, riz créole, légumes.</div><span class="price">14€</span></div>
-    <div class="d-card da0-card"><div class="name">Brochettes de poulet</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8€</span></div>
-    <div class="d-card da0-card"><div class="name">Rougail saucisse</div><div class="desc">Recette mahoraise, riz blanc.</div><span class="price">12€</span></div>
+    <div class="d-sec-title da0-sec-title"><svg class="icon"><use href="#i-utensils"/></svg> SpÃ©cialitÃ©s</div>
+    <div class="d-card da0-card"><span class="d-tag da0-tag">Signature</span><div class="name">Poisson grillÃ© au lait de coco</div><div class="desc">PÃªchÃ© du jour, riz crÃ©ole, lÃ©gumes.</div><span class="price">14â¬</span></div>
+    <div class="d-card da0-card"><div class="name">Brochettes de poulet</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8â¬</span></div>
+    <div class="d-card da0-card"><div class="name">Rougail saucisse</div><div class="desc">Recette mahoraise, riz blanc.</div><span class="price">12â¬</span></div>
     <div class="d-sec-title da0-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da0-info"><svg class="icon"><use href="#i-map-pin"/></svg> 19 rue Ambassadeur, Mamoudzou</div>
-    <div class="d-info da0-info"><svg class="icon"><use href="#i-clock"/></svg> 11h–22h, tous les jours</div>
+    <div class="d-info da0-info"><svg class="icon"><use href="#i-clock"/></svg> 11hâ22h, tous les jours</div>
     <div class="d-info da0-info"><svg class="icon"><use href="#i-phone"/></svg> 02 69 12 34 56</div>
-    <a href="https://wa.me/33782298559?text=Restaurant%20DA0" class="d-cta da0-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Réserver sur WhatsApp</a>
+    <a href="https://wa.me/33782298559?text=Restaurant%20DA0" class="d-cta da0-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> RÃ©server sur WhatsApp</a>
   </div>
-  <div class="d-foot da0-foot">Le Petit Mahorais — Mamoudzou</div>
+  <div class="d-foot da0-foot">Le Petit Mahorais â Mamoudzou</div>
 </div>
 
-<!-- R-DA1 Élégant -->
+<!-- R-DA1 ÃlÃ©gant -->
 <div class="demo" data-s="0" data-d="1">
   <div class="d-hero da1-hero"><div>
-    <div class="d-badge da1-badge"><span class="dot"></span> Réservations du soir</div>
+    <div class="d-badge da1-badge"><span class="dot"></span> RÃ©servations du soir</div>
     <h2>Le Petit<br><span class="a">Mahorais</span></h2>
-    <p>Cuisine créole & saveurs du lagon</p>
+    <p>Cuisine crÃ©ole & saveurs du lagon</p>
   </div></div>
   <div class="d-body da1-body">
     <div class="d-sec-title da1-sec-title">La carte</div>
-    <div class="d-card da1-card"><div class="name">Poisson grillé au lait de coco</div><div class="desc">Pêché du jour, riz créole, légumes du jardin.</div><span class="price">14€</span></div>
-    <div class="d-card da1-card"><div class="name">Brochettes de poulet mariné</div><div class="desc">Marinade maison, sauce mangue acidulée.</div><span class="price">8€</span></div>
-    <div class="d-card da1-card"><div class="name">Rougail saucisse</div><div class="desc">Recette traditionnelle mahoraise.</div><span class="price">12€</span></div>
+    <div class="d-card da1-card"><div class="name">Poisson grillÃ© au lait de coco</div><div class="desc">PÃªchÃ© du jour, riz crÃ©ole, lÃ©gumes du jardin.</div><span class="price">14â¬</span></div>
+    <div class="d-card da1-card"><div class="name">Brochettes de poulet marinÃ©</div><div class="desc">Marinade maison, sauce mangue acidulÃ©e.</div><span class="price">8â¬</span></div>
+    <div class="d-card da1-card"><div class="name">Rougail saucisse</div><div class="desc">Recette traditionnelle mahoraise.</div><span class="price">12â¬</span></div>
     <div class="d-sec-title da1-sec-title" style="margin-top:18px">Nous trouver</div>
     <div class="d-info da1-info"><svg class="icon"><use href="#i-map-pin"/></svg> 19 rue Ambassadeur, Mamoudzou</div>
-    <div class="d-info da1-info"><svg class="icon"><use href="#i-clock"/></svg> 11h–22h, tous les jours</div>
+    <div class="d-info da1-info"><svg class="icon"><use href="#i-clock"/></svg> 11hâ22h, tous les jours</div>
     <div class="d-info da1-info"><svg class="icon"><use href="#i-phone"/></svg> 02 69 12 34 56</div>
-    <a href="https://wa.me/33782298559?text=Restaurant%20DA1" class="d-cta da1-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Réserver</a>
+    <a href="https://wa.me/33782298559?text=Restaurant%20DA1" class="d-cta da1-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> RÃ©server</a>
   </div>
-  <div class="d-foot da1-foot">Le Petit Mahorais — Mamoudzou</div>
+  <div class="d-foot da1-foot">Le Petit Mahorais â Mamoudzou</div>
 </div>
 
 <!-- R-DA2 Audacieux -->
@@ -392,20 +408,20 @@
   <div class="d-hero da2-hero"><div>
     <div class="d-badge da2-badge"><span class="dot"></span> Ouvert ce soir</div>
     <h2>Le Petit<br><span class="a">Mahorais</span></h2>
-    <p>Cuisine créole qui déchire</p>
+    <p>Cuisine crÃ©ole qui dÃ©chire</p>
   </div></div>
   <div class="d-body">
-    <div class="d-sec-title da2-sec-title"><svg class="icon"><use href="#i-utensils"/></svg> Spécialités</div>
-    <div class="d-card da2-card"><span class="d-tag da2-tag">Best-seller</span><div class="name">Poisson grillé au lait de coco</div><div class="desc">Pêché du jour, riz créole, légumes.</div><span class="price">14€</span><div class="d-stars">★★★★★</div></div>
-    <div class="d-card da2-card"><div class="name">Brochettes de poulet</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8€</span></div>
-    <div class="d-card da2-card"><div class="name">Rougail saucisse</div><div class="desc">Recette mahoraise, riz blanc.</div><span class="price">12€</span></div>
+    <div class="d-sec-title da2-sec-title"><svg class="icon"><use href="#i-utensils"/></svg> SpÃ©cialitÃ©s</div>
+    <div class="d-card da2-card"><span class="d-tag da2-tag">Best-seller</span><div class="name">Poisson grillÃ© au lait de coco</div><div class="desc">PÃªchÃ© du jour, riz crÃ©ole, lÃ©gumes.</div><span class="price">14â¬</span><div class="d-stars">âââââ</div></div>
+    <div class="d-card da2-card"><div class="name">Brochettes de poulet</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8â¬</span></div>
+    <div class="d-card da2-card"><div class="name">Rougail saucisse</div><div class="desc">Recette mahoraise, riz blanc.</div><span class="price">12â¬</span></div>
     <div class="d-sec-title da2-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da2-info"><svg class="icon"><use href="#i-map-pin"/></svg> 19 rue Ambassadeur, Mamoudzou</div>
-    <div class="d-info da2-info"><svg class="icon"><use href="#i-clock"/></svg> 11h–22h, tous les jours</div>
+    <div class="d-info da2-info"><svg class="icon"><use href="#i-clock"/></svg> 11hâ22h, tous les jours</div>
     <div class="d-info da2-info"><svg class="icon"><use href="#i-phone"/></svg> 02 69 12 34 56</div>
-    <a href="https://wa.me/33782298559?text=Restaurant%20DA2" class="d-cta da2-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Réserver sur WhatsApp</a>
+    <a href="https://wa.me/33782298559?text=Restaurant%20DA2" class="d-cta da2-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> RÃ©server sur WhatsApp</a>
   </div>
-  <div class="d-foot da2-foot">Le Petit Mahorais — Mamoudzou</div>
+  <div class="d-foot da2-foot">Le Petit Mahorais â Mamoudzou</div>
 </div>
 
 <!-- R-DA3 Naturel -->
@@ -413,41 +429,41 @@
   <div class="d-hero da3-hero"><div>
     <div class="d-badge da3-badge"><span class="dot"></span> Fait maison</div>
     <h2>Le Petit<br><span class="a">Mahorais</span></h2>
-    <p>Cuisine créole de tradition</p>
+    <p>Cuisine crÃ©ole de tradition</p>
   </div></div>
   <div class="d-body da3-body">
-    <div class="d-sec-title da3-sec-title"><svg class="icon"><use href="#i-leaf"/></svg> Spécialités</div>
-    <div class="d-card da3-card"><span class="d-tag da3-tag">Maison</span><div class="name">Poisson grillé au lait de coco</div><div class="desc">Pêché du jour, riz créole, légumes du jardin.</div><span class="price">14€</span></div>
-    <div class="d-card da3-card"><div class="name">Brochettes de poulet mariné</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8€</span></div>
-    <div class="d-card da3-card"><div class="name">Rougail saucisse</div><div class="desc">Recette traditionnelle mahoraise.</div><span class="price">12€</span></div>
+    <div class="d-sec-title da3-sec-title"><svg class="icon"><use href="#i-leaf"/></svg> SpÃ©cialitÃ©s</div>
+    <div class="d-card da3-card"><span class="d-tag da3-tag">Maison</span><div class="name">Poisson grillÃ© au lait de coco</div><div class="desc">PÃªchÃ© du jour, riz crÃ©ole, lÃ©gumes du jardin.</div><span class="price">14â¬</span></div>
+    <div class="d-card da3-card"><div class="name">Brochettes de poulet marinÃ©</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8â¬</span></div>
+    <div class="d-card da3-card"><div class="name">Rougail saucisse</div><div class="desc">Recette traditionnelle mahoraise.</div><span class="price">12â¬</span></div>
     <div class="d-sec-title da3-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-map-pin"/></svg> 19 rue Ambassadeur, Mamoudzou</div>
-    <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> 11h–22h, tous les jours</div>
+    <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> 11hâ22h, tous les jours</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-phone"/></svg> 02 69 12 34 56</div>
-    <a href="https://wa.me/33782298559?text=Restaurant%20DA3" class="d-cta da3-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Réserver une table</a>
+    <a href="https://wa.me/33782298559?text=Restaurant%20DA3" class="d-cta da3-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> RÃ©server une table</a>
   </div>
-  <div class="d-foot da3-foot">Le Petit Mahorais — Mamoudzou</div>
+  <div class="d-foot da3-foot">Le Petit Mahorais â Mamoudzou</div>
 </div>
 
-<!-- R-DA4 Tech néon -->
+<!-- R-DA4 Tech nÃ©on -->
 <div class="demo" data-s="0" data-d="4">
   <div class="d-hero da4-hero"><div>
     <div class="d-badge da4-badge"><span class="dot"></span> Ouvert ce soir</div>
     <h2>Le Petit<br><span class="a">Mahorais</span></h2>
-    <p>Cuisine créole • fruits de mer</p>
+    <p>Cuisine crÃ©ole â¢ fruits de mer</p>
   </div></div>
   <div class="d-body da4-body">
-    <div class="d-sec-title da4-sec-title"><svg class="icon"><use href="#i-utensils"/></svg> Spécialités</div>
-    <div class="d-card da4-card"><span class="d-tag da4-tag">Top</span><div class="name">Poisson grillé au lait de coco</div><div class="desc">Pêché du jour, riz créole, légumes.</div><span class="price">14€</span></div>
-    <div class="d-card da4-card"><div class="name">Brochettes de poulet</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8€</span></div>
-    <div class="d-card da4-card"><div class="name">Rougail saucisse</div><div class="desc">Recette mahoraise, riz blanc.</div><span class="price">12€</span></div>
+    <div class="d-sec-title da4-sec-title"><svg class="icon"><use href="#i-utensils"/></svg> SpÃ©cialitÃ©s</div>
+    <div class="d-card da4-card"><span class="d-tag da4-tag">Top</span><div class="name">Poisson grillÃ© au lait de coco</div><div class="desc">PÃªchÃ© du jour, riz crÃ©ole, lÃ©gumes.</div><span class="price">14â¬</span></div>
+    <div class="d-card da4-card"><div class="name">Brochettes de poulet</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8â¬</span></div>
+    <div class="d-card da4-card"><div class="name">Rougail saucisse</div><div class="desc">Recette mahoraise, riz blanc.</div><span class="price">12â¬</span></div>
     <div class="d-sec-title da4-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Localisation</div>
     <div class="d-info da4-info"><svg class="icon"><use href="#i-map-pin"/></svg> 19 rue Ambassadeur, Mamoudzou</div>
-    <div class="d-info da4-info"><svg class="icon"><use href="#i-clock"/></svg> 11h–22h, tous les jours</div>
+    <div class="d-info da4-info"><svg class="icon"><use href="#i-clock"/></svg> 11hâ22h, tous les jours</div>
     <div class="d-info da4-info"><svg class="icon"><use href="#i-phone"/></svg> 02 69 12 34 56</div>
-    <a href="https://wa.me/33782298559?text=Restaurant%20DA4" class="d-cta da4-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Réserver</a>
+    <a href="https://wa.me/33782298559?text=Restaurant%20DA4" class="d-cta da4-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> RÃ©server</a>
   </div>
-  <div class="d-foot da4-foot">Le Petit Mahorais — Mamoudzou</div>
+  <div class="d-foot da4-foot">Le Petit Mahorais â Mamoudzou</div>
 </div>
 
 <!-- R-DA5 Vintage -->
@@ -455,89 +471,89 @@
   <div class="d-hero da5-hero"><div>
     <div class="d-badge da5-badge"><span class="dot"></span> Depuis 1998</div>
     <h2>Le Petit<br><span class="a">Mahorais</span></h2>
-    <p>Cuisine créole comme à la maison</p>
+    <p>Cuisine crÃ©ole comme Ã  la maison</p>
   </div></div>
   <div class="d-body da5-body">
-    <div class="d-sec-title da5-sec-title"><svg class="icon"><use href="#i-coffee"/></svg> Nos spécialités</div>
-    <div class="d-card da5-card"><span class="d-tag da5-tag">Recette grand-mère</span><div class="name">Poisson grillé au lait de coco</div><div class="desc">Pêché du jour, riz créole, légumes.</div><span class="price">14€</span></div>
-    <div class="d-card da5-card"><div class="name">Brochettes de poulet</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8€</span></div>
-    <div class="d-card da5-card"><div class="name">Rougail saucisse</div><div class="desc">Recette mahoraise, riz blanc.</div><span class="price">12€</span></div>
+    <div class="d-sec-title da5-sec-title"><svg class="icon"><use href="#i-coffee"/></svg> Nos spÃ©cialitÃ©s</div>
+    <div class="d-card da5-card"><span class="d-tag da5-tag">Recette grand-mÃ¨re</span><div class="name">Poisson grillÃ© au lait de coco</div><div class="desc">PÃªchÃ© du jour, riz crÃ©ole, lÃ©gumes.</div><span class="price">14â¬</span></div>
+    <div class="d-card da5-card"><div class="name">Brochettes de poulet</div><div class="desc">Marinade maison, sauce mangue.</div><span class="price">8â¬</span></div>
+    <div class="d-card da5-card"><div class="name">Rougail saucisse</div><div class="desc">Recette mahoraise, riz blanc.</div><span class="price">12â¬</span></div>
     <div class="d-sec-title da5-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-map-pin"/></svg> 19 rue Ambassadeur, Mamoudzou</div>
-    <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> 11h–22h, tous les jours</div>
+    <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> 11hâ22h, tous les jours</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-phone"/></svg> 02 69 12 34 56</div>
-    <a href="https://wa.me/33782298559?text=Restaurant%20DA5" class="d-cta da5-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Réserver une table</a>
+    <a href="https://wa.me/33782298559?text=Restaurant%20DA5" class="d-cta da5-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> RÃ©server une table</a>
   </div>
-  <div class="d-foot da5-foot">Le Petit Mahorais — Mamoudzou</div>
+  <div class="d-foot da5-foot">Le Petit Mahorais â Mamoudzou</div>
 </div>
 
 <!-- ============================================ -->
-<!-- SECTEUR 1: COIFFEUR — 6 DA -->
+<!-- SECTEUR 1: COIFFEUR â 6 DA -->
 <!-- ============================================ -->
 
 <!-- C-DA0 Moderne -->
 <div class="demo" data-s="1" data-d="0">
   <div class="d-hero da0-hero"><div>
-    <div class="d-badge da0-badge"><span class="dot"></span> 3 créneaux dispo</div>
-    <h2>May'Salon<span class="sub">Coiffure mixte — Mamoudzou</span></h2>
+    <div class="d-badge da0-badge"><span class="dot"></span> 3 crÃ©neaux dispo</div>
+    <h2>May'Salon<span class="sub">Coiffure mixte â Mamoudzou</span></h2>
   </div></div>
   <div class="d-body">
     <div class="d-sec-title da0-sec-title"><svg class="icon"><use href="#i-scissors"/></svg> Prestations</div>
-    <div class="d-card da0-card"><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25€</span></div>
-    <div class="d-card da0-card"><div class="name">Coupe homme</div><div class="desc">Coupe moderne, finitions propres.</div><span class="price">15€</span></div>
-    <div class="d-card da0-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35€</span></div>
-    <div class="d-card da0-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45€</span></div>
+    <div class="d-card da0-card"><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25â¬</span></div>
+    <div class="d-card da0-card"><div class="name">Coupe homme</div><div class="desc">Coupe moderne, finitions propres.</div><span class="price">15â¬</span></div>
+    <div class="d-card da0-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35â¬</span></div>
+    <div class="d-card da0-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45â¬</span></div>
     <div class="d-sec-title da0-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da0-info"><svg class="icon"><use href="#i-map-pin"/></svg> Centre-ville, Mamoudzou</div>
-    <div class="d-info da0-info"><svg class="icon"><use href="#i-clock"/></svg> Mar–Sam, 9h–19h</div>
+    <div class="d-info da0-info"><svg class="icon"><use href="#i-clock"/></svg> MarâSam, 9hâ19h</div>
     <div class="d-info da0-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 45 67 89</div>
     <a href="https://wa.me/33782298559?text=Coiffeur%20DA0" class="d-cta da0-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
   </div>
-  <div class="d-foot da0-foot">May'Salon — Mamoudzou</div>
+  <div class="d-foot da0-foot">May'Salon â Mamoudzou</div>
 </div>
 
-<!-- C-DA1 Élégant -->
+<!-- C-DA1 ÃlÃ©gant -->
 <div class="demo" data-s="1" data-d="1">
   <div class="d-hero da1-hero"><div>
     <div class="d-badge da1-badge"><span class="dot"></span> Sur rendez-vous</div>
     <h2>May'<br><span class="a">Salon</span></h2>
-    <p>Coiffure d'exception — Mamoudzou</p>
+    <p>Coiffure d'exception â Mamoudzou</p>
   </div></div>
   <div class="d-body da1-body">
     <div class="d-sec-title da1-sec-title">Prestations</div>
-    <div class="d-card da1-card"><div class="name">Coupe femme & brushage</div><div class="desc">Shampoing soin, coupe personnalisée, brushage.</div><span class="price">25€</span></div>
-    <div class="d-card da1-card"><div class="name">Coupe homme</div><div class="desc">Coupe précise, finitions soignées.</div><span class="price">15€</span></div>
-    <div class="d-card da1-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35€</span></div>
-    <div class="d-card da1-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45€</span></div>
+    <div class="d-card da1-card"><div class="name">Coupe femme & brushage</div><div class="desc">Shampoing soin, coupe personnalisÃ©e, brushage.</div><span class="price">25â¬</span></div>
+    <div class="d-card da1-card"><div class="name">Coupe homme</div><div class="desc">Coupe prÃ©cise, finitions soignÃ©es.</div><span class="price">15â¬</span></div>
+    <div class="d-card da1-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35â¬</span></div>
+    <div class="d-card da1-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45â¬</span></div>
     <div class="d-sec-title da1-sec-title" style="margin-top:18px">Nous trouver</div>
     <div class="d-info da1-info"><svg class="icon"><use href="#i-map-pin"/></svg> Centre-ville, Mamoudzou</div>
-    <div class="d-info da1-info"><svg class="icon"><use href="#i-clock"/></svg> Mar–Sam, 9h–19h</div>
+    <div class="d-info da1-info"><svg class="icon"><use href="#i-clock"/></svg> MarâSam, 9hâ19h</div>
     <div class="d-info da1-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 45 67 89</div>
     <a href="https://wa.me/33782298559?text=Coiffeur%20DA1" class="d-cta da1-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre rendez-vous</a>
   </div>
-  <div class="d-foot da1-foot">May'Salon — Mamoudzou</div>
+  <div class="d-foot da1-foot">May'Salon â Mamoudzou</div>
 </div>
 
 <!-- C-DA2 Audacieux -->
 <div class="demo" data-s="1" data-d="2">
   <div class="d-hero da2-hero" style="background:linear-gradient(135deg,#ec4899,#7c3aed)"><div>
-    <div class="d-badge da2-badge"><span class="dot"></span> 3 créneaux dispo</div>
+    <div class="d-badge da2-badge"><span class="dot"></span> 3 crÃ©neaux dispo</div>
     <h2>May'<br><span class="a">Salon</span></h2>
     <p>La coiffure qui a du style</p>
   </div></div>
   <div class="d-body">
     <div class="d-sec-title da2-sec-title"><svg class="icon"><use href="#i-scissors"/></svg> Prestations</div>
-    <div class="d-card da2-card"><span class="d-tag da2-tag">Populaire</span><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25€</span><div class="d-stars">★★★★★</div></div>
-    <div class="d-card da2-card"><div class="name">Coupe homme</div><div class="desc">Coupe moderne, finitions propres.</div><span class="price">15€</span></div>
-    <div class="d-card da2-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35€</span></div>
-    <div class="d-card da2-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45€</span></div>
+    <div class="d-card da2-card"><span class="d-tag da2-tag">Populaire</span><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25â¬</span><div class="d-stars">âââââ</div></div>
+    <div class="d-card da2-card"><div class="name">Coupe homme</div><div class="desc">Coupe moderne, finitions propres.</div><span class="price">15â¬</span></div>
+    <div class="d-card da2-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35â¬</span></div>
+    <div class="d-card da2-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45â¬</span></div>
     <div class="d-sec-title da2-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da2-info"><svg class="icon"><use href="#i-map-pin"/></svg> Centre-ville, Mamoudzou</div>
-    <div class="d-info da2-info"><svg class="icon"><use href="#i-clock"/></svg> Mar–Sam, 9h–19h</div>
+    <div class="d-info da2-info"><svg class="icon"><use href="#i-clock"/></svg> MarâSam, 9hâ19h</div>
     <div class="d-info da2-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 45 67 89</div>
     <a href="https://wa.me/33782298559?text=Coiffeur%20DA2" class="d-cta da2-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
   </div>
-  <div class="d-foot da2-foot">May'Salon — Mamoudzou</div>
+  <div class="d-foot da2-foot">May'Salon â Mamoudzou</div>
 </div>
 
 <!-- C-DA3 Naturel -->
@@ -545,43 +561,43 @@
   <div class="d-hero da3-hero" style="background:linear-gradient(160deg,#fef3c7,#fde68a,#b45309)"><div>
     <div class="d-badge da3-badge"><span class="dot"></span> Soins naturels</div>
     <h2>May'<br><span class="a">Salon</span></h2>
-    <p>Coiffure au naturel — Mamoudzou</p>
+    <p>Coiffure au naturel â Mamoudzou</p>
   </div></div>
   <div class="d-body da3-body">
     <div class="d-sec-title da3-sec-title"><svg class="icon"><use href="#i-leaf"/></svg> Prestations</div>
-    <div class="d-card da3-card"><span class="d-tag da3-tag">Signature</span><div class="name">Coupe femme & brushage</div><div class="desc">Shampoing soin naturel, coupe, brushage.</div><span class="price">25€</span></div>
-    <div class="d-card da3-card"><div class="name">Coupe homme</div><div class="desc">Coupe précise, finitions soignées.</div><span class="price">15€</span></div>
-    <div class="d-card da3-card"><div class="name">Coloration végétale</div><div class="desc">Coloration naturelle, soin inclus.</div><span class="price">35€</span></div>
-    <div class="d-card da3-card"><div class="name">Soin profond</div><div class="desc">Masque, lissage naturel.</div><span class="price">45€</span></div>
+    <div class="d-card da3-card"><span class="d-tag da3-tag">Signature</span><div class="name">Coupe femme & brushage</div><div class="desc">Shampoing soin naturel, coupe, brushage.</div><span class="price">25â¬</span></div>
+    <div class="d-card da3-card"><div class="name">Coupe homme</div><div class="desc">Coupe prÃ©cise, finitions soignÃ©es.</div><span class="price">15â¬</span></div>
+    <div class="d-card da3-card"><div class="name">Coloration vÃ©gÃ©tale</div><div class="desc">Coloration naturelle, soin inclus.</div><span class="price">35â¬</span></div>
+    <div class="d-card da3-card"><div class="name">Soin profond</div><div class="desc">Masque, lissage naturel.</div><span class="price">45â¬</span></div>
     <div class="d-sec-title da3-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-map-pin"/></svg> Centre-ville, Mamoudzou</div>
-    <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> Mar–Sam, 9h–19h</div>
+    <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> MarâSam, 9hâ19h</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 45 67 89</div>
     <a href="https://wa.me/33782298559?text=Coiffeur%20DA3" class="d-cta da3-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
   </div>
-  <div class="d-foot da3-foot">May'Salon — Mamoudzou</div>
+  <div class="d-foot da3-foot">May'Salon â Mamoudzou</div>
 </div>
 
-<!-- C-DA4 Tech néon -->
+<!-- C-DA4 Tech nÃ©on -->
 <div class="demo" data-s="1" data-d="4">
   <div class="d-hero da4-hero"><div>
-    <div class="d-badge da4-badge"><span class="dot"></span> 3 créneaux dispo</div>
+    <div class="d-badge da4-badge"><span class="dot"></span> 3 crÃ©neaux dispo</div>
     <h2>May'<br><span class="a">Salon</span></h2>
-    <p>Coiffure • Style • Précision</p>
+    <p>Coiffure â¢ Style â¢ PrÃ©cision</p>
   </div></div>
   <div class="d-body da4-body">
     <div class="d-sec-title da4-sec-title"><svg class="icon"><use href="#i-scissors"/></svg> Prestations</div>
-    <div class="d-card da4-card"><span class="d-tag da4-tag">Top</span><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25€</span></div>
-    <div class="d-card da4-card"><div class="name">Coupe homme</div><div class="desc">Coupe moderne, finitions propres.</div><span class="price">15€</span></div>
-    <div class="d-card da4-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35€</span></div>
-    <div class="d-card da4-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45€</span></div>
+    <div class="d-card da4-card"><span class="d-tag da4-tag">Top</span><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25â¬</span></div>
+    <div class="d-card da4-card"><div class="name">Coupe homme</div><div class="desc">Coupe moderne, finitions propres.</div><span class="price">15â¬</span></div>
+    <div class="d-card da4-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35â¬</span></div>
+    <div class="d-card da4-card"><div class="name">Lissage</div><div class="desc">Lissage durable, soin profond.</div><span class="price">45â¬</span></div>
     <div class="d-sec-title da4-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Localisation</div>
     <div class="d-info da4-info"><svg class="icon"><use href="#i-map-pin"/></svg> Centre-ville, Mamoudzou</div>
-    <div class="d-info da4-info"><svg class="icon"><use href="#i-clock"/></svg> Mar–Sam, 9h–19h</div>
+    <div class="d-info da4-info"><svg class="icon"><use href="#i-clock"/></svg> MarâSam, 9hâ19h</div>
     <div class="d-info da4-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 45 67 89</div>
     <a href="https://wa.me/33782298559?text=Coiffeur%20DA4" class="d-cta da4-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
   </div>
-  <div class="d-foot da4-foot">May'Salon — Mamoudzou</div>
+  <div class="d-foot da4-foot">May'Salon â Mamoudzou</div>
 </div>
 
 <!-- C-DA5 Vintage -->
@@ -589,170 +605,170 @@
   <div class="d-hero da5-hero"><div>
     <div class="d-badge da5-badge"><span class="dot"></span> Salon historique</div>
     <h2>May'<br><span class="a">Salon</span></h2>
-    <p>Coiffure comme avant, qualité d'aujourd'hui</p>
+    <p>Coiffure comme avant, qualitÃ© d'aujourd'hui</p>
   </div></div>
   <div class="d-body da5-body">
     <div class="d-sec-title da5-sec-title"><svg class="icon"><use href="#i-scissors"/></svg> Prestations</div>
-    <div class="d-card da5-card"><span class="d-tag da5-tag">Classique</span><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25€</span></div>
-    <div class="d-card da5-card"><div class="name">Coupe homme tradition</div><div class="desc">Coupe précise, finitions soignées.</div><span class="price">15€</span></div>
-    <div class="d-card da5-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35€</span></div>
-    <div class="d-card da5-card"><div class="name">Mise en plis</div><div class="desc">Brushing, boucles, chignon.</div><span class="price">45€</span></div>
+    <div class="d-card da5-card"><span class="d-tag da5-tag">Classique</span><div class="name">Coupe femme + brushage</div><div class="desc">Shampoing soin, coupe, brushage.</div><span class="price">25â¬</span></div>
+    <div class="d-card da5-card"><div class="name">Coupe homme tradition</div><div class="desc">Coupe prÃ©cise, finitions soignÃ©es.</div><span class="price">15â¬</span></div>
+    <div class="d-card da5-card"><div class="name">Coloration</div><div class="desc">Couleur sur-mesure, soin inclus.</div><span class="price">35â¬</span></div>
+    <div class="d-card da5-card"><div class="name">Mise en plis</div><div class="desc">Brushing, boucles, chignon.</div><span class="price">45â¬</span></div>
     <div class="d-sec-title da5-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-map-pin"/></svg> Centre-ville, Mamoudzou</div>
-    <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> Mar–Sam, 9h–19h</div>
+    <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> MarâSam, 9hâ19h</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 45 67 89</div>
     <a href="https://wa.me/33782298559?text=Coiffeur%20DA5" class="d-cta da5-cta"><svg class="icon-sm"><use href="#i-calendar"/></svg> Prendre RDV</a>
   </div>
-  <div class="d-foot da5-foot">May'Salon — Mamoudzou</div>
+  <div class="d-foot da5-foot">May'Salon â Mamoudzou</div>
 </div>
 
 <!-- ============================================ -->
-<!-- SECTEUR 2: GARAGE AUTO — 6 DA -->
+<!-- SECTEUR 2: GARAGE AUTO â 6 DA -->
 <!-- ============================================ -->
 
 <!-- G-DA0 Moderne -->
 <div class="demo" data-s="2" data-d="0">
   <div class="d-hero da0-hero"><div>
     <div class="d-badge da0-badge"><span class="dot"></span> Diagnostic gratuit</div>
-    <h2>Mécanique Auto<span class="sub">Réparation • Entretien • Dépannage</span></h2>
+    <h2>MÃ©canique Auto<span class="sub">RÃ©paration â¢ Entretien â¢ DÃ©pannage</span></h2>
   </div></div>
   <div class="d-body">
     <div class="d-sec-title da0-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da0-card"><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da0-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da0-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da0-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da0-card"><div class="name">RÃ©paration mÃ©canique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dÃ¨s 60â¬</span></div>
+    <div class="d-card da0-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dÃ¨s 45â¬</span></div>
+    <div class="d-card da0-card"><div class="name">DÃ©pannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dÃ¨s 30â¬</span></div>
+    <div class="d-card da0-card"><div class="name">ContrÃ´le technique</div><div class="desc">PrÃ©paration complÃ¨te du vÃ©hicule.</div><span class="price">dÃ¨s 50â¬</span></div>
     <div class="d-sec-title da0-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da0-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da0-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
+    <div class="d-info da0-info"><svg class="icon"><use href="#i-clock"/></svg> LunâSam, 7h30â18h</div>
     <div class="d-info da0-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
     <a href="https://wa.me/33782298559?text=Garage%20DA0" class="d-cta da0-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis gratuit</a>
   </div>
-  <div class="d-foot da0-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da0-foot">MÃ©canique Auto â Kaweni</div>
 </div>
 
-<!-- G-DA1 Élégant -->
+<!-- G-DA1 ÃlÃ©gant -->
 <div class="demo" data-s="2" data-d="1">
   <div class="d-hero da1-hero"><div>
     <div class="d-badge da1-badge"><span class="dot"></span> Devis sous 24h</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>Expertise & précision — Mayotte</p>
+    <h2>MÃ©canique<br><span class="a">Auto</span></h2>
+    <p>Expertise & prÃ©cision â Mayotte</p>
   </div></div>
   <div class="d-body da1-body">
     <div class="d-sec-title da1-sec-title">Services</div>
-    <div class="d-card da1-card"><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus, garantie 1 an.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da1-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins. Suivi carnet d'entretien.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da1-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou et alentours.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da1-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da1-card"><div class="name">RÃ©paration mÃ©canique</div><div class="desc">Toutes marques, diagnostic inclus, garantie 1 an.</div><span class="price">dÃ¨s 60â¬</span></div>
+    <div class="d-card da1-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins. Suivi carnet d'entretien.</div><span class="price">dÃ¨s 45â¬</span></div>
+    <div class="d-card da1-card"><div class="name">DÃ©pannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou et alentours.</div><span class="price">dÃ¨s 30â¬</span></div>
+    <div class="d-card da1-card"><div class="name">ContrÃ´le technique</div><div class="desc">PrÃ©paration complÃ¨te du vÃ©hicule.</div><span class="price">dÃ¨s 50â¬</span></div>
     <div class="d-sec-title da1-sec-title" style="margin-top:18px">Nous trouver</div>
     <div class="d-info da1-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da1-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
+    <div class="d-info da1-info"><svg class="icon"><use href="#i-clock"/></svg> LunâSam, 7h30â18h</div>
     <div class="d-info da1-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
     <a href="https://wa.me/33782298559?text=Garage%20DA1" class="d-cta da1-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Demander un devis</a>
   </div>
-  <div class="d-foot da1-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da1-foot">MÃ©canique Auto â Kaweni</div>
 </div>
 
 <!-- G-DA2 Audacieux -->
 <div class="demo" data-s="2" data-d="2">
   <div class="d-hero da2-hero" style="background:linear-gradient(135deg,#1c1917,#db2777)"><div>
     <div class="d-badge da2-badge"><span class="dot"></span> Diagnostic gratuit</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
+    <h2>MÃ©canique<br><span class="a">Auto</span></h2>
     <p>Votre voiture entre de bonnes mains</p>
   </div></div>
   <div class="d-body">
     <div class="d-sec-title da2-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da2-card"><span class="d-tag da2-tag">Garantie 1 an</span><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span><div class="d-stars">★★★★★</div></div>
-    <div class="d-card da2-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da2-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da2-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da2-card"><span class="d-tag da2-tag">Garantie 1 an</span><div class="name">RÃ©paration mÃ©canique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dÃ¨s 60â¬</span><div class="d-stars">âââââ</div></div>
+    <div class="d-card da2-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dÃ¨s 45â¬</span></div>
+    <div class="d-card da2-card"><div class="name">DÃ©pannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dÃ¨s 30â¬</span></div>
+    <div class="d-card da2-card"><div class="name">ContrÃ´le technique</div><div class="desc">PrÃ©paration complÃ¨te du vÃ©hicule.</div><span class="price">dÃ¨s 50â¬</span></div>
     <div class="d-sec-title da2-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da2-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da2-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
+    <div class="d-info da2-info"><svg class="icon"><use href="#i-clock"/></svg> LunâSam, 7h30â18h</div>
     <div class="d-info da2-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
     <a href="https://wa.me/33782298559?text=Garage%20DA2" class="d-cta da2-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis WhatsApp</a>
   </div>
-  <div class="d-foot da2-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da2-foot">MÃ©canique Auto â Kaweni</div>
 </div>
 
 <!-- G-DA3 Naturel -->
 <div class="demo" data-s="2" data-d="3">
   <div class="d-hero da3-hero" style="background:linear-gradient(160deg,#fef3c7,#fde68a,#92400e)"><div>
     <div class="d-badge da3-badge"><span class="dot"></span> Atelier artisanal</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>L'entretien au juste prix — Mayotte</p>
+    <h2>MÃ©canique<br><span class="a">Auto</span></h2>
+    <p>L'entretien au juste prix â Mayotte</p>
   </div></div>
   <div class="d-body da3-body">
     <div class="d-sec-title da3-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da3-card"><span class="d-tag da3-tag">Garantie</span><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da3-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da3-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da3-card"><div class="name">Préparation contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da3-card"><span class="d-tag da3-tag">Garantie</span><div class="name">RÃ©paration mÃ©canique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dÃ¨s 60â¬</span></div>
+    <div class="d-card da3-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dÃ¨s 45â¬</span></div>
+    <div class="d-card da3-card"><div class="name">DÃ©pannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dÃ¨s 30â¬</span></div>
+    <div class="d-card da3-card"><div class="name">PrÃ©paration contrÃ´le technique</div><div class="desc">PrÃ©paration complÃ¨te du vÃ©hicule.</div><span class="price">dÃ¨s 50â¬</span></div>
     <div class="d-sec-title da3-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
+    <div class="d-info da3-info"><svg class="icon"><use href="#i-clock"/></svg> LunâSam, 7h30â18h</div>
     <div class="d-info da3-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
     <a href="https://wa.me/33782298559?text=Garage%20DA3" class="d-cta da3-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis gratuit</a>
   </div>
-  <div class="d-foot da3-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da3-foot">MÃ©canique Auto â Kaweni</div>
 </div>
 
-<!-- G-DA4 Tech néon -->
+<!-- G-DA4 Tech nÃ©on -->
 <div class="demo" data-s="2" data-d="4">
   <div class="d-hero da4-hero"><div>
-    <div class="d-badge da4-badge"><span class="dot"></span> Diagnostic électronique</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>Diagnostic • Réparation • Entretien</p>
+    <div class="d-badge da4-badge"><span class="dot"></span> Diagnostic Ã©lectronique</div>
+    <h2>MÃ©canique<br><span class="a">Auto</span></h2>
+    <p>Diagnostic â¢ RÃ©paration â¢ Entretien</p>
   </div></div>
   <div class="d-body da4-body">
     <div class="d-sec-title da4-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da4-card"><span class="d-tag da4-tag">Diag inclus</span><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da4-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da4-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da4-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da4-card"><span class="d-tag da4-tag">Diag inclus</span><div class="name">RÃ©paration mÃ©canique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dÃ¨s 60â¬</span></div>
+    <div class="d-card da4-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dÃ¨s 45â¬</span></div>
+    <div class="d-card da4-card"><div class="name">DÃ©pannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dÃ¨s 30â¬</span></div>
+    <div class="d-card da4-card"><div class="name">ContrÃ´le technique</div><div class="desc">PrÃ©paration complÃ¨te du vÃ©hicule.</div><span class="price">dÃ¨s 50â¬</span></div>
     <div class="d-sec-title da4-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Localisation</div>
     <div class="d-info da4-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da4-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
+    <div class="d-info da4-info"><svg class="icon"><use href="#i-clock"/></svg> LunâSam, 7h30â18h</div>
     <div class="d-info da4-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
     <a href="https://wa.me/33782298559?text=Garage%20DA4" class="d-cta da4-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis gratuit</a>
   </div>
-  <div class="d-foot da4-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da4-foot">MÃ©canique Auto â Kaweni</div>
 </div>
 
 <!-- G-DA5 Vintage -->
 <div class="demo" data-s="2" data-d="5">
   <div class="d-hero da5-hero"><div>
     <div class="d-badge da5-badge"><span class="dot"></span> Atelier depuis 1985</div>
-    <h2>Mécanique<br><span class="a">Auto</span></h2>
-    <p>Le garage de confiance — Mayotte</p>
+    <h2>MÃ©canique<br><span class="a">Auto</span></h2>
+    <p>Le garage de confiance â Mayotte</p>
   </div></div>
   <div class="d-body da5-body">
     <div class="d-sec-title da5-sec-title"><svg class="icon"><use href="#i-wrench"/></svg> Services</div>
-    <div class="d-card da5-card"><span class="d-tag da5-tag">Savoir-faire</span><div class="name">Réparation mécanique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dès 60€</span></div>
-    <div class="d-card da5-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dès 45€</span></div>
-    <div class="d-card da5-card"><div class="name">Dépannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dès 30€</span></div>
-    <div class="d-card da5-card"><div class="name">Contrôle technique</div><div class="desc">Préparation complète du véhicule.</div><span class="price">dès 50€</span></div>
+    <div class="d-card da5-card"><span class="d-tag da5-tag">Savoir-faire</span><div class="name">RÃ©paration mÃ©canique</div><div class="desc">Toutes marques, diagnostic inclus.</div><span class="price">dÃ¨s 60â¬</span></div>
+    <div class="d-card da5-card"><div class="name">Entretien complet</div><div class="desc">Vidange, filtres, freins.</div><span class="price">dÃ¨s 45â¬</span></div>
+    <div class="d-card da5-card"><div class="name">DÃ©pannage 7j/7</div><div class="desc">Intervention rapide sur Mamoudzou.</div><span class="price">dÃ¨s 30â¬</span></div>
+    <div class="d-card da5-card"><div class="name">ContrÃ´le technique</div><div class="desc">PrÃ©paration complÃ¨te du vÃ©hicule.</div><span class="price">dÃ¨s 50â¬</span></div>
     <div class="d-sec-title da5-sec-title" style="margin-top:18px"><svg class="icon"><use href="#i-map-pin"/></svg> Nous trouver</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-map-pin"/></svg> Zone industrielle, Kaweni</div>
-    <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> Lun–Sam, 7h30–18h</div>
+    <div class="d-info da5-info"><svg class="icon"><use href="#i-clock"/></svg> LunâSam, 7h30â18h</div>
     <div class="d-info da5-info"><svg class="icon"><use href="#i-phone"/></svg> 0692 78 90 12</div>
     <a href="https://wa.me/33782298559?text=Garage%20DA5" class="d-cta da5-cta"><svg class="icon-sm"><use href="#i-phone"/></svg> Devis gratuit</a>
   </div>
-  <div class="d-foot da5-foot">Mécanique Auto — Kaweni</div>
+  <div class="d-foot da5-foot">MÃ©canique Auto â Kaweni</div>
 </div>
 
         </div>
       </div>
     </div>
     <div class="hint">
-      <svg class="icon"><use href="#i-phone"/></svg> Scrollez dans le téléphone pour explorer le site
+      <svg class="icon"><use href="#i-phone"/></svg> Scrollez dans le tÃ©lÃ©phone pour explorer le site
     </div>
   </div>
 </div>
 
 <footer>
   <div class="logo-mark"></div>
-  <div class="copy">Catalogue de démos — Sites livrés en 48h à Mayotte<br>Paiement à la livraison, dès 250€<br><a href="https://groupe-solution.vercel.app/offre-site-web.html">Voir l'offre complète</a></div>
+  <div class="copy">Catalogue de dÃ©mos â Sites livrÃ©s en 48h Ã  Mayotte<br>Paiement Ã  la livraison, dÃ¨s 250â¬<br><a href="offre-site-web.html">Voir l'offre complÃ¨te</a></div>
 </footer>
 
 <script>
@@ -760,12 +776,12 @@
   let currentDA = 0;
 
   const daLabels = [
-    { h: 'Moderne minimaliste', p: 'Lignes nettes, blanc, accent rose poudré' },
-    { h: 'Élégant premium', p: 'Fond sombre, doré, typographie serif raffinée' },
-    { h: 'Audacieux coloré', p: 'Dégradés vifs, formes marquées, énergie' },
+    { h: 'Moderne minimaliste', p: 'Lignes nettes, blanc, accent rose poudrÃ©' },
+    { h: 'ÃlÃ©gant premium', p: 'Fond sombre, dorÃ©, typographie serif raffinÃ©e' },
+    { h: 'Audacieux colorÃ©', p: 'DÃ©gradÃ©s vifs, formes marquÃ©es, Ã©nergie' },
     { h: 'Naturel artisanal', p: 'Terracotta, beige, esprit fait-maison' },
-    { h: 'Tech néon', p: 'Sombre, accent électrique, ambiance futuriste' },
-    { h: 'Vintage rétro', p: 'Pastels, motifs pointillés, nostalgie' }
+    { h: 'Tech nÃ©on', p: 'Sombre, accent Ã©lectrique, ambiance futuriste' },
+    { h: 'Vintage rÃ©tro', p: 'Pastels, motifs pointillÃ©s, nostalgie' }
   ];
 
   function render() {
