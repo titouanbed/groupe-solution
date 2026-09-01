@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Catalogue de maquettes de sites web — 3 secteurs, 6 directions artistiques. Choisissez votre style, livré en 48h." />
-<title>Catalogue de démos — 18 styles de sites en 48h</title>
+
+<!-- Optimisation SEO -->
+<title>Modèles de Sites Internet Mayotte | 18 Démos pour votre Entreprise</title>
+<meta name="description" content="Découvrez nos 18 maquettes de sites web spécialement conçues pour la transition digitale à Mayotte. Restaurant, coiffeur, garage. Votre site web en 48h." />
+<meta name="keywords" content="modèle site web Mayotte, création site internet Mayotte, webdesign Mayotte, exemple site vitrine, développeur Mayotte" />
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23F9A8D4'/%3E%3Ccircle cx='50' cy='50' r='18' fill='white' opacity='0.95'/%3E%3C/svg%3E" />
 <style>
   :root {
@@ -26,7 +30,7 @@
   .icon-lg { width: 40px; height: 40px; stroke-width: 1.4; }
   .icon-sm { width: 16px; height: 16px; }
 
-  /* ===== NAVBAR (sombre, cohérente avec le téléphone et le footer) ===== */
+  /* ===== NAVBAR ===== */
   nav { position: sticky; top: 0; z-index: 1000; background: rgba(9,9,11,0.92); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(236,72,153,0.15); height: 64px; display: flex; align-items: center; padding: 0 5%; gap: 16px; }
   .nav-logo { display: flex; align-items: center; text-decoration: none; }
   .logo-mark { width: 36px; height: 36px; background: var(--gradient-rose); clip-path: polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 0% 100%); box-shadow: 0 4px 12px rgba(236,72,153,0.45); position: relative; transition: transform 0.4s var(--ease); }
@@ -37,10 +41,8 @@
   .nav-link svg { width: 15px; height: 15px; }
   .nav-tag { margin-left: auto; background: rgba(236,72,153,0.15); color: var(--rose); padding: 8px 16px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
 
-  /* ===== LAYOUT PRINCIPAL : 2 colonnes sur desktop ===== */
+  /* ===== LAYOUT PRINCIPAL ===== */
   .layout { max-width: 1200px; margin: 0 auto; padding: 40px 5% 60px; display: grid; grid-template-columns: 1fr 420px; gap: 50px; align-items: start; }
-
-  /* ===== COLONNE GAUCHE : texte + navigation ===== */
   .col-left { position: sticky; top: 80px; }
 
   .hero { margin-bottom: 28px; }
@@ -49,7 +51,6 @@
   .hero h1 .accent { background: var(--gradient-rose); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero p { font-size: 1.05rem; color: var(--gris); max-width: 500px; }
 
-  /* Navigation secteurs */
   .nav-section { margin-bottom: 24px; }
   .nav-section h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gris); margin-bottom: 12px; padding-left: 4px; }
   .secteurs { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -58,14 +59,12 @@
   .secteur-tab.active { background: var(--ink); color: white; border-color: var(--ink); }
   .secteur-tab .icon { width: 18px; height: 18px; }
 
-  /* Navigation DA */
   .da-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .da-tab { padding: 10px 14px; background: white; border: 1.5px solid var(--gris-clair); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 0.85rem; color: var(--gris); transition: all 0.2s var(--ease); text-align: left; display: flex; align-items: center; gap: 8px; }
   .da-tab:hover { border-color: var(--rose); color: var(--rose-fonce); }
   .da-tab.active { background: var(--rose-clair); color: var(--rose-vif); border-color: var(--rose); }
   .da-swatch { width: 16px; height: 16px; border-radius: 5px; flex-shrink: 0; }
 
-  /* Hint conversion */
   .convert-box { margin-top: 28px; background: var(--ink); border-radius: var(--radius); padding: 24px; color: white; }
   .convert-box h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
   .convert-box h3 .a { color: var(--rose); }
@@ -76,7 +75,6 @@
   .convert-sub:hover { color: var(--rose); }
   .convert-sub svg { width: 14px; height: 14px; }
 
-  /* ===== COLONNE DROITE : téléphone ===== */
   .col-right { display: flex; flex-direction: column; align-items: center; position: sticky; top: 80px; }
   .da-label { text-align: center; margin-bottom: 18px; min-height: 52px; }
   .da-label h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 2px; }
@@ -96,7 +94,7 @@
   .hint { text-align: center; color: var(--gris); font-size: 0.78rem; margin-top: 14px; display: flex; align-items: center; gap: 6px; }
   .hint .icon { color: var(--rose-fonce); width: 14px; height: 14px; }
 
-  /* ===== ÉLÉMENTS COMMUNS DES DÉMOS ===== */
+  /* CSS DES DÉMOS - Identique à l'original */
   .d-hero { min-height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; position: relative; overflow: hidden; }
   .d-hero h2 { font-size: 1.7rem; font-weight: 800; line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.02em; }
   .d-hero p { font-size: 0.9rem; opacity: 0.92; }
@@ -117,7 +115,6 @@
   .d-stars { color: #fbbf24; font-size: 0.8rem; margin-top: 6px; letter-spacing: 2px; }
   .d-foot { text-align: center; padding: 18px; font-size: 0.74rem; border-top: 1px solid var(--gris-clair); }
 
-  /* ===== DA0: MODERNE MINIMALISTE ===== */
   .da0-hero { background: #fafafa; color: var(--gris-fonce); border-bottom: 1px solid var(--gris-clair); }
   .da0-hero h2 { color: var(--gris-fonce); }
   .da0-hero h2 .a { color: var(--rose-fonce); }
@@ -132,7 +129,6 @@
   .da0-info .icon { color: var(--rose-fonce); }
   .da0-foot { color: var(--gris); }
 
-  /* ===== DA1: ÉLÉGANT PREMIUM (sombre + doré + serif) ===== */
   .da1-hero { background: linear-gradient(160deg, #1c1917 0%, #292524 100%); color: #fbbf24; }
   .da1-hero h2 { color: #fef3c7; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: 0.02em; }
   .da1-hero h2 .a { color: #fbbf24; font-style: italic; }
@@ -151,7 +147,6 @@
   .da1-foot { background: #1c1917; color: #78716c; border-color: #44403c; }
   .da1-tag { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
 
-  /* ===== DA2: AUDACIEUX COLORÉ (dégradés vifs, gras) ===== */
   .da2-hero { background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%); color: white; }
   .da2-hero h2 { text-shadow: 0 2px 20px rgba(0,0,0,0.15); }
   .da2-hero h2 .a { background: white; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -166,7 +161,6 @@
   .da2-info .icon { color: var(--rose-fonce); }
   .da2-foot { color: var(--gris); }
 
-  /* ===== DA3: NATUREL & ARTISANAL (terracotta, beige, organique) ===== */
   .da3-hero { background: linear-gradient(160deg, #fef3c7 0%, #fde68a 40%, #d97706 100%); color: #78350f; }
   .da3-hero h2 { color: #78350f; font-family: Georgia, serif; }
   .da3-hero h2 .a { color: #b45309; font-style: italic; }
@@ -185,7 +179,6 @@
   .da3-foot { background: #fef9f3; color: #a16207; border-color: #fde68a; }
   .da3-tag { background: #fde68a; color: #78350f; }
 
-  /* ===== DA4: TECH & NÉON (sombre, accent électrique) ===== */
   .da4-hero { background: radial-gradient(ellipse at top, #1e1b4b 0%, #09090b 100%); color: #22d3ee; position: relative; }
   .da4-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(34,211,238,0.15), transparent 60%); }
   .da4-hero h2 { color: #f0f9ff; position: relative; z-index: 1; font-weight: 800; }
@@ -205,7 +198,6 @@
   .da4-foot { background: #09090b; color: #52525b; border-color: #27272a; }
   .da4-tag { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid rgba(34,211,238,0.3); }
 
-  /* ===== DA5: VINTAGE RÉTRO (pastel, motifs, nostalgie) ===== */
   .da5-hero { background: linear-gradient(160deg, #fce7f3 0%, #fbcfe8 40%, #f9a8d4 100%); color: #831843; position: relative; }
   .da5-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(131,24,67,0.06) 1px, transparent 1px); background-size: 14px 14px; }
   .da5-hero h2 { color: #831843; font-family: Georgia, serif; position: relative; z-index: 1; }
@@ -225,13 +217,6 @@
   .da5-foot { background: #fdf2f8; color: #be185d; border-color: #fbcfe8; }
   .da5-tag { background: #fce7f3; color: #831843; border: 1px solid #fbcfe8; }
 
-  /* ===== FOOTER ===== */
-  footer { background: var(--ink); color: white; padding: 36px 5% 24px; text-align: center; }
-  footer .logo-mark { margin: 0 auto 16px; }
-  footer .copy { margin-top: 16px; color: #71717a; font-size: 0.82rem; line-height: 1.7; }
-  footer a { color: var(--rose); text-decoration: none; }
-
-  /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; gap: 30px; padding: 30px 5% 50px; }
     .col-left { position: static; }
@@ -250,7 +235,6 @@
 </head>
 <body>
 
-<!-- ICÔNES SVG -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M5 2v20"/><path d="M19 2v20M19 2h-3a3 3 0 0 0-3 3v5a3 3 0 0 0 3 3h3"/></symbol>
   <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></symbol>
@@ -287,26 +271,25 @@
 </nav>
 
 <div class="layout">
-  <!-- ===== COLONNE GAUCHE ===== -->
   <div class="col-left">
     <div class="hero">
       <div class="hero-badge">
-        <svg class="icon-sm"><use href="#i-sparkles"/></svg> Livré en 48h — dès 250€
+        <svg class="icon-sm"><use href="#i-sparkles"/></svg> Livré en 48h — Mayotte
       </div>
       <h1>Votre site,<br><span class="accent">18 styles possibles</span></h1>
-      <p>Choisissez votre secteur, puis le style qui vous ressemble. Chaque site est livré en 48h, sur-mesure, paiement à la livraison.</p>
+      <p>Choisissez votre secteur, puis le style qui vous ressemble. Chaque site est livré en 48h, optimisé pour Google Mayotte, paiement à la livraison.</p>
     </div>
 
     <div class="nav-section">
       <h4>Secteur</h4>
       <div class="secteurs">
-        <div class="secteur-tab active" onclick="showSecteur(0)">
+        <div class="secteur-tab active" onclick="showSecteur(0)" aria-label="Modèles pour Restaurant à Mayotte">
           <svg class="icon"><use href="#i-utensils"/></svg> Restaurant
         </div>
-        <div class="secteur-tab" onclick="showSecteur(1)">
+        <div class="secteur-tab" onclick="showSecteur(1)" aria-label="Modèles pour Coiffeur à Mayotte">
           <svg class="icon"><use href="#i-scissors"/></svg> Coiffeur
         </div>
-        <div class="secteur-tab" onclick="showSecteur(2)">
+        <div class="secteur-tab" onclick="showSecteur(2)" aria-label="Modèles pour Garage Auto à Mayotte">
           <svg class="icon"><use href="#i-wrench"/></svg> Garage auto
         </div>
       </div>
@@ -338,7 +321,7 @@
 
     <div class="convert-box">
       <h3>Un style vous plaît ?<br><span class="a">Il est à vous en 48h.</span></h3>
-      <p>Je personnalise le nom, les services, les couleurs et les textes. Paiement à la livraison, sans surprise.</p>
+      <p>Je personnalise le nom, les services, les couleurs et les textes pour votre activité à Mayotte. Paiement à la livraison.</p>
       <a href="https://wa.me/33782298559?text=Bonjour%20Titouan%2C%20j%27ai%20vu%20ton%20catalogue%20de%20d%C3%A9mos%2C%20je%20veux%20un%20site%20pour%20mon%20activit%C3%A9" class="convert-cta">
         <svg class="icon-sm"><use href="#i-arrow-right"/></svg> Je veux le mien
       </a>
@@ -348,7 +331,6 @@
     </div>
   </div>
 
-  <!-- ===== COLONNE DROITE : TÉLÉPHONE ===== -->
   <div class="col-right">
     <div class="da-label" id="daLabel">
       <h3>Moderne minimaliste</h3>
@@ -357,10 +339,6 @@
     <div class="phone-frame">
       <div class="phone-screen">
         <div class="phone-scroll" id="phoneScroll">
-
-<!-- ============================================ -->
-<!-- SECTEUR 0: RESTAURANT — 6 DA -->
-<!-- ============================================ -->
 
 <!-- R-DA0 Moderne -->
 <div class="demo active" data-s="0" data-d="0">
@@ -486,10 +464,6 @@
   </div>
   <div class="d-foot da5-foot">Le Petit Mahorais — Mamoudzou</div>
 </div>
-
-<!-- ============================================ -->
-<!-- SECTEUR 1: COIFFEUR — 6 DA -->
-<!-- ============================================ -->
 
 <!-- C-DA0 Moderne -->
 <div class="demo" data-s="1" data-d="0">
@@ -621,10 +595,6 @@
   </div>
   <div class="d-foot da5-foot">May'Salon — Mamoudzou</div>
 </div>
-
-<!-- ============================================ -->
-<!-- SECTEUR 2: GARAGE AUTO — 6 DA -->
-<!-- ============================================ -->
 
 <!-- G-DA0 Moderne -->
 <div class="demo" data-s="2" data-d="0">
@@ -768,7 +738,7 @@
 
 <footer>
   <div class="logo-mark"></div>
-  <div class="copy">Catalogue de démos — Sites livrés en 48h à Mayotte<br>Paiement à la livraison, dès 250€<br><a href="offre-site-web.html">Voir l'offre complète</a></div>
+  <div class="copy">Catalogue de démos — Sites web livrés en 48h à Mayotte<br>Paiement à la livraison, dès 250€<br><a href="offre-site-web.html">Voir l'offre complète</a></div>
 </footer>
 
 <script>
