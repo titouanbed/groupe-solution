@@ -92,6 +92,17 @@
   .wa-btn:hover { transform: scale(1.05); }
   .wa-btn svg { width: 16px; height: 16px; fill: currentColor; }
   .sent-mark { color: var(--vert); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+  .phone-type { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; flex-shrink: 0; }
+  .phone-mobile { background: #dcfce7; color: #16a34a; }
+  .phone-fixe { background: #fef3c7; color: #92400e; }
+  .prospect-row.fixe { opacity: 0.7; }
+  .call-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--gris-fonce); color: white; padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; text-decoration: none; white-space: nowrap; transition: transform 0.2s; flex-shrink: 0; }
+  .call-btn:hover { transform: scale(1.05); }
+  .call-btn svg { width: 16px; height: 16px; fill: currentColor; }
+  .filter-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filter-btn { padding: 8px 16px; border-radius: 999px; font-size: 0.82rem; font-weight: 600; cursor: pointer; border: 2px solid var(--gris-clair); background: white; color: var(--gris); transition: all 0.2s; }
+  .filter-btn.active { background: var(--ink); color: white; border-color: var(--ink); }
+  .filter-btn:hover { border-color: var(--rose); }
 
   /* Avertissement */
   .warning { background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; display: flex; gap: 12px; align-items: flex-start; }
@@ -244,6 +255,12 @@ Nom, Téléphone, Secteur
       </div>
     </div>
 
+    <div class="filter-row">
+      <div class="filter-btn active" onclick="filterResults('all')" id="filterAll">Tous (27)</div>
+      <div class="filter-btn" onclick="filterResults('mobile')" id="filterMobile">WhatsApp (12)</div>
+      <div class="filter-btn" onclick="filterResults('fixe')" id="filterFixe">A appeler (15)</div>
+    </div>
+
     <div class="results" id="resultsList"></div>
 
     <div class="daily-counter" id="dailyCounter">
@@ -291,7 +308,7 @@ Nom, Téléphone, Secteur
   }
 
   function loadExample() {
-    document.getElementById('inputList').value = "Le Moana, 262269610612, restaurant\nSnack Bar Mamou, 262639075808, restaurant\nLe Rendez Vous Chez Cousin, 262269613388, restaurant\nChez Ma, 262639213440, restaurant\nLe Senat, 262639230658, restaurant\nLe Zen Eat, 262639243800, restaurant\nL'Auberge du Rond Point, 262269610461, restaurant\nHippocampe Restaurant, 262269607660, restaurant\nTraiteur Haribou, 262639696104, restaurant\nDIX THE NA TCHAI, 262269601770, restaurant\nAU PETIT CREUX, 262269600727, restaurant\nLe Quartier Gourmand, 262269639295345, restaurant\nSTAR CAFE, 262269639209007, restaurant\nMoi Coif, 262269630558, coiffeur\nCena Coiffure, 262269524176, coiffeur\nNaiz Coiffure, 262269613399, coiffeur\nKam Coiffure, 262639655085, coiffeur\nVoangy Coiffure, 262269600146, coiffeur\nCoiff&Co, 262262484561, coiffeur\nJino Coiffure, 262639270722, coiffeur\nCarlos Auto, 262639693167, garage\nDiagnostic Auto Et Services, 262639062055, garage\nMecanique Auto Mayotte SARL, 262639655060, garage\nMaxauto Kaweni, 262269613743, garage\nMaxauto Commerce, 262269610145, garage\nMayotte Motor Corp, 262269611781, garage\nAuto Piece Karim, 262269607293, garage";
+    document.getElementById('inputList').value = "Le Moana, 262269610612, restaurant\nSnack Bar Mamou, 262639075808, restaurant\nLe Rendez Vous Chez Cousin, 262269613388, restaurant\nChez Ma, 262639213440, restaurant\nLe Senat, 262639230658, restaurant\nLe Zen Eat, 262639243800, restaurant\nL'Auberge du Rond Point, 262269610461, restaurant\nHippocampe Restaurant, 262269607660, restaurant\nTraiteur Haribou, 262639696104, restaurant\nDIX THE NA TCHAI, 262269601770, restaurant\nAU PETIT CREUX, 262269600727, restaurant\nLe Quartier Gourmand, 262639295345, restaurant\nSTAR CAFE, 262639209007, restaurant\nMoi Coif, 262269630558, coiffeur\nCena Coiffure, 262269524176, coiffeur\nNaiz Coiffure, 262269613399, coiffeur\nKam Coiffure, 262639655085, coiffeur\nVoangy Coiffure, 262269600146, coiffeur\nCoiff&Co, 262262484561, coiffeur\nJino Coiffure, 262639270722, coiffeur\nCarlos Auto, 262639693167, garage\nDiagnostic Auto Et Services, 262639062055, garage\nMecanique Auto Mayotte SARL, 262639655060, garage\nMaxauto Kaweni, 262269613743, garage\nMaxauto Commerce, 262269610145, garage\nMayotte Motor Corp, 262269611781, garage\nAuto Piece Karim, 262269607293, garage";
     parseList();
   }
 
@@ -359,47 +376,71 @@ Nom, Téléphone, Secteur
     document.getElementById('msgTemplate').value = templates[sector];
   }
 
+  function isMobile(phone) {
+    return phone.startsWith('262639') || phone.startsWith('262632') || phone.startsWith('262693');
+  }
+
+  let currentFilter = 'all';
+
   function generateLinks() {
     const msgBase = document.getElementById('msgTemplate').value;
     const list = document.getElementById('resultsList');
     list.innerHTML = '';
 
-    let sentCount = 0;
     let idx = 0;
+    let mobileCount = 0;
+    let fixeCount = 0;
 
     for (const p of prospects) {
       const msg = msgBase.replace(/\[NOM\]/g, p.name);
       const encoded = encodeURIComponent(msg);
-      const waLink = 'https://wa.me/' + p.phone + '?text=' + encoded;
+      const mobile = isMobile(p.phone);
+      if (mobile) mobileCount++; else fixeCount++;
 
       const row = document.createElement('div');
-      row.className = 'prospect-row';
+      row.className = 'prospect-row' + (mobile ? '' : ' fixe');
       row.dataset.idx = idx;
+      row.dataset.type = mobile ? 'mobile' : 'fixe';
 
       const sectorClass = 'sector-' + p.sector;
       const sectorLabel = p.sector.charAt(0).toUpperCase() + p.sector.slice(1);
+      const phoneTypeLabel = mobile ? 'WhatsApp' : 'Fixe';
+      const phoneTypeClass = mobile ? 'phone-mobile' : 'phone-fixe';
+
+      const actionHtml = mobile
+        ? `<a href="https://wa.me/${p.phone}?text=${encoded}" target="_blank" class="wa-btn" onclick="markSent(${idx})"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>`
+        : `<a href="tel:+${p.phone}" class="call-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>Appeler</a>`;
 
       row.innerHTML = `
         <div class="prospect-sector ${sectorClass}">${sectorLabel}</div>
+        <div class="phone-type ${phoneTypeClass}">${phoneTypeLabel}</div>
         <div class="prospect-info">
           <div class="prospect-name">${p.name}</div>
           <div class="prosect-meta">${p.phone}</div>
-          <div class="prospect-msg">${msg.slice(0, 120)}...</div>
+          <div class="prospect-msg">${msg.slice(0, 100)}...</div>
         </div>
-        <div id="action-${idx}">
-          <a href="${waLink}" target="_blank" class="wa-btn" onclick="markSent(${idx})">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Ouvrir WhatsApp
-          </a>
-        </div>
+        <div id="action-${idx}">${actionHtml}</div>
       `;
       list.appendChild(row);
       idx++;
     }
 
     document.getElementById('statTotal').textContent = prospects.length;
+    document.getElementById('filterAll').textContent = 'Tous (' + prospects.length + ')';
+    document.getElementById('filterMobile').textContent = 'WhatsApp (' + mobileCount + ')';
+    document.getElementById('filterFixe').textContent = 'A appeler (' + fixeCount + ')';
     updateStats();
     showStep(3);
+  }
+
+  function filterResults(type) {
+    currentFilter = type;
+    document.querySelectorAll('.prospect-row').forEach(row => {
+      if (type === 'all') row.style.display = 'flex';
+      else row.style.display = (row.dataset.type === type) ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('filter' + (type === 'all' ? 'All' : type === 'mobile' ? 'Mobile' : 'Fixe')).classList.add('active');
   }
 
   function markSent(idx) {
