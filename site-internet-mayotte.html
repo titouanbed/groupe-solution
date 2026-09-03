@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- SEO pour la page Offre -->
-  <title>Création de Site Internet à Mayotte | GroupSolution - Leader DOM-TOM</title>
+  <!-- SEO -->
+  <title>Création de Site Internet à Mayotte | GroupSolution</title>
   <meta name="description" content="Création de sites web épurés et automatisés pour Mayotte. Référencement optimisé, design professionnel. Contactez-nous au 0782298559." />
   <meta name="keywords" content="site internet Mayotte, création site web Mayotte, automatisation Mayotte, référencement Mayotte, développeur Mayotte, agence web Mayotte" />
   
-  <!-- Données structurées pour Google -->
+  <!-- Données structurées -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "GroupSolution - Création de Sites Internet à Mayotte",
-    "description": "Expert en création de sites web épurés et automatisés pour les entreprises de Mayotte et des DOM-TOM.",
-    "areaServed": ["Mayotte", "La Réunion", "Guadeloupe", "Martinique", "Guyane"],
+    "description": "Expert en création de sites web épurés et automatisés pour Mayotte.",
+    "areaServed": "Mayotte",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Mamoudzou",
@@ -31,7 +31,9 @@
   </script>
   
   <link rel="icon" type="image/svg+xml" href="Logo.svg" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -58,7 +60,7 @@
     
     /* NAVBAR */
     nav {
-      position: sticky; top: 0; z-index: 1000;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0;
       transition: var(--transition);
@@ -72,7 +74,7 @@
     .nav-links a:hover { color: var(--rose-fonce); }
     .nav-actions { display: flex; gap: 12px; align-items: center; }
     
-    /* Boutons */
+    /* BOUTONS */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 12px 24px; border-radius: var(--border-radius);
@@ -84,26 +86,74 @@
     .btn-secondary { background: var(--blanc); color: var(--gris-fonce); border: 1px solid var(--gris); }
     .btn-secondary:hover { background: var(--gris-clair); border-color: var(--gris-fonce); }
     
-    /* HERO */
-    .hero { padding: 80px 0 120px; text-align: center; background: linear-gradient(135deg, var(--blanc) 0%, var(--gris-clair) 100%); }
+    /* HERO AVEC FOND DÉFILEMENT */
+    .hero {
+      position: relative;
+      padding: 120px 0 100px;
+      text-align: center;
+      color: var(--blanc);
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      animation: slideBg 24s infinite linear;
+    }
+    
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+    }
+    
+    @keyframes slideBg {
+      0%, 100% { background-image: url('assets/photo1.jpg'); }
+      33% { background-image: url('assets/photo2.jpg'); }
+      66% { background-image: url('assets/photo3.jpg'); }
+    }
+    
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--rose-clair); color: var(--rose-fonce);
-      padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);
+      padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
     .hero h1 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero p { font-size: 1.15rem; color: var(--gris); max-width: 600px; margin: 0 auto 40px; }
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      opacity: 0.95;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
     .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .hero-image { margin-top: 60px; height: 400px; background: var(--gris-clair); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: var(--gris); font-size: 1.1rem; }
     
     /* SECTIONS */
     section { padding: 80px 0; }
     .section-header { text-align: center; margin-bottom: 60px; }
-    .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
+    .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; color: var(--gris-fonce); }
     .section-header h2 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -112,7 +162,8 @@
     .section-tag {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--rose-clair); color: var(--rose-fonce);
-      padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
+      padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+      margin-bottom: 16px;
     }
     
     /* OFFRES */
@@ -127,9 +178,9 @@
       background: var(--rose); color: var(--blanc); padding: 4px 16px; border-radius: 999px; font-size: 0.75rem; font-weight: 700;
     }
     .offre-icon { width: 56px; height: 56px; background: var(--rose-clair); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--rose-fonce); }
-    .offre-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .offre-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
     .offre-card .desc { color: var(--gris); font-size: 0.95rem; margin-bottom: 16px; }
-    .offre-card .prix { font-size: 2.5rem; font-weight: 800; margin: 16px 0; line-height: 1; }
+    .offre-card .prix { font-size: 2.5rem; font-weight: 800; margin: 16px 0; line-height: 1; color: var(--gris-fonce); }
     .offre-card .prix small { font-size: 1rem; color: var(--gris); font-weight: 400; }
     .offre-card .delai {
       display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: var(--vert);
@@ -152,21 +203,21 @@
       box-shadow: 0 4px 15px rgba(236,72,153,0.3); transition: var(--transition);
     }
     .process-step:hover .step-num { transform: scale(1.12) rotate(6deg); }
-    .process-step h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .process-step h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
     .process-step p { color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto; }
     
     /* FAQ */
     .faq { max-width: 800px; margin: 0 auto; }
     .faq-item { background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius); margin-bottom: 12px; overflow: hidden; }
-    .faq-q { padding: 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.02rem; gap: 16px; }
+    .faq-q { padding: 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.02rem; gap: 16px; color: var(--gris-fonce); }
     .faq-q::after { content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--gris); transition: var(--transition); }
     .faq-item.open .faq-q::after { content: '−'; color: var(--rose-fonce); }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--transition), padding 0.4s var(--transition); padding: 0 20px; color: var(--gris); }
     .faq-item.open .faq-a { max-height: 300px; padding: 0 20px 20px; }
     
     /* CTA FINAL */
-    .cta-final { padding: 100px 0; text-align: center; background: linear-gradient(135deg, var(--blanc) 0%, var(--gris-clair) 100%); }
-    .cta-final h2 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px; }
+    .cta-final { padding: 100px 0; text-align: center; background: var(--gris-clair); }
+    .cta-final h2 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px; color: var(--gris-fonce); }
     .cta-final h2 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -180,17 +231,29 @@
     .footer-logo { display: flex; flex-direction: column; gap: 16px; }
     .footer-logo img { height: 36px; width: auto; }
     .footer-desc { color: #a1a1aa; font-size: 0.9rem; line-height: 1.7; }
-    .footer-links h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .footer-links h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--blanc); }
     .footer-links ul { list-style: none; }
     .footer-links ul li { margin-bottom: 8px; }
     .footer-links ul li a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
     .footer-links ul li a:hover { color: var(--rose); }
     .footer-contact { background: var(--rose-clair); color: var(--noir); padding: 24px; border-radius: var(--border-radius); }
-    .footer-contact h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .footer-contact h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--noir); }
     .footer-contact p { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
     .footer-contact a { color: var(--noir); text-decoration: none; font-weight: 600; }
     .footer-contact a:hover { text-decoration: underline; }
     .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; color: #71717a; font-size: 0.85rem; }
+    
+    /* PHOTO PLACEHOLDER */
+    .photo-placeholder {
+      background: var(--gris-clair);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gris);
+      font-size: 0.9rem;
+      min-height: 200px;
+    }
     
     /* RESPONSIVE */
     @media (max-width: 768px) {
@@ -211,13 +274,13 @@
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--transition), transform 0.6s var(--transition); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     
-    /* ICONS */
-    .icon { width: 20px; height: 20px; stroke-width: 1.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--gris-clair); }
     ::-webkit-scrollbar-thumb { background: var(--gris); border-radius: 4px; }
+    
+    /* ICONS */
+    .icon { width: 20px; height: 20px; stroke-width: 1.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   </style>
 </head>
 
@@ -262,13 +325,14 @@
   </nav>
 
   <section class="hero" id="hero">
-    <div class="container">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
-        Disponible cette semaine — Basé à Mayotte
+        Disponible cette semaine — Mayotte
       </div>
-      <h1>Création de <span class="accent">Sites Internet</span><br>à Mayotte & DOM-TOM</h1>
-      <p>Des sites web épurés, automatisés et optimisés pour le référencement. Livraison en 48h, paiement à la livraison, zéro risque.</p>
+      <h1>Création de <span class="accent">Sites Internet</span><br>à Mayotte</h1>
+      <p>Des sites web épurés, automatisés et optimisés pour le référencement. Livraison en 48h, paiement à la livraison.</p>
       <div class="hero-ctas">
         <a href="https://wa.me/33782298559" class="btn btn-primary">
           <svg class="icon"><use href="#i-chat"/></svg>
@@ -278,10 +342,6 @@
           <svg class="icon"><use href="#i-arrow-right"/></svg>
           <span>Voir les 18 styles</span>
         </a>
-      </div>
-      <div class="hero-image reveal">
-        <img src="assets/mayotte-hero.jpg" alt="Création de sites internet à Mayotte" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--border-radius);" onerror="this.style.display='none'" />
-        <span style="color: var(--gris);">Image : mayotte-hero.jpg</span>
       </div>
     </div>
   </section>
@@ -426,8 +486,8 @@
           <div class="faq-a"><p>Non. J'utilise des photos libres de droits adaptées à votre activité. Vos propres photos sont les bienvenues.</p></div>
         </div>
         <div class="faq-item reveal">
-          <div class="faq-q">Je suis à Mayotte, La Réunion ou en Métropole ?</div>
-          <div class="faq-a"><p>Tout fonctionne à distance. Je suis expert de Mayotte et des DOM-TOM, mais j'ai des clients partout en France.</p></div>
+          <div class="faq-q">Je suis à Mayotte uniquement ?</div>
+          <div class="faq-a"><p>Oui, cette page est 100% dédiée à Mayotte. Les autres DOM-TOM auront leurs propres pages.</p></div>
         </div>
       </div>
     </div>
@@ -459,7 +519,7 @@
       <div class="footer-content">
         <div class="footer-logo">
           <img src="Logo.svg" alt="GroupSolution" />
-          <p class="footer-desc">Création de sites web épurés et automatisés pour Mayotte et les DOM-TOM. Livraison rapide, paiement à la livraison.</p>
+          <p class="footer-desc">Création de sites web épurés et automatisés pour Mayotte. Livraison rapide, paiement à la livraison.</p>
         </div>
         <div class="footer-links">
           <h4>Liens</h4>
