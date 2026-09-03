@@ -3,727 +3,192 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- SEO -->
-  <title>Création Digitale à Mayotte | GroupSolution - Expert en Transformation Numérique</title>
-  <meta name="description" content="Expert en création digitale à Mayotte : sites web épurés, automatisation IA, référencement. Audit gratuit, solutions sur-mesure. Contactez-nous au 0782298559 ou par email." />
-  <meta name="keywords" content="création digitale Mayotte, transformation numérique Mayotte, site web Mayotte, automatisation Mayotte, référencement Mayotte, audit gratuit Mayotte, expert digital Mayotte" />
-  
-  <!-- Données structurées -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "GroupSolution - Création Digitale à Mayotte",
-    "description": "Expert en transformation numérique et création digitale pour les entreprises de Mayotte. Audit gratuit, solutions sur-mesure.",
-    "areaServed": "Mayotte",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Mamoudzou",
-      "addressRegion": "Mayotte",
-      "addressCountry": "FR"
-    },
-    "telephone": "+33782298559",
-    "email": "contact@groupsolution.fr",
-    "url": "https://groupsolution.fr/offre-site-web.html"
-  }
-  </script>
-  
+  <title>Création Digitale à Mayotte | GroupSolution</title>
+  <meta name="description" content="Audit gratuit, sites web, automatisation IA et solutions digitales sur-mesure pour Mayotte. Livraison en 48h, paiement à la livraison." />
+  <meta name="keywords" content="création digitale Mayotte, site internet Mayotte, automatisation IA Mayotte, audit gratuit, développeur Mayotte" />
   <link rel="icon" type="image/svg+xml" href="Logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
   <style>
     :root {
-      --rose: #FFD1DC;
-      --rose-fonce: #EC4899;
-      --rose-clair: #FDF2F8;
-      --gris-fonce: #1a1a1a;
-      --gris: #6b7280;
-      --gris-clair: #f9fafb;
-      --blanc: #ffffff;
-      --noir: #000000;
-      --noir-doux: #262626;
-      --vert: #10b981;
-      --bleu: #3b82f6;
-      --border-radius: 16px;
-      --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      --box-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
-      --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      --rose: #FFD1DC; --rose-fonce: #EC4899; --rose-clair: #FDF2F8;
+      --gris-fonce: #1a1a1a; --gris: #6b7280; --gris-clair: #f9fafb; --blanc: #ffffff; --noir: #000000; --noir-doux: #262626;
+      --vert: #10b981; --border-radius: 12px; --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); --box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { color: var(--gris-fonce); background: var(--blanc); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    
-    /* ===== NAVBAR ===== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 12px 0;
-      transition: var(--transition);
-    }
-    nav.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
-    .nav-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 32px; width: auto; filter: drop-shadow(0 2px 6px rgba(236,72,153,0.15)); }
+
+    /* NAVBAR */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0; transition: var(--transition); }
+    nav.scrolled { box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+    .nav-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .nav-logo img { height: 36px; width: auto; }
     .nav-links { display: flex; gap: 24px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--rose-fonce); }
     .nav-actions { display: flex; gap: 12px; align-items: center; }
-    
-    /* ===== BOUTONS ===== */
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: var(--border-radius);
-      font-weight: 600; font-size: 0.95rem; text-decoration: none;
-      transition: var(--transition); border: none; cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--rose); color: var(--noir); 
-      box-shadow: var(--box-shadow);
-    }
-    .btn-primary:hover {
-      background: var(--rose-fonce); color: var(--blanc); 
-      transform: translateY(-2px); box-shadow: var(--box-shadow-lg);
-    }
-    .btn-secondary {
-      background: var(--blanc); color: var(--gris-fonce); 
-      border: 1px solid var(--gris-clair);
-    }
-    .btn-secondary:hover {
-      background: var(--gris-clair); border-color: var(--gris);
-    }
-    .btn-ghost {
-      background: transparent; color: var(--blanc);
-      border: 1.5px solid rgba(255,255,255,0.3);
-    }
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5);
-    }
-    
-    /* ===== HERO AVEC FOND DÉFILEMENT SIMPLE ===== */
+
+    /* BOUTONS */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--border-radius); font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: var(--transition); border: none; cursor: pointer; }
+    .btn-primary { background: var(--rose); color: var(--noir); box-shadow: var(--box-shadow); }
+    .btn-primary:hover { background: var(--rose-fonce); color: var(--blanc); box-shadow: var(--box-shadow-lg); }
+    .btn-secondary { background: var(--blanc); color: var(--gris-fonce); border: 1px solid var(--gris); }
+    .btn-secondary:hover { background: var(--gris-clair); border-color: var(--gris-fonce); }
+
+    /* HERO */
     .hero {
       position: relative;
-      min-height: 80vh;
-      max-height: 90vh;
+      padding: 120px 0 60px;
+      text-align: center;
+      color: var(--blanc);
+      min-height: 70vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      color: var(--blanc);
-      overflow: hidden;
-      padding-top: 70px;
-      margin-bottom: 40px;
-    }
-    
-    .hero-bg {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: -1;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('photo1.jpg');
       background-size: cover;
       background-position: center;
-      animation: slideBg 15s infinite linear;
+      transition: background-image 0.1s ease-in-out;
     }
-    
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
-    }
-    
-    @keyframes slideBg {
-      0% { background-image: url('photo1.jpg'); opacity: 1; }
-      25% { background-image: url('photo1.jpg'); opacity: 1; }
-      25.01% { background-image: url('photo2.jpg'); opacity: 0; }
-      50% { background-image: url('photo2.jpg'); opacity: 1; }
-      50.01% { background-image: url('photo3.jpg'); opacity: 0; }
-      75% { background-image: url('photo3.jpg'); opacity: 1; }
-      75.01% { background-image: url('photo4.jpg'); opacity: 0; }
-      100% { background-image: url('photo4.jpg'); opacity: 1; }
-    }
-    
-    .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 20px; }
-    
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);
-      padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.05;
-      margin-bottom: 20px;
-      letter-spacing: -0.03em;
-      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    }
-    
-    .hero h1 .accent {
-      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    
-    .hero p {
-      font-size: 1.25rem;
-      max-width: 700px;
-      margin: 0 auto 40px;
-      opacity: 0.95;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-    
-    .hero-ctas {
-      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-    }
-    
-    /* ===== SECTIONS ===== */
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); }
+    .hero h1 .accent { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 40px; opacity: 0.95; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* SECTIONS */
     section { padding: 80px 0; }
-    
-    .section-header {
-      text-align: center; margin-bottom: 60px;
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; color: var(--gris-fonce); }
+    .section-header h2 .accent { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-header p { font-size: 1.1rem; color: var(--gris); max-width: 600px; margin: 0 auto; }
+    .section-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--rose-clair); color: var(--rose-fonce); padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 16px; }
+
+    /* OFFRES */
+    .offres-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .offre-card {
+      background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius);
+      padding: 24px; box-shadow: var(--box-shadow); transition: var(--transition); position: relative; overflow: hidden;
     }
-    
-    .section-header h2 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800; 
-      margin-bottom: 16px; 
-      line-height: 1.1;
-      color: var(--gris-fonce);
+    .offre-card:hover { transform: translateY(-4px); box-shadow: var(--box-shadow-lg); border-color: var(--rose); }
+    .offre-card.populaire::after {
+      content: 'Populaire'; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      background: var(--rose); color: var(--blanc); padding: 4px 16px; border-radius: 999px; font-size: 0.75rem; font-weight: 700;
     }
-    
-    .section-header h2 .accent {
-      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    
-    .section-header p {
-      font-size: 1.15rem; color: var(--gris); 
-      max-width: 700px; margin: 0 auto;
-    }
-    
-    .section-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--rose-clair); color: var(--rose-fonce);
-      padding: 6px 14px; border-radius: 999px; 
-      font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
-    }
-    
-    /* ===== AUDIT GRATUIT ===== */
-    .audit-section {
-      background: linear-gradient(135deg, var(--rose-clair) 0%, var(--blanc) 100%);
-      padding: 80px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .audit-card {
-      background: var(--blanc);
-      border-radius: var(--border-radius);
-      padding: 40px;
-      box-shadow: var(--box-shadow-lg);
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
-      border: 1px solid var(--gris-clair);
-    }
-    
-    .audit-content h3 {
-      font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--gris-fonce);
-    }
-    
-    .audit-content h3 .accent {
-      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    
-    .audit-content p {
-      font-size: 1.1rem; color: var(--gris); margin-bottom: 24px; line-height: 1.7;
-    }
-    
-    .audit-features {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-    }
-    
-    .audit-feature {
-      display: flex; align-items: center; gap: 10px;
-      color: var(--gris-fonce);
-      font-size: 0.95rem;
-    }
-    
-    .audit-feature::before {
-      content: '✓';
-      color: var(--rose-fonce);
-      font-weight: 700;
-    }
-    
-    .audit-cta {
-      display: flex; flex-direction: column; gap: 12px; justify-content: center;
-    }
-    
-    .audit-cta .btn {
-      width: 220px;
-    }
-    
-    /* ===== BULLES STYLE AIRBNB ===== */
-    .bulles-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-    
-    .bulle {
-      background: var(--blanc);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
-      transition: var(--transition);
-      border: 1px solid var(--gris-clair);
-      position: relative;
-    }
-    
-    .bulle:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--box-shadow-lg);
-    }
-    
-    .bulle-image {
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-    
-    .bulle-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.1));
-    }
-    
-    .bulle-content {
-      padding: 24px;
-    }
-    
-    .bulle-content h4 {
-      font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
-    }
-    
-    .bulle-content p {
-      font-size: 0.95rem; color: var(--gris); margin-bottom: 16px;
-    }
-    
-    .bulle-content .prix {
-      font-size: 1.8rem; font-weight: 800; color: var(--rose-fonce);
-      margin-bottom: 12px;
-    }
-    
-    .bulle-content .delai {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #dcfce7; color: var(--vert);
-      padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
-      margin-bottom: 16px;
-    }
-    
-    .bulle-cta {
-      width: 100%;
-    }
-    
-    /* ===== PROCESSUS ===== */
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-    
-    .process-step {
-      text-align: center;
-      position: relative;
-    }
-    
-    .process-step::before {
-      content: '';
-      position: absolute;
-      top: 40px; left: 50%; right: -50%;
-      height: 2px;
-      background: linear-gradient(to right, var(--rose), transparent);
-      z-index: 0;
-    }
-    
-    .process-step:last-child::before {
-      display: none;
-    }
-    
-    .step-num {
-      width: 64px; height: 64px;
-      background: var(--rose); color: var(--blanc);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; font-weight: 800;
-      margin: 0 auto 20px;
-      position: relative; z-index: 1;
-      box-shadow: 0 4px 15px rgba(236,72,153,0.3);
-      transition: var(--transition);
-    }
-    
-    .process-step:hover .step-num {
-      transform: scale(1.12) rotate(6deg);
-    }
-    
-    .process-step h4 {
-      font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
-    }
-    
-    .process-step p {
-      color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto;
-    }
-    
-    /* ===== FAQ ===== */
-    .faq {
-      max-width: 800px; margin: 0 auto;
-    }
-    
-    .faq-item {
-      background: var(--blanc);
-      border: 1px solid var(--gris-clair);
-      border-radius: var(--border-radius);
-      margin-bottom: 12px;
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
-    }
-    
-    .faq-q {
-      padding: 20px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex; justify-content: space-between;
-      align-items: center;
-      font-size: 1.02rem;
-      gap: 16px;
-      color: var(--gris-fonce);
-    }
-    
-    .faq-q::after {
-      content: '+';
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--gris);
-      transition: var(--transition);
-    }
-    
-    .faq-item.open .faq-q::after {
-      content: '−';
-      color: var(--rose-fonce);
-    }
-    
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s var(--transition), padding 0.4s var(--transition);
-      padding: 0 20px;
-      color: var(--gris);
-    }
-    
-    .faq-item.open .faq-a {
-      max-height: 500px;
-      padding: 0 20px 20px;
-    }
-    
-    /* ===== CTA FINAL AVEC FORMULAIRE ===== */
+    .offre-icon { width: 56px; height: 56px; background: var(--rose-clair); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--rose-fonce); }
+    .offre-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
+    .offre-card .desc { color: var(--gris); font-size: 0.95rem; margin-bottom: 16px; }
+    .offre-card .prix { font-size: 2.5rem; font-weight: 800; margin: 16px 0; line-height: 1; color: var(--gris-fonce); }
+    .offre-card .prix small { font-size: 1rem; color: var(--gris); font-weight: 400; }
+    .offre-card .delai { display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: var(--vert); padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; }
+    .offre-card ul { list-style: none; margin-bottom: 24px; }
+    .offre-card ul li { padding: 10px 0; padding-left: 28px; position: relative; color: var(--gris-fonce); font-size: 0.95rem; }
+    .offre-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--rose-fonce); font-weight: 700; }
+    .offre-card .btn { width: 100%; justify-content: center; }
+
+    /* PROCESS */
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .process-step { text-align: center; position: relative; }
+    .step-num { width: 64px; height: 64px; background: var(--rose); color: var(--blanc); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px; position: relative; z-index: 1; box-shadow: 0 4px 15px rgba(236,72,153,0.3); transition: var(--transition); }
+    .process-step:hover .step-num { transform: scale(1.12) rotate(6deg); }
+    .process-step h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
+    .process-step p { color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto; }
+
+    /* FAQ */
+    .faq { max-width: 800px; margin: 0 auto; }
+    .faq-item { background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius); margin-bottom: 12px; overflow: hidden; }
+    .faq-q { padding: 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.02rem; gap: 16px; color: var(--gris-fonce); }
+    .faq-q::after { content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--gris); transition: var(--transition); }
+    .faq-item.open .faq-q::after { content: '−'; color: var(--rose-fonce); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--transition), padding 0.4s var(--transition); padding: 0 20px; color: var(--gris); }
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 20px 20px; }
+
+    /* CTA FINAL + FORMULAIRE */
     .cta-final {
-      padding: 100px 0;
+      padding: 80px 0;
       text-align: center;
       background: var(--gris-clair);
-      position: relative;
-      overflow: hidden;
     }
-    
-    .cta-final-top {
-      margin-bottom: 60px;
-    }
-    
-    .cta-final-top h2 {
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      font-weight: 800;
-      margin-bottom: 16px;
-      color: var(--gris-fonce);
-      position: relative;
-      z-index: 1;
-    }
-    
-    .cta-final-top h2 .accent {
-      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    
-    .cta-final-top p {
-      font-size: 1.15rem;
-      color: var(--gris);
-      max-width: 600px;
-      margin: 0 auto 32px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* ===== FORMULAIRE DANS CTA FINAL ===== */
+    .cta-final h2 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px; color: var(--gris-fonce); }
+    .cta-final h2 .accent { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-final p { font-size: 1.15rem; color: var(--gris); max-width: 600px; margin: 0 auto 32px; }
+    .cta-final .ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+
+    /* FORMULAIRE */
     .form-container {
+      background: var(--blanc);
+      border: 1px solid var(--gris-clair);
+      border-radius: var(--border-radius);
+      padding: 24px;
       max-width: 600px;
-      margin: 0 auto;
-      background: var(--blanc);
-      padding: 32px;
-      border-radius: var(--border-radius);
+      margin: 0 auto 40px;
       box-shadow: var(--box-shadow);
-      border: 1px solid var(--gris-clair);
     }
-    
-    .form-container h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--gris-fonce);
+    .form-container h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: var(--gris-fonce); }
+    .form-container p { font-size: 0.95rem; color: var(--gris); margin-bottom: 20px; }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--gris-fonce); }
+    .form-group input, .form-group textarea, .form-group select {
+      padding: 12px; border: 1px solid var(--gris-clair); border-radius: 8px; font-size: 0.95rem; color: var(--gris-fonce); background: var(--blanc); transition: var(--transition);
     }
-    
-    .form-container p {
-      color: var(--gris);
-      margin-bottom: 24px;
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--rose-fonce); box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
     }
-    
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    
-    .form-group {
-      margin-bottom: 16px;
-    }
-    
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--gris-clair);
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: var(--transition);
-    }
-    
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--rose-fonce);
-      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
-    }
-    
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-    
-    .form-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-    
-    .form-actions .btn {
-      flex: 1;
-      justify-content: center;
-    }
-    
-    .contact-infos {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 32px;
-    }
-    
-    .contact-info {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--gris-fonce);
-      font-size: 0.95rem;
-    }
-    
-    .contact-info a {
-      color: var(--gris-fonce);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    
-    .contact-info a:hover {
-      color: var(--rose-fonce);
-      text-decoration: underline;
-    }
-    
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--noir-doux);
-      color: var(--blanc);
-      padding: 60px 0 30px;
-      position: relative;
-    }
-    
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-    
-    .footer-logo {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      background: var(--blanc);
-      padding: 24px;
-      border-radius: var(--border-radius);
-      text-align: center;
-      color: var(--gris-fonce);
-    }
-    
-    .footer-logo img {
-      height: 40px;
-      width: auto;
-    }
-    
-    .footer-desc {
-      color: var(--gris);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-    
-    .footer-links h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--blanc);
-    }
-    
-    .footer-links ul {
-      list-style: none;
-    }
-    
-    .footer-links ul li {
-      margin-bottom: 8px;
-    }
-    
-    .footer-links ul li a {
-      color: #a1a1aa;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    
-    .footer-links ul li a:hover {
-      color: var(--rose);
-    }
-    
-    .footer-contact {
-      background: var(--blanc);
-      color: var(--gris-fonce);
-      padding: 24px;
-      border-radius: var(--border-radius);
-    }
-    
-    .footer-contact h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--gris-fonce);
-    }
-    
-    .footer-contact p {
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .footer-contact a {
-      color: var(--gris-fonce);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    
-    .footer-contact a:hover {
-      color: var(--rose-fonce);
-      text-decoration: underline;
-    }
-    
-    .footer-bottom {
-      text-align: center;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: #a1a1aa;
-      font-size: 0.85rem;
-    }
-    
-    /* ===== RESPONSIVE ===== */
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-submit { width: 100%; margin-top: 16px; }
+
+    /* FOOTER */
+    footer { background: var(--noir-doux); color: var(--blanc); padding: 60px 0 30px; }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-logo { display: flex; flex-direction: column; gap: 16px; }
+    .footer-logo img { height: 36px; width: auto; filter: brightness(0) invert(1); }
+    .footer-desc { color: #a1a1aa; font-size: 0.9rem; line-height: 1.7; }
+    .footer-links h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--blanc); }
+    .footer-links ul { list-style: none; }
+    .footer-links ul li { margin-bottom: 8px; }
+    .footer-links ul li a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links ul li a:hover { color: var(--rose); }
+    .footer-contact { background: var(--blanc); color: var(--noir); padding: 24px; border-radius: var(--border-radius); }
+    .footer-contact h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--noir); }
+    .footer-contact p { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .footer-contact a { color: var(--noir); text-decoration: none; font-weight: 600; }
+    .footer-contact a:hover { text-decoration: underline; }
+    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; color: #71717a; font-size: 0.85rem; }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero { min-height: 70vh; padding-top: 80px; }
-      .hero h1 { font-size: 2.4rem; }
+      .hero h1 { font-size: 2.2rem; }
       .hero p { font-size: 1rem; }
       .hero-ctas { flex-direction: column; align-items: center; }
       .hero-ctas .btn { width: 100%; justify-content: center; }
-      .bulles-container { grid-template-columns: 1fr; }
-      .audit-card { grid-template-columns: 1fr; text-align: center; }
-      .audit-features { grid-template-columns: 1fr; }
+      .offres-grid { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
-      .process-step::before { display: none; }
-      .form-row { grid-template-columns: 1fr; }
-      .contact-infos { flex-direction: column; gap: 12px; }
+      .cta-final .ctas { flex-direction: column; align-items: center; }
+      .cta-final .ctas .btn { width: 100%; justify-content: center; }
       .footer-content { grid-template-columns: 1fr; }
-      .footer-logo { background: transparent; padding: 0; color: var(--blanc); }
-      .footer-logo img { filter: brightness(0) invert(1); }
-      .form-group input, .form-group textarea { padding: 10px 14px; }
+      .form-grid { grid-template-columns: 1fr; }
     }
-    
-    /* ===== ANIMATIONS ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s var(--transition), transform 0.6s var(--transition);
-    }
-    
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* ===== SCROLLBAR ===== */
+
+    /* ANIMATIONS */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--transition), transform 0.6s var(--transition); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* SCROLLBAR */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--gris-clair); }
     ::-webkit-scrollbar-thumb { background: var(--gris); border-radius: 4px; }
-    
-    /* ===== ICONS ===== */
-    .icon {
-      width: 20px;
-      height: 20px;
-      stroke-width: 1.5;
-      stroke: currentColor;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+
+    /* ICONS */
+    .icon { width: 20px; height: 20px; stroke-width: 1.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   </style>
 </head>
-
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
     <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
@@ -737,8 +202,6 @@
     <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3L13.5 8.5L19 10L13.5 11.5L12 17L10.5 11.5L5 10L10.5 8.5L12 3Z"/><path d="M19 16L19.7 18.3L22 19L19.7 19.7L19 22L18.3 19.7L16 19L18.3 18.3L19 16Z"/></symbol>
     <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
     <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
-    <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
-    <symbol id="i-lightning" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></symbol>
   </svg>
 
   <!-- NAVBAR -->
@@ -746,9 +209,9 @@
     <div class="container nav-content">
       <a href="#" class="nav-logo"><img src="Logo.svg" alt="GroupSolution" /></a>
       <ul class="nav-links">
-        <li><a href="#audit">Audit Gratuit</a></li>
-        <li><a href="#solutions">Solutions</a></li>
-        <li><a href="#processus">Processus</a></li>
+        <li><a href="#offres">Solutions</a></li>
+        <li><a href="catalogue-demos.html">Démos</a></li>
+        <li><a href="#process">Processus</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -767,135 +230,126 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
     <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
         Disponible cette semaine — Mayotte
       </div>
-      <h1>Création <span class="accent">Digitale</span><br>à Mayotte</h1>
-      <p>On réfléchit à votre place : sites web, automatisation, référencement. Transformation numérique clé en main, sans prise de tête.</p>
+      <h1>Création <span class="accent">Digitale à Mayotte</span></h1>
+      <p>Audit gratuit, sites web, automatisation IA et solutions sur-mesure pour booster votre présence en ligne. Livraison en 48h, paiement à la livraison.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary">
           <svg class="icon"><use href="#i-mail"/></svg>
-          <span>Me contacter</span>
+          <span>Audit gratuit</span>
         </a>
-        <a href="#audit" class="btn btn-ghost">
-          <svg class="icon"><use href="#i-zap"/></svg>
-          <span>Audit Gratuit</span>
+        <a href="catalogue-demos.html" class="btn btn-secondary">
+          <svg class="icon"><use href="#i-arrow-right"/></svg>
+          <span>Voir les 18 styles</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- AUDIT GRATUIT -->
-  <section class="audit-section" id="audit">
+  <!-- OFFRES -->
+  <section id="offres">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">
-          <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-lightning"/></svg>
-          Audit Gratuit
-        </span>
-        <h2>On commence par un <span class="accent">diagnostic</span> gratuit</h2>
-        <p>En 10 minutes, on identifie les axes d’amélioration pour votre entreprise. Pas de vente, que du concret.</p>
-      </div>
-      
-      <div class="audit-card reveal">
-        <div class="audit-content">
-          <h3><span class="accent">Audit Express</span> de votre entreprise</h3>
-          <p>On passe en revue votre présence digitale actuelle (site, réseaux, processus) et on vous propose des solutions <strong>sur-mesure</strong> pour Mayotte. Sans engagement, sans facture.</p>
-          
-          <div class="audit-features">
-            <div class="audit-feature">Analyse de votre site actuel</div>
-            <div class="audit-feature">État des lieux de votre visibilité</div>
-            <div class="audit-feature">Recommandations personnalisées</div>
-            <div class="audit-feature">Estimation des gains possibles</div>
-          </div>
-        </div>
-        
-        <div class="audit-cta">
-          <a href="#contact" class="btn btn-primary">
-            <svg class="icon"><use href="#i-mail"/></svg>
-            Réserver mon audit
-          </a>
-          <a href="#solutions" class="btn btn-secondary">
-            <svg class="icon"><use href="#i-arrow-right"/></svg>
-            Voir les solutions
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOLUTIONS -->
-  <section id="solutions">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">
-          <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-globe"/></svg>
+          <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-bolt"/></svg>
           Nos Solutions
         </span>
-        <h2>Des solutions <span class="accent">claires</span><br>pour votre transformation digitale</h2>
-        <p>On a repensé nos offres pour coller aux besoins réels des entreprises à Mayotte. Pas de jargon, que de l’efficace.</p>
+        <h2>Des solutions <span class="accent">claires</span> et efficaces</h2>
+        <p>On réfléchit à votre place. Choisissez ce qui correspond à votre besoin, ou laissez-nous vous conseiller.</p>
       </div>
-      
-      <div class="bulles-container">
-        <!-- Bulle 1 : Site Vitrine -->
-        <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('photo1.jpg');"></div>
-          <div class="bulle-content">
-            <h4>Site Vitrine</h4>
-            <p>Votre vitrine digitale pour être visible 24h/24. Simple, efficace, professionnel.</p>
-            <div class="prix">250€</div>
-            <div class="delai">
-              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Livré en 48h
-            </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">
-              Me contacter
-            </a>
+      <div class="offres-grid">
+        <!-- Carte mise en avant (Audit Gratuit) -->
+        <div class="offre-card populaire reveal" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto;">
+          <div class="offre-icon">
+            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-sparkles"/></svg>
           </div>
+          <h3>Audit Gratuit de votre Entreprise</h3>
+          <p class="desc">On vient (gratuitement) analyser votre entreprise pour identifier les solutions digitales qui vous feront gagner du temps et de l’argent.</p>
+          <div class="prix">0€ <small>Gratuit</small></div>
+          <div class="delai">
+            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+            Sous 48h
+          </div>
+          <ul>
+            <li>Diagnostic complet de votre présence digitale</li>
+            <li>Recommandations personnalisées (site, automatisation, réseaux sociaux)</li>
+            <li>Devis détaillé pour chaque solution proposée</li>
+            <li>Aucun engagement, 100% transparent</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Je veux mon audit</a>
         </div>
-        
-        <!-- Bulle 2 : Site Poussé -->
-        <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('photo2.jpg');"></div>
-          <div class="bulle-content">
-            <h4>Site Poussé</h4>
-            <p>Un site complet avec prise de RDV, formulaires, et intégration réseaux sociaux.</p>
-            <div class="prix">400€</div>
-            <div class="delai">
-              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Livré en 3 jours
-            </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">
-              Me contacter
-            </a>
+
+        <!-- Autres cartes -->
+        <div class="offre-card reveal">
+          <div class="offre-icon">
+            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-globe"/></svg>
           </div>
+          <h3>Site Vitrine</h3>
+          <p class="desc">Pour une présence en ligne professionnelle.</p>
+          <div class="prix">250€ <small>TTC</small></div>
+          <div class="delai">
+            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+            Livré en 48h
+          </div>
+          <ul>
+            <li>Design moderne 100% mobile</li>
+            <li>Boutons WhatsApp / Appel direct</li>
+            <li>Photos, menu, services inclus</li>
+            <li>Référencement Google local</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Je veux ce pack</a>
         </div>
-        
-        <!-- Bulle 3 : Automatisation -->
-        <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('photo3.jpg');"></div>
-          <div class="bulle-content">
-            <h4>Automatisation</h4>
-            <p>On automatise vos tâches répétitives : relances clients, confirmations de RDV, réponses aux FAQ.</p>
-            <div class="prix">À partir de 600€</div>
-            <div class="delai">
-              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Livré en 1 semaine
-            </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">
-              Me contacter
-            </a>
+
+        <div class="offre-card reveal">
+          <div class="offre-icon">
+            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-cpu"/></svg>
           </div>
+          <h3>Site + Automatisation</h3>
+          <p class="desc">Votre site + nos outils pour gagner du temps.</p>
+          <div class="prix">400€ <small>TTC</small></div>
+          <div class="delai">
+            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+            Livré en 3 jours
+          </div>
+          <ul>
+            <li>Site vitrine inclus</li>
+            <li>Fiche Google My Business</li>
+            <li>Compte Instagram pro</li>
+            <li>3 posts rédigés</li>
+            <li>1 flyer PDF</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Je veux ce pack</a>
+        </div>
+
+        <div class="offre-card reveal">
+          <div class="offre-icon">
+            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-sparkles"/></svg>
+          </div>
+          <h3>Automatisation IA</h3>
+          <p class="desc">On automatise vos tâches répétitives.</p>
+          <div class="prix">600€ <small>à partir de</small></div>
+          <div class="delai">
+            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+            Livré en 1 semaine
+          </div>
+          <ul>
+            <li>Relances WhatsApp automatiques</li>
+            <li>Confirmations de RDV par SMS</li>
+            <li>Réponses aux FAQs</li>
+            <li>Tableau de bord simple</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Je veux ce pack</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESSUS -->
-  <section id="processus">
+  <!-- PROCESS -->
+  <section id="process">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">
@@ -903,32 +357,28 @@
           Processus
         </span>
         <h2>Simple comme <span class="accent">bonjour</span></h2>
-        <p>On va droit au but. Pas de réunion inutile, pas de délai interminable.</p>
+        <p>On échange 10 min, on vous envoie une maquette sous 24h, vous validez, et on livre. C’est tout.</p>
       </div>
-      
       <div class="process-steps">
         <div class="process-step reveal">
           <div class="step-num">1</div>
           <h4>On échange 10 min</h4>
-          <p>On discute de votre projet par téléphone ou email. Vous me dites vos besoins, je vous dis ce qu’on peut faire.</p>
+          <p>WhatsApp, email ou appel. On discute de vos besoins.</p>
         </div>
-        
         <div class="process-step reveal">
           <div class="step-num">2</div>
-          <h4>Détail du projet en 24h</h4>
-          <p>Je vous envoie une proposition détaillée avec maquette, délais et tarifs. Vous validez ou ajustez.</p>
+          <h4>Maquette en 24h</h4>
+          <p>Vous recevez une proposition. Ajustements gratuits.</p>
         </div>
-        
         <div class="process-step reveal">
           <div class="step-num">3</div>
           <h4>Validation</h4>
-          <p>On finalise ensemble les derniers détails. Pas de surprise, tout est clair.</p>
+          <p>Vous validez le projet. On passe à la réalisation.</p>
         </div>
-        
         <div class="process-step reveal">
           <div class="step-num">4</div>
           <h4>Livraison</h4>
-          <p>Votre solution est en ligne. Vous payez uniquement à ce moment-là.</p>
+          <p>Votre solution est en ligne. Paiement à la livraison.</p>
         </div>
       </div>
     </div>
@@ -940,99 +390,97 @@
       <div class="section-header">
         <span class="section-tag">FAQ</span>
         <h2>Questions <span class="accent">fréquentes</span></h2>
-        <p>On a anticipé vos questions. Si la vôtre n’est pas là, contactez-moi directement.</p>
+        <p>Tout ce que vous devez savoir sur nos solutions digitales à Mayotte.</p>
       </div>
-      
       <div class="faq">
         <div class="faq-item reveal">
-          <div class="faq-q">C’est quoi la création digitale exactement ?</div>
-          <div class="faq-a">
-            <p>C’est l’ensemble des solutions pour développer votre présence en ligne : site web, automatisation de vos processus, référencement, et outils pour gagner en visibilité et en efficacité.</p>
-          </div>
+          <div class="faq-q">L’audit est-il vraiment gratuit ?</div>
+          <div class="faq-a"><p>Oui. On vient chez vous (ou en visio) pour analyser vos besoins. Aucun engagement, 100% transparent.</p></div>
         </div>
-        
         <div class="faq-item reveal">
-          <div class="faq-q">Pourquoi commencer par un audit gratuit ?</div>
-          <div class="faq-a">
-            <p>Parce que chaque entreprise est différente. L’audit permet d’identifier <strong>exactement</strong> ce qui vous ferait gagner du temps, de l’argent ou des clients.</p>
-          </div>
+          <div class="faq-q">Pourquoi c’est moins cher que les autres ?</div>
+          <div class="faq-a"><p>Parce qu’on est freelance avec des processus optimisés. Pas de frais d’agence, pas de marge inutile.</p></div>
         </div>
-        
         <div class="faq-item reveal">
-          <div class="faq-q">Je ne suis pas sûr de savoir quoi automatiser...</div>
-          <div class="faq-a">
-            <p>C’est justement pour ça qu’on fait l’audit ! Je vous guide et vous propose des solutions concrètes : relances clients, gestion des RDV, réponses automatiques, etc.</p>
-          </div>
+          <div class="faq-q">Je ne paye rien à l’avance ?</div>
+          <div class="faq-a"><p>Exactement. Pour les sites à 250€ : 100% à la livraison. Pour les packs supérieurs : 50% à la commande, 50% à la livraison.</p></div>
         </div>
-        
         <div class="faq-item reveal">
-          <div class="faq-q">C’est vraiment sans engagement ?</div>
-          <div class="faq-a">
-            <p>Oui. L’audit est 100% gratuit et sans obligation. Ensuite, si vous voulez aller plus loin, on discute des solutions.</p>
-          </div>
+          <div class="faq-q">Je n’ai pas de photos, c’est un problème ?</div>
+          <div class="faq-a"><p>Non. On utilise des photos libres de droits adaptées à votre activité. Vos propres photos sont les bienvenues.</p></div>
         </div>
-        
         <div class="faq-item reveal">
-          <div class="faq-q">Je suis à Mayotte, est-ce que ça change quelque chose ?</div>
-          <div class="faq-a">
-            <p>Non, tout se fait à distance. Je suis basé à Mayotte, je connais les spécificités locales, et je peux même me déplacer si besoin.</p>
-          </div>
+          <div class="faq-q">Je suis à Mayotte uniquement ?</div>
+          <div class="faq-a"><p>Oui, cette page est 100% dédiée à Mayotte. On connaît le terrain, les besoins locaux, et on est basé sur place.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Et après la livraison ?</div>
+          <div class="faq-a"><p>On reste disponibles pour des modifications (tarif horaire) ou pour vous former à gérer le contenu vous-même.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL AVEC FORMULAIRE -->
+  <!-- CTA FINAL + FORMULAIRE -->
   <section class="cta-final" id="contact">
     <div class="container">
-      <div class="cta-final-top">
-        <h2>Prêt à transformer votre <span class="accent">présence digitale</span> ?</h2>
-        <p>Le premier pas est gratuit et sans risque. Remplissez le formulaire ci-dessous, je vous recontacte sous 2h en journée.</p>
+      <h2>Prêt à transformer votre <span class="accent">présence digitale</span> ?</h2>
+      <p>Le premier pas est gratuit et sans risque. On discute, on audit, et on avance ensemble.</p>
+      <div class="ctas">
+        <a href="#form" class="btn btn-primary">
+          <svg class="icon"><use href="#i-mail"/></svg>
+          <span>Me contacter</span>
+        </a>
+        <a href="mailto:contact@groupsolution.fr" class="btn btn-secondary">
+          <svg class="icon"><use href="#i-mail"/></svg>
+          <span>Envoyer un email</span>
+        </a>
+        <a href="tel:+33782298559" class="btn btn-secondary">
+          <svg class="icon"><use href="#i-phone"/></svg>
+          <span>Appeler maintenant</span>
+        </a>
       </div>
-      
-      <div class="form-container reveal">
-        <form action="https://formspree.io/f/mzebrvjg" method="POST">
-          <div class="form-row">
+
+      <!-- FORMULAIRE -->
+      <div class="form-container" id="form">
+        <h3>Demandez votre audit gratuit</h3>
+        <p>Remplissez ce formulaire, et on vous recontacte sous 2h en journée.</p>
+        <form id="contactForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+          <div class="form-grid">
             <div class="form-group">
-              <input type="text" name="nom" placeholder="Votre nom" required />
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" name="nom" required placeholder="Votre nom" />
             </div>
             <div class="form-group">
-              <input type="email" name="email" placeholder="Votre email" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <input type="tel" name="telephone" placeholder="Votre téléphone" />
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="Votre email" />
             </div>
             <div class="form-group">
-              <input type="text" name="entreprise" placeholder="Votre entreprise" />
+              <label for="telephone">Téléphone</label>
+              <input type="tel" id="telephone" name="telephone" placeholder="Votre téléphone" />
+            </div>
+            <div class="form-group">
+              <label for="entreprise">Nom de l'entreprise</label>
+              <input type="text" id="entreprise" name="entreprise" placeholder="Votre entreprise" />
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label for="message">Votre projet *</label>
+              <textarea id="message" name="message" required placeholder="Décrivez vos besoins (ex: site vitrine, automatisation, etc.)"></textarea>
             </div>
           </div>
-          <div class="form-group">
-            <textarea name="message" placeholder="Décrivez votre projet ou posez votre question..." required></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">
-              <svg class="icon"><use href="#i-arrow-right"/></svg>
-              Envoyer
-            </button>
-          </div>
+          <button type="submit" class="btn btn-primary form-submit">
+            <svg class="icon"><use href="#i-mail"/></svg>
+            <span>Envoyer la demande</span>
+          </button>
         </form>
       </div>
-      
-      <div class="contact-infos">
-        <div class="contact-info">
-          <svg class="icon"><use href="#i-phone"/></svg>
-          <a href="tel:+33782298559">07 82 29 85 59</a>
-        </div>
-        <div class="contact-info">
-          <svg class="icon"><use href="#i-mail"/></svg>
-          <a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a>
-        </div>
-        <div class="contact-info">
-          <svg class="icon"><use href="#i-map-pin"/></svg>
-          <span>Mamoudzou, Mayotte</span>
-        </div>
+
+      <!-- CONTACT INFOS -->
+      <div class="footer-contact" style="margin-top: 40px;">
+        <h4>Contact</h4>
+        <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-phone"/></svg><a href="tel:+33782298559">07 82 29 85 59</a></p>
+        <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-mail"/></svg><a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a></p>
+        <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-map-pin"/></svg>Mamoudzou, Mayotte</p>
       </div>
     </div>
   </section>
@@ -1045,23 +493,15 @@
           <img src="Logo.svg" alt="GroupSolution" />
           <p class="footer-desc">Création digitale sur-mesure pour Mayotte. Audit gratuit, solutions efficaces.</p>
         </div>
-        
         <div class="footer-links">
           <h4>Liens</h4>
           <ul>
-            <li><a href="#audit">Audit Gratuit</a></li>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#processus">Processus</a></li>
+            <li><a href="#offres">Solutions</a></li>
+            <li><a href="catalogue-demos.html">Démos</a></li>
+            <li><a href="#process">Processus</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="catalogue-demos.html">Catalogue Démos</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
-        </div>
-        
-        <div class="footer-contact">
-          <h4>Contact</h4>
-          <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-phone"/></svg><a href="tel:+33782298559">07 82 29 85 59</a></p>
-          <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-mail"/></svg><a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a></p>
-          <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-map-pin"/></svg>Mamoudzou, Mayotte</p>
         </div>
       </div>
       <div class="footer-bottom">© 2026 GroupSolution. Tous droits réservés.</div>
@@ -1069,67 +509,52 @@
   </footer>
 
   <script>
-    // Scroll effect for navbar
+    // Hero background rotation (invisible transition)
+    const hero = document.querySelector('.hero');
+    const photos = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg'];
+    let currentPhotoIndex = 0;
+
+    function changeHeroBackground() {
+      currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+      hero.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${photos[currentPhotoIndex]}')`;
+    }
+
+    // Change photo every 4 seconds (instant, no animation)
+    setInterval(changeHeroBackground, 4000);
+
+    // Scroll effects
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
     });
-    
-    // Intersection Observer for animations
+
+    // Reveal animations
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    
-    // FAQ Accordion
+
+    // FAQ toggle
     document.querySelectorAll('.faq-q').forEach(q => {
-      q.addEventListener('click', () => {
-        q.parentElement.classList.toggle('open');
-      });
+      q.addEventListener('click', () => { q.parentElement.classList.toggle('open'); });
     });
-    
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+
+    // Form submission (no redirect)
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
       });
+      if (response.ok) {
+        alert('Merci ! Votre message a été envoyé. On vous recontacte rapidement.');
+        form.reset();
+      } else {
+        alert('Une erreur est survenue. Veuillez réessayer ou nous contacter directement.');
+      }
     });
-    
-    // Fix Formspree redirect
-    const form = document.querySelector('form[action*="formspree"]');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(form);
-        fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(response => {
-          if (response.ok) {
-            alert('Merci ! Votre message a été envoyé avec succès.');
-            form.reset();
-          } else {
-            alert('Une erreur est survenue. Veuillez réessayer.');
-          }
-        }).catch(() => {
-          alert('Une erreur est survenue. Veuillez réessayer.');
-        });
-      });
-    }
   </script>
 </body>
 </html>
