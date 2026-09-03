@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <!-- SEO -->
-  <title>Création de Site Internet à Mayotte | GroupSolution</title>
-  <meta name="description" content="Création de sites web épurés et automatisés pour Mayotte. Référencement optimisé, design professionnel. Contactez-nous au 0782298559." />
-  <meta name="keywords" content="site internet Mayotte, création site web Mayotte, automatisation Mayotte, référencement Mayotte, développeur Mayotte, agence web Mayotte" />
+  <title>Création Digitale à Mayotte | GroupSolution - Expert en Transformation Numérique</title>
+  <meta name="description" content="Expert en création digitale à Mayotte : sites web épurés, automatisation IA, référencement. Audit gratuit, solutions sur-mesure. Contactez-nous au 0782298559." />
+  <meta name="keywords" content="création digitale Mayotte, transformation numérique Mayotte, site web Mayotte, automatisation Mayotte, référencement Mayotte, audit gratuit Mayotte, expert digital Mayotte" />
   
   <!-- Données structurées -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "GroupSolution - Création de Sites Internet à Mayotte",
-    "description": "Expert en création de sites web épurés et automatisés pour Mayotte.",
+    "name": "GroupSolution - Création Digitale à Mayotte",
+    "description": "Expert en transformation numérique et création digitale pour les entreprises de Mayotte. Audit gratuit, solutions sur-mesure.",
     "areaServed": "Mayotte",
     "address": {
       "@type": "PostalAddress",
@@ -25,7 +25,6 @@
     },
     "telephone": "+33782298559",
     "email": "contact@groupsolution.fr",
-    "priceRange": "250€ - 1000€",
     "url": "https://groupsolution.fr/offre-site-web.html"
   }
   </script>
@@ -46,9 +45,10 @@
       --blanc: #ffffff;
       --noir: #000000;
       --vert: #10b981;
-      --border-radius: 12px;
-      --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      --box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+      --bleu: #3b82f6;
+      --border-radius: 16px;
+      --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --box-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -58,45 +58,63 @@
     
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
-    /* NAVBAR */
+    /* ===== NAVBAR ===== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0;
+      background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 12px 0;
       transition: var(--transition);
     }
-    nav.scrolled { box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+    nav.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
     .nav-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 36px; width: auto; }
+    .nav-logo img { height: 32px; width: auto; filter: drop-shadow(0 2px 6px rgba(236,72,153,0.15)); }
     .nav-links { display: flex; gap: 24px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--rose-fonce); }
     .nav-actions { display: flex; gap: 12px; align-items: center; }
     
-    /* BOUTONS */
+    /* ===== BOUTONS ===== */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 12px 24px; border-radius: var(--border-radius);
       font-weight: 600; font-size: 0.95rem; text-decoration: none;
       transition: var(--transition); border: none; cursor: pointer;
     }
-    .btn-primary { background: var(--rose); color: var(--noir); box-shadow: var(--box-shadow); }
-    .btn-primary:hover { background: var(--rose-fonce); color: var(--blanc); transform: translateY(-2px); box-shadow: var(--box-shadow-lg); }
-    .btn-secondary { background: var(--blanc); color: var(--gris-fonce); border: 1px solid var(--gris); }
-    .btn-secondary:hover { background: var(--gris-clair); border-color: var(--gris-fonce); }
+    .btn-primary {
+      background: var(--rose); color: var(--noir); 
+      box-shadow: var(--box-shadow);
+    }
+    .btn-primary:hover {
+      background: var(--rose-fonce); color: var(--blanc); 
+      transform: translateY(-2px); box-shadow: var(--box-shadow-lg);
+    }
+    .btn-secondary {
+      background: var(--blanc); color: var(--gris-fonce); 
+      border: 1px solid var(--gris-clair);
+    }
+    .btn-secondary:hover {
+      background: var(--gris-clair); border-color: var(--gris);
+    }
+    .btn-ghost {
+      background: transparent; color: var(--blanc);
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5);
+    }
     
-    /* HERO AVEC FOND DÉFILEMENT */
+    /* ===== HERO AVEC FOND DÉFILEMENT RAPIDE ===== */
     .hero {
       position: relative;
-      padding: 120px 0 100px;
-      text-align: center;
-      color: var(--blanc);
-      overflow: hidden;
-      min-height: 60vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
+      color: var(--blanc);
+      overflow: hidden;
+      padding-top: 70px; /* Espace pour la navbar */
     }
     
     .hero-bg {
@@ -105,23 +123,26 @@
       z-index: -1;
       background-size: cover;
       background-position: center;
-      animation: slideBg 24s infinite linear;
+      animation: slideBg 12s infinite linear;
     }
     
     .hero-bg::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
     }
     
     @keyframes slideBg {
-      0%, 100% { background-image: url('photo1.jpg'); }
-      33% { background-image: url('photo2.jpg'); }
-      66% { background-image: url('photo3.jpg'); }
+      0%, 20% { background-image: url('photo1.jpg'); }
+      20%, 40% { background-image: url('photo2.jpg'); }
+      40%, 60% { background-image: url('photo3.jpg'); }
+      60%, 80% { background-image: url('photo4.jpg'); }
+      80%, 100% { background-image: url('photo5.jpg'); }
     }
     
-    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 20px; }
+    
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);
@@ -129,158 +150,521 @@
       margin-bottom: 24px;
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
+    
     .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-size: clamp(2.4rem, 6vw, 4rem);
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.05;
       margin-bottom: 20px;
-      letter-spacing: -0.02em;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      letter-spacing: -0.03em;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
+    
     .hero h1 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
+    
     .hero p {
-      font-size: 1.15rem;
-      max-width: 600px;
+      font-size: 1.25rem;
+      max-width: 700px;
       margin: 0 auto 40px;
       opacity: 0.95;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
-    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     
-    /* SECTIONS */
+    .hero-ctas {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    
+    /* ===== SECTIONS ===== */
     section { padding: 80px 0; }
-    .section-header { text-align: center; margin-bottom: 60px; }
-    .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; color: var(--gris-fonce); }
+    
+    .section-header {
+      text-align: center; margin-bottom: 60px;
+    }
+    
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800; 
+      margin-bottom: 16px; 
+      line-height: 1.1;
+      color: var(--gris-fonce);
+    }
+    
     .section-header h2 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .section-header p { font-size: 1.1rem; color: var(--gris); max-width: 600px; margin: 0 auto; }
+    
+    .section-header p {
+      font-size: 1.15rem; color: var(--gris); 
+      max-width: 700px; margin: 0 auto;
+    }
+    
     .section-tag {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--rose-clair); color: var(--rose-fonce);
-      padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+      padding: 6px 14px; border-radius: 999px; 
+      font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
+    }
+    
+    /* ===== AUDIT GRATUIT (PLEINE LARGEUR) ===== */
+    .audit-section {
+      background: linear-gradient(135deg, var(--rose-clair) 0%, var(--blanc) 100%);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .audit-card {
+      background: var(--blanc);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      box-shadow: var(--box-shadow-lg);
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      border: 1px solid var(--gris-clair);
+    }
+    
+    .audit-content h3 {
+      font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--gris-fonce);
+    }
+    
+    .audit-content h3 .accent {
+      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    
+    .audit-content p {
+      font-size: 1.1rem; color: var(--gris); margin-bottom: 24px; line-height: 1.7;
+    }
+    
+    .audit-features {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    }
+    
+    .audit-feature {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--gris-fonce);
+      font-size: 0.95rem;
+    }
+    
+    .audit-feature::before {
+      content: '✓';
+      color: var(--rose-fonce);
+      font-weight: 700;
+    }
+    
+    .audit-cta {
+      display: flex; flex-direction: column; gap: 12px; justify-content: center;
+    }
+    
+    .audit-cta .btn {
+      width: 220px;
+    }
+    
+    /* ===== BULLES STYLE AIRBNB ===== */
+    .bulles-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    
+    .bulle {
+      background: var(--blanc);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      border: 1px solid var(--gris-clair);
+      position: relative;
+    }
+    
+    .bulle:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--box-shadow-lg);
+    }
+    
+    .bulle-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .bulle-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.1));
+    }
+    
+    .bulle-content {
+      padding: 24px;
+    }
+    
+    .bulle-content h4 {
+      font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
+    }
+    
+    .bulle-content p {
+      font-size: 0.95rem; color: var(--gris); margin-bottom: 16px;
+    }
+    
+    .bulle-content .prix {
+      font-size: 1.8rem; font-weight: 800; color: var(--rose-fonce);
+      margin-bottom: 12px;
+    }
+    
+    .bulle-content .delai {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #dcfce7; color: var(--vert);
+      padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
       margin-bottom: 16px;
     }
     
-    /* OFFRES */
-    .offres-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .offre-card {
-      background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius);
-      padding: 32px; box-shadow: var(--box-shadow); transition: var(--transition); position: relative;
+    .bulle-cta {
+      width: 100%;
     }
-    .offre-card:hover { transform: translateY(-8px); box-shadow: var(--box-shadow-lg); border-color: var(--rose); }
-    .offre-card.populaire::before {
-      content: 'Populaire'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-      background: var(--rose); color: var(--blanc); padding: 4px 16px; border-radius: 999px; font-size: 0.75rem; font-weight: 700;
-    }
-    .offre-icon { width: 56px; height: 56px; background: var(--rose-clair); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--rose-fonce); }
-    .offre-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
-    .offre-card .desc { color: var(--gris); font-size: 0.95rem; margin-bottom: 16px; }
-    .offre-card .prix { font-size: 2.5rem; font-weight: 800; margin: 16px 0; line-height: 1; color: var(--gris-fonce); }
-    .offre-card .prix small { font-size: 1rem; color: var(--gris); font-weight: 400; }
-    .offre-card .delai {
-      display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: var(--vert);
-      padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px;
-    }
-    .offre-card ul { list-style: none; margin-bottom: 24px; }
-    .offre-card ul li { padding: 10px 0; padding-left: 28px; position: relative; color: var(--gris-fonce); font-size: 0.95rem; }
-    .offre-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--rose-fonce); font-weight: 700; }
-    .offre-card .btn { width: 100%; justify-content: center; }
     
-    /* PROCESS */
-    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-    .process-step { text-align: center; position: relative; }
-    .process-step::before { content: ''; position: absolute; top: 40px; left: 50%; right: -50%; height: 2px; background: linear-gradient(to right, var(--rose), transparent); z-index: 0; }
-    .process-step:last-child::before { display: none; }
+    /* ===== PROCESSUS SIMPLIFIÉ ===== */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+    
+    .process-step::before {
+      content: '';
+      position: absolute;
+      top: 40px; left: 50%; right: -50%;
+      height: 2px;
+      background: linear-gradient(to right, var(--rose), transparent);
+      z-index: 0;
+    }
+    
+    .process-step:last-child::before {
+      display: none;
+    }
+    
     .step-num {
-      width: 64px; height: 64px; background: var(--rose); color: var(--blanc);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px; position: relative; z-index: 1;
-      box-shadow: 0 4px 15px rgba(236,72,153,0.3); transition: var(--transition);
+      width: 64px; height: 64px;
+      background: var(--rose); color: var(--blanc);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 800;
+      margin: 0 auto 20px;
+      position: relative; z-index: 1;
+      box-shadow: 0 4px 15px rgba(236,72,153,0.3);
+      transition: var(--transition);
     }
-    .process-step:hover .step-num { transform: scale(1.12) rotate(6deg); }
-    .process-step h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
-    .process-step p { color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto; }
     
-    /* FAQ */
-    .faq { max-width: 800px; margin: 0 auto; }
-    .faq-item { background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius); margin-bottom: 12px; overflow: hidden; }
-    .faq-q { padding: 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.02rem; gap: 16px; color: var(--gris-fonce); }
-    .faq-q::after { content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--gris); transition: var(--transition); }
-    .faq-item.open .faq-q::after { content: '−'; color: var(--rose-fonce); }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--transition), padding 0.4s var(--transition); padding: 0 20px; color: var(--gris); }
-    .faq-item.open .faq-a { max-height: 300px; padding: 0 20px 20px; }
+    .process-step:hover .step-num {
+      transform: scale(1.12) rotate(6deg);
+    }
     
-    /* CTA FINAL */
-    .cta-final { padding: 100px 0; text-align: center; background: var(--gris-clair); }
-    .cta-final h2 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px; color: var(--gris-fonce); }
+    .process-step h4 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
+    }
+    
+    .process-step p {
+      color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto;
+    }
+    
+    /* ===== FAQ ===== */
+    .faq {
+      max-width: 800px; margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: var(--blanc);
+      border: 1px solid var(--gris-clair);
+      border-radius: var(--border-radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .faq-q {
+      padding: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex; justify-content: space-between;
+      align-items: center;
+      font-size: 1.02rem;
+      gap: 16px;
+      color: var(--gris-fonce);
+    }
+    
+    .faq-q::after {
+      content: '+';
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--gris);
+      transition: var(--transition);
+    }
+    
+    .faq-item.open .faq-q::after {
+      content: '−';
+      color: var(--rose-fonce);
+    }
+    
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--transition), padding 0.4s var(--transition);
+      padding: 0 20px;
+      color: var(--gris);
+    }
+    
+    .faq-item.open .faq-a {
+      max-height: 500px;
+      padding: 0 20px 20px;
+    }
+    
+    /* ===== CTA FINAL ===== */
+    .cta-final {
+      padding: 100px 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--blanc) 0%, var(--gris-clair) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: url("data:image/svg+xml,%3Csvg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wave' patternUnits='userSpaceOnUse' width='120' height='20'%3E%3Cpath d='M0,10 Q30,0 60,10 T120,10' stroke='%23FFD1DC' stroke-width='1' fill='none'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%' height='100%' fill='url(%23wave)'/%3E%3C/svg%3E");
+      background-size: 120px 20px;
+      opacity: 0.3;
+    }
+    
+    .cta-final h2 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--gris-fonce);
+      position: relative;
+      z-index: 1;
+    }
+    
     .cta-final h2 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .cta-final p { font-size: 1.15rem; color: var(--gris); max-width: 600px; margin: 0 auto 32px; }
-    .cta-final .ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     
-    /* FOOTER */
-    footer { background: var(--noir); color: var(--blanc); padding: 60px 0 30px; }
-    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-    .footer-logo { display: flex; flex-direction: column; gap: 16px; }
-    .footer-logo img { height: 36px; width: auto; }
-    .footer-desc { color: #a1a1aa; font-size: 0.9rem; line-height: 1.7; }
-    .footer-links h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--blanc); }
-    .footer-links ul { list-style: none; }
-    .footer-links ul li { margin-bottom: 8px; }
-    .footer-links ul li a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-    .footer-links ul li a:hover { color: var(--rose); }
-    .footer-contact { background: var(--rose-clair); color: var(--noir); padding: 24px; border-radius: var(--border-radius); }
-    .footer-contact h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--noir); }
-    .footer-contact p { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-    .footer-contact a { color: var(--noir); text-decoration: none; font-weight: 600; }
-    .footer-contact a:hover { text-decoration: underline; }
-    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; color: #71717a; font-size: 0.85rem; }
-    
-    /* PHOTO PLACEHOLDER */
-    .photo-placeholder {
-      background: var(--gris-clair);
-      border-radius: var(--border-radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .cta-final p {
+      font-size: 1.15rem;
       color: var(--gris);
-      font-size: 0.9rem;
-      min-height: 200px;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
     }
     
-    /* RESPONSIVE */
+    .cta-final .ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--noir);
+      color: var(--blanc);
+      padding: 60px 0 30px;
+      position: relative;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: var(--blanc);
+      padding: 24px;
+      border-radius: var(--border-radius);
+      text-align: center;
+    }
+    
+    .footer-logo img {
+      height: 40px;
+      width: auto;
+    }
+    
+    .footer-desc {
+      color: var(--gris);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    
+    .footer-links h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--blanc);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links ul li {
+      margin-bottom: 8px;
+    }
+    
+    .footer-links ul li a {
+      color: #a1a1aa;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    
+    .footer-links ul li a:hover {
+      color: var(--rose);
+    }
+    
+    .footer-contact {
+      background: var(--rose-clair);
+      color: var(--noir);
+      padding: 24px;
+      border-radius: var(--border-radius);
+    }
+    
+    .footer-contact h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--noir);
+    }
+    
+    .footer-contact p {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .footer-contact a {
+      color: var(--noir);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .footer-contact a:hover {
+      text-decoration: underline;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+      color: #71717a;
+      font-size: 0.85rem;
+    }
+    
+    /* ===== DÉCORATIONS SVG ===== */
+    .decoration {
+      position: absolute;
+      z-index: -1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    
+    .wave-decoration {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100'%3E%3Cpath d='M0,50 Q300,0 600,50 T1200,50' stroke='%23EC4899' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-position: bottom;
+    }
+    
+    .turtle-decoration {
+      bottom: 50px;
+      left: 10%;
+      width: 60px;
+      height: 40px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Cpath d='M20,30 Q10,20 0,30 Q10,40 20,30 Q30,20 40,30 Q50,40 60,30 Q70,20 80,30 Q90,40 100,30' stroke='%233b82f6' stroke-width='1' fill='none'/%3E%3Cpath d='M30,35 L35,45 L40,35' stroke='%233b82f6' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+    }
+    
+    .ray-decoration {
+      bottom: 30px;
+      right: 15%;
+      width: 80px;
+      height: 30px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30'%3E%3Cpath d='M0,15 L20,5 L40,15 L60,5 L80,15 L100,5' stroke='%236b7280' stroke-width='1' fill='none'/%3E%3Cpath d='M0,25 L20,15 L40,25 L60,15 L80,25 L100,15' stroke='%236b7280' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+    }
+    
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero h1 { font-size: 2.2rem; }
+      .hero { min-height: 80vh; padding-top: 80px; }
+      .hero h1 { font-size: 2.4rem; }
       .hero p { font-size: 1rem; }
       .hero-ctas { flex-direction: column; align-items: center; }
       .hero-ctas .btn { width: 100%; justify-content: center; }
-      .offres-grid { grid-template-columns: 1fr; }
+      .bulles-container { grid-template-columns: 1fr; }
+      .audit-card { grid-template-columns: 1fr; text-align: center; }
+      .audit-features { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .process-step::before { display: none; }
       .cta-final .ctas { flex-direction: column; align-items: center; }
       .cta-final .ctas .btn { width: 100%; justify-content: center; }
       .footer-content { grid-template-columns: 1fr; }
+      .footer-logo { background: transparent; padding: 0; }
     }
     
-    /* ANIMATIONS */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--transition), transform 0.6s var(--transition); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ===== ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s var(--transition), transform 0.6s var(--transition);
+    }
     
-    /* SCROLLBAR */
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* ===== SCROLLBAR ===== */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--gris-clair); }
     ::-webkit-scrollbar-thumb { background: var(--gris); border-radius: 4px; }
     
-    /* ICONS */
-    .icon { width: 20px; height: 20px; stroke-width: 1.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    /* ===== ICONS ===== */
+    .icon {
+      width: 20px;
+      height: 20px;
+      stroke-width: 1.5;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   </style>
 </head>
 
@@ -297,17 +681,18 @@
     <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3L13.5 8.5L19 10L13.5 11.5L12 17L10.5 11.5L5 10L10.5 8.5L12 3Z"/><path d="M19 16L19.7 18.3L22 19L19.7 19.7L19 22L18.3 19.7L16 19L18.3 18.3L19 16Z"/></symbol>
     <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
     <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
-    <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
-    <symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-lightning" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></symbol>
   </svg>
 
+  <!-- NAVBAR -->
   <nav id="nav">
     <div class="container nav-content">
       <a href="#" class="nav-logo"><img src="Logo.svg" alt="GroupSolution" /></a>
       <ul class="nav-links">
-        <li><a href="#offres">Offres</a></li>
-        <li><a href="catalogue-demos.html">Démos</a></li>
-        <li><a href="#process">Processus</a></li>
+        <li><a href="#audit">Audit Gratuit</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#processus">Processus</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -324,6 +709,7 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-bg"></div>
     <div class="container hero-content">
@@ -331,102 +717,132 @@
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
         Disponible cette semaine — Mayotte
       </div>
-      <h1>Création de <span class="accent">Sites Internet</span><br>à Mayotte</h1>
-      <p>Des sites web épurés, automatisés et optimisés pour le référencement. Livraison en 48h, paiement à la livraison.</p>
+      <h1>Création <span class="accent">Digitale</span><br>à Mayotte</h1>
+      <p>On réfléchit à votre place : sites web, automatisation, référencement. Transformation numérique clé en main, sans prise de tête.</p>
       <div class="hero-ctas">
         <a href="https://wa.me/33782298559" class="btn btn-primary">
           <svg class="icon"><use href="#i-chat"/></svg>
           <span>Discuter sur WhatsApp</span>
         </a>
-        <a href="catalogue-demos.html" class="btn btn-secondary">
-          <svg class="icon"><use href="#i-arrow-right"/></svg>
-          <span>Voir les 18 styles</span>
+        <a href="#audit" class="btn btn-ghost">
+          <svg class="icon"><use href="#i-zap"/></svg>
+          <span>Audit Gratuit</span>
         </a>
       </div>
     </div>
+    <div class="decoration turtle-decoration"></div>
+    <div class="decoration ray-decoration"></div>
   </section>
 
-  <section id="offres">
+  <!-- AUDIT GRATUIT -->
+  <section class="audit-section" id="audit">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">
+          <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-lightning"/></svg>
+          Audit Gratuit
+        </span>
+        <h2>On commence par un <span class="accent">diagnostic</span> gratuit</h2>
+        <p>En 10 minutes, on identifie les axes d’amélioration pour votre entreprise. Pas de vente, que du concret.</p>
+      </div>
+      
+      <div class="audit-card reveal">
+        <div class="audit-content">
+          <h3><span class="accent">Audit Express</span> de votre entreprise</h3>
+          <p>On passe en revue votre présence digitale actuelle (site, réseaux, processus) et on vous propose des solutions <strong>sur-mesure</strong> pour Mayotte. Sans engagement, sans facture.</p>
+          
+          <div class="audit-features">
+            <div class="audit-feature">Analyse de votre site actuel</div>
+            <div class="audit-feature">État des lieux de votre visibilité</div>
+            <div class="audit-feature">Recommandations personnalisées</div>
+            <div class="audit-feature">Estimation des gains possibles</div>
+          </div>
+        </div>
+        
+        <div class="audit-cta">
+          <a href="https://wa.me/33782298559?text=Bonjour%20Titouan,%20je%20veux%20un%20audit%20gratuit%20pour%20mon%20entreprise%20à%20Mayotte" class="btn btn-primary">
+            <svg class="icon"><use href="#i-chat"/></svg>
+            Réserver mon audit
+          </a>
+          <a href="#solutions" class="btn btn-secondary">
+            <svg class="icon"><use href="#i-arrow-right"/></svg>
+            Voir les solutions
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="decoration wave-decoration"></div>
+  </section>
+
+  <!-- SOLUTIONS (Bulles Airbnb) -->
+  <section id="solutions">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">
           <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-globe"/></svg>
-          Nos Offres
+          Nos Solutions
         </span>
-        <h2>Des solutions <span class="accent">claires</span> et accessibles</h2>
-        <p>Choisissez le pack qui correspond à vos besoins. Tout est inclus : design, hébergement, référencement de base.</p>
+        <h2>Des solutions <span class="accent">claires</span><br>pour votre transformation digitale</h2>
+        <p>On a repensé nos offres pour coller aux besoins réels des entreprises à Mayotte. Pas de jargon, que de l’efficace.</p>
       </div>
-      <div class="offres-grid">
-        <div class="offre-card reveal">
-          <div class="offre-icon">
-            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-globe"/></svg>
+      
+      <div class="bulles-container">
+        <!-- Bulle 1 : Site Vitrine -->
+        <div class="bulle reveal">
+          <div class="bulle-image" style="background-image: url('photo1.jpg');"></div>
+          <div class="bulle-content">
+            <h4>Site Vitrine</h4>
+            <p>Votre vitrine digitale pour être visible 24h/24. Simple, efficace, professionnel.</p>
+            <div class="prix">250€</div>
+            <div class="delai">
+              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+              Livré en 48h
+            </div>
+            <a href="https://wa.me/33782298559?text=Je%20veux%20un%20site%20vitrine%20pour%20mon%20entreprise%20à%20Mayotte" class="btn btn-primary bulle-cta">
+              Je veux ce pack
+            </a>
           </div>
-          <h3>Site One-Page</h3>
-          <p class="desc">Idéal pour démarrer votre présence en ligne.</p>
-          <div class="prix">250€ <small>TTC</small></div>
-          <div class="delai">
-            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-            Livré en 48h
-          </div>
-          <ul>
-            <li>Site vitrine moderne 100% mobile</li>
-            <li>Bouton WhatsApp / Appel direct</li>
-            <li>Photos, menu, services inclus</li>
-            <li>Référencement Google local</li>
-            <li>Hébergement + domaine 1 an</li>
-            <li>Paiement à la livraison</li>
-          </ul>
-          <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
         </div>
         
-        <div class="offre-card populaire reveal">
-          <div class="offre-icon">
-            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-cpu"/></svg>
+        <!-- Bulle 2 : Site Poussé -->
+        <div class="bulle reveal">
+          <div class="bulle-image" style="background-image: url('photo2.jpg');"></div>
+          <div class="bulle-content">
+            <h4>Site Poussé</h4>
+            <p>Un site complet avec prise de RDV, formulaires, et intégration réseaux sociaux. Pour ceux qui veulent aller plus loin.</p>
+            <div class="prix">400€</div>
+            <div class="delai">
+              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+              Livré en 3 jours
+            </div>
+            <a href="https://wa.me/33782298559?text=Je%20veux%20un%20site%20poussé%20avec%20prise%20de%20RDV" class="btn btn-primary bulle-cta">
+              Je veux ce pack
+            </a>
           </div>
-          <h3>Présence Numérique</h3>
-          <p class="desc">Le pack complet pour exister en ligne.</p>
-          <div class="prix">400€ <small>TTC</small></div>
-          <div class="delai">
-            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-            Livré en 3 jours
-          </div>
-          <ul>
-            <li>Tout le pack Site One-Page</li>
-            <li>Fiche Google My Business optimisée</li>
-            <li>Compte Instagram pro configuré</li>
-            <li>3 premiers posts rédigés</li>
-            <li>1 flyer PDF à imprimer</li>
-            <li>Formation 30 min pour gérer seul</li>
-          </ul>
-          <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
         </div>
         
-        <div class="offre-card reveal">
-          <div class="offre-icon">
-            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-sparkles"/></svg>
+        <!-- Bulle 3 : Automatisation -->
+        <div class="bulle reveal">
+          <div class="bulle-image" style="background-image: url('photo3.jpg');"></div>
+          <div class="bulle-content">
+            <h4>Automatisation</h4>
+            <p>On automatise vos tâches répétitives : relances clients, confirmations de RDV, réponses aux FAQ. Gagnez du temps pour l’essentiel.</p>
+            <div class="prix">À partir de 600€</div>
+            <div class="delai">
+              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+              Livré en 1 semaine
+            </div>
+            <a href="https://wa.me/33782298559?text=Je%20veux%20automatiser%20mes%20processus%20à%20Mayotte" class="btn btn-primary bulle-cta">
+              Discuter mon projet
+            </a>
           </div>
-          <h3>Automatisation IA</h3>
-          <p class="desc">Gagnez du temps avec l'automatisation.</p>
-          <div class="prix">600€ <small>à partir de</small></div>
-          <div class="delai">
-            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-            Livré en 1 semaine
-          </div>
-          <ul>
-            <li>Relances WhatsApp automatiques</li>
-            <li>Confirmations de RDV par SMS</li>
-            <li>Réponses automatiques aux FAQs</li>
-            <li>Intégration avec votre site</li>
-            <li>Tableau de bord simple</li>
-            <li>Support 30 jours inclus</li>
-          </ul>
-          <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="process">
+  <!-- PROCESSUS -->
+  <section id="processus">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">
@@ -434,103 +850,129 @@
           Processus
         </span>
         <h2>Simple comme <span class="accent">bonjour</span></h2>
-        <p>4 étapes, zéro friction. Vous validez à chaque moment, vous payez à la fin.</p>
+        <p>On va droit au but. Pas de réunion inutile, pas de délai interminable.</p>
       </div>
+      
       <div class="process-steps">
         <div class="process-step reveal">
           <div class="step-num">1</div>
           <h4>On échange 10 min</h4>
-          <p>WhatsApp ou appel. Vous me dites ce que vous voulez, je vous dis si c'est faisable en 48h.</p>
+          <p>On discute de votre projet par WhatsApp ou téléphone. Vous me dites vos besoins, je vous dis ce qu’on peut faire.</p>
         </div>
+        
         <div class="process-step reveal">
           <div class="step-num">2</div>
-          <h4>Maquette en 24h</h4>
-          <p>Vous recevez une maquette. Vous validez ou demandez des ajustements. Gratuit.</p>
+          <h4>Détail du projet en 24h</h4>
+          <p>Je vous envoie une proposition détaillée avec maquette, délais et tarifs. Vous validez ou ajustez.</p>
         </div>
+        
         <div class="process-step reveal">
           <div class="step-num">3</div>
-          <h4>Livraison en 48h</h4>
-          <p>Votre site est en ligne. Vous ne payez qu'à ce moment-là. Aucun risque.</p>
+          <h4>Validation</h4>
+          <p>On finalise ensemble les derniers détails. Pas de surprise, tout est clair.</p>
         </div>
+        
         <div class="process-step reveal">
           <div class="step-num">4</div>
-          <h4>Vous payez, c'est fini</h4>
-          <p>Virement, Lydia ou Stripe. Aucune surprise, aucune mauvaise nouvelle.</p>
+          <h4>Livraison</h4>
+          <p>Votre solution est en ligne. Vous payez uniquement à ce moment-là. Satisfait ou remboursé.</p>
         </div>
       </div>
     </div>
+    <div class="decoration ray-decoration" style="bottom: 100px; right: 10%;"></div>
   </section>
 
+  <!-- FAQ -->
   <section id="faq">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">FAQ</span>
         <h2>Questions <span class="accent">fréquentes</span></h2>
-        <p>Tout ce que vous voulez savoir avant de vous lancer.</p>
+        <p>On a anticipé vos questions. Si la votre n’est pas là, contactez-moi directement.</p>
       </div>
+      
       <div class="faq">
         <div class="faq-item reveal">
-          <div class="faq-q">Vraiment 250€ pour un site complet ?</div>
-          <div class="faq-a"><p>Oui. C'est un site one-page, mais avec tout le nécessaire : design moderne, mobile, bouton WhatsApp, photos, référencement de base. Paiement à la livraison.</p></div>
+          <div class="faq-q">C’est quoi la création digitale exactement ?</div>
+          <div class="faq-a">
+            <p>C’est l’ensemble des solutions pour développer votre présence en ligne : site web, automatisation de vos processus, référencement, et outils pour gagner en visibilité et en efficacité. On s’adapte à vos besoins réels, sans vous vendre ce dont vous n’avez pas besoin.</p>
+          </div>
         </div>
+        
         <div class="faq-item reveal">
-          <div class="faq-q">Pourquoi c'est moins cher que les autres ?</div>
-          <div class="faq-a"><p>Parce que je suis freelance avec des templates optimisés. La qualité est là, c'est juste le prix qui est juste.</p></div>
+          <div class="faq-q">Pourquoi commencer par un audit gratuit ?</div>
+          <div class="faq-a">
+            <p>Parce que chaque entreprise est différente. L’audit permet d’identifier <strong>exactement</strong> ce qui vous ferait gagner du temps, de l’argent ou des clients. Sans ça, on part dans le vide.</p>
+          </div>
         </div>
+        
         <div class="faq-item reveal">
-          <div class="faq-q">Je ne paye vraiment rien à l'avance ?</div>
-          <div class="faq-a"><p>Pour le site à 250€ : 100% à la livraison. Pour les packs à 400€+ : 50% à la commande, 50% à la livraison.</p></div>
+          <div class="faq-q">Je ne suis pas sûr de savoir quoi automatiser...</div>
+          <div class="faq-a">
+            <p>C’est justement pour ça qu’on fait l’audit ! Je vous guide et vous propose des solutions concrètes : relances clients, gestion des RDV, réponses automatiques, etc. Vous n’avez pas besoin de tout savoir, c’est mon rôle.</p>
+          </div>
         </div>
+        
         <div class="faq-item reveal">
-          <div class="faq-q">Je n'ai pas de photos, c'est un problème ?</div>
-          <div class="faq-a"><p>Non. J'utilise des photos libres de droits adaptées à votre activité. Vos propres photos sont les bienvenues.</p></div>
+          <div class="faq-q">C’est vraiment sans engagement ?</div>
+          <div class="faq-a">
+            <p>Oui. L’audit est 100% gratuit et sans obligation. Ensuite, si vous voulez aller plus loin, on discute des solutions. Vous ne payez que ce que vous validez.</p>
+          </div>
         </div>
+        
         <div class="faq-item reveal">
-          <div class="faq-q">Je suis à Mayotte uniquement ?</div>
-          <div class="faq-a"><p>Oui, cette page est 100% dédiée à Mayotte. Les autres DOM-TOM auront leurs propres pages.</p></div>
+          <div class="faq-q">Je suis à Mayotte, est-ce que ça change quelque chose ?</div>
+          <div class="faq-a">
+            <p>Non, tout se fait à distance. Je suis basé à Mayotte, je connais les spécificités locales (réseaux, habits de consommation, etc.), et je peux même me déplacer si besoin.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- CTA FINAL -->
   <section class="cta-final" id="contact">
     <div class="container">
-      <h2>Prêt à lancer votre site <span class="accent">cette semaine ?</span></h2>
-      <p>Contactez-moi maintenant. Je réponds en moins de 2h en journée. Premier échange gratuit, sans engagement.</p>
+      <h2>Prêt à transformer votre <span class="accent">présence digitale</span> ?</h2>
+      <p>Le premier pas est gratuit et sans risque. On discute, on audit, et on avance ensemble.</p>
       <div class="ctas">
         <a href="https://wa.me/33782298559" class="btn btn-primary">
           <svg class="icon"><use href="#i-chat"/></svg>
-          <span>WhatsApp</span>
+          <span>Discuter sur WhatsApp</span>
         </a>
         <a href="mailto:contact@groupsolution.fr" class="btn btn-secondary">
           <svg class="icon"><use href="#i-mail"/></svg>
-          <span>Email</span>
+          <span>Envoyer un email</span>
         </a>
         <a href="tel:+33782298559" class="btn btn-secondary">
           <svg class="icon"><use href="#i-phone"/></svg>
-          <span>Appeler</span>
+          <span>Appeler maintenant</span>
         </a>
       </div>
     </div>
+    <div class="decoration wave-decoration"></div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
           <img src="Logo.svg" alt="GroupSolution" />
-          <p class="footer-desc">Création de sites web épurés et automatisés pour Mayotte. Livraison rapide, paiement à la livraison.</p>
+          <p class="footer-desc">Création digitale sur-mesure pour Mayotte. Audit gratuit, solutions efficaces.</p>
         </div>
+        
         <div class="footer-links">
           <h4>Liens</h4>
           <ul>
-            <li><a href="#offres">Offres</a></li>
-            <li><a href="catalogue-demos.html">Démos</a></li>
-            <li><a href="#process">Processus</a></li>
+            <li><a href="#audit">Audit Gratuit</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#processus">Processus</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="catalogue-demos.html">Catalogue Démos</a></li>
           </ul>
         </div>
+        
         <div class="footer-contact">
           <h4>Contact</h4>
           <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-phone"/></svg><a href="tel:+33782298559">07 82 29 85 59</a></p>
@@ -543,18 +985,27 @@
   </footer>
 
   <script>
+    // Scroll effect for navbar
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
     });
     
+    // Intersection Observer for animations
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
     }, { threshold: 0.1 });
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     
+    // FAQ Accordion
     document.querySelectorAll('.faq-q').forEach(q => {
-      q.addEventListener('click', () => { q.parentElement.classList.toggle('open'); });
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('open');
+      });
     });
   </script>
 </body>
