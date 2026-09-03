@@ -6,7 +6,7 @@
   
   <!-- SEO -->
   <title>Création Digitale à Mayotte | GroupSolution - Expert en Transformation Numérique</title>
-  <meta name="description" content="Expert en création digitale à Mayotte : sites web épurés, automatisation IA, référencement. Audit gratuit, solutions sur-mesure. Contactez-nous au 0782298559." />
+  <meta name="description" content="Expert en création digitale à Mayotte : sites web épurés, automatisation IA, référencement. Audit gratuit, solutions sur-mesure. Contactez-nous au 0782298559 ou par email." />
   <meta name="keywords" content="création digitale Mayotte, transformation numérique Mayotte, site web Mayotte, automatisation Mayotte, référencement Mayotte, audit gratuit Mayotte, expert digital Mayotte" />
   
   <!-- Données structurées -->
@@ -44,12 +44,13 @@
       --gris-clair: #f9fafb;
       --blanc: #ffffff;
       --noir: #000000;
+      --noir-doux: #262626;
       --vert: #10b981;
       --bleu: #3b82f6;
       --border-radius: 16px;
       --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       --box-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
@@ -104,17 +105,19 @@
       background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5);
     }
     
-    /* ===== HERO AVEC FOND DÉFILEMENT RAPIDE ===== */
+    /* ===== HERO AVEC FOND DÉFILEMENT CLEAN ===== */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 80vh;
+      max-height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: var(--blanc);
       overflow: hidden;
-      padding-top: 70px; /* Espace pour la navbar */
+      padding-top: 70px;
+      margin-bottom: 40px;
     }
     
     .hero-bg {
@@ -123,22 +126,21 @@
       z-index: -1;
       background-size: cover;
       background-position: center;
-      animation: slideBg 12s infinite linear;
+      animation: slideBg 15s infinite ease-in-out;
     }
     
     .hero-bg::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
     }
     
     @keyframes slideBg {
-      0%, 20% { background-image: url('photo1.jpg'); }
-      20%, 40% { background-image: url('photo2.jpg'); }
-      40%, 60% { background-image: url('photo3.jpg'); }
-      60%, 80% { background-image: url('photo4.jpg'); }
-      80%, 100% { background-image: url('photo5.jpg'); }
+      0%, 25% { background-image: url('photo1.jpg'); }
+      25%, 50% { background-image: url('photo2.jpg'); }
+      50%, 75% { background-image: url('photo3.jpg'); }
+      75%, 100% { background-image: url('photo4.jpg'); }
     }
     
     .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 20px; }
@@ -209,7 +211,74 @@
       font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
     }
     
-    /* ===== AUDIT GRATUIT (PLEINE LARGEUR) ===== */
+    /* ===== FORMULAIRE SIMPLE ===== */
+    .form-section {
+      padding: 60px 0;
+      background: var(--gris-clair);
+      position: relative;
+    }
+    
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--blanc);
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      border: 1px solid var(--gris-clair);
+    }
+    
+    .form-container h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--gris-fonce);
+    }
+    
+    .form-container p {
+      color: var(--gris);
+      margin-bottom: 24px;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--gris-clair);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--rose-fonce);
+      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    
+    .form-actions .btn {
+      flex: 1;
+      justify-content: center;
+    }
+    
+    /* ===== AUDIT GRATUIT ===== */
     .audit-section {
       background: linear-gradient(135deg, var(--rose-clair) 0%, var(--blanc) 100%);
       padding: 80px 0;
@@ -333,7 +402,7 @@
       width: 100%;
     }
     
-    /* ===== PROCESSUS SIMPLIFIÉ ===== */
+    /* ===== PROCESSUS ===== */
     .process-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -486,7 +555,7 @@
     
     /* ===== FOOTER ===== */
     footer {
-      background: var(--noir);
+      background: var(--noir-doux);
       color: var(--blanc);
       padding: 60px 0 30px;
       position: relative;
@@ -507,6 +576,7 @@
       padding: 24px;
       border-radius: var(--border-radius);
       text-align: center;
+      color: var(--gris-fonce);
     }
     
     .footer-logo img {
@@ -547,8 +617,8 @@
     }
     
     .footer-contact {
-      background: var(--rose-clair);
-      color: var(--noir);
+      background: var(--blanc);
+      color: var(--gris-fonce);
       padding: 24px;
       border-radius: var(--border-radius);
     }
@@ -557,7 +627,7 @@
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 16px;
-      color: var(--noir);
+      color: var(--gris-fonce);
     }
     
     .footer-contact p {
@@ -568,61 +638,28 @@
     }
     
     .footer-contact a {
-      color: var(--noir);
+      color: var(--gris-fonce);
       text-decoration: none;
       font-weight: 600;
     }
     
     .footer-contact a:hover {
+      color: var(--rose-fonce);
       text-decoration: underline;
     }
     
     .footer-bottom {
       text-align: center;
       padding-top: 30px;
-      border-top: 1px solid #333;
-      color: #71717a;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #a1a1aa;
       font-size: 0.85rem;
-    }
-    
-    /* ===== DÉCORATIONS SVG ===== */
-    .decoration {
-      position: absolute;
-      z-index: -1;
-      opacity: 0.15;
-      pointer-events: none;
-    }
-    
-    .wave-decoration {
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 100px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100'%3E%3Cpath d='M0,50 Q300,0 600,50 T1200,50' stroke='%23EC4899' stroke-width='1' fill='none'/%3E%3C/svg%3E");
-      background-repeat: repeat-x;
-      background-position: bottom;
-    }
-    
-    .turtle-decoration {
-      bottom: 50px;
-      left: 10%;
-      width: 60px;
-      height: 40px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Cpath d='M20,30 Q10,20 0,30 Q10,40 20,30 Q30,20 40,30 Q50,40 60,30 Q70,20 80,30 Q90,40 100,30' stroke='%233b82f6' stroke-width='1' fill='none'/%3E%3Cpath d='M30,35 L35,45 L40,35' stroke='%233b82f6' stroke-width='1' fill='none'/%3E%3C/svg%3E");
-    }
-    
-    .ray-decoration {
-      bottom: 30px;
-      right: 15%;
-      width: 80px;
-      height: 30px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30'%3E%3Cpath d='M0,15 L20,5 L40,15 L60,5 L80,15 L100,5' stroke='%236b7280' stroke-width='1' fill='none'/%3E%3Cpath d='M0,25 L20,15 L40,25 L60,15 L80,25 L100,15' stroke='%236b7280' stroke-width='1' fill='none'/%3E%3C/svg%3E");
     }
     
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero { min-height: 80vh; padding-top: 80px; }
+      .hero { min-height: 70vh; padding-top: 80px; }
       .hero h1 { font-size: 2.4rem; }
       .hero p { font-size: 1rem; }
       .hero-ctas { flex-direction: column; align-items: center; }
@@ -635,7 +672,9 @@
       .cta-final .ctas { flex-direction: column; align-items: center; }
       .cta-final .ctas .btn { width: 100%; justify-content: center; }
       .footer-content { grid-template-columns: 1fr; }
-      .footer-logo { background: transparent; padding: 0; }
+      .footer-logo { background: transparent; padding: 0; color: var(--blanc); }
+      .footer-logo img { filter: brightness(0) invert(1); }
+      .form-group input, .form-group textarea { padding: 10px 14px; }
     }
     
     /* ===== ANIMATIONS ===== */
@@ -720,9 +759,9 @@
       <h1>Création <span class="accent">Digitale</span><br>à Mayotte</h1>
       <p>On réfléchit à votre place : sites web, automatisation, référencement. Transformation numérique clé en main, sans prise de tête.</p>
       <div class="hero-ctas">
-        <a href="https://wa.me/33782298559" class="btn btn-primary">
-          <svg class="icon"><use href="#i-chat"/></svg>
-          <span>Discuter sur WhatsApp</span>
+        <a href="#formulaire" class="btn btn-primary">
+          <svg class="icon"><use href="#i-mail"/></svg>
+          <span>Me contacter</span>
         </a>
         <a href="#audit" class="btn btn-ghost">
           <svg class="icon"><use href="#i-zap"/></svg>
@@ -730,8 +769,36 @@
         </a>
       </div>
     </div>
-    <div class="decoration turtle-decoration"></div>
-    <div class="decoration ray-decoration"></div>
+  </section>
+
+  <!-- FORMULAIRE SIMPLE -->
+  <section class="form-section" id="formulaire">
+    <div class="container">
+      <div class="form-container reveal">
+        <h3>Un projet ?</h3>
+        <p>Remplissez ce formulaire, je vous recontacte sous 2h en journée.</p>
+        <form action="https://formspree.io/f/mzebrvjg" method="POST">
+          <div class="form-group">
+            <input type="text" name="nom" placeholder="Votre nom" required />
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Votre email" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" name="telephone" placeholder="Votre téléphone (optionnel)" />
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Décrivez votre projet ou posez votre question..." required></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              <svg class="icon"><use href="#i-arrow-right"/></svg>
+              Envoyer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </section>
 
   <!-- AUDIT GRATUIT -->
@@ -760,8 +827,8 @@
         </div>
         
         <div class="audit-cta">
-          <a href="https://wa.me/33782298559?text=Bonjour%20Titouan,%20je%20veux%20un%20audit%20gratuit%20pour%20mon%20entreprise%20à%20Mayotte" class="btn btn-primary">
-            <svg class="icon"><use href="#i-chat"/></svg>
+          <a href="#formulaire" class="btn btn-primary">
+            <svg class="icon"><use href="#i-mail"/></svg>
             Réserver mon audit
           </a>
           <a href="#solutions" class="btn btn-secondary">
@@ -771,10 +838,9 @@
         </div>
       </div>
     </div>
-    <div class="decoration wave-decoration"></div>
   </section>
 
-  <!-- SOLUTIONS (Bulles Airbnb) -->
+  <!-- SOLUTIONS -->
   <section id="solutions">
     <div class="container">
       <div class="section-header">
@@ -798,8 +864,8 @@
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
               Livré en 48h
             </div>
-            <a href="https://wa.me/33782298559?text=Je%20veux%20un%20site%20vitrine%20pour%20mon%20entreprise%20à%20Mayotte" class="btn btn-primary bulle-cta">
-              Je veux ce pack
+            <a href="#formulaire" class="btn btn-primary bulle-cta">
+              Me contacter
             </a>
           </div>
         </div>
@@ -815,8 +881,8 @@
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
               Livré en 3 jours
             </div>
-            <a href="https://wa.me/33782298559?text=Je%20veux%20un%20site%20poussé%20avec%20prise%20de%20RDV" class="btn btn-primary bulle-cta">
-              Je veux ce pack
+            <a href="#formulaire" class="btn btn-primary bulle-cta">
+              Me contacter
             </a>
           </div>
         </div>
@@ -832,8 +898,8 @@
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
               Livré en 1 semaine
             </div>
-            <a href="https://wa.me/33782298559?text=Je%20veux%20automatiser%20mes%20processus%20à%20Mayotte" class="btn btn-primary bulle-cta">
-              Discuter mon projet
+            <a href="#formulaire" class="btn btn-primary bulle-cta">
+              Me contacter
             </a>
           </div>
         </div>
@@ -857,7 +923,7 @@
         <div class="process-step reveal">
           <div class="step-num">1</div>
           <h4>On échange 10 min</h4>
-          <p>On discute de votre projet par WhatsApp ou téléphone. Vous me dites vos besoins, je vous dis ce qu’on peut faire.</p>
+          <p>On discute de votre projet par téléphone ou email. Vous me dites vos besoins, je vous dis ce qu’on peut faire.</p>
         </div>
         
         <div class="process-step reveal">
@@ -879,7 +945,6 @@
         </div>
       </div>
     </div>
-    <div class="decoration ray-decoration" style="bottom: 100px; right: 10%;"></div>
   </section>
 
   <!-- FAQ -->
@@ -888,7 +953,7 @@
       <div class="section-header">
         <span class="section-tag">FAQ</span>
         <h2>Questions <span class="accent">fréquentes</span></h2>
-        <p>On a anticipé vos questions. Si la votre n’est pas là, contactez-moi directement.</p>
+        <p>On a anticipé vos questions. Si la vôtre n’est pas là, contactez-moi directement.</p>
       </div>
       
       <div class="faq">
@@ -936,9 +1001,9 @@
       <h2>Prêt à transformer votre <span class="accent">présence digitale</span> ?</h2>
       <p>Le premier pas est gratuit et sans risque. On discute, on audit, et on avance ensemble.</p>
       <div class="ctas">
-        <a href="https://wa.me/33782298559" class="btn btn-primary">
-          <svg class="icon"><use href="#i-chat"/></svg>
-          <span>Discuter sur WhatsApp</span>
+        <a href="#formulaire" class="btn btn-primary">
+          <svg class="icon"><use href="#i-mail"/></svg>
+          <span>Me contacter</span>
         </a>
         <a href="mailto:contact@groupsolution.fr" class="btn btn-secondary">
           <svg class="icon"><use href="#i-mail"/></svg>
@@ -950,7 +1015,6 @@
         </a>
       </div>
     </div>
-    <div class="decoration wave-decoration"></div>
   </section>
 
   <!-- FOOTER -->
@@ -1005,6 +1069,20 @@
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         q.parentElement.classList.toggle('open');
+      });
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
       });
     });
   </script>
