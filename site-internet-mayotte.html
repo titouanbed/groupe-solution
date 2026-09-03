@@ -105,7 +105,7 @@
       background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5);
     }
     
-    /* ===== HERO AVEC FOND DÉFILEMENT CLEAN ===== */
+    /* ===== HERO AVEC FOND DÉFILEMENT SIMPLE ===== */
     .hero {
       position: relative;
       min-height: 80vh;
@@ -126,7 +126,7 @@
       z-index: -1;
       background-size: cover;
       background-position: center;
-      animation: slideBg 15s infinite ease-in-out;
+      animation: slideBg 15s infinite linear;
     }
     
     .hero-bg::before {
@@ -137,10 +137,14 @@
     }
     
     @keyframes slideBg {
-      0%, 25% { background-image: url('photo1.jpg'); }
-      25%, 50% { background-image: url('photo2.jpg'); }
-      50%, 75% { background-image: url('photo3.jpg'); }
-      75%, 100% { background-image: url('photo4.jpg'); }
+      0% { background-image: url('photo1.jpg'); opacity: 1; }
+      25% { background-image: url('photo1.jpg'); opacity: 1; }
+      25.01% { background-image: url('photo2.jpg'); opacity: 0; }
+      50% { background-image: url('photo2.jpg'); opacity: 1; }
+      50.01% { background-image: url('photo3.jpg'); opacity: 0; }
+      75% { background-image: url('photo3.jpg'); opacity: 1; }
+      75.01% { background-image: url('photo4.jpg'); opacity: 0; }
+      100% { background-image: url('photo4.jpg'); opacity: 1; }
     }
     
     .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 20px; }
@@ -209,73 +213,6 @@
       background: var(--rose-clair); color: var(--rose-fonce);
       padding: 6px 14px; border-radius: 999px; 
       font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
-    }
-    
-    /* ===== FORMULAIRE SIMPLE ===== */
-    .form-section {
-      padding: 60px 0;
-      background: var(--gris-clair);
-      position: relative;
-    }
-    
-    .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--blanc);
-      padding: 32px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      border: 1px solid var(--gris-clair);
-    }
-    
-    .form-container h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--gris-fonce);
-    }
-    
-    .form-container p {
-      color: var(--gris);
-      margin-bottom: 24px;
-    }
-    
-    .form-group {
-      margin-bottom: 16px;
-    }
-    
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--gris-clair);
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: var(--transition);
-    }
-    
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--rose-fonce);
-      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
-    }
-    
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    
-    .form-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-    
-    .form-actions .btn {
-      flex: 1;
-      justify-content: center;
     }
     
     /* ===== AUDIT GRATUIT ===== */
@@ -502,26 +439,20 @@
       padding: 0 20px 20px;
     }
     
-    /* ===== CTA FINAL ===== */
+    /* ===== CTA FINAL AVEC FORMULAIRE ===== */
     .cta-final {
       padding: 100px 0;
       text-align: center;
-      background: linear-gradient(135deg, var(--blanc) 0%, var(--gris-clair) 100%);
+      background: var(--gris-clair);
       position: relative;
       overflow: hidden;
     }
     
-    .cta-final::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 200px;
-      background: url("data:image/svg+xml,%3Csvg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='wave' patternUnits='userSpaceOnUse' width='120' height='20'%3E%3Cpath d='M0,10 Q30,0 60,10 T120,10' stroke='%23FFD1DC' stroke-width='1' fill='none'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%' height='100%' fill='url(%23wave)'/%3E%3C/svg%3E");
-      background-size: 120px 20px;
-      opacity: 0.3;
+    .cta-final-top {
+      margin-bottom: 60px;
     }
     
-    .cta-final h2 {
+    .cta-final-top h2 {
       font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 800;
       margin-bottom: 16px;
@@ -530,12 +461,12 @@
       z-index: 1;
     }
     
-    .cta-final h2 .accent {
+    .cta-final-top h2 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     
-    .cta-final p {
+    .cta-final-top p {
       font-size: 1.15rem;
       color: var(--gris);
       max-width: 600px;
@@ -544,13 +475,99 @@
       z-index: 1;
     }
     
-    .cta-final .ctas {
-      display: flex;
+    /* ===== FORMULAIRE DANS CTA FINAL ===== */
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--blanc);
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      border: 1px solid var(--gris-clair);
+    }
+    
+    .form-container h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--gris-fonce);
+    }
+    
+    .form-container p {
+      color: var(--gris);
+      margin-bottom: 24px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--gris-clair);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--rose-fonce);
+      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+    }
+    
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    
+    .form-actions .btn {
+      flex: 1;
+      justify-content: center;
+    }
+    
+    .contact-infos {
+      display: flex;
+      gap: 24px;
       justify-content: center;
       flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
+      margin-top: 32px;
+    }
+    
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gris-fonce);
+      font-size: 0.95rem;
+    }
+    
+    .contact-info a {
+      color: var(--gris-fonce);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .contact-info a:hover {
+      color: var(--rose-fonce);
+      text-decoration: underline;
     }
     
     /* ===== FOOTER ===== */
@@ -669,8 +686,8 @@
       .audit-features { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .process-step::before { display: none; }
-      .cta-final .ctas { flex-direction: column; align-items: center; }
-      .cta-final .ctas .btn { width: 100%; justify-content: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-infos { flex-direction: column; gap: 12px; }
       .footer-content { grid-template-columns: 1fr; }
       .footer-logo { background: transparent; padding: 0; color: var(--blanc); }
       .footer-logo img { filter: brightness(0) invert(1); }
@@ -759,7 +776,7 @@
       <h1>Création <span class="accent">Digitale</span><br>à Mayotte</h1>
       <p>On réfléchit à votre place : sites web, automatisation, référencement. Transformation numérique clé en main, sans prise de tête.</p>
       <div class="hero-ctas">
-        <a href="#formulaire" class="btn btn-primary">
+        <a href="#contact" class="btn btn-primary">
           <svg class="icon"><use href="#i-mail"/></svg>
           <span>Me contacter</span>
         </a>
@@ -767,36 +784,6 @@
           <svg class="icon"><use href="#i-zap"/></svg>
           <span>Audit Gratuit</span>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FORMULAIRE SIMPLE -->
-  <section class="form-section" id="formulaire">
-    <div class="container">
-      <div class="form-container reveal">
-        <h3>Un projet ?</h3>
-        <p>Remplissez ce formulaire, je vous recontacte sous 2h en journée.</p>
-        <form action="https://formspree.io/f/mzebrvjg" method="POST">
-          <div class="form-group">
-            <input type="text" name="nom" placeholder="Votre nom" required />
-          </div>
-          <div class="form-group">
-            <input type="email" name="email" placeholder="Votre email" required />
-          </div>
-          <div class="form-group">
-            <input type="tel" name="telephone" placeholder="Votre téléphone (optionnel)" />
-          </div>
-          <div class="form-group">
-            <textarea name="message" placeholder="Décrivez votre projet ou posez votre question..." required></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">
-              <svg class="icon"><use href="#i-arrow-right"/></svg>
-              Envoyer
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   </section>
@@ -827,7 +814,7 @@
         </div>
         
         <div class="audit-cta">
-          <a href="#formulaire" class="btn btn-primary">
+          <a href="#contact" class="btn btn-primary">
             <svg class="icon"><use href="#i-mail"/></svg>
             Réserver mon audit
           </a>
@@ -864,7 +851,7 @@
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
               Livré en 48h
             </div>
-            <a href="#formulaire" class="btn btn-primary bulle-cta">
+            <a href="#contact" class="btn btn-primary bulle-cta">
               Me contacter
             </a>
           </div>
@@ -875,13 +862,13 @@
           <div class="bulle-image" style="background-image: url('photo2.jpg');"></div>
           <div class="bulle-content">
             <h4>Site Poussé</h4>
-            <p>Un site complet avec prise de RDV, formulaires, et intégration réseaux sociaux. Pour ceux qui veulent aller plus loin.</p>
+            <p>Un site complet avec prise de RDV, formulaires, et intégration réseaux sociaux.</p>
             <div class="prix">400€</div>
             <div class="delai">
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
               Livré en 3 jours
             </div>
-            <a href="#formulaire" class="btn btn-primary bulle-cta">
+            <a href="#contact" class="btn btn-primary bulle-cta">
               Me contacter
             </a>
           </div>
@@ -892,13 +879,13 @@
           <div class="bulle-image" style="background-image: url('photo3.jpg');"></div>
           <div class="bulle-content">
             <h4>Automatisation</h4>
-            <p>On automatise vos tâches répétitives : relances clients, confirmations de RDV, réponses aux FAQ. Gagnez du temps pour l’essentiel.</p>
+            <p>On automatise vos tâches répétitives : relances clients, confirmations de RDV, réponses aux FAQ.</p>
             <div class="prix">À partir de 600€</div>
             <div class="delai">
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
               Livré en 1 semaine
             </div>
-            <a href="#formulaire" class="btn btn-primary bulle-cta">
+            <a href="#contact" class="btn btn-primary bulle-cta">
               Me contacter
             </a>
           </div>
@@ -941,7 +928,7 @@
         <div class="process-step reveal">
           <div class="step-num">4</div>
           <h4>Livraison</h4>
-          <p>Votre solution est en ligne. Vous payez uniquement à ce moment-là. Satisfait ou remboursé.</p>
+          <p>Votre solution est en ligne. Vous payez uniquement à ce moment-là.</p>
         </div>
       </div>
     </div>
@@ -960,59 +947,92 @@
         <div class="faq-item reveal">
           <div class="faq-q">C’est quoi la création digitale exactement ?</div>
           <div class="faq-a">
-            <p>C’est l’ensemble des solutions pour développer votre présence en ligne : site web, automatisation de vos processus, référencement, et outils pour gagner en visibilité et en efficacité. On s’adapte à vos besoins réels, sans vous vendre ce dont vous n’avez pas besoin.</p>
+            <p>C’est l’ensemble des solutions pour développer votre présence en ligne : site web, automatisation de vos processus, référencement, et outils pour gagner en visibilité et en efficacité.</p>
           </div>
         </div>
         
         <div class="faq-item reveal">
           <div class="faq-q">Pourquoi commencer par un audit gratuit ?</div>
           <div class="faq-a">
-            <p>Parce que chaque entreprise est différente. L’audit permet d’identifier <strong>exactement</strong> ce qui vous ferait gagner du temps, de l’argent ou des clients. Sans ça, on part dans le vide.</p>
+            <p>Parce que chaque entreprise est différente. L’audit permet d’identifier <strong>exactement</strong> ce qui vous ferait gagner du temps, de l’argent ou des clients.</p>
           </div>
         </div>
         
         <div class="faq-item reveal">
           <div class="faq-q">Je ne suis pas sûr de savoir quoi automatiser...</div>
           <div class="faq-a">
-            <p>C’est justement pour ça qu’on fait l’audit ! Je vous guide et vous propose des solutions concrètes : relances clients, gestion des RDV, réponses automatiques, etc. Vous n’avez pas besoin de tout savoir, c’est mon rôle.</p>
+            <p>C’est justement pour ça qu’on fait l’audit ! Je vous guide et vous propose des solutions concrètes : relances clients, gestion des RDV, réponses automatiques, etc.</p>
           </div>
         </div>
         
         <div class="faq-item reveal">
           <div class="faq-q">C’est vraiment sans engagement ?</div>
           <div class="faq-a">
-            <p>Oui. L’audit est 100% gratuit et sans obligation. Ensuite, si vous voulez aller plus loin, on discute des solutions. Vous ne payez que ce que vous validez.</p>
+            <p>Oui. L’audit est 100% gratuit et sans obligation. Ensuite, si vous voulez aller plus loin, on discute des solutions.</p>
           </div>
         </div>
         
         <div class="faq-item reveal">
           <div class="faq-q">Je suis à Mayotte, est-ce que ça change quelque chose ?</div>
           <div class="faq-a">
-            <p>Non, tout se fait à distance. Je suis basé à Mayotte, je connais les spécificités locales (réseaux, habits de consommation, etc.), et je peux même me déplacer si besoin.</p>
+            <p>Non, tout se fait à distance. Je suis basé à Mayotte, je connais les spécificités locales, et je peux même me déplacer si besoin.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
+  <!-- CTA FINAL AVEC FORMULAIRE -->
   <section class="cta-final" id="contact">
     <div class="container">
-      <h2>Prêt à transformer votre <span class="accent">présence digitale</span> ?</h2>
-      <p>Le premier pas est gratuit et sans risque. On discute, on audit, et on avance ensemble.</p>
-      <div class="ctas">
-        <a href="#formulaire" class="btn btn-primary">
-          <svg class="icon"><use href="#i-mail"/></svg>
-          <span>Me contacter</span>
-        </a>
-        <a href="mailto:contact@groupsolution.fr" class="btn btn-secondary">
-          <svg class="icon"><use href="#i-mail"/></svg>
-          <span>Envoyer un email</span>
-        </a>
-        <a href="tel:+33782298559" class="btn btn-secondary">
+      <div class="cta-final-top">
+        <h2>Prêt à transformer votre <span class="accent">présence digitale</span> ?</h2>
+        <p>Le premier pas est gratuit et sans risque. Remplissez le formulaire ci-dessous, je vous recontacte sous 2h en journée.</p>
+      </div>
+      
+      <div class="form-container reveal">
+        <form action="https://formspree.io/f/mzebrvjg" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" name="nom" placeholder="Votre nom" required />
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Votre email" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="tel" name="telephone" placeholder="Votre téléphone" />
+            </div>
+            <div class="form-group">
+              <input type="text" name="entreprise" placeholder="Votre entreprise" />
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Décrivez votre projet ou posez votre question..." required></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              <svg class="icon"><use href="#i-arrow-right"/></svg>
+              Envoyer
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="contact-infos">
+        <div class="contact-info">
           <svg class="icon"><use href="#i-phone"/></svg>
-          <span>Appeler maintenant</span>
-        </a>
+          <a href="tel:+33782298559">07 82 29 85 59</a>
+        </div>
+        <div class="contact-info">
+          <svg class="icon"><use href="#i-mail"/></svg>
+          <a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a>
+        </div>
+        <div class="contact-info">
+          <svg class="icon"><use href="#i-map-pin"/></svg>
+          <span>Mamoudzou, Mayotte</span>
+        </div>
       </div>
     </div>
   </section>
@@ -1085,6 +1105,31 @@
         }
       });
     });
+    
+    // Fix Formspree redirect
+    const form = document.querySelector('form[action*="formspree"]');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            alert('Merci ! Votre message a été envoyé avec succès.');
+            form.reset();
+          } else {
+            alert('Une erreur est survenue. Veuillez réessayer.');
+          }
+        }).catch(() => {
+          alert('Une erreur est survenue. Veuillez réessayer.');
+        });
+      });
+    }
   </script>
 </body>
 </html>
