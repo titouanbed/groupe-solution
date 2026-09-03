@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO pour la page Offre -->
+  <title>Création de Site Internet à Mayotte | GroupSolution - Leader DOM-TOM</title>
+  <meta name="description" content="Création de sites web épurés et automatisés pour Mayotte. Référencement optimisé, design professionnel. Contactez-nous au 0782298559." />
+  <meta name="keywords" content="site internet Mayotte, création site web Mayotte, automatisation Mayotte, référencement Mayotte, développeur Mayotte, agence web Mayotte" />
+  
+  <!-- Données structurées pour Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "GroupSolution - Création de Sites Internet à Mayotte",
+    "description": "Expert en création de sites web épurés et automatisés pour les entreprises de Mayotte et des DOM-TOM.",
+    "areaServed": ["Mayotte", "La Réunion", "Guadeloupe", "Martinique", "Guyane"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mamoudzou",
+      "addressRegion": "Mayotte",
+      "addressCountry": "FR"
+    },
+    "telephone": "+33782298559",
+    "email": "contact@groupsolution.fr",
+    "priceRange": "250€ - 1000€",
+    "url": "https://groupsolution.fr/offre-site-web.html"
+  }
+  </script>
+  
+  <link rel="icon" type="image/svg+xml" href="Logo.svg" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  
+  <style>
+    :root {
+      --rose: #FFD1DC;
+      --rose-fonce: #EC4899;
+      --rose-clair: #FDF2F8;
+      --gris-fonce: #1a1a1a;
+      --gris: #6b7280;
+      --gris-clair: #f9fafb;
+      --blanc: #ffffff;
+      --noir: #000000;
+      --vert: #10b981;
+      --border-radius: 12px;
+      --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      --box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { color: var(--gris-fonce); background: var(--blanc); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* NAVBAR */
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0;
+      transition: var(--transition);
+    }
+    nav.scrolled { box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+    .nav-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--rose-fonce); }
+    .nav-actions { display: flex; gap: 12px; align-items: center; }
+    
+    /* Boutons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: var(--border-radius);
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: var(--transition); border: none; cursor: pointer;
+    }
+    .btn-primary { background: var(--rose); color: var(--noir); box-shadow: var(--box-shadow); }
+    .btn-primary:hover { background: var(--rose-fonce); color: var(--blanc); transform: translateY(-2px); box-shadow: var(--box-shadow-lg); }
+    .btn-secondary { background: var(--blanc); color: var(--gris-fonce); border: 1px solid var(--gris); }
+    .btn-secondary:hover { background: var(--gris-clair); border-color: var(--gris-fonce); }
+    
+    /* HERO */
+    .hero { padding: 80px 0 120px; text-align: center; background: linear-gradient(135deg, var(--blanc) 0%, var(--gris-clair) 100%); }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--rose-clair); color: var(--rose-fonce);
+      padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p { font-size: 1.15rem; color: var(--gris); max-width: 600px; margin: 0 auto 40px; }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-image { margin-top: 60px; height: 400px; background: var(--gris-clair); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: var(--gris); font-size: 1.1rem; }
+    
+    /* SECTIONS */
+    section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
+    .section-header h2 .accent {
+      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-header p { font-size: 1.1rem; color: var(--gris); max-width: 600px; margin: 0 auto; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--rose-clair); color: var(--rose-fonce);
+      padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
+    }
+    
+    /* OFFRES */
+    .offres-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .offre-card {
+      background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius);
+      padding: 32px; box-shadow: var(--box-shadow); transition: var(--transition); position: relative;
+    }
+    .offre-card:hover { transform: translateY(-8px); box-shadow: var(--box-shadow-lg); border-color: var(--rose); }
+    .offre-card.populaire::before {
+      content: 'Populaire'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      background: var(--rose); color: var(--blanc); padding: 4px 16px; border-radius: 999px; font-size: 0.75rem; font-weight: 700;
+    }
+    .offre-icon { width: 56px; height: 56px; background: var(--rose-clair); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--rose-fonce); }
+    .offre-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .offre-card .desc { color: var(--gris); font-size: 0.95rem; margin-bottom: 16px; }
+    .offre-card .prix { font-size: 2.5rem; font-weight: 800; margin: 16px 0; line-height: 1; }
+    .offre-card .prix small { font-size: 1rem; color: var(--gris); font-weight: 400; }
+    .offre-card .delai {
+      display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: var(--vert);
+      padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px;
+    }
+    .offre-card ul { list-style: none; margin-bottom: 24px; }
+    .offre-card ul li { padding: 10px 0; padding-left: 28px; position: relative; color: var(--gris-fonce); font-size: 0.95rem; }
+    .offre-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--rose-fonce); font-weight: 700; }
+    .offre-card .btn { width: 100%; justify-content: center; }
+    
+    /* PROCESS */
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .process-step { text-align: center; position: relative; }
+    .process-step::before { content: ''; position: absolute; top: 40px; left: 50%; right: -50%; height: 2px; background: linear-gradient(to right, var(--rose), transparent); z-index: 0; }
+    .process-step:last-child::before { display: none; }
+    .step-num {
+      width: 64px; height: 64px; background: var(--rose); color: var(--blanc);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px; position: relative; z-index: 1;
+      box-shadow: 0 4px 15px rgba(236,72,153,0.3); transition: var(--transition);
+    }
+    .process-step:hover .step-num { transform: scale(1.12) rotate(6deg); }
+    .process-step h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .process-step p { color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto; }
+    
+    /* FAQ */
+    .faq { max-width: 800px; margin: 0 auto; }
+    .faq-item { background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius); margin-bottom: 12px; overflow: hidden; }
+    .faq-q { padding: 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.02rem; gap: 16px; }
+    .faq-q::after { content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--gris); transition: var(--transition); }
+    .faq-item.open .faq-q::after { content: '−'; color: var(--rose-fonce); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--transition), padding 0.4s var(--transition); padding: 0 20px; color: var(--gris); }
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 20px 20px; }
+    
+    /* CTA FINAL */
+    .cta-final { padding: 100px 0; text-align: center; background: linear-gradient(135deg, var(--blanc) 0%, var(--gris-clair) 100%); }
+    .cta-final h2 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px; }
+    .cta-final h2 .accent {
+      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .cta-final p { font-size: 1.15rem; color: var(--gris); max-width: 600px; margin: 0 auto 32px; }
+    .cta-final .ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    
+    /* FOOTER */
+    footer { background: var(--noir); color: var(--blanc); padding: 60px 0 30px; }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-logo { display: flex; flex-direction: column; gap: 16px; }
+    .footer-logo img { height: 36px; width: auto; }
+    .footer-desc { color: #a1a1aa; font-size: 0.9rem; line-height: 1.7; }
+    .footer-links h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .footer-links ul { list-style: none; }
+    .footer-links ul li { margin-bottom: 8px; }
+    .footer-links ul li a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links ul li a:hover { color: var(--rose); }
+    .footer-contact { background: var(--rose-clair); color: var(--noir); padding: 24px; border-radius: var(--border-radius); }
+    .footer-contact h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .footer-contact p { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .footer-contact a { color: var(--noir); text-decoration: none; font-weight: 600; }
+    .footer-contact a:hover { text-decoration: underline; }
+    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; color: #71717a; font-size: 0.85rem; }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+      .offres-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-step::before { display: none; }
+      .cta-final .ctas { flex-direction: column; align-items: center; }
+      .cta-final .ctas .btn { width: 100%; justify-content: center; }
+      .footer-content { grid-template-columns: 1fr; }
+    }
+    
+    /* ANIMATIONS */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--transition), transform 0.6s var(--transition); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    /* ICONS */
+    .icon { width: 20px; height: 20px; stroke-width: 1.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--gris-clair); }
+    ::-webkit-scrollbar-thumb { background: var(--gris); border-radius: 4px; }
+  </style>
+</head>
+
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3L13.5 8.5L19 10L13.5 11.5L12 17L10.5 11.5L5 10L10.5 8.5L12 3Z"/><path d="M19 16L19.7 18.3L22 19L19.7 19.7L19 22L18.3 19.7L16 19L18.3 18.3L19 16Z"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+  </svg>
+
+  <nav id="nav">
+    <div class="container nav-content">
+      <a href="#" class="nav-logo"><img src="Logo.svg" alt="GroupSolution" /></a>
+      <ul class="nav-links">
+        <li><a href="#offres">Offres</a></li>
+        <li><a href="catalogue-demos.html">Démos</a></li>
+        <li><a href="#process">Processus</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="mailto:contact@groupsolution.fr" class="btn btn-secondary">
+          <svg class="icon"><use href="#i-mail"/></svg>
+          <span>Email</span>
+        </a>
+        <a href="tel:+33782298559" class="btn btn-secondary">
+          <svg class="icon"><use href="#i-phone"/></svg>
+          <span>Appeler</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
+        Disponible cette semaine — Basé à Mayotte
+      </div>
+      <h1>Création de <span class="accent">Sites Internet</span><br>à Mayotte & DOM-TOM</h1>
+      <p>Des sites web épurés, automatisés et optimisés pour le référencement. Livraison en 48h, paiement à la livraison, zéro risque.</p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/33782298559" class="btn btn-primary">
+          <svg class="icon"><use href="#i-chat"/></svg>
+          <span>Discuter sur WhatsApp</span>
+        </a>
+        <a href="catalogue-demos.html" class="btn btn-secondary">
+          <svg class="icon"><use href="#i-arrow-right"/></svg>
+          <span>Voir les 18 styles</span>
+        </a>
+      </div>
+      <div class="hero-image reveal">
+        <img src="assets/mayotte-hero.jpg" alt="Création de sites internet à Mayotte" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--border-radius);" onerror="this.style.display='none'" />
+        <span style="color: var(--gris);">Image : mayotte-hero.jpg</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="offres">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">
+          <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-globe"/></svg>
+          Nos Offres
+        </span>
+        <h2>Des solutions <span class="accent">claires</span> et accessibles</h2>
+        <p>Choisissez le pack qui correspond à vos besoins. Tout est inclus : design, hébergement, référencement de base.</p>
+      </div>
+      <div class="offres-grid">
+        <div class="offre-card reveal">
+          <div class="offre-icon">
+            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-globe"/></svg>
+          </div>
+          <h3>Site One-Page</h3>
+          <p class="desc">Idéal pour démarrer votre présence en ligne.</p>
+          <div class="prix">250€ <small>TTC</small></div>
+          <div class="delai">
+            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+            Livré en 48h
+          </div>
+          <ul>
+            <li>Site vitrine moderne 100% mobile</li>
+            <li>Bouton WhatsApp / Appel direct</li>
+            <li>Photos, menu, services inclus</li>
+            <li>Référencement Google local</li>
+            <li>Hébergement + domaine 1 an</li>
+            <li>Paiement à la livraison</li>
+          </ul>
+          <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
+        </div>
+        
+        <div class="offre-card populaire reveal">
+          <div class="offre-icon">
+            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-cpu"/></svg>
+          </div>
+          <h3>Présence Numérique</h3>
+          <p class="desc">Le pack complet pour exister en ligne.</p>
+          <div class="prix">400€ <small>TTC</small></div>
+          <div class="delai">
+            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+            Livré en 3 jours
+          </div>
+          <ul>
+            <li>Tout le pack Site One-Page</li>
+            <li>Fiche Google My Business optimisée</li>
+            <li>Compte Instagram pro configuré</li>
+            <li>3 premiers posts rédigés</li>
+            <li>1 flyer PDF à imprimer</li>
+            <li>Formation 30 min pour gérer seul</li>
+          </ul>
+          <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
+        </div>
+        
+        <div class="offre-card reveal">
+          <div class="offre-icon">
+            <svg class="icon" style="width: 24px; height: 24px;"><use href="#i-sparkles"/></svg>
+          </div>
+          <h3>Automatisation IA</h3>
+          <p class="desc">Gagnez du temps avec l'automatisation.</p>
+          <div class="prix">600€ <small>à partir de</small></div>
+          <div class="delai">
+            <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+            Livré en 1 semaine
+          </div>
+          <ul>
+            <li>Relances WhatsApp automatiques</li>
+            <li>Confirmations de RDV par SMS</li>
+            <li>Réponses automatiques aux FAQs</li>
+            <li>Intégration avec votre site</li>
+            <li>Tableau de bord simple</li>
+            <li>Support 30 jours inclus</li>
+          </ul>
+          <a href="https://wa.me/33782298559" class="btn btn-primary">Je veux ce pack</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">
+          <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
+          Processus
+        </span>
+        <h2>Simple comme <span class="accent">bonjour</span></h2>
+        <p>4 étapes, zéro friction. Vous validez à chaque moment, vous payez à la fin.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-num">1</div>
+          <h4>On échange 10 min</h4>
+          <p>WhatsApp ou appel. Vous me dites ce que vous voulez, je vous dis si c'est faisable en 48h.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">2</div>
+          <h4>Maquette en 24h</h4>
+          <p>Vous recevez une maquette. Vous validez ou demandez des ajustements. Gratuit.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">3</div>
+          <h4>Livraison en 48h</h4>
+          <p>Votre site est en ligne. Vous ne payez qu'à ce moment-là. Aucun risque.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">4</div>
+          <h4>Vous payez, c'est fini</h4>
+          <p>Virement, Lydia ou Stripe. Aucune surprise, aucune mauvaise nouvelle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">FAQ</span>
+        <h2>Questions <span class="accent">fréquentes</span></h2>
+        <p>Tout ce que vous voulez savoir avant de vous lancer.</p>
+      </div>
+      <div class="faq">
+        <div class="faq-item reveal">
+          <div class="faq-q">Vraiment 250€ pour un site complet ?</div>
+          <div class="faq-a"><p>Oui. C'est un site one-page, mais avec tout le nécessaire : design moderne, mobile, bouton WhatsApp, photos, référencement de base. Paiement à la livraison.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Pourquoi c'est moins cher que les autres ?</div>
+          <div class="faq-a"><p>Parce que je suis freelance avec des templates optimisés. La qualité est là, c'est juste le prix qui est juste.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Je ne paye vraiment rien à l'avance ?</div>
+          <div class="faq-a"><p>Pour le site à 250€ : 100% à la livraison. Pour les packs à 400€+ : 50% à la commande, 50% à la livraison.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Je n'ai pas de photos, c'est un problème ?</div>
+          <div class="faq-a"><p>Non. J'utilise des photos libres de droits adaptées à votre activité. Vos propres photos sont les bienvenues.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Je suis à Mayotte, La Réunion ou en Métropole ?</div>
+          <div class="faq-a"><p>Tout fonctionne à distance. Je suis expert de Mayotte et des DOM-TOM, mais j'ai des clients partout en France.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final" id="contact">
+    <div class="container">
+      <h2>Prêt à lancer votre site <span class="accent">cette semaine ?</span></h2>
+      <p>Contactez-moi maintenant. Je réponds en moins de 2h en journée. Premier échange gratuit, sans engagement.</p>
+      <div class="ctas">
+        <a href="https://wa.me/33782298559" class="btn btn-primary">
+          <svg class="icon"><use href="#i-chat"/></svg>
+          <span>WhatsApp</span>
+        </a>
+        <a href="mailto:contact@groupsolution.fr" class="btn btn-secondary">
+          <svg class="icon"><use href="#i-mail"/></svg>
+          <span>Email</span>
+        </a>
+        <a href="tel:+33782298559" class="btn btn-secondary">
+          <svg class="icon"><use href="#i-phone"/></svg>
+          <span>Appeler</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="Logo.svg" alt="GroupSolution" />
+          <p class="footer-desc">Création de sites web épurés et automatisés pour Mayotte et les DOM-TOM. Livraison rapide, paiement à la livraison.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Liens</h4>
+          <ul>
+            <li><a href="#offres">Offres</a></li>
+            <li><a href="catalogue-demos.html">Démos</a></li>
+            <li><a href="#process">Processus</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-phone"/></svg><a href="tel:+33782298559">07 82 29 85 59</a></p>
+          <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-mail"/></svg><a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a></p>
+          <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-map-pin"/></svg>Mamoudzou, Mayotte</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 GroupSolution. Tous droits réservés.</div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => { q.parentElement.classList.toggle('open'); });
+    });
+  </script>
+</body>
+</html>
