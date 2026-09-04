@@ -4,19 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO -->
-  <title>Création Digitale à Mayotte | GroupSolution - Expert en Transformation Numérique</title>
-  <meta name="description" content="Expert en création digitale à Mayotte : sites web épurés, automatisation IA, référencement. Audit gratuit, solutions sur-mesure. Contactez-nous au 0782298559 ou par email." />
-  <meta name="keywords" content="création digitale Mayotte, transformation numérique Mayotte, site web Mayotte, automatisation Mayotte, référencement Mayotte, audit gratuit Mayotte, expert digital Mayotte" />
+  <!-- SEO OPTIMISÉ MAYOTTE -->
+  <title>Agence Web & Digitale à Mayotte (976) | GroupSolution</title>
+  <meta name="description" content="L'agence digitale de référence à Mayotte. Création de sites internet, Community Management, SEO, Google/Facebook Ads et automatisation. Demandez votre audit gratuit !" />
+  <meta name="keywords" content="agence web Mayotte, création site internet Mayotte, community management 976, SEO Mayotte, agence de communication Mamoudzou, transformation numérique, publicité facebook Mayotte" />
 
-  <!-- Données structurées -->
+  <!-- Données structurées : Agence Locale -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "GroupSolution - Création Digitale à Mayotte",
-    "description": "Expert en transformation numérique et création digitale pour les entreprises de Mayotte. Audit gratuit, solutions sur-mesure.",
-    "areaServed": "Mayotte",
+    "name": "GroupSolution - Agence Web & Digitale Mayotte",
+    "image": "https://groupsolution.fr/Logo.svg",
+    "description": "Agence de communication digitale 360 à Mayotte : Création de sites web, gestion des réseaux sociaux, SEO et automatisation IA pour les entreprises mahoraises.",
+    "areaServed": [
+      { "@type": "City", "name": "Mamoudzou" },
+      { "@type": "City", "name": "Dzaoudzi" },
+      { "@type": "City", "name": "Koungou" },
+      { "@type": "State", "name": "Mayotte" }
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Mamoudzou",
@@ -25,7 +31,31 @@
     },
     "telephone": "+33782298559",
     "email": "contact@groupsolution.fr",
-    "url": "https://groupsolution.fr/offre-site-web.html"
+    "url": "https://groupsolution.fr/site-internet-mayotte.html",
+    "priceRange": "€€"
+  }
+  </script>
+
+  <!-- Données structurées : FAQ (Boost SEO Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "Combien coûte la création d'un site internet à Mayotte ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Chez GroupSolution, nous proposons des sites vitrines professionnels à partir de 250€, livrés rapidement pour les artisans et TPE de Mayotte."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Faites-vous la gestion des réseaux sociaux (Community Management) ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, nous gérons vos pages Facebook, Instagram et TikTok pour attirer des clients locaux, créer du contenu et gérer vos campagnes publicitaires (Ads)."
+      }
+    }]
   }
   </script>
 
@@ -105,7 +135,7 @@
       background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5);
     }
 
-    /* ===== HERO AVEC FOND SIMPLE (transition invisible) ===== */
+    /* ===== HERO AVEC FOND SIMPLE ===== */
     .hero {
       position: relative;
       min-height: 80vh;
@@ -127,7 +157,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
       z-index: -1;
     }
 
@@ -157,7 +187,7 @@
 
     .hero p {
       font-size: 1.25rem;
-      max-width: 700px;
+      max-width: 750px;
       margin: 0 auto 40px;
       opacity: 0.95;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -170,9 +200,7 @@
     /* ===== SECTIONS ===== */
     section { padding: 80px 0; }
 
-    .section-header {
-      text-align: center; margin-bottom: 60px;
-    }
+    .section-header { text-align: center; margin-bottom: 60px; }
 
     .section-header h2 {
       font-size: clamp(2rem, 5vw, 3rem);
@@ -202,9 +230,7 @@
     /* ===== AUDIT GRATUIT ===== */
     .audit-section {
       background: linear-gradient(135deg, var(--rose-clair) 0%, var(--blanc) 100%);
-      padding: 80px 0;
-      position: relative;
-      overflow: hidden;
+      padding: 80px 0; position: relative; overflow: hidden;
     }
 
     .audit-card {
@@ -240,25 +266,20 @@
 
     .audit-feature {
       display: flex; align-items: center; gap: 10px;
-      color: var(--gris-fonce);
-      font-size: 0.95rem;
+      color: var(--gris-fonce); font-size: 0.95rem;
     }
 
     .audit-feature::before {
-      content: '✓';
-      color: var(--rose-fonce);
-      font-weight: 700;
+      content: '✓'; color: var(--rose-fonce); font-weight: 700;
     }
 
     .audit-cta {
       display: flex; flex-direction: column; gap: 12px; justify-content: center;
     }
 
-    .audit-cta .btn {
-      width: 220px;
-    }
+    .audit-cta .btn { width: 220px; }
 
-    /* ===== BULLES STYLE AIRBNB ===== */
+    /* ===== BULLES (SOLUTIONS) ===== */
     .bulles-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -289,15 +310,11 @@
     }
 
     .bulle-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.1));
     }
 
-    .bulle-content {
-      padding: 24px;
-    }
+    .bulle-content { padding: 24px; }
 
     .bulle-content h4 {
       font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
@@ -308,7 +325,7 @@
     }
 
     .bulle-content .prix {
-      font-size: 1.8rem; font-weight: 800; color: var(--rose-fonce);
+      font-size: 1.3rem; font-weight: 800; color: var(--rose-fonce);
       margin-bottom: 12px;
     }
 
@@ -319,349 +336,115 @@
       margin-bottom: 16px;
     }
 
-    .bulle-cta {
-      width: 100%;
-    }
+    .bulle-cta { width: 100%; }
 
     /* ===== PROCESSUS ===== */
     .process-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
     }
 
-    .process-step {
-      text-align: center;
-      position: relative;
-    }
-
+    .process-step { text-align: center; position: relative; }
     .process-step::before {
-      content: '';
-      position: absolute;
-      top: 40px; left: 50%; right: -50%;
-      height: 2px;
-      background: linear-gradient(to right, var(--rose), transparent);
-      z-index: 0;
+      content: ''; position: absolute; top: 40px; left: 50%; right: -50%;
+      height: 2px; background: linear-gradient(to right, var(--rose), transparent); z-index: 0;
     }
-
-    .process-step:last-child::before {
-      display: none;
-    }
+    .process-step:last-child::before { display: none; }
 
     .step-num {
-      width: 64px; height: 64px;
-      background: var(--rose); color: var(--blanc);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; font-weight: 800;
-      margin: 0 auto 20px;
-      position: relative; z-index: 1;
-      box-shadow: 0 4px 15px rgba(236,72,153,0.3);
+      width: 64px; height: 64px; background: var(--rose); color: var(--blanc);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px;
+      position: relative; z-index: 1; box-shadow: 0 4px 15px rgba(236,72,153,0.3);
       transition: var(--transition);
     }
-
-    .process-step:hover .step-num {
-      transform: scale(1.12) rotate(6deg);
-    }
-
-    .process-step h4 {
-      font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
-    }
-
-    .process-step p {
-      color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto;
-    }
+    .process-step:hover .step-num { transform: scale(1.12) rotate(6deg); }
+    .process-step h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
+    .process-step p { color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto; }
 
     /* ===== FAQ ===== */
-    .faq {
-      max-width: 800px; margin: 0 auto;
-    }
-
+    .faq { max-width: 800px; margin: 0 auto; }
     .faq-item {
-      background: var(--blanc);
-      border: 1px solid var(--gris-clair);
-      border-radius: var(--border-radius);
-      margin-bottom: 12px;
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
+      background: var(--blanc); border: 1px solid var(--gris-clair);
+      border-radius: var(--border-radius); margin-bottom: 12px;
+      overflow: hidden; box-shadow: var(--box-shadow);
     }
-
     .faq-q {
-      padding: 20px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex; justify-content: space-between;
-      align-items: center;
-      font-size: 1.02rem;
-      gap: 16px;
-      color: var(--gris-fonce);
+      padding: 20px; font-weight: 600; cursor: pointer; display: flex;
+      justify-content: space-between; align-items: center; font-size: 1.02rem;
+      gap: 16px; color: var(--gris-fonce);
     }
-
-    .faq-q::after {
-      content: '+';
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--gris);
-      transition: var(--transition);
-    }
-
-    .faq-item.open .faq-q::after {
-      content: '−';
-      color: var(--rose-fonce);
-    }
-
+    .faq-q::after { content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--gris); transition: var(--transition); }
+    .faq-item.open .faq-q::after { content: '−'; color: var(--rose-fonce); }
     .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s var(--transition), padding 0.4s var(--transition);
-      padding: 0 20px;
-      color: var(--gris);
+      max-height: 0; overflow: hidden; transition: max-height 0.4s var(--transition), padding 0.4s var(--transition);
+      padding: 0 20px; color: var(--gris);
     }
+    .faq-item.open .faq-a { max-height: 500px; padding: 0 20px 20px; }
 
-    .faq-item.open .faq-a {
-      max-height: 500px;
-      padding: 0 20px 20px;
-    }
-
-    /* ===== CTA FINAL AVEC FORMULAIRE ===== */
+    /* ===== CTA FINAL & CONTACT ===== */
     .cta-final {
-      padding: 100px 0;
-      text-align: center;
-      background: var(--gris-clair);
-      position: relative;
-      overflow: hidden;
+      padding: 100px 0; text-align: center; background: var(--gris-clair);
+      position: relative; overflow: hidden;
     }
-
-    .cta-final-top {
-      margin-bottom: 60px;
-    }
-
+    .cta-final-top { margin-bottom: 60px; }
     .cta-final-top h2 {
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      font-weight: 800;
-      margin-bottom: 16px;
-      color: var(--gris-fonce);
-      position: relative;
-      z-index: 1;
+      font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px;
+      color: var(--gris-fonce); position: relative; z-index: 1;
     }
-
     .cta-final-top h2 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
+    .cta-final-top p { font-size: 1.15rem; color: var(--gris); max-width: 600px; margin: 0 auto 32px; position: relative; z-index: 1; }
 
-    .cta-final-top p {
-      font-size: 1.15rem;
-      color: var(--gris);
-      max-width: 600px;
-      margin: 0 auto 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===== FORMULAIRE DANS CTA FINAL ===== */
     .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--blanc);
-      padding: 32px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      border: 1px solid var(--gris-clair);
+      max-width: 600px; margin: 0 auto; background: var(--blanc); padding: 32px;
+      border-radius: var(--border-radius); box-shadow: var(--box-shadow);
+      border: 1px solid var(--gris-clair); text-align: left;
     }
+    .form-container h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
+    .form-container p { color: var(--gris); margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--gris-clair);
+      border-radius: 8px; font-size: 1rem; font-family: inherit; transition: var(--transition);
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--rose-fonce); box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+    }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-actions { display: flex; gap: 12px; margin-top: 8px; }
+    .form-actions .btn { flex: 1; justify-content: center; }
 
-    .form-container h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--gris-fonce);
-    }
-
-    .form-container p {
-      color: var(--gris);
-      margin-bottom: 24px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--gris-clair);
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: var(--transition);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--rose-fonce);
-      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
-    }
-
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .form-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .form-actions .btn {
-      flex: 1;
-      justify-content: center;
-    }
-
-    .contact-infos {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 32px;
-    }
-
-    .contact-info {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--gris-fonce);
-      font-size: 0.95rem;
-    }
-
-    .contact-info a {
-      color: var(--gris-fonce);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .contact-info a:hover {
-      color: var(--rose-fonce);
-      text-decoration: underline;
-    }
+    .contact-infos { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+    .contact-info { display: flex; align-items: center; gap: 8px; color: var(--gris-fonce); font-size: 0.95rem; }
+    .contact-info a { color: var(--gris-fonce); text-decoration: none; font-weight: 600; }
+    .contact-info a:hover { color: var(--rose-fonce); text-decoration: underline; }
 
     /* ===== FOOTER ===== */
-    footer {
-      background: var(--noir-doux);
-      color: var(--blanc);
-      padding: 60px 0 30px;
-      position: relative;
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-logo {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      background: var(--blanc);
-      padding: 24px;
-      border-radius: var(--border-radius);
-      text-align: center;
-      color: var(--gris-fonce);
-    }
-
-    .footer-logo img {
-      height: 40px;
-      width: auto;
-    }
-
-    .footer-desc {
-      color: var(--gris);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    .footer-links h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--blanc);
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links ul li {
-      margin-bottom: 8px;
-    }
-
-    .footer-links ul li a {
-      color: #a1a1aa;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .footer-links ul li a:hover {
-      color: var(--rose);
-    }
-
-    .footer-contact {
-      background: var(--blanc);
-      color: var(--gris-fonce);
-      padding: 24px;
-      border-radius: var(--border-radius);
-    }
-
-    .footer-contact h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--gris-fonce);
-    }
-
-    .footer-contact p {
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .footer-contact a {
-      color: var(--gris-fonce);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .footer-contact a:hover {
-      color: var(--rose-fonce);
-      text-decoration: underline;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: #a1a1aa;
-      font-size: 0.85rem;
-    }
+    footer { background: var(--noir-doux); color: var(--blanc); padding: 60px 0 30px; position: relative; }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-logo { display: flex; flex-direction: column; gap: 16px; background: var(--blanc); padding: 24px; border-radius: var(--border-radius); text-align: center; color: var(--gris-fonce); }
+    .footer-logo img { height: 40px; width: auto; }
+    .footer-desc { color: var(--gris); font-size: 0.9rem; line-height: 1.7; }
+    .footer-links h4, .footer-contact h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--blanc); }
+    .footer-links ul { list-style: none; }
+    .footer-links ul li { margin-bottom: 8px; }
+    .footer-links ul li a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links ul li a:hover { color: var(--rose); }
+    .footer-contact { background: var(--blanc); color: var(--gris-fonce); padding: 24px; border-radius: var(--border-radius); }
+    .footer-contact h4 { color: var(--gris-fonce); }
+    .footer-contact p { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .footer-contact a { color: var(--gris-fonce); text-decoration: none; font-weight: 600; }
+    .footer-contact a:hover { color: var(--rose-fonce); text-decoration: underline; }
+    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #a1a1aa; font-size: 0.85rem; }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hero { min-height: 70vh; padding-top: 80px; }
-      .hero h1 { font-size: 2.4rem; }
+      .hero h1 { font-size: 2.2rem; }
       .hero p { font-size: 1rem; }
       .hero-ctas { flex-direction: column; align-items: center; }
       .hero-ctas .btn { width: 100%; justify-content: center; }
@@ -679,47 +462,24 @@
     }
 
     /* ===== ANIMATIONS ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s var(--transition), transform 0.6s var(--transition);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== SCROLLBAR ===== */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--transition), transform 0.6s var(--transition); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--gris-clair); }
     ::-webkit-scrollbar-thumb { background: var(--gris); border-radius: 4px; }
-
-    /* ===== ICONS ===== */
-    .icon {
-      width: 20px;
-      height: 20px;
-      stroke-width: 1.5;
-      stroke: currentColor;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+    .icon { width: 20px; height: 20px; stroke-width: 1.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   </style>
 </head>
 
 <body>
+  <!-- ICONS SVG -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></symbol>
     <symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
     <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
-    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></symbol>
     <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3L13.5 8.5L19 10L13.5 11.5L12 17L10.5 11.5L5 10L10.5 8.5L12 3Z"/><path d="M19 16L19.7 18.3L22 19L19.7 19.7L19 22L18.3 19.7L16 19L18.3 18.3L19 16Z"/></symbol>
-    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
     <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
     <symbol id="i-lightning" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></symbol>
@@ -731,7 +491,7 @@
       <a href="#" class="nav-logo"><img src="Logo.svg" alt="GroupSolution" /></a>
       <ul class="nav-links">
         <li><a href="#audit">Audit Gratuit</a></li>
-        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#solutions">Nos Services</a></li>
         <li><a href="#processus">Processus</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -749,23 +509,23 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO (AGENCE 360) -->
   <section class="hero" id="hero">
     <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
-        Disponible cette semaine — Mayotte
+        Le guichet unique du numérique dans le 976
       </div>
-      <h1>Création <span class="accent">Digitale</span><br>à Mayotte</h1>
-      <p>On réfléchit à votre place : sites web, automatisation, référencement. Transformation numérique clé en main, sans prise de tête.</p>
+      <h1>Votre Agence Web & <span class="accent">Digitale</span><br>à Mayotte</h1>
+      <p>Création de sites internet, Community Management, Référencement (SEO) et Publicité (Ads). On gère de A à Z la visibilité de votre entreprise à Mayotte.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary">
           <svg class="icon"><use href="#i-mail"/></svg>
-          <span>Me contacter</span>
+          <span>Parler de mon projet</span>
         </a>
         <a href="#audit" class="btn btn-ghost">
           <svg class="icon"><use href="#i-zap"/></svg>
-          <span>Audit Gratuit</span>
+          <span>Audit Web Gratuit</span>
         </a>
       </div>
     </div>
@@ -777,22 +537,22 @@
       <div class="section-header">
         <span class="section-tag">
           <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-lightning"/></svg>
-          Audit Gratuit
+          Stratégie Digitale
         </span>
         <h2>On commence par un <span class="accent">diagnostic</span> gratuit</h2>
-        <p>En 10 minutes, on identifie les axes d’amélioration pour votre entreprise. Pas de vente, que du concret.</p>
+        <p>En 15 minutes, on analyse la présence en ligne de votre commerce ou PME à Mayotte. Pas de blabla, des recommandations directes.</p>
       </div>
 
       <div class="audit-card reveal">
         <div class="audit-content">
-          <h3><span class="accent">Audit Express</span> de votre entreprise</h3>
-          <p>On passe en revue votre présence digitale actuelle (site, réseaux, processus) et on vous propose des solutions <strong>sur-mesure</strong> pour Mayotte. Sans engagement, sans facture.</p>
+          <h3><span class="accent">Audit 360°</span> de votre entreprise</h3>
+          <p>On passe au crible votre site web, vos réseaux sociaux et votre référencement local. Nous identifions où se trouvent vos clients sur l'île et comment les atteindre.</p>
 
           <div class="audit-features">
-            <div class="audit-feature">Analyse de votre site actuel</div>
-            <div class="audit-feature">État des lieux de votre visibilité</div>
-            <div class="audit-feature">Recommandations personnalisées</div>
-            <div class="audit-feature">Estimation des gains possibles</div>
+            <div class="audit-feature">Analyse de votre positionnement Google</div>
+            <div class="audit-feature">Audit de vos réseaux (Insta, Facebook, TikTok)</div>
+            <div class="audit-feature">Stratégie d'acquisition locale</div>
+            <div class="audit-feature">Devis transparent et sur-mesure</div>
           </div>
         </div>
 
@@ -803,74 +563,68 @@
           </a>
           <a href="#solutions" class="btn btn-secondary">
             <svg class="icon"><use href="#i-arrow-right"/></svg>
-            Voir les solutions
+            Voir notre offre 360
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SOLUTIONS -->
+  <!-- SOLUTIONS (LES 3 PILIERS FULL DIGITAL) -->
   <section id="solutions">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">
           <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-globe"/></svg>
-          Nos Solutions
+          Nos Services
         </span>
-        <h2>Des solutions <span class="accent">claires</span><br>pour votre transformation digitale</h2>
-        <p>On a repensé nos offres pour coller aux besoins réels des entreprises à Mayotte. Pas de jargon, que de l’efficace.</p>
+        <h2>Tout le digital centralisé<br><span class="accent">pour les entreprises mahoraises</span></h2>
+        <p>Ne jonglez plus entre 4 prestataires différents. Nous couvrons l'intégralité de vos besoins en communication et développement technique.</p>
       </div>
 
       <div class="bulles-container">
-        <!-- Bulle 1 : Site Vitrine -->
+        <!-- Bulle 1 : Sites Web (Avec photo7) -->
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('photo1.jpg');"></div>
+          <div class="bulle-image" style="background-image: url('photo7.jpg');"></div>
           <div class="bulle-content">
-            <h4>Site Vitrine</h4>
-            <p>Votre vitrine digitale pour être visible 24h/24. Simple, efficace, professionnel.</p>
-            <div class="prix">250€</div>
+            <h4>Création de Sites Web</h4>
+            <p>Site vitrine, e-commerce ou plateforme sur-mesure. Un design moderne, adapté aux mobiles et optimisé pour le réseau local.</p>
+            <div class="prix">Dès 250€</div>
             <div class="delai">
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Livré en 48h
+              Rapide & Clé en main
             </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">
-              Me contacter
-            </a>
+            <a href="#contact" class="btn btn-primary bulle-cta">En savoir plus</a>
           </div>
         </div>
 
-        <!-- Bulle 2 : Site Poussé -->
+        <!-- Bulle 2 : Réseaux Sociaux & Ads -->
         <div class="bulle reveal">
           <div class="bulle-image" style="background-image: url('photo2.jpg');"></div>
           <div class="bulle-content">
-            <h4>Site Poussé</h4>
-            <p>Un site complet avec prise de RDV, formulaires, et intégration réseaux sociaux.</p>
-            <div class="prix">400€</div>
+            <h4>Réseaux Sociaux & Ads</h4>
+            <p>Community Management sur Facebook, Insta & TikTok. Création de contenus et publicité (Social Ads) ciblée sur le 976.</p>
+            <div class="prix">Sur devis</div>
             <div class="delai">
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Livré en 3 jours
+              Acquisition continue
             </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">
-              Me contacter
-            </a>
+            <a href="#contact" class="btn btn-primary bulle-cta">Booster ma marque</a>
           </div>
         </div>
 
-        <!-- Bulle 3 : Automatisation -->
+        <!-- Bulle 3 : SEO & Automatisation -->
         <div class="bulle reveal">
           <div class="bulle-image" style="background-image: url('photo3.jpg');"></div>
           <div class="bulle-content">
-            <h4>Automatisation</h4>
-            <p>On automatise vos tâches répétitives : relances clients, confirmations de RDV, réponses aux FAQ.</p>
-            <div class="prix">À partir de 600€</div>
+            <h4>SEO & Automatisation</h4>
+            <p>Dominez Google à Mayotte avec notre référencement local. Automatisation de vos relances clients et prises de RDV par IA.</p>
+            <div class="prix">Sur devis</div>
             <div class="delai">
               <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Livré en 1 semaine
+              Gain de temps garanti
             </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">
-              Me contacter
-            </a>
+            <a href="#contact" class="btn btn-primary bulle-cta">Me positionner 1er</a>
           </div>
         </div>
       </div>
@@ -885,92 +639,81 @@
           <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
           Processus
         </span>
-        <h2>Simple comme <span class="accent">bonjour</span></h2>
-        <p>On va droit au but. Pas de réunion inutile, pas de délai interminable.</p>
+        <h2>Déploiement <span class="accent">efficace</span></h2>
+        <p>Un accompagnement de proximité. Vous restez concentré sur votre métier, on s'occupe de la technique et de votre image.</p>
       </div>
 
       <div class="process-steps">
         <div class="process-step reveal">
           <div class="step-num">1</div>
-          <h4>On échange 10 min</h4>
-          <p>On discute de votre projet par téléphone ou email. Vous me dites vos besoins, je vous dis ce qu’on peut faire.</p>
+          <h4>Diagnostic (15 min)</h4>
+          <p>On évalue vos besoins actuels (nouveau site, refonte, gestion des réseaux, pub locale).</p>
         </div>
-
         <div class="process-step reveal">
           <div class="step-num">2</div>
-          <h4>Détail du projet en 24h</h4>
-          <p>Je vous envoie une proposition détaillée avec maquette, délais et tarifs. Vous validez ou ajustez.</p>
+          <h4>Stratégie & Devis</h4>
+          <p>Proposition d'un plan d'action global sur-mesure pour votre budget.</p>
         </div>
-
         <div class="process-step reveal">
           <div class="step-num">3</div>
-          <h4>Validation</h4>
-          <p>On finalise ensemble les derniers détails. Pas de surprise, tout est clair.</p>
+          <h4>Création</h4>
+          <p>Design du site, configuration du SEO, mise en place de vos plannings de publication.</p>
         </div>
-
         <div class="process-step reveal">
           <div class="step-num">4</div>
-          <h4>Livraison</h4>
-          <p>Votre solution est en ligne. Vous payez uniquement à ce moment-là.</p>
+          <h4>Lancement & Suivi</h4>
+          <p>Mise en ligne, gestion quotidienne et reporting de vos nouvelles performances.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- FAQ (MAHORAISE) -->
   <section id="faq">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">FAQ</span>
         <h2>Questions <span class="accent">fréquentes</span></h2>
-        <p>On a anticipé vos questions. Si la vôtre n’est pas là, contactez-moi directement.</p>
       </div>
 
       <div class="faq">
         <div class="faq-item reveal">
-          <div class="faq-q">C’est quoi la création digitale exactement ?</div>
+          <div class="faq-q">Faites-vous uniquement des sites internet ?</div>
           <div class="faq-a">
-            <p>C’est l’ensemble des solutions pour développer votre présence en ligne : site web, automatisation de vos processus, référencement, et outils pour gagner en visibilité et en efficacité.</p>
+            <p>Non ! Nous sommes une <strong>agence digitale globale</strong>. Nous créons des sites, mais nous gérons aussi vos pages Facebook/Instagram, votre référencement sur Google, la publicité en ligne, et l'automatisation de vos outils de travail.</p>
           </div>
         </div>
 
         <div class="faq-item reveal">
-          <div class="faq-q">Pourquoi commencer par un audit gratuit ?</div>
+          <div class="faq-q">Combien coûte la création d'un site internet à Mayotte ?</div>
           <div class="faq-a">
-            <p>Parce que chaque entreprise est différente. L’audit permet d’identifier <strong>exactement</strong> ce qui vous ferait gagner du temps, de l’argent ou des clients.</p>
+            <p>Chez GroupSolution, nos offres de sites vitrines professionnels démarrent à <strong>250€</strong>. C'est idéal pour avoir une première vraie présence en ligne. Pour du e-commerce ou des fonctionnalités avancées, le devis est sur-mesure.</p>
           </div>
         </div>
 
         <div class="faq-item reveal">
-          <div class="faq-q">Je ne suis pas sûr de savoir quoi automatiser...</div>
+          <div class="faq-q">Gérez-vous les réseaux sociaux des entreprises locales ?</div>
           <div class="faq-a">
-            <p>C’est justement pour ça qu’on fait l’audit ! Je vous guide et vous propose des solutions concrètes : relances clients, gestion des RDV, réponses automatiques, etc.</p>
+            <p>Tout à fait (Community Management). On sait qu'à Mayotte, Facebook et WhatsApp sont rois. Nous créons vos visuels, rédigeons vos posts et paramétrons vos campagnes de publicité pour toucher précisément votre cible sur l'île.</p>
           </div>
         </div>
 
         <div class="faq-item reveal">
-          <div class="faq-q">C’est vraiment sans engagement ?</div>
+          <div class="faq-q">C'est vraiment sans engagement l'audit ?</div>
           <div class="faq-a">
-            <p>Oui. L’audit est 100% gratuit et sans obligation. Ensuite, si vous voulez aller plus loin, on discute des solutions.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <div class="faq-q">Je suis à Mayotte, est-ce que ça change quelque chose ?</div>
-          <div class="faq-a">
-            <p>Non, tout se fait à distance. Je suis basé à Mayotte, je connais les spécificités locales, et je peux même me déplacer si besoin.</p>
+            <p>Oui. L'audit nous permet de faire connaissance. Je regarde comment votre entreprise est visible sur internet aujourd'hui, et je vous dis ce qu'on peut améliorer. Aucune obligation d'achat à la fin.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL AVEC FORMULAIRE -->
+  <!-- CTA FINAL -->
   <section class="cta-final" id="contact">
     <div class="container">
       <div class="cta-final-top">
-        <h2>Prêt à transformer votre <span class="accent">présence digitale</span> ?</h2>
-        <p>Le premier pas est gratuit et sans risque. Remplissez le formulaire ci-dessous, je vous recontacte sous 2h en journée.</p>
+        <h2>Prêt à dominer le web <span class="accent">à Mayotte</span> ?</h2>
+        <p>Que ce soit pour un site web, du SEO ou la gestion de vos réseaux, expliquez-nous votre besoin.</p>
       </div>
 
       <div class="form-container reveal">
@@ -992,12 +735,12 @@
             </div>
           </div>
           <div class="form-group">
-            <textarea name="message" placeholder="Décrivez votre projet ou posez votre question..." required></textarea>
+            <textarea name="message" placeholder="Parlez-nous de votre projet (site web, réseaux sociaux, pub...)" required></textarea>
           </div>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">
               <svg class="icon"><use href="#i-arrow-right"/></svg>
-              Envoyer
+              Envoyer la demande
             </button>
           </div>
         </form>
@@ -1025,18 +768,18 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="Logo.svg" alt="GroupSolution" />
-          <p class="footer-desc">Création digitale sur-mesure pour Mayotte. Audit gratuit, solutions efficaces.</p>
+          <img src="Logo.svg" alt="GroupSolution Agence Digitale" />
+          <p class="footer-desc">L'agence web globale pour les professionnels de Mayotte (976). Création de sites, SEO, Réseaux Sociaux et Ads.</p>
         </div>
 
         <div class="footer-links">
-          <h4>Liens</h4>
+          <h4>Expertises</h4>
           <ul>
+            <li><a href="#solutions">Création de site internet</a></li>
+            <li><a href="#solutions">Community Management</a></li>
+            <li><a href="#solutions">SEO Local & Publicité</a></li>
+            <li><a href="#solutions">Automatisation IA</a></li>
             <li><a href="#audit">Audit Gratuit</a></li>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#processus">Processus</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="catalogue-demos.html">Catalogue Démos</a></li>
           </ul>
         </div>
 
@@ -1052,9 +795,9 @@
   </footer>
 
   <script>
-    // Hero background rotation (invisible transition)
+    // Hero background rotation (ATTENTION : photo7.jpg retirée !)
     const hero = document.querySelector('.hero');
-    const photos = ['photo1.jpg', 'photo7.jpg', 'photo3.jpg', 'photo4.jpg', 'photo2.jpg'];
+    const photos = ['photo1.jpg', 'photo3.jpg', 'photo4.jpg', 'photo2.jpg'];
     let currentPhotoIndex = 0;
 
     function changeHeroBackground() {
@@ -1116,7 +859,7 @@
           }
         }).then(response => {
           if (response.ok) {
-            alert('Merci ! Votre message a été envoyé avec succès.');
+            alert('Merci ! Votre demande a été envoyée avec succès.');
             form.reset();
           } else {
             alert('Une erreur est survenue. Veuillez réessayer.');
