@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- SEO -->
   <title>Création Digitale à Mayotte | GroupSolution - Expert en Transformation Numérique</title>
   <meta name="description" content="Expert en création digitale à Mayotte : sites web épurés, automatisation IA, référencement. Audit gratuit, solutions sur-mesure. Contactez-nous au 0782298559 ou par email." />
   <meta name="keywords" content="création digitale Mayotte, transformation numérique Mayotte, site web Mayotte, automatisation Mayotte, référencement Mayotte, audit gratuit Mayotte, expert digital Mayotte" />
-  
+
   <!-- Données structurées -->
   <script type="application/ld+json">
   {
@@ -28,12 +28,12 @@
     "url": "https://groupsolution.fr/offre-site-web.html"
   }
   </script>
-  
+
   <link rel="icon" type="image/svg+xml" href="Logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --rose: #FFD1DC;
@@ -53,12 +53,12 @@
       --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { color: var(--gris-fonce); background: var(--blanc); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    
+
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    
+
     /* ===== NAVBAR ===== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -74,7 +74,7 @@
     .nav-links a { text-decoration: none; color: var(--gris-fonce); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--rose-fonce); }
     .nav-actions { display: flex; gap: 12px; align-items: center; }
-    
+
     /* ===== BOUTONS ===== */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -83,15 +83,15 @@
       transition: var(--transition); border: none; cursor: pointer;
     }
     .btn-primary {
-      background: var(--rose); color: var(--noir); 
+      background: var(--rose); color: var(--noir);
       box-shadow: var(--box-shadow);
     }
     .btn-primary:hover {
-      background: var(--rose-fonce); color: var(--blanc); 
+      background: var(--rose-fonce); color: var(--blanc);
       transform: translateY(-2px); box-shadow: var(--box-shadow-lg);
     }
     .btn-secondary {
-      background: var(--blanc); color: var(--gris-fonce); 
+      background: var(--blanc); color: var(--gris-fonce);
       border: 1px solid var(--gris-clair);
     }
     .btn-secondary:hover {
@@ -104,8 +104,8 @@
     .btn-ghost:hover {
       background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5);
     }
-    
-    /* ===== HERO AVEC FOND DÉFILEMENT SIMPLE ===== */
+
+    /* ===== HERO AVEC FOND SIMPLE (transition invisible) ===== */
     .hero {
       position: relative;
       min-height: 80vh;
@@ -118,37 +118,21 @@
       overflow: hidden;
       padding-top: 70px;
       margin-bottom: 40px;
-    }
-    
-    .hero-bg {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: -1;
       background-size: cover;
       background-position: center;
-      animation: slideBg 15s infinite linear;
+      transition: background-image 0.1s ease-in-out;
     }
-    
-    .hero-bg::before {
+
+    .hero::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+      z-index: -1;
     }
-    
-    @keyframes slideBg {
-      0% { background-image: url('photo1.jpg'); opacity: 1; }
-      25% { background-image: url('photo1.jpg'); opacity: 1; }
-      25.01% { background-image: url('photo2.jpg'); opacity: 0; }
-      50% { background-image: url('photo2.jpg'); opacity: 1; }
-      50.01% { background-image: url('photo3.jpg'); opacity: 0; }
-      75% { background-image: url('photo3.jpg'); opacity: 1; }
-      75.01% { background-image: url('photo4.jpg'); opacity: 0; }
-      100% { background-image: url('photo4.jpg'); opacity: 1; }
-    }
-    
+
     .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 20px; }
-    
+
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);
@@ -156,7 +140,7 @@
       margin-bottom: 24px;
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    
+
     .hero h1 {
       font-size: clamp(2.4rem, 6vw, 4rem);
       font-weight: 800;
@@ -165,12 +149,12 @@
       letter-spacing: -0.03em;
       text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
-    
+
     .hero h1 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    
+
     .hero p {
       font-size: 1.25rem;
       max-width: 700px;
@@ -178,43 +162,43 @@
       opacity: 0.95;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
-    
+
     .hero-ctas {
       display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
     }
-    
+
     /* ===== SECTIONS ===== */
     section { padding: 80px 0; }
-    
+
     .section-header {
       text-align: center; margin-bottom: 60px;
     }
-    
+
     .section-header h2 {
       font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800; 
-      margin-bottom: 16px; 
+      font-weight: 800;
+      margin-bottom: 16px;
       line-height: 1.1;
       color: var(--gris-fonce);
     }
-    
+
     .section-header h2 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    
+
     .section-header p {
-      font-size: 1.15rem; color: var(--gris); 
+      font-size: 1.15rem; color: var(--gris);
       max-width: 700px; margin: 0 auto;
     }
-    
+
     .section-tag {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--rose-clair); color: var(--rose-fonce);
-      padding: 6px 14px; border-radius: 999px; 
+      padding: 6px 14px; border-radius: 999px;
       font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
     }
-    
+
     /* ===== AUDIT GRATUIT ===== */
     .audit-section {
       background: linear-gradient(135deg, var(--rose-clair) 0%, var(--blanc) 100%);
@@ -222,7 +206,7 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .audit-card {
       background: var(--blanc);
       border-radius: var(--border-radius);
@@ -236,44 +220,44 @@
       align-items: center;
       border: 1px solid var(--gris-clair);
     }
-    
+
     .audit-content h3 {
       font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--gris-fonce);
     }
-    
+
     .audit-content h3 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    
+
     .audit-content p {
       font-size: 1.1rem; color: var(--gris); margin-bottom: 24px; line-height: 1.7;
     }
-    
+
     .audit-features {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
     }
-    
+
     .audit-feature {
       display: flex; align-items: center; gap: 10px;
       color: var(--gris-fonce);
       font-size: 0.95rem;
     }
-    
+
     .audit-feature::before {
       content: '✓';
       color: var(--rose-fonce);
       font-weight: 700;
     }
-    
+
     .audit-cta {
       display: flex; flex-direction: column; gap: 12px; justify-content: center;
     }
-    
+
     .audit-cta .btn {
       width: 220px;
     }
-    
+
     /* ===== BULLES STYLE AIRBNB ===== */
     .bulles-container {
       display: grid;
@@ -281,7 +265,7 @@
       gap: 24px;
       margin-top: 40px;
     }
-    
+
     .bulle {
       background: var(--blanc);
       border-radius: var(--border-radius);
@@ -291,66 +275,66 @@
       border: 1px solid var(--gris-clair);
       position: relative;
     }
-    
+
     .bulle:hover {
       transform: translateY(-8px);
       box-shadow: var(--box-shadow-lg);
     }
-    
+
     .bulle-image {
       height: 180px;
       background-size: cover;
       background-position: center;
       position: relative;
     }
-    
+
     .bulle-image::after {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.1));
     }
-    
+
     .bulle-content {
       padding: 24px;
     }
-    
+
     .bulle-content h4 {
       font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
     }
-    
+
     .bulle-content p {
       font-size: 0.95rem; color: var(--gris); margin-bottom: 16px;
     }
-    
+
     .bulle-content .prix {
       font-size: 1.8rem; font-weight: 800; color: var(--rose-fonce);
       margin-bottom: 12px;
     }
-    
+
     .bulle-content .delai {
       display: inline-flex; align-items: center; gap: 6px;
       background: #dcfce7; color: var(--vert);
       padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
       margin-bottom: 16px;
     }
-    
+
     .bulle-cta {
       width: 100%;
     }
-    
+
     /* ===== PROCESSUS ===== */
     .process-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
     }
-    
+
     .process-step {
       text-align: center;
       position: relative;
     }
-    
+
     .process-step::before {
       content: '';
       position: absolute;
@@ -359,11 +343,11 @@
       background: linear-gradient(to right, var(--rose), transparent);
       z-index: 0;
     }
-    
+
     .process-step:last-child::before {
       display: none;
     }
-    
+
     .step-num {
       width: 64px; height: 64px;
       background: var(--rose); color: var(--blanc);
@@ -375,24 +359,24 @@
       box-shadow: 0 4px 15px rgba(236,72,153,0.3);
       transition: var(--transition);
     }
-    
+
     .process-step:hover .step-num {
       transform: scale(1.12) rotate(6deg);
     }
-    
+
     .process-step h4 {
       font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
     }
-    
+
     .process-step p {
       color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto;
     }
-    
+
     /* ===== FAQ ===== */
     .faq {
       max-width: 800px; margin: 0 auto;
     }
-    
+
     .faq-item {
       background: var(--blanc);
       border: 1px solid var(--gris-clair);
@@ -401,7 +385,7 @@
       overflow: hidden;
       box-shadow: var(--box-shadow);
     }
-    
+
     .faq-q {
       padding: 20px;
       font-weight: 600;
@@ -412,7 +396,7 @@
       gap: 16px;
       color: var(--gris-fonce);
     }
-    
+
     .faq-q::after {
       content: '+';
       font-size: 1.2rem;
@@ -420,12 +404,12 @@
       color: var(--gris);
       transition: var(--transition);
     }
-    
+
     .faq-item.open .faq-q::after {
       content: '−';
       color: var(--rose-fonce);
     }
-    
+
     .faq-a {
       max-height: 0;
       overflow: hidden;
@@ -433,12 +417,12 @@
       padding: 0 20px;
       color: var(--gris);
     }
-    
+
     .faq-item.open .faq-a {
       max-height: 500px;
       padding: 0 20px 20px;
     }
-    
+
     /* ===== CTA FINAL AVEC FORMULAIRE ===== */
     .cta-final {
       padding: 100px 0;
@@ -447,11 +431,11 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .cta-final-top {
       margin-bottom: 60px;
     }
-    
+
     .cta-final-top h2 {
       font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 800;
@@ -460,12 +444,12 @@
       position: relative;
       z-index: 1;
     }
-    
+
     .cta-final-top h2 .accent {
       background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    
+
     .cta-final-top p {
       font-size: 1.15rem;
       color: var(--gris);
@@ -474,7 +458,7 @@
       position: relative;
       z-index: 1;
     }
-    
+
     /* ===== FORMULAIRE DANS CTA FINAL ===== */
     .form-container {
       max-width: 600px;
@@ -485,30 +469,30 @@
       box-shadow: var(--box-shadow);
       border: 1px solid var(--gris-clair);
     }
-    
+
     .form-container h3 {
       font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 8px;
       color: var(--gris-fonce);
     }
-    
+
     .form-container p {
       color: var(--gris);
       margin-bottom: 24px;
     }
-    
+
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 16px;
     }
-    
+
     .form-group {
       margin-bottom: 16px;
     }
-    
+
     .form-group input,
     .form-group textarea {
       width: 100%;
@@ -519,30 +503,30 @@
       font-family: inherit;
       transition: var(--transition);
     }
-    
+
     .form-group input:focus,
     .form-group textarea:focus {
       outline: none;
       border-color: var(--rose-fonce);
       box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
     }
-    
+
     .form-group textarea {
       min-height: 100px;
       resize: vertical;
     }
-    
+
     .form-actions {
       display: flex;
       gap: 12px;
       margin-top: 8px;
     }
-    
+
     .form-actions .btn {
       flex: 1;
       justify-content: center;
     }
-    
+
     .contact-infos {
       display: flex;
       gap: 24px;
@@ -550,7 +534,7 @@
       flex-wrap: wrap;
       margin-top: 32px;
     }
-    
+
     .contact-info {
       display: flex;
       align-items: center;
@@ -558,18 +542,18 @@
       color: var(--gris-fonce);
       font-size: 0.95rem;
     }
-    
+
     .contact-info a {
       color: var(--gris-fonce);
       text-decoration: none;
       font-weight: 600;
     }
-    
+
     .contact-info a:hover {
       color: var(--rose-fonce);
       text-decoration: underline;
     }
-    
+
     /* ===== FOOTER ===== */
     footer {
       background: var(--noir-doux);
@@ -577,14 +561,14 @@
       padding: 60px 0 30px;
       position: relative;
     }
-    
+
     .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 40px;
       margin-bottom: 40px;
     }
-    
+
     .footer-logo {
       display: flex;
       flex-direction: column;
@@ -595,76 +579,76 @@
       text-align: center;
       color: var(--gris-fonce);
     }
-    
+
     .footer-logo img {
       height: 40px;
       width: auto;
     }
-    
+
     .footer-desc {
       color: var(--gris);
       font-size: 0.9rem;
       line-height: 1.7;
     }
-    
+
     .footer-links h4 {
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 16px;
       color: var(--blanc);
     }
-    
+
     .footer-links ul {
       list-style: none;
     }
-    
+
     .footer-links ul li {
       margin-bottom: 8px;
     }
-    
+
     .footer-links ul li a {
       color: #a1a1aa;
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.2s;
     }
-    
+
     .footer-links ul li a:hover {
       color: var(--rose);
     }
-    
+
     .footer-contact {
       background: var(--blanc);
       color: var(--gris-fonce);
       padding: 24px;
       border-radius: var(--border-radius);
     }
-    
+
     .footer-contact h4 {
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 16px;
       color: var(--gris-fonce);
     }
-    
+
     .footer-contact p {
       margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    
+
     .footer-contact a {
       color: var(--gris-fonce);
       text-decoration: none;
       font-weight: 600;
     }
-    
+
     .footer-contact a:hover {
       color: var(--rose-fonce);
       text-decoration: underline;
     }
-    
+
     .footer-bottom {
       text-align: center;
       padding-top: 30px;
@@ -672,7 +656,7 @@
       color: #a1a1aa;
       font-size: 0.85rem;
     }
-    
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -693,24 +677,24 @@
       .footer-logo img { filter: brightness(0) invert(1); }
       .form-group input, .form-group textarea { padding: 10px 14px; }
     }
-    
+
     /* ===== ANIMATIONS ===== */
     .reveal {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s var(--transition), transform 0.6s var(--transition);
     }
-    
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     /* ===== SCROLLBAR ===== */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--gris-clair); }
     ::-webkit-scrollbar-thumb { background: var(--gris); border-radius: 4px; }
-    
+
     /* ===== ICONS ===== */
     .icon {
       width: 20px;
@@ -767,7 +751,6 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
     <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
@@ -799,12 +782,12 @@
         <h2>On commence par un <span class="accent">diagnostic</span> gratuit</h2>
         <p>En 10 minutes, on identifie les axes d’amélioration pour votre entreprise. Pas de vente, que du concret.</p>
       </div>
-      
+
       <div class="audit-card reveal">
         <div class="audit-content">
           <h3><span class="accent">Audit Express</span> de votre entreprise</h3>
           <p>On passe en revue votre présence digitale actuelle (site, réseaux, processus) et on vous propose des solutions <strong>sur-mesure</strong> pour Mayotte. Sans engagement, sans facture.</p>
-          
+
           <div class="audit-features">
             <div class="audit-feature">Analyse de votre site actuel</div>
             <div class="audit-feature">État des lieux de votre visibilité</div>
@@ -812,7 +795,7 @@
             <div class="audit-feature">Estimation des gains possibles</div>
           </div>
         </div>
-        
+
         <div class="audit-cta">
           <a href="#contact" class="btn btn-primary">
             <svg class="icon"><use href="#i-mail"/></svg>
@@ -838,7 +821,7 @@
         <h2>Des solutions <span class="accent">claires</span><br>pour votre transformation digitale</h2>
         <p>On a repensé nos offres pour coller aux besoins réels des entreprises à Mayotte. Pas de jargon, que de l’efficace.</p>
       </div>
-      
+
       <div class="bulles-container">
         <!-- Bulle 1 : Site Vitrine -->
         <div class="bulle reveal">
@@ -856,7 +839,7 @@
             </a>
           </div>
         </div>
-        
+
         <!-- Bulle 2 : Site Poussé -->
         <div class="bulle reveal">
           <div class="bulle-image" style="background-image: url('photo2.jpg');"></div>
@@ -873,7 +856,7 @@
             </a>
           </div>
         </div>
-        
+
         <!-- Bulle 3 : Automatisation -->
         <div class="bulle reveal">
           <div class="bulle-image" style="background-image: url('photo3.jpg');"></div>
@@ -905,26 +888,26 @@
         <h2>Simple comme <span class="accent">bonjour</span></h2>
         <p>On va droit au but. Pas de réunion inutile, pas de délai interminable.</p>
       </div>
-      
+
       <div class="process-steps">
         <div class="process-step reveal">
           <div class="step-num">1</div>
           <h4>On échange 10 min</h4>
           <p>On discute de votre projet par téléphone ou email. Vous me dites vos besoins, je vous dis ce qu’on peut faire.</p>
         </div>
-        
+
         <div class="process-step reveal">
           <div class="step-num">2</div>
           <h4>Détail du projet en 24h</h4>
           <p>Je vous envoie une proposition détaillée avec maquette, délais et tarifs. Vous validez ou ajustez.</p>
         </div>
-        
+
         <div class="process-step reveal">
           <div class="step-num">3</div>
           <h4>Validation</h4>
           <p>On finalise ensemble les derniers détails. Pas de surprise, tout est clair.</p>
         </div>
-        
+
         <div class="process-step reveal">
           <div class="step-num">4</div>
           <h4>Livraison</h4>
@@ -942,7 +925,7 @@
         <h2>Questions <span class="accent">fréquentes</span></h2>
         <p>On a anticipé vos questions. Si la vôtre n’est pas là, contactez-moi directement.</p>
       </div>
-      
+
       <div class="faq">
         <div class="faq-item reveal">
           <div class="faq-q">C’est quoi la création digitale exactement ?</div>
@@ -950,28 +933,28 @@
             <p>C’est l’ensemble des solutions pour développer votre présence en ligne : site web, automatisation de vos processus, référencement, et outils pour gagner en visibilité et en efficacité.</p>
           </div>
         </div>
-        
+
         <div class="faq-item reveal">
           <div class="faq-q">Pourquoi commencer par un audit gratuit ?</div>
           <div class="faq-a">
             <p>Parce que chaque entreprise est différente. L’audit permet d’identifier <strong>exactement</strong> ce qui vous ferait gagner du temps, de l’argent ou des clients.</p>
           </div>
         </div>
-        
+
         <div class="faq-item reveal">
           <div class="faq-q">Je ne suis pas sûr de savoir quoi automatiser...</div>
           <div class="faq-a">
             <p>C’est justement pour ça qu’on fait l’audit ! Je vous guide et vous propose des solutions concrètes : relances clients, gestion des RDV, réponses automatiques, etc.</p>
           </div>
         </div>
-        
+
         <div class="faq-item reveal">
           <div class="faq-q">C’est vraiment sans engagement ?</div>
           <div class="faq-a">
             <p>Oui. L’audit est 100% gratuit et sans obligation. Ensuite, si vous voulez aller plus loin, on discute des solutions.</p>
           </div>
         </div>
-        
+
         <div class="faq-item reveal">
           <div class="faq-q">Je suis à Mayotte, est-ce que ça change quelque chose ?</div>
           <div class="faq-a">
@@ -989,7 +972,7 @@
         <h2>Prêt à transformer votre <span class="accent">présence digitale</span> ?</h2>
         <p>Le premier pas est gratuit et sans risque. Remplissez le formulaire ci-dessous, je vous recontacte sous 2h en journée.</p>
       </div>
-      
+
       <div class="form-container reveal">
         <form action="https://formspree.io/f/mzebrvjg" method="POST">
           <div class="form-row">
@@ -1019,7 +1002,7 @@
           </div>
         </form>
       </div>
-      
+
       <div class="contact-infos">
         <div class="contact-info">
           <svg class="icon"><use href="#i-phone"/></svg>
@@ -1045,7 +1028,7 @@
           <img src="Logo.svg" alt="GroupSolution" />
           <p class="footer-desc">Création digitale sur-mesure pour Mayotte. Audit gratuit, solutions efficaces.</p>
         </div>
-        
+
         <div class="footer-links">
           <h4>Liens</h4>
           <ul>
@@ -1056,7 +1039,7 @@
             <li><a href="catalogue-demos.html">Catalogue Démos</a></li>
           </ul>
         </div>
-        
+
         <div class="footer-contact">
           <h4>Contact</h4>
           <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-phone"/></svg><a href="tel:+33782298559">07 82 29 85 59</a></p>
@@ -1069,11 +1052,24 @@
   </footer>
 
   <script>
+    // Hero background rotation (invisible transition)
+    const hero = document.querySelector('.hero');
+    const photos = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg'];
+    let currentPhotoIndex = 0;
+
+    function changeHeroBackground() {
+      currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+      hero.style.backgroundImage = `url('${photos[currentPhotoIndex]}')`;
+    }
+
+    // Change photo every 4 seconds (instant, no animation)
+    setInterval(changeHeroBackground, 4000);
+
     // Scroll effect for navbar
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
     });
-    
+
     // Intersection Observer for animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1082,16 +1078,16 @@
         }
       });
     }, { threshold: 0.1 });
-    
+
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    
+
     // FAQ Accordion
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         q.parentElement.classList.toggle('open');
       });
     });
-    
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -1105,7 +1101,7 @@
         }
       });
     });
-    
+
     // Fix Formspree redirect
     const form = document.querySelector('form[action*="formspree"]');
     if (form) {
