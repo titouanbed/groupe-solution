@@ -150,7 +150,7 @@
       margin-bottom: 40px;
       background-size: cover;
       background-position: center;
-      transition: background-image 0.1s ease-in-out;
+      transition: background-image 1s ease-in-out; /* On passe à 1 seconde pour un beau fondu */
     }
 
     .hero::before {
@@ -510,7 +510,7 @@
   </nav>
 
   <!-- HERO (AGENCE 360) -->
-  <section class="hero" id="hero">
+  <section class="hero" id="hero" style="background-image: url('photo1.jpg');">
     <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
@@ -795,18 +795,25 @@
   </footer>
 
   <script>
-    // Hero background rotation (ATTENTION : photo7.jpg retirée !)
+    // Hero background rotation avec PRÉCHARGEMENT
     const hero = document.querySelector('.hero');
     const photos = ['photo1.jpg', 'photo3.jpg', 'photo4.jpg', 'photo2.jpg'];
     let currentPhotoIndex = 0;
 
+    // 1. On précharge les images en cache pour éviter les écrans gris
+    photos.forEach(photo => {
+      const img = new Image();
+      img.src = photo;
+    });
+
+    // 2. La fonction de changement (qui bénéficie de la transition CSS de 1s)
     function changeHeroBackground() {
       currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
       hero.style.backgroundImage = `url('${photos[currentPhotoIndex]}')`;
     }
 
-    // Change photo every 4 seconds (instant, no animation)
-    setInterval(changeHeroBackground, 4000);
+    // Change photo toutes les 5 secondes (un peu plus lent pour être agréable)
+    setInterval(changeHeroBackground, 5000);
 
     // Scroll effect for navbar
     window.addEventListener('scroll', () => {
