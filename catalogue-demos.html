@@ -25,7 +25,6 @@
       --corporate: #1E40AF; --corporate-clair: #EFF6FF;
       --futuriste: #0EA5E9; --futuriste-clair: #F0F9FF;
       --vintage: #8B4513; --vintage-clair: #FEF3C7;
-      --artistique: #EC4899; --artistique-clair: #FDF2F8;
       --tech: #06B6D4; --tech-clair: #F0F9FF;
       --tropical: #10B981; --tropical-clair: #D1FAE5;
 
@@ -42,21 +41,54 @@
       background: var(--gris-clair);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--gris-clair); }
-    ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--gris-clair);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 4px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gris-clair);
+      color: var(--gris-fonce);
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
     /* ===== NAVBAR ===== */
     nav {
-      background: white; padding: 15px 5%; border-bottom: 1px solid #e5e7eb;
-      display: flex; justify-content: space-between; align-items: center;
-      position: sticky; top: 0; z-index: 100;
+      background: white;
+      padding: 15px 5%;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       box-shadow: var(--shadow-sm);
     }
-    .nav-logo img { height: 30px; }
+
+    .nav-logo img {
+      height: 30px;
+    }
 
     .nav-buttons {
       display: flex;
@@ -71,12 +103,14 @@
       font-weight: 600;
       transition: var(--transition);
       font-size: 0.9rem;
+      cursor: pointer;
     }
 
     .btn-nav-retour {
       color: var(--gris-fonce);
       border: 2px solid #e5e7eb;
     }
+
     .btn-nav-retour:hover {
       border-color: var(--rose-fonce);
       color: var(--rose-fonce);
@@ -88,6 +122,7 @@
       border: 2px solid transparent;
       box-shadow: 0 4px 15px rgba(236, 72, 153, 0.2);
     }
+
     .btn-nav-contact:hover {
       background: linear-gradient(135deg, var(--bleu-fonce), var(--rose-fonce));
       transform: translateY(-2px);
@@ -118,10 +153,14 @@
     .control-group {
       margin-bottom: 35px;
       transition: var(--transition);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       padding-bottom: 25px;
     }
-    .control-group:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .control-group:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
 
     .control-group h3 {
       font-size: 0.85rem;
@@ -147,11 +186,22 @@
       font-weight: bold;
       transition: var(--transition);
     }
-    .btn-edit:hover { background: var(--rose); }
 
-    .control-group.collapsed .option-list { display: none; }
-    .control-group.collapsed .btn-edit { display: block; }
-    .control-group.collapsed h3 { margin-bottom: 0; }
+    .btn-edit:hover {
+      background: var(--rose);
+    }
+
+    .control-group.collapsed .option-list {
+      display: none;
+    }
+
+    .control-group.collapsed .btn-edit {
+      display: block;
+    }
+
+    .control-group.collapsed h3 {
+      margin-bottom: 0;
+    }
 
     .selected-summary {
       display: none;
@@ -163,7 +213,10 @@
       border-radius: 8px;
       border-left: 3px solid var(--rose-fonce);
     }
-    .control-group.collapsed .selected-summary { display: block; }
+
+    .control-group.collapsed .selected-summary {
+      display: block;
+    }
 
     .option-list {
       display: flex;
@@ -203,7 +256,7 @@
       width: 20px;
       height: 20px;
       border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     /* ===== COLONNE DROITE : RENDU INTERACTIF ===== */
@@ -313,12 +366,28 @@
       border: 1px solid #cbd5e1;
     }
 
-    .screen::-webkit-scrollbar { display: none; }
+    .screen::-webkit-scrollbar {
+      display: none;
+    }
 
     /* ===== CONTENU DES DÉMOS ===== */
-    .demo-content { display: none; }
-    .demo-content.active { display: block; animation: fadeIn 0.4s; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .demo-content {
+      display: none;
+    }
+
+    .demo-content.active {
+      display: block;
+      animation: fadeIn 0.4s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
 
     /* Style générique pour les héros */
     .d-hero {
@@ -331,12 +400,12 @@
       padding: 30px 20px;
       background-size: cover;
       background-position: center;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       position: relative;
     }
 
     .d-hero-overlay {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       padding: 20px;
       border-radius: 12px;
       backdrop-filter: blur(5px);
@@ -344,7 +413,7 @@
     }
 
     .d-hero-dark .d-hero-overlay {
-      background: rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.8);
     }
 
     .d-hero h2 {
@@ -405,154 +474,386 @@
       margin-top: 15px;
       transition: var(--transition);
       font-size: 0.9rem;
+      cursor: pointer;
     }
 
     .d-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     /* ===== STYLES SPÉCIFIQUES PAR DESIGN ===== */
+    /* --- MODERNE CLAIR --- */
+    .design-moderne .d-hero {
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    }
 
-    /* --- MODE RNECLAIR --- */
-    .design-moderne .d-hero { background: linear-gradient(135deg, #f8fafc, #e2e8f0); }
-    .design-moderne .d-hero-overlay { background: rgba(255,255,255,0.8); }
-    .design-moderne .d-hero h2 { color: var(--gris-fonce); }
-    .design-moderne .d-hero p { color: var(--gris); }
-    .design-moderne .d-body { background: white; }
-    .design-moderne .d-card { border: 1px solid #e5e7eb; }
+    .design-moderne .d-hero-overlay {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .design-moderne .d-hero h2 {
+      color: var(--gris-fonce);
+    }
+
+    .design-moderne .d-hero p {
+      color: var(--gris);
+    }
+
+    .design-moderne .d-body {
+      background: white;
+    }
+
+    .design-moderne .d-card {
+      border: 1px solid #e5e7eb;
+    }
+
     .design-moderne .d-btn {
       background: var(--gris-fonce);
       color: white;
     }
 
     /* --- ÉLÉGANT SOMBRE --- */
-    .design-sombre .d-hero { background: linear-gradient(135deg, #111827, #1f2937); }
-    .design-sombre .d-hero-overlay { background: rgba(0,0,0,0.7); }
-    .design-sombre .d-hero h2 { color: #fbbf24; font-family: 'Playfair Display', serif; }
-    .design-sombre .d-hero p { color: rgba(255,255,255,0.8); }
-    .design-sombre .d-body { background: #111827; color: white; }
-    .design-sombre .d-card { background: #1f2937; border: 1px solid #374151; }
+    .design-sombre .d-hero {
+      background: linear-gradient(135deg, #111827, #1f2937);
+    }
+
+    .design-sombre .d-hero-overlay {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .design-sombre .d-hero h2 {
+      color: #fbbf24;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .design-sombre .d-hero p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .design-sombre .d-body {
+      background: #111827;
+      color: white;
+    }
+
+    .design-sombre .d-card {
+      background: #1f2937;
+      border: 1px solid #374151;
+    }
+
     .design-sombre .d-btn {
       background: #fbbf24;
       color: #111827;
     }
 
     /* --- AUDACIEUX COLORÉ --- */
-    .design-colore .d-hero { background: linear-gradient(135deg, var(--rose-fonce), var(--bleu-fonce)); }
-    .design-colore .d-hero-overlay { background: rgba(255,255,255,0.9); }
-    .design-colore .d-hero h2 { color: var(--rose-fonce); }
-    .design-colore .d-hero p { color: var(--gris-fonce); }
-    .design-colore .d-body { background: linear-gradient(180deg, #fef7ff, #f0f9ff); }
-    .design-colore .d-card { border-left: 4px solid var(--rose-fonce); }
+    .design-colore .d-hero {
+      background: linear-gradient(135deg, var(--rose-fonce), var(--bleu-fonce));
+    }
+
+    .design-colore .d-hero-overlay {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .design-colore .d-hero h2 {
+      color: var(--rose-fonce);
+    }
+
+    .design-colore .d-hero p {
+      color: var(--gris-fonce);
+    }
+
+    .design-colore .d-body {
+      background: linear-gradient(180deg, #fef7ff, #f0f9ff);
+    }
+
+    .design-colore .d-card {
+      border-left: 4px solid var(--rose-fonce);
+    }
+
     .design-colore .d-btn {
       background: linear-gradient(135deg, var(--rose-fonce), var(--bleu-fonce));
       color: white;
     }
 
     /* --- MINIMALISTE --- */
-    .design-minimaliste .d-hero { background: linear-gradient(135deg, #fafafa, #f4f4f5); }
-    .design-minimaliste .d-hero-overlay { background: rgba(255,255,255,0.95); }
-    .design-minimaliste .d-hero h2 { color: var(--gris-fonce); }
-    .design-minimaliste .d-hero p { color: var(--gris); }
-    .design-minimaliste .d-body { background: white; }
-    .design-minimaliste .d-card { border: 1px solid #e4e4e7; }
+    .design-minimaliste .d-hero {
+      background: linear-gradient(135deg, #fafafa, #f4f4f5);
+    }
+
+    .design-minimaliste .d-hero-overlay {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .design-minimaliste .d-hero h2 {
+      color: var(--gris-fonce);
+    }
+
+    .design-minimaliste .d-hero p {
+      color: var(--gris);
+    }
+
+    .design-minimaliste .d-body {
+      background: white;
+    }
+
+    .design-minimaliste .d-card {
+      border: 1px solid #e4e4e7;
+    }
+
     .design-minimaliste .d-btn {
       background: var(--gris-fonce);
       color: white;
     }
 
     /* --- LUXE --- */
-    .design-luxe .d-hero { background: linear-gradient(135deg, #1c1917, #44403c); }
-    .design-luxe .d-hero-overlay { background: rgba(0,0,0,0.85); }
-    .design-luxe .d-hero h2 { color: #d4af37; font-family: 'Playfair Display', serif; }
-    .design-luxe .d-hero p { color: rgba(255,255,255,0.9); }
-    .design-luxe .d-body { background: #1c1917; color: white; }
-    .design-luxe .d-card { background: #292524; border: 1px solid #44403c; }
+    .design-luxe .d-hero {
+      background: linear-gradient(135deg, #1c1917, #44403c);
+    }
+
+    .design-luxe .d-hero-overlay {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .design-luxe .d-hero h2 {
+      color: #d4af37;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .design-luxe .d-hero p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .design-luxe .d-body {
+      background: #1c1917;
+      color: white;
+    }
+
+    .design-luxe .d-card {
+      background: #292524;
+      border: 1px solid #44403c;
+    }
+
     .design-luxe .d-btn {
       background: #d4af37;
       color: #1c1917;
     }
 
     /* --- NATURE --- */
-    .design-nature .d-hero { background: linear-gradient(135deg, #f0fdf4, #dcfce7); }
-    .design-nature .d-hero-overlay { background: rgba(255,255,255,0.9); }
-    .design-nature .d-hero h2 { color: var(--vert-fonce); }
-    .design-nature .d-hero p { color: var(--gris); }
-    .design-nature .d-body { background: white; }
-    .design-nature .d-card { border-left: 4px solid var(--vert-fonce); }
+    .design-nature .d-hero {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    }
+
+    .design-nature .d-hero-overlay {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .design-nature .d-hero h2 {
+      color: var(--vert-fonce);
+    }
+
+    .design-nature .d-hero p {
+      color: var(--gris);
+    }
+
+    .design-nature .d-body {
+      background: white;
+    }
+
+    .design-nature .d-card {
+      border-left: 4px solid var(--vert-fonce);
+    }
+
     .design-nature .d-btn {
       background: var(--vert-fonce);
       color: white;
     }
 
     /* --- CORPORATE --- */
-    .design-corporate .d-hero { background: linear-gradient(135deg, var(--corporate), var(--bleu)); }
-    .design-corporate .d-hero-overlay { background: rgba(255,255,255,0.9); }
-    .design-corporate .d-hero h2 { color: var(--corporate); font-family: 'Inter', sans-serif; }
-    .design-corporate .d-hero p { color: var(--gris-fonce); }
-    .design-corporate .d-body { background: white; }
-    .design-corporate .d-card { border-left: 4px solid var(--corporate); }
+    .design-corporate .d-hero {
+      background: linear-gradient(135deg, var(--corporate), var(--bleu));
+    }
+
+    .design-corporate .d-hero-overlay {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .design-corporate .d-hero h2 {
+      color: var(--corporate);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .design-corporate .d-hero p {
+      color: var(--gris-fonce);
+    }
+
+    .design-corporate .d-body {
+      background: white;
+    }
+
+    .design-corporate .d-card {
+      border-left: 4px solid var(--corporate);
+    }
+
     .design-corporate .d-btn {
       background: var(--corporate);
       color: white;
     }
 
     /* --- FUTURISTE --- */
-    .design-futuriste .d-hero { background: linear-gradient(135deg, var(--futuriste), var(--tech)); }
-    .design-futuriste .d-hero-overlay { background: rgba(0,0,0,0.7); }
-    .design-futuriste .d-hero h2 { color: var(--futuriste); font-family: 'Orbitron', sans-serif; }
-    .design-futuriste .d-hero p { color: rgba(255,255,255,0.9); }
-    .design-futuriste .d-body { background: #0f172a; color: white; }
-    .design-futuriste .d-card { background: #1e293b; border: 1px solid var(--futuriste); }
+    .design-futuriste .d-hero {
+      background: linear-gradient(135deg, var(--futuriste), var(--tech));
+    }
+
+    .design-futuriste .d-hero-overlay {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .design-futuriste .d-hero h2 {
+      color: var(--futuriste);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .design-futuriste .d-hero p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .design-futuriste .d-body {
+      background: #0f172a;
+      color: white;
+    }
+
+    .design-futuriste .d-card {
+      background: #1e293b;
+      border: 1px solid var(--futuriste);
+    }
+
     .design-futuriste .d-btn {
       background: var(--futuriste);
       color: #0f172a;
     }
 
     /* --- VINTAGE --- */
-    .design-vintage .d-hero { background: linear-gradient(135deg, #f5f5dc, #deb887); }
-    .design-vintage .d-hero-overlay { background: rgba(255,255,255,0.8); }
-    .design-vintage .d-hero h2 { color: var(--vintage); font-family: 'Playfair Display', serif; }
-    .design-vintage .d-hero p { color: var(--gris-fonce); }
-    .design-vintage .d-body { background: #fff8dc; }
-    .design-vintage .d-card { border: 1px solid #8b4513; background: #fff8dc; }
+    .design-vintage .d-hero {
+      background: linear-gradient(135deg, #f5f5dc, #deb887);
+    }
+
+    .design-vintage .d-hero-overlay {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .design-vintage .d-hero h2 {
+      color: var(--vintage);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .design-vintage .d-hero p {
+      color: var(--gris-fonce);
+    }
+
+    .design-vintage .d-body {
+      background: #fff8dc;
+    }
+
+    .design-vintage .d-card {
+      border: 1px solid #8b4513;
+      background: #fff8dc;
+    }
+
     .design-vintage .d-btn {
       background: var(--vintage);
       color: white;
     }
 
     /* --- ARTISTIQUE --- */
-    .design-artistique .d-hero { background: linear-gradient(135deg, var(--artistique), var(--violet)); }
-    .design-artistique .d-hero-overlay { background: rgba(255,255,255,0.8); }
-    .design-artistique .d-hero h2 { color: var(--artistique); font-family: 'Pacifico', cursive; }
-    .design-artistique .d-hero p { color: var(--gris-fonce); }
-    .design-artistique .d-body { background: linear-gradient(180deg, #fef7ff, #f0f9ff); }
-    .design-artistique .d-card { border-left: 4px solid var(--artistique); }
+    .design-artistique .d-hero {
+      background: linear-gradient(135deg, var(--artistique), var(--violet));
+    }
+
+    .design-artistique .d-hero-overlay {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .design-artistique .d-hero h2 {
+      color: var(--artistique);
+      font-family: 'Pacifico', cursive;
+    }
+
+    .design-artistique .d-hero p {
+      color: var(--gris-fonce);
+    }
+
+    .design-artistique .d-body {
+      background: linear-gradient(180deg, #fef7ff, #f0f9ff);
+    }
+
+    .design-artistique .d-card {
+      border-left: 4px solid var(--artistique);
+    }
+
     .design-artistique .d-btn {
       background: var(--artistique);
       color: white;
     }
 
     /* --- TECH --- */
-    .design-tech .d-hero { background: linear-gradient(135deg, #000, var(--tech)); }
-    .design-tech .d-hero-overlay { background: rgba(0,0,0,0.8); }
-    .design-tech .d-hero h2 { color: var(--tech); font-family: 'Orbitron', sans-serif; }
-    .design-tech .d-hero p { color: rgba(255,255,255,0.9); }
-    .design-tech .d-body { background: #000; color: white; }
-    .design-tech .d-card { background: #0f172a; border: 1px solid var(--tech); }
+    .design-tech .d-hero {
+      background: linear-gradient(135deg, #000, var(--tech));
+    }
+
+    .design-tech .d-hero-overlay {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .design-tech .d-hero h2 {
+      color: var(--tech);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .design-tech .d-hero p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .design-tech .d-body {
+      background: #000;
+      color: white;
+    }
+
+    .design-tech .d-card {
+      background: #0f172a;
+      border: 1px solid var(--tech);
+    }
+
     .design-tech .d-btn {
       background: var(--tech);
       color: #000;
     }
 
     /* --- TROPICAL --- */
-    .design-tropical .d-hero { background: linear-gradient(135deg, var(--tropical), var(--orange)); }
-    .design-tropical .d-hero-overlay { background: rgba(255,255,255,0.8); }
-    .design-tropical .d-hero h2 { color: var(--tropical); }
-    .design-tropical .d-hero p { color: var(--gris-fonce); }
-    .design-tropical .d-body { background: white; }
-    .design-tropical .d-card { border-left: 4px solid var(--tropical); }
+    .design-tropical .d-hero {
+      background: linear-gradient(135deg, var(--tropical), var(--orange));
+    }
+
+    .design-tropical .d-hero-overlay {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .design-tropical .d-hero h2 {
+      color: var(--tropical);
+    }
+
+    .design-tropical .d-hero p {
+      color: var(--gris-fonce);
+    }
+
+    .design-tropical .d-body {
+      background: white;
+    }
+
+    .design-tropical .d-card {
+      border-left: 4px solid var(--tropical);
+    }
+
     .design-tropical .d-btn {
       background: var(--tropical);
       color: white;
@@ -560,31 +861,72 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .catalog-layout { grid-template-columns: 1fr; gap: 20px; }
-      .controls { position: static; }
-      .preview-area { max-height: 70vh; }
+      .catalog-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .controls {
+        position: static;
+      }
+
+      .preview-area {
+        max-height: 70vh;
+      }
     }
 
     @media (max-width: 768px) {
-      .container { padding: 10px; }
+      .container {
+        padding: 10px;
+      }
+
       .preview-area {
-        padding: 0; background: white; min-height: auto; max-height: none;
+        padding: 0;
+        background: white;
+        min-height: auto;
+        max-height: none;
       }
-      .device-switcher { display: none; }
-      .frame-wrapper { display: block; }
+
+      .device-switcher {
+        display: none;
+      }
+
+      .frame-wrapper {
+        display: block;
+      }
+
       .frame-mobile {
-        width: 100%; height: auto; min-height: 600px; border-radius: 0; padding: 0;
-        box-shadow: none; border: 1px solid #e5e7eb;
+        width: 100%;
+        height: auto;
+        min-height: 600px;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
       }
-      .frame-mobile::before { display: none; }
-      .screen { border-radius: 0; border-top: 1px solid #e5e7eb; }
-      .controls { padding: 20px; }
-      .option-btn { padding: 12px 15px; font-size: 0.9rem; }
+
+      .frame-mobile::before {
+        display: none;
+      }
+
+      .screen {
+        border-radius: 0;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .controls {
+        padding: 20px;
+      }
+
+      .option-btn {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
-<body>
 
+<body>
   <!-- NAVBAR -->
   <nav>
     <a href="site-internet-mayotte.html" class="nav-logo">
@@ -597,13 +939,14 @@
   </nav>
 
   <div class="container catalog-layout">
-
     <!-- COLONNE GAUCHE : CONTRÔLES -->
     <div class="controls">
-
       <!-- ÉTAPE 1 : SECTEUR -->
       <div class="control-group" id="group-secteur">
-        <h3>1. Votre Secteur <button class="btn-edit" onclick="openGroup('secteur')">Modifier</button></h3>
+        <h3>
+          1. Votre Secteur
+          <button class="btn-edit" onclick="openGroup('secteur')">Modifier</button>
+        </h3>
         <div class="selected-summary" id="summary-secteur">🍽️ Restaurant & Snack</div>
         <div class="option-list" id="list-secteur">
           <button class="option-btn secteur-btn active" data-s="restauration">
@@ -626,9 +969,13 @@
 
       <!-- ÉTAPE 2 : DESIGN -->
       <div class="control-group collapsed" id="group-da">
-        <h3>2. Style Visuel <button class="btn-edit" onclick="openGroup('da')">Modifier</button></h3>
+        <h3>
+          2. Style Visuel
+          <button class="btn-edit" onclick="openGroup('da')">Modifier</button>
+        </h3>
         <div class="selected-summary" id="summary-da">⚪ Moderne Clair</div>
         <div class="option-list" id="list-da">
+          <!-- Styles existants -->
           <button class="option-btn da-btn active" data-d="moderne">
             <div class="color-swatch" style="background: linear-gradient(135deg, #ffffff, #f3f4f6); border: 1px solid #ccc;"></div>
             Moderne Clair
@@ -653,7 +1000,8 @@
             <div class="color-swatch" style="background: linear-gradient(135deg, #f0fdf4, #10B981);"></div>
             Nature
           </button>
-          <!-- NOUVEAUX STYLES -->
+
+          <!-- Nouveaux styles -->
           <button class="option-btn da-btn" data-d="corporate">
             <div class="color-swatch" style="background: linear-gradient(135deg, #1E40AF, #3B82F6);"></div>
             Corporate
@@ -684,16 +1032,14 @@
 
     <!-- COLONNE DROITE : RENDU INTERACTIF -->
     <div class="preview-area">
-
       <div class="device-switcher">
-        <button class="device-btn active" onclick="setDevice('mobile')">📱 Vue Mobile</button>
-        <button class="device-btn" onclick="setDevice('desktop')">💻 Vue Ordinateur</button>
+        <button class="device-btn active" onclick="setDevice(event, 'mobile')">📱 Vue Mobile</button>
+        <button class="device-btn" onclick="setDevice(event, 'desktop')">💻 Vue Ordinateur</button>
       </div>
 
       <div class="frame-wrapper">
         <div id="device-frame" class="frame-mobile">
           <div class="screen" id="screen-content">
-
             <!-- ============================================== -->
             <!-- RESTAURATION -->
             <!-- ============================================== -->
@@ -713,19 +1059,13 @@
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">14€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Poisson grillé au coco</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Filet de thon mariné dans du lait de coco, servi avec riz créole et légumes frais du marché.</div>
+                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Filet de thon mariné dans du lait de coco, servi avec riz créole et légumes frais.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">12€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Rougail Saucisse</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Recette traditionnelle de l'Océan Indien à base de saucisses fumées, tomates et piments.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">16€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Langouste à la vanille</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Spécialité mahoraise : langouste cuisinée avec vanille, citron vert et beurre.</div>
+                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Recette traditionnelle avec saucisses fumées, tomates et piments.</div>
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
@@ -750,18 +1090,18 @@
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: #fbbf24; font-size: 1.2rem; margin-bottom: 5px;">28€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Tartare de Thon Rouge</div>
-                    <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.5;">Thon rouge frais, citron vert, gingembre mariné, huile de sésame et coriandre.</div>
+                    <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.5;">Thon frais, citron vert, gingembre mariné, huile de sésame et coriandre.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: 800; color: #fbbf24; font-size: 1.2rem; margin-bottom: 5px;">35€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Filet de Bœuf Wagyu</div>
-                    <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.5;">Viande Wagyu A5, sauce au poivre vert de Mayotte, purée de patate douce.</div>
+                    <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.5;">Viande Wagyu A5, sauce au poivre vert, purée de patate douce.</div>
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
                   <a href="site-internet-mayotte.html#contact" class="d-btn">Réserver l'expérience</a>
-                  <p style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.85rem;">✓ Menu dégustation disponible sur demande</p>
+                  <p style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.85rem;">✓ Menu dégustation disponible</p>
                 </div>
               </div>
             </div>
@@ -781,13 +1121,13 @@
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">8€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Samossa x6</div>
-                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Samoussas maison à la viande hachée ou au poulet, épicés à la manière mahoraise.</div>
+                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Samoussas maison à la viande ou au poulet, épicés.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">10€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Bokit Poulet</div>
-                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Sandwich antillais : pain farci au poulet grillé, avocats, carottes râpées et sauce mayo.</div>
+                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Pain farci au poulet grillé, avocats, carottes râpées.</div>
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
@@ -812,13 +1152,13 @@
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: 800; color: var(--gris-fonce); font-size: 1.2rem; margin-bottom: 5px;">10€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Poisson du jour</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Poisson frais du marché, grillé ou en sauce, servi avec riz et légumes.</div>
+                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Poisson frais du marché, grillé ou en sauce.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: var(--gris-fonce); font-size: 1.2rem; margin-bottom: 5px;">12€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Plat du jour</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Un plat traditionnel différent chaque jour, préparé avec des ingrédients locaux.</div>
+                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Plat traditionnel différent chaque jour.</div>
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
@@ -843,18 +1183,18 @@
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: #d4af37; font-size: 1.2rem; margin-bottom: 5px;">50€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Menu Découverte</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">5 plats pour découvrir les saveurs de Mayotte, préparés par notre chef étoilé.</div>
+                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">5 plats pour découvrir les saveurs de Mayotte.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: 800; color: #d4af37; font-size: 1.2rem; margin-bottom: 5px;">80€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Menu Prestige</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">7 plats avec accord mets et vins, dans un cadre intimiste.</div>
+                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">7 plats avec accord mets et vins.</div>
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
                   <a href="site-internet-mayotte.html#contact" class="d-btn">Réserver une table</a>
-                  <p style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.85rem;">✓ Service impeccable et cadre luxueux</p>
+                  <p style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.85rem;">✓ Service impeccable</p>
                 </div>
               </div>
             </div>
@@ -874,18 +1214,18 @@
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: 800; color: var(--vert-fonce); font-size: 1.2rem; margin-bottom: 5px;">15€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Salade du Jardin</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Légumes frais du jardin, avocats, tomates, et vinaigrette maison.</div>
+                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Légumes frais, avocats, tomates, vinaigrette maison.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: var(--vert-fonce); font-size: 1.2rem; margin-bottom: 5px;">18€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Poisson Bio</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Poisson pêché localement, cuit à la vapeur avec des herbes du jardin.</div>
+                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Poisson local cuit à la vapeur avec herbes.</div>
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
                   <a href="site-internet-mayotte.html#contact" class="d-btn">Réserver</a>
-                  <p style="margin-top: 10px; color: var(--gris); font-size: 0.85rem;">✓ Produits 100% bio et locaux</p>
+                  <p style="margin-top: 10px; color: var(--gris); font-size: 0.85rem;">✓ Produits 100% bio</p>
                 </div>
               </div>
             </div>
@@ -905,13 +1245,13 @@
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: 800; color: var(--corporate); font-size: 1.2rem; margin-bottom: 5px;">20€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Menu Affaire</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Entrée, plat, dessert : un menu complet pour vos réunions professionnelles.</div>
+                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Entrée, plat, dessert pour vos réunions.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: var(--corporate); font-size: 1.2rem; margin-bottom: 5px;">30€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Buffet Traiteur</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Un buffet varié pour vos événements d'entreprise.</div>
+                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Buffet varié pour vos événements.</div>
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
@@ -936,7 +1276,7 @@
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: var(--futuriste); font-size: 1.2rem; margin-bottom: 5px;">25€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Plat Molecular</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">Une expérience culinaire innovante avec des techniques de cuisine moléculaire.</div>
+                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">Expérience culinaire innovante.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
@@ -967,13 +1307,13 @@
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: 800; color: var(--vintage); font-size: 1.2rem; margin-bottom: 5px;">15€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Bœuf Bourguignon</div>
-                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Un classique français revisité avec des ingrédients locaux.</div>
+                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Classique français revisité.</div>
                   </div>
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
                     <div style="font-weight: 800; color: var(--vintage); font-size: 1.2rem; margin-bottom: 5px;">12€</div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Tarte Tatin</div>
-                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Un dessert traditionnel pour terminer votre repas.</div>
+                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Dessert traditionnel.</div>
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
@@ -996,347 +1336,3 @@
                 <div class="d-grid">
                   <div class="d-card">
                     <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--artistique); font-size: 1.2rem; margin-bottom: 5px;">20€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Assiette Peinte</div>
-                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Une assiette aussi belle que bonne, avec des couleurs vives et des saveurs audacieuses.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--artistique); font-size: 1.2rem; margin-bottom: 5px;">25€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Menu Artiste</div>
-                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">3 plats pour une expérience culinaire et visuelle inoubliable.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Réserver</a>
-                  <p style="margin-top: 10px; color: var(--gris-fonce); font-size: 0.85rem;">✓ L'art à table</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Tech -->
-            <div class="demo-content design-tech" data-s="restauration" data-d="tech">
-              <div class="d-hero" style="background-image: url('photo2.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>CyberBite</h2>
-                  <p>Cuisine high-tech à Mayotte</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: var(--tech);">Nos Innovations</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--tech); font-size: 1.2rem; margin-bottom: 5px;">22€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Plat 3D</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">Un plat imprimé en 3D pour une présentation unique.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--tech); font-size: 1.2rem; margin-bottom: 5px;">30€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Menu Robotisé</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">Un menu préparé par nos robots cuisiniers.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Réserver</a>
-                  <p style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.85rem;">✓ Technologie et gastronomie</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Tropical -->
-            <div class="demo-content design-tropical" data-s="restauration" data-d="tropical">
-              <div class="d-hero" style="background-image: url('photo1.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Le Lagoon</h2>
-                  <p>Cuisine tropicale et fruits de mer</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: var(--tropical);">Nos Spécialités Tropicales</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--tropical); font-size: 1.2rem; margin-bottom: 5px;">18€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Plateau de Fruits de Mer</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Crabes, crevettes, langoustines et huîtres, servis avec sauce citronnée.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo2.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--tropical); font-size: 1.2rem; margin-bottom: 5px;">15€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Cocktail Exotique</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Jus de fruits tropicaux avec une touche de rhum arrangé maison.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Réserver</a>
-                  <p style="margin-top: 10px; color: var(--gris); font-size: 0.85rem;">✓ Ambiance détendue en bord de mer</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- ============================================== -->
-            <!-- BEAUTÉ -->
-            <!-- ============================================== -->
-
-            <!-- Moderne Clair -->
-            <div class="demo-content design-moderne" data-s="beaute" data-d="moderne">
-              <div class="d-hero" style="background-image: url('photo3.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Espace Beauté 976</h2>
-                  <p>Coiffure & Soins à Mamoudzou</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Nos Prestations</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo3.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">25€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe & Brushing</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Coupe personnalisée + brushing avec produits professionnels. Shampoing soin inclus.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo4.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">40€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Coloration</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Coloration L'Oréal Professionnel avec soin réparateur. Résultat naturel et brillant.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Prendre RDV</a>
-                  <p style="margin-top: 10px; color: var(--gris); font-size: 0.85rem;">✓ Ouvert 7j/7 sur rendez-vous</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Élégant Sombre -->
-            <div class="demo-content design-sombre" data-s="beaute" data-d="sombre">
-              <div class="d-hero" style="background-image: url('photo4.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Barber Shop Elite</h2>
-                  <p>Service Premium Homme — Mamoudzou</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: #fbbf24;">Nos Services</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo4.jpg');"></div>
-                    <div style="font-weight: 800; color: #fbbf24; font-size: 1.2rem; margin-bottom: 5px;">20€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe Dégradé</div>
-                    <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.5;">Coupe moderne avec dégradé sur les côtés. Finitions au rasoir pour un rendu ultra-précis.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo3.jpg');"></div>
-                    <div style="font-weight: 800; color: #fbbf24; font-size: 1.2rem; margin-bottom: 5px;">25€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Barbe Complète</div>
-                    <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.5;">Taillage, rasage et soin de la barbe. Avec huile et baume pour une barbe douce.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Réserver mon créneau</a>
-                  <p style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.85rem;">✓ Accueil VIP avec café ou thé</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Audacieux Coloré -->
-            <div class="demo-content design-colore" data-s="beaute" data-d="colore">
-              <div class="d-hero" style="background-image: url('photo3.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Salon Beauté Arc-en-Ciel</h2>
-                  <p>Coiffure et soins haut en couleur !</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: var(--rose-fonce);">Nos Prestations Colorées</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo3.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">30€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe Fantaisie</div>
-                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Coupe unique avec des reflets colorés temporaires. Parfait pour les occasions spéciales.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo4.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--rose-fonce); font-size: 1.2rem; margin-bottom: 5px;">35€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Manucure Artistique</div>
-                    <div style="color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.5;">Ongles décorés avec des motifs colorés et des paillettes. Tenue longue durée.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Prendre RDV maintenant</a>
-                  <p style="margin-top: 10px; color: var(--gris-fonce); font-size: 0.85rem;">✓ Des couleurs qui vous ressemblent</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Minimaliste -->
-            <div class="demo-content design-minimaliste" data-s="beaute" data-d="minimaliste">
-              <div class="d-hero" style="background-image: url('photo3.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Salon Zen</h2>
-                  <p>Soins et coiffure en toute simplicité</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Nos Soins</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo3.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--gris-fonce); font-size: 1.2rem; margin-bottom: 5px;">20€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe Simple</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Coupe classique pour homme ou femme, avec shampoing.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo4.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--gris-fonce); font-size: 1.2rem; margin-bottom: 5px;">25€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Soin Visage</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Nettoyage, masque et hydratation pour un teint éclatant.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Prendre RDV</a>
-                  <p style="margin-top: 10px; color: var(--gris); font-size: 0.85rem;">✓ Ambiance calme et détendue</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Luxe -->
-            <div class="demo-content design-luxe" data-s="beaute" data-d="luxe">
-              <div class="d-hero" style="background-image: url('photo4.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Spa de Luxe 976</h2>
-                  <p>Soins haut de gamme à Mayotte</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: #d4af37;">Nos Soins Exclusifs</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo4.jpg');"></div>
-                    <div style="font-weight: 800; color: #d4af37; font-size: 1.2rem; margin-bottom: 5px;">60€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Soin Visage Or</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">Soin anti-âge avec des produits à l'or 24 carats pour un teint radieux.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo3.jpg');"></div>
-                    <div style="font-weight: 800; color: #d4af37; font-size: 1.2rem; margin-bottom: 5px;">80€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Massage Royal</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">Massage complet du corps avec des huiles essentielles rares.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Réserver un soin</a>
-                  <p style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.85rem;">✓ Expérience VIP garantie</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Nature -->
-            <div class="demo-content design-nature" data-s="beaute" data-d="nature">
-              <div class="d-hero" style="background-image: url('photo3.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Salon Bio</h2>
-                  <p>Soins naturels à Mayotte</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: var(--vert-fonce);">Nos Soins Naturels</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo3.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--vert-fonce); font-size: 1.2rem; margin-bottom: 5px;">25€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe Bio</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Coupe avec des produits 100% naturels et bio.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo4.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--vert-fonce); font-size: 1.2rem; margin-bottom: 5px;">30€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Soin Capillaire</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Soin nourrissant pour cheveux secs ou abîmés, à base d'huiles essentielles.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Prendre RDV</a>
-                  <p style="margin-top: 10px; color: var(--gris); font-size: 0.85rem;">✓ 100% naturel et bio</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Corporate -->
-            <div class="demo-content design-corporate" data-s="beaute" data-d="corporate">
-              <div class="d-hero" style="background-image: url('photo3.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Salon Professionnel</h2>
-                  <p>Coiffure et soins pour professionnels</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: var(--corporate);">Nos Prestations Pro</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo3.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--corporate); font-size: 1.2rem; margin-bottom: 5px;">30€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe Professionnelle</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Coupe adaptée pour une image professionnelle.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo4.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--corporate); font-size: 1.2rem; margin-bottom: 5px;">40€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Soin Cheveux</div>
-                    <div style="color: var(--gris); font-size: 0.9rem; line-height: 1.5;">Soin pour cheveux abîmés par les colorations fréquentes.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Prendre RDV</a>
-                  <p style="margin-top: 10px; color: var(--gris); font-size: 0.85rem;">✓ Service rapide et efficace</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Futuriste -->
-            <div class="demo-content design-futuriste" data-s="beaute" data-d="futuriste">
-              <div class="d-hero" style="background-image: url('photo4.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Salon High-Tech</h2>
-                  <p>Coiffure et soins avec technologie avancée</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: var(--futuriste);">Nos Innovations</h3>
-                <div class="d-grid">
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo4.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--futuriste); font-size: 1.2rem; margin-bottom: 5px;">40€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe Robotisée</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">Coupe précise grâce à notre robot coiffeur.</div>
-                  </div>
-                  <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo3.jpg');"></div>
-                    <div style="font-weight: 800; color: var(--futuriste); font-size: 1.2rem; margin-bottom: 5px;">50€</div>
-                    <div style="font-weight: bold; margin-bottom: 5px;">Soin Laser</div>
-                    <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.5;">Soin capillaire avec technologie laser pour une repousse optimale.</div>
-                  </div>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                  <a href="site-internet-mayotte.html#contact" class="d-btn">Prendre RDV</a>
-                  <p style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.85rem;">✓ Technologie au service de la beauté</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Vintage -->
-            <div class="demo-content design-vintage" data-s="beaute" data-d="vintage">
-              <div class="d-hero" style="background-image: url('photo3.jpg');">
-                <div class="d-hero-overlay">
-                  <h2>Salon Rétro</h2>
-                  <p>Coiffure et soins à l'ancienne</p>
-                </div>
-              </div>
-              <div class="d-body">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: var(--vintage);">Nos Prestations Rétro</h3>
-                <div class="d-grid">
-                  <div class="d-card">
