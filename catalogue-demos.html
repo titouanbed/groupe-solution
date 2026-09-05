@@ -557,11 +557,17 @@
 
     daBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
+        // MAJ Boutons
         daBtns.forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
         currentDA = e.currentTarget.getAttribute('data-d');
+        
+        // MAJ du résumé texte
         document.getElementById('summary-da').innerHTML = e.currentTarget.innerHTML;
-        document.querySelectorAll('.control-group').forEach(g => g.classList.add('collapsed')); // Ferme tout
+        
+        // On ne ferme plus le menu ici pour permettre à l'utilisateur de tester plusieurs styles de suite !
+        // document.querySelectorAll('.control-group').forEach(g => g.classList.add('collapsed')); 
+        
         updateView();
       });
     });
