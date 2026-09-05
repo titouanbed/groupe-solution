@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO OPTIMISÉ CONFIANCE -->
+  <title>À Propos de GroupSolution & Mentions Légales | Agence Digitale</title>
+  <meta name="description" content="Découvrez Titouan Bedos et l'agence GroupSolution. Informations légales (SIREN 108242280), équipe et engagements pour les entreprises de Mayotte." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/svg+xml" href="Logo.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* VARIABLES (Design System) */
+    :root {
+      --rose: #FFD1DC; --rose-fonce: #EC4899; --rose-clair: #FDF2F8;
+      --gris-fonce: #1a1a1a; --gris: #4b5563; --gris-clair: #f9fafb; --blanc: #ffffff;
+      --border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { color: var(--gris-fonce); background: var(--blanc); line-height: 1.8; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    /* NAVBAR */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 15px 0; }
+    .nav-content { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 30px; }
+    .btn { display: inline-flex; align-items: center; padding: 10px 20px; border-radius: var(--border-radius); font-weight: 600; text-decoration: none; color: var(--noir); background: var(--rose); }
+    .btn:hover { background: var(--rose-fonce); color: var(--blanc); }
+
+    /* HEADER */
+    .header { padding: 140px 0 60px; text-align: center; background: linear-gradient(180deg, var(--rose-clair), var(--blanc)); border-bottom: 1px solid #eee; }
+    .header h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
+    .header h1 .accent { color: var(--rose-fonce); }
+
+    /* SECTION À PROPOS (Photo + Texte) */
+    .about-section { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; margin: 60px 0; align-items: center; }
+    .about-photo { width: 100%; aspect-ratio: 1/1; background-color: var(--gris-clair); border-radius: 50%; overflow: hidden; border: 4px solid var(--rose); box-shadow: 0 10px 30px rgba(236,72,153,0.2); }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text h2 { font-size: 1.8rem; margin-bottom: 15px; color: var(--gris-fonce); }
+    .about-text p { margin-bottom: 15px; color: var(--gris); }
+
+    /* MENTIONS LÉGALES */
+    .legal-content { background: var(--gris-clair); padding: 40px; border-radius: var(--border-radius); margin: 60px 0; }
+    .legal-content h2 { font-size: 1.5rem; margin-bottom: 20px; border-bottom: 2px solid var(--rose); padding-bottom: 10px; display: inline-block; }
+    .legal-content h3 { font-size: 1.1rem; margin: 20px 0 10px; color: var(--rose-fonce); }
+    .legal-content p, .legal-content ul { font-size: 0.95rem; color: var(--gris); margin-bottom: 10px; }
+    .legal-content ul { padding-left: 20px; }
+
+    @media (max-width: 768px) {
+      .about-section { grid-template-columns: 1fr; text-align: center; }
+      .about-photo { max-width: 200px; margin: 0 auto; }
+      .legal-content { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-content">
+      <a href="site-internet-mayotte.html" class="nav-logo"><img src="Logo.svg" alt="GroupSolution" /></a>
+      <a href="site-internet-mayotte.html#contact" class="btn">Retour à l'accueil</a>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1>L'Agence & <span class="accent">Transparence</span></h1>
+      <p style="color: var(--gris); font-size: 1.1rem;">Découvrez qui se cache derrière GroupSolution et consultez nos informations légales officielles.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- SECTION QUI SOMMES-NOUS -->
+    <section class="about-section">
+      <div class="about-photo">
+        <!-- Remplacer "titouan-photo.jpg" par le nom de ta vraie photo -->
+        <img src="titouan-photo.jpg" alt="Titouan Bedos, Fondateur de GroupSolution" onerror="this.src='https://via.placeholder.com/400x400/FFD1DC/EC4899?text=Titouan+Bedos'" />
+      </div>
+      <div class="about-text">
+        <h2>Bonjour, je suis Titouan.</h2>
+        <p>Fondateur de <strong>GroupSolution</strong>, je suis passionné par l'automatisation, le code et l'ingénierie digitale. Mon objectif est simple : rendre les entreprises locales, notamment à Mayotte, aussi compétitives que les grandes marques sur internet.</p>
+        <p>Trop d'artisans ou de PME paient des fortunes pour des sites web qui ne rapportent rien. Chez GroupSolution, nous construisons des "machines à clients" : des sites ultra-rapides, des stratégies SEO ciblées sur le 976, et des automatisations via l'Intelligence Artificielle pour vous faire gagner du temps.</p>
+        <p>Transparence, réactivité et résultats : c'est l'engagement de notre agence.</p>
+      </div>
+    </section>
+
+    <!-- SECTION MENTIONS LÉGALES OFFICIELLES (Vraies données de Societe.com) -->
+    <section class="legal-content">
+      <h2>Mentions Légales</h2>
+      
+      <h3>1. Éditeur du site</h3>
+      <p>Le présent site est édité par la société <strong>GROUPE SOLUTION DIGITAL</strong> (GroupSolution).</p>
+      <ul>
+        <li><strong>Forme juridique :</strong> Société par actions simplifiée (SAS)</li>
+        <li><strong>SIREN :</strong> 108 242 280</li>
+        <li><strong>Capital social :</strong> 1 000,00 €</li>
+        <li><strong>Siège social :</strong> 3 RUE DU FER A CHEVAL, 34430 SAINT-JEAN-DE-VEDAS (France)</li>
+        <li><strong>Date de création :</strong> 18/04/2026</li>
+        <li><strong>Président :</strong> Titouan BEDOS</li>
+      </ul>
+
+      <h3>2. Contact</h3>
+      <p>Pour toute demande ou réclamation, vous pouvez nous contacter :</p>
+      <ul>
+        <li><strong>Téléphone :</strong> 07 82 29 85 59</li>
+        <li><strong>Email :</strong> contact@groupsolution.fr</li>
+      </ul>
+
+      <h3>3. Hébergement</h3>
+      <p>Le site est hébergé par : [NOM DE TON HÉBERGEUR, ex: OVH, Hostinger, Vercel], [Adresse de l'hébergeur].</p>
+
+      <h3>4. Propriété intellectuelle</h3>
+      <p>L'ensemble des éléments (textes, logos, images, éléments sonores, logiciels, icônes, mise en page, base de données) contenus dans le site et dans les sites associés sont protégés par le droit national et international de la propriété intellectuelle. Toute reproduction, représentation, modification ou adaptation totale ou partielle de tout ou partie des éléments du site est strictement interdite.</p>
+
+      <h3>5. Données personnelles (RGPD)</h3>
+      <p>Les informations recueillies via nos formulaires de contact sont enregistrées dans un fichier informatisé par GROUPE SOLUTION DIGITAL pour la gestion de notre clientèle. Elles sont conservées pendant 3 ans et sont destinées au service commercial. Conformément à la loi « informatique et libertés », vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier en nous contactant par email.</p>
+    </section>
+
+  </main>
+
+  <footer style="background: var(--gris-fonce); color: var(--blanc); padding: 40px 0; text-align: center;">
+    <p>© 2026 GroupSolution.</p>
+  </footer>
+
+</body>
+</html>
