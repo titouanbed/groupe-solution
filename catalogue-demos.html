@@ -18,17 +18,16 @@
       --bleu: #3B82F6; --bleu-fonce: #1D4ED8; --bleu-clair: #DBEAFE;
       --vert: #10B981; --vert-fonce: #059669; --vert-clair: #D1FAE5;
       --orange: #F97316; --orange-fonce: #EA580C; --orange-clair: #FED7AA;
-      --violet: #8B5CF6; --violet-fonce: #7C3AED; --violet-clair: #E0E7FF;
       --jaune: #F59E0B; --jaune-fonce: #D97706; --jaune-clair: #FEF3C7;
       --noir: #111827; --gris-fonce: #1a1a1a; --gris: #6b7280; --gris-clair: #f9fafb; --blanc: #ffffff;
 
-      /* Couleurs thématiques */
+      /* Couleurs thématiques (Violet supprimé comme demandé, remplacé par une teinte rouge/corail) */
       --corporate: #1E40AF;
       --futuriste: #0EA5E9;
       --vintage: #8B4513;
       --tech: #06B6D4;
       --tropical: #10B981;
-      --artistique: #8B5CF6;
+      --artistique: #EF4444; /* Rouge Artistique */
 
       /* Bordures et ombres */
       --radius: 16px;
@@ -43,33 +42,65 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--gris-clair); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
 
-    body { font-family: 'Inter', sans-serif; background: var(--gris-clair); color: var(--gris-fonce); }
-    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+    /* LE SECRET DU LOGICIEL : ON BLOQUE LE SCROLL DU BODY */
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: var(--gris-clair); 
+      color: var(--gris-fonce);
+      height: 100vh;
+      overflow: hidden; /* Empêche le scroll global de la page */
+      display: flex;
+      flex-direction: column;
+    }
 
     /* ===== NAVBAR ===== */
     nav {
-      background: white; padding: 15px 5%; border-bottom: 1px solid #e5e7eb;
-      display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100;
-      box-shadow: var(--shadow-sm);
+      background: white; padding: 10px 5%; border-bottom: 1px solid #e5e7eb;
+      display: flex; justify-content: space-between; align-items: center; z-index: 100;
+      box-shadow: var(--shadow-sm); flex-shrink: 0; height: 60px;
     }
-    .nav-logo img { height: 30px; }
-    .nav-buttons { display: flex; gap: 12px; align-items: center; }
-    .btn-nav { padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: var(--transition); font-size: 0.9rem; cursor: pointer; }
-    .btn-nav-retour { color: var(--gris-fonce); border: 2px solid #e5e7eb; }
+    .nav-logo img { height: 28px; }
+    .btn-nav-retour { 
+      padding: 8px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; 
+      color: var(--gris-fonce); border: 2px solid #e5e7eb; transition: var(--transition); font-size: 0.9rem;
+    }
     .btn-nav-retour:hover { border-color: var(--rose-fonce); color: var(--rose-fonce); }
-    .btn-nav-contact { background: linear-gradient(135deg, var(--rose-fonce), var(--bleu-fonce)); color: white; border: 2px solid transparent; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.2); }
-    .btn-nav-contact:hover { background: linear-gradient(135deg, var(--bleu-fonce), var(--rose-fonce)); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3); }
 
     /* ===== LAYOUT PRINCIPAL ===== */
-    .catalog-layout { display: grid; grid-template-columns: 380px 1fr; gap: 40px; margin-top: 20px; padding-bottom: 100px; }
+    .catalog-layout { 
+      display: flex; flex: 1; overflow: hidden; /* Prend tout l'espace restant sous la navbar */
+      max-width: 1600px; margin: 0 auto; width: 100%;
+    }
 
     /* ===== COLONNE GAUCHE : CONTRÔLES ===== */
-    .controls { background: white; padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow-md); position: sticky; top: 100px; height: fit-content; max-height: 80vh; overflow-y: auto; }
-    .control-group { margin-bottom: 35px; transition: var(--transition); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding-bottom: 25px; }
+    .controls-container {
+      width: 400px; background: white; border-right: 1px solid #e5e7eb;
+      display: flex; flex-direction: column; flex-shrink: 0;
+    }
+    
+    /* Le Switcher Ordi/Tel placé en haut à gauche */
+    .device-switcher-container {
+      padding: 20px; border-bottom: 1px solid #e5e7eb; background: var(--gris-clair);
+    }
+    .device-switcher {
+      display: flex; background: white; padding: 4px; border-radius: 8px; border: 1px solid #e5e7eb;
+    }
+    .device-btn {
+      flex: 1; padding: 10px 0; border-radius: 6px; cursor: pointer; border: none; 
+      background: transparent; font-weight: 600; color: var(--gris); transition: var(--transition); font-size: 0.9rem;
+    }
+    .device-btn.active { background: var(--gris-fonce); color: white; }
+
+    /* La zone scrollable des options */
+    .controls-scroll {
+      padding: 20px; overflow-y: auto; flex: 1;
+    }
+
+    .control-group { margin-bottom: 30px; transition: var(--transition); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding-bottom: 20px; }
     .control-group:last-child { border-bottom: none; margin-bottom: 0; }
     .control-group h3 { font-size: 0.85rem; margin-bottom: 15px; color: var(--gris); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
 
@@ -83,45 +114,60 @@
     .selected-summary { display: none; font-size: 0.95rem; font-weight: bold; margin-top: 10px; padding: 10px; background: var(--gris-clair); border-radius: 8px; border-left: 3px solid var(--rose-fonce); }
     .control-group.collapsed .selected-summary { display: block; }
 
-    .option-list { display: flex; flex-direction: column; gap: 10px; }
-    .option-btn { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 14px 18px; background: white; border: 2px solid #e5e7eb; border-radius: 10px; cursor: pointer; font-weight: 600; color: var(--gris-fonce); transition: var(--transition); font-size: 0.95rem; }
-    .option-btn:hover { border-color: var(--rose); transform: translateX(5px); }
+    .option-list { display: flex; flex-direction: column; gap: 8px; }
+    .option-btn { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 12px 16px; background: white; border: 1px solid #e5e7eb; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--gris-fonce); transition: var(--transition); font-size: 0.9rem; }
+    .option-btn:hover { border-color: var(--rose); background: #fdf2f8; }
     .option-btn.active { border-color: var(--rose-fonce); color: var(--rose-fonce); background: var(--rose-clair); }
-    .color-swatch { width: 20px; height: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+    .color-swatch { width: 16px; height: 16px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
 
     /* ===== COLONNE DROITE : RENDU INTERACTIF ===== */
-    .preview-area { background: #e5e7eb; border-radius: var(--radius); padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 80vh; max-height: 85vh; overflow-y: auto; }
-    .device-switcher { display: flex; gap: 5px; margin-bottom: 20px; background: white; padding: 6px; border-radius: 50px; box-shadow: var(--shadow-sm); }
-    .device-btn { padding: 10px 25px; border-radius: 50px; cursor: pointer; border: none; background: transparent; font-weight: 700; color: var(--gris); transition: var(--transition); }
-    .device-btn.active { background: var(--gris-fonce); color: white; }
+    .preview-area { 
+      flex: 1; background: #e5e7eb; display: flex; align-items: center; justify-content: center; 
+      padding: 20px; overflow: hidden; /* Pas de scroll ici, seul l'écran interne scrolle */
+    }
 
-    .frame-wrapper { transition: var(--transition); display: flex; justify-content: center; width: 100%; }
-    .frame-mobile { width: 380px; height: 700px; background: var(--noir); border-radius: 45px; padding: 14px; box-shadow: var(--shadow-lg); position: relative; }
-    .frame-mobile::before { content: ''; position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 120px; height: 30px; background: var(--noir); border-radius: 0 0 20px 20px; z-index: 10; }
-    .frame-desktop { width: 100%; max-width: 950px; height: 650px; background: #d1d5db; border-radius: 12px 12px 0 0; padding-top: 40px; box-shadow: var(--shadow-lg); position: relative; }
-    .frame-desktop::before { content: ''; position: absolute; top: 15px; left: 20px; width: 12px; height: 12px; border-radius: 50%; background: #ff5f56; box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f; }
+    .frame-wrapper { transition: var(--transition); display: flex; justify-content: center; width: 100%; height: 100%; align-items: center; }
+    
+    .frame-mobile { 
+      width: 360px; height: 700px; max-height: 95%; /* Ajusté pour bien rentrer sur ordi */
+      background: var(--noir); border-radius: 40px; padding: 12px; 
+      box-shadow: var(--shadow-lg); position: relative; transition: all 0.4s ease;
+    }
+    .frame-mobile::before { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 25px; background: var(--noir); border-radius: 0 0 16px 16px; z-index: 10; }
+    
+    .frame-desktop { 
+      width: 95%; max-width: 1100px; height: 90%; 
+      background: #d1d5db; border-radius: 10px 10px 0 0; padding-top: 35px; 
+      box-shadow: var(--shadow-lg); position: relative; transition: all 0.4s ease;
+    }
+    .frame-desktop::before { content: ''; position: absolute; top: 12px; left: 15px; width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; box-shadow: 18px 0 0 #ffbd2e, 36px 0 0 #27c93f; }
 
-    .screen { width: 100%; height: 100%; background: white; border-radius: 32px; overflow-y: auto; overflow-x: hidden; position: relative; }
+    /* L'écran interne qui scrolle */
+    .screen { 
+      width: 100%; height: 100%; background: white; border-radius: 28px; 
+      overflow-y: auto; overflow-x: hidden; position: relative; scroll-behavior: smooth;
+    }
     .frame-desktop .screen { border-radius: 0; border: 1px solid #cbd5e1; }
-    .screen::-webkit-scrollbar { display: none; }
 
     /* ===== CONTENU DES DÉMOS ===== */
     .demo-content { display: none; }
     .demo-content.active { display: block; animation: fadeIn 0.4s; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+    /* Style générique pour les héros */
     .d-hero { min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px 20px; background-size: cover; background-position: center; border-bottom: 1px solid rgba(0, 0, 0, 0.05); position: relative; }
     .d-hero-overlay { background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 12px; backdrop-filter: blur(5px); max-width: 90%; }
+    .d-hero-dark .d-hero-overlay { background: rgba(0, 0, 0, 0.8); }
     .d-hero h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; margin-bottom: 10px; line-height: 1.1; }
-    .d-hero p { font-size: 1rem; margin-bottom: 10px; }
-    
+    .d-hero p { font-size: 1rem; color: var(--gris); margin-bottom: 10px; }
+
     .d-body { padding: 30px 20px; max-width: 800px; margin: 0 auto; }
     .d-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
     .d-card { padding: 20px; border-radius: 12px; box-shadow: var(--shadow-sm); background: white; border: 1px solid #e5e7eb; transition: var(--transition); }
     .d-card-image { width: 100%; height: 150px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 15px; }
     .d-btn { display: inline-block; padding: 12px 25px; border-radius: 8px; font-weight: bold; text-decoration: none; margin-top: 15px; transition: var(--transition); font-size: 0.9rem; cursor: pointer; }
 
-    /* ===== STYLES SPÉCIFIQUES DES DÉMOS ===== */
+    /* ===== STYLES SPÉCIFIQUES PAR DESIGN ===== */
     /* Moderne Clair */
     .design-moderne .d-hero { background: linear-gradient(135deg, #f8fafc, #e2e8f0); }
     .design-moderne .d-hero-overlay { background: rgba(255, 255, 255, 0.8); }
@@ -153,7 +199,6 @@
     .design-minimaliste .d-hero { background: linear-gradient(135deg, #fafafa, #f4f4f5); }
     .design-minimaliste .d-hero-overlay { background: rgba(255, 255, 255, 0.95); }
     .design-minimaliste .d-hero h2 { color: var(--gris-fonce); }
-    .design-minimaliste .d-hero p { color: var(--gris); }
     .design-minimaliste .d-body { background: white; }
     .design-minimaliste .d-card { border: 1px solid #e4e4e7; }
     .design-minimaliste .d-btn { background: var(--gris-fonce); color: white; }
@@ -162,7 +207,6 @@
     .design-luxe .d-hero { background: linear-gradient(135deg, #1c1917, #44403c); }
     .design-luxe .d-hero-overlay { background: rgba(0, 0, 0, 0.85); }
     .design-luxe .d-hero h2 { color: #d4af37; font-family: 'Playfair Display', serif; }
-    .design-luxe .d-hero p { color: rgba(255, 255, 255, 0.9); }
     .design-luxe .d-body { background: #1c1917; color: white; }
     .design-luxe .d-card { background: #292524; border: 1px solid #44403c; }
     .design-luxe .d-btn { background: #d4af37; color: #1c1917; }
@@ -171,7 +215,6 @@
     .design-nature .d-hero { background: linear-gradient(135deg, #f0fdf4, #dcfce7); }
     .design-nature .d-hero-overlay { background: rgba(255, 255, 255, 0.9); }
     .design-nature .d-hero h2 { color: var(--vert-fonce); }
-    .design-nature .d-hero p { color: var(--gris); }
     .design-nature .d-body { background: white; }
     .design-nature .d-card { border-left: 4px solid var(--vert-fonce); }
     .design-nature .d-btn { background: var(--vert-fonce); color: white; }
@@ -179,8 +222,7 @@
     /* Corporate */
     .design-corporate .d-hero { background: linear-gradient(135deg, var(--corporate), var(--bleu)); }
     .design-corporate .d-hero-overlay { background: rgba(255, 255, 255, 0.9); }
-    .design-corporate .d-hero h2 { color: var(--corporate); font-family: 'Inter', sans-serif; }
-    .design-corporate .d-hero p { color: var(--gris-fonce); }
+    .design-corporate .d-hero h2 { color: var(--corporate); }
     .design-corporate .d-body { background: white; }
     .design-corporate .d-card { border-left: 4px solid var(--corporate); }
     .design-corporate .d-btn { background: var(--corporate); color: white; }
@@ -189,7 +231,6 @@
     .design-futuriste .d-hero { background: linear-gradient(135deg, var(--futuriste), var(--tech)); }
     .design-futuriste .d-hero-overlay { background: rgba(0, 0, 0, 0.7); }
     .design-futuriste .d-hero h2 { color: var(--futuriste); font-family: 'Orbitron', sans-serif; }
-    .design-futuriste .d-hero p { color: rgba(255, 255, 255, 0.9); }
     .design-futuriste .d-body { background: #0f172a; color: white; }
     .design-futuriste .d-card { background: #1e293b; border: 1px solid var(--futuriste); }
     .design-futuriste .d-btn { background: var(--futuriste); color: #0f172a; }
@@ -198,25 +239,22 @@
     .design-vintage .d-hero { background: linear-gradient(135deg, #f5f5dc, #deb887); }
     .design-vintage .d-hero-overlay { background: rgba(255, 255, 255, 0.8); }
     .design-vintage .d-hero h2 { color: var(--vintage); font-family: 'Playfair Display', serif; }
-    .design-vintage .d-hero p { color: var(--gris-fonce); }
     .design-vintage .d-body { background: #fff8dc; }
     .design-vintage .d-card { border: 1px solid #8b4513; background: #fff8dc; }
     .design-vintage .d-btn { background: var(--vintage); color: white; }
 
-    /* Artistique */
-    .design-artistique .d-hero { background: linear-gradient(135deg, var(--rose-fonce), var(--violet)); }
-    .design-artistique .d-hero-overlay { background: rgba(255, 255, 255, 0.8); }
-    .design-artistique .d-hero h2 { color: var(--violet); font-family: 'Pacifico', cursive; }
-    .design-artistique .d-hero p { color: var(--gris-fonce); }
-    .design-artistique .d-body { background: linear-gradient(180deg, #fef7ff, #f0f9ff); }
-    .design-artistique .d-card { border-left: 4px solid var(--violet); }
-    .design-artistique .d-btn { background: var(--violet); color: white; }
+    /* Artistique (Remplace le Violet par du Rouge/Corail) */
+    .design-artistique .d-hero { background: linear-gradient(135deg, #EF4444, #F97316); }
+    .design-artistique .d-hero-overlay { background: rgba(255, 255, 255, 0.9); }
+    .design-artistique .d-hero h2 { color: #EF4444; font-family: 'Pacifico', cursive; }
+    .design-artistique .d-body { background: #fef2f2; }
+    .design-artistique .d-card { border-left: 4px solid #EF4444; }
+    .design-artistique .d-btn { background: #EF4444; color: white; }
 
     /* Tech */
     .design-tech .d-hero { background: linear-gradient(135deg, #000, var(--tech)); }
     .design-tech .d-hero-overlay { background: rgba(0, 0, 0, 0.8); }
     .design-tech .d-hero h2 { color: var(--tech); font-family: 'Orbitron', sans-serif; }
-    .design-tech .d-hero p { color: rgba(255, 255, 255, 0.9); }
     .design-tech .d-body { background: #000; color: white; }
     .design-tech .d-card { background: #0f172a; border: 1px solid var(--tech); }
     .design-tech .d-btn { background: var(--tech); color: #000; }
@@ -225,7 +263,6 @@
     .design-tropical .d-hero { background: linear-gradient(135deg, var(--tropical), var(--orange)); }
     .design-tropical .d-hero-overlay { background: rgba(255, 255, 255, 0.8); }
     .design-tropical .d-hero h2 { color: var(--tropical); }
-    .design-tropical .d-hero p { color: var(--gris-fonce); }
     .design-tropical .d-body { background: white; }
     .design-tropical .d-card { border-left: 4px solid var(--tropical); }
     .design-tropical .d-btn { background: var(--tropical); color: white; }
@@ -247,31 +284,31 @@
     
     .fb-btn {
       display: block; width: 100%; text-align: center; background: linear-gradient(135deg, var(--rose-fonce), var(--bleu-fonce)); color: white;
-      padding: 12px; border-radius: 10px; font-weight: bold; text-decoration: none; font-size: 0.9rem;
-      transition: var(--transition);
+      padding: 12px; border-radius: 10px; font-weight: bold; text-decoration: none; font-size: 0.9rem; transition: var(--transition);
     }
     .fb-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(236,72,153,0.3); }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .catalog-layout { grid-template-columns: 1fr; gap: 20px; }
-      .controls { position: static; max-height: none; overflow: visible; }
-      .preview-area { max-height: 70vh; }
-      .floating-bubble { display: none; } /* Cache la bulle sur tablette/mobile */
+      .catalog-layout { grid-template-columns: 280px 1fr; gap: 20px; }
+      .floating-bubble { display: none; }
     }
 
-    /* VRAI RENDU 100% MOBILE (Ce qui corrige ton problème d'affichage sur tel) */
+    /* VRAI RENDU 100% MOBILE */
     @media (max-width: 768px) {
-      .container { padding: 10px; }
-      .preview-area { padding: 0; background: white; min-height: auto; max-height: none; }
-      .device-switcher { display: none; } /* On cache les boutons Ordi/Mobile sur un vrai mobile */
+      body { overflow: auto; height: auto; } /* Sur vrai tel, la page scrolle normalement */
+      .catalog-layout { display: block; padding-bottom: 80px; }
+      
+      .controls-container { width: 100%; border-right: none; position: static; max-height: none; }
+      .device-switcher-container { display: none; } /* Plus de switcher sur tel */
+      
+      .preview-area { padding: 0; background: white; min-height: auto; max-height: none; overflow: visible; margin-top: 20px; }
       .frame-wrapper { display: block; }
       
-      /* Le cadre devient un bloc plein écran normal */
       .frame-mobile { width: 100%; height: auto; min-height: 600px; border-radius: 0; padding: 0; box-shadow: none; border: 1px solid #e5e7eb; }
-      .frame-mobile::before { display: none; } /* Enlève la fausse encoche noire de l'iPhone */
+      .frame-mobile::before { display: none; }
       
-      .screen { border-radius: 0; border-top: 1px solid #e5e7eb; overflow: visible; } /* Permet au navigateur mobile de scroller naturellement */
+      .screen { border-radius: 0; border-top: 1px solid #e5e7eb; overflow: visible; height: auto; }
       
       /* Barre de contact mobile ancrée en bas */
       .mobile-contact-bar {
@@ -279,7 +316,6 @@
         box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 2000; text-align: center; border-top: 1px solid #e5e7eb;
       }
       .mobile-contact-bar a { display: block; width: 100%; background: linear-gradient(135deg, var(--rose-fonce), var(--bleu-fonce)); color: white; padding: 12px; border-radius: 10px; font-weight: bold; text-decoration: none; }
-      .catalog-layout { padding-bottom: 80px; } /* Laisse la place pour la barre mobile */
     }
     
     @media (min-width: 769px) {
@@ -296,100 +332,75 @@
     </a>
     <div class="nav-buttons">
       <a href="site-internet-mayotte.html" class="btn-nav btn-nav-retour">Retour au site</a>
-      <a href="site-internet-mayotte.html#contact" class="btn-nav btn-nav-contact">Demander un devis</a>
     </div>
   </nav>
 
-  <div class="container catalog-layout">
-    <!-- COLONNE GAUCHE : CONTRÔLES (ACCORDÉONS) -->
-    <div class="controls">
-      <!-- ÉTAPE 1 : SECTEUR -->
-      <div class="control-group" id="group-secteur">
-        <h3>
-          1. Votre Secteur
-          <button class="btn-edit" onclick="openGroup('secteur')">Modifier</button>
-        </h3>
-        <div class="selected-summary" id="summary-secteur">🍽️ Restaurant & Snack</div>
-        <div class="option-list" id="list-secteur">
-          <button class="option-btn secteur-btn active" data-s="restauration">
-            <span style="font-size: 1.2rem;">🍽️</span> Restaurant & Snack
-          </button>
-          <button class="option-btn secteur-btn" data-s="beaute">
-            <span style="font-size: 1.2rem;">✂️</span> Beauté & Coiffure
-          </button>
-          <button class="option-btn secteur-btn" data-s="artisan">
-            <span style="font-size: 1.2rem;">🔧</span> Garage & Bâtiment
-          </button>
-          <button class="option-btn secteur-btn" data-s="btob">
-            <span style="font-size: 1.2rem;">💼</span> Conseil & B2B
-          </button>
-          <button class="option-btn secteur-btn" data-s="immo">
-            <span style="font-size: 1.2rem;">🏠</span> Immobilier
-          </button>
+  <div class="catalog-layout">
+    
+    <!-- COLONNE GAUCHE : CONTRÔLES (Fixe sur Ordi) -->
+    <div class="controls-container">
+      
+      <!-- Le Switcher déplacé ici -->
+      <div class="device-switcher-container">
+        <div class="device-switcher">
+          <button class="device-btn active" onclick="setDevice(event, 'mobile')">📱 Mobile</button>
+          <button class="device-btn" onclick="setDevice(event, 'desktop')">💻 Ordinateur</button>
         </div>
       </div>
 
-      <!-- ÉTAPE 2 : DESIGN (Les 9 Styles) -->
-      <div class="control-group collapsed" id="group-da">
-        <h3>
-          2. Style Visuel
-          <button class="btn-edit" onclick="openGroup('da')">Modifier</button>
-        </h3>
-        <div class="selected-summary" id="summary-da">⚪ Moderne Clair</div>
-        <div class="option-list" id="list-da">
-          <button class="option-btn da-btn active" data-d="moderne">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #ffffff, #f3f4f6); border: 1px solid #ccc;"></div> Moderne Clair
-          </button>
-          <button class="option-btn da-btn" data-d="sombre">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #1c1917, #fbbf24);"></div> Élégant Sombre
-          </button>
-          <button class="option-btn da-btn" data-d="colore">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #EC4899, #3B82F6);"></div> Audacieux Coloré
-          </button>
-          <button class="option-btn da-btn" data-d="minimaliste">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #fafafa, #f4f4f5);"></div> Minimaliste
-          </button>
-          <button class="option-btn da-btn" data-d="luxe">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #1c1917, #d4af37);"></div> Luxe
-          </button>
-          <button class="option-btn da-btn" data-d="nature">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #f0fdf4, #10B981);"></div> Nature
-          </button>
-          <button class="option-btn da-btn" data-d="corporate">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #1E40AF, #3B82F6);"></div> Corporate
-          </button>
-          <button class="option-btn da-btn" data-d="futuriste">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #0EA5E9, #06B6D4);"></div> Futuriste
-          </button>
-          <button class="option-btn da-btn" data-d="vintage">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #8B4513, #F5F5DC);"></div> Vintage
-          </button>
-          <button class="option-btn da-btn" data-d="artistique">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #EC4899, #8B5CF6);"></div> Artistique
-          </button>
-          <button class="option-btn da-btn" data-d="tech">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #000, #06B6D4);"></div> Tech
-          </button>
-          <button class="option-btn da-btn" data-d="tropical">
-            <div class="color-swatch" style="background: linear-gradient(135deg, #10B981, #F97316);"></div> Tropical
-          </button>
+      <!-- Scroll des options -->
+      <div class="controls-scroll">
+        
+        <!-- ÉTAPE 1 : SECTEUR -->
+        <div class="control-group" id="group-secteur">
+          <h3>
+            1. Votre Secteur
+            <button class="btn-edit" onclick="openGroup('secteur')">Modifier</button>
+          </h3>
+          <div class="selected-summary" id="summary-secteur">🍽️ Restaurant & Snack</div>
+          <div class="option-list" id="list-secteur">
+            <button class="option-btn secteur-btn active" data-s="restauration"><span style="font-size: 1.2rem;">🍽️</span> Restaurant & Snack</button>
+            <button class="option-btn secteur-btn" data-s="beaute"><span style="font-size: 1.2rem;">✂️</span> Beauté & Coiffure</button>
+            <button class="option-btn secteur-btn" data-s="artisan"><span style="font-size: 1.2rem;">🔧</span> Garage & Bâtiment</button>
+            <button class="option-btn secteur-btn" data-s="btob"><span style="font-size: 1.2rem;">💼</span> Conseil & B2B</button>
+            <button class="option-btn secteur-btn" data-s="immo"><span style="font-size: 1.2rem;">🏠</span> Immobilier</button>
+          </div>
         </div>
+
+        <!-- ÉTAPE 2 : DESIGN (Les Styles) -->
+        <div class="control-group collapsed" id="group-da">
+          <h3>
+            2. Style Visuel
+            <button class="btn-edit" onclick="openGroup('da')">Modifier</button>
+          </h3>
+          <div class="selected-summary" id="summary-da">⚪ Moderne Clair</div>
+          <div class="option-list" id="list-da">
+            <button class="option-btn da-btn active" data-d="moderne"><div class="color-swatch" style="background: linear-gradient(135deg, #ffffff, #f3f4f6); border: 1px solid #ccc;"></div> Moderne Clair</button>
+            <button class="option-btn da-btn" data-d="sombre"><div class="color-swatch" style="background: linear-gradient(135deg, #1c1917, #fbbf24);"></div> Élégant Sombre</button>
+            <button class="option-btn da-btn" data-d="colore"><div class="color-swatch" style="background: linear-gradient(135deg, #EC4899, #3B82F6);"></div> Audacieux Coloré</button>
+            <button class="option-btn da-btn" data-d="minimaliste"><div class="color-swatch" style="background: linear-gradient(135deg, #fafafa, #f4f4f5);"></div> Minimaliste</button>
+            <button class="option-btn da-btn" data-d="luxe"><div class="color-swatch" style="background: linear-gradient(135deg, #1c1917, #d4af37);"></div> Luxe</button>
+            <button class="option-btn da-btn" data-d="nature"><div class="color-swatch" style="background: linear-gradient(135deg, #f0fdf4, #10B981);"></div> Nature</button>
+            <button class="option-btn da-btn" data-d="corporate"><div class="color-swatch" style="background: linear-gradient(135deg, #1E40AF, #3B82F6);"></div> Corporate</button>
+            <button class="option-btn da-btn" data-d="futuriste"><div class="color-swatch" style="background: linear-gradient(135deg, #0EA5E9, #06B6D4);"></div> Futuriste</button>
+            <button class="option-btn da-btn" data-d="vintage"><div class="color-swatch" style="background: linear-gradient(135deg, #8B4513, #F5F5DC);"></div> Vintage</button>
+            <button class="option-btn da-btn" data-d="artistique"><div class="color-swatch" style="background: linear-gradient(135deg, #EF4444, #F97316);"></div> Artistique</button>
+            <button class="option-btn da-btn" data-d="tech"><div class="color-swatch" style="background: linear-gradient(135deg, #000, #06B6D4);"></div> Tech</button>
+            <button class="option-btn da-btn" data-d="tropical"><div class="color-swatch" style="background: linear-gradient(135deg, #10B981, #F97316);"></div> Tropical</button>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- COLONNE DROITE : RENDU INTERACTIF -->
+    <!-- COLONNE DROITE : RENDU INTERACTIF (Bloqué au scroll global) -->
     <div class="preview-area">
-      <div class="device-switcher">
-        <button class="device-btn active" onclick="setDevice(event, 'mobile')">📱 Vue Mobile</button>
-        <button class="device-btn" onclick="setDevice(event, 'desktop')">💻 Vue Ordinateur</button>
-      </div>
-
       <div class="frame-wrapper">
         <div id="device-frame" class="frame-mobile">
           <div class="screen" id="screen-content">
             
             <!-- ============================================== -->
-            <!-- RESTAURATION (Modèle de base, le script génèrera les autres) -->
+            <!-- DÉMOS RESTAURATION -->
             <!-- ============================================== -->
 
             <!-- Moderne Clair -->
@@ -448,10 +459,9 @@
             </div>
 
             <!-- ============================================== -->
-            <!-- GÉNÉRATEUR DYNAMIQUE (Pour les combinaisons non codées en dur) -->
+            <!-- GÉNÉRATEUR DYNAMIQUE (Pour les 10 autres styles) -->
             <!-- ============================================== -->
             <div id="fallback-demo" class="demo-content">
-              <!-- Le contenu sera injecté via JavaScript en fonction de la classe (ex: design-colore, design-futuriste...) -->
               <div id="fallback-hero" class="d-hero" style="background-image: url('photo6.jpg');">
                 <div class="d-hero-overlay">
                   <h2 id="fb-title">Titre du site</h2>
@@ -467,7 +477,7 @@
                     <div style="opacity: 0.8; font-size: 0.9rem; line-height: 1.5;">Ce design est adapté aux couleurs de votre entreprise.</div>
                   </div>
                   <div class="d-card">
-                    <div class="d-card-image" style="background-image: url('photo5.jpg');"></div>
+                    <div class="d-card-image" style="background-image: url('photo1.jpg');"></div>
                     <div style="font-weight: bold; margin-bottom: 5px;">Mise en ligne en 48h</div>
                     <div style="opacity: 0.8; font-size: 0.9rem; line-height: 1.5;">Textes et photos personnalisés pour votre marque.</div>
                   </div>
@@ -484,7 +494,7 @@
     </div>
   </div>
 
-  <!-- BULLE FLOTTANTE DE CONTACT (Chatbot style) -->
+  <!-- BULLE FLOTTANTE DE CONTACT -->
   <div class="floating-bubble">
     <div class="fb-header">
       <img src="photo-president.jpg" alt="Titouan Bedos" onerror="this.src='https://via.placeholder.com/100x100/FFD1DC/EC4899?text=TB'">
@@ -495,12 +505,11 @@
     </div>
     <div class="fb-content">
       <p>Un style vous plaît ? Je personnalise la maquette avec votre logo et vos textes en 48h.</p>
-      <!-- Renvoie vers le formulaire du site principal -->
       <a href="site-internet-mayotte.html#contact" class="fb-btn">Demander mon site sur-mesure</a>
     </div>
   </div>
 
-  <!-- BANDEAU MOBILE (Apparaît uniquement sur téléphone) -->
+  <!-- BANDEAU MOBILE -->
   <div class="mobile-contact-bar">
     <a href="site-internet-mayotte.html#contact">Demander mon site sur-mesure</a>
   </div>
@@ -585,10 +594,10 @@
         }
       });
 
-      // Si pas codée en dur, on utilise le Fallback Dynamique (qui prend la couleur du CSS !)
+      // Si pas codée en dur, on utilise le Fallback Dynamique
       if(!found) {
         fallback.classList.add('active');
-        fallback.classList.add(`design-${currentDA}`); // Applique le bon CSS de couleur
+        fallback.classList.add(`design-${currentDA}`); 
         
         const contentInfo = sectorContent[currentSecteur] || sectorContent['restauration'];
         document.getElementById('fb-title').innerText = contentInfo.title;
