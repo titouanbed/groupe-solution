@@ -36,7 +36,7 @@
   }
   </script>
 
-  <!-- Données structurées : FAQ (Boost SEO Google) -->
+  <!-- Données structurées : FAQ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -80,12 +80,15 @@
       --border-radius: 16px;
       --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       --box-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
-      --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { color: var(--gris-fonce); background: var(--blanc); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    
+    /* MODALE - Empêche le scroll du body quand ouverte */
+    body.modal-open { overflow: hidden; }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
@@ -112,321 +115,136 @@
       font-weight: 600; font-size: 0.95rem; text-decoration: none;
       transition: var(--transition); border: none; cursor: pointer;
     }
-    .btn-primary {
-      background: var(--rose); color: var(--noir);
-      box-shadow: var(--box-shadow);
-    }
-    .btn-primary:hover {
-      background: var(--rose-fonce); color: var(--blanc);
-      transform: translateY(-2px); box-shadow: var(--box-shadow-lg);
-    }
-    .btn-secondary {
-      background: var(--blanc); color: var(--gris-fonce);
-      border: 1px solid var(--gris-clair);
-    }
-    .btn-secondary:hover {
-      background: var(--gris-clair); border-color: var(--gris);
-    }
-    .btn-ghost {
-      background: transparent; color: var(--blanc);
-      border: 1.5px solid rgba(255,255,255,0.3);
-    }
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5);
-    }
+    .btn-primary { background: var(--rose); color: var(--noir); box-shadow: var(--box-shadow); }
+    .btn-primary:hover { background: var(--rose-fonce); color: var(--blanc); transform: translateY(-2px); box-shadow: var(--box-shadow-lg); }
+    .btn-secondary { background: var(--blanc); color: var(--gris-fonce); border: 1px solid var(--gris-clair); }
+    .btn-secondary:hover { background: var(--gris-clair); border-color: var(--gris); }
+    .btn-ghost { background: transparent; color: var(--blanc); border: 1.5px solid rgba(255,255,255,0.3); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
 
-    /* ===== HERO AVEC FOND SIMPLE ===== */
+    /* ===== HERO ===== */
     .hero {
-      position: relative;
-      min-height: 80vh;
-      max-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--blanc);
-      overflow: hidden;
-      padding-top: 70px;
-      margin-bottom: 40px;
-      background-size: cover;
-      background-position: center;
-      transition: background-image 1s ease-in-out; /* On passe à 1 seconde pour un beau fondu */
+      position: relative; min-height: 80vh; max-height: 90vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; color: var(--blanc); overflow: hidden;
+      padding-top: 70px; margin-bottom: 40px;
+      background-size: cover; background-position: center;
+      transition: background-image 1s ease-in-out;
     }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
-      z-index: -1;
-    }
-
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%); z-index: -1; }
     .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 20px; }
-
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);
-      padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.05;
-      margin-bottom: 20px;
-      letter-spacing: -0.03em;
-      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero h1 .accent {
-      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      max-width: 750px;
-      margin: 0 auto 40px;
-      opacity: 0.95;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .hero-ctas {
-      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-    }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; line-height: 1.05; margin-bottom: 20px; letter-spacing: -0.03em; text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); }
+    .hero h1 .accent { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.25rem; max-width: 750px; margin: 0 auto 40px; opacity: 0.95; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
     /* ===== SECTIONS ===== */
     section { padding: 80px 0; }
-
     .section-header { text-align: center; margin-bottom: 60px; }
-
-    .section-header h2 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800;
-      margin-bottom: 16px;
-      line-height: 1.1;
-      color: var(--gris-fonce);
-    }
-
-    .section-header h2 .accent {
-      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-
-    .section-header p {
-      font-size: 1.15rem; color: var(--gris);
-      max-width: 700px; margin: 0 auto;
-    }
-
-    .section-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--rose-clair); color: var(--rose-fonce);
-      padding: 6px 14px; border-radius: 999px;
-      font-size: 0.8rem; font-weight: 600; margin-bottom: 16px;
-    }
+    .section-header h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; color: var(--gris-fonce); }
+    .section-header h2 .accent { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-header p { font-size: 1.15rem; color: var(--gris); max-width: 700px; margin: 0 auto; }
+    .section-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--rose-clair); color: var(--rose-fonce); padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 16px; }
 
     /* ===== AUDIT GRATUIT ===== */
-    .audit-section {
-      background: linear-gradient(135deg, var(--rose-clair) 0%, var(--blanc) 100%);
-      padding: 80px 0; position: relative; overflow: hidden;
-    }
-
-    .audit-card {
-      background: var(--blanc);
-      border-radius: var(--border-radius);
-      padding: 40px;
-      box-shadow: var(--box-shadow-lg);
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
-      border: 1px solid var(--gris-clair);
-    }
-
-    .audit-content h3 {
-      font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--gris-fonce);
-    }
-
-    .audit-content h3 .accent {
-      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-
-    .audit-content p {
-      font-size: 1.1rem; color: var(--gris); margin-bottom: 24px; line-height: 1.7;
-    }
-
-    .audit-features {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-    }
-
-    .audit-feature {
-      display: flex; align-items: center; gap: 10px;
-      color: var(--gris-fonce); font-size: 0.95rem;
-    }
-
-    .audit-feature::before {
-      content: '✓'; color: var(--rose-fonce); font-weight: 700;
-    }
-
-    .audit-cta {
-      display: flex; flex-direction: column; gap: 12px; justify-content: center;
-    }
-
-    .audit-cta .btn { width: 220px; }
+    .audit-section { background: linear-gradient(135deg, var(--rose-clair) 0%, var(--blanc) 100%); padding: 80px 0; position: relative; overflow: hidden; }
+    .audit-card { background: var(--blanc); border-radius: var(--border-radius); padding: 40px; box-shadow: var(--box-shadow-lg); max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; border: 1px solid var(--gris-clair); }
+    .audit-content h3 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--gris-fonce); }
+    .audit-content h3 .accent { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .audit-content p { font-size: 1.1rem; color: var(--gris); margin-bottom: 24px; line-height: 1.7; }
+    .audit-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .audit-feature { display: flex; align-items: center; gap: 10px; color: var(--gris-fonce); font-size: 0.95rem; }
+    .audit-feature::before { content: '✓'; color: var(--rose-fonce); font-weight: 700; }
+    .audit-cta { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
 
     /* ===== BULLES (SOLUTIONS) ===== */
-    .bulles-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .bulle {
-      background: var(--blanc);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
-      transition: var(--transition);
-      border: 1px solid var(--gris-clair);
-      position: relative;
-    }
-
-    .bulle:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--box-shadow-lg);
-    }
-
-    .bulle-image {
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .bulle-image::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.1));
-    }
-
+    .bulles-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 40px; }
+    .bulle { background: var(--blanc); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow); transition: var(--transition); border: 1px solid var(--gris-clair); position: relative; }
+    .bulle:hover { transform: translateY(-8px); box-shadow: var(--box-shadow-lg); }
+    .bulle-image { height: 180px; background-size: cover; background-position: center; position: relative; }
+    .bulle-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.1)); }
     .bulle-content { padding: 24px; }
+    .bulle-content h4 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
+    .bulle-content p { font-size: 0.95rem; color: var(--gris); margin-bottom: 16px; }
+    .bulle-content .prix { font-size: 1.3rem; font-weight: 800; color: var(--rose-fonce); margin-bottom: 12px; }
+    .bulle-content .delai { display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: var(--vert); padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
 
-    .bulle-content h4 {
-      font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce);
-    }
-
-    .bulle-content p {
-      font-size: 0.95rem; color: var(--gris); margin-bottom: 16px;
-    }
-
-    .bulle-content .prix {
-      font-size: 1.3rem; font-weight: 800; color: var(--rose-fonce);
-      margin-bottom: 12px;
-    }
-
-    .bulle-content .delai {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #dcfce7; color: var(--vert);
-      padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .bulle-cta { width: 100%; }
+    /* ===== RÉALISATIONS ===== */
+    #realisations { background: var(--gris-clair); padding: 80px 0; }
+    .rea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .rea-card { text-decoration: none; background: var(--blanc); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow); transition: transform 0.3s; display: block; }
+    .rea-card:hover { transform: translateY(-5px); box-shadow: var(--box-shadow-lg); }
+    .rea-img { height: 180px; background-size: cover; background-position: top; border-bottom: 1px solid var(--gris-clair); }
+    .rea-content { padding: 20px; }
+    .rea-content h4 { color: var(--gris-fonce); font-size: 1.1rem; margin-bottom: 8px; font-weight: 700; }
+    .rea-content p { color: var(--gris); font-size: 0.9rem; }
 
     /* ===== PROCESSUS ===== */
-    .process-steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
-    }
-
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
     .process-step { text-align: center; position: relative; }
-    .process-step::before {
-      content: ''; position: absolute; top: 40px; left: 50%; right: -50%;
-      height: 2px; background: linear-gradient(to right, var(--rose), transparent); z-index: 0;
-    }
+    .process-step::before { content: ''; position: absolute; top: 40px; left: 50%; right: -50%; height: 2px; background: linear-gradient(to right, var(--rose), transparent); z-index: 0; }
     .process-step:last-child::before { display: none; }
-
-    .step-num {
-      width: 64px; height: 64px; background: var(--rose); color: var(--blanc);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px;
-      position: relative; z-index: 1; box-shadow: 0 4px 15px rgba(236,72,153,0.3);
-      transition: var(--transition);
-    }
+    .step-num { width: 64px; height: 64px; background: var(--rose); color: var(--blanc); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px; position: relative; z-index: 1; box-shadow: 0 4px 15px rgba(236,72,153,0.3); transition: var(--transition); }
     .process-step:hover .step-num { transform: scale(1.12) rotate(6deg); }
     .process-step h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
     .process-step p { color: var(--gris); font-size: 0.95rem; max-width: 210px; margin: 0 auto; }
 
-    /* ===== FAQ ===== */
+    /* ===== FAQ (Accordéons) ===== */
     .faq { max-width: 800px; margin: 0 auto; }
-    .faq-item {
-      background: var(--blanc); border: 1px solid var(--gris-clair);
-      border-radius: var(--border-radius); margin-bottom: 12px;
-      overflow: hidden; box-shadow: var(--box-shadow);
-    }
-    .faq-q {
-      padding: 20px; font-weight: 600; cursor: pointer; display: flex;
-      justify-content: space-between; align-items: center; font-size: 1.02rem;
-      gap: 16px; color: var(--gris-fonce);
-    }
-    .faq-q::after { content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--gris); transition: var(--transition); }
-    .faq-item.open .faq-q::after { content: '−'; color: var(--rose-fonce); }
-    .faq-a {
-      max-height: 0; overflow: hidden; transition: max-height 0.4s var(--transition), padding 0.4s var(--transition);
-      padding: 0 20px; color: var(--gris);
-    }
+    .faq-item { background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius); margin-bottom: 12px; overflow: hidden; box-shadow: var(--box-shadow); transition: var(--transition); }
+    .faq-item:hover { border-color: var(--rose); }
+    .faq-q { padding: 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; gap: 16px; color: var(--gris-fonce); transition: color 0.2s; }
+    .faq-q:hover { color: var(--rose-fonce); }
+    .faq-q::after { content: '+'; font-size: 1.5rem; font-weight: 300; color: var(--gris); transition: transform 0.4s; }
+    .faq-item.open .faq-q { color: var(--rose-fonce); }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); color: var(--rose-fonce); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; padding: 0 20px; color: var(--gris); font-size: 0.95rem; line-height: 1.6; }
     .faq-item.open .faq-a { max-height: 500px; padding: 0 20px 20px; }
 
-    /* ===== CTA FINAL & CONTACT ===== */
-    .cta-final {
-      padding: 100px 0; text-align: center; background: var(--gris-clair);
-      position: relative; overflow: hidden;
+    /* ===== MODALE DE CONTACT (POP-UP) ===== */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px);
+      z-index: 2000; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s ease;
     }
-    .cta-final-top { margin-bottom: 60px; }
-    .cta-final-top h2 {
-      font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin-bottom: 16px;
-      color: var(--gris-fonce); position: relative; z-index: 1;
+    .modal-overlay.open { opacity: 1; visibility: visible; }
+    
+    .modal-content {
+      background: var(--blanc); width: 100%; max-width: 600px; max-height: 90vh;
+      border-radius: 24px; padding: 40px; position: relative;
+      transform: translateY(50px) scale(0.95); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.25);
     }
-    .cta-final-top h2 .accent {
-      background: linear-gradient(135deg, var(--rose), var(--rose-fonce));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    .modal-overlay.open .modal-content { transform: translateY(0) scale(1); }
+    
+    .modal-close {
+      position: absolute; top: 20px; right: 20px; width: 36px; height: 36px;
+      background: var(--gris-clair); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; border: none; color: var(--gris-fonce); transition: var(--transition);
     }
-    .cta-final-top p { font-size: 1.15rem; color: var(--gris); max-width: 600px; margin: 0 auto 32px; position: relative; z-index: 1; }
+    .modal-close:hover { background: var(--rose-clair); color: var(--rose-fonce); transform: rotate(90deg); }
 
-    .form-container {
-      max-width: 600px; margin: 0 auto; background: var(--blanc); padding: 32px;
-      border-radius: var(--border-radius); box-shadow: var(--box-shadow);
-      border: 1px solid var(--gris-clair); text-align: left;
-    }
-    .form-container h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: var(--gris-fonce); }
-    .form-container p { color: var(--gris); margin-bottom: 24px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .form-group { margin-bottom: 16px; }
+    .modal-header { text-align: center; margin-bottom: 30px; }
+    .modal-header h3 { font-size: 1.8rem; font-weight: 800; color: var(--gris-fonce); margin-bottom: 8px; }
+    .modal-header h3 .accent { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .modal-header p { color: var(--gris); font-size: 0.95rem; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--gris-fonce); margin-bottom: 8px; }
     .form-group input, .form-group textarea {
-      width: 100%; padding: 12px 16px; border: 1px solid var(--gris-clair);
-      border-radius: 8px; font-size: 1rem; font-family: inherit; transition: var(--transition);
+      width: 100%; padding: 14px 16px; border: 2px solid var(--gris-clair); border-radius: 12px;
+      font-size: 1rem; font-family: inherit; transition: var(--transition); background: var(--blanc);
     }
-    .form-group input:focus, .form-group textarea:focus {
-      outline: none; border-color: var(--rose-fonce); box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
-    }
-    .form-group textarea { min-height: 100px; resize: vertical; }
-    .form-actions { display: flex; gap: 12px; margin-top: 8px; }
-    .form-actions .btn { flex: 1; justify-content: center; }
-
-    .contact-infos { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
-    .contact-info { display: flex; align-items: center; gap: 8px; color: var(--gris-fonce); font-size: 0.95rem; }
-    .contact-info a { color: var(--gris-fonce); text-decoration: none; font-weight: 600; }
-    .contact-info a:hover { color: var(--rose-fonce); text-decoration: underline; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--rose); background: var(--rose-clair); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
 
     /* ===== FOOTER ===== */
     footer { background: var(--noir-doux); color: var(--blanc); padding: 60px 0 30px; position: relative; }
     .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
     .footer-logo { display: flex; flex-direction: column; gap: 16px; background: var(--blanc); padding: 24px; border-radius: var(--border-radius); text-align: center; color: var(--gris-fonce); }
-    .footer-logo img { height: 40px; width: auto; }
+    .footer-logo img { height: 40px; width: auto; margin: 0 auto; }
     .footer-desc { color: var(--gris); font-size: 0.9rem; line-height: 1.7; }
     .footer-links h4, .footer-contact h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--blanc); }
     .footer-links ul { list-style: none; }
@@ -434,7 +252,6 @@
     .footer-links ul li a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
     .footer-links ul li a:hover { color: var(--rose); }
     .footer-contact { background: var(--blanc); color: var(--gris-fonce); padding: 24px; border-radius: var(--border-radius); }
-    .footer-contact h4 { color: var(--gris-fonce); }
     .footer-contact p { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
     .footer-contact a { color: var(--gris-fonce); text-decoration: none; font-weight: 600; }
     .footer-contact a:hover { color: var(--rose-fonce); text-decoration: underline; }
@@ -448,25 +265,18 @@
       .hero p { font-size: 1rem; }
       .hero-ctas { flex-direction: column; align-items: center; }
       .hero-ctas .btn { width: 100%; justify-content: center; }
-      .bulles-container { grid-template-columns: 1fr; }
       .audit-card { grid-template-columns: 1fr; text-align: center; }
       .audit-features { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .process-step::before { display: none; }
-      .form-row { grid-template-columns: 1fr; }
-      .contact-infos { flex-direction: column; gap: 12px; }
-      .footer-content { grid-template-columns: 1fr; }
       .footer-logo { background: transparent; padding: 0; color: var(--blanc); }
       .footer-logo img { filter: brightness(0) invert(1); }
-      .form-group input, .form-group textarea { padding: 10px 14px; }
+      .modal-content { padding: 30px 20px; border-radius: 20px; max-height: 95vh; }
     }
 
     /* ===== ANIMATIONS ===== */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--transition), transform 0.6s var(--transition); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--gris-clair); }
-    ::-webkit-scrollbar-thumb { background: var(--gris); border-radius: 4px; }
     .icon { width: 20px; height: 20px; stroke-width: 1.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   </style>
 </head>
@@ -483,6 +293,7 @@
     <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
     <symbol id="i-lightning" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></symbol>
   </svg>
 
   <!-- NAVBAR -->
@@ -494,17 +305,13 @@
         <li><a href="#solutions">Nos Services</a></li>
         <li><a href="#processus">Processus</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="mailto:contact@groupsolution.fr" class="btn btn-secondary">
-          <svg class="icon"><use href="#i-mail"/></svg>
-          <span>Email</span>
-        </a>
-        <a href="tel:+33782298559" class="btn btn-secondary">
-          <svg class="icon"><use href="#i-phone"/></svg>
-          <span>Appeler</span>
-        </a>
+        <!-- OUVRE LA MODALE AU LIEU D'ANCRER EN BAS -->
+        <button onclick="openModal()" class="btn btn-primary" style="padding: 8px 16px;">
+          <svg class="icon" style="width: 16px; height: 16px;"><use href="#i-mail"/></svg>
+          <span>Contact</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -519,10 +326,11 @@
       <h1>Votre Agence Web & <span class="accent">Digitale</span><br>à Mayotte</h1>
       <p>Création de sites internet, Community Management, Référencement (SEO) et Publicité (Ads). On gère de A à Z la visibilité de votre entreprise à Mayotte.</p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary">
+        <!-- OUVRE LA MODALE -->
+        <button onclick="openModal()" class="btn btn-primary">
           <svg class="icon"><use href="#i-mail"/></svg>
           <span>Parler de mon projet</span>
-        </a>
+        </button>
         <a href="#audit" class="btn btn-ghost">
           <svg class="icon"><use href="#i-zap"/></svg>
           <span>Audit Web Gratuit</span>
@@ -557,11 +365,12 @@
         </div>
 
         <div class="audit-cta">
-          <a href="#contact" class="btn btn-primary">
+          <!-- OUVRE LA MODALE -->
+          <button onclick="openModal()" class="btn btn-primary" style="width: 220px; justify-content: center;">
             <svg class="icon"><use href="#i-mail"/></svg>
             Réserver mon audit
-          </a>
-          <a href="#solutions" class="btn btn-secondary">
+          </button>
+          <a href="#solutions" class="btn btn-secondary" style="width: 220px; justify-content: center;">
             <svg class="icon"><use href="#i-arrow-right"/></svg>
             Voir notre offre 360
           </a>
@@ -583,48 +392,36 @@
       </div>
 
       <div class="bulles-container">
-        <!-- Bulle 1 : Sites Web (Avec photo7) -->
         <div class="bulle reveal">
           <div class="bulle-image" style="background-image: url('photo7.jpg');"></div>
           <div class="bulle-content">
             <h4>Création de Sites Web</h4>
             <p>Site vitrine, e-commerce ou plateforme sur-mesure. Un design moderne, adapté aux mobiles et optimisé pour le réseau local.</p>
             <div class="prix">Dès 250€</div>
-            <div class="delai">
-              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Rapide & Clé en main
-            </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">En savoir plus</a>
+            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Rapide & Clé en main</div>
+            <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">En savoir plus</button>
           </div>
         </div>
 
-        <!-- Bulle 2 : Réseaux Sociaux & Ads -->
         <div class="bulle reveal">
           <div class="bulle-image" style="background-image: url('photo2.jpg');"></div>
           <div class="bulle-content">
             <h4>Réseaux Sociaux & Ads</h4>
             <p>Community Management sur Facebook, Insta & TikTok. Création de contenus et publicité (Social Ads) ciblée sur le 976.</p>
             <div class="prix">Sur devis</div>
-            <div class="delai">
-              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Acquisition continue
-            </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">Booster ma marque</a>
+            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Acquisition continue</div>
+            <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">Booster ma marque</button>
           </div>
         </div>
 
-        <!-- Bulle 3 : SEO & Automatisation -->
         <div class="bulle reveal">
           <div class="bulle-image" style="background-image: url('photo3.jpg');"></div>
           <div class="bulle-content">
             <h4>SEO & Automatisation</h4>
             <p>Dominez Google à Mayotte avec notre référencement local. Automatisation de vos relances clients et prises de RDV par IA.</p>
             <div class="prix">Sur devis</div>
-            <div class="delai">
-              <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg>
-              Gain de temps garanti
-            </div>
-            <a href="#contact" class="btn btn-primary bulle-cta">Me positionner 1er</a>
+            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Gain de temps garanti</div>
+            <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">Me positionner 1er</button>
           </div>
         </div>
       </div>
@@ -643,38 +440,32 @@
         <p>Du site vitrine épuré à la plateforme logicielle sur-mesure complexe. On code tout.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-        
-        <!-- Réa 1 : Twenty Three Clean -->
-        <a href="https://twentythreeclean.com/" target="_blank" style="text-decoration: none; background: var(--blanc); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow); transition: transform 0.3s; display: block;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-          <div style="height: 180px; background-image: url('rea1.jpg'); background-size: cover; background-position: top; border-bottom: 1px solid var(--gris-clair);"></div>
-          <div style="padding: 20px;">
-            <h4 style="color: var(--gris-fonce); font-size: 1.1rem; margin-bottom: 8px;">Twenty Three Clean</h4>
-            <p style="color: var(--gris); font-size: 0.9rem;">Site vitrine moderne pour une entreprise de nettoyage professionnel.</p>
+      <div class="rea-grid">
+        <a href="https://twentythreeclean.com/" target="_blank" class="rea-card reveal">
+          <div class="rea-img" style="background-image: url('rea1.jpg');"></div>
+          <div class="rea-content">
+            <h4>Twenty Three Clean</h4>
+            <p>Site vitrine moderne pour une entreprise de nettoyage professionnel.</p>
           </div>
         </a>
 
-        <!-- Réa 2 : Solutions Recrutement -->
-        <a href="https://solutionsrecrutement.fr/" target="_blank" style="text-decoration: none; background: var(--blanc); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow); transition: transform 0.3s; display: block;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-          <div style="height: 180px; background-image: url('rea2.jpg'); background-size: cover; background-position: top; border-bottom: 1px solid var(--gris-clair);"></div>
-          <div style="padding: 20px;">
-            <h4 style="color: var(--gris-fonce); font-size: 1.1rem; margin-bottom: 8px;">Solutions Recrutement</h4>
-            <p style="color: var(--gris); font-size: 0.9rem;">Développement web avancé pour agence de recrutement.</p>
+        <a href="https://solutionsrecrutement.fr/" target="_blank" class="rea-card reveal">
+          <div class="rea-img" style="background-image: url('rea2.jpg');"></div>
+          <div class="rea-content">
+            <h4>Solutions Recrutement</h4>
+            <p>Développement web avancé pour agence de recrutement.</p>
           </div>
         </a>
 
-        <!-- Réa 3 : Solution Alternance -->
-        <a href="https://solutionalternance.fr/" target="_blank" style="text-decoration: none; background: var(--blanc); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow); transition: transform 0.3s; display: block;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-          <div style="height: 180px; background-image: url('rea3.jpg'); background-size: cover; background-position: top; border-bottom: 1px solid var(--gris-clair);"></div>
-          <div style="padding: 20px;">
-            <h4 style="color: var(--gris-fonce); font-size: 1.1rem; margin-bottom: 8px;">Solution Alternance</h4>
-            <p style="color: var(--gris); font-size: 0.9rem;">Plateforme d'automatisation avec algorithme de matching par IA.</p>
+        <a href="https://solutionalternance.fr/" target="_blank" class="rea-card reveal">
+          <div class="rea-img" style="background-image: url('rea3.jpg');"></div>
+          <div class="rea-content">
+            <h4>Solution Alternance</h4>
+            <p>Plateforme d'automatisation avec algorithme de matching par IA.</p>
           </div>
         </a>
-
       </div>
       
-      <!-- LIEN VERS LE CATALOGUE (On connecte tout !) -->
       <div style="text-align: center; margin-top: 40px;">
         <p style="color: var(--gris); margin-bottom: 16px;">Vous cherchez plutôt un design rapide et abordable ?</p>
         <a href="catalogue-demos.html" class="btn btn-primary" style="background: var(--noir-doux); color: var(--blanc);">Parcourir notre catalogue de Démos</a>
@@ -719,8 +510,8 @@
     </div>
   </section>
 
-  <!-- FAQ (MAHORAISE) -->
-  <section id="faq">
+  <!-- FAQ (ACCORDÉONS) -->
+  <section id="faq" style="background: var(--gris-clair);">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">FAQ</span>
@@ -756,17 +547,20 @@
           </div>
         </div>
       </div>
+      
+      <div style="text-align: center; margin-top: 40px;" class="reveal">
+        <button onclick="openModal()" class="btn btn-primary" style="background: var(--noir-doux); color: var(--blanc);">J'ai une autre question</button>
+      </div>
     </div>
   </section>
 
   <!-- SECTION QUI SOMMES-NOUS / CONFIANCE -->
-  <section id="a-propos" style="background: var(--blanc); padding: 80px 0; border-top: 1px solid var(--gris-clair);">
+  <section id="a-propos" style="background: var(--blanc); padding: 80px 0; border-bottom: 1px solid var(--gris-clair);">
     <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; max-width: 900px; margin: 0 auto;">
-      <div style="text-align: center;">
-        <!-- L'image doit s'appeler "photo-president.jpg" comme tu l'as demandé -->
+      <div style="text-align: center;" class="reveal">
         <img src="photo-president.jpg" alt="Titouan Bedos - Fondateur GroupSolution" style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%; border: 4px solid var(--rose); box-shadow: var(--box-shadow-lg);" onerror="this.src='https://via.placeholder.com/250x250/FFD1DC/EC4899?text=Photo+Titouan'">
       </div>
-      <div>
+      <div class="reveal">
         <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: var(--gris-fonce);">L'ingénierie digitale, <span class="accent" style="background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">sans blabla.</span></h2>
         <p style="color: var(--gris); margin-bottom: 16px; font-size: 1.05rem;">Je suis Titouan Bedos, fondateur de GroupSolution. Mon métier n'est pas juste de "faire des sites web", c'est de créer des machines d'acquisition pour les entreprises.</p>
         <p style="color: var(--gris); margin-bottom: 24px; font-size: 1.05rem;">De la PME locale mahoraise aux plateformes d'automatisation sur-mesure (SaaS), je développe des solutions robustes pour que vous puissiez vous concentrer sur votre métier, pendant que le digital travaille pour vous.</p>
@@ -780,60 +574,52 @@
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="cta-final" id="contact">
-    <div class="container">
-      <div class="cta-final-top">
-        <h2>Prêt à dominer le web <span class="accent">à Mayotte</span> ?</h2>
-        <p>Que ce soit pour un site web, du SEO ou la gestion de vos réseaux, expliquez-nous votre besoin.</p>
+  <!-- MODALE DE CONTACT (Le formulaire caché qui s'ouvre au clic) -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()" aria-label="Fermer">
+        <svg class="icon"><use href="#i-x"/></svg>
+      </button>
+      
+      <div class="modal-header">
+        <h3>Prêt à dominer le web <br><span class="accent">à Mayotte ?</span></h3>
+        <p>Décrivez votre besoin. Je vous recontacte sous 24h.</p>
       </div>
 
-      <div class="form-container reveal">
-        <form action="https://formspree.io/f/mzebrvjg" method="POST">
-          <div class="form-row">
-            <div class="form-group">
-              <input type="text" name="nom" placeholder="Votre nom" required />
-            </div>
-            <div class="form-group">
-              <input type="email" name="email" placeholder="Votre email" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <input type="tel" name="telephone" placeholder="Votre téléphone" />
-            </div>
-            <div class="form-group">
-              <input type="text" name="entreprise" placeholder="Votre entreprise" />
-            </div>
+      <form action="https://formspree.io/f/mzebrvjg" method="POST" id="contactForm">
+        <div class="form-group">
+          <label>Votre nom</label>
+          <input type="text" name="nom" placeholder="ex: Jean Dupont" required />
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" name="telephone" placeholder="06..." required />
           </div>
           <div class="form-group">
-            <textarea name="message" placeholder="Parlez-nous de votre projet (site web, réseaux sociaux, pub...)" required></textarea>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="contact@..." required />
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">
-              <svg class="icon"><use href="#i-arrow-right"/></svg>
-              Envoyer la demande
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
 
-      <div class="contact-infos">
-        <div class="contact-info">
-          <svg class="icon"><use href="#i-phone"/></svg>
-          <a href="tel:+33782298559">07 82 29 85 59</a>
+        <div class="form-group">
+          <label>Votre entreprise ou secteur</label>
+          <input type="text" name="entreprise" placeholder="ex: Restaurant à Mamoudzou" />
         </div>
-        <div class="contact-info">
-          <svg class="icon"><use href="#i-mail"/></svg>
-          <a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a>
+
+        <div class="form-group">
+          <label>Votre projet</label>
+          <textarea name="message" placeholder="Je voudrais un site web pour..." required></textarea>
         </div>
-        <div class="contact-info">
-          <svg class="icon"><use href="#i-map-pin"/></svg>
-          <span>Mamoudzou, Mayotte</span>
-        </div>
-      </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px; font-size: 1.05rem;">
+          <svg class="icon"><use href="#i-arrow-right"/></svg>
+          Envoyer ma demande
+        </button>
+      </form>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER COMPLET SEO -->
   <footer>
@@ -850,7 +636,7 @@
             <li><a href="catalogue-demos.html">Catalogue de Démos</a></li>
             <li><a href="mentions-legales-a-propos.html">À Propos & Mentions Légales</a></li>
             <li><a href="#solutions">Nos Services</a></li>
-            <li><a href="#audit">Audit Gratuit</a></li>
+            <li><a href="#processus">Notre Processus</a></li>
           </ul>
         </div>
 
@@ -875,32 +661,61 @@
   </footer>
 
   <script>
-    // Hero background rotation avec PRÉCHARGEMENT
+    // ===== GESTION DE LA MODALE =====
+    const modal = document.getElementById('contactModal');
+    const body = document.body;
+
+    function openModal() {
+      modal.classList.add('open');
+      body.classList.add('modal-open');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      body.classList.remove('modal-open');
+    }
+
+    // Fermer la modale si on clique en dehors du contenu (sur le fond gris)
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // ===== FAQ ACCORDION =====
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        
+        // Optionnel : fermer les autres accordéons
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        
+        if (!isOpen) {
+          item.classList.add('open');
+        }
+      });
+    });
+
+    // ===== HERO BACKGROUND ROTATION =====
     const hero = document.querySelector('.hero');
     const photos = ['photo1.jpg', 'photo3.jpg', 'photo4.jpg', 'photo2.jpg'];
     let currentPhotoIndex = 0;
 
-    // 1. On précharge les images en cache pour éviter les écrans gris
-    photos.forEach(photo => {
-      const img = new Image();
-      img.src = photo;
-    });
+    photos.forEach(photo => { const img = new Image(); img.src = photo; });
 
-    // 2. La fonction de changement (qui bénéficie de la transition CSS de 1s)
     function changeHeroBackground() {
       currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
       hero.style.backgroundImage = `url('${photos[currentPhotoIndex]}')`;
     }
-
-    // Change photo toutes les 5 secondes (un peu plus lent pour être agréable)
     setInterval(changeHeroBackground, 5000);
 
-    // Scroll effect for navbar
+    // ===== SCROLL NAVBAR =====
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Intersection Observer for animations
+    // ===== ANIMATIONS AU SCROLL =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -908,51 +723,47 @@
         }
       });
     }, { threshold: 0.1 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ Accordion
-    document.querySelectorAll('.faq-q').forEach(q => {
-      q.addEventListener('click', () => {
-        q.parentElement.classList.toggle('open');
-      });
-    });
-
-    // Smooth scroll for anchor links
+    // ===== SMOOTH SCROLL =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Si on clique sur un lien de la navbar sur mobile, on peut fermer le menu ici (si implémenté)
         }
       });
     });
 
-    // Fix Formspree redirect
-    const form = document.querySelector('form[action*="formspree"]');
+    // ===== GESTION FORMSPREE (AJAX) =====
+    const form = document.getElementById('contactForm');
     if (form) {
       form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const formData = new FormData(form);
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = 'Envoi en cours...';
+        btn.style.opacity = '0.7';
+
         fetch(form.action, {
           method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
         }).then(response => {
           if (response.ok) {
-            alert('Merci ! Votre demande a été envoyée avec succès.');
+            alert('Merci ! Votre demande a bien été envoyée. Je vous recontacte très vite.');
             form.reset();
+            closeModal();
           } else {
-            alert('Une erreur est survenue. Veuillez réessayer.');
+            alert('Une erreur est survenue. Veuillez réessayer ou me contacter par téléphone.');
           }
         }).catch(() => {
-          alert('Une erreur est survenue. Veuillez réessayer.');
+          alert('Une erreur est survenue. Vérifiez votre connexion internet.');
+        }).finally(() => {
+          btn.innerHTML = originalText;
+          btn.style.opacity = '1';
         });
       });
     }
