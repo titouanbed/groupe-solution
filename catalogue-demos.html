@@ -54,13 +54,24 @@
       background: white; padding: 30px; border-radius: var(--radius);
       box-shadow: 0 10px 30px rgba(0,0,0,0.03); position: sticky; top: 100px;
     }
-    .control-group { margin-bottom: 35px; }
-    .control-group h3 { font-size: 0.85rem; margin-bottom: 15px; color: var(--gris); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
+    .control-group { margin-bottom: 35px; transition: var(--transition); }
+    .control-group h3 { font-size: 0.85rem; margin-bottom: 15px; color: var(--gris); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
+    
+    /* Bouton Modifier (Accordéon) */
+    .btn-edit { font-size: 0.75rem; color: var(--rose-fonce); background: var(--rose-clair); padding: 4px 10px; border-radius: 99px; cursor: pointer; border: none; display: none; font-weight: bold; }
+    .control-group.collapsed .option-list { display: none; }
+    .control-group.collapsed .btn-edit { display: block; }
+    .control-group.collapsed h3 { margin-bottom: 0; }
+    
+    /* Affichage du choix actif quand collapsé */
+    .selected-summary { display: none; font-size: 0.95rem; font-weight: bold; margin-top: 10px; padding: 10px; background: var(--gris-clair); border-radius: 8px; border-left: 3px solid var(--rose-fonce); }
+    .control-group.collapsed .selected-summary { display: block; }
 
+    .option-list { display: flex; flex-direction: column; gap: 10px; }
     .option-btn {
       display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 14px 18px;
       background: white; border: 2px solid #e5e7eb; border-radius: 10px;
-      margin-bottom: 12px; cursor: pointer; font-weight: 600; color: var(--gris-fonce);
+      cursor: pointer; font-weight: 600; color: var(--gris-fonce);
       transition: var(--transition); font-size: 0.95rem;
     }
     .option-btn:hover { border-color: var(--rose); transform: translateX(5px); }
@@ -120,37 +131,54 @@
     .d-card { padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); background: white; }
     .d-btn { display: inline-block; padding: 14px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; margin-top: 20px; }
 
-    /* ===== BANDEAU DE CONTACT FIXE (Le levier de conversion) ===== */
-    .contact-banner {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 2000;
-      background: var(--gris-fonce); color: white; padding: 15px 5%;
-      display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
+    /* ===== BULLE FLOTTANTE DE CONTACT (Nouveau Design) ===== */
+    .floating-bubble {
+      position: fixed; bottom: 30px; right: 30px; z-index: 2000;
+      background: white; border-radius: 20px; padding: 20px; width: 320px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15); border: 1px solid #e5e7eb;
+      animation: floatIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .contact-info-block { display: flex; align-items: center; gap: 15px; }
-    .contact-info-block img { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--rose-fonce); object-fit: cover; }
-    .contact-text h4 { font-size: 1.1rem; margin-bottom: 4px; }
-    .contact-text p { font-size: 0.85rem; color: #9ca3af; }
+    @keyframes floatIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
     
-    .whatsapp-btn {
-      background: #25D366; color: white; padding: 12px 25px; border-radius: 99px;
-      font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 10px;
-      transition: transform 0.2s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    .fb-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; border-bottom: 1px solid #f3f4f6; padding-bottom: 15px; }
+    .fb-header img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--rose-fonce); }
+    .fb-header h4 { font-size: 1rem; margin-bottom: 2px; }
+    .fb-header p { font-size: 0.8rem; color: var(--gris); }
+    
+    .fb-content p { font-size: 0.9rem; color: var(--gris-fonce); margin-bottom: 15px; line-height: 1.5; }
+    
+    .fb-btn {
+      display: block; width: 100%; text-align: center; background: var(--gris-fonce); color: white;
+      padding: 12px; border-radius: 10px; font-weight: bold; text-decoration: none; font-size: 0.9rem;
+      transition: var(--transition);
     }
-    .whatsapp-btn:hover { transform: translateY(-2px); }
+    .fb-btn:hover { background: var(--rose-fonce); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(236,72,153,0.3); }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .catalog-layout { grid-template-columns: 1fr; }
+      .catalog-layout { grid-template-columns: 1fr; gap: 20px; }
       .controls { position: static; }
-      .contact-banner { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
-      .contact-info-block { flex-direction: column; }
+      .floating-bubble { display: none; } /* On cache la bulle sur mobile pour ne pas gêner */
     }
-    @media (max-width: 500px) {
-      .frame-mobile { width: 100%; border-radius: 30px; padding: 10px; }
-      .frame-mobile::before { width: 90px; height: 25px; }
-      .screen { border-radius: 20px; }
-      .device-switcher { display: none; } /* On force le mobile sur petit écran */
+    
+    /* VRAI RENDU 100% MOBILE */
+    @media (max-width: 768px) {
+      .preview-area { padding: 0; background: white; min-height: auto; }
+      .device-switcher { display: none; } /* Plus de switch, on est sur le vrai tel */
+      .frame-wrapper { display: block; }
+      .frame-mobile { width: 100%; height: auto; min-height: 600px; border-radius: 0; padding: 0; box-shadow: none; border: 1px solid #e5e7eb; }
+      .frame-mobile::before { display: none; } /* Enlève la fausse encoche */
+      .screen { border-radius: 0; }
+      
+      /* On remet un bouton de contact fixe en bas sur mobile (moins intrusif) */
+      .mobile-contact-bar {
+        position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 15px;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 2000; text-align: center; border-top: 1px solid #e5e7eb;
+      }
+      .mobile-contact-bar a { display: block; width: 100%; background: var(--gris-fonce); color: white; padding: 12px; border-radius: 10px; font-weight: bold; text-decoration: none; }
+    }
+    @media (min-width: 769px) {
+      .mobile-contact-bar { display: none; }
     }
   </style>
 </head>
@@ -166,38 +194,49 @@
 
   <div class="container catalog-layout">
     
-    <!-- COLONNE GAUCHE : LES CONTRÔLES -->
+    <!-- COLONNE GAUCHE : LES CONTRÔLES (Avec Accordéon) -->
     <div class="controls">
-      <div class="control-group">
-        <h3>1. Votre Secteur à Mayotte</h3>
-        <button class="option-btn secteur-btn active" data-s="restauration">
-          <span style="font-size: 1.2rem;">🍽️</span> Restaurant & Snack
-        </button>
-        <button class="option-btn secteur-btn" data-s="beaute">
-          <span style="font-size: 1.2rem;">✂️</span> Beauté & Coiffure
-        </button>
-        <button class="option-btn secteur-btn" data-s="artisan">
-          <span style="font-size: 1.2rem;">🔧</span> Garage & Bâtiment
-        </button>
-        <button class="option-btn secteur-btn" data-s="btob">
-          <span style="font-size: 1.2rem;">💼</span> Conseil & Services B2B
-        </button>
+      
+      <!-- ÉTAPE 1 : SECTEUR -->
+      <div class="control-group" id="group-secteur">
+        <h3>1. Votre Secteur à Mayotte <button class="btn-edit" onclick="openGroup('secteur')">Modifier</button></h3>
+        <div class="selected-summary" id="summary-secteur">🍽️ Restaurant & Snack</div>
+        <div class="option-list" id="list-secteur">
+          <button class="option-btn secteur-btn active" data-s="restauration">
+            <span style="font-size: 1.2rem;">🍽️</span> Restaurant & Snack
+          </button>
+          <button class="option-btn secteur-btn" data-s="beaute">
+            <span style="font-size: 1.2rem;">✂️</span> Beauté & Coiffure
+          </button>
+          <button class="option-btn secteur-btn" data-s="artisan">
+            <span style="font-size: 1.2rem;">🔧</span> Garage & Bâtiment
+          </button>
+          <button class="option-btn secteur-btn" data-s="btob">
+            <span style="font-size: 1.2rem;">💼</span> Conseil & B2B
+          </button>
+          <!-- Place prévue pour d'autres secteurs futurs -->
+          <!-- <button class="option-btn secteur-btn" data-s="immo"><span style="font-size: 1.2rem;">🏠</span> Immobilier</button> -->
+        </div>
       </div>
 
-      <div class="control-group">
-        <h3>2. Design & Ambiance</h3>
-        <button class="option-btn da-btn active" data-d="moderne">
-          <div class="color-swatch" style="background: linear-gradient(135deg, #ffffff, #f3f4f6); border: 1px solid #ccc;"></div>
-          Moderne Clair (Épuré)
-        </button>
-        <button class="option-btn da-btn" data-d="sombre">
-          <div class="color-swatch" style="background: linear-gradient(135deg, #1c1917, #fbbf24);"></div>
-          Élégant Sombre (Premium)
-        </button>
-        <button class="option-btn da-btn" data-d="colore">
-          <div class="color-swatch" style="background: linear-gradient(135deg, #EC4899, #FFD1DC);"></div>
-          Audacieux Coloré (Dynamique)
-        </button>
+      <!-- ÉTAPE 2 : DESIGN -->
+      <div class="control-group collapsed" id="group-da">
+        <h3>2. Design & Ambiance <button class="btn-edit" onclick="openGroup('da')">Modifier</button></h3>
+        <div class="selected-summary" id="summary-da">⚪ Moderne Clair (Épuré)</div>
+        <div class="option-list" id="list-da">
+          <button class="option-btn da-btn active" data-d="moderne">
+            <div class="color-swatch" style="background: linear-gradient(135deg, #ffffff, #f3f4f6); border: 1px solid #ccc;"></div>
+            Moderne Clair (Épuré)
+          </button>
+          <button class="option-btn da-btn" data-d="sombre">
+            <div class="color-swatch" style="background: linear-gradient(135deg, #1c1917, #fbbf24);"></div>
+            Élégant Sombre (Premium)
+          </button>
+          <button class="option-btn da-btn" data-d="colore">
+            <div class="color-swatch" style="background: linear-gradient(135deg, #EC4899, #FFD1DC);"></div>
+            Audacieux Coloré (Dynamique)
+          </button>
+        </div>
       </div>
     </div>
 
@@ -219,9 +258,11 @@
             <!-- DÉMOS RESTAURATION                             -->
             <!-- ============================================== -->
             <div class="demo-content active" data-s="restauration" data-d="moderne">
-              <div class="d-hero" style="background: #f9fafb; color: #111;">
-                <h2>Le Petit Mahorais</h2>
-                <p style="color: #6b7280; font-size: 1.1rem;">Cuisine locale — Mamoudzou</p>
+              <div class="d-hero" style="background-image: url('photo1.jpg'); color: #111;">
+                <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px;">
+                  <h2>Le Petit Mahorais</h2>
+                  <p style="color: #6b7280; font-size: 1.1rem;">Cuisine locale — Mamoudzou</p>
+                </div>
               </div>
               <div class="d-body">
                 <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Notre Carte</h3>
@@ -238,15 +279,17 @@
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 40px;">
-                  <a href="#" class="d-btn" style="background: #111; color: white;">Réserver une table</a>
+                  <a href="site-internet-mayotte.html#contact" class="d-btn" style="background: #111; color: white;">Réserver une table</a>
                 </div>
               </div>
             </div>
 
             <div class="demo-content" data-s="restauration" data-d="sombre">
-              <div class="d-hero" style="background: #111; color: white;">
-                <h2 style="font-family: Georgia, serif; color: #fbbf24;">L'Atelier 976</h2>
-                <p style="color: #9ca3af; font-size: 1.1rem; font-style: italic;">Gastronomie Créole Raffinée</p>
+              <div class="d-hero" style="background-image: url('photo2.jpg'); color: white;">
+                <div style="background: rgba(0,0,0,0.8); padding: 20px; border-radius: 12px;">
+                  <h2 style="font-family: Georgia, serif; color: #fbbf24;">L'Atelier 976</h2>
+                  <p style="color: #9ca3af; font-size: 1.1rem; font-style: italic;">Gastronomie Créole Raffinée</p>
+                </div>
               </div>
               <div class="d-body" style="background: #1f2937; color: white; min-height: 600px;">
                 <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: #fbbf24; font-family: Georgia, serif;">Signatures</h3>
@@ -258,37 +301,95 @@
                   </div>
                 </div>
                 <div style="text-align: center; margin-top: 40px;">
-                  <a href="#" class="d-btn" style="background: #fbbf24; color: #111;">Réserver l'expérience</a>
+                  <a href="site-internet-mayotte.html#contact" class="d-btn" style="background: #fbbf24; color: #111;">Réserver l'expérience</a>
                 </div>
-              </div>
-            </div>
-
-            <div class="demo-content" data-s="restauration" data-d="colore">
-              <div class="d-hero" style="background: #EC4899; color: white;">
-                <h2 style="text-transform: uppercase; font-size: 3.5rem;">Maki<br>Food</h2>
-                <p style="font-weight: bold; font-size: 1.2rem;">Le meilleur snack de l'île</p>
-              </div>
-              <div class="d-body">
-                <div class="d-grid">
-                  <div class="d-card" style="border: 3px solid #EC4899;">
-                    <div style="font-weight: 900; color: #111; font-size: 1.5rem; margin-bottom: 5px;">Menu XL — 10€</div>
-                    <div style="color: #6b7280;">Ailes de poulet, frites, boisson 33cl.</div>
-                  </div>
-                </div>
-                <a href="#" class="d-btn" style="background: #111; color: white; width: 100%; text-align: center;">Commander sur WhatsApp</a>
               </div>
             </div>
 
             <!-- ============================================== -->
-            <!-- DÉMOS AUTRES (Génériques pour l'exemple)       -->
+            <!-- DÉMOS BEAUTÉ (Exemple d'intégration images)    -->
+            <!-- ============================================== -->
+            <div class="demo-content" data-s="beaute" data-d="moderne">
+              <div class="d-hero" style="background-image: url('photo3.jpg'); color: #111;">
+                <div style="background: rgba(253, 242, 248, 0.9); padding: 20px; border-radius: 12px;">
+                  <h2 style="color: #EC4899;">Espace Beauté</h2>
+                  <p style="color: #6b7280; font-size: 1.1rem;">Coiffure & Soins à Mamoudzou</p>
+                </div>
+              </div>
+              <div class="d-body">
+                <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Prestations</h3>
+                <div class="d-grid">
+                  <div class="d-card" style="border-left: 4px solid #EC4899;">
+                    <div style="font-weight: 800; color: #111; font-size: 1.2rem; margin-bottom: 5px;">25€</div>
+                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe & Brushing</div>
+                    <div style="color: #6b7280; font-size: 0.9rem;">Shampoing soin inclus.</div>
+                  </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                  <a href="site-internet-mayotte.html#contact" class="d-btn" style="background: #111; color: white;">Prendre RDV</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-content" data-s="beaute" data-d="sombre">
+              <div class="d-hero" style="background-image: url('photo4.jpg'); color: white;">
+                <div style="background: rgba(0,0,0,0.8); padding: 20px; border-radius: 12px;">
+                  <h2 style="color: #fbbf24; font-family: Georgia, serif;">Barber Shop</h2>
+                  <p style="color: #aaa; font-size: 1.1rem;">Service Premium Homme</p>
+                </div>
+              </div>
+              <div class="d-body" style="background: #111; color: white; min-height: 600px;">
+                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: #fbbf24;">Services</h3>
+                <div class="d-grid">
+                  <div class="d-card" style="background: #222; border: 1px solid #333;">
+                    <div style="font-weight: 800; color: #fbbf24; font-size: 1.2rem; margin-bottom: 5px;">15€</div>
+                    <div style="font-weight: bold; margin-bottom: 5px;">Coupe dégradé</div>
+                    <div style="color: #aaa; font-size: 0.9rem;">Finitions propres.</div>
+                  </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                  <a href="site-internet-mayotte.html#contact" class="d-btn" style="background: #fbbf24; color: black;">Réserver mon créneau</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- DÉMO GARAGE                                    -->
+            <!-- ============================================== -->
+            <div class="demo-content" data-s="artisan" data-d="moderne">
+              <div class="d-hero" style="background-image: url('photo5.jpg'); color: #111;">
+                <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px;">
+                  <h2 style="color: #1f2937;">AutoTech 976</h2>
+                  <p style="color: #6b7280; font-size: 1.1rem;">Mécanique toutes marques</p>
+                </div>
+              </div>
+              <div class="d-body">
+                <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Forfaits Entretien</h3>
+                <div class="d-grid">
+                  <div class="d-card" style="border: 2px solid #3b82f6;">
+                    <div style="font-weight: 800; color: #3b82f6; font-size: 1.2rem; margin-bottom: 5px;">69€</div>
+                    <div style="font-weight: bold; margin-bottom: 5px;">Vidange Express</div>
+                    <div style="color: #6b7280; font-size: 0.9rem;">Huile + filtre inclus.</div>
+                  </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                  <a href="site-internet-mayotte.html#contact" class="d-btn" style="background: #3b82f6; color: white;">Demander un devis</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- GÉNÉRATEUR (Si pas de démo codée en dur)       -->
             <!-- ============================================== -->
             <div id="fallback-demo" class="demo-content" style="padding: 60px 20px; text-align: center;">
               <svg style="width: 60px; height: 60px; color: var(--rose-fonce); margin-bottom: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
               <h2 id="fb-title" style="font-size: 1.8rem; margin-bottom: 15px;">Génération en direct</h2>
-              <p style="color: var(--gris); margin-bottom: 30px;">Cette combinaison est disponible. Imaginez ce design avec votre propre logo, vos propres photos et vos textes.</p>
-              <div style="background: #f3f4f6; height: 200px; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #9ca3af;">Espace Photo</div>
+              <p style="color: var(--gris); margin-bottom: 30px;">Cette combinaison est disponible. Imaginez ce design avec votre propre logo, vos propres photos (ex: photo6.jpg) et vos textes.</p>
+              <div style="background: #f3f4f6; height: 200px; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #9ca3af; background-image: url('photo6.jpg'); background-size: cover; background-position: center; border: 1px solid #ccc;">
+                <span style="background: rgba(255,255,255,0.8); padding: 5px 10px; border-radius: 5px;">Espace Photo</span>
+              </div>
               <div style="background: #f3f4f6; height: 100px; border-radius: 12px; margin-bottom: 20px;"></div>
-              <a href="https://wa.me/33782298559" target="_blank" class="d-btn" style="background: var(--rose-fonce); color: white;">Demander cette maquette</a>
+              <a href="site-internet-mayotte.html#contact" class="d-btn" style="background: var(--rose-fonce); color: white;">Demander cette maquette</a>
             </div>
 
           </div>
@@ -297,20 +398,24 @@
     </div>
   </div>
 
-  <!-- BANDEAU CONTACT FIXE (Ultra Conversion) -->
-  <div class="contact-banner">
-    <div class="contact-info-block">
-      <!-- Ta photo -->
+  <!-- BULLE FLOTTANTE DE CONTACT (Chatbot style) -->
+  <div class="floating-bubble">
+    <div class="fb-header">
       <img src="photo-president.jpg" alt="Titouan Bedos" onerror="this.src='https://via.placeholder.com/100x100/FFD1DC/EC4899?text=TB'">
-      <div class="contact-text">
-        <h4>Un style vous plaît ? Je le personnalise pour vous.</h4>
-        <p>contact@groupsolution.fr  •  +33 7 82 29 85 59</p>
+      <div>
+        <h4>Titouan de GroupSolution</h4>
+        <p>contact@groupsolution.fr<br>+33 7 82 29 85 59</p>
       </div>
     </div>
-    <a href="https://wa.me/33782298559?text=Bonjour%20Titouan,%20j'ai%20testé%20ton%20simulateur%20de%20sites%20et%20je%20voudrais%20en%20savoir%20plus." target="_blank" class="whatsapp-btn">
-      <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-      Me parler sur WhatsApp
-    </a>
+    <div class="fb-content">
+      <p>Un style vous plaît ? Je personnalise la maquette avec votre logo et vos textes en 48h.</p>
+      <a href="site-internet-mayotte.html#contact" class="fb-btn">Demander mon site sur-mesure</a>
+    </div>
+  </div>
+
+  <!-- BANDEAU MOBILE (Apparaît uniquement sur téléphone) -->
+  <div class="mobile-contact-bar">
+    <a href="site-internet-mayotte.html#contact">Demander mon site sur-mesure</a>
   </div>
 
   <!-- SCRIPT D'INTERACTIVITÉ -->
@@ -330,7 +435,14 @@
       }
     }
 
-    // 2. Gestion des filtres (Secteur & Design)
+    // 2. Gestion de l'Accordéon (Secteur -> Design)
+    function openGroup(groupId) {
+      const allGroups = document.querySelectorAll('.control-group');
+      allGroups.forEach(g => g.classList.add('collapsed')); // Ferme tout
+      document.getElementById(`group-${groupId}`).classList.remove('collapsed'); // Ouvre le bon
+    }
+
+    // 3. Gestion des filtres et mise à jour de la vue
     let currentSecteur = 'restauration';
     let currentDA = 'moderne';
 
@@ -339,18 +451,34 @@
 
     sectBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
+        // MAJ Boutons
         sectBtns.forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
         currentSecteur = e.currentTarget.getAttribute('data-s');
+        
+        // MAJ du résumé texte
+        document.getElementById('summary-secteur').innerHTML = e.currentTarget.innerHTML;
+        
+        // On ferme "Secteur" et on ouvre "Design" automatiquement
+        openGroup('da');
+        
         updateView();
       });
     });
 
     daBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
+        // MAJ Boutons
         daBtns.forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
         currentDA = e.currentTarget.getAttribute('data-d');
+        
+        // MAJ du résumé texte
+        document.getElementById('summary-da').innerHTML = e.currentTarget.innerHTML;
+        
+        // On ferme tout pour un rendu propre
+        document.querySelectorAll('.control-group').forEach(g => g.classList.add('collapsed'));
+        
         updateView();
       });
     });
@@ -370,19 +498,24 @@
         }
       });
 
-      // Si je n'ai pas encore codé en dur la démo exacte, j'affiche un "Générateur" stylé
+      // Affichage du Générateur Fallback si pas codé en dur
       if(!found) {
         fallback.classList.add('active');
-        const sText = document.querySelector(`.secteur-btn[data-s="${currentSecteur}"]`).innerText.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '').trim(); // Enlève l'emoji
+        // Nettoyage du texte pour le titre (enlève les emojis et balises)
+        const sText = document.querySelector(`.secteur-btn[data-s="${currentSecteur}"]`).innerText.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '').trim(); 
         const dText = document.querySelector(`.da-btn[data-d="${currentDA}"]`).innerText.trim();
-        document.getElementById('fb-title').innerText = `Maquette ${sText} en style ${dText}`;
+        document.getElementById('fb-title').innerText = `Maquette ${sText} \nen style ${dText}`;
       } else {
         fallback.classList.remove('active');
       }
 
-      // Remet le scroll en haut
+      // Remet le scroll en haut de l'écran simulé
       document.getElementById('screen-content').scrollTop = 0;
     }
+
+    // Initialisation
+    // Par défaut on laisse "Secteur" ouvert et "Design" fermé
+    document.getElementById('group-da').classList.add('collapsed');
   </script>
 </body>
 </html>
