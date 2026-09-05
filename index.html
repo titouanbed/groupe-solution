@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Groupe Solution — Une architecture. Plusieurs marchés.</title>
-  <meta name="description" content="Groupe Solution conçoit des infrastructures logicielles capables d’analyser, rapprocher et automatiser de grands volumes de données métier." />
+  <title>Groupe Solution — On peut automatiser bien plus que ce que vous imaginez.</title>
+  <meta name="description" content="L'automatisation existe depuis des dizaines d'années ; avec l'IA, on pousse les curseurs beaucoup plus loin. En 10 minutes d'appel, on trouve des pistes concrètes pour vous faire gagner du temps et de l'argent." />
   <link rel="icon" href="Logo.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://www.groupsolution.fr/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,99 +17,96 @@
     "name": "Groupe Solution",
     "url": "https://www.groupsolution.fr",
     "logo": "https://www.groupsolution.fr/Logo.svg",
-    "description": "Groupe Solution conçoit des infrastructures logicielles capables d’analyser, rapprocher et automatiser de grands volumes de données métier.",
-    "email": "contact@groupsolution.fr"
+    "description": "Groupe Solution conçoit des logiciels sur-mesure et une architecture qui analyse, rapproche et automatise de grands volumes de données métier.",
+    "email": "contact@groupsolution.fr",
+    "telephone": "+33782298559"
   }
   </script>
   <style>
-  /* ═══ Groupe Solution — Home (refonte Airbnb-clean, terracotta + olive) ═══ */
+  /* ═══ Groupe Solution — Home (épuré · rouge d'action Airbnb ciblé) ═══ */
   :root{
     --paper:#F7F6F3; --white:#FFFFFF; --sand:#FBFAF7;
-    --ink:#1C1B18; --secondary:#5B584F; --muted:#8C887E;
+    --ink:#171613; --secondary:#565349; --muted:#8C887E;
     --line:#ECEAE3; --line2:#DFDCD2;
-    --clay:#C2683F; --clay-d:#A9542F; --clay-soft:#F7ECE4;
-    --olive:#5F6B54; --olive2:#3F493D; --olive-soft:#EBEEE6;
+    --acc:#E61E4D; --acc-d:#C81E47; --acc-soft:#FCE8ED; --acc-ring:rgba(230,30,77,.18); /* rouge : ACTIONS uniquement */
     --green:#0E7A5A; --green-soft:#E5F3EE;
     --blue:#2368C7; --blue-soft:#E7F0FB;
     --amber:#B27C1E; --amber-soft:#F6EEDD;
+    --olive:#5F6B54; --olive2:#3F493D; --olive-soft:#EBEEE6;
     --serif:"Source Serif 4",Georgia,serif; --sans:"Plus Jakarta Sans",system-ui,sans-serif;
     --ease:cubic-bezier(.22,1,.36,1);
-    --sh-s:0 4px 16px rgba(28,27,24,.06);
-    --sh-m:0 10px 30px rgba(28,27,24,.09);
-    --sh-l:0 24px 60px rgba(28,27,24,.13);
+    --sh-s:0 4px 16px rgba(23,22,19,.06);
+    --sh-m:0 12px 34px rgba(23,22,19,.10);
+    --sh-l:0 26px 64px rgba(23,22,19,.14);
     --r-s:14px; --r-m:22px; --r-l:30px; --r-xl:40px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:96px}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   img,svg{display:block;max-width:100%}
-  h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.03em;line-height:1.05}
-  h1 i,h2 i,h3 i{font-style:normal;color:var(--clay)}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--ink)}
   .wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
   section{position:relative}
 
-  /* ── Boutons ── */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--clay);color:#fff;border-radius:999px;padding:15px 26px;font-size:15px;font-weight:700;font-family:var(--sans);cursor:pointer;border:0;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s;box-shadow:0 6px 18px rgba(194,104,63,.28)}
-  .btn:hover{transform:translateY(-2px);background:var(--clay-d);box-shadow:0 12px 26px rgba(194,104,63,.34)}
-  .btn.dark{background:var(--ink);box-shadow:0 6px 18px rgba(28,27,24,.22)}
+  /* Boutons — le ROUGE vit ici (actions) */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--acc);color:#fff;border-radius:999px;padding:16px 30px;font-size:16px;font-weight:800;font-family:var(--sans);cursor:pointer;border:0;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s;box-shadow:0 8px 22px var(--acc-ring)}
+  .btn:hover{transform:translateY(-2px);background:var(--acc-d);box-shadow:0 14px 30px rgba(230,30,77,.28)}
+  .btn.big{padding:19px 40px;font-size:17.5px}
+  .btn.dark{background:var(--ink);box-shadow:0 8px 22px rgba(23,22,19,.2)}
   .btn.dark:hover{background:#000}
-  .ghost{display:inline-flex;align-items:center;gap:8px;padding:15px 22px;border-radius:999px;font-size:15px;font-weight:600;color:var(--ink);background:var(--white);border:1px solid var(--line2);transition:border-color .2s,transform .2s var(--ease)}
-  .ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
 
-  /* ── Kicker ── */
-  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.02em;font-weight:700;color:var(--clay);background:var(--clay-soft);padding:7px 14px;border-radius:999px}
-  .kicker.plain{background:none;padding:0;color:var(--muted);text-transform:uppercase;letter-spacing:.16em;font-size:11px}
+  /* Kicker — NEUTRE (pas de rouge dans les libellés) */
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.02em;font-weight:800;color:var(--olive2);background:var(--olive-soft);padding:8px 15px;border-radius:999px}
 
-  /* ── NAV ── */
+  /* NAV */
   .nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(247,246,243,.82);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(236,234,227,.8)}
   .navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
   .brand{display:flex;align-items:center}.brand img{height:40px;width:auto}
-  .links{display:flex;align-items:center;gap:28px}
+  .links{display:flex;align-items:center;gap:26px}
   .links a{font-size:14.5px;color:var(--secondary);font-weight:600;transition:color .16s}
   .links a:hover,.links a.active{color:var(--ink)}
-  .links .cta{padding:11px 20px;border-radius:999px;color:#fff;background:var(--ink);font-weight:700;font-size:14px}
-  .links .cta:hover{background:#000;color:#fff}
+  .links .cta{padding:11px 20px;border-radius:999px;color:#fff;background:var(--acc);font-weight:800;font-size:14px;box-shadow:0 6px 16px var(--acc-ring)}
+  .links .cta:hover{background:var(--acc-d);color:#fff}
 
   main{padding-top:74px}
+  .sec{padding:96px 0}
+  .sec.alt{background:var(--sand)}
+  .secHead{max-width:680px;margin-bottom:46px}
+  .secHead.center{margin-left:auto;margin-right:auto;text-align:center}
+  .secHead h2{font-size:clamp(32px,4.4vw,52px);margin-top:16px}
+  .secHead p{font-size:17.5px;color:var(--secondary);line-height:1.7;margin-top:18px}
 
   /* ── HERO ── */
-  .hero{padding:70px 0 40px}
-  .heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  .hero h1{font-size:clamp(44px,6vw,76px);margin:20px 0 0}
-  .hero .lead{font-size:19px;color:var(--secondary);line-height:1.7;max-width:520px;margin-top:22px}
-  .heroActions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
-  .heroProof{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap}
+  .hero{padding:64px 0 76px;text-align:center}
+  .heroInner{max-width:900px;margin:0 auto}
+  .heroEyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--olive2);background:var(--olive-soft);padding:8px 16px;border-radius:999px}
+  .heroEyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--olive)}
+  .hero h1{font-size:clamp(34px,4.7vw,55px);margin:22px auto 0;max-width:18ch}
+  .hero .lead{font-size:17.5px;color:var(--secondary);line-height:1.7;max-width:680px;margin:22px auto 0}
+  .heroDevise{margin:26px auto 0;max-width:640px;display:flex;align-items:center;justify-content:center;gap:12px;background:var(--olive-soft);border:1px solid #DDE2D5;border-radius:var(--r-m);padding:16px 22px}
+  .heroDevise .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--olive);white-space:nowrap}
+  .heroDevise b{font-family:var(--serif);font-weight:600;font-size:clamp(15px,1.9vw,18.5px);letter-spacing:-.01em;color:var(--olive2);line-height:1.3}
+  .heroCta{margin-top:30px}
+  .heroCta .microcopy{display:block;margin-top:13px;font-size:14px;color:var(--muted);font-weight:600}
+  .heroProof{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
   .heroProof span{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--secondary);background:var(--white);border:1px solid var(--line);padding:9px 15px;border-radius:999px;box-shadow:var(--sh-s)}
   .heroProof span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
 
-  /* Hero visual : cluster de bulles */
-  .heroViz{position:relative;height:440px}
-  .vizCard{position:absolute;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-l);padding:22px 24px;width:270px;transition:transform .5s var(--ease)}
-  .vizCard .vTop{display:flex;align-items:center;gap:11px;margin-bottom:14px}
-  .vizCard .vDot{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;font-family:var(--serif)}
-  .vizCard h4{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:-.02em}
-  .vizCard .vMeta{font-size:12px;color:var(--muted);font-weight:600}
-  .vizCard p{font-size:13.5px;color:var(--secondary);line-height:1.55}
-  .vizCard .vLive{margin-top:14px;display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--green);background:var(--green-soft);padding:5px 11px;border-radius:999px}
-  .vizCard .vLive::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(14,122,90,.15)}
-  .vc1{top:8px;left:0;transform:rotate(-4deg);z-index:2}
-  .vc2{top:150px;right:6px;transform:rotate(3deg);z-index:3}
-  .vc3{bottom:6px;left:44px;transform:rotate(-1.5deg);z-index:1}
-  .heroViz:hover .vc1{transform:rotate(-4deg) translateY(-6px)}
-  .heroViz:hover .vc2{transform:rotate(3deg) translateY(-6px)}
-  .heroViz:hover .vc3{transform:rotate(-1.5deg) translateY(-6px)}
-  .vizBlob{position:absolute;inset:-6% -8%;background:radial-gradient(60% 60% at 30% 25%,rgba(194,104,63,.14),transparent 70%),radial-gradient(55% 55% at 80% 80%,rgba(95,107,84,.14),transparent 70%);filter:blur(8px);z-index:0}
+  /* ── CHOIX ── */
+  .choiceGrid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .choice{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:38px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+  .choice:hover{transform:translateY(-6px);box-shadow:var(--sh-l);border-color:var(--line2)}
+  .choiceTag{align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--olive2);background:var(--olive-soft);padding:6px 13px;border-radius:999px;margin-bottom:20px}
+  .choiceIcon{width:46px;height:46px;border-radius:14px;background:var(--olive-soft);color:var(--olive2);display:grid;place-items:center;margin-bottom:16px}
+  .choiceIcon svg{width:24px;height:24px}
+  .choice h3{font-size:25px;font-weight:600;line-height:1.15}
+  .choice p{font-size:15.5px;color:var(--secondary);line-height:1.6;margin-top:14px;flex:1}
+  .choice .go{margin-top:26px}
+  .choice.b .btn{background:var(--ink);box-shadow:0 8px 22px rgba(23,22,19,.18)}
+  .choice.b .btn:hover{background:#000}
 
-  /* ── Sections génériques ── */
-  .sec{padding:96px 0}
-  .sec.alt{background:var(--sand)}
-  .secHead{max-width:660px;margin-bottom:44px}
-  .secHead.center{margin-left:auto;margin-right:auto;text-align:center}
-  .secHead h2{font-size:clamp(32px,4.2vw,52px);margin-top:16px}
-  .secHead p{font-size:17px;color:var(--secondary);line-height:1.7;margin-top:18px}
-
-  /* ── Écosystème : 3 plateformes (compact, léger) ── */
+  /* ── PREUVE ── */
   .platGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .plat{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:24px;box-shadow:none;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s var(--ease)}
   .plat:hover{transform:translateY(-4px);border-color:var(--line2);box-shadow:var(--sh-m)}
@@ -123,22 +120,14 @@
   .platFoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
   .platFoot .stat{font-size:12.5px;color:var(--muted);font-weight:600}
   .platFoot .stat b{font-family:var(--serif);font-size:16px;color:var(--ink);font-weight:600;margin-right:2px}
-  .platFoot .go{font-size:13px;font-weight:700;color:var(--clay);display:inline-flex;gap:5px;align-items:center;white-space:nowrap;transition:gap .2s var(--ease)}
+  .platFoot .go{font-size:13px;font-weight:700;color:var(--ink);display:inline-flex;gap:5px;align-items:center;white-space:nowrap;transition:gap .2s var(--ease)}
   .plat:hover .platFoot .go{gap:9px}
 
-  /* ── Socle : 4 étapes ── */
-  .stepGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .step{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:28px 24px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-  .step:hover{transform:translateY(-5px);box-shadow:var(--sh-m)}
-  .stepNum{width:40px;height:40px;border-radius:12px;background:var(--olive-soft);color:var(--olive2);display:grid;place-items:center;font-weight:800;font-size:15px;margin-bottom:18px}
-  .step h3{font-size:20px;font-weight:600}
-  .step p{font-size:14px;color:var(--secondary);line-height:1.6;margin-top:10px}
-
-  /* ── Fondateur (citation en avant, avatar discret) ── */
+  /* ── FONDATEUR ── */
   .founder{max-width:800px;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(32px,5vw,60px);box-shadow:var(--sh-m);text-align:center}
   .founder .kicker{margin-bottom:22px}
-  .founder blockquote{font-family:var(--serif);font-size:clamp(20px,2.7vw,31px);line-height:1.42;letter-spacing:-.02em;color:var(--ink)}
-  .founder blockquote i{font-style:normal;color:var(--clay)}
+  .founder blockquote{font-family:var(--serif);font-size:clamp(21px,2.8vw,31px);line-height:1.42;letter-spacing:-.02em;color:var(--ink)}
+  .founder blockquote i{font-style:normal;color:var(--olive2)}
   .founderSig{margin-top:30px;display:inline-flex;align-items:center;gap:14px}
   .founderAvatar{width:60px;height:60px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--olive-soft);border:3px solid #fff;box-shadow:var(--sh-s)}
   .founderAvatar img{width:100%;height:100%;object-fit:cover}
@@ -146,133 +135,57 @@
   .founderSig .nm{font-weight:800;font-size:15px}
   .founderSig .ti{font-size:13px;color:var(--muted);font-weight:600}
 
-  /* ── Partenariats : équation ── */
-  .eq{display:flex;align-items:stretch;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:34px}
-  .eqCard{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:26px 28px;box-shadow:var(--sh-s);flex:1;min-width:210px;max-width:300px}
-  .eqCard .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
-  .eqCard .val{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-.02em;margin-top:9px;line-height:1.15}
-  .eqCard.res{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .eqCard.res .lab{color:#B7B3A8}.eqCard.res .val{color:#fff}
-  .eqOp{display:grid;place-items:center;font-family:var(--serif);font-size:30px;color:var(--clay);font-weight:600}
-  .eqPoints{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:30px}
-  .eqPoint{display:flex;gap:12px;align-items:flex-start}
-  .eqPoint .ck{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--clay-soft);color:var(--clay);display:grid;place-items:center;font-weight:800;font-size:12px}
-  .eqPoint p{font-size:14.5px;color:var(--secondary);line-height:1.55}
-  .eqPoint b{color:var(--ink);font-weight:700}
-
-  /* ── Statement band ── */
-  .statement{background:var(--olive2);color:#fff;padding:80px 0;text-align:center;border-radius:var(--r-xl);margin:0 auto}
-  .statement h2{font-size:clamp(28px,4vw,46px);color:#fff}
-  .statement h2 span{color:#D9C7B6}
-  .statement small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#B9C0AE;font-weight:700}
-
-  /* ── Secteurs ── */
-  .sectorGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .sector{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:24px;box-shadow:var(--sh-s);display:flex;align-items:center;gap:16px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
-  .sector:hover{transform:translateY(-4px);box-shadow:var(--sh-m)}
-  .sector small{font-family:var(--serif);font-size:16px;color:var(--muted);font-weight:600}
-  .sector h3{font-size:18px;font-weight:600;flex:1}
-  .state{font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--line);color:var(--secondary);white-space:nowrap}
-  .state.live{background:var(--green-soft);color:var(--green)}
-  .partnerCTA{margin-top:34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--clay-soft);border-radius:var(--r-l);padding:28px 34px}
-  .partnerCTA p{font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--olive2)}
-
-  /* ── Générateur ── */
-  .genPanel{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--white);border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-m)}
-  .genForm{padding:40px;display:flex;flex-direction:column;gap:18px;border-right:1px solid var(--line)}
-  .genField{display:flex;flex-direction:column;gap:8px}
-  .genField label{font-size:13px;font-weight:700;color:var(--ink)}
-  .genField input,.genField select{width:100%;padding:14px 16px;border:1px solid var(--line2);border-radius:var(--r-s);font-family:var(--sans);font-size:14.5px;color:var(--ink);background:var(--sand);transition:border-color .18s,box-shadow .18s}
-  .genField input:focus,.genField select:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-soft);background:#fff}
-  .genForm .btn{margin-top:6px}
-  .genHint{font-size:12px;color:var(--muted);line-height:1.5}
-  .genOut{padding:40px;background:var(--sand);display:flex;align-items:center;justify-content:center}
-  .genPlaceholder{font-size:15px;color:var(--muted);text-align:center;line-height:1.6;max-width:280px}
-  .genResult{opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease);width:100%}
-  .genResult.in{opacity:1;transform:none}
-  .gLabel{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--clay)}
-  .genResult h3{font-family:var(--serif);font-size:26px;font-weight:600;margin-top:8px}
-  .gTrigger{font-size:14px;color:var(--secondary);margin-top:10px}.gTrigger b{color:var(--ink)}
-  .genSteps{list-style:none;margin:18px 0 0;display:flex;flex-direction:column;gap:10px}
-  .genSteps li{position:relative;padding-left:26px;font-size:14px;color:var(--secondary);line-height:1.5}
-  .genSteps li::before{content:"";position:absolute;left:3px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--olive)}
-  .genSteps li.gManual{color:var(--ink);font-weight:600}.genSteps li.gManual::before{background:var(--clay)}
-  .genSteps li em{font-style:normal;color:var(--clay);font-weight:600;font-size:12.5px}
-  .genHuman{font-size:13.5px;color:var(--secondary);line-height:1.6;margin-top:18px}
-  .genTag{font-family:var(--serif);font-size:16px;color:var(--olive2);margin-top:14px;font-style:italic}
-  .genNote{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:14px}
-
-  /* ── Diagnostic ── */
-  .diagPanel{max-width:680px;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:var(--r-xl);padding:14px 40px 40px;box-shadow:var(--sh-m)}
-  .diagBar{height:5px;background:var(--line);border-radius:999px;margin:0 -40px 34px;overflow:hidden;border-radius:0}
-  .diagBar i{display:block;height:100%;width:0;background:var(--clay);border-radius:0 999px 999px 0;transition:width .4s var(--ease)}
-  .diagStep{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--clay)}
-  .diagQ{font-family:var(--serif);font-size:clamp(22px,3vw,30px);font-weight:600;margin:12px 0 24px;line-height:1.2}
-  .diagInput{width:100%;padding:16px 18px;border:1px solid var(--line2);border-radius:var(--r-s);font-family:var(--sans);font-size:16px;background:var(--sand)}
-  .diagInput:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-soft);background:#fff}
-  .diagOptions{display:flex;flex-direction:column;gap:11px}
-  .diagOpt{text-align:left;padding:15px 18px;border:1px solid var(--line2);border-radius:var(--r-s);background:var(--white);font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;transition:border-color .16s,background .16s,transform .16s var(--ease)}
-  .diagOpt:hover{border-color:var(--clay);transform:translateY(-1px)}
-  .diagOpt[aria-selected="true"]{border-color:var(--clay);background:var(--clay-soft)}
-  .diagNav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:14px}
-  .diagBack{background:none;border:0;color:var(--muted);font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;padding:8px}
-  .diagBack:hover:not(:disabled){color:var(--ink)}.diagBack:disabled{opacity:.4;cursor:default}
-  .diagNext:disabled{opacity:.4;cursor:default;transform:none;box-shadow:none}
-  .diagResult .diagLead{font-family:var(--serif);font-size:clamp(20px,2.6vw,26px);line-height:1.4;font-weight:500;margin:14px 0 24px}
-  .diagResult .diagLead b{color:var(--clay)}
-  .diagRecap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px}
-  .diagRecap>div{background:var(--sand);border-radius:var(--r-s);padding:13px 15px}
-  .diagRecap span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
-  .diagRecap b{font-size:14.5px;color:var(--ink);font-weight:600;margin-top:3px;display:block}
-  .diagDisclaimer{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:16px}
-
-  /* ── Entrées ── */
-  .entryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .entry{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:26px;box-shadow:var(--sh-s);transition:transform .28s var(--ease),box-shadow .28s var(--ease)}
-  .entry:hover{transform:translateY(-5px);box-shadow:var(--sh-m)}
-  .entryTop{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-  .entryNum{font-family:var(--serif);font-size:16px;color:var(--muted);font-weight:600}
-  .entryArrow{width:32px;height:32px;border-radius:50%;background:var(--clay-soft);color:var(--clay);display:grid;place-items:center;font-weight:700;transition:transform .2s var(--ease)}
-  .entry:hover .entryArrow{transform:translateY(2px)}
-  .entry h3{font-size:18px;font-weight:600;line-height:1.25}
-  .entry p{font-size:13.5px;color:var(--secondary);line-height:1.55;margin-top:10px}
-
-  /* ── Booking ── */
-  .bookingPanel{background:var(--white);border:1px solid var(--line);border-radius:var(--r-xl);padding:36px;box-shadow:var(--sh-m)}
-  .bkNotice{background:var(--amber-soft);border-radius:var(--r-s);padding:15px 18px;font-size:13.5px;color:#6B531A;line-height:1.5;margin-bottom:24px}
+  /* ── CONTACT · 3 canaux ── */
+  .contactGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:940px;margin:0 auto}
+  .ccard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:34px 26px;box-shadow:var(--sh-s);cursor:pointer;font-family:var(--sans);transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s}
+  .ccard:hover{transform:translateY(-5px);box-shadow:var(--sh-l);border-color:var(--line2)}
+  .ccard .cIcon{width:60px;height:60px;border-radius:18px;background:var(--acc-soft);color:var(--acc);display:grid;place-items:center;margin-bottom:12px}
+  .ccard .cIcon svg{width:28px;height:28px}
+  .ccard b{font-size:19px;font-weight:800;color:var(--ink)}
+  .ccard span{font-size:14px;color:var(--secondary);font-weight:600}
+  .ccard .cGo{margin-top:12px;font-size:13px;font-weight:800;color:var(--acc);display:inline-flex;align-items:center;gap:6px;transition:gap .2s var(--ease)}
+  .ccard:hover .cGo{gap:9px}
+  /* calendrier masqué, révélé au clic sur la 3e carte */
+  #bkWrap{max-width:940px;margin:24px auto 0}
+  .bookingPanel{background:var(--white);border:1px solid var(--line);border-radius:var(--r-xl);padding:32px;box-shadow:var(--sh-m)}
+  .bkPanelHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+  .bkPanelHead h3{font-family:var(--serif);font-size:22px;font-weight:600}
+  .bkClose{background:none;border:0;color:var(--muted);font-family:var(--sans);font-size:13px;font-weight:700;cursor:pointer;padding:6px}
+  .bkClose:hover{color:var(--ink)}
+  .bkNotice{background:var(--amber-soft);border-radius:var(--r-s);padding:14px 16px;font-size:13px;color:#6B531A;line-height:1.5;margin-bottom:20px}
   .bkNotice b{color:#4E3C11}
-  .bkGrid{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:26px}
-  .bkColHead{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:16px}
-  .bkStep{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800}
-  .bkDayList{display:flex;flex-direction:column;gap:9px}
-  .bkDay{text-align:left;padding:13px 15px;border:1px solid var(--line2);border-radius:var(--r-s);background:var(--white);cursor:pointer;transition:border-color .16s,background .16s,transform .16s var(--ease)}
-  .bkDay:hover{border-color:var(--clay);transform:translateY(-1px)}
-  .bkDay[aria-selected="true"]{border-color:var(--clay);background:var(--clay-soft)}
-  .bkDay .d{display:block;font-size:14px;font-weight:700;color:var(--ink)}
-  .bkDay .c{display:block;font-size:12px;color:var(--muted);margin-top:2px}
-  .bkTimeList{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:start}
-  .bkTime{padding:12px;border:1px solid var(--line2);border-radius:var(--r-s);background:var(--white);font-family:var(--sans);font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;transition:border-color .16s,background .16s,transform .16s var(--ease)}
-  .bkTime:hover{border-color:var(--clay);transform:translateY(-1px)}
-  .bkTime[aria-selected="true"]{border-color:var(--clay);background:var(--clay-soft)}
-  .bkHint,.bkLoading{font-size:13px;color:var(--muted);line-height:1.5}
-  .bkRecap{background:var(--olive-soft);border-radius:var(--r-s);padding:13px 15px;margin-bottom:16px}
-  .bkRecap span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--olive2);font-weight:700}
-  .bkRecap b{display:block;font-size:14.5px;color:var(--ink);font-weight:700;margin-top:3px}
-  .bkForm{display:flex;flex-direction:column;gap:13px}
-  .bkForm label{display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:700;color:var(--ink)}
-  .bkForm input,.bkForm textarea{padding:13px 15px;border:1px solid var(--line2);border-radius:var(--r-s);font-family:var(--sans);font-size:14.5px;background:var(--sand);font-weight:400}
-  .bkForm input:focus,.bkForm textarea:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-soft);background:#fff}
-  .bkForm textarea{min-height:66px;resize:vertical}
+  .bkGrid{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:24px}
+  .bkColHead{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:14px}
+  .bkStep{width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11.5px;font-weight:800}
+  .bkDayList{display:flex;flex-direction:column;gap:8px}
+  .bkDay{text-align:left;padding:12px 14px;border:1px solid var(--line2);border-radius:var(--r-s);background:var(--white);cursor:pointer;transition:border-color .16s,background .16s,transform .16s var(--ease)}
+  .bkDay:hover{border-color:var(--acc);transform:translateY(-1px)}
+  .bkDay[aria-selected="true"]{border-color:var(--acc);background:var(--acc-soft)}
+  .bkDay .d{display:block;font-size:13.5px;font-weight:700;color:var(--ink)}
+  .bkDay .c{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+  .bkTimeList{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
+  .bkTime{padding:11px;border:1px solid var(--line2);border-radius:var(--r-s);background:var(--white);font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--ink);cursor:pointer;transition:border-color .16s,background .16s,transform .16s var(--ease)}
+  .bkTime:hover{border-color:var(--acc);transform:translateY(-1px)}
+  .bkTime[aria-selected="true"]{border-color:var(--acc);background:var(--acc-soft)}
+  .bkHint,.bkLoading{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .bkRecap{background:var(--olive-soft);border-radius:var(--r-s);padding:12px 14px;margin-bottom:14px}
+  .bkRecap span{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--olive2);font-weight:700}
+  .bkRecap b{display:block;font-size:14px;color:var(--ink);font-weight:700;margin-top:3px}
+  .bkForm{display:flex;flex-direction:column;gap:12px}
+  .bkForm label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:var(--ink)}
+  .bkForm input,.bkForm textarea{padding:12px 14px;border:1px solid var(--line2);border-radius:var(--r-s);font-family:var(--sans);font-size:14px;background:var(--sand);font-weight:400}
+  .bkForm input:focus,.bkForm textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft);background:#fff}
+  .bkForm textarea{min-height:60px;resize:vertical}
   .bkForm .btn{margin-top:4px}
   .bkForm .btn:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}
-  .bkMsg{font-size:13px;line-height:1.5;margin-top:2px}.bkMsg.err{color:var(--clay-d)}
-  .bkConfirm{text-align:center;padding:30px 10px}
-  .bkConfirm .ic{width:56px;height:56px;border-radius:50%;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-size:26px;margin:0 auto 18px}
-  .bkConfirm h3{font-family:var(--serif);font-size:28px;font-weight:600}
-  .bkConfirm p{font-size:15px;color:var(--secondary);line-height:1.6;margin:12px auto 0;max-width:420px}
-  .bkConfirm .det{margin-top:18px;display:inline-block;background:var(--olive-soft);color:var(--olive2);font-weight:700;padding:10px 18px;border-radius:999px;font-size:14px}
+  .bkMsg{font-size:12.5px;line-height:1.5;margin-top:2px}.bkMsg.err{color:var(--acc-d)}
+  .bkConfirm{text-align:center;padding:26px 10px}
+  .bkConfirm .ic{width:54px;height:54px;border-radius:50%;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-size:25px;margin:0 auto 16px}
+  .bkConfirm h3{font-family:var(--serif);font-size:26px;font-weight:600}
+  .bkConfirm p{font-size:14.5px;color:var(--secondary);line-height:1.6;margin:12px auto 0;max-width:420px}
+  .bkConfirm .det{margin-top:16px;display:inline-block;background:var(--olive-soft);color:var(--olive2);font-weight:700;padding:9px 16px;border-radius:999px;font-size:13.5px}
 
-  /* ── Footer ── */
+  /* Footer */
   footer{padding:56px 0;border-top:1px solid var(--line);background:var(--sand)}
   .foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
   .foot .footBrand{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--secondary)}
@@ -280,29 +193,23 @@
   .foot nav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;color:var(--secondary);font-weight:600}
   .foot nav a:hover{color:var(--ink)}
 
-  /* ── Reveal ── */
+  /* Reveal */
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
   .reveal.in{opacity:1;transform:none}
 
-  /* ── Responsive ── */
   @media(max-width:960px){
-    .heroGrid{grid-template-columns:1fr;gap:40px}
-    .heroViz{height:400px;max-width:440px}
-    .platGrid,.stepGrid,.entryGrid,.sectorGrid,.eqPoints{grid-template-columns:1fr 1fr}
-    .stepGrid{grid-template-columns:1fr 1fr}
-    .genPanel{grid-template-columns:1fr}.genForm{border-right:0;border-bottom:1px solid var(--line)}
+    .choiceGrid,.contactGrid{grid-template-columns:1fr}
+    .platGrid{grid-template-columns:1fr 1fr}
     .bkGrid{grid-template-columns:1fr}
-    .diagRecap{grid-template-columns:1fr}
   }
   @media(max-width:600px){
     .wrap{width:min(100% - 32px,1180px)}
     .links a:not(.cta){display:none}
     .navin{height:64px}main{padding-top:64px}
-    .sec{padding:64px 0}.hero{padding:44px 0 20px}
-    .platGrid,.stepGrid,.entryGrid,.sectorGrid,.eqPoints{grid-template-columns:1fr}
-    .eq{flex-direction:column;align-items:stretch}.eqCard{max-width:none}.eqOp{transform:rotate(90deg);padding:2px 0}
-    .heroActions .btn,.heroActions .ghost{flex:1}
-    .partnerCTA{flex-direction:column;align-items:flex-start}
+    .sec{padding:60px 0}.hero{padding:44px 0 40px}
+    .platGrid{grid-template-columns:1fr}
+    .heroCta .btn{width:100%}
+    .heroDevise{flex-direction:column;gap:8px;text-align:center}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -312,29 +219,46 @@
   </style>
 </head>
 <body>
-<header class="nav"><div class="wrap navin"><a class="brand" href="#top" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="articles/">Ressources</a><a href="solutions.html">Solutions</a><a href="realisations.html">Réalisations</a><a href="partenariats.html">Partenariats</a><a href="a-propos.html">À propos</a><a class="cta" href="#rendez-vous">Prendre RDV</a></nav></div></header>
+<header class="nav"><div class="wrap navin"><a class="brand" href="#top" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="articles/">Ressources</a><a href="solutions.html">Solutions</a><a href="realisations.html">Réalisations</a><a href="partenariats.html">Partenariats</a><a href="a-propos.html">À propos</a><a class="cta" href="#contact">Nous contacter</a></nav></div></header>
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero"><div class="wrap heroGrid">
-    <div>
-      <div class="kicker reveal">Groupe technologique indépendant</div>
-      <h1 class="reveal">Une architecture.<br><i>Plusieurs marchés.</i></h1>
-      <p class="lead reveal">Nous concevons des systèmes qui analysent, rapprochent et automatisent de grands volumes de données métier — puis nous les spécialisons, marché par marché. La technologie absorbe le volume ; vos équipes gardent la décision.</p>
-      <div class="heroActions reveal"><a class="btn" href="#rendez-vous">Prendre rendez-vous</a><a class="ghost" href="#applications">Voir l’écosystème →</a></div>
-      <div class="heroProof reveal"><span>3 plateformes en ligne</span><span>Matching sémantique &amp; IA</span><span>RDV en 30 min</span></div>
+  <!-- ══ HERO ══ -->
+  <section class="hero"><div class="wrap"><div class="heroInner">
+    <span class="heroEyebrow reveal">Groupe technologique indépendant</span>
+    <h1 class="reveal">On peut automatiser bien plus de choses que ce que vous imaginez.</h1>
+    <p class="lead reveal">L’automatisation existe depuis des dizaines d’années, mais avec l’IA, on pousse les curseurs beaucoup plus loin. Nous ne connaissons pas votre métier par cœur, mais nous savons techniquement ce qui est possible. En 10 minutes d’appel, on trouve des pistes concrètes pour vous faire gagner du temps et de l’argent.</p>
+    <div class="heroDevise reveal"><span class="lab">Notre devise</span><b>Nous gagnons de l’argent uniquement si vous en gagnez.</b></div>
+    <div class="heroCta reveal">
+      <a class="btn big" href="#contact">Discutons-en 10 minutes →</a>
+      <span class="microcopy">Sans engagement. Vous repartez avec des pistes concrètes.</span>
     </div>
-    <div class="heroViz reveal" aria-hidden="true">
-      <div class="vizBlob"></div>
-      <div class="vizCard vc1"><div class="vTop"><div class="vDot" style="background:var(--green)">A</div><div><h4>Solution Alternance</h4><div class="vMeta">Formation & apprentissage</div></div></div><p>Le bon profil, dans la bonne entreprise — matching sémantique sur base nationale.</p><span class="vLive">En ligne</span></div>
-      <div class="vizCard vc2"><div class="vTop"><div class="vDot" style="background:var(--blue)">R</div><div><h4>Solution Recrutement</h4><div class="vMeta">Emploi & recrutement</div></div></div><p>Un vivier vivant et des matchs expliqués, points forts et points de vigilance.</p><span class="vLive">En ligne</span></div>
-      <div class="vizCard vc3"><div class="vTop"><div class="vDot" style="background:var(--amber)">A</div><div><h4>Aides Particuliers</h4><div class="vMeta">Aides publiques</div></div></div><p>Un diagnostic gratuit qui révèle les aides auxquelles chacun a droit.</p><span class="vLive">En ligne</span></div>
+    <div class="heroProof reveal"><span>3 plateformes en ligne</span><span>Architecture éprouvée</span></div>
+  </div></div></section>
+
+  <!-- ══ LE CHOIX ══ -->
+  <section class="sec alt"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Concrètement</div><h2>Deux façons de travailler ensemble.</h2><p>Dans les deux cas, on part de votre activité — pas d’un discours générique.</p></div>
+    <div class="choiceGrid">
+      <div class="choice a reveal">
+        <span class="choiceTag">Option A · Automatisation</span>
+        <div class="choiceIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></div>
+        <h3>Vous avez un processus à automatiser</h3>
+        <p>Une tâche répétitive vous coûte des heures ? Vous voulez un outil sur-mesure pour votre activité ? On analyse ce qui vous coûte du temps, on construit le système, on le déploie — et vous récupérez vos heures.</p>
+        <div class="go"><a class="btn choiceCTA" href="#contact" data-topic="Automatiser un process / créer un outil sur-mesure">Automatiser mon activité →</a></div>
+      </div>
+      <div class="choice b reveal">
+        <span class="choiceTag">Option B · Partenariat</span>
+        <div class="choiceIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0L12 5.35l-.77-.77a5.4 5.4 0 0 0-7.65 7.65l.77.77L12 20.66l7.65-7.66.77-.77a5.4 5.4 0 0 0 0-7.65Z"/></svg></div>
+        <h3>Vous cherchez un partenaire stratégique</h3>
+        <p>Vous connaissez votre marché en profondeur ? On apporte la technologie, vous apportez le terrain. On s’associe dans la durée et on partage la valeur créée par le volume. Pas un prestataire de plus — un associé.</p>
+        <div class="go"><a class="btn dark choiceCTA" href="#contact" data-topic="Partenariat stratégique">Explorer un partenariat →</a></div>
+      </div>
     </div>
   </div></section>
 
-  <!-- ÉCOSYSTÈME -->
-  <section class="sec alt" id="applications"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">L’écosystème en ligne</div><h2>Le système existe déjà.</h2><p>Trois plateformes tournent aujourd’hui — la preuve que le même socle se spécialise sur des marchés très différents, en gardant sa logique centrale.</p></div>
+  <!-- ══ LA PREUVE ══ -->
+  <section class="sec" id="applications"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">La preuve</div><h2>On ne teste pas. On a déjà livré.</h2><p>Trois plateformes en ligne aujourd’hui, à grande échelle. Le même socle, spécialisé sur trois marchés très différents.</p></div>
     <div class="platGrid">
       <a class="plat green reveal" href="https://solutionalternance.fr" target="_blank" rel="noopener">
         <div class="platHead"><div class="platIcon">A</div><div><div class="platName">Solution Alternance</div><div class="platMeta">Formation & apprentissage</div></div><span class="platLive">En ligne</span></div>
@@ -354,21 +278,10 @@
     </div>
   </div></section>
 
-  <!-- SOCLE -->
-  <section class="sec" id="architecture"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Le socle</div><h2>Construire une fois.<br><i>Spécialiser profondément.</i></h2><p>Une logique technologique commune en quatre temps, adaptée ensuite aux données, contraintes et usages propres à chaque métier.</p></div>
-    <div class="stepGrid">
-      <article class="step reveal"><div class="stepNum">01</div><h3>Analyser</h3><p>Structurer profils, besoins et signaux dans des données exploitables.</p></article>
-      <article class="step reveal"><div class="stepNum">02</div><h3>Rapprocher</h3><p>Comparer des volumes massifs et identifier les correspondances les plus pertinentes.</p></article>
-      <article class="step reveal"><div class="stepNum">03</div><h3>Automatiser</h3><p>Absorber les tâches répétitives sans retirer la décision aux professionnels.</p></article>
-      <article class="step reveal"><div class="stepNum">04</div><h3>Expliquer</h3><p>Transformer un calcul complexe en résultat lisible, argumenté et actionnable.</p></article>
-    </div>
-  </div></section>
-
-  <!-- FONDATEUR -->
+  <!-- ══ FONDATEUR ══ -->
   <section class="sec alt" id="fondateur"><div class="wrap">
     <div class="founder reveal">
-      <div class="kicker">Le mot du fondateur</div>
+      <div class="kicker">Qui est derrière ?</div>
       <blockquote>« Je ne crois pas aux logiciels qui remplacent les gens. Je construis des systèmes qui <i>absorbent le volume répétitif</i> — pour que chaque métier garde la main sur ce qui compte vraiment : la décision et la relation. Une même architecture, spécialisée marché par marché. »</blockquote>
       <div class="founderSig">
         <div class="founderAvatar"><img src="photo-president.jpg" alt="Titouan, fondateur de Groupe Solution" /></div>
@@ -377,156 +290,50 @@
     </div>
   </div></section>
 
-  <!-- PARTENARIATS -->
-  <section class="sec" id="partenariats-teaser"><div class="wrap">
-    <div class="secHead center reveal"><div class="kicker">Partenariats</div><h2>Vous connaissez le marché.<br>Nous construisons le système.</h2></div>
-    <div class="eq reveal">
-      <div class="eqCard"><div class="lab">Le partenaire apporte</div><div class="val">L’expertise métier</div></div>
-      <div class="eqOp">+</div>
-      <div class="eqCard"><div class="lab">Groupe Solution apporte</div><div class="val">La technologie</div></div>
-      <div class="eqOp">=</div>
-      <div class="eqCard res"><div class="lab">Ensemble</div><div class="val">Une nouvelle capacité de production</div></div>
-    </div>
-    <div class="eqPoints reveal">
-      <div class="eqPoint"><span class="ck">✓</span><p>Vous gardez <b>la relation et l’expertise humaine</b> ; nous industrialisons le volume autour.</p></div>
-      <div class="eqPoint"><span class="ck">✓</span><p>Plusieurs modèles de <b>partage de la valeur</b> créée par le volume supplémentaire.</p></div>
-      <div class="eqPoint"><span class="ck">✓</span><p>Du premier échange au déploiement, <b>un parcours clair</b> en étapes courtes.</p></div>
-    </div>
-    <div style="text-align:center"><a class="ghost reveal" href="partenariats.html">Découvrir le modèle de partenariat →</a></div>
-  </div></section>
-
-  <!-- STATEMENT -->
-  <section class="sec"><div class="wrap"><div class="statement reveal"><small>Notre logique</small><h2 style="margin-top:14px">La technologie reste centrale.<br><span>Le métier reste humain.</span></h2></div></div></section>
-
-  <!-- SECTEURS -->
-  <section class="sec alt" id="secteurs"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Terrains d’application</div><h2>Changer de secteur.<br>Pas de logique.</h2><p>Certains sont déjà des produits en ligne ; d’autres sont des terrains où nous étudions le déploiement de l’architecture avec des partenaires métier.</p></div>
-    <div class="sectorGrid reveal">
-      <div class="sector"><small>01</small><h3>Formation</h3><span class="state live">Déployé</span></div>
-      <div class="sector"><small>02</small><h3>Recrutement</h3><span class="state live">Déployé</span></div>
-      <div class="sector"><small>03</small><h3>Aides publiques</h3><span class="state live">Déployé</span></div>
-      <div class="sector"><small>04</small><h3>Immobilier</h3><span class="state">Exploration</span></div>
-      <div class="sector"><small>05</small><h3>Assurance</h3><span class="state">Exploration</span></div>
-      <div class="sector"><small>06</small><h3>Marchés publics</h3><span class="state">Exploration</span></div>
-    </div>
-    <div class="partnerCTA reveal"><p>Vous connaissez profondément l’un de ces marchés ?</p><a class="btn" href="#rendez-vous">Construisons le cas d’usage →</a></div>
-  </div></section>
-
-  <!-- GÉNÉRATEUR -->
-  <section class="sec" id="generateur"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Imaginez votre système</div><h2>Votre <i>Solution [Secteur]</i>, en trois réponses.</h2><p>Décrivez votre activité en quelques mots. Nous esquissons la logique du système qui pourrait l’absorber — pas un devis, une manière de vérifier qu’on comprend votre modèle.</p></div>
-    <div class="genPanel reveal">
-      <form class="genForm" id="genForm" novalidate>
-        <div class="genField">
-          <label for="genSecteur">Votre secteur</label>
-          <input id="genSecteur" list="genSecteurs" placeholder="Ex : travaux, assurance, marchés publics…" autocomplete="off">
-          <datalist id="genSecteurs">
-            <option value="Travaux"></option><option value="Assurance"></option><option value="Marchés publics"></option>
-            <option value="Subventions"></option><option value="Immobilier"></option><option value="Diagnostic immobilier"></option>
-            <option value="Recouvrement"></option><option value="Tourisme"></option><option value="Formation"></option><option value="Recrutement"></option>
-          </datalist>
-        </div>
-        <div class="genField">
-          <label for="genTrigger">Vous gagnez de l’argent quand…</label>
-          <select id="genTrigger">
-            <option value="" disabled selected>Choisissez ce qui déclenche le revenu</option>
-            <option value="dossier">un dossier est signé</option>
-            <option value="contrat">un contrat est validé</option>
-            <option value="relation">une mise en relation aboutit</option>
-            <option value="prestation">une prestation est réalisée</option>
-            <option value="vente">une vente est conclue</option>
-          </select>
-        </div>
-        <div class="genField">
-          <label for="genManual">L’étape aujourd’hui la plus manuelle</label>
-          <select id="genManual">
-            <option value="" disabled selected>Choisissez l’étape la plus chronophage</option>
-            <option value="qualification">La qualification des demandes</option>
-            <option value="recherche">La recherche / le sourcing</option>
-            <option value="relance">Les relances</option>
-            <option value="miseenforme">La mise en forme des dossiers</option>
-            <option value="tri">Le tri et la priorisation</option>
-          </select>
-        </div>
-        <button class="btn" type="submit" id="genSubmit">Composer la solution</button>
-        <p class="genHint">Génération immédiate à partir de vos réponses — aucune donnée n’est envoyée.</p>
-      </form>
-      <div class="genOut" id="genOut">
-        <p class="genPlaceholder" id="genPlaceholder">Renseignez vos trois réponses pour composer une première esquisse de votre système.</p>
-      </div>
-    </div>
-  </div></section>
-
-  <!-- DIAGNOSTIC -->
-  <section class="sec alt" id="diagnostic"><div class="wrap">
-    <div class="secHead center reveal"><div class="kicker">Diagnostic express</div><h2>Votre activité est-elle automatisable ?</h2><p>Cinq questions, une lecture indicative. Pas une analyse détaillée — un premier repère pour voir si votre modèle se prête à l’automatisation du volume.</p></div>
-    <div class="diagPanel reveal">
-      <div class="diagBar"><i id="diagProgress"></i></div>
-      <div class="diagInner" id="diagInner"><!-- injecté par le script --></div>
-    </div>
-  </div></section>
-
-  <!-- ENTRÉES -->
-  <section class="sec" id="entrees"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Par où commencer</div><h2>Six façons d’entrer en relation.</h2><p>Chaque entrée mène au bon échange, avec le contexte déjà en place — pas un formulaire générique de plus.</p></div>
-    <div class="entryGrid reveal">
-      <a class="entry" href="#rendez-vous" data-topic="Un processus à automatiser">
-        <div class="entryTop"><span class="entryNum">01</span><span class="entryArrow">↓</span></div>
-        <h3>J’ai un processus à automatiser</h3>
-        <p>Une étape manuelle vous coûte du temps ? Voyons ce que le système peut absorber.</p>
+  <!-- ══ CONTACT · 3 canaux ══ -->
+  <section class="sec" id="contact"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Passons à l’action</div><h2>Parlons de votre activité.</h2><p>Dix minutes suffisent pour trouver des pistes concrètes. Choisissez le canal qui vous arrange.</p></div>
+    <div class="contactGrid">
+      <a class="ccard reveal" href="tel:+33782298559">
+        <div class="cIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
+        <b>Téléphone</b><span>07 82 29 85 59</span>
+        <span class="cGo">Appeler maintenant →</span>
       </a>
-      <a class="entry" href="#rendez-vous" data-topic="Recherche d’un partenaire technologique">
-        <div class="entryTop"><span class="entryNum">02</span><span class="entryArrow">↓</span></div>
-        <h3>Je cherche un partenaire technologique</h3>
-        <p>Vous connaissez un marché, nous construisons le système. Partageons la valeur créée.</p>
+      <a class="ccard reveal" href="mailto:contact@groupsolution.fr">
+        <div class="cIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-9.13 5.7a2 2 0 0 1-2.14 0L2 7"/></svg></div>
+        <b>Email</b><span>contact@groupsolution.fr</span>
+        <span class="cGo">Écrire un message →</span>
       </a>
-      <a class="entry" href="#rendez-vous" data-topic="Démonstration">
-        <div class="entryTop"><span class="entryNum">03</span><span class="entryArrow">↓</span></div>
-        <h3>Je souhaite voir une démonstration</h3>
-        <p>Voir le moteur en conditions réelles, sur un cas concret et parlant.</p>
-      </a>
-      <a class="entry" href="#rendez-vous" data-topic="Proposition d’un secteur">
-        <div class="entryTop"><span class="entryNum">04</span><span class="entryArrow">↓</span></div>
-        <h3>Je veux proposer mon secteur</h3>
-        <p>Votre activité est rémunérée au volume ? Proposez-la comme terrain d’application.</p>
-      </a>
-      <a class="entry" href="#applications">
-        <div class="entryTop"><span class="entryNum">05</span><span class="entryArrow">↑</span></div>
-        <h3>Je cherche une solution déjà disponible</h3>
-        <p>Solution Alternance, Solution Recrutement et Aides Particuliers sont déjà en ligne.</p>
-      </a>
-      <a class="entry" href="#rendez-vous" data-topic="Création d’un site internet">
-        <div class="entryTop"><span class="entryNum">06</span><span class="entryArrow">↓</span></div>
-        <h3>Je veux un site internet</h3>
-        <p>Un site professionnel, conçu et livré sur mesure par Groupe Solution.</p>
-      </a>
+      <button class="ccard reveal" type="button" id="openCal" aria-controls="bkWrap" aria-expanded="false">
+        <div class="cIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <b>Visio</b><span>Réserver un créneau · 10 min</span>
+        <span class="cGo">Ouvrir le calendrier →</span>
+      </button>
     </div>
-  </div></section>
-
-  <!-- RENDEZ-VOUS -->
-  <section class="sec alt" id="rendez-vous"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Prendre rendez-vous</div><h2>Trente minutes pour votre marché.</h2><p>Choisissez un créneau : nous échangeons en visioconférence sur votre activité, vos volumes et ce qui pourrait être automatisé. Sans engagement.</p></div>
-    <div class="bookingPanel reveal">
-      <div class="bkNotice" id="bkNotice" hidden></div>
-      <div class="bkGrid" id="bkGrid">
-        <div class="bkCol">
-          <div class="bkColHead"><span class="bkStep">1</span> Choisissez une date</div>
-          <div class="bkDayList" id="bkDayList"><div class="bkLoading">Chargement des disponibilités…</div></div>
-        </div>
-        <div class="bkCol">
-          <div class="bkColHead"><span class="bkStep">2</span> Choisissez un horaire</div>
-          <div class="bkTimeList" id="bkTimeList"><p class="bkHint">Sélectionnez d’abord une date.</p></div>
-        </div>
-        <div class="bkCol bkFormCol">
-          <div class="bkColHead"><span class="bkStep">3</span> Vos coordonnées</div>
-          <div class="bkRecap" id="bkRecap" hidden></div>
-          <form class="bkForm" id="bkForm" novalidate>
-            <label>Nom et prénom<input id="bkName" name="name" type="text" autocomplete="name" required></label>
-            <label>Email<input id="bkEmail" name="email" type="email" autocomplete="email" required></label>
-            <label>Sujet (optionnel)<textarea id="bkTopic" name="topic" placeholder="Votre secteur, vos volumes…"></textarea></label>
-            <button class="btn" type="submit" id="bkSubmit" disabled>Confirmer le rendez-vous</button>
-            <p class="bkMsg" id="bkMsg" role="status" aria-live="polite"></p>
-          </form>
+    <div id="bkWrap" hidden>
+      <div class="bookingPanel">
+        <div class="bkPanelHead"><h3>Choisissez votre créneau</h3><button type="button" class="bkClose" id="bkClose">Fermer ✕</button></div>
+        <div class="bkNotice" id="bkNotice" hidden></div>
+        <div class="bkGrid" id="bkGrid">
+          <div class="bkCol">
+            <div class="bkColHead"><span class="bkStep">1</span> Choisissez une date</div>
+            <div class="bkDayList" id="bkDayList"><div class="bkLoading">Chargement des disponibilités…</div></div>
+          </div>
+          <div class="bkCol">
+            <div class="bkColHead"><span class="bkStep">2</span> Choisissez un horaire</div>
+            <div class="bkTimeList" id="bkTimeList"><p class="bkHint">Sélectionnez d’abord une date.</p></div>
+          </div>
+          <div class="bkCol bkFormCol">
+            <div class="bkColHead"><span class="bkStep">3</span> Vos coordonnées</div>
+            <div class="bkRecap" id="bkRecap" hidden></div>
+            <form class="bkForm" id="bkForm" novalidate>
+              <label>Nom et prénom<input id="bkName" name="name" type="text" autocomplete="name" required></label>
+              <label>Email<input id="bkEmail" name="email" type="email" autocomplete="email" required></label>
+              <label>Sujet (optionnel)<textarea id="bkTopic" name="topic" placeholder="Votre secteur, vos volumes…"></textarea></label>
+              <button class="btn" type="submit" id="bkSubmit" disabled>Confirmer le rendez-vous</button>
+              <p class="bkMsg" id="bkMsg" role="status" aria-live="polite"></p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -551,13 +358,29 @@
     const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
     reveal.forEach((e,i)=>{e.style.transitionDelay=Math.min((i%4)*70,210)+'ms';io.observe(e)});
   }
-  /* Compteurs animés (preuves chiffrées réelles) */
   const counters=[...document.querySelectorAll('.counter')];
   if(reduced){counters.forEach(el=>el.textContent=new Intl.NumberFormat('fr-FR').format(+el.dataset.target));}
   else if('IntersectionObserver'in window){
     const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,target=+el.dataset.target,start=performance.now(),dur=1500;function tick(t){const p=Math.min(1,(t-start)/dur),v=Math.floor(target*(1-Math.pow(1-p,3)));el.textContent=new Intl.NumberFormat('fr-FR').format(v);if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick);cio.unobserve(el)}),{threshold:.5});
     counters.forEach(c=>cio.observe(c));
   } else counters.forEach(el=>el.textContent=new Intl.NumberFormat('fr-FR').format(+el.dataset.target));
+</script>
+<script>
+/* ── Contact : 3e carte ouvre le calendrier ; CTA du choix préremplit le sujet ── */
+(function(){
+  const wrap=document.getElementById('bkWrap'), openBtn=document.getElementById('openCal'), closeBtn=document.getElementById('bkClose');
+  if(openBtn&&wrap){
+    openBtn.addEventListener('click',()=>{ wrap.hidden=false; openBtn.setAttribute('aria-expanded','true'); wrap.scrollIntoView({behavior:'smooth',block:'center'}); });
+  }
+  if(closeBtn&&wrap){ closeBtn.addEventListener('click',()=>{ wrap.hidden=true; if(openBtn){openBtn.setAttribute('aria-expanded','false');openBtn.scrollIntoView({behavior:'smooth',block:'center'});} }); }
+  // CTA "Automatiser / Partenariat" : préremplit le sujet et ouvre le calendrier
+  document.querySelectorAll('.choiceCTA[data-topic]').forEach(a=>{
+    a.addEventListener('click',()=>{
+      const topic=document.getElementById('bkTopic'); if(topic) topic.value=a.dataset.topic;
+      if(wrap) wrap.hidden=false; if(openBtn) openBtn.setAttribute('aria-expanded','true');
+    });
+  });
+})();
 </script>
 <script>
 /* ── Prise de rendez-vous : réel (Vercel Function) ou démonstration (local / non configuré) ── */
@@ -641,7 +464,7 @@
     const when = cap(d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})) + ' à ' +
       d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
     els.panel.innerHTML = `<div class="bkConfirm"><div class="ic">✓</div><h3>C’est noté.</h3>` +
-      `<p>Votre rendez-vous de 30 minutes est confirmé. L’invitation arrive par email` +
+      `<p>Votre rendez-vous de 10 minutes est confirmé. L’invitation arrive par email` +
       `${data.meetLink ? ', avec le lien de visioconférence' : ''}.</p><div class="det">${when}</div></div>`;
   }
 
@@ -679,172 +502,13 @@
   }
 
   // Lazy : ne charge les disponibilités que lorsque la section approche (économise les invocations serverless).
-  const section = document.getElementById('rendez-vous');
+  const section = document.getElementById('contact');
   if('IntersectionObserver' in window && section){
     const io = new IntersectionObserver((entries, obs)=>{
       entries.forEach(e=>{ if(e.isIntersecting){ obs.disconnect(); init(); } });
     }, { rootMargin: '400px 0px' });
     io.observe(section);
   } else { init(); }
-})();
-</script>
-<script>
-/* ── Générateur sectoriel : sortie composée par règles logiques (pas d'IA, pas de données inventées) ── */
-(function(){
-  const $ = id => document.getElementById(id);
-  const form = $('genForm'), out = $('genOut');
-  if(!form) return;
-  const secteur = $('genSecteur'), trigger = $('genTrigger'), manual = $('genManual');
-  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
-
-  const TRIGGER = {
-    dossier:   { revenu:'un dossier signé',          clause:'la signature du dossier' },
-    contrat:   { revenu:'un contrat validé',         clause:'la validation du contrat' },
-    relation:  { revenu:'une mise en relation aboutie', clause:'l’aboutissement de la mise en relation' },
-    prestation:{ revenu:'une prestation réalisée',   clause:'la réalisation de la prestation' },
-    vente:     { revenu:'une vente conclue',         clause:'la conclusion de la vente' },
-  };
-
-  form.addEventListener('submit', e=>{
-    e.preventDefault();
-    const sec = (secteur.value||'').trim();
-    if(!sec){ secteur.focus(); return; }
-    if(!trigger.value){ trigger.focus(); return; }
-    if(!manual.value){ manual.focus(); return; }
-    render(sec, trigger.value, manual.value);
-  });
-
-  function render(sec, tKey, mKey){
-    const t = TRIGGER[tKey];
-    const steps = [
-      { id:'qualification', txt:'Qualification automatique des demandes entrantes' },
-      { id:'recherche',     txt:'Rapprochement à grande échelle avec les bonnes opportunités' },
-      { id:'relance',       txt:'Relances automatiques jusqu’à ' + t.clause },
-      mKey === 'miseenforme'
-        ? { id:'miseenforme', txt:'Mise en forme et structuration automatique des dossiers' }
-        : mKey === 'tri'
-        ? { id:'tri', txt:'Tri et priorisation automatiques des demandes' }
-        : { id:'restitution', txt:'Restitution d’un dossier prêt à décider' },
-    ];
-    const lis = steps.map(s=>{
-      const isM = s.id === mKey;
-      return `<li class="${isM?'gManual':''}">${s.txt}${isM?' <em>— aujourd’hui manuel, demain absorbé</em>':''}</li>`;
-    }).join('');
-
-    out.innerHTML =
-      `<div class="genResult">` +
-        `<div class="gLabel">Esquisse de système</div>` +
-        `<h3>Solution ${cap(sec)}</h3>` +
-        `<p class="gTrigger">Revenu déclenché quand : <b>${t.revenu}</b></p>` +
-        `<ul class="genSteps">${lis}</ul>` +
-        `<p class="genHuman">L’humain garde la décision finale et la relation. Le système ne remplace pas l’expert — il absorbe le volume autour de lui.</p>` +
-        `<p class="genTag">« Votre équipe reste au centre. Le système absorbe le volume. »</p>` +
-        `<p class="genNote">Esquisse composée à partir de vos réponses par des règles simples — une illustration du raisonnement, pas un devis ni une analyse automatisée.</p>` +
-      `</div>`;
-    requestAnimationFrame(()=> out.querySelector('.genResult').classList.add('in'));
-  }
-})();
-</script>
-<script>
-/* ── Diagnostic scripté : questionnaire étape par étape, conclusion prudente (pas d'IA, pas de chiffres inventés) ── */
-(function(){
-  const inner = document.getElementById('diagInner');
-  const bar = document.getElementById('diagProgress');
-  if(!inner) return;
-
-  const Q = [
-    { key:'secteur', q:'Quel est votre secteur ?', type:'text', ph:'Ex : travaux, assurance, formation…' },
-    { key:'volume',  q:'Quel volume de dossiers traitez-vous ?', type:'opt',
-      options:['Quelques dizaines par mois','Des centaines par mois','Des milliers par mois','Cela varie fortement'] },
-    { key:'etape',   q:'Quelle étape vous prend le plus de temps ?', type:'opt',
-      options:['Qualifier les demandes','Chercher / sourcer','Relancer','Mettre en forme les dossiers','Trier et prioriser'] },
-    { key:'remu',    q:'Comment êtes-vous rémunéré ?', type:'opt',
-      options:['Au dossier traité','À la commission','À l’abonnement','Au forfait','À la performance'] },
-    { key:'double',  q:'Que se passerait-il si vous traitiez deux fois plus de dossiers ?', type:'opt',
-      options:['Il faudrait embaucher','Je ne pourrais pas suivre','Je refuserais des demandes','Ce serait ingérable à la main'] },
-  ];
-  const ETAPE = {
-    'Qualifier les demandes':'la qualification',
-    'Chercher / sourcer':'la recherche',
-    'Relancer':'les relances',
-    'Mettre en forme les dossiers':'la mise en forme des dossiers',
-    'Trier et prioriser':'le tri et la priorisation',
-  };
-  const esc = s => String(s==null?'':s).replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
-  const answers = {}; let i = 0;
-  const canNext = q => q.type==='text' ? !!(answers[q.key]||'').trim() : !!answers[q.key];
-
-  function render(){
-    if(i >= Q.length) return renderResult();
-    const q = Q[i];
-    bar.style.width = (i / Q.length * 100) + '%';
-    const body = q.type==='text'
-      ? `<input class="diagInput" id="diagText" placeholder="${esc(q.ph)}" autocomplete="off">`
-      : `<div class="diagOptions">` + q.options.map(o =>
-          `<button type="button" class="diagOpt" data-val="${esc(o)}" aria-selected="${answers[q.key]===o?'true':'false'}">${esc(o)}</button>`).join('') + `</div>`;
-    inner.innerHTML =
-      `<div class="diagStep">Question ${i+1} / ${Q.length}</div>` +
-      `<h3 class="diagQ">${esc(q.q)}</h3>` + body +
-      `<div class="diagNav"><button type="button" class="diagBack" id="diagBack" ${i===0?'disabled':''}>← Retour</button>` +
-      `<button type="button" class="btn diagNext" id="diagNext" ${canNext(q)?'':'disabled'}>${i===Q.length-1?'Voir le diagnostic':'Continuer'}</button></div>`;
-    wire(q);
-  }
-
-  function wire(q){
-    const next = document.getElementById('diagNext'), back = document.getElementById('diagBack');
-    if(q.type==='text'){
-      const inp = document.getElementById('diagText');
-      inp.value = answers[q.key] || '';
-      inp.addEventListener('input', ()=>{ answers[q.key] = inp.value; next.disabled = !canNext(q); });
-      inp.addEventListener('keydown', e=>{ if(e.key==='Enter' && canNext(q)){ e.preventDefault(); i++; render(); } });
-      setTimeout(()=>inp.focus(), 30);
-    } else {
-      inner.querySelectorAll('.diagOpt').forEach(b => b.addEventListener('click', ()=>{
-        answers[q.key] = b.dataset.val;
-        inner.querySelectorAll('.diagOpt').forEach(x => x.setAttribute('aria-selected', x===b?'true':'false'));
-        next.disabled = false;
-      }));
-    }
-    next.addEventListener('click', ()=>{ if(canNext(q)){ i++; render(); } });
-    back.addEventListener('click', ()=>{ if(i>0){ i--; render(); } });
-  }
-
-  function renderResult(){
-    bar.style.width = '100%';
-    const sec = (answers.secteur||'votre activité').trim();
-    const etape = ETAPE[answers.etape] || 'la qualification';
-    const axes = [...new Set([etape, 'le rapprochement', 'les relances'])];
-    const focus = axes.length > 1 ? axes.slice(0,-1).join(', ') + ' et ' + axes.slice(-1) : axes[0];
-    const row = (k,v) => `<div><span>${k}</span><b>${esc(v||'—')}</b></div>`;
-    inner.innerHTML =
-      `<div class="diagResult">` +
-        `<div class="diagStep">Lecture indicative</div>` +
-        `<p class="diagLead">Il semble que <b>${esc(sec)}</b> pourrait se prêter à l’automatisation du volume — en particulier sur ${focus}. Cela mériterait d’en parler.</p>` +
-        `<div class="diagRecap">` + row('Secteur', sec) + row('Volume', answers.volume) +
-          row('Étape la plus lourde', answers.etape) + row('Rémunération', answers.remu) + row('Si volume ×2', answers.double) + `</div>` +
-        `<button type="button" class="btn" id="diagCta">J’ai un processus à automatiser →</button>` +
-        `<p class="diagDisclaimer">Lecture indicative composée à partir de vos réponses — ni une analyse automatisée, ni un engagement. Le mieux reste d’en discuter.</p>` +
-      `</div>`;
-    document.getElementById('diagCta').addEventListener('click', ()=>{
-      const topic = document.getElementById('bkTopic');
-      if(topic) topic.value = `Processus à automatiser — ${sec} (via diagnostic)`;
-      const rdv = document.getElementById('rendez-vous');
-      if(rdv) rdv.scrollIntoView({ behavior:'smooth' });
-    });
-  }
-
-  render();
-})();
-</script>
-<script>
-/* ── CTA multiples : préremplit le sujet du RDV puis l'ancre scrolle vers la prise de rendez-vous ── */
-(function(){
-  document.querySelectorAll('.entry[data-topic]').forEach(a=>{
-    a.addEventListener('click', ()=>{
-      const topic = document.getElementById('bkTopic');
-      if(topic) topic.value = a.dataset.topic;
-    });
-  });
 })();
 </script>
 </body>
