@@ -1,55 +1,76 @@
 /* ═══════════════════════════════════════════════════════════
    Groupe Solution — design system partagé (pages secondaires)
-   Source Serif 4 (titres) + Plus Jakarta Sans (corps), olive, hairlines.
+   Charte « Airbnb épuré » alignée sur la home : Source Serif 4 (titres)
+   + Plus Jakarta Sans (corps), palette paper/olive, rouge = ACTIONS.
    ═══════════════════════════════════════════════════════════ */
 :root{
-  --paper:#F7F7F4;--white:#FFFFFF;--ink:#111310;--secondary:#555952;--muted:#858A82;
-  --hair:#DCDDD8;--hair2:#C9CDC6;--olive:#626B5C;--olive2:#3F493D;--oliveSoft:#E9ECE5;
-  --green:#0E7A5A;--blue:#2368C7;--serif:"Source Serif 4",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --paper:#F7F6F3; --white:#FFFFFF; --sand:#FBFAF7;
+  --ink:#171613; --secondary:#565349; --muted:#8C887E;
+  --line:#ECEAE3; --line2:#DFDCD2;
+  /* alias hérités (pages secondaires) */
+  --hair:#ECEAE3; --hair2:#DFDCD2; --oliveSoft:#EBEEE6;
+  --acc:#E61E4D; --acc-d:#C81E47; --acc-soft:#FCE8ED; --acc-ring:rgba(230,30,77,.18); /* rouge : ACTIONS uniquement */
+  --green:#0E7A5A; --green-soft:#E5F3EE;
+  --blue:#2368C7; --blue-soft:#E7F0FB;
+  --amber:#B27C1E; --amber-soft:#F6EEDD;
+  --olive:#5F6B54; --olive2:#3F493D; --olive-soft:#EBEEE6;
+  --serif:"Source Serif 4",Georgia,serif; --sans:"Plus Jakarta Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
+  --sh-s:0 4px 16px rgba(23,22,19,.06);
+  --sh-m:0 12px 34px rgba(23,22,19,.10);
+  --sh-l:0 26px 64px rgba(23,22,19,.14);
+  --r-s:14px; --r-m:22px; --r-l:30px; --r-xl:40px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.55}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
 a{color:inherit;text-decoration:none}
 img,svg{display:block;max-width:100%}
-.wrap{width:min(1280px,calc(100% - 72px));margin:0 auto}
-h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.04em}
+.wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--ink)}
 h1 i,h2 i,h3 i{font-style:normal;color:var(--olive2)}
 
 /* ── NAV ── */
-.nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(247,247,244,.78);backdrop-filter:blur(18px) saturate(130%);border-bottom:1px solid rgba(220,221,216,.72)}
-.navin{height:82px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:11px}.brand img{height:42px;width:auto;display:block}
-.links{display:flex;align-items:center;gap:30px}
-.links a{font-size:13px;color:var(--secondary);font-weight:500;transition:color .16s}
-.links a:hover{color:var(--ink)}.links a.active{color:var(--ink)}
-.links .cta{padding:11px 17px;border:1px solid var(--hair2);border-radius:999px;color:var(--ink);background:rgba(255,255,255,.64)}
-.links .cta:hover{border-color:var(--olive)}
+.nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(247,246,243,.82);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(236,234,227,.8)}
+.navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center}.brand img{height:40px;width:auto;display:block}
+.links{display:flex;align-items:center;gap:26px}
+.links a{font-size:14.5px;color:var(--secondary);font-weight:600;transition:color .16s}
+.links a:hover,.links a.active{color:var(--ink)}
+.links .cta{padding:11px 20px;border-radius:999px;color:#fff;background:var(--acc);font-weight:800;font-size:14px;box-shadow:0 6px 16px var(--acc-ring)}
+.links .cta:hover{background:var(--acc-d);color:#fff}
 
-/* ── Boutons ── */
-.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;border-radius:999px;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;border:0;transition:transform .18s var(--ease),background .18s}
-.btn:hover{transform:translateY(-1px);background:#000}
-.ghost{font-size:13px;font-weight:600;border-bottom:1px solid var(--hair2);padding-bottom:2px}
-.ghost:hover{border-color:var(--olive)}
+/* ── Boutons — le ROUGE vit ici (actions) ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--acc);color:#fff;border-radius:999px;padding:16px 30px;font-size:16px;font-weight:800;font-family:var(--sans);cursor:pointer;border:0;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s;box-shadow:0 8px 22px var(--acc-ring)}
+.btn:hover{transform:translateY(-2px);background:var(--acc-d);box-shadow:0 14px 30px rgba(230,30,77,.28)}
+.btn.big{padding:19px 40px;font-size:17.5px}
+.btn.dark{background:var(--ink);box-shadow:0 8px 22px rgba(23,22,19,.2)}
+.btn.dark:hover{background:#000}
+/* Lien secondaire discret (neutre, pas de rouge) */
+.ghost{font-size:15px;font-weight:700;color:var(--olive2);border-bottom:1px solid var(--line2);padding-bottom:3px;transition:border-color .18s,color .18s}
+.ghost:hover{border-color:var(--olive);color:var(--ink)}
 
-/* ── Kicker ── */
-.kicker{font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:12px}
-.kicker:before{content:"";width:26px;height:1px;background:var(--olive)}
+/* ── Kicker — NEUTRE (pas de rouge dans les libellés) ── */
+.kicker{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.02em;font-weight:800;color:var(--olive2);background:var(--olive-soft);padding:8px 15px;border-radius:999px;text-transform:none}
+.kicker:before{content:none}
 
 /* ── En-tête de page ── */
-main{padding-top:82px}
-.phead{padding:74px 0 68px;border-bottom:1px solid var(--hair);background:var(--white)}
-.phead h1{font-size:clamp(46px,6.4vw,92px);line-height:.98;margin-top:24px;max-width:15ch}
-.phead .lead{font-size:17px;color:var(--secondary);line-height:1.75;max-width:600px;margin-top:26px}
-.phead .pheadActions{margin-top:30px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+main{padding-top:74px}
+.phead{padding:80px 0 64px;border-bottom:1px solid var(--line);background:var(--white)}
+.phead h1{font-size:clamp(40px,5.4vw,68px);line-height:1.02;margin-top:22px;max-width:16ch}
+.phead .lead{font-size:18px;color:var(--secondary);line-height:1.75;max-width:620px;margin-top:24px}
+.phead .pheadActions{margin-top:32px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+
+/* ── Cartes / bulles douces (helper commun) ── */
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-l);border-color:var(--line2)}
 
 /* ── Reveal ── */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 
 /* ── Footer ── */
-footer{padding:42px 0 50px;border-top:1px solid var(--hair);background:var(--paper);font-size:12px;color:var(--secondary)}
+footer{padding:44px 0 52px;border-top:1px solid var(--line);background:var(--paper);font-size:12.5px;color:var(--secondary)}
 .foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
 .foot .footBrand{display:flex;align-items:center;gap:12px}
 .foot .footBrand img{height:30px;width:auto}
@@ -62,11 +83,11 @@ footer{padding:42px 0 50px;border-top:1px solid var(--hair);background:var(--pap
 
 /* ── Responsive de base ── */
 @media(max-width:700px){
-  .wrap{width:min(100% - 34px,1280px)}
+  .wrap{width:min(100% - 34px,1180px)}
   .links a:not(.cta){display:none}
-  .navin{height:70px}.brand img{height:34px}
-  main{padding-top:70px}
-  .phead{padding:54px 0 48px}
+  .navin{height:64px}.brand img{height:34px}
+  main{padding-top:64px}
+  .phead{padding:56px 0 46px}
   .foot{flex-direction:column;align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){
