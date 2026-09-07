@@ -17,7 +17,7 @@
 
   /* Silos géographiques : ajoutez ici le slug de chaque nouvelle zone.
      La zone est déduite du 1er segment d'URL → content_group dans GA4. */
-  var ZONES = ['mayotte', 'reunion', 'guyane', 'martinique', 'guadeloupe', 'nouvelle-caledonie'];
+  var ZONES = ['mayotte', 'reunion', 'guyane', 'martinique', 'guadeloupe', 'nouvelle-caledonie', 'polynesie-francaise'];
   var seg = (location.pathname.split('/')[1] || '').toLowerCase();
   var zone = ZONES.indexOf(seg) !== -1 ? seg : 'holding';
   window.dataLayer = window.dataLayer || [];

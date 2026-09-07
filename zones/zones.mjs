@@ -460,5 +460,235 @@ export const ZONES = [
         ]
       }
     ]
+  },
+
+  /* ───────────────────────── LA NOUVELLE-CALÉDONIE (988) ───────────────────────── */
+  {
+    slug: 'nouvelle-caledonie', name: 'La Nouvelle-Calédonie', code: '988', status: 'online',
+    regionPage: 'site-internet-nouvelle-caledonie.html',
+    fauna: ['requin.jpg', 'poisson-clown.jpg', 'recif.jpg'],
+    implantTagline: "L'agence digitale de Groupe Solution en Nouvelle-Calédonie : sites internet, référencement local, réseaux sociaux et automatisation pour les entreprises de Nouméa, du Grand Nouméa et de la Province Nord.",
+    region: {
+      pageFile: 'site-internet-nouvelle-caledonie.html', slug: 'nouvelle-caledonie', name: 'La Nouvelle-Calédonie', gentile: 'calédoniennes', hero: 'hero-1.jpg',
+      title: 'Agence Web & Digitale en Nouvelle-Calédonie (988) | GroupSolution',
+      desc: "Agence web en Nouvelle-Calédonie : création de sites internet, référencement local (SEO), réseaux sociaux et automatisation pour les entreprises de Nouméa, Dumbéa, Mont-Dore et de la Province Nord. Audit gratuit.",
+      keywords: 'agence web Nouvelle-Calédonie, création site internet Nouméa 988, SEO Nouvelle-Calédonie, community management Nouméa, automatisation entreprise Calédonie',
+      badge: 'Votre agence digitale en Nouvelle-Calédonie (988)',
+      h1suffix: 'en Nouvelle-Calédonie',
+      heroSub: "Autour de son lagon classé à l'UNESCO, la Nouvelle-Calédonie mêle économie du nickel, commerce et art de vivre. On donne aux entreprises calédoniennes les outils pour rayonner en ligne.",
+      auditIntro: "En 15 minutes, on analyse la présence en ligne de votre entreprise en Nouvelle-Calédonie — de Nouméa au Grand Nouméa. Des recommandations directes, adaptées au marché local.",
+      servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises calédoniennes</span>",
+      servicesIntro: "Commerce, services, tourisme, BTP : le tissu économique calédonien est dense. Encore faut-il être visible. Site, SEO, réseaux et automatisation, on gère de A à Z.",
+      aboutP: "Du commerce de Nouméa à l'entreprise du Grand Nouméa, je conçois des outils d'acquisition taillés pour un territoire au fort pouvoir d'achat et très connecté.",
+      zones: 'Nouméa, Dumbéa, Mont-Dore, Païta, Koné, Bourail',
+      areaServed: ['Nouméa', 'Dumbéa', 'Mont-Dore', 'Koné'],
+      faq: [
+        { q: "Travaillez-vous avec les entreprises de toute la Nouvelle-Calédonie ?", a: "Oui, du Grand Nouméa à la Province Nord. Tout se pilote à distance (visio, téléphone), avec une vraie exigence de proximité malgré le décalage horaire." },
+        { q: "Combien coûte un site internet en Nouvelle-Calédonie ?", a: "Nos sites vitrines professionnels démarrent à 250€ (équivalent en francs Pacifique communiqué au devis). Pour de l'e-commerce ou du sur-mesure, on chiffre après un court échange." },
+        { q: "Gérez-vous le référencement local et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé (Nouméa, Dumbéa…) et community management sur Facebook et Instagram, très suivis localement." },
+        { q: "Le décalage horaire est-il un problème ?", a: "Pas du tout. On organise des points en visio aux créneaux qui vous conviennent, et le suivi de projet est fluide toute la semaine." }
+      ]
+    },
+    cities: [
+      {
+        slug: 'noumea', name: 'Nouméa', gentile: 'nouméennes', hero: 'hero-1.jpg',
+        title: 'Agence Web & Création de Site Internet à Nouméa (988) | GroupSolution',
+        desc: "Agence web à Nouméa, chef-lieu de la Nouvelle-Calédonie : création de sites internet, SEO local, réseaux sociaux et publicité pour les commerces et entreprises du Grand Nouméa. Audit gratuit.",
+        keywords: 'agence web Nouméa, création site internet Nouméa 988, SEO Nouméa Calédonie, community management Nouméa',
+        badge: 'Votre agence digitale au chef-lieu (Nouméa · 988)',
+        h1suffix: 'à Nouméa',
+        heroSub: "Chef-lieu et cœur économique de la Nouvelle-Calédonie, Nouméa concentre commerces, sièges d'entreprise et tourisme (Anse Vata, Baie des Citrons). On donne à votre activité nouméenne la visibilité qu'elle mérite en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence en ligne de votre commerce ou société à Nouméa — du centre-ville à Anse Vata, jusqu'à Ducos. Recommandations directes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises nouméennes</span>",
+        servicesIntro: "Commerces du centre, restaurants, prestataires : à Nouméa, la clientèle vous cherche d'abord sur Google et les réseaux. On centralise toute votre présence en ligne.",
+        aboutP: "Du commerce du centre-ville de Nouméa au restaurant d'Anse Vata, je conçois des outils d'acquisition adaptés à la réalité du chef-lieu calédonien.",
+        zones: 'Centre-ville, Quartier Latin, Anse Vata, Baie des Citrons, Ducos, Rivière-Salée',
+        areaServed: ['Nouméa', 'Dumbéa', 'Mont-Dore'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces du centre de Nouméa ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE du chef-lieu. On crée des sites pensés pour capter la clientèle nouméenne." },
+          { q: "Combien coûte un site internet à Nouméa ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Pouvez-vous me positionner sur Google pour « à Nouméa 988 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir quand un Nouméen cherche votre service." },
+          { q: "Gérez-vous les réseaux sociaux des entreprises nouméennes ?", a: "Tout à fait. Facebook et Instagram sont incontournables à Nouméa. On crée vos visuels, on rédige vos posts et on pilote vos campagnes locales." }
+        ]
+      },
+      {
+        slug: 'dumbea', name: 'Dumbéa', gentile: 'dumbéennes', hero: 'hero-2.jpg',
+        title: 'Agence Web & Création de Site Internet à Dumbéa (988) | GroupSolution',
+        desc: "Agence web à Dumbéa dans le Grand Nouméa : sites internet, SEO local, réseaux sociaux et automatisation pour les commerces et entreprises d'une commune en pleine croissance. Audit gratuit.",
+        keywords: 'agence web Dumbéa, création site internet Dumbéa 988, SEO Dumbéa Calédonie, community management Grand Nouméa',
+        badge: 'Votre agence digitale dans le Grand Nouméa (Dumbéa · 988)',
+        h1suffix: 'à Dumbéa',
+        heroSub: "Commune la plus dynamique du Grand Nouméa, Dumbéa attire habitants, zones commerciales (Dumbéa-sur-Mer) et entreprises. On aide ces acteurs à capter cette croissance en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence web de votre activité à Dumbéa, du centre à Dumbéa-sur-Mer. Un repère clair, sans engagement.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises dumbéennes</span>",
+        servicesIntro: "Zones commerciales, services, artisans : Dumbéa grandit vite et la clientèle se connecte. On centralise site, réseaux et publicité pour vous démarquer.",
+        aboutP: "Du commerce de Dumbéa-sur-Mer à l'artisan du centre, je conçois des sites taillés pour une commune jeune et en forte expansion.",
+        zones: 'Dumbéa-sur-Mer, Koutio, Auteuil, Nakutakoin, Katiramona',
+        areaServed: ['Dumbéa', 'Nouméa', 'Païta'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces de Dumbéa ?", a: "Oui, commerces des zones de Dumbéa-sur-Mer, services et artisans sont au cœur de notre clientèle. On crée des sites qui captent une population jeune et connectée." },
+          { q: "Le marché de Dumbéa est-il porteur pour le web ?", a: "Très : Dumbéa est l'une des communes qui grandit le plus vite du Grand Nouméa. Se positionner en ligne maintenant, c'est prendre de l'avance sur la concurrence." },
+          { q: "Faites-vous de la publicité ciblée sur le Grand Nouméa ?", a: "Oui. On paramètre des campagnes géociblées (Dumbéa, Nouméa, Païta…) pour toucher précisément les clients autour de votre activité." },
+          { q: "Combien coûte un site à Dumbéa ?", a: "À partir de 250€ pour une vitrine professionnelle. E-commerce et sur-mesure sur devis transparent." }
+        ]
+      },
+      {
+        slug: 'mont-dore', name: 'Mont-Dore', gentile: 'du Mont-Dore', hero: 'hero-3.jpg',
+        title: 'Agence Web & Création de Site Internet au Mont-Dore (988) | GroupSolution',
+        desc: "Agence web au Mont-Dore dans le Grand Nouméa : sites internet, SEO local, réseaux sociaux pour les commerces de proximité, l'artisanat et les services d'une commune résidentielle. Audit gratuit.",
+        keywords: 'agence web Mont-Dore, création site internet Mont-Dore 988, SEO Mont-Dore Calédonie, community management Grand Nouméa',
+        badge: 'Votre agence digitale dans le Grand Nouméa (Mont-Dore · 988)',
+        h1suffix: 'au Mont-Dore',
+        heroSub: "Grande commune résidentielle du Grand Nouméa, entre mer et montagne, Le Mont-Dore vit de ses commerces de proximité, de son artisanat et de son cadre nature. On rend ces activités visibles en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence web de votre activité au Mont-Dore — commerce de proximité, artisan ou service. Recommandations concrètes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises du Mont-Dore</span>",
+        servicesIntro: "Commerces de proximité, artisans, services : au Mont-Dore, une bonne présence locale en ligne fait toute la différence face aux grandes enseignes de Nouméa.",
+        aboutP: "Du commerce de Boulari à l'artisan de Plum, je conçois des sites qui ancrent votre notoriété locale et vous amènent des clients de proximité.",
+        zones: 'Boulari, Saint-Louis, Plum, La Coulée, Yahoué, Robinson',
+        areaServed: ['Mont-Dore', 'Nouméa', 'Dumbéa'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces et artisans du Mont-Dore ?", a: "Oui, commerces de proximité, artisans et services sont au cœur de notre clientèle. On crée des sites qui renforcent votre notoriété locale." },
+          { q: "Combien coûte un site internet au Mont-Dore ?", a: "À partir de 250€ pour une vitrine professionnelle. Pour des besoins spécifiques, on établit un devis transparent après un échange." },
+          { q: "Comment attirer une clientèle de proximité ?", a: "Par le référencement local et une fiche Google soignée : quand un habitant du Mont-Dore cherche votre service, vous devez sortir en premier." },
+          { q: "Gérez-vous les réseaux sociaux localement ?", a: "Oui. Facebook et WhatsApp sont très utilisés. On crée vos contenus et on anime vos pages pour développer votre notoriété." }
+        ]
+      },
+      {
+        slug: 'kone', name: 'Koné', gentile: 'de Koné', hero: 'hero-1.jpg',
+        title: 'Agence Web & Création de Site Internet à Koné (988) | GroupSolution',
+        desc: "Agence web à Koné, chef-lieu de la Province Nord de Nouvelle-Calédonie : sites internet, SEO local, réseaux sociaux et automatisation pour les entreprises du pôle VKP et du bassin minier. Audit gratuit.",
+        keywords: 'agence web Koné, création site internet Koné 988, SEO Province Nord Calédonie, site entreprise VKP, automatisation Koné',
+        badge: 'Votre agence digitale en Province Nord (Koné · 988)',
+        h1suffix: 'à Koné',
+        heroSub: "Chef-lieu de la Province Nord et cœur du pôle VKP (Voh-Koné-Pouembout), Koné est le moteur du développement du Nord calédonien, porté par l'industrie du nickel. On outille ses entreprises d'un web performant.",
+        auditIntro: "En 15 minutes, on évalue la présence en ligne de votre société à Koné et dans le pôle VKP — commerce, service, industrie ou sous-traitance minière. Diagnostic direct.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises du Nord</span>",
+        servicesIntro: "Commerce, services aux entreprises, sous-traitance industrielle : dans le Nord, un site crédible et un référencement pro font la différence pour capter les opportunités du pôle VKP.",
+        aboutP: "De l'entreprise de sous-traitance du bassin minier au commerce de Koné, je développe des sites solides et des outils qui appuient le développement du Nord.",
+        zones: 'Koné, Voh, Pouembout, Népoui, Pont-Blanc, la zone VKP',
+        areaServed: ['Koné', 'Voh', 'Pouembout'],
+        faq: [
+          { q: "Accompagnez-vous les entreprises du pôle VKP et du Nord ?", a: "Oui : commerce, services, sous-traitance industrielle et minière. On crée des sites crédibles et des outils qui appuient votre développement dans le Nord." },
+          { q: "Pouvez-vous créer un site professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, références et certifications — à partir de 250€ pour une vitrine, e-commerce et sur-mesure sur devis." },
+          { q: "Automatisez-vous les devis et les relances ?", a: "Oui, c'est notre valeur ajoutée : formulaires de devis, accusés automatiques, relances programmées. Vos équipes gagnent du temps sur l'administratif." },
+          { q: "Référencez-vous mon entreprise sur « Koné » et la Province Nord ?", a: "Oui. On optimise votre visibilité sur les recherches locales de Koné et du pôle VKP pour capter des demandes qualifiées." }
+        ]
+      }
+    ]
+  },
+
+  /* ───────────────────────── LA POLYNÉSIE FRANÇAISE (987) ───────────────────────── */
+  {
+    slug: 'polynesie-francaise', name: 'La Polynésie française', code: '987', status: 'online',
+    regionPage: 'site-internet-polynesie-francaise.html',
+    fauna: ['raie-manta.jpg', 'baleine.jpg', 'poisson-clown.jpg'],
+    implantTagline: "L'agence digitale de Groupe Solution en Polynésie française : sites internet, référencement local, réseaux sociaux et automatisation pour les entreprises de Tahiti, de Papeete et des îles.",
+    region: {
+      pageFile: 'site-internet-polynesie-francaise.html', slug: 'polynesie-francaise', name: 'La Polynésie française', gentile: 'polynésiennes', hero: 'hero-1.jpg',
+      title: 'Agence Web & Digitale en Polynésie française (987) | GroupSolution',
+      desc: "Agence web en Polynésie française : création de sites internet, référencement local (SEO), réservation en ligne et réseaux sociaux pour les entreprises de Tahiti, Papeete, Punaauia et des îles. Audit gratuit.",
+      keywords: 'agence web Polynésie française, création site internet Tahiti 987, SEO Papeete, site réservation tourisme Polynésie, community management Tahiti',
+      badge: 'Votre agence digitale en Polynésie française (987)',
+      h1suffix: 'en Polynésie française',
+      heroSub: "Des lagons de Bora-Bora au dynamisme de Papeete, la Polynésie vit du tourisme, du commerce et de la mer. On donne aux entreprises polynésiennes les outils pour rayonner en ligne, dans le Pacifique et au-delà.",
+      auditIntro: "En 15 minutes, on analyse la présence en ligne de votre entreprise en Polynésie — de Tahiti aux îles. Des recommandations directes, adaptées au marché local et touristique.",
+      servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises polynésiennes</span>",
+      servicesIntro: "Tourisme, hôtellerie, commerce, services : en Polynésie, une grande part de vos clients vous découvrent en ligne, souvent depuis l'autre bout du monde. Site, réservation, SEO et réseaux, on gère tout.",
+      aboutP: "De l'hôtel de Bora-Bora au commerce de Papeete, je conçois des sites qui captent une clientèle locale et internationale, avant même qu'elle ne réserve son voyage.",
+      zones: 'Papeete, Faaa, Punaauia, Pirae, Moorea, Bora-Bora',
+      areaServed: ['Papeete', 'Faaa', 'Punaauia', 'Bora-Bora'],
+      faq: [
+        { q: "Travaillez-vous avec les entreprises de toute la Polynésie ?", a: "Oui, de Tahiti aux îles Sous-le-Vent. Tout se pilote à distance (visio, téléphone), avec une vraie exigence de proximité malgré la distance." },
+        { q: "Combien coûte un site internet en Polynésie ?", a: "Nos sites vitrines professionnels démarrent à 250€ (équivalent en francs Pacifique au devis). E-commerce et réservation en ligne sur devis." },
+        { q: "Créez-vous des sites de réservation pour le tourisme ?", a: "Oui, c'est essentiel en Polynésie : réservation d'hébergements, d'excursions ou d'activités avec confirmation automatique, souvent en plusieurs langues." },
+        { q: "Gérez-vous le référencement et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé et multilingue, et community management sur les réseaux où voyagent vos futurs clients." }
+      ]
+    },
+    cities: [
+      {
+        slug: 'papeete', name: 'Papeete', gentile: 'de Papeete', hero: 'hero-2.jpg',
+        title: 'Agence Web & Création de Site Internet à Papeete (987) | GroupSolution',
+        desc: "Agence web à Papeete, capitale de la Polynésie française : création de sites internet, SEO local, réseaux sociaux et publicité pour les commerces et entreprises de Tahiti. Audit gratuit.",
+        keywords: 'agence web Papeete, création site internet Papeete 987, SEO Papeete Tahiti, community management Papeete',
+        badge: 'Votre agence digitale à la capitale (Papeete · 987)',
+        h1suffix: 'à Papeete',
+        heroSub: "Capitale et port de la Polynésie française, Papeete concentre commerces, marché, administration et vie économique de Tahiti. On donne à votre activité la visibilité qu'elle mérite en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence en ligne de votre commerce ou société à Papeete — du front de mer au marché, jusqu'à Fare Ute. Recommandations directes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises de Papeete</span>",
+        servicesIntro: "Commerces du centre, restaurants, prestataires : à Papeete, la clientèle vous cherche d'abord sur Google et les réseaux. On centralise toute votre présence en ligne.",
+        aboutP: "Du commerce du centre de Papeete au restaurant du front de mer, je conçois des outils d'acquisition adaptés à la réalité de la capitale polynésienne.",
+        zones: 'Centre-ville, le marché, front de mer, Fare Ute, Titioro, Mamao',
+        areaServed: ['Papeete', 'Faaa', 'Pirae'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces du centre de Papeete ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE de la capitale. On crée des sites pensés pour capter la clientèle de Papeete." },
+          { q: "Combien coûte un site internet à Papeete ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Pouvez-vous me positionner sur Google pour « à Papeete » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir sur les recherches locales." },
+          { q: "Gérez-vous les réseaux sociaux des entreprises de Papeete ?", a: "Tout à fait. Facebook et Instagram sont incontournables à Tahiti. On crée vos visuels, on rédige vos posts et on pilote vos campagnes locales." }
+        ]
+      },
+      {
+        slug: 'faaa', name: 'Faaa', gentile: 'de Faaa', hero: 'hero-1.jpg',
+        title: 'Agence Web & Création de Site Internet à Faaa (987) | GroupSolution',
+        desc: "Agence web à Faaa en Polynésie française, commune de l'aéroport international de Tahiti : sites internet, SEO local, réseaux sociaux et automatisation pour commerces et services. Audit gratuit.",
+        keywords: 'agence web Faaa, création site internet Faaa 987, SEO Faaa Tahiti, community management aéroport Tahiti',
+        badge: 'Votre agence digitale près de l’aéroport (Faaa · 987)',
+        h1suffix: 'à Faaa',
+        heroSub: "Commune la plus peuplée de Polynésie et porte d'entrée de Tahiti avec son aéroport international, Faaa mêle commerces, services et flux touristique. On rend ces activités visibles en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence web de votre activité à Faaa — commerce, service ou activité liée à l'aéroport et au tourisme. Recommandations concrètes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises de Faaa</span>",
+        servicesIntro: "Commerces, services, hébergements proches de l'aéroport : à Faaa, on capte une clientèle locale et de passage. Site, réservation, réseaux et SEO, on gère tout.",
+        aboutP: "Du commerce de Faaa à l'hébergement proche de l'aéroport, je conçois des sites qui captent le voyageur et la clientèle locale au bon moment.",
+        zones: 'Puurai, Oremu, Pamatai, Tavararo, aéroport de Tahiti-Faa’a',
+        areaServed: ['Faaa', 'Papeete', 'Punaauia'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces et services de Faaa ?", a: "Oui, commerces, services et hébergements sont au cœur de notre clientèle. On crée des sites qui captent la clientèle locale et les voyageurs de passage." },
+          { q: "Un site utile pour une activité proche de l'aéroport ?", a: "Tout à fait : location, transfert, hébergement, restauration. Un site clair avec réservation en ligne rassure et convertit le voyageur avant son arrivée." },
+          { q: "Combien coûte un site internet à Faaa ?", a: "À partir de 250€ pour une vitrine professionnelle. E-commerce, réservation et sur-mesure sur devis transparent." },
+          { q: "Gérez-vous le référencement local ?", a: "Oui. Fiche Google Business et SEO géolocalisé pour apparaître sur les recherches locales et touristiques autour de Faaa et de l'aéroport." }
+        ]
+      },
+      {
+        slug: 'punaauia', name: 'Punaauia', gentile: 'de Punaauia', hero: 'hero-3.jpg',
+        title: 'Agence Web & Création de Site Internet à Punaauia (987) | GroupSolution',
+        desc: "Agence web à Punaauia sur la côte ouest de Tahiti : sites internet, réservation en ligne, SEO local et réseaux sociaux pour le tourisme, la restauration et les commerces balnéaires. Audit gratuit.",
+        keywords: 'agence web Punaauia, création site internet Punaauia 987, SEO côte ouest Tahiti, site tourisme Punaauia',
+        badge: 'Votre agence digitale sur la côte ouest (Punaauia · 987)',
+        h1suffix: 'à Punaauia',
+        heroSub: "Commune résidentielle et balnéaire de la côte ouest de Tahiti, réputée pour son lagon et son cadre de vie (PK18), Punaauia vit du tourisme, de la restauration et des commerces. On rend votre établissement visible avant le visiteur.",
+        auditIntro: "En 15 minutes, on analyse comment votre activité de Punaauia apparaît en ligne — sur Google, les réseaux et les plateformes que consultent les visiteurs. Recommandations concrètes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour le tourisme de Punaauia</span>",
+        servicesIntro: "Hôtels, restaurants du lagon, loueurs, commerces : à Punaauia, on vous trouve d'abord en ligne. Site, réservation, avis et publicité, on gère tout.",
+        aboutP: "Du restaurant du bord de lagon au loueur d'activités de Punaauia, je conçois des sites qui captent le visiteur au bon moment.",
+        zones: 'PK18, Punaruu, Taina (marina), Outumaoro, le lagon',
+        areaServed: ['Punaauia', 'Faaa', 'Paea'],
+        faq: [
+          { q: "Créez-vous des sites pour les acteurs du tourisme à Punaauia ?", a: "Absolument. Hôtels, restaurants du lagon, loueurs et activités nautiques : on crée des sites qui donnent envie et rassurent le visiteur avant sa venue." },
+          { q: "Un site de réservation en ligne, c'est adapté ?", a: "Oui : réservation de tables, d'activités ou d'hébergement avec confirmation automatique, souvent multilingue pour la clientèle internationale." },
+          { q: "Comment être visible auprès des visiteurs de la côte ouest ?", a: "Par le référencement local et une fiche Google soignée : quand un visiteur cherche « restaurant lagon Punaauia » ou « activité Tahiti ouest », vous devez sortir en premier." },
+          { q: "Gérez-vous les avis Google et la e-réputation ?", a: "Oui. Dans le tourisme, l'avis fait la réservation. On met en place la collecte, le suivi et les réponses pour soigner votre image." }
+        ]
+      },
+      {
+        slug: 'bora-bora', name: 'Bora-Bora', gentile: 'de Bora-Bora', hero: 'hero-2.jpg',
+        title: 'Agence Web & Création de Site Internet à Bora-Bora (987) | GroupSolution',
+        desc: "Agence web à Bora-Bora, joyau touristique de la Polynésie française : sites internet multilingues, réservation en ligne, SEO et réseaux sociaux pour l'hôtellerie, les excursions et le tourisme de luxe. Audit gratuit.",
+        keywords: 'agence web Bora-Bora, création site internet Bora-Bora 987, site réservation hôtel Bora-Bora, SEO tourisme luxe Polynésie',
+        badge: 'Votre agence digitale au joyau du Pacifique (Bora-Bora · 987)',
+        h1suffix: 'à Bora-Bora',
+        heroSub: "Destination de rêve mondialement connue pour son lagon et ses bungalows sur pilotis, Bora-Bora vit d'un tourisme international haut de gamme. On donne à vos établissements une présence en ligne à la hauteur de ce standing.",
+        auditIntro: "En 15 minutes, on analyse la présence en ligne de votre activité à Bora-Bora — hôtellerie, excursion, restauration ou service touristique. Diagnostic direct.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour le tourisme de Bora-Bora</span>",
+        servicesIntro: "Hôtels, prestataires d'excursions, restaurants : à Bora-Bora, votre clientèle est internationale et exigeante. Un site élégant, multilingue et une réservation fluide sont indispensables.",
+        aboutP: "De la pension de famille au prestataire d'excursions lagon, je conçois des sites élégants et multilingues qui séduisent une clientèle internationale avant même sa venue à Bora-Bora.",
+        zones: 'Vaitape, Matira, Anau, les motu, le lagon',
+        areaServed: ['Bora-Bora', 'Taha’a', 'Raiatea'],
+        faq: [
+          { q: "Créez-vous des sites pour l'hôtellerie et les excursions de Bora-Bora ?", a: "Absolument. Pensions, prestataires d'excursions lagon, restaurants : on crée des sites élégants et multilingues qui séduisent une clientèle internationale." },
+          { q: "Un site multilingue est-il indispensable à Bora-Bora ?", a: "Oui, vu la clientèle internationale (anglais notamment). On conçoit des sites multilingues propres, optimisés pour le référencement dans chaque langue." },
+          { q: "Proposez-vous la réservation en ligne ?", a: "Oui : réservation d'hébergement, d'excursions ou d'activités avec confirmation automatique. Essentiel pour une clientèle qui réserve depuis l'étranger." },
+          { q: "Comment être visible auprès des voyageurs internationaux ?", a: "Par un référencement soigné (dont l'anglais), une fiche Google impeccable et la gestion des avis, qui font la décision dans le tourisme de luxe." }
+        ]
+      }
+    ]
   }
 ];
