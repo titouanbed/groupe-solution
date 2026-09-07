@@ -28,6 +28,31 @@ holding. La 1ʳᵉ zone de référence est `reunion/site-internet-reunion.html`.
 
 4. **Référencer dans le SEO** : ajouter l'URL de la zone à `sitemap.xml`.
 
+## 🖼️ Règle d'or — VISUELS LOCAUX PROPRES À CHAQUE ZONE (obligatoire)
+
+**Ne jamais réutiliser les photos d'une autre zone ni des visuels génériques
+partagés.** Chaque territoire doit avoir SES propres images de haute qualité,
+évoquant son ambiance (paysages urbains, entreprises, bureaux modernes, cadres
+de travail qui rappellent le lieu).
+
+Convention de stockage : **`/assets/{slug}/`** (ex. `/assets/reunion/`).
+Chaque zone héberge **9 visuels** en local (jamais de hotlink) :
+
+| Fichier | Usage | Résolution conseillée |
+|---|---|---|
+| `hero-1.jpg`, `hero-2.jpg`, `hero-3.jpg` | fond du hero (rotation) | ~1600×1000 |
+| `web.jpg`, `social.jpg`, `seo.jpg` | 3 cartes de services | ~800×560 |
+| `rea-1.jpg`, `rea-2.jpg`, `rea-3.jpg` | 3 cartes « réalisations » | ~800×560 |
+
+Méthode : **vérifier visuellement chaque image avant de la retenir** (contact-sheet),
+choisir des visuels **distincts de ceux du holding et des autres zones**, puis
+télécharger en local (source libre type Unsplash, ou photos de marque fournies).
+La photo du fondateur (`../photo-president.jpg`) reste partagée (personne réelle).
+
+Astuce lisibilité : si un visuel de hero est clair (plage, aérien), renforcer
+l'overlay dans un `<style>` de la page :
+`.hero::before { background: linear-gradient(to bottom, rgba(0,0,0,.34), rgba(0,0,0,.58)); }`
+
 ## Invariants à NE PAS toucher (déjà en place dans le gabarit)
 
 - **Ponts holding** : lien nav « Groupe Solution ↗ », bande d'appartenance

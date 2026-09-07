@@ -73,6 +73,10 @@
 
   <!-- Charte de silo partagée -->
   <link rel="stylesheet" href="../assets/silo.css" />
+  <style>
+    /* Contraste renforcé du texte hero sur les visuels clairs (plage, aérien) */
+    .hero::before { background: linear-gradient(to bottom, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.58) 100%); }
+  </style>
 </head>
 
 <body>
@@ -111,7 +115,7 @@
   </nav>
 
   <!-- HERO (AGENCE 360) -->
-  <section class="hero" id="hero" style="background-image: url('../photo1.jpg');">
+  <section class="hero" id="hero" style="background-image: url('../assets/reunion/hero-1.jpg');">
     <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
@@ -185,7 +189,7 @@
 
       <div class="bulles-container">
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../photo7.jpg');"></div>
+          <div class="bulle-image" style="background-image: url('../assets/reunion/web.jpg');"></div>
           <div class="bulle-content">
             <h4>Création de Sites Web</h4>
             <p>Site vitrine, e-commerce ou plateforme sur-mesure. Un design moderne, adapté aux mobiles et optimisé pour le réseau local.</p>
@@ -196,7 +200,7 @@
         </div>
 
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../photo2.jpg');"></div>
+          <div class="bulle-image" style="background-image: url('../assets/reunion/social.jpg');"></div>
           <div class="bulle-content">
             <h4>Réseaux Sociaux & Ads</h4>
             <p>Community Management sur Facebook, Insta & TikTok. Création de contenus et publicité (Social Ads) ciblée sur le 974.</p>
@@ -207,7 +211,7 @@
         </div>
 
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../photo3.jpg');"></div>
+          <div class="bulle-image" style="background-image: url('../assets/reunion/seo.jpg');"></div>
           <div class="bulle-content">
             <h4>SEO & Automatisation</h4>
             <p>Dominez Google à La Réunion avec notre référencement local. Automatisation de vos relances clients et prises de RDV par IA.</p>
@@ -234,7 +238,7 @@
 
       <div class="rea-grid">
         <a href="https://twentythreeclean.com/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea1.jpg');"></div>
+          <div class="rea-img" style="background-image: url('../assets/reunion/rea-1.jpg');"></div>
           <div class="rea-content">
             <h4>Twenty Three Clean</h4>
             <p>Site vitrine moderne pour une entreprise de nettoyage professionnel.</p>
@@ -242,7 +246,7 @@
         </a>
 
         <a href="https://solutionsrecrutement.fr/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea2.jpg');"></div>
+          <div class="rea-img" style="background-image: url('../assets/reunion/rea-2.jpg');"></div>
           <div class="rea-content">
             <h4>Solutions Recrutement</h4>
             <p>Développement web avancé pour agence de recrutement.</p>
@@ -250,7 +254,7 @@
         </a>
 
         <a href="https://solutionalternance.fr/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea3.jpg');"></div>
+          <div class="rea-img" style="background-image: url('../assets/reunion/rea-3.jpg');"></div>
           <div class="rea-content">
             <h4>Solution Alternance</h4>
             <p>Plateforme d'automatisation avec algorithme de matching par IA.</p>
@@ -510,7 +514,7 @@
 
     // ===== HERO BACKGROUND ROTATION =====
     const hero = document.querySelector('.hero');
-    const photos = ['../photo1.jpg', '../photo3.jpg', '../photo4.jpg', '../photo2.jpg'];
+    const photos = ['../assets/reunion/hero-1.jpg', '../assets/reunion/hero-2.jpg', '../assets/reunion/hero-3.jpg'];
     let currentPhotoIndex = 0;
     photos.forEach(photo => { const img = new Image(); img.src = photo; });
     function changeHeroBackground() {
