@@ -74,8 +74,11 @@
   <!-- Charte de silo partagée -->
   <link rel="stylesheet" href="../assets/silo.css" />
   <style>
-    /* Contraste renforcé du texte hero sur les visuels clairs (plage, aérien) */
-    .hero::before { background: linear-gradient(to bottom, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.58) 100%); }
+    /* Contraste renforcé du texte hero sur les visuels clairs/chargés (cascades, aérien) */
+    .hero::before { background: linear-gradient(to bottom, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.42) 40%, rgba(0,0,0,0.66) 100%); }
+    /* Halo doux derrière le texte pour garantir la lisibilité au centre */
+    .hero-content { position: relative; }
+    .hero-content::before { content:''; position:absolute; inset:-6% -8%; z-index:-1; border-radius:40px; background:radial-gradient(60% 60% at 50% 46%, rgba(0,0,0,0.42), rgba(0,0,0,0) 72%); }
   </style>
 </head>
 
@@ -238,7 +241,7 @@
 
       <div class="rea-grid">
         <a href="https://twentythreeclean.com/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../assets/reunion/rea-1.jpg');"></div>
+          <div class="rea-img" style="background-image: url('../rea1.jpg');"></div>
           <div class="rea-content">
             <h4>Twenty Three Clean</h4>
             <p>Site vitrine moderne pour une entreprise de nettoyage professionnel.</p>
@@ -246,7 +249,7 @@
         </a>
 
         <a href="https://solutionsrecrutement.fr/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../assets/reunion/rea-2.jpg');"></div>
+          <div class="rea-img" style="background-image: url('../rea2.jpg');"></div>
           <div class="rea-content">
             <h4>Solutions Recrutement</h4>
             <p>Développement web avancé pour agence de recrutement.</p>
@@ -254,7 +257,7 @@
         </a>
 
         <a href="https://solutionalternance.fr/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../assets/reunion/rea-3.jpg');"></div>
+          <div class="rea-img" style="background-image: url('../rea3.jpg');"></div>
           <div class="rea-content">
             <h4>Solution Alternance</h4>
             <p>Plateforme d'automatisation avec algorithme de matching par IA.</p>
