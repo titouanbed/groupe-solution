@@ -32,8 +32,11 @@ holding. La 1ʳᵉ zone de référence est `reunion/site-internet-reunion.html`.
 
 **Ne jamais réutiliser les photos d'une autre zone ni des visuels génériques
 partagés.** Chaque territoire doit avoir SES propres images de haute qualité,
-évoquant son ambiance (paysages urbains, entreprises, bureaux modernes, cadres
-de travail qui rappellent le lieu).
+**authentiquement locales** : de vrais paysages du territoire (nature, reliefs,
+côtes) et, pour les 3 cartes de services, de la **faune/flore emblématique** de
+la zone — pas de stock générique de ville/métropole qui n'a rien à voir avec le
+lieu. Exemple Réunion : hero = pitons / cirques / mer de nuages ; services =
+paille-en-queue, gecko vert, baleine à bosse.
 
 Convention de stockage : **`/assets/{slug}/`** (ex. `/assets/reunion/`).
 Chaque zone héberge **9 visuels** en local (jamais de hotlink) :
