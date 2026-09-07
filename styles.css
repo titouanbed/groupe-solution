@@ -32,11 +32,12 @@ h1 i,h2 i,h3 i{font-style:normal;color:var(--olive2)}
 
 /* ── NAV ── */
 .nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(247,246,243,.82);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(236,234,227,.8)}
-.navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center}.brand img{height:40px;width:auto;display:block}
-.links{display:flex;align-items:center;gap:26px}
-.links a{font-size:14.5px;color:var(--secondary);font-weight:600;transition:color .16s}
+.navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:nowrap}
+.brand{display:flex;align-items:center;flex-shrink:0}.brand img{height:40px;width:auto;display:block}
+.links{display:flex;align-items:center;gap:20px;flex-wrap:nowrap}
+.links a{font-size:14px;color:var(--secondary);font-weight:600;white-space:nowrap;transition:color .16s}
 .links a:hover,.links a.active{color:var(--ink)}
+@media(max-width:920px) and (min-width:701px){.links{gap:13px}.links a{font-size:12.5px}.links .cta{padding:9px 14px;font-size:13px}}
 .links .cta{padding:11px 20px;border-radius:999px;color:#fff;background:var(--acc);font-weight:800;font-size:14px;box-shadow:0 6px 16px var(--acc-ring)}
 .links .cta:hover{background:var(--acc-d);color:#fff}
 
