@@ -122,7 +122,6 @@ export const ZONES = [
     slug: 'guyane', name: 'La Guyane', code: '973', status: 'online',
     regionPage: 'site-internet-guyane.html',
     fauna: ['ara.jpg', 'paresseux.jpg', 'jaguar.jpg'],
-    photoCredits: "Crédits photos : forêt © Cayambe (CC BY-SA 3.0) · fleuve Maroni © Patrick Wilhelm (CC BY-SA 3.0) · Ariane 5 à Kourou © NASA (domaine public) · ara © Brian Snelson (CC BY 2.0) · paresseux & jaguar © Charles J. Sharp (CC BY-SA 4.0) — via Wikimedia Commons.",
     implantTagline: "L'agence digitale de Groupe Solution en Guyane : sites internet, référencement local, réseaux sociaux et automatisation pour les entreprises de Cayenne, Kourou et l'Ouest guyanais.",
     region: {
       pageFile: 'site-internet-guyane.html', slug: 'guyane', name: 'La Guyane', gentile: 'guyanaises', hero: 'hero-1.jpg',
@@ -238,7 +237,6 @@ export const ZONES = [
     slug: 'martinique', name: 'La Martinique', code: '972', status: 'online',
     regionPage: 'site-internet-martinique.html',
     fauna: ['colibri.jpg', 'iguane.jpg', 'tortue.jpg'],
-    photoCredits: "Crédits photos : Montagne Pelée © Pom' from France (CC BY-SA 2.0) · Petite Anse © Thérèse Gaigé (CC0) · Fort-de-France © JLXP (CC BY-SA 4.0) · colibri © Postdlf (CC BY-SA 3.0) · iguane © Charles J. Sharp (CC BY-SA 3.0) · tortue verte © J. Bourjea / Ifremer (CC BY 4.0) — via Wikimedia Commons.",
     implantTagline: "L'agence digitale de Groupe Solution en Martinique : sites internet, référencement local, réseaux sociaux et automatisation pour les entreprises de Fort-de-France, du Lamentin et de toute l'île.",
     region: {
       pageFile: 'site-internet-martinique.html', slug: 'martinique', name: 'La Martinique', gentile: 'martiniquaises', hero: 'hero-1.jpg',
