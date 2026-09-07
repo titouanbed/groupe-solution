@@ -9,12 +9,17 @@
    • La géo (Pays › Région › Ville, dont les DOM-TOM) est native dans GA4.
    ═══════════════════════════════════════════════════════════ */
 (function () {
-  var GA_ID = 'G-G8RWE633G4'; // ID GA4 Groupe Solution (holding + Mayotte)
+  var GA_ID = 'G-G8RWE633G4'; // ID GA4 Groupe Solution (holding + zones géo)
 
   if (!GA_ID || /X{4,}/.test(GA_ID)) return; // pas d'ID réel → on ne fait rien
 
   var STORE = 'gs-consent-v1';
-  var zone = location.pathname.indexOf('/mayotte/') !== -1 ? 'mayotte' : 'holding';
+
+  /* Silos géographiques : ajoutez ici le slug de chaque nouvelle zone.
+     La zone est déduite du 1er segment d'URL → content_group dans GA4. */
+  var ZONES = ['mayotte', 'reunion', 'guyane', 'martinique', 'guadeloupe', 'nouvelle-caledonie'];
+  var seg = (location.pathname.split('/')[1] || '').toLowerCase();
+  var zone = ZONES.indexOf(seg) !== -1 ? seg : 'holding';
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
 
