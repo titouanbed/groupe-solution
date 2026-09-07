@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guides & conseils web — La Martinique | GroupSolution</title>
+  <meta name="description" content="Tous nos guides pour réussir en ligne en La Martinique : prix d'un site internet, visibilité sur Google, conseils par ville. Par GroupSolution." />
+  <link rel="canonical" href="https://www.groupsolution.fr/martinique/blog/" />
+  <link rel="icon" type="image/svg+xml" href="../../Logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/silo.css" />
+  <style>
+  .blognav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.05);padding:12px 0}
+  .blognav .container{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .blognav .nav-logo img{height:32px}
+  .blognav .bnl{display:flex;gap:22px;align-items:center}
+  .blognav .bnl a{color:var(--gris-fonce);font-weight:500;font-size:.88rem;text-decoration:none;white-space:nowrap}
+  .blognav .bnl a:hover{color:var(--rose-fonce)}
+  main{padding-top:0}
+  .article-head{padding:96px 0 26px;background:linear-gradient(135deg,var(--rose-clair) 0%,var(--blanc) 100%)}
+  .breadcrumb{font-size:12.5px;color:var(--gris);font-weight:600}
+  .breadcrumb a{color:var(--rose-fonce);text-decoration:none}
+  .article-tag{display:inline-flex;align-items:center;gap:6px;background:var(--blanc);color:var(--rose-fonce);border:1px solid var(--rose);padding:5px 13px;border-radius:999px;font-size:.75rem;font-weight:700;margin:16px 0 4px}
+  .article-head h1{font-size:clamp(1.9rem,4.2vw,2.9rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-top:10px;max-width:22ch;color:var(--gris-fonce)}
+  .article-meta{margin-top:14px;color:var(--gris);font-size:.85rem;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .article-body{padding:34px 0 50px;background:var(--blanc)}
+  .prose{max-width:760px;margin:0 auto;font-size:1.06rem;line-height:1.8;color:#374151}
+  .prose .lead{font-size:1.2rem;line-height:1.7;color:var(--gris-fonce);font-weight:500;margin-bottom:8px}
+  .prose h2{font-size:clamp(1.35rem,2.4vw,1.7rem);font-weight:800;line-height:1.2;margin:38px 0 12px;color:var(--gris-fonce)}
+  .prose p{margin:14px 0}
+  .prose ul{margin:14px 0;padding-left:22px}
+  .prose li{margin:9px 0}
+  .prose strong{color:var(--gris-fonce);font-weight:700}
+  .callout{background:var(--rose-clair);border-left:3px solid var(--rose-fonce);border-radius:12px;padding:20px 26px;margin:30px 0}
+  .callout p{margin:0;font-weight:500;color:var(--gris-fonce)}
+  .article-cta{max-width:760px;margin:10px auto 0;background:var(--gris-fonce);color:var(--blanc);border-radius:20px;padding:36px 34px;text-align:center}
+  .article-cta h3{font-size:1.5rem;font-weight:800;margin-bottom:10px}
+  .article-cta p{opacity:.85;margin-bottom:22px}
+  .article-cta .btn{background:var(--rose);color:var(--noir)}
+  .article-cta .btn:hover{background:var(--rose-fonce);color:var(--blanc)}
+  .guides{max-width:760px;margin:44px auto 0}
+  .guides h3{font-size:1.15rem;font-weight:800;margin-bottom:14px}
+  .guides .glist{display:grid;gap:12px}
+  .guides a{display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--blanc);border:1px solid var(--gris-clair);border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--gris-fonce);font-weight:600;box-shadow:var(--box-shadow);transition:var(--transition)}
+  .guides a:hover{border-color:var(--rose);transform:translateY(-2px)}
+  .guides a span{color:var(--rose-fonce)}
+  /* index */
+  .blogindex{padding:120px 0 90px;background:var(--paper,#f9fafb)}
+  .blogindex .head{text-align:center;max-width:680px;margin:0 auto 44px}
+  .blogindex h1{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;line-height:1.1}
+  .blogindex .head p{color:var(--gris);font-size:1.1rem;margin-top:14px}
+  .bcity{margin-bottom:40px}
+  .bcity h2{font-size:1.3rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--rose)}
+  .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .bcard{background:var(--blanc);border:1px solid var(--gris-clair);border-radius:16px;padding:24px;text-decoration:none;color:var(--gris-fonce);box-shadow:var(--box-shadow);transition:var(--transition);display:flex;flex-direction:column;gap:8px}
+  .bcard:hover{transform:translateY(-4px);box-shadow:var(--box-shadow-lg);border-color:var(--rose)}
+  .bcard .t{font-size:.72rem;font-weight:700;color:var(--rose-fonce);text-transform:uppercase;letter-spacing:.08em}
+  .bcard h3{font-size:1.05rem;font-weight:700;line-height:1.3}
+  .bcard .more{margin-top:auto;color:var(--rose-fonce);font-weight:700;font-size:.9rem}
+  @media(max-width:760px){.blognav .bnl a:not(.bn-cta){display:none}}
+</style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+</svg>
+  <nav class="blognav"><div class="container">
+    <a href="../site-internet-martinique.html" class="nav-logo"><img src="../../Logo.svg" alt="GroupSolution La Martinique" /></a>
+    <div class="bnl">
+      <a href="../site-internet-martinique.html">L'agence La Martinique</a>
+      <a href="https://www.groupsolution.fr">Groupe Solution ↗</a>
+    </div>
+  </div></nav>
+  <main><section class="blogindex"><div class="container">
+    <div class="head">
+      <h1>Guides & conseils web — La Martinique</h1>
+      <p>Tarifs, visibilité, bonnes pratiques : nos guides pour développer votre entreprise en ligne, ville par ville.</p>
+    </div>
+      <div class="bcity">
+        <h2>La Martinique</h2>
+        <div class="bgrid">
+          <a class="bcard" href="prix-site-internet-martinique.html"><span class="t">Tarifs</span><h3>Prix d'un site internet en Martinique : le vrai budget en 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="visibilite-locale-google-martinique.html"><span class="t">Visibilité</span><h3>Être visible sur Google en Martinique : le guide 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="reseaux-sociaux-clients-martinique.html"><span class="t">Réseaux sociaux</span><h3>Trouver des clients sur les réseaux sociaux en Martinique</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="creer-boutique-en-ligne-martinique.html"><span class="t">E-commerce</span><h3>Créer une boutique en ligne en Martinique : le guide complet</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="automatisation-entreprise-martinique.html"><span class="t">Automatisation</span><h3>Automatiser son entreprise en Martinique : gagner du temps</h3><span class="more">Lire le guide →</span></a>
+        </div>
+      </div>
+      <div class="bcity">
+        <h2>Fort-de-France</h2>
+        <div class="bgrid">
+          <a class="bcard" href="prix-site-internet-fort-de-france.html"><span class="t">Tarifs</span><h3>Prix d'un site internet à Fort-de-France : le vrai budget en 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="visibilite-locale-google-fort-de-france.html"><span class="t">Visibilité</span><h3>Être visible sur Google à Fort-de-France : le guide 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="reseaux-sociaux-clients-fort-de-france.html"><span class="t">Réseaux sociaux</span><h3>Trouver des clients sur les réseaux sociaux à Fort-de-France</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="creer-boutique-en-ligne-fort-de-france.html"><span class="t">E-commerce</span><h3>Créer une boutique en ligne à Fort-de-France : le guide complet</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="automatisation-entreprise-fort-de-france.html"><span class="t">Automatisation</span><h3>Automatiser son entreprise à Fort-de-France : gagner du temps</h3><span class="more">Lire le guide →</span></a>
+        </div>
+      </div>
+      <div class="bcity">
+        <h2>Le Lamentin</h2>
+        <div class="bgrid">
+          <a class="bcard" href="prix-site-internet-le-lamentin.html"><span class="t">Tarifs</span><h3>Prix d'un site internet au Lamentin : le vrai budget en 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="visibilite-locale-google-le-lamentin.html"><span class="t">Visibilité</span><h3>Être visible sur Google au Lamentin : le guide 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="reseaux-sociaux-clients-le-lamentin.html"><span class="t">Réseaux sociaux</span><h3>Trouver des clients sur les réseaux sociaux au Lamentin</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="creer-boutique-en-ligne-le-lamentin.html"><span class="t">E-commerce</span><h3>Créer une boutique en ligne au Lamentin : le guide complet</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="automatisation-entreprise-le-lamentin.html"><span class="t">Automatisation</span><h3>Automatiser son entreprise au Lamentin : gagner du temps</h3><span class="more">Lire le guide →</span></a>
+        </div>
+      </div>
+      <div class="bcity">
+        <h2>Schœlcher</h2>
+        <div class="bgrid">
+          <a class="bcard" href="prix-site-internet-schoelcher.html"><span class="t">Tarifs</span><h3>Prix d'un site internet à Schœlcher : le vrai budget en 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="visibilite-locale-google-schoelcher.html"><span class="t">Visibilité</span><h3>Être visible sur Google à Schœlcher : le guide 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="reseaux-sociaux-clients-schoelcher.html"><span class="t">Réseaux sociaux</span><h3>Trouver des clients sur les réseaux sociaux à Schœlcher</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="creer-boutique-en-ligne-schoelcher.html"><span class="t">E-commerce</span><h3>Créer une boutique en ligne à Schœlcher : le guide complet</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="automatisation-entreprise-schoelcher.html"><span class="t">Automatisation</span><h3>Automatiser son entreprise à Schœlcher : gagner du temps</h3><span class="more">Lire le guide →</span></a>
+        </div>
+      </div>
+      <div class="bcity">
+        <h2>Le Robert</h2>
+        <div class="bgrid">
+          <a class="bcard" href="prix-site-internet-le-robert.html"><span class="t">Tarifs</span><h3>Prix d'un site internet au Robert : le vrai budget en 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="visibilite-locale-google-le-robert.html"><span class="t">Visibilité</span><h3>Être visible sur Google au Robert : le guide 2026</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="reseaux-sociaux-clients-le-robert.html"><span class="t">Réseaux sociaux</span><h3>Trouver des clients sur les réseaux sociaux au Robert</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="creer-boutique-en-ligne-le-robert.html"><span class="t">E-commerce</span><h3>Créer une boutique en ligne au Robert : le guide complet</h3><span class="more">Lire le guide →</span></a>
+          <a class="bcard" href="automatisation-entreprise-le-robert.html"><span class="t">Automatisation</span><h3>Automatiser son entreprise au Robert : gagner du temps</h3><span class="more">Lire le guide →</span></a>
+        </div>
+      </div>
+  </div></section></main>
+  <footer style="background:var(--noir-doux);color:#a1a1aa;padding:40px 0;text-align:center;font-size:.85rem"><div class="container">
+    <p><a href="../site-internet-martinique.html" style="color:var(--rose)">Agence web La Martinique</a> · <a href="https://www.groupsolution.fr" style="color:var(--rose)">Groupe Solution</a></p>
+    <p>© 2026 GroupSolution SAS.</p>
+  </div></footer>
+  <script src="/analytics.js" defer></script>
+</body>
+</html>

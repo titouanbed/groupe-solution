@@ -231,5 +231,121 @@ export const ZONES = [
         ]
       }
     ]
+  },
+
+  /* ───────────────────────── LA MARTINIQUE (972) ───────────────────────── */
+  {
+    slug: 'martinique', name: 'La Martinique', code: '972', status: 'online',
+    regionPage: 'site-internet-martinique.html',
+    fauna: ['colibri.jpg', 'iguane.jpg', 'tortue.jpg'],
+    photoCredits: "Crédits photos : Montagne Pelée © Pom' from France (CC BY-SA 2.0) · Petite Anse © Thérèse Gaigé (CC0) · Fort-de-France © JLXP (CC BY-SA 4.0) · colibri © Postdlf (CC BY-SA 3.0) · iguane © Charles J. Sharp (CC BY-SA 3.0) · tortue verte © J. Bourjea / Ifremer (CC BY 4.0) — via Wikimedia Commons.",
+    implantTagline: "L'agence digitale de Groupe Solution en Martinique : sites internet, référencement local, réseaux sociaux et automatisation pour les entreprises de Fort-de-France, du Lamentin et de toute l'île.",
+    region: {
+      pageFile: 'site-internet-martinique.html', slug: 'martinique', name: 'La Martinique', gentile: 'martiniquaises', hero: 'hero-1.jpg',
+      title: 'Agence Web & Digitale en Martinique (972) | GroupSolution',
+      desc: "Agence web en Martinique : création de sites internet, référencement local (SEO), réseaux sociaux et automatisation pour les entreprises de Fort-de-France, Le Lamentin, Schœlcher et Le Robert. Audit gratuit.",
+      keywords: 'agence web Martinique, création site internet Martinique 972, SEO Fort-de-France, community management Martinique, automatisation entreprise Martinique',
+      badge: 'Votre agence digitale en Martinique (972)',
+      h1suffix: 'en Martinique',
+      heroSub: "De la Montagne Pelée aux plages du Sud, la Martinique conjugue art de vivre et esprit d'entreprise. On donne aux entreprises martiniquaises les outils pour rayonner en ligne, localement et au-delà.",
+      auditIntro: "En 15 minutes, on analyse la présence en ligne de votre entreprise en Martinique — de Fort-de-France à l'Atlantique. Des recommandations directes, adaptées au marché local.",
+      servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises martiniquaises</span>",
+      servicesIntro: "Commerce, tourisme, services, artisanat : la Martinique regorge de savoir-faire. Encore faut-il être visible. Site, SEO, réseaux et automatisation, on gère de A à Z.",
+      aboutP: "Du commerce de Fort-de-France au prestataire du Lamentin, je conçois des outils d'acquisition taillés pour une île où la réputation et le bouche-à-oreille comptent — désormais amplifiés par le web.",
+      zones: 'Fort-de-France, Le Lamentin, Schœlcher, Le Robert, Ducos, Le François',
+      areaServed: ['Fort-de-France', 'Le Lamentin', 'Schœlcher', 'Le Robert'],
+      faq: [
+        { q: "Travaillez-vous avec les entreprises de toute la Martinique ?", a: "Oui, de Fort-de-France au Lamentin, de Schœlcher à l'Atlantique. Tout se pilote à distance (visio, téléphone), avec une vraie exigence de proximité." },
+        { q: "Combien coûte un site internet en Martinique ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+        { q: "Aidez-vous les acteurs du tourisme et de la restauration ?", a: "Bien sûr : sites, réservation en ligne, avis Google et réseaux sociaux. Le tourisme est clé en Martinique, et la visibilité en ligne fait la réservation." },
+        { q: "Gérez-vous le référencement local et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé (Fort-de-France, Le Lamentin…) et community management sur Facebook, Instagram et WhatsApp, très utilisés localement." }
+      ]
+    },
+    cities: [
+      {
+        slug: 'fort-de-france', name: 'Fort-de-France', gentile: 'foyalaises', hero: 'hero-3.jpg',
+        title: 'Agence Web & Création de Site Internet à Fort-de-France (972) | GroupSolution',
+        desc: "Agence web à Fort-de-France, capitale de la Martinique : création de sites internet, SEO local, réseaux sociaux et publicité pour les commerces et entreprises du centre. Audit gratuit.",
+        keywords: 'agence web Fort-de-France, création site internet Fort-de-France 972, SEO Fort-de-France Martinique, community management Fort-de-France',
+        badge: 'Votre agence digitale à la capitale (Fort-de-France · 972)',
+        h1suffix: 'à Fort-de-France',
+        heroSub: "Capitale et cœur économique de la Martinique, Fort-de-France concentre commerces, administrations et services. On donne à votre activité foyalaise la visibilité qu'elle mérite en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence en ligne de votre commerce ou société à Fort-de-France — du centre-ville au front de mer, jusqu'à Redoute et Dillon. Recommandations directes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises foyalaises</span>",
+        servicesIntro: "Commerces du centre, restaurants, prestataires : à Fort-de-France, la clientèle vous cherche d'abord sur Google et les réseaux. On centralise toute votre présence en ligne.",
+        aboutP: "Du commerce du centre de Fort-de-France au cabinet de Cluny, je conçois des outils d'acquisition adaptés à la réalité de la capitale martiniquaise.",
+        zones: 'Centre-ville, La Savane, Redoute, Dillon, Cluny, Sainte-Thérèse',
+        areaServed: ['Fort-de-France', 'Schœlcher', 'Le Lamentin'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces du centre de Fort-de-France ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE de la capitale. On crée des sites vitrines ou e-commerce pensés pour capter la clientèle foyalaise." },
+          { q: "Combien coûte un site internet à Fort-de-France ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou des fonctionnalités sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Pouvez-vous me positionner sur Google pour « à Fort-de-France 972 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir quand un Foyalais cherche votre service." },
+          { q: "Gérez-vous les réseaux sociaux des entreprises foyalaises ?", a: "Tout à fait. Facebook, Instagram et WhatsApp sont incontournables à Fort-de-France. On crée vos visuels, on rédige vos posts et on pilote vos campagnes publicitaires locales." }
+        ]
+      },
+      {
+        slug: 'le-lamentin', name: 'Le Lamentin', gentile: 'lamentinoises', hero: 'hero-1.jpg',
+        title: 'Agence Web & Création de Site Internet au Lamentin (972) | GroupSolution',
+        desc: "Agence web au Lamentin, poumon économique de la Martinique : sites internet, SEO, réseaux sociaux et automatisation pour les entreprises des zones d'activités et de l'aéroport Aimé Césaire. Audit gratuit.",
+        keywords: 'agence web Le Lamentin, création site internet Le Lamentin 972, SEO Lamentin Martinique, site B2B zone activité Martinique',
+        badge: 'Votre agence digitale au pôle économique (Le Lamentin · 972)',
+        h1suffix: 'au Lamentin',
+        heroSub: "Poumon économique de l'île, avec l'aéroport Aimé Césaire et ses grandes zones d'activités, Le Lamentin concentre commerces, industrie et logistique. On outille ses entreprises d'un web performant.",
+        auditIntro: "En 15 minutes, on évalue la présence en ligne de votre société au Lamentin — commerce, service, industrie ou logistique des zones d'activités. Diagnostic direct.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les pros du Lamentin</span>",
+        servicesIntro: "Zones commerciales, industrie, services aux entreprises : au Lamentin, on mise sur un site crédible, un référencement pro et de l'automatisation pour gagner du temps.",
+        aboutP: "De l'entreprise des zones d'activités du Lamentin au commerce de la Galleria, je développe des sites solides et des automatisations qui font gagner des heures.",
+        zones: 'Californie, La Jambette, Acajou, Place d’Armes, aéroport Aimé Césaire',
+        areaServed: ['Le Lamentin', 'Ducos', 'Fort-de-France'],
+        faq: [
+          { q: "Accompagnez-vous les entreprises des zones d'activités du Lamentin ?", a: "Oui : commerces, industrie, logistique et services. On crée des sites crédibles (souvent B2B) et des outils qui appuient votre développement commercial." },
+          { q: "Pouvez-vous créer un site vitrine professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, vos références et vos services, pensé pour convaincre — à partir de 250€ pour une vitrine." },
+          { q: "Automatisez-vous les devis et les relances clients ?", a: "C'est notre valeur ajoutée : formulaires de devis, accusés automatiques, relances programmées et suivi. Vos équipes se concentrent sur le métier." },
+          { q: "Référencez-vous mon entreprise sur « Le Lamentin » et l'agglo ?", a: "Oui. On optimise votre visibilité sur les recherches locales du Lamentin et de l'agglomération de Fort-de-France pour capter des demandes qualifiées." }
+        ]
+      },
+      {
+        slug: 'schoelcher', name: 'Schœlcher', gentile: 'schœlchéroises', hero: 'hero-2.jpg',
+        title: 'Agence Web & Création de Site Internet à Schœlcher (972) | GroupSolution',
+        desc: "Agence web à Schœlcher en Martinique : sites internet, SEO local, réseaux sociaux pour les commerces, le tourisme et les acteurs du littoral et du campus universitaire. Audit gratuit.",
+        keywords: 'agence web Schœlcher, création site internet Schœlcher 972, SEO Schœlcher Martinique, community management Schœlcher',
+        badge: 'Votre agence digitale sur le littoral (Schœlcher · 972)',
+        h1suffix: 'à Schœlcher',
+        heroSub: "Ville résidentielle et universitaire au nord de Fort-de-France, entre campus, littoral et plages, Schœlcher mêle jeunesse, tourisme et commerces de proximité. On rend votre activité visible en ligne.",
+        auditIntro: "En 15 minutes, on analyse comment votre activité schœlchéroise apparaît en ligne — commerce de proximité, restauration, tourisme balnéaire ou service. Recommandations concrètes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises schœlchéroises</span>",
+        servicesIntro: "Commerces de proximité, restaurants, hébergements, services aux étudiants : à Schœlcher, on capte une clientèle mêlant habitants, campus et visiteurs. Site, réseaux et SEO, on gère tout.",
+        aboutP: "Du restaurant du bord de mer au commerce proche du campus, je conçois des sites qui parlent à une clientèle jeune, locale et de passage.",
+        zones: 'Anse Madame, Batelière, Terreville, Fond Lahaye, campus de Schœlcher',
+        areaServed: ['Schœlcher', 'Fort-de-France', 'Case-Pilote'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces et restaurants de Schœlcher ?", a: "Oui, commerces de proximité, restaurants et hébergements sont au cœur de notre clientèle. On crée des sites qui captent habitants, étudiants et visiteurs." },
+          { q: "Un site de réservation pour mon activité touristique, c'est possible ?", a: "Oui : réservation de tables, d'hébergements ou d'activités, avec confirmation automatique. On automatise aussi les relances pour limiter les no-shows." },
+          { q: "Comment toucher la clientèle du campus et des environs ?", a: "Par le référencement local et les réseaux sociaux, très suivis par une population jeune. On cible précisément Schœlcher et ses quartiers." },
+          { q: "Gérez-vous les avis Google de mon établissement ?", a: "Oui. Les avis font la réputation, surtout dans la restauration et le tourisme. On met en place la collecte et le suivi des avis pour soigner votre image." }
+        ]
+      },
+      {
+        slug: 'le-robert', name: 'Le Robert', gentile: 'robertines', hero: 'hero-2.jpg',
+        title: 'Agence Web & Création de Site Internet au Robert (972) | GroupSolution',
+        desc: "Agence web au Robert, sur la côte atlantique de la Martinique : sites internet, SEO local, réseaux sociaux pour les commerces, le nautisme, la pêche et le tourisme de la baie et des îlets. Audit gratuit.",
+        keywords: 'agence web Le Robert, création site internet Le Robert 972, SEO Robert Martinique, site tourisme nautisme Martinique',
+        badge: 'Votre agence digitale sur l’Atlantique (Le Robert · 972)',
+        h1suffix: 'au Robert',
+        heroSub: "Sur la côte atlantique, entre sa célèbre baie, ses îlets et ses fonds blancs, Le Robert vit du nautisme, de la pêche et d'un tourisme authentique. On aide ses entreprises à capter cette clientèle en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence web de votre activité au Robert et sur la côte atlantique — commerce, nautisme, restauration ou hébergement. Un repère clair, sans engagement.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour l’Atlantique martiniquais</span>",
+        servicesIntro: "Loueurs de bateaux, restaurants, hébergements, commerces : sur la côte atlantique, on vous trouve d'abord en ligne. Site, réservation, avis et publicité, on gère tout.",
+        aboutP: "Du loueur d'excursions vers les îlets au restaurant du bourg du Robert, je conçois des sites qui captent le visiteur avant même son arrivée sur la côte atlantique.",
+        zones: 'Le bourg, Pointe Savane, Vert-Pré, les îlets du Robert, Trinité voisine',
+        areaServed: ['Le Robert', 'La Trinité', 'Le François'],
+        faq: [
+          { q: "Créez-vous des sites pour les acteurs du nautisme et du tourisme au Robert ?", a: "Absolument. Loueurs de bateaux, excursions vers les îlets, restaurants et hébergements : on crée des sites qui donnent envie et rassurent le visiteur avant sa venue." },
+          { q: "Un site de réservation en ligne, c'est adapté à mon activité ?", a: "Oui : réservation d'excursions, de tables ou d'hébergement avec confirmation automatique. Idéal pour une activité saisonnière et touristique." },
+          { q: "Comment être visible auprès des touristes qui cherchent une sortie en mer ?", a: "Par le référencement local et une fiche Google soignée : quand un visiteur cherche « excursion îlets Robert » ou « location bateau Martinique », vous devez sortir en premier." },
+          { q: "Gérez-vous les réseaux sociaux et les avis ?", a: "Oui. Les belles photos de la baie et des fonds blancs cartonnent sur Instagram, et les avis font la réservation. On anime vos réseaux et on suit votre e-réputation." }
+        ]
+      }
+    ]
   }
 ];
