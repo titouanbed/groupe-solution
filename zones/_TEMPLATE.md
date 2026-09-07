@@ -2,31 +2,43 @@
 
 Chaque zone (Mayotte, La Réunion, …) est une **landing locale** qui partage la
 charte `assets/silo.css` et renvoie son autorité SEO + ses prospects vers le
-holding. La 1ʳᵉ zone de référence est `reunion/site-internet-reunion.html`.
+holding. Tout est piloté par un **registre central** : `zones/zones.mjs`.
 
-## Créer une nouvelle zone en 4 étapes
+## Architecture industrialisée
 
-1. **Copier** `reunion/site-internet-reunion.html` vers `{slug}/site-internet-{slug}.html`
-   (ex. `guyane/site-internet-guyane.html`). La profondeur `../` reste identique,
-   donc images racine, `../Logo.svg` et `../assets/silo.css` fonctionnent tels quels.
+- **`zones/zones.mjs`** — source de vérité unique : la liste des territoires et,
+  pour chacun, ses villes + tout le contenu différencié (titres, hero, FAQ…).
+- **`zones/generate-cities.mjs`** — génère `/{zone}/site-internet-{ville}.html`
+  pour chaque ville des zones `status: 'online'`.
+- **`zones/generate-implantations.mjs`** — régénère `/implantations.html`
+  (page holding) : une carte par territoire, cliquable si `online`, badge
+  « En préparation » si `coming`.
 
-2. **Remplacer les 8 variables géo** dans le nouveau fichier :
+## Ajouter / activer une zone
 
-   | Variable | Exemple Réunion | Où |
-   |---|---|---|
-   | `{ZONE}` — nom | La Réunion | title, h1, badges, textes, band |
-   | `{slug}` — url | reunion | nom de dossier + fichier + canonical |
-   | `{DEPT}` — n° | 974 | title, keywords, textes |
-   | `{PRÉFECTURE}` | Saint-Denis | JSON-LD address, footer contact, placeholders |
-   | `{VILLES}` | Saint-Denis, Saint-Paul, Saint-Pierre, Le Tampon | JSON-LD `areaServed` |
-   | `{gentilé}` | réunionnaises | section Services, À propos |
-   | `{SEO title/desc/keywords}` | … à La Réunion (974) … | `<head>` |
-   | `{canonical}` | https://www.groupsolution.fr/reunion/site-internet-reunion.html | `<link canonical>` + JSON-LD `url` |
+1. **Déclarer la zone** dans `zones/zones.mjs` : `slug`, `name`, `code`, `status`,
+   `regionPage`, `implantTagline`, et la liste `cities` (chaque ville avec son
+   contenu différencié : `title`, `desc`, `keywords`, `badge`, `h1suffix`,
+   `heroSub`, `auditIntro`, `servicesH2`, `servicesIntro`, `aboutP`, `zones`,
+   `areaServed`, `faq[]`). Mettre `status: 'coming'` tant que les pages/visuels
+   ne sont pas prêts (carte « En préparation », sans lien).
 
-3. **Enregistrer la zone dans le tracking** : ajouter le `{slug}` au tableau
-   `ZONES` de `analytics.js` → le `content_group` GA4 se remplit tout seul.
+2. **Ajouter le `slug` au tableau `ZONES`** de `analytics.js` → `content_group`
+   GA4 automatique.
 
-4. **Référencer dans le SEO** : ajouter l'URL de la zone à `sitemap.xml`.
+3. **Déposer les visuels locaux** dans `/assets/{slug}/` (voir règle d'or ci-dessous),
+   puis passer la zone en `status: 'online'`.
+
+4. **Générer + référencer** :
+   ```
+   node zones/generate-cities.mjs
+   node zones/generate-implantations.mjs
+   ```
+   puis ajouter les URLs de la zone (région + villes) à `sitemap.xml`.
+
+> ⚠️ Ne pas éditer à la main les pages villes ni `implantations.html` : elles sont
+> **générées**. Toute modif se fait dans `zones.mjs` (ou le template du générateur)
+> puis on relance les scripts.
 
 ## 🖼️ Règle d'or — VISUELS LOCAUX PROPRES À CHAQUE ZONE (obligatoire)
 

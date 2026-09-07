@@ -1,4 +1,54 @@
-<!DOCTYPE html>
+/* ═══════════════════════════════════════════════════════════
+   Génère /implantations.html (page holding) à partir du registre central
+   zones/zones.mjs. Ajouter un territoire dans le registre + relancer ce
+   script → la page « Nos Implantations » est à jour automatiquement.
+
+   Lancer :  node zones/generate-implantations.mjs
+   ═══════════════════════════════════════════════════════════ */
+import { writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+import { ZONES } from './zones.mjs';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+function chips(zone) {
+  if (zone.status === 'coming') {
+    // villes préparées, non cliquables tant que les pages ne sont pas générées
+    return zone.cities.map(c => `<span class="soon">${esc(c.name)}</span>`).join('\n          ');
+  }
+  if (zone.cities && zone.cities.length) {
+    return zone.cities.map(c => `<a href="${zone.slug}/site-internet-${c.slug}.html">${esc(c.name)}</a>`).join('\n          ');
+  }
+  if (zone.implantChips) {
+    return zone.implantChips.map(c => `<a href="${esc(c.href)}">${esc(c.label)}</a>`).join('\n          ');
+  }
+  return '';
+}
+
+function card(zone) {
+  const online = zone.status !== 'coming';
+  const state = online
+    ? `<span class="terrState">En ligne</span>`
+    : `<span class="terrState soon">En préparation</span>`;
+  const go = online
+    ? `<div class="terrGo"><a class="go" href="${zone.slug}/${zone.regionPage}">Voir l’agence ${esc(zone.name)} →</a></div>`
+    : `<div class="terrGo"><span class="soonNote">Bientôt disponible</span></div>`;
+  return `      <div class="terrCard reveal">
+        <div class="terrTop"><span class="terrCode">${esc(zone.name)} · ${esc(zone.code)}</span>${state}</div>
+        <h3>${esc(zone.name)}</h3>
+        <p>${esc(zone.implantTagline)}</p>
+        <div class="terrChips">
+          ${chips(zone)}
+        </div>
+        ${go}
+      </div>`;
+}
+
+const cards = ZONES.map(card).join('\n\n');
+
+const html = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -68,42 +118,7 @@
     <div class="impHead reveal"><div class="kicker">Nos territoires</div><h2>Des agences ancrées dans chaque bassin.</h2><p>Chaque territoire a son agence locale, avec ses réalités, ses secteurs et sa relation de proximité — reliée à la puissance technologique du groupe.</p></div>
 
     <div class="terr">
-      <div class="terrCard reveal">
-        <div class="terrTop"><span class="terrCode">La Réunion · 974</span><span class="terrState">En ligne</span></div>
-        <h3>La Réunion</h3>
-        <p>Notre agence digitale pour toute l'île de La Réunion : création de sites, SEO local, réseaux sociaux et automatisation, déclinée ville par ville pour coller à chaque bassin.</p>
-        <div class="terrChips">
-          <a href="reunion/site-internet-saint-denis.html">Saint-Denis</a>
-          <a href="reunion/site-internet-saint-pierre.html">Saint-Pierre</a>
-          <a href="reunion/site-internet-saint-paul.html">Saint-Paul</a>
-          <a href="reunion/site-internet-le-port.html">Le Port</a>
-        </div>
-        <div class="terrGo"><a class="go" href="reunion/site-internet-reunion.html">Voir l’agence La Réunion →</a></div>
-      </div>
-
-      <div class="terrCard reveal">
-        <div class="terrTop"><span class="terrCode">Mayotte · 976</span><span class="terrState">En ligne</span></div>
-        <h3>Mayotte</h3>
-        <p>Le guichet unique du numérique à Mayotte : sites internet, community management, publicité locale et transition numérique pour les TPE et PME mahoraises.</p>
-        <div class="terrChips">
-          <a href="mayotte/site-internet-mayotte.html">Mamoudzou</a>
-          <a href="mayotte/catalogue-demos.html">Catalogue de démos</a>
-        </div>
-        <div class="terrGo"><a class="go" href="mayotte/site-internet-mayotte.html">Voir l’agence Mayotte →</a></div>
-      </div>
-
-      <div class="terrCard reveal">
-        <div class="terrTop"><span class="terrCode">La Guyane · 973</span><span class="terrState soon">En préparation</span></div>
-        <h3>La Guyane</h3>
-        <p>Bientôt : l'agence digitale de Groupe Solution en Guyane — sites internet, référencement local et automatisation pour les entreprises de Cayenne, Kourou et l'Ouest guyanais.</p>
-        <div class="terrChips">
-          <span class="soon">Cayenne</span>
-          <span class="soon">Kourou</span>
-          <span class="soon">Saint-Laurent-du-Maroni</span>
-          <span class="soon">Matoury</span>
-        </div>
-        <div class="terrGo"><span class="soonNote">Bientôt disponible</span></div>
-      </div>
+${cards}
     </div>
 
     <div class="impCta reveal">
@@ -129,3 +144,7 @@
 <script src="/analytics.js" defer></script>
 </body>
 </html>
+`;
+
+writeFileSync(join(ROOT, 'implantations.html'), html, 'utf8');
+console.log('✓ implantations.html régénérée depuis le registre (' + ZONES.length + ' territoires).');
