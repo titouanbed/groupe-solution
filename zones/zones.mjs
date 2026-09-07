@@ -15,6 +15,7 @@ export const ZONES = [
   {
     slug: 'reunion', name: 'La Réunion', code: '974', status: 'online',
     regionPage: 'site-internet-reunion.html',
+    fauna: ['paille-en-queue.jpg', 'gecko-vert.jpg', 'baleine.jpg'],
     implantTagline: "Notre agence digitale pour toute l'île de La Réunion : création de sites, SEO local, réseaux sociaux et automatisation, déclinée ville par ville pour coller à chaque bassin.",
     cities: [
       {
@@ -116,17 +117,119 @@ export const ZONES = [
     ]
   },
 
-  /* ───────────────────────── LA GUYANE (973) — EN PRÉPARATION ───────────────────────── */
+  /* ───────────────────────── LA GUYANE (973) ───────────────────────── */
   {
-    slug: 'guyane', name: 'La Guyane', code: '973', status: 'coming',
+    slug: 'guyane', name: 'La Guyane', code: '973', status: 'online',
     regionPage: 'site-internet-guyane.html',
-    implantTagline: "Bientôt : l'agence digitale de Groupe Solution en Guyane — sites internet, référencement local et automatisation pour les entreprises de Cayenne, Kourou et l'Ouest guyanais.",
-    /* Villes préparées (contenu détaillé à compléter avant génération des pages). */
+    fauna: ['ara.jpg', 'paresseux.jpg', 'jaguar.jpg'],
+    photoCredits: "Crédits photos : forêt © Cayambe (CC BY-SA 3.0) · fleuve Maroni © Patrick Wilhelm (CC BY-SA 3.0) · Ariane 5 à Kourou © NASA (domaine public) · ara © Brian Snelson (CC BY 2.0) · paresseux & jaguar © Charles J. Sharp (CC BY-SA 4.0) — via Wikimedia Commons.",
+    implantTagline: "L'agence digitale de Groupe Solution en Guyane : sites internet, référencement local, réseaux sociaux et automatisation pour les entreprises de Cayenne, Kourou et l'Ouest guyanais.",
+    region: {
+      pageFile: 'site-internet-guyane.html', slug: 'guyane', name: 'La Guyane', gentile: 'guyanaises', hero: 'hero-1.jpg',
+      title: 'Agence Web & Digitale en Guyane (973) | GroupSolution',
+      desc: "Agence web en Guyane : création de sites internet, référencement local (SEO), réseaux sociaux et automatisation pour les entreprises de Cayenne, Kourou, Saint-Laurent-du-Maroni et Matoury. Audit gratuit.",
+      keywords: 'agence web Guyane, création site internet Guyane 973, SEO Cayenne, community management Guyane, automatisation entreprise Guyane',
+      badge: 'Votre agence digitale en Guyane (973)',
+      h1suffix: 'en Guyane',
+      heroSub: "De la forêt amazonienne au littoral, la Guyane est un territoire jeune et en pleine croissance. On donne aux entreprises guyanaises les outils numériques pour capter cette dynamique.",
+      auditIntro: "En 15 minutes, on analyse la présence en ligne de votre entreprise en Guyane — de Cayenne à l'Ouest. Des recommandations directes, adaptées au marché local.",
+      servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises guyanaises</span>",
+      servicesIntro: "Un marché en expansion, une concurrence encore ouverte : c'est le moment de prendre votre place en ligne. Site, SEO, réseaux et automatisation, on gère de A à Z.",
+      aboutP: "Du commerce de Cayenne au prestataire de Kourou, je conçois des outils d'acquisition taillés pour un territoire jeune, connecté et en forte croissance.",
+      zones: 'Cayenne, Kourou, Saint-Laurent-du-Maroni, Matoury, Rémire-Montjoly, Macouria',
+      areaServed: ['Cayenne', 'Kourou', 'Saint-Laurent-du-Maroni', 'Matoury'],
+      faq: [
+        { q: "Travaillez-vous avec les entreprises de toute la Guyane ?", a: "Oui, de Cayenne à Saint-Laurent-du-Maroni en passant par Kourou et Matoury. Tout se pilote à distance (visio, téléphone), avec la même exigence de proximité." },
+        { q: "Combien coûte un site internet en Guyane ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+        { q: "Pourquoi investir dans le web en Guyane maintenant ?", a: "Parce que le marché est jeune et la concurrence digitale encore faible : une présence en ligne soignée vous démarque durablement, avant que tout le monde s'y mette." },
+        { q: "Gérez-vous le référencement local et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé (Cayenne, Kourou…) et community management sur Facebook, Instagram et WhatsApp, très utilisés localement." }
+      ]
+    },
     cities: [
-      { slug: 'cayenne', name: 'Cayenne' },
-      { slug: 'kourou', name: 'Kourou' },
-      { slug: 'saint-laurent-du-maroni', name: 'Saint-Laurent-du-Maroni' },
-      { slug: 'matoury', name: 'Matoury' }
+      {
+        slug: 'cayenne', name: 'Cayenne', gentile: 'cayennaises', hero: 'hero-2.jpg',
+        title: 'Agence Web & Création de Site Internet à Cayenne (973) | GroupSolution',
+        desc: "Agence web à Cayenne, chef-lieu de la Guyane : création de sites internet, SEO local, réseaux sociaux et publicité pour les commerces et entreprises du centre. Audit gratuit.",
+        keywords: 'agence web Cayenne, création site internet Cayenne 973, SEO Cayenne Guyane, community management Cayenne, agence communication chef-lieu Guyane',
+        badge: 'Votre agence digitale au chef-lieu (Cayenne · 973)',
+        h1suffix: 'à Cayenne',
+        heroSub: "Chef-lieu et cœur économique de la Guyane, Cayenne concentre commerces, administrations et services. On donne à votre activité cayennaise la visibilité qu'elle mérite en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence en ligne de votre commerce ou société à Cayenne — du centre-ville au marché, jusqu'à Rémire-Montjoly. Recommandations directes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises cayennaises</span>",
+        servicesIntro: "Commerces du centre, restaurants, prestataires : à Cayenne, la clientèle vous cherche d'abord sur Google et les réseaux. On centralise toute votre présence en ligne.",
+        aboutP: "Du commerce du centre de Cayenne au cabinet de Rémire-Montjoly, je conçois des outils d'acquisition adaptés à la réalité du chef-lieu guyanais.",
+        zones: 'Centre-ville, Village Chinois, Cabassou, Rémire-Montjoly, Matoury voisin',
+        areaServed: ['Cayenne', 'Rémire-Montjoly', 'Matoury'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces du centre de Cayenne ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE du chef-lieu. On crée des sites vitrines ou e-commerce pensés pour capter la clientèle cayennaise." },
+          { q: "Combien coûte un site internet à Cayenne ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou des fonctionnalités sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Pouvez-vous me positionner sur Google pour « à Cayenne 973 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir quand un Cayennais cherche votre service." },
+          { q: "Gérez-vous les réseaux sociaux des entreprises cayennaises ?", a: "Tout à fait. Facebook, Instagram et WhatsApp sont incontournables à Cayenne. On crée vos visuels, on rédige vos posts et on pilote vos campagnes publicitaires locales." }
+        ]
+      },
+      {
+        slug: 'kourou', name: 'Kourou', gentile: 'kourouciennes', hero: 'hero-3.jpg',
+        title: 'Agence Web & Création de Site Internet à Kourou (973) | GroupSolution',
+        desc: "Agence web à Kourou, la ville spatiale de Guyane : sites internet professionnels, SEO, réseaux sociaux et automatisation pour les entreprises et prestataires de la cité de l'espace. Audit gratuit.",
+        keywords: 'agence web Kourou, création site internet Kourou 973, SEO Kourou Guyane, site entreprise spatial Guyane, automatisation Kourou',
+        badge: 'Votre agence digitale à la cité de l’espace (Kourou · 973)',
+        h1suffix: 'à Kourou',
+        heroSub: "Ville du Centre Spatial Guyanais, Kourou est internationale, technique et exigeante. On outille ses entreprises et prestataires d'un web à la hauteur de leur environnement.",
+        auditIntro: "En 15 minutes, on évalue la présence en ligne de votre société à Kourou — commerce, service ou prestataire lié à l'écosystème spatial. Diagnostic direct.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises kourouciennes</span>",
+        servicesIntro: "À Kourou, on croise une clientèle locale et internationale. Un site crédible, un référencement propre et de l'automatisation pour être à la hauteur de la cité de l'espace.",
+        aboutP: "Du commerce kouroucien au prestataire gravitant autour du spatial, je développe des sites professionnels et des automatisations qui inspirent confiance.",
+        zones: 'Centre-ville, Bourg, l’Anse, Pariacabo, zone du Centre Spatial',
+        areaServed: ['Kourou', 'Sinnamary', 'Macouria'],
+        faq: [
+          { q: "Travaillez-vous avec les prestataires liés au spatial à Kourou ?", a: "Oui. Beaucoup d'entreprises de Kourou servent l'écosystème spatial ou sa population internationale. On crée des sites professionnels, souvent bilingues, qui rassurent ce public exigeant." },
+          { q: "Quel budget pour un site professionnel à Kourou ?", a: "Une vitrine démarre à 250€. Pour un site plus complet (bilingue, catalogue, réservation), on chiffre selon vos besoins — devis clair et transparent." },
+          { q: "Pouvez-vous faire un site bilingue français / anglais ?", a: "Oui, c'est fréquent à Kourou vu la population internationale. On conçoit des sites multilingues propres, pensés pour le référencement dans chaque langue." },
+          { q: "Automatisez-vous la gestion des demandes et des devis ?", a: "C'est une de nos forces : formulaires intelligents, accusés et relances automatiques, prise de RDV en ligne. Vos équipes gagnent du temps sur l'administratif." }
+        ]
+      },
+      {
+        slug: 'saint-laurent-du-maroni', name: 'Saint-Laurent-du-Maroni', gentile: 'saint-laurentaises', hero: 'hero-2.jpg',
+        title: 'Agence Web & Site Internet à Saint-Laurent-du-Maroni (973) | GroupSolution',
+        desc: "Agence web à Saint-Laurent-du-Maroni, dans l'Ouest guyanais : création de sites, SEO local, réseaux sociaux et publicité pour les commerces et entreprises du bassin du Maroni. Audit gratuit.",
+        keywords: 'agence web Saint-Laurent-du-Maroni, création site internet Ouest Guyane 973, SEO Saint-Laurent Guyane, community management Maroni',
+        badge: 'Votre agence digitale dans l’Ouest (Saint-Laurent · 973)',
+        h1suffix: 'à Saint-Laurent-du-Maroni',
+        heroSub: "Deuxième ville de Guyane sur les rives du Maroni, Saint-Laurent est jeune, en forte croissance et tournée vers le fleuve. On aide ses commerces à capter ce dynamisme en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence web de votre activité dans l'Ouest guyanais, de Saint-Laurent aux communes du fleuve. Un repère clair, sans engagement.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour l’Ouest guyanais</span>",
+        servicesIntro: "Commerces, services, acteurs du transfrontalier : l'Ouest grandit vite et la clientèle se connecte. On centralise site, réseaux et publicité pour vous démarquer sur le bassin du Maroni.",
+        aboutP: "Du commerce du centre de Saint-Laurent à l'acteur du transfrontalier, je conçois des sites taillés pour une ville jeune et en pleine expansion.",
+        zones: 'Centre-ville, Charbonnière, la Roche, Saint-Jean, communes du Maroni',
+        areaServed: ['Saint-Laurent-du-Maroni', 'Mana', 'Apatou'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces de Saint-Laurent-du-Maroni ?", a: "Oui, commerces, restaurants et prestataires de l'Ouest sont au cœur de notre clientèle. On crée des sites qui captent une population jeune et connectée." },
+          { q: "Le marché de l'Ouest guyanais est-il porteur pour le web ?", a: "Très : Saint-Laurent est l'une des villes qui grandit le plus vite. Se positionner en ligne maintenant, c'est prendre une longueur d'avance durable sur la concurrence." },
+          { q: "Faites-vous de la publicité ciblée sur le bassin du Maroni ?", a: "Oui. On paramètre des campagnes géociblées (Saint-Laurent, Mana, Apatou…) pour toucher précisément les clients potentiels autour de votre activité." },
+          { q: "Gérez-vous les réseaux sociaux localement ?", a: "Tout à fait. Facebook et WhatsApp sont très utilisés dans l'Ouest. On crée vos contenus et on anime vos pages pour développer votre notoriété locale." }
+        ]
+      },
+      {
+        slug: 'matoury', name: 'Matoury', gentile: 'matouriennes', hero: 'hero-1.jpg',
+        title: 'Agence Web & Création de Site Internet à Matoury (973) | GroupSolution',
+        desc: "Agence web à Matoury, dans l'agglomération de Cayenne : sites internet, SEO, réseaux sociaux et automatisation pour les entreprises des zones d'activités et de l'aéroport Félix Éboué. Audit gratuit.",
+        keywords: 'agence web Matoury, création site internet Matoury 973, SEO Matoury Guyane, site B2B zone activité Guyane, automatisation devis Matoury',
+        badge: 'Votre agence digitale dans l’agglo (Matoury · 973)',
+        h1suffix: 'à Matoury',
+        heroSub: "Aux portes de Cayenne et de l'aéroport Félix Éboué, Matoury concentre zones d'activités, logistique et entreprises. On outille ces pros d'un web qui travaille pour eux.",
+        auditIntro: "En 15 minutes, on évalue la présence en ligne de votre société à Matoury — commerce, service, logistique ou entreprise des zones d'activités. Diagnostic direct.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les pros de Matoury</span>",
+        servicesIntro: "Zones d'activités, logistique, services aux entreprises : à Matoury, on mise sur un site crédible, un référencement pro et de l'automatisation pour gagner du temps.",
+        aboutP: "De l'entreprise des zones d'activités de Matoury au commerce de proximité, je développe des sites solides et des automatisations qui font gagner des heures.",
+        zones: 'Balata, la Chaumière, Cogneau-Lamirande, zones d’activités, aéroport Félix Éboué',
+        areaServed: ['Matoury', 'Cayenne', 'Rémire-Montjoly'],
+        faq: [
+          { q: "Accompagnez-vous les entreprises des zones d'activités de Matoury ?", a: "Oui : commerces, services, logistique et PME des zones d'activités. On crée des sites crédibles et des outils qui appuient votre développement commercial." },
+          { q: "Pouvez-vous créer un site vitrine professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, vos références et vos services, pensé pour convaincre — à partir de 250€ pour une vitrine." },
+          { q: "Automatisez-vous les demandes de devis et les relances ?", a: "C'est notre valeur ajoutée : formulaires de devis, accusés automatiques, relances programmées et suivi. Vos équipes se concentrent sur le métier." },
+          { q: "Référencez-vous mon entreprise sur « Matoury » et l'agglo de Cayenne ?", a: "Oui. On optimise votre visibilité sur les recherches locales de Matoury et de l'agglomération pour capter des demandes qualifiées près de chez vous." }
+        ]
+      }
     ]
   }
 ];

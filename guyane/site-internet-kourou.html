@@ -1,86 +1,38 @@
-/* ═══════════════════════════════════════════════════════════
-   Générateur de pages VILLES pour les silos géographiques.
-   Source de vérité : zones/zones.mjs (registre central).
-   Produit /{zone}/site-internet-{slug}.html pour chaque ville des zones
-   'online'. Objectif : maillage local SEO SANS contenu dupliqué → chaque
-   ville a titre, hero, intros, section « à propos » et FAQ différenciés.
-
-   Lancer :  node zones/generate-cities.mjs
-   ═══════════════════════════════════════════════════════════ */
-import { writeFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
-import { ZONES, HOLDING } from './zones.mjs';
-
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-
-const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const jstr = s => JSON.stringify(String(s));
-
-function citiesNav(current, cities) {
-  return cities.map(c => c.slug === current
-    ? `<li><strong style="color:var(--rose-fonce)">${esc(c.name)}</strong></li>`
-    : `<li><a href="site-internet-${c.slug}.html">${esc(c.name)}</a></li>`
-  ).join('\n            ');
-}
-
-function faqHtml(faq) {
-  return faq.map(f => `        <div class="faq-item reveal">
-          <div class="faq-q">${esc(f.q)}</div>
-          <div class="faq-a"><p>${esc(f.a)}</p></div>
-        </div>`).join('\n');
-}
-
-function faqJsonLd(faq) {
-  return faq.slice(0, 3).map(f => `    {
-      "@type": "Question",
-      "name": ${jstr(f.q)},
-      "acceptedAnswer": { "@type": "Answer", "text": ${jstr(f.a)} }
-    }`).join(',\n');
-}
-
-function areaServedJsonLd(city, zoneName) {
-  const cities = city.areaServed.map(n => `      { "@type": "City", "name": ${jstr(n)} }`).join(',\n');
-  return cities + `,\n      { "@type": "State", "name": ${jstr(zoneName)} }`;
-}
-
-function page(city, zone) {
-  const ZONE = zone.slug, ZONE_NAME = zone.name, REGION_PAGE = zone.regionPage, cities = zone.cities;
-  const fauna = zone.fauna || ['paille-en-queue.jpg', 'gecko-vert.jpg', 'baleine.jpg'];
-  const pageFile = city.pageFile || `site-internet-${city.slug}.html`;
-  const url = `${HOLDING}/${ZONE}/${pageFile}`;
-  return `<!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO LOCAL — ${esc(city.name)} (${ZONE_NAME}, ${zone.code}) -->
-  <title>${esc(city.title)}</title>
-  <meta name="description" content="${esc(city.desc)}" />
-  <meta name="keywords" content="${esc(city.keywords)}" />
+  <!-- SEO LOCAL — Kourou (La Guyane, 973) -->
+  <title>Agence Web &amp; Création de Site Internet à Kourou (973) | GroupSolution</title>
+  <meta name="description" content="Agence web à Kourou, la ville spatiale de Guyane : sites internet professionnels, SEO, réseaux sociaux et automatisation pour les entreprises et prestataires de la cité de l'espace. Audit gratuit." />
+  <meta name="keywords" content="agence web Kourou, création site internet Kourou 973, SEO Kourou Guyane, site entreprise spatial Guyane, automatisation Kourou" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": ${jstr('GroupSolution - Agence Web ' + city.name)},
-    "image": "${HOLDING}/Logo.svg",
-    "description": ${jstr(city.desc)},
+    "name": "GroupSolution - Agence Web Kourou",
+    "image": "https://www.groupsolution.fr/Logo.svg",
+    "description": "Agence web à Kourou, la ville spatiale de Guyane : sites internet professionnels, SEO, réseaux sociaux et automatisation pour les entreprises et prestataires de la cité de l'espace. Audit gratuit.",
     "areaServed": [
-${areaServedJsonLd(city, ZONE_NAME)}
+      { "@type": "City", "name": "Kourou" },
+      { "@type": "City", "name": "Sinnamary" },
+      { "@type": "City", "name": "Macouria" },
+      { "@type": "State", "name": "La Guyane" }
     ],
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": ${jstr(city.name)},
-      "addressRegion": ${jstr(ZONE_NAME)},
+      "addressLocality": "Kourou",
+      "addressRegion": "La Guyane",
       "addressCountry": "FR"
     },
     "telephone": "+33782298559",
     "email": "contact@groupsolution.fr",
-    "url": ${jstr(url)},
+    "url": "https://www.groupsolution.fr/guyane/site-internet-kourou.html",
     "priceRange": "€€",
-    "parentOrganization": { "@type": "Organization", "name": "Groupe Solution", "url": "${HOLDING}" }
+    "parentOrganization": { "@type": "Organization", "name": "Groupe Solution", "url": "https://www.groupsolution.fr" }
   }
   </script>
 
@@ -89,12 +41,26 @@ ${areaServedJsonLd(city, ZONE_NAME)}
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-${faqJsonLd(city.faq)}
+    {
+      "@type": "Question",
+      "name": "Travaillez-vous avec les prestataires liés au spatial à Kourou ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui. Beaucoup d'entreprises de Kourou servent l'écosystème spatial ou sa population internationale. On crée des sites professionnels, souvent bilingues, qui rassurent ce public exigeant." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel budget pour un site professionnel à Kourou ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Une vitrine démarre à 250€. Pour un site plus complet (bilingue, catalogue, réservation), on chiffre selon vos besoins — devis clair et transparent." }
+    },
+    {
+      "@type": "Question",
+      "name": "Pouvez-vous faire un site bilingue français / anglais ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, c'est fréquent à Kourou vu la population internationale. On conçoit des sites multilingues propres, pensés pour le référencement dans chaque langue." }
+    }
     ]
   }
   </script>
 
-  <link rel="canonical" href="${url}" />
+  <link rel="canonical" href="https://www.groupsolution.fr/guyane/site-internet-kourou.html" />
   <link rel="icon" type="image/svg+xml" href="../Logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,7 +101,7 @@ ${faqJsonLd(city.faq)}
   <!-- NAVBAR -->
   <nav id="nav">
     <div class="container nav-content">
-      <a href="${REGION_PAGE}" class="nav-logo"><img src="../Logo.svg" alt="GroupSolution" /></a>
+      <a href="site-internet-guyane.html" class="nav-logo"><img src="../Logo.svg" alt="GroupSolution" /></a>
       <ul class="nav-links">
         <li><a href="#audit">Audit Gratuit</a></li>
         <li><a href="#solutions">Nos Services</a></li>
@@ -153,14 +119,14 @@ ${faqJsonLd(city.faq)}
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="hero" style="background-image: url('../assets/${ZONE}/${city.hero}');">
+  <section class="hero" id="hero" style="background-image: url('../assets/guyane/hero-3.jpg');">
     <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
-        ${esc(city.badge)}
+        Votre agence digitale à la cité de l’espace (Kourou · 973)
       </div>
-      <h1>Agence Web & <span class="accent">Digitale</span><br>${esc(city.h1suffix)}</h1>
-      <p>${esc(city.heroSub)}</p>
+      <h1>Agence Web & <span class="accent">Digitale</span><br>à Kourou</h1>
+      <p>Ville du Centre Spatial Guyanais, Kourou est internationale, technique et exigeante. On outille ses entreprises et prestataires d'un web à la hauteur de leur environnement.</p>
       <div class="hero-ctas">
         <button onclick="openModal()" class="btn btn-primary">
           <svg class="icon"><use href="#i-mail"/></svg>
@@ -180,14 +146,14 @@ ${faqJsonLd(city.faq)}
       <div class="section-header">
         <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-lightning"/></svg> Stratégie Digitale</span>
         <h2>On commence par un <span class="accent">diagnostic</span> gratuit</h2>
-        <p>${esc(city.auditIntro)}</p>
+        <p>En 15 minutes, on évalue la présence en ligne de votre société à Kourou — commerce, service ou prestataire lié à l'écosystème spatial. Diagnostic direct.</p>
       </div>
       <div class="audit-card reveal">
         <div class="audit-content">
           <h3><span class="accent">Audit 360°</span> de votre entreprise</h3>
-          <p>On passe au crible votre site web, vos réseaux sociaux et votre référencement local à ${esc(city.name)}. On identifie où sont vos clients et comment les atteindre.</p>
+          <p>On passe au crible votre site web, vos réseaux sociaux et votre référencement local à Kourou. On identifie où sont vos clients et comment les atteindre.</p>
           <div class="audit-features">
-            <div class="audit-feature">Positionnement Google à ${esc(city.name)}</div>
+            <div class="audit-feature">Positionnement Google à Kourou</div>
             <div class="audit-feature">Audit de vos réseaux (Insta, Facebook, TikTok)</div>
             <div class="audit-feature">Stratégie d'acquisition locale</div>
             <div class="audit-feature">Devis transparent et sur-mesure</div>
@@ -206,35 +172,35 @@ ${faqJsonLd(city.faq)}
     <div class="container">
       <div class="section-header">
         <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-globe"/></svg> Nos Services</span>
-        <h2>${city.servicesH2}</h2>
-        <p>${esc(city.servicesIntro)}</p>
+        <h2>Tout le digital centralisé<br><span class="accent">pour les entreprises kourouciennes</span></h2>
+        <p>À Kourou, on croise une clientèle locale et internationale. Un site crédible, un référencement propre et de l'automatisation pour être à la hauteur de la cité de l'espace.</p>
       </div>
       <div class="bulles-container">
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../assets/${ZONE}/${fauna[0]}');"></div>
+          <div class="bulle-image" style="background-image: url('../assets/guyane/ara.jpg');"></div>
           <div class="bulle-content">
             <h4>Création de Sites Web</h4>
-            <p>Site vitrine, e-commerce ou plateforme sur-mesure. Un design moderne, adapté aux mobiles et optimisé pour ${esc(city.name)}.</p>
+            <p>Site vitrine, e-commerce ou plateforme sur-mesure. Un design moderne, adapté aux mobiles et optimisé pour Kourou.</p>
             <div class="prix">Dès 250€</div>
             <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Rapide & Clé en main</div>
             <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">En savoir plus</button>
           </div>
         </div>
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../assets/${ZONE}/${fauna[1]}');"></div>
+          <div class="bulle-image" style="background-image: url('../assets/guyane/paresseux.jpg');"></div>
           <div class="bulle-content">
             <h4>Réseaux Sociaux & Ads</h4>
-            <p>Community Management sur Facebook, Insta & TikTok. Contenus et publicité (Social Ads) ciblés sur ${esc(city.name)} et ses environs.</p>
+            <p>Community Management sur Facebook, Insta & TikTok. Contenus et publicité (Social Ads) ciblés sur Kourou et ses environs.</p>
             <div class="prix">Sur devis</div>
             <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Acquisition continue</div>
             <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">Booster ma marque</button>
           </div>
         </div>
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../assets/${ZONE}/${fauna[2]}');"></div>
+          <div class="bulle-image" style="background-image: url('../assets/guyane/jaguar.jpg');"></div>
           <div class="bulle-content">
             <h4>SEO & Automatisation</h4>
-            <p>Dominez Google à ${esc(city.name)} avec le référencement local. Automatisation des relances clients et des prises de RDV par IA.</p>
+            <p>Dominez Google à Kourou avec le référencement local. Automatisation des relances clients et des prises de RDV par IA.</p>
             <div class="prix">Sur devis</div>
             <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Gain de temps garanti</div>
             <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">Me positionner 1er</button>
@@ -267,7 +233,7 @@ ${faqJsonLd(city.faq)}
         </a>
       </div>
       <div style="text-align: center; margin-top: 40px;">
-        <p style="color: var(--gris); margin-bottom: 16px;">Un projet en tête à ${esc(city.name)} ? Parlons-en directement.</p>
+        <p style="color: var(--gris); margin-bottom: 16px;">Un projet en tête à Kourou ? Parlons-en directement.</p>
         <button onclick="openModal()" class="btn btn-primary" style="background: var(--noir-doux); color: var(--blanc);">Discuter de mon projet</button>
       </div>
     </div>
@@ -279,7 +245,7 @@ ${faqJsonLd(city.faq)}
       <div class="section-header">
         <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Processus</span>
         <h2>Déploiement <span class="accent">efficace</span></h2>
-        <p>Un accompagnement de proximité pour les entreprises ${esc(city.gentile)}. Vous restez sur votre métier, on gère la technique et votre image.</p>
+        <p>Un accompagnement de proximité pour les entreprises kourouciennes. Vous restez sur votre métier, on gère la technique et votre image.</p>
       </div>
       <div class="process-steps">
         <div class="process-step reveal"><div class="step-num">1</div><h4>Diagnostic (15 min)</h4><p>On évalue vos besoins (nouveau site, refonte, réseaux, pub locale).</p></div>
@@ -294,11 +260,26 @@ ${faqJsonLd(city.faq)}
   <section id="faq" style="background: var(--gris-clair);">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">FAQ · ${esc(city.name)}</span>
+        <span class="section-tag">FAQ · Kourou</span>
         <h2>Questions <span class="accent">fréquentes</span></h2>
       </div>
       <div class="faq">
-${faqHtml(city.faq)}
+        <div class="faq-item reveal">
+          <div class="faq-q">Travaillez-vous avec les prestataires liés au spatial à Kourou ?</div>
+          <div class="faq-a"><p>Oui. Beaucoup d'entreprises de Kourou servent l'écosystème spatial ou sa population internationale. On crée des sites professionnels, souvent bilingues, qui rassurent ce public exigeant.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Quel budget pour un site professionnel à Kourou ?</div>
+          <div class="faq-a"><p>Une vitrine démarre à 250€. Pour un site plus complet (bilingue, catalogue, réservation), on chiffre selon vos besoins — devis clair et transparent.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Pouvez-vous faire un site bilingue français / anglais ?</div>
+          <div class="faq-a"><p>Oui, c'est fréquent à Kourou vu la population internationale. On conçoit des sites multilingues propres, pensés pour le référencement dans chaque langue.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">Automatisez-vous la gestion des demandes et des devis ?</div>
+          <div class="faq-a"><p>C'est une de nos forces : formulaires intelligents, accusés et relances automatiques, prise de RDV en ligne. Vos équipes gagnent du temps sur l'administratif.</p></div>
+        </div>
       </div>
       <div style="text-align: center; margin-top: 40px;" class="reveal">
         <button onclick="openModal()" class="btn btn-primary" style="background: var(--noir-doux); color: var(--blanc);">J'ai une autre question</button>
@@ -309,13 +290,14 @@ ${faqHtml(city.faq)}
   <!-- NOS VILLES (maillage interne) -->
   <section class="villes-band" id="villes">
     <div class="container">
-      <h3>GroupSolution partout à ${ZONE_NAME}</h3>
+      <h3>GroupSolution partout à La Guyane</h3>
       <p>On accompagne les entreprises sur toute l'île. Trouvez votre agence de proximité :</p>
       <div class="villes-grid">
-        <a class="region" href="${REGION_PAGE}">🌴 Toute ${ZONE_NAME}</a>
-        ${cities.map(c => c.slug === city.slug
-          ? `<span class="current">${esc(c.name)}</span>`
-          : `<a href="site-internet-${c.slug}.html">${esc(c.name)}</a>`).join('\n        ')}
+        <a class="region" href="site-internet-guyane.html">🌴 Toute La Guyane</a>
+        <a href="site-internet-cayenne.html">Cayenne</a>
+        <span class="current">Kourou</span>
+        <a href="site-internet-saint-laurent-du-maroni.html">Saint-Laurent-du-Maroni</a>
+        <a href="site-internet-matoury.html">Matoury</a>
       </div>
     </div>
   </section>
@@ -328,8 +310,8 @@ ${faqHtml(city.faq)}
       </div>
       <div class="reveal">
         <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: var(--gris-fonce);">L'ingénierie digitale, <span class="accent" style="background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">sans blabla.</span></h2>
-        <p style="color: var(--gris); margin-bottom: 16px; font-size: 1.05rem;">Je suis Titouan Bedos, fondateur de GroupSolution. ${esc(city.aboutP)}</p>
-        <p style="color: var(--gris); margin-bottom: 16px; font-size: 1.05rem;"><strong>Zones desservies autour de ${esc(city.name)} :</strong> ${esc(city.zones)}.</p>
+        <p style="color: var(--gris); margin-bottom: 16px; font-size: 1.05rem;">Je suis Titouan Bedos, fondateur de GroupSolution. Du commerce kouroucien au prestataire gravitant autour du spatial, je développe des sites professionnels et des automatisations qui inspirent confiance.</p>
+        <p style="color: var(--gris); margin-bottom: 16px; font-size: 1.05rem;"><strong>Zones desservies autour de Kourou :</strong> Centre-ville, Bourg, l’Anse, Pariacabo, zone du Centre Spatial.</p>
         <div style="display: flex; gap: 16px;">
           <a href="https://www.groupsolution.fr/a-propos.html" style="font-weight: 600; color: var(--rose-fonce); text-decoration: none; display: flex; align-items: center; gap: 6px;">
             <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
@@ -345,7 +327,7 @@ ${faqHtml(city.faq)}
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()" aria-label="Fermer"><svg class="icon"><use href="#i-x"/></svg></button>
       <div class="modal-header">
-        <h3>Prêt à dominer le web <br><span class="accent">${esc(city.h1suffix)} ?</span></h3>
+        <h3>Prêt à dominer le web <br><span class="accent">à Kourou ?</span></h3>
         <p>Décrivez votre besoin. Je vous recontacte sous 24h.</p>
       </div>
       <form action="https://formspree.io/f/mzebrvjg" method="POST" id="contactForm">
@@ -354,9 +336,9 @@ ${faqHtml(city.faq)}
           <div class="form-group"><label>Téléphone</label><input type="tel" name="telephone" placeholder="06..." required /></div>
           <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="contact@..." required /></div>
         </div>
-        <div class="form-group"><label>Votre entreprise ou secteur</label><input type="text" name="entreprise" placeholder="ex: Commerce à ${esc(city.name)}" /></div>
+        <div class="form-group"><label>Votre entreprise ou secteur</label><input type="text" name="entreprise" placeholder="ex: Commerce à Kourou" /></div>
         <div class="form-group"><label>Votre projet</label><textarea name="message" placeholder="Je voudrais un site web pour..." required></textarea></div>
-        <input type="hidden" name="_zone" value="${esc(city.name)} (${ZONE_NAME}, ${zone.code})" />
+        <input type="hidden" name="_zone" value="Kourou (La Guyane, 973)" />
         <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><svg class="icon"><use href="#i-arrow-right"/></svg> Envoyer ma demande</button>
       </form>
     </div>
@@ -367,7 +349,7 @@ ${faqHtml(city.faq)}
     <div class="container">
       <div class="groupe-inner reveal">
         <span class="groupe-kicker"><svg class="icon" style="width:14px;height:14px;"><use href="#i-sparkles"/></svg> Une marque de Groupe Solution</span>
-        <h2>${esc(city.name)} fait partie de <span class="accent">Groupe Solution</span></h2>
+        <h2>Kourou fait partie de <span class="accent">Groupe Solution</span></h2>
         <p>Éditeur de logiciels &amp; d'automatisations sur-mesure. Au-delà du digital local, le groupe conçoit des systèmes qui absorbent vos tâches répétitives — partout en France.</p>
         <div class="groupe-ctas">
           <a href="https://www.groupsolution.fr/echanger.html" class="btn btn-primary"><svg class="icon"><use href="#i-mail"/></svg> <span>Prendre rendez-vous</span></a>
@@ -383,13 +365,16 @@ ${faqHtml(city.faq)}
       <div class="footer-content">
         <div class="footer-logo">
           <img src="../Logo.svg" alt="GroupSolution Agence Digitale" />
-          <p class="footer-desc">Agence web à ${esc(city.name)} (${ZONE_NAME}, ${zone.code}). Création de sites, SEO, réseaux sociaux et automatisation.</p>
+          <p class="footer-desc">Agence web à Kourou (La Guyane, 973). Création de sites, SEO, réseaux sociaux et automatisation.</p>
         </div>
         <div class="footer-links">
-          <h4>Nos villes à ${ZONE_NAME}</h4>
+          <h4>Nos villes à La Guyane</h4>
           <ul>
-            <li><a href="${REGION_PAGE}">Toute ${ZONE_NAME}</a></li>
-            ${citiesNav(city.slug, cities)}
+            <li><a href="site-internet-guyane.html">Toute La Guyane</a></li>
+            <li><a href="site-internet-cayenne.html">Cayenne</a></li>
+            <li><strong style="color:var(--rose-fonce)">Kourou</strong></li>
+            <li><a href="site-internet-saint-laurent-du-maroni.html">Saint-Laurent-du-Maroni</a></li>
+            <li><a href="site-internet-matoury.html">Matoury</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -405,10 +390,10 @@ ${faqHtml(city.faq)}
           <h4>Contact Direct</h4>
           <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-phone"/></svg><a href="tel:+33782298559">07 82 29 85 59</a></p>
           <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-mail"/></svg><a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a></p>
-          <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-map-pin"/></svg>${esc(city.name)}, ${ZONE_NAME}</p>
+          <p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-map-pin"/></svg>Kourou, La Guyane</p>
         </div>
       </div>
-      <div class="footer-bottom">© 2026 GroupSolution SAS. Tous droits réservés.${zone.photoCredits ? `<br><span style="font-size:11px;opacity:.65">${esc(zone.photoCredits)}</span>` : ''}</div>
+      <div class="footer-bottom">© 2026 GroupSolution SAS. Tous droits réservés.<br><span style="font-size:11px;opacity:.65">Crédits photos : forêt © Cayambe (CC BY-SA 3.0) · fleuve Maroni © Patrick Wilhelm (CC BY-SA 3.0) · Ariane 5 à Kourou © NASA (domaine public) · ara © Brian Snelson (CC BY 2.0) · paresseux &amp; jaguar © Charles J. Sharp (CC BY-SA 4.0) — via Wikimedia Commons.</span></div>
     </div>
   </footer>
 
@@ -429,8 +414,8 @@ ${faqHtml(city.faq)}
     });
 
     const hero = document.querySelector('.hero');
-    const photos = ['../assets/${ZONE}/hero-1.jpg', '../assets/${ZONE}/hero-2.jpg', '../assets/${ZONE}/hero-3.jpg'];
-    let idx = photos.indexOf('../assets/${ZONE}/${city.hero}'); if (idx < 0) idx = 0;
+    const photos = ['../assets/guyane/hero-1.jpg', '../assets/guyane/hero-2.jpg', '../assets/guyane/hero-3.jpg'];
+    let idx = photos.indexOf('../assets/guyane/hero-3.jpg'); if (idx < 0) idx = 0;
     photos.forEach(p => { const im = new Image(); im.src = p; });
     setInterval(function () { idx = (idx + 1) % photos.length; hero.style.backgroundImage = "url('" + photos[idx] + "')"; }, 5000);
 
@@ -465,22 +450,3 @@ ${faqHtml(city.faq)}
   <script src="/analytics.js" defer></script>
 </body>
 </html>
-`;
-}
-
-let n = 0;
-for (const zone of ZONES) {
-  if (zone.status !== 'online') continue;
-  const entries = [];
-  if (zone.region) entries.push(zone.region);       // page régionale (si définie)
-  if (zone.cities) entries.push(...zone.cities);     // pages villes
-  for (const entry of entries) {
-    if (!entry.faq) continue; // entrée sans contenu détaillé → pas générée
-    const pageFile = entry.pageFile || `site-internet-${entry.slug}.html`;
-    const out = join(ROOT, zone.slug, pageFile);
-    writeFileSync(out, page(entry, zone), 'utf8');
-    console.log('✓', `${zone.slug}/${pageFile}`);
-    n++;
-  }
-}
-console.log(`\n${n} pages générées.`);
