@@ -31,8 +31,13 @@
     },
     "telephone": "+33782298559",
     "email": "contact@groupsolution.fr",
-    "url": "https://groupsolution.fr/site-internet-mayotte.html",
-    "priceRange": "€€"
+    "url": "https://www.groupsolution.fr/mayotte/site-internet-mayotte.html",
+    "priceRange": "€€",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Groupe Solution",
+      "url": "https://www.groupsolution.fr"
+    }
   }
   </script>
 
@@ -59,6 +64,7 @@
   }
   </script>
 
+  <link rel="canonical" href="https://www.groupsolution.fr/mayotte/site-internet-mayotte.html" />
   <link rel="icon" type="image/svg+xml" href="../Logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -274,6 +280,17 @@
       .modal-content { padding: 30px 20px; border-radius: 20px; max-height: 95vh; }
     }
 
+    /* ===== BANDE APPARTENANCE AU GROUPE (ponts vers le holding) ===== */
+    .nav-holding { color: var(--rose-fonce) !important; font-weight: 700 !important; }
+    .groupe-band { background: linear-gradient(135deg, var(--rose-clair) 0%, var(--blanc) 100%); padding: 80px 0; }
+    .groupe-inner { max-width: 900px; margin: 0 auto; text-align: center; background: var(--blanc); border: 1px solid var(--gris-clair); border-radius: var(--border-radius); box-shadow: var(--box-shadow-lg); padding: 48px 40px; }
+    .groupe-kicker { display: inline-flex; align-items: center; gap: 8px; background: var(--rose-clair); color: var(--rose-fonce); padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; margin-bottom: 18px; }
+    .groupe-inner h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; color: var(--gris-fonce); }
+    .groupe-inner h2 .accent { background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .groupe-inner p { font-size: 1.1rem; color: var(--gris); max-width: 620px; margin: 0 auto 28px; line-height: 1.7; }
+    .groupe-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 768px) { .groupe-inner { padding: 34px 22px; } .groupe-ctas { flex-direction: column; } .groupe-ctas .btn { width: 100%; justify-content: center; } }
+
     /* ===== ANIMATIONS ===== */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--transition), transform 0.6s var(--transition); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -305,6 +322,7 @@
         <li><a href="#solutions">Nos Services</a></li>
         <li><a href="#processus">Processus</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://www.groupsolution.fr" class="nav-holding">Groupe Solution ↗</a></li>
       </ul>
       <div class="nav-actions">
         <!-- OUVRE LA MODALE AU LIEU D'ANCRER EN BAS -->
@@ -621,6 +639,30 @@
     </div>
   </div>
 
+  <!-- BANDE : APPARTENANCE AU GROUPE (ponts SEO + prospects vers le holding) -->
+  <section class="groupe-band" id="groupe">
+    <div class="container">
+      <div class="groupe-inner reveal">
+        <span class="groupe-kicker">
+          <svg class="icon" style="width:14px;height:14px;"><use href="#i-sparkles"/></svg>
+          Une marque de Groupe Solution
+        </span>
+        <h2>Mayotte fait partie de <span class="accent">Groupe Solution</span></h2>
+        <p>Éditeur de logiciels &amp; d'automatisations sur-mesure. Au-delà du digital local, le groupe conçoit des systèmes qui absorbent vos tâches répétitives — partout en France.</p>
+        <div class="groupe-ctas">
+          <a href="https://www.groupsolution.fr/echanger.html" class="btn btn-primary">
+            <svg class="icon"><use href="#i-mail"/></svg>
+            <span>Prendre rendez-vous</span>
+          </a>
+          <a href="https://www.groupsolution.fr" class="btn btn-secondary">
+            <svg class="icon"><use href="#i-arrow-right"/></svg>
+            <span>Découvrir Groupe Solution</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER COMPLET SEO -->
   <footer>
     <div class="container">
@@ -637,6 +679,16 @@
             <li><a href="mentions-legales-a-propos.html">À Propos & Mentions Légales</a></li>
             <li><a href="#solutions">Nos Services</a></li>
             <li><a href="#processus">Notre Processus</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Groupe Solution</h4>
+          <ul>
+            <li><a href="https://www.groupsolution.fr">Le site du groupe ↗</a></li>
+            <li><a href="https://www.groupsolution.fr/echanger.html">Prendre rendez-vous</a></li>
+            <li><a href="https://www.groupsolution.fr/solutions.html">Nos solutions</a></li>
+            <li><a href="https://www.groupsolution.fr/partenariats.html">Partenariats</a></li>
           </ul>
         </div>
 
@@ -768,5 +820,6 @@
       });
     }
   </script>
+  <script src="/analytics.js" defer></script>
 </body>
 </html>
