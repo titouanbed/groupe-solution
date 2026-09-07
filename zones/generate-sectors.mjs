@@ -94,6 +94,9 @@ const faqJsonLd = faq => (faq || []).slice(0, 4)
 /* Secteurs de la zone qui ont un contenu rédigé */
 const zoneSectors = zone => SECTORS.filter(s => CONTENT[s.slug] && CONTENT[s.slug][zone.slug]);
 
+/* La zone a-t-elle un index de blog généré ? (même condition que generate-blog) */
+const hasBlog = zone => !!(zone.region || (zone.cities && zone.cities.some(c => c.faq)));
+
 function sectorPage(sector, zone) {
   const c = CONTENT[sector.slug][zone.slug];
   const url = `${HOLDING}/${zone.slug}/secteurs/${sector.slug}.html`;
@@ -164,7 +167,7 @@ ${faqJsonLd(c.faq)}
     <div class="bnl">
       <a href="index.html">Secteurs ${esc(zone.name)}</a>
       <a href="${regionUrl}">L'agence ${esc(zone.name)}</a>
-      <a href="../blog/">Guides</a>
+      ${hasBlog(zone) ? '<a href="../blog/">Guides</a>' : ''}
       <a href="#" onclick="openModal();return false;" class="bn-cta btn btn-primary" style="padding:8px 16px">Contact</a>
     </div>
   </div></nav>
@@ -262,7 +265,7 @@ function hubPage(zone, sectors) {
     <a href="../${zone.regionPage}" class="nav-logo"><img src="../../Logo.svg" alt="GroupSolution ${esc(zone.name)}" /></a>
     <div class="bnl">
       <a href="../${zone.regionPage}">L'agence ${esc(zone.name)}</a>
-      <a href="../blog/">Guides</a>
+      ${hasBlog(zone) ? '<a href="../blog/">Guides</a>' : ''}
       <a href="https://www.groupsolution.fr">Groupe Solution ↗</a>
     </div>
   </div></nav>
@@ -276,7 +279,7 @@ ${cards}
     </div>
   </div></section></main>
   <footer style="background:var(--noir-doux);color:#a1a1aa;padding:40px 0;text-align:center;font-size:.85rem"><div class="container">
-    <p><a href="../${zone.regionPage}" style="color:var(--rose)">Agence web ${esc(zone.name)}</a> · <a href="../blog/" style="color:var(--rose)">Guides</a> · <a href="https://www.groupsolution.fr" style="color:var(--rose)">Groupe Solution</a></p>
+    <p><a href="../${zone.regionPage}" style="color:var(--rose)">Agence web ${esc(zone.name)}</a>${hasBlog(zone) ? ' · <a href="../blog/" style="color:var(--rose)">Guides</a>' : ''} · <a href="https://www.groupsolution.fr" style="color:var(--rose)">Groupe Solution</a></p>
     <p>© 2026 GroupSolution SAS.</p>
   </div></footer>
   <script src="/analytics.js" defer></script>
