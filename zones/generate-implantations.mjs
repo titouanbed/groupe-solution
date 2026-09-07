@@ -32,8 +32,9 @@ function card(zone) {
   const state = online
     ? `<span class="terrState">En ligne</span>`
     : `<span class="terrState soon">En préparation</span>`;
+  const hasBlog = online && ((zone.cities && zone.cities.some(c => c.faq)) || zone.region);
   const go = online
-    ? `<div class="terrGo"><a class="go" href="${zone.slug}/${zone.regionPage}">Voir l’agence ${esc(zone.name)} →</a></div>`
+    ? `<div class="terrGo"><a class="go" href="${zone.slug}/${zone.regionPage}">Voir l’agence ${esc(zone.name)} →</a>${hasBlog ? `<a class="go2" href="${zone.slug}/blog/">Guides &amp; conseils ${esc(zone.name)} →</a>` : ''}</div>`
     : `<div class="terrGo"><span class="soonNote">Bientôt disponible</span></div>`;
   return `      <div class="terrCard reveal">
         <div class="terrTop"><span class="terrCode">${esc(zone.name)} · ${esc(zone.code)}</span>${state}</div>
@@ -83,9 +84,11 @@ const html = `<!DOCTYPE html>
     .terrChips a{color:var(--olive2);background:var(--sand);transition:border-color .2s,color .2s,background .2s}
     .terrChips a:hover{border-color:var(--olive);color:var(--ink);background:var(--olive-soft)}
     .terrChips span{color:var(--muted);background:var(--paper);border-style:dashed}
-    .terrGo{margin-top:auto;padding-top:22px}
+    .terrGo{margin-top:auto;padding-top:22px;display:flex;flex-direction:column;gap:9px;align-items:flex-start}
     .terrGo .go{font-size:14px;font-weight:800;color:var(--acc);display:inline-flex;align-items:center;gap:7px;transition:gap .2s var(--ease)}
     .terrGo .go:hover{gap:10px}
+    .terrGo .go2{font-size:13.5px;font-weight:700;color:var(--olive2);text-decoration:none;transition:color .2s}
+    .terrGo .go2:hover{color:var(--ink)}
     .terrGo .soonNote{font-size:13px;font-weight:700;color:var(--muted)}
 
     .impCta{margin-top:56px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-m);padding:clamp(34px,4vw,54px);display:flex;justify-content:space-between;align-items:center;gap:36px;flex-wrap:wrap}

@@ -97,5 +97,113 @@ export const TOPICS = [
       { q: `Le référencement local est-il payant ?`, a: `La fiche Google Business est gratuite. Le travail d'optimisation du site et de la stratégie, lui, se prépare — c'est justement ce qu'on fait pour vous ${c.h1suffix}.` },
       { q: `Faut-il faire de la publicité Google en plus ?`, a: `Pas obligatoirement. Un bon référencement naturel local suffit souvent ${c.h1suffix}. La publicité (Ads) sert à accélérer ou à couvrir une demande ponctuelle.` }
     ]
+  },
+
+  /* ─────────── RÉSEAUX SOCIAUX ─────────── */
+  {
+    slug: 'reseaux-sociaux-clients',
+    label: 'Réseaux sociaux',
+    title: c => `Trouver des clients sur les réseaux sociaux ${c.h1suffix}`,
+    desc: c => `Facebook, Instagram, TikTok, WhatsApp : comment transformer les réseaux sociaux en machine à clients pour votre entreprise ${c.h1suffix}. Le guide pratique.`,
+    keywords: c => `réseaux sociaux ${c.name}, community management ${c.name}, publicité Facebook ${c.name}, trouver des clients Instagram ${c.name}`,
+    body: (c) => `
+      <p class="lead">${cap(c.h1suffix)}, une grande partie de vos clients passe ses journées sur les réseaux sociaux. La question n'est pas « faut-il y être », mais « comment y transformer l'attention en clients ». Voici la méthode.</p>
+
+      <h2>Quel réseau pour votre entreprise ${c.h1suffix} ?</h2>
+      <ul>
+        <li><strong>Facebook &amp; WhatsApp</strong> — incontournables localement : groupes, recommandations, contact direct. Le réflexe n°1 d'une clientèle de proximité.</li>
+        <li><strong>Instagram</strong> — pour tout ce qui est visuel (restauration, beauté, artisanat, immobilier). La vitrine qui donne envie.</li>
+        <li><strong>TikTok</strong> — pour toucher une audience jeune et créer de la portée rapidement, même sans budget.</li>
+      </ul>
+
+      <h2>Créer du contenu qui donne envie</h2>
+      <p>Le piège, c'est de ne parler que de soi. Le bon contenu apporte de la valeur&nbsp;: coulisses, conseils, avant/après, réponses aux questions fréquentes de vos clients. Montrez votre expertise et votre visage — la proximité, c'est votre force face aux grandes enseignes.</p>
+
+      <h2>La régularité prime sur la perfection</h2>
+      <p>Mieux vaut 2 publications utiles par semaine, régulièrement, qu'une vidéo parfaite tous les deux mois. Un planning simple et tenu bat toujours l'improvisation. C'est là qu'un community manager fait gagner un temps précieux.</p>
+
+      <h2>La publicité locale (Social Ads)</h2>
+      <p>Avec quelques euros par jour, on cible précisément les habitants autour de votre établissement (${c.zones ? c.zones.split(',').slice(0, 2).join(', ').trim() : 'votre secteur'}…), par âge et par centre d'intérêt. Idéal pour une ouverture, une promo ou remplir un agenda creux ${c.h1suffix}.</p>
+
+      <h2>Réseaux sociaux + site : le duo gagnant</h2>
+      <p>${localAngle(c)} Les réseaux créent l'attention&nbsp;; votre site transforme cette attention en client (réservation, devis, achat). Les deux se renforcent&nbsp;: c'est tout l'intérêt d'un accompagnement global.</p>
+
+      <div class="callout"><p>On gère vos réseaux de A à Z (contenu, publication, publicité) ou on vous forme à le faire. On commence par un audit gratuit de votre présence actuelle.</p></div>`,
+    faq: (c) => [
+      { q: `Sur quels réseaux mon entreprise ${c.h1suffix} doit-elle être ?`, a: `Rarement tous. On choisit selon votre métier et votre cible : Facebook/WhatsApp pour la proximité, Instagram pour le visuel, TikTok pour la portée. Mieux vaut être excellent sur un ou deux réseaux.` },
+      { q: `Combien coûte la gestion des réseaux sociaux ?`, a: `Le Community Management est sur devis, selon la fréquence et le nombre de réseaux. On adapte à votre budget, avec des formules pour TPE. Un audit gratuit permet de cadrer le besoin.` },
+      { q: `La publicité Facebook/Instagram, ça marche vraiment localement ?`, a: `Oui, c'est même l'un des leviers les plus rentables ${c.h1suffix} : on cible précisément votre zone et votre clientèle avec un petit budget quotidien.` }
+    ]
+  },
+
+  /* ─────────── E-COMMERCE ─────────── */
+  {
+    slug: 'creer-boutique-en-ligne',
+    label: 'E-commerce',
+    title: c => `Créer une boutique en ligne ${c.h1suffix} : le guide complet`,
+    desc: c => `Vendre en ligne quand on est une entreprise ${c.gentile.replace(/s$/, '')} : coûts, étapes, paiement, livraison locale et référencement d'une boutique e-commerce ${c.h1suffix}.`,
+    keywords: c => `boutique en ligne ${c.name}, site e-commerce ${c.name}, vendre en ligne ${c.name}, création boutique internet ${c.name}`,
+    body: (c) => `
+      <p class="lead">Vendre en ligne n'est plus réservé aux grandes enseignes. Une boutique e-commerce bien conçue ouvre votre commerce ${c.h1suffix} 24h/24, au-delà de votre rue et de vos horaires. Voici comment s'y prendre.</p>
+
+      <h2>Pourquoi vendre en ligne ${c.h1suffix} ?</h2>
+      <p>Parce que vos clients cherchent — et achètent — de plus en plus sur leur téléphone. Une boutique en ligne vous permet de capter cette demande, de désengorger le comptoir, et de toucher au-delà de votre quartier, sans ouvrir un second point de vente.</p>
+
+      <h2>Combien coûte une boutique e-commerce ?</h2>
+      <p>Plus qu'un site vitrine (qui démarre à 250€), car il faut gérer le catalogue, le panier, le paiement sécurisé et les livraisons. Le budget dépend du nombre de produits et des fonctionnalités. On établit un <strong>devis transparent</strong> après avoir compris votre projet.</p>
+
+      <h2>Les points clés d'une boutique qui vend</h2>
+      <ul>
+        <li><strong>Un paiement simple et rassurant</strong> (carte, et moyens locaux si pertinent).</li>
+        <li><strong>Une livraison claire</strong> : retrait en boutique, livraison locale, expédition — adaptée à votre réalité ${c.h1suffix}.</li>
+        <li><strong>Des fiches produits soignées</strong> : photos, descriptions, avis.</li>
+        <li><strong>Un site rapide sur mobile</strong> — c'est là que se font la majorité des achats.</li>
+      </ul>
+
+      <h2>Une boutique invisible ne vend pas</h2>
+      <p>${localAngle(c)} Créer la boutique n'est que la moitié du travail : encore faut-il qu'on la trouve. Référencement local, réseaux sociaux et, si besoin, publicité ciblée : on branche votre boutique sur ses sources de trafic dès le départ.</p>
+
+      <div class="callout"><p>De la boutique simple au catalogue complet avec automatisation des commandes, on construit l'e-commerce qui correspond à votre activité ${c.h1suffix}.</p></div>`,
+    faq: (c) => [
+      { q: `Combien coûte un site e-commerce ${c.h1suffix} ?`, a: `C'est sur devis, car cela dépend du nombre de produits, du paiement et de la livraison. On chiffre clairement après un premier échange, sans engagement.` },
+      { q: `Puis-je proposer le retrait en boutique et la livraison locale ?`, a: `Oui, c'est même recommandé ${c.h1suffix} : on paramètre le retrait sur place et/ou la livraison locale, en plus de l'expédition classique.` },
+      { q: `Comment les clients vont-ils trouver ma boutique ?`, a: `Par le référencement (Google), les réseaux sociaux et, si utile, la publicité. On pense la visibilité dès la conception, pas après.` }
+    ]
+  },
+
+  /* ─────────── AUTOMATISATION ─────────── */
+  {
+    slug: 'automatisation-entreprise',
+    label: 'Automatisation',
+    title: c => `Automatiser son entreprise ${c.h1suffix} : gagner du temps`,
+    desc: c => `Devis, relances, prises de rendez-vous, réseaux : ce que vous pouvez automatiser dans votre entreprise ${c.h1suffix} pour gagner des heures chaque semaine. Le guide.`,
+    keywords: c => `automatisation entreprise ${c.name}, gagner du temps ${c.name}, automatiser devis relances ${c.name}, logiciel sur-mesure ${c.name}`,
+    body: (c) => `
+      <p class="lead">Le vrai luxe d'un chef d'entreprise ${c.h1suffix}, c'est le temps. Or une grande partie de vos journées part dans des tâches répétitives — devis, relances, prises de RDV — qu'une machine peut faire à votre place. C'est le cœur de métier de Groupe Solution.</p>
+
+      <h2>Qu'est-ce qu'on peut automatiser ?</h2>
+      <ul>
+        <li><strong>Les devis</strong> : formulaire intelligent, envoi automatique, suivi.</li>
+        <li><strong>Les relances</strong> : rappels automatiques aux clients qui n'ont pas répondu.</li>
+        <li><strong>La prise de rendez-vous</strong> en ligne, sans échanges de mails sans fin.</li>
+        <li><strong>Les réseaux sociaux</strong> : publications programmées à l'avance.</li>
+        <li><strong>Le suivi client</strong> : chaque demande tracée, rien ne passe à la trappe.</li>
+      </ul>
+
+      <h2>Pourquoi ça change tout pour une TPE</h2>
+      <p>Automatiser, ce n'est pas déshumaniser : c'est confier à la machine le répétitif pour vous rendre à l'essentiel — la relation client et la décision. Résultat : moins d'oublis, des réponses plus rapides, et des heures récupérées chaque semaine.</p>
+
+      <h2>Un exemple concret ${c.h1suffix}</h2>
+      <p>${localAngle(c)} Imaginez : un client remplit une demande sur votre site, reçoit instantanément un accusé, vous êtes notifié, une relance part automatiquement s'il ne donne pas suite, et son rendez-vous s'ajoute à votre agenda. Zéro saisie manuelle. C'est exactement ce type de système que l'on construit.</p>
+
+      <h2>Par où commencer</h2>
+      <p>On repère d'abord la tâche qui vous coûte le plus de temps, on l'automatise, on mesure. Puis on étend, étape par étape. Pas besoin de tout révolutionner d'un coup : le premier gain finance souvent le suivant.</p>
+
+      <div class="callout"><p>La devise de Groupe Solution : nous gagnons de l'argent uniquement si vous en gagnez. On commence par identifier, en 15 minutes, ce qui peut être automatisé chez vous.</p></div>`,
+    faq: (c) => [
+      { q: `L'automatisation, c'est réservé aux grandes entreprises ?`, a: `Non, au contraire : c'est une TPE ${c.h1suffix} qui en profite le plus, car chaque heure gagnée compte. On construit des systèmes à votre taille, sans usine à gaz.` },
+      { q: `Que peut-on automatiser en premier ?`, a: `En général les devis, les relances et la prise de rendez-vous : rapide à mettre en place et gain de temps immédiat. On part de ce qui vous pèse le plus.` },
+      { q: `Est-ce que ça remplace mes équipes ?`, a: `Non. L'automatisation prend le répétitif ; vos équipes gardent l'essentiel — la relation et la décision. Elles travaillent mieux, pas moins.` }
+    ]
   }
 ];

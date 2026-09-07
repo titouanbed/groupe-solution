@@ -11,6 +11,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { ZONES, HOLDING } from './zones.mjs';
+import { TOPICS } from './blog-topics.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -114,6 +115,15 @@ ${faqJsonLd(city.faq)}
     .villes-grid a:hover { border-color:var(--rose); color:var(--rose-fonce); transform:translateY(-2px); }
     .villes-grid .current { background:var(--rose-clair); color:var(--rose-fonce); border-color:var(--rose); }
     .villes-grid .region { background:var(--noir-doux); color:var(--blanc); border-color:var(--noir-doux); }
+    .guides-band { padding: 76px 0; background: var(--blanc); }
+    .guides-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-top:8px; }
+    .guides-card { display:flex; flex-direction:column; gap:8px; background:var(--blanc); border:1px solid var(--gris-clair); border-radius:var(--border-radius); padding:24px; text-decoration:none; color:var(--gris-fonce); box-shadow:var(--box-shadow); transition:var(--transition); }
+    .guides-card:hover { transform:translateY(-4px); box-shadow:var(--box-shadow-lg); border-color:var(--rose); }
+    .guides-card .gt { font-size:.72rem; font-weight:700; color:var(--rose-fonce); text-transform:uppercase; letter-spacing:.08em; }
+    .guides-card h4 { font-size:1.05rem; font-weight:700; line-height:1.3; }
+    .guides-card .more { margin-top:auto; color:var(--rose-fonce); font-weight:700; font-size:.9rem; }
+    .guides-all { text-align:center; margin-top:28px; }
+    .guides-all a { font-weight:700; color:var(--rose-fonce); text-decoration:none; }
   </style>
 </head>
 
@@ -317,6 +327,21 @@ ${faqHtml(city.faq)}
           ? `<span class="current">${esc(c.name)}</span>`
           : `<a href="site-internet-${c.slug}.html">${esc(c.name)}</a>`).join('\n        ')}
       </div>
+    </div>
+  </section>
+
+  <!-- NOS DERNIERS GUIDES (maillage interne vers le blog local) -->
+  <section class="guides-band" id="guides">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Guides &amp; conseils</span>
+        <h2>Nos guides pour ${esc(city.name)}</h2>
+        <p>Tarifs, visibilité, réseaux, e-commerce, automatisation : nos conseils concrets pour développer votre entreprise ${esc(city.h1suffix)}.</p>
+      </div>
+      <div class="guides-grid">
+        ${TOPICS.map(t => `<a class="guides-card reveal" href="blog/${t.slug}-${city.slug}.html"><span class="gt">${esc(t.label)}</span><h4>${esc(t.title(city, zone))}</h4><span class="more">Lire le guide →</span></a>`).join('\n        ')}
+      </div>
+      <div class="guides-all"><a href="blog/index.html">Voir tous les guides ${esc(city.h1suffix)} →</a></div>
     </div>
   </section>
 
