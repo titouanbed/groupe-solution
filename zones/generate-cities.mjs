@@ -140,7 +140,7 @@ ${faqJsonLd(city.faq)}
         <li><a href="#audit">Audit Gratuit</a></li>
         <li><a href="#solutions">Nos Services</a></li>
         <li><a href="#villes">Nos Villes</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="blog/index.html">Guides</a></li>
         <li><a href="https://www.groupsolution.fr" class="nav-holding">Groupe Solution ↗</a></li>
       </ul>
       <div class="nav-actions">
