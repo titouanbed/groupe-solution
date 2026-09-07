@@ -9,7 +9,7 @@
    • La géo (Pays › Région › Ville, dont les DOM-TOM) est native dans GA4.
    ═══════════════════════════════════════════════════════════ */
 (function () {
-  var GA_ID = 'G-XXXXXXXXXX'; // TODO — remplacer par le vrai ID GA4 (ex : G-ABCD123456)
+  var GA_ID = 'G-G8RWE633G4'; // ID GA4 Groupe Solution (holding + Mayotte)
 
   if (!GA_ID || /X{4,}/.test(GA_ID)) return; // pas d'ID réel → on ne fait rien
 
