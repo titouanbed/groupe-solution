@@ -345,5 +345,120 @@ export const ZONES = [
         ]
       }
     ]
+  },
+
+  /* ───────────────────────── LA GUADELOUPE (971) ───────────────────────── */
+  {
+    slug: 'guadeloupe', name: 'La Guadeloupe', code: '971', status: 'online',
+    regionPage: 'site-internet-guadeloupe.html',
+    fauna: ['raton-laveur.jpg', 'martin-pecheur.jpg', 'tortue.jpg'],
+    implantTagline: "L'agence digitale de Groupe Solution en Guadeloupe : sites internet, référencement local, réseaux sociaux et automatisation pour les entreprises de Pointe-à-Pitre, Baie-Mahault et tout l'archipel.",
+    region: {
+      pageFile: 'site-internet-guadeloupe.html', slug: 'guadeloupe', name: 'La Guadeloupe', gentile: 'guadeloupéennes', hero: 'hero-1.jpg',
+      title: 'Agence Web & Digitale en Guadeloupe (971) | GroupSolution',
+      desc: "Agence web en Guadeloupe : création de sites internet, référencement local (SEO), réseaux sociaux et automatisation pour les entreprises de Pointe-à-Pitre, Baie-Mahault, Le Gosier et Basse-Terre. Audit gratuit.",
+      keywords: 'agence web Guadeloupe, création site internet Guadeloupe 971, SEO Pointe-à-Pitre, community management Guadeloupe, automatisation entreprise Guadeloupe',
+      badge: 'Votre agence digitale en Guadeloupe (971)',
+      h1suffix: 'en Guadeloupe',
+      heroSub: "De la Soufrière aux plages des Grands-Fonds, en passant par le pôle d'affaires de Jarry, la Guadeloupe est un archipel entreprenant. On donne aux entreprises guadeloupéennes les outils pour rayonner en ligne.",
+      auditIntro: "En 15 minutes, on analyse la présence en ligne de votre entreprise en Guadeloupe — de Pointe-à-Pitre à Basse-Terre. Des recommandations directes, adaptées au marché local.",
+      servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises guadeloupéennes</span>",
+      servicesIntro: "Commerce, tourisme, industrie à Jarry, services : la Guadeloupe est dynamique et connectée. Encore faut-il être visible. Site, SEO, réseaux et automatisation, on gère de A à Z.",
+      aboutP: "Du commerce de Pointe-à-Pitre à l'entreprise de Jarry, je conçois des outils d'acquisition taillés pour un archipel entreprenant, où le web amplifie le bouche-à-oreille.",
+      zones: 'Pointe-à-Pitre, Baie-Mahault (Jarry), Le Gosier, Basse-Terre, Les Abymes, Sainte-Anne',
+      areaServed: ['Pointe-à-Pitre', 'Baie-Mahault', 'Le Gosier', 'Basse-Terre'],
+      faq: [
+        { q: "Travaillez-vous avec les entreprises de toute la Guadeloupe ?", a: "Oui, de Pointe-à-Pitre à Basse-Terre, en passant par Baie-Mahault et Le Gosier. Tout se pilote à distance (visio, téléphone), avec une vraie exigence de proximité." },
+        { q: "Combien coûte un site internet en Guadeloupe ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+        { q: "Accompagnez-vous les entreprises de la zone de Jarry ?", a: "Bien sûr : Jarry est le premier pôle d'affaires des Antilles. On crée des sites B2B crédibles et des automatisations qui appuient votre développement commercial." },
+        { q: "Gérez-vous le référencement local et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé (Pointe-à-Pitre, Baie-Mahault…) et community management sur Facebook, Instagram et WhatsApp, très utilisés localement." }
+      ]
+    },
+    cities: [
+      {
+        slug: 'pointe-a-pitre', name: 'Pointe-à-Pitre', gentile: 'pointoises', hero: 'hero-2.jpg',
+        title: 'Agence Web & Création de Site Internet à Pointe-à-Pitre (971) | GroupSolution',
+        desc: "Agence web à Pointe-à-Pitre, capitale économique de la Guadeloupe : création de sites internet, SEO local, réseaux sociaux et publicité pour les commerces et entreprises du centre. Audit gratuit.",
+        keywords: 'agence web Pointe-à-Pitre, création site internet Pointe-à-Pitre 971, SEO Pointe-à-Pitre Guadeloupe, community management Pointe-à-Pitre',
+        badge: 'Votre agence digitale au cœur économique (Pointe-à-Pitre · 971)',
+        h1suffix: 'à Pointe-à-Pitre',
+        heroSub: "Capitale économique et port de la Guadeloupe, Pointe-à-Pitre concentre commerces, marché et services. On donne à votre activité pointoise la visibilité qu'elle mérite en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence en ligne de votre commerce ou société à Pointe-à-Pitre — du centre-ville au marché Saint-Antoine, jusqu'à la Marina. Recommandations directes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises pointoises</span>",
+        servicesIntro: "Commerces du centre, restaurants, prestataires : à Pointe-à-Pitre, la clientèle vous cherche d'abord sur Google et les réseaux. On centralise toute votre présence en ligne.",
+        aboutP: "Du commerce du centre de Pointe-à-Pitre au cabinet de la Marina, je conçois des outils d'acquisition adaptés à la réalité de la capitale économique.",
+        zones: 'Centre-ville, marché Saint-Antoine, la Darse, la Marina, Bergevin',
+        areaServed: ['Pointe-à-Pitre', 'Les Abymes', 'Le Gosier'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces du centre de Pointe-à-Pitre ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE de la capitale économique. On crée des sites pensés pour capter la clientèle pointoise." },
+          { q: "Combien coûte un site internet à Pointe-à-Pitre ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Pouvez-vous me positionner sur Google pour « à Pointe-à-Pitre 971 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir quand un Guadeloupéen cherche votre service." },
+          { q: "Gérez-vous les réseaux sociaux des entreprises pointoises ?", a: "Tout à fait. Facebook, Instagram et WhatsApp sont incontournables à Pointe-à-Pitre. On crée vos visuels, on rédige vos posts et on pilote vos campagnes locales." }
+        ]
+      },
+      {
+        slug: 'baie-mahault', name: 'Baie-Mahault', gentile: 'baie-mahaultiennes', hero: 'hero-1.jpg',
+        title: 'Agence Web & Création de Site Internet à Baie-Mahault (971) | GroupSolution',
+        desc: "Agence web à Baie-Mahault et dans la zone de Jarry, premier pôle d'affaires des Antilles : sites B2B, SEO, automatisation des devis et réseaux sociaux pour l'industrie, la logistique et le commerce. Audit gratuit.",
+        keywords: 'agence web Baie-Mahault, création site internet Jarry 971, site B2B Guadeloupe, automatisation devis, SEO zone Jarry',
+        badge: 'Votre agence digitale au pôle de Jarry (Baie-Mahault · 971)',
+        h1suffix: 'à Baie-Mahault',
+        heroSub: "Avec la zone de Jarry, premier pôle d'affaires des Antilles, Baie-Mahault est le moteur économique de la Guadeloupe : industrie, logistique, commerce de gros. On outille ces pros d'un web performant.",
+        auditIntro: "En 15 minutes, on évalue la présence en ligne de votre société à Baie-Mahault — industrie, logistique, négoce ou service de la zone de Jarry. Diagnostic direct.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les pros de Jarry</span>",
+        servicesIntro: "À Jarry, moins de vitrine grand public, plus de B2B : un site crédible, un référencement pro et surtout de l'automatisation pour ne plus perdre de temps sur les devis et relances.",
+        aboutP: "De l'entreprise industrielle de Jarry au négociant de Baie-Mahault, je développe des sites B2B solides et des automatisations qui font gagner des heures.",
+        zones: 'Zone de Jarry, Convenance, Belcourt, Providence, la Retraite',
+        areaServed: ['Baie-Mahault', 'Pointe-à-Pitre', 'Les Abymes'],
+        faq: [
+          { q: "Accompagnez-vous les entreprises de la zone de Jarry ?", a: "Oui, c'est une spécificité : Jarry est le premier pôle d'affaires des Antilles. Industrie, import-export, logistique, BTP — on crée des sites B2B crédibles et des outils commerciaux." },
+          { q: "Pouvez-vous créer un site vitrine B2B pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, références et certifications, pensé pour rassurer un donneur d'ordre — à partir de 250€ pour une vitrine." },
+          { q: "Automatisez-vous les demandes de devis et les relances ?", a: "C'est notre valeur ajoutée : formulaires de devis, accusés automatiques, relances programmées et suivi. Vos équipes se concentrent sur le métier." },
+          { q: "Référencez-vous mon entreprise sur « Jarry » et l'agglo ?", a: "Oui. On optimise votre visibilité sur les recherches B2B locales (fournisseur, prestataire + secteur) autour de Baie-Mahault et de l'agglomération pointoise." }
+        ]
+      },
+      {
+        slug: 'le-gosier', name: 'Le Gosier', gentile: 'gosiériennes', hero: 'hero-2.jpg',
+        title: 'Agence Web & Création de Site Internet au Gosier (971) | GroupSolution',
+        desc: "Agence web au Gosier, station balnéaire de la Guadeloupe : sites internet, réservation en ligne, SEO local et réseaux sociaux pour les hôtels, restaurants et acteurs du tourisme. Audit gratuit.",
+        keywords: 'agence web Le Gosier, création site internet Le Gosier 971, SEO tourisme Guadeloupe, site réservation hôtel restaurant Gosier',
+        badge: 'Votre agence digitale à la station balnéaire (Le Gosier · 971)',
+        h1suffix: 'au Gosier',
+        heroSub: "Cœur touristique de la Guadeloupe, Le Gosier vit au rythme de ses hôtels, plages et restaurants. On rend votre établissement visible avant même que le visiteur ne réserve.",
+        auditIntro: "En 15 minutes, on analyse comment votre activité gosiérienne apparaît en ligne — sur Google, les réseaux et les plateformes que consultent les touristes. Recommandations concrètes.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour le tourisme du Gosier</span>",
+        servicesIntro: "Hôtels, restaurants de plage, loueurs, activités nautiques : au Gosier, on vous trouve d'abord en ligne. Site, réservation, avis et publicité, on gère tout.",
+        aboutP: "De l'hôtel du bord de mer au restaurant du bourg du Gosier, je conçois des sites qui captent le visiteur au bon moment — avant même qu'il pose ses valises.",
+        zones: 'Le bourg, Bas-du-Fort, Montauban, Pointe de la Verdure, l’îlet du Gosier',
+        areaServed: ['Le Gosier', 'Sainte-Anne', 'Pointe-à-Pitre'],
+        faq: [
+          { q: "Créez-vous des sites pour les hôtels et restaurants du Gosier ?", a: "Absolument. Hôtels, restaurants de plage, loueurs et activités nautiques : on crée des sites qui donnent envie et rassurent le visiteur avant sa venue au Gosier." },
+          { q: "Un site de réservation en ligne, c'est adapté à mon activité ?", a: "Oui : réservation de chambres, de tables ou d'activités avec confirmation automatique. On automatise aussi les relances pour limiter les no-shows." },
+          { q: "Comment être visible auprès des touristes qui cherchent au Gosier ?", a: "Par le référencement local et une fiche Google soignée : quand un visiteur cherche « hôtel Gosier » ou « restaurant Bas-du-Fort », votre établissement doit sortir en premier." },
+          { q: "Gérez-vous les avis Google et la e-réputation ?", a: "Oui. Dans le tourisme, l'avis fait la réservation. On met en place la collecte, le suivi et les réponses pour soigner votre image." }
+        ]
+      },
+      {
+        slug: 'basse-terre', name: 'Basse-Terre', gentile: 'basse-terriennes', hero: 'hero-3.jpg',
+        title: 'Agence Web & Création de Site Internet à Basse-Terre (971) | GroupSolution',
+        desc: "Agence web à Basse-Terre, préfecture de la Guadeloupe au pied de la Soufrière : sites internet, SEO local, réseaux sociaux pour les commerces, l'administration et le tourisme vert. Audit gratuit.",
+        keywords: 'agence web Basse-Terre, création site internet Basse-Terre 971, SEO Basse-Terre Guadeloupe, community management préfecture Guadeloupe',
+        badge: 'Votre agence digitale à la préfecture (Basse-Terre · 971)',
+        h1suffix: 'à Basse-Terre',
+        heroSub: "Préfecture de la Guadeloupe, au pied de la Soufrière et de ses forêts, Basse-Terre mêle administration, patrimoine et tourisme vert. On rend votre activité basse-terrienne visible en ligne.",
+        auditIntro: "En 15 minutes, on analyse la présence web de votre activité à Basse-Terre — commerce, service, administration ou tourisme nature. Un repère clair, sans engagement.",
+        servicesH2: "Tout le digital centralisé<br><span class=\"accent\">pour les entreprises basse-terriennes</span>",
+        servicesIntro: "Commerces, services, acteurs du tourisme vert : à Basse-Terre, la clientèle se connecte de plus en plus. On centralise site, réseaux et référencement pour vous démarquer.",
+        aboutP: "Du commerce du centre historique de Basse-Terre à l'acteur du tourisme vert de la Soufrière, je conçois des sites taillés pour une ville-préfecture au cœur nature.",
+        zones: 'Centre historique, le Carmel, Rivière-des-Pères, Saint-Claude voisin, Gourbeyre',
+        areaServed: ['Basse-Terre', 'Saint-Claude', 'Gourbeyre'],
+        faq: [
+          { q: "Créez-vous des sites pour les commerces de Basse-Terre ?", a: "Oui, commerces, services et artisans du centre-préfecture sont au cœur de notre clientèle. On crée des sites qui captent une clientèle locale et de passage." },
+          { q: "Accompagnez-vous les acteurs du tourisme vert (Soufrière, forêt) ?", a: "Tout à fait : hébergements, guides, activités nature. On crée des sites et de la réservation en ligne pour capter les visiteurs qui préparent leur séjour." },
+          { q: "Pouvez-vous me référencer sur « à Basse-Terre 971 » ?", a: "Oui. Fiche Google Business, mots-clés géolocalisés et contenus optimisés pour apparaître quand un Basse-Terrien ou un visiteur cherche votre service." },
+          { q: "Gérez-vous les réseaux sociaux localement ?", a: "Oui. Facebook et WhatsApp sont très utilisés. On crée vos contenus et on anime vos pages pour développer votre notoriété locale." }
+        ]
+      }
+    ]
   }
 ];
