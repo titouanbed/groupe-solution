@@ -48,6 +48,16 @@ section{padding:88px 0}
 section.tight{padding:56px 0}
 section:first-of-type{padding-top:24px}
 
+/* Teinte de fond réutilisable, pour marquer une rupture de rythme entre deux
+   sections denses (voir section 4 : la plus longue de la page). */
+.section-tint{background:var(--paper-soft)}
+.section-tint .trio-icon{margin-bottom:16px}
+/* Les composants ci-dessous sont pensés "doux sur blanc" — sur une section déjà
+   teintée, on inverse pour garder le même relief plutôt qu'un fondu invisible. */
+.section-tint .numbadge{box-shadow:0 0 0 6px var(--paper-soft)}
+.section-tint .substep{background:var(--paper)}
+.section-tint .tone-shift{background:var(--paper)}
+
 .eyebrow{
   font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--lagon-deep);margin:0 0 14px;
@@ -323,14 +333,25 @@ table.data tr:last-child td{border-bottom:none}
   .aside-note{padding:28px 24px}
 }
 
-/* ===== En-tête de cette page — logo seul agrandi + bouton Contact =====
+/* ===== En-tête de cette page — identité propre au projet + bouton Contact =====
    Classes propres à index.html (brand-standalone / header-contact) : la page d'annexe
-   garde son propre header (.brand + .brand-text) inchangé, ce fichier CSS restant partagé. */
-.brand-standalone{gap:0}
-.brand-standalone img{width:auto;height:60px;display:block}
+   garde son propre header (.brand + .brand-text, logo Groupe Solution) inchangé, ce
+   fichier CSS restant partagé. Volontairement distinct du logo commercial : cette page
+   est un dossier de financement, pas une page de l'agence — voir README pour le contexte. */
+.brand-standalone{gap:14px}
+.brand-mark{
+  width:48px;height:48px;border-radius:50%;flex:0 0 auto;
+  background:var(--lagon-tint);color:var(--lagon-deep);
+  display:flex;align-items:center;justify-content:center;
+}
+.brand-mark svg{width:24px;height:24px}
+.brand-wordmark{font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);letter-spacing:-.01em;line-height:1.2}
+.brand-wordmark small{display:block;font-family:var(--body);font-weight:500;font-size:11.5px;color:var(--ink-faint);letter-spacing:.02em}
 .header-contact{flex:0 0 auto;white-space:nowrap;padding:13px 26px;font-size:13.5px}
 @media (max-width:640px){
-  .brand-standalone img{height:42px}
+  .brand-mark{width:38px;height:38px}
+  .brand-mark svg{width:19px;height:19px}
+  .brand-wordmark{font-size:14.5px}
   .header-contact{padding:10px 18px;font-size:12.5px}
 }
 
