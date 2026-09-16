@@ -399,6 +399,36 @@ figure.terrain-photo{margin:36px 0 0}
   box-shadow:var(--shadow-card);margin-bottom:18px;
 }
 
+/* ===== Photo de personne réelle : même gabarit que l'avatar à initiales ===== */
+.person-photo{
+  width:104px;height:104px;border-radius:50%;object-fit:cover;
+  box-shadow:var(--shadow-card);margin-bottom:18px;display:block;
+}
+.person-name{
+  font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);
+  margin:0 0 10px;
+}
+
+/* ===== Bios dépliables — "voir plus / voir moins" en HTML natif (details/summary),
+   sans JS : le texte par défaut reste toujours visible, seul le complément se replie. ===== */
+.bio p{margin:0 0 4px}
+.bio-more{margin-top:2px}
+.bio-more summary.bio-toggle{
+  list-style:none;cursor:pointer;display:inline-block;
+  font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--lagon-deep);
+  padding:4px 0;
+}
+.bio-more summary.bio-toggle::-webkit-details-marker{display:none}
+.bio-more summary.bio-toggle::marker{content:""}
+.bio-more .toggle-less{display:none}
+.bio-more[open] .toggle-more{display:none}
+.bio-more[open] .toggle-less{display:inline}
+.bio-more summary.bio-toggle:hover{text-decoration:underline}
+.bio-more summary.bio-toggle:focus-visible{outline:2px solid var(--lagon);outline-offset:3px;border-radius:4px}
+.bio-extra{margin-top:10px}
+.bio-extra p{margin:0 0 12px}
+.bio-extra p:last-child{margin-bottom:0}
+
 /* ===== Section 9 — motif de fond léger, écho visuel du héro ===== */
 .big-question{position:relative;overflow:hidden;isolation:isolate}
 .big-question-bg{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none}
