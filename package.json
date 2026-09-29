@@ -8,7 +8,8 @@
     "test:slots": "node scripts/test-slots.mjs",
     "oauth:setup": "node scripts/google-oauth-setup.mjs",
     "generate": "node scripts/generate-all.mjs",
-    "actus": "node zones/generate-actus.mjs && node zones/generate-lab.mjs && node zones/generate-plan.mjs && node zones/generate-search-index.mjs && git add -A && node zones/generate-sitemap.mjs"
+    "actus": "node zones/generate-actus.mjs && node zones/generate-editorial.mjs && node zones/generate-lab.mjs && node zones/generate-plan.mjs && node zones/generate-search-index.mjs && git add -A && node zones/generate-sitemap.mjs",
+    "publish": "node zones/generate-actus.mjs && node zones/generate-editorial.mjs && node zones/generate-lab.mjs && node zones/generate-plan.mjs && node zones/generate-search-index.mjs && git add -A && node zones/generate-sitemap.mjs"
   },
   "engines": {
     "node": "24.x"

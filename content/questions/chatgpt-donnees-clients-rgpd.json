@@ -1,0 +1,90 @@
+{
+  "date": "2026-09-29",
+  "slug": "chatgpt-donnees-clients-rgpd",
+  "cat": "Données",
+  "question": "Peut-on utiliser ChatGPT ou une IA générative avec les données de ses clients ?",
+  "description": "ChatGPT et données clients : ce que permet le RGPD, les conseils de la CNIL, le rôle des offres entreprise, de la pseudonymisation, du registre et de l’AIPD.",
+  "reponseCourte": "Oui, mais pas n’importe comment. Utilisez une offre professionnelle encadrée par un contrat, limitez les données transmises au strict nécessaire, retirez les noms quand c’est possible, et documentez l’usage dans votre registre RGPD. Évitez les comptes gratuits ou personnels pour des données clients.",
+  "sections": [
+    {
+      "h2": "Le RGPD s’applique dès qu’un client est identifiable",
+      "paragraphes": [
+        "Copier dans une IA générative un courriel de réclamation, un devis nominatif ou un export de fichier clients, c’est traiter des données personnelles. Le RGPD s’applique donc : il vous faut une finalité précise, ne transmettre que les données nécessaires, informer vos clients et vous assurer que le prestataire qui reçoit ces données les protège.",
+        "Dans ce schéma, vous êtes responsable du traitement et le fournisseur de l’IA est, en principe, votre sous-traitant. Cela suppose un contrat qui encadre ce qu’il peut faire des données, où elles sont traitées et combien de temps elles sont conservées."
+      ]
+    },
+    {
+      "h2": "Ce que recommande la CNIL avant de déployer une IA générative",
+      "paragraphes": [
+        "La CNIL a publié des questions-réponses sur l’utilisation des systèmes d’IA générative. Ses recommandations sont pragmatiques : partir d’un besoin concret plutôt que d’ouvrir l’outil à tous les usages, et fixer une liste d’usages autorisés et interdits, par exemple ne pas saisir de données personnelles ou ne pas confier de décision à l’outil.",
+        "Elle invite aussi à choisir un système robuste et un mode de déploiement sécurisé, et à privilégier des solutions locales ou spécialisées lorsque les données sont sensibles ou stratégiques. Enfin, elle recommande d’associer dès le départ les personnes concernées dans l’entreprise : le délégué à la protection des données s’il y en a un, le responsable informatique et les équipes métier."
+      ]
+    },
+    {
+      "h2": "Offre gratuite ou offre entreprise : la différence est contractuelle",
+      "paragraphes": [
+        "Tous les abonnements ne se valent pas. OpenAI indique par exemple que, par défaut, il n’entraîne pas ses modèles sur les contenus saisis dans ses offres destinées aux entreprises (ChatGPT Business, ChatGPT Enterprise et l’API). Pour les comptes individuels, l’utilisation des conversations pour améliorer les modèles dépend des paramètres choisis par l’utilisateur.",
+        "Pour une entreprise, la bonne pratique est donc simple : des comptes professionnels administrés par l’entreprise, un accord de traitement des données (DPA) signé avec le fournisseur, et une interdiction d’utiliser des comptes personnels pour des données clients. Les mêmes vérifications valent pour les autres fournisseurs d’IA : lisez leurs conditions sur l’entraînement, la conservation et la localisation des données."
+      ]
+    },
+    {
+      "h2": "Pseudonymiser, anonymiser : réduire ce que vous transmettez",
+      "paragraphes": [
+        "Bien souvent, l’IA n’a pas besoin de savoir qui est le client. Pour reformuler une réponse à une réclamation, « Client A, commande du 12 mars, retard de livraison » suffit. Remplacer les noms par des alias, c’est pseudonymiser : la CNIL rappelle que ces données restent des données personnelles, puisque vous pouvez retrouver la personne. C’est néanmoins une mesure de protection utile.",
+        "L’anonymisation, qui rend toute réidentification impossible et fait sortir les données du champ du RGPD, est plus exigeante : retirer le nom ne suffit pas si l’adresse, le numéro de contrat ou des détails singuliers permettent de reconnaître la personne."
+      ],
+      "liste": [
+        "Retirez noms, adresses, téléphones, numéros de contrat ou de dossier avant de coller un texte.",
+        "Ne transmettez jamais de données de santé, de coordonnées bancaires ou de pièces d’identité à un outil qui n’a pas été validé pour cela.",
+        "Relisez toujours la réponse de l’IA avant de l’envoyer à un client."
+      ]
+    },
+    {
+      "h2": "Registre, AIPD, information : la documentation à prévoir",
+      "paragraphes": [
+        "Inscrivez l’usage de l’IA générative dans votre registre des traitements : finalité, catégories de données, fournisseur, durée de conservation. Mettez à jour votre politique de confidentialité si les données de vos clients sont traitées par un nouvel outil.",
+        "Une analyse d’impact (AIPD) est requise lorsque le traitement présente un risque élevé. La CNIL retient notamment le cas où au moins deux des neuf critères européens sont réunis, parmi lesquels l’évaluation ou le scoring de personnes, les données sensibles, le traitement à grande échelle, le croisement de données ou l’usage de technologies innovantes. Un outil d’IA qui noterait automatiquement vos clients à partir de leur historique mérite donc cet examen ; reformuler un courriel sans données identifiantes, beaucoup moins."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "nom": "CNIL – Les questions-réponses sur l’utilisation d’un système d’IA générative",
+      "url": "https://www.cnil.fr/fr/les-questions-reponses-de-la-cnil-sur-lutilisation-dun-systeme-dia-generative"
+    },
+    {
+      "nom": "Stratégies – La CNIL clarifie le déploiement des IA génératives en entreprise",
+      "url": "https://www.strategies.fr/actualites/culture-tech/LQ3460623C/la-cnil-clarifie-le-deploiement-des-ia-generatives-en-entreprise.html"
+    },
+    {
+      "nom": "OpenAI – Comment vos données sont utilisées pour améliorer les modèles",
+      "url": "https://openai.com/policies/how-your-data-is-used-to-improve-model-performance/"
+    },
+    {
+      "nom": "Blog du Modérateur – Empêcher ChatGPT d’utiliser vos données pour l’entraînement",
+      "url": "https://www.blogdumoderateur.com/comment-empecher-chatgpt-utiliser-donnees-entrainer-modeles/"
+    },
+    {
+      "nom": "CNIL – L’anonymisation de données personnelles",
+      "url": "https://www.cnil.fr/fr/technologies/lanonymisation-de-donnees-personnelles"
+    },
+    {
+      "nom": "CNIL – Ce qu’il faut savoir sur l’analyse d’impact (AIPD)",
+      "url": "https://www.cnil.fr/fr/ce-quil-faut-savoir-sur-lanalyse-dimpact-relative-la-protection-des-donnees-aipd"
+    },
+    {
+      "nom": "CCI Paris Île-de-France – L’analyse d’impact relative à la protection des données",
+      "url": "https://www.entreprises.cci-paris-idf.fr/fiches-pratiques/lanalyse-dimpact-relative-la-protection-des-donnees"
+    }
+  ],
+  "liens": [
+    {
+      "label": "Agence IA pour les entreprises",
+      "url": "../../services/agence-ia-entreprise.html"
+    },
+    {
+      "label": "Veille : un assistant IA sur vos propres documents (RAG)",
+      "url": "../veille/rag-assistant-documents.html"
+    }
+  ]
+}

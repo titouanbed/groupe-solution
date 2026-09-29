@@ -26,8 +26,8 @@ export function loadActus() {
     return d;
   });
 }
-const fdate = iso => new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-const slugify = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+export const fdate = iso => new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+export const slugify = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 
 const CSS = `${STICKY_CSS}
 .actHero{background:radial-gradient(70% 90% at 90% 0%,rgba(230,30,77,.12),transparent 60%)}
@@ -49,7 +49,7 @@ const CSS = `${STICKY_CSS}
 .archive a span{color:var(--muted);font-weight:600;font-size:13px;text-transform:capitalize;white-space:nowrap}
 .rss{display:inline-flex;gap:8px;align-items:center;font-size:13px;font-weight:800;color:var(--amber);background:var(--amber-soft);padding:7px 13px;border-radius:999px}`;
 
-const head = ({ title, desc, url, jsonld, pre = '../../' }) => `<!doctype html>
+export const head = ({ title, desc, url, jsonld, pre = '../../', ogType = 'article' }) => `<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -58,7 +58,7 @@ const head = ({ title, desc, url, jsonld, pre = '../../' }) => `<!doctype html>
   <meta name="description" content="${esc(desc)}" />
   <link rel="canonical" href="${url}" />
   <link rel="alternate" type="application/rss+xml" title="Actus IA & numérique — Groupe Solution" href="${HOLDING}/lab/actus/rss.xml" />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="${ogType}" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Groupe Solution" />
   <meta property="og:title" content="${esc(title)}" />
@@ -77,16 +77,16 @@ ${JSON.stringify(jsonld, null, 2)}
   </script>
 </head>
 <body>
-<header class="nav"><div class="wrap navin"><a class="brand" href="${pre}index.html" aria-label="Groupe Solution — accueil"><img src="${pre}Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="${pre}lab/actus/">Actus</a><a href="${pre}lab/veille/">Veille</a><a href="${pre}lab/">Lab</a><a href="${pre}automatisation/">Automatisation</a><a class="cta" href="tel:+33782298559">07 82 29 85 59</a></nav></div></header>
+<header class="nav"><div class="wrap navin"><a class="brand" href="${pre}index.html" aria-label="Groupe Solution — accueil"><img src="${pre}Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="${pre}lab/actus/">Actus</a><a href="${pre}lab/dossiers/">Dossiers</a><a href="${pre}lab/questions/">Questions</a><a href="${pre}lab/veille/">Veille</a><a href="${pre}lab/">Lab</a><a href="${pre}automatisation/">Automatisation</a><a class="cta" href="tel:+33782298559">07 82 29 85 59</a></nav></div></header>
 <main>`;
 
-const foot = (pre = '../../') => `
+export const foot = (pre = '../../', page = 'actus') => `
   <section class="sec alt"><div class="wrap">
     <div class="express reveal" id="contact">
       <h2>Une de ces évolutions vous concerne ?</h2>
       <p>On vous dit en 10 minutes ce qu'elle change pour votre entreprise — et ce qu'on peut automatiser au passage.</p>
       <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
-        <input type="hidden" name="page" value="actus" />
+        <input type="hidden" name="page" value="${page}" />
         <label class="full">Votre question<textarea name="message" required></textarea></label>
         <label>Votre nom<input name="nom" autocomplete="name" required /></label>
         <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
@@ -98,10 +98,11 @@ const foot = (pre = '../../') => `
 </main>
 <footer><div class="wrap foot">
   <span class="footBrand"><img src="${pre}Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
-  <nav><a href="${pre}index.html">Accueil</a><a href="${pre}lab/actus/">Actus</a><a href="${pre}lab/actus/rss.xml">Flux RSS</a><a href="${pre}lab/veille/">Veille</a><a href="${pre}lab/">Lab</a><a href="${pre}automatisation/">Automatisation</a><a href="${pre}plan-du-site.html">Plan du site</a></nav>
+  <nav><a href="${pre}index.html">Accueil</a><a href="${pre}lab/actus/">Actus</a><a href="${pre}lab/dossiers/">Dossiers</a><a href="${pre}lab/questions/">Questions</a><a href="${pre}lab/pouls/">Le pouls</a><a href="${pre}lab/actus/rss.xml">Flux RSS</a><a href="${pre}lab/veille/">Veille</a><a href="${pre}lab/">Lab</a><a href="${pre}automatisation/">Automatisation</a><a href="${pre}plan-du-site.html">Plan du site</a></nav>
 </div></footer>
 <div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Poser ma question</a></div>
 <script src="${pre}assets/holding-local.js" defer></script>
+<script src="${pre}assets/pouls.js" defer></script>
 <script src="/analytics.js" defer></script>
 </body>
 </html>
@@ -115,6 +116,7 @@ const newsHTML = (d, it, i, linkBase = '') => `
       <p class="why"><b>Ce que ça change pour vous</b>${esc(it.pourquoi)}</p>
       <p class="src">Sources : ${it.sources.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.nom)}</a>`).join(' · ')}</p>
       ${it.lien ? `<a class="more" href="${linkBase}${esc(it.lien.url)}">${esc(it.lien.label)} →</a>` : ''}
+      <div class="poll" data-poll="actu-${d.date}-${slugify(it.titre).slice(0, 80)}" hidden></div>
     </article>`;
 
 function dayPage(d, all) {
@@ -195,7 +197,7 @@ function homeBlock(all) {
     <div class="autoGrid">
 ${items.map(({ d, it }) => `      <a class="auto reveal" href="lab/actus/${d.date}.html#${slugify(it.titre)}"><div class="who">${esc(it.cat)}</div><h3>${esc(it.titre)}</h3><p style="font-size:14.5px;color:var(--secondary);margin-top:12px;line-height:1.6">${esc(it.pourquoi)}</p><div class="gain">Lire l’actu →</div></a>`).join('\n')}
     </div>
-    <p class="reveal" style="text-align:center;margin-top:24px"><a href="lab/actus/" style="font-weight:800;border-bottom:2px solid var(--acc)">Toutes les actus →</a></p>
+    <p class="reveal" style="text-align:center;margin-top:24px;display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center"><a href="lab/actus/" style="font-weight:800;border-bottom:2px solid var(--acc)">Toutes les actus →</a><a href="lab/dossiers/" style="font-weight:800;border-bottom:2px solid var(--acc)">Le dossier de la semaine →</a><a href="lab/questions/" style="font-weight:800;border-bottom:2px solid var(--acc)">Vos questions sur l’IA →</a><a href="lab/pouls/" style="font-weight:800;border-bottom:2px solid var(--acc)">Votez : le pouls des dirigeants →</a></p>
   </div></section>
   <!-- ACTUS:END -->`;
 }

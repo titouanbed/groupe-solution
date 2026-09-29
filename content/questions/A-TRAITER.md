@@ -1,0 +1,34 @@
+# Questions de dirigeants à traiter (une par publication, cocher une fois publiée)
+
+- [x] Un agent vocal IA peut-il répondre au téléphone de mon entreprise légalement ?
+- [x] Peut-on utiliser ChatGPT ou une IA générative avec les données de ses clients ?
+- [x] Par où commencer pour automatiser les tâches de mon entreprise ?
+- [ ] Faut-il déclarer l'utilisation de l'IA à ses clients ?
+- [ ] Combien de temps faut-il pour créer un site internet professionnel ?
+- [ ] Un chatbot sur mon site peut-il vraiment prendre des rendez-vous ?
+- [ ] Qu'est-ce qu'une plateforme agréée pour la facture électronique et comment la choisir ?
+- [ ] Mon logiciel de facturation actuel sera-t-il compatible avec la facture électronique ?
+- [ ] L'IA peut-elle lire automatiquement mes factures fournisseurs ?
+- [ ] Qu'est-ce que le RAG et à quoi ça sert pour une PME ?
+- [ ] Qu'est-ce que le protocole MCP et pourquoi tout le monde en parle ?
+- [ ] Comment apparaître dans les réponses de ChatGPT, Perplexity ou Google AI Overviews ?
+- [ ] Comment obtenir plus d'avis Google sans enfreindre les règles ?
+- [ ] Faut-il encore un site internet quand on a une fiche Google et des réseaux sociaux ?
+- [ ] Quelles obligations légales pour le site internet d'une entreprise (mentions, cookies, accessibilité) ?
+- [ ] L'accessibilité numérique est-elle obligatoire pour mon site e-commerce ?
+- [ ] Comment se protéger des arnaques au président et des faux RIB générés par IA ?
+- [ ] Que faire en cas de cyberattaque dans une TPE ?
+- [ ] NIS 2 concerne-t-elle mon entreprise ?
+- [ ] Un logiciel sur-mesure ou un logiciel du marché : comment choisir ?
+- [ ] À qui appartient le code d'un logiciel développé sur-mesure ?
+- [ ] Peut-on automatiser les relances de factures impayées sans froisser ses clients ?
+- [ ] Quelles aides publiques pour financer la transformation numérique d'une TPE ?
+- [ ] L'IA peut-elle rédiger mes devis à ma place ?
+- [ ] Comment former son équipe à l'IA (obligation de maîtrise de l'IA de l'AI Act) ?
+- [ ] Qu'est-ce qu'un agent IA et en quoi est-ce différent d'un chatbot ?
+- [ ] Peut-on connecter des logiciels qui n'ont pas d'API ?
+- [ ] Mes données sont-elles en sécurité avec une IA hébergée aux États-Unis ?
+- [ ] Qu'est-ce que l'open data des entreprises et comment s'en servir ?
+- [ ] Comment mesurer le retour sur investissement d'une automatisation ?
+- [ ] Faut-il un site en plusieurs langues pour une entreprise touristique ?
+- [ ] Un site internet peut-il remplacer une secrétaire pour les prises de rendez-vous ?
