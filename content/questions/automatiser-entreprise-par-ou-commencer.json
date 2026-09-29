@@ -9,7 +9,7 @@
     {
       "h2": "Où en sont les entreprises aujourd’hui",
       "paragraphes": [
-        "Selon l’Insee, 18 % des entreprises implantées en France déclaraient utiliser au moins une technologie d’intelligence artificielle en 2025, soit 8 points de plus qu’en 2024. Au niveau européen, Eurostat mesure 20 % d’utilisatrices parmi les entreprises de 10 salariés ou plus, contre 13,5 % un an plus tôt.",
+        "Selon l’Insee, 18 % des entreprises implantées en France déclaraient utiliser au moins une technologie d’intelligence artificielle en 2025, soit 8 points de plus qu’en 2024.",
         "Parmi les entreprises qui n’utilisent pas l’IA, la raison la plus citée d’après l’Insee est qu’elles n’en voient pas l’utilité. C’est souvent le signe d’un point de départ mal choisi : on part de l’outil au lieu de partir des tâches. Et beaucoup d’automatisations utiles n’ont d’ailleurs pas besoin d’IA du tout."
       ]
     },
@@ -67,10 +67,6 @@
     {
       "nom": "Solutions Numériques – L’utilisation de l’IA reste concentrée dans les grandes entreprises selon l’Insee",
       "url": "https://www.solutions-numeriques.com/lutilisation-de-lia-reste-concentree-dans-les-grandes-entreprises-selon-linsee/"
-    },
-    {
-      "nom": "Eurostat – 20% of EU enterprises use AI technologies",
-      "url": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2"
     },
     {
       "nom": "francenum.gouv.fr – L’automatisation : une solution indispensable pour gagner du temps et mieux gérer sa TPE PME",
