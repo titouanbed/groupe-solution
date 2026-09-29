@@ -1,0 +1,98 @@
+{
+  "date": "2026-09-29",
+  "slug": "automatiser-entreprise-par-ou-commencer",
+  "cat": "Automatisation",
+  "question": "Par où commencer pour automatiser les tâches de mon entreprise ?",
+  "description": "Automatiser son entreprise sans se tromper : lister les tâches répétitives, mesurer le temps, choisir un premier cas simple, tester sur un pilote, mesurer.",
+  "reponseCourte": "Commencez par lister vos tâches répétitives et mesurer le temps qu’elles prennent. Choisissez ensuite une seule tâche fréquente, simple et peu risquée, testez-la sur quelques semaines avec vos outils existants, mesurez le résultat, puis passez à la suivante.",
+  "sections": [
+    {
+      "h2": "Où en sont les entreprises aujourd’hui",
+      "paragraphes": [
+        "Selon l’Insee, 18 % des entreprises implantées en France déclaraient utiliser au moins une technologie d’intelligence artificielle en 2025, soit 8 points de plus qu’en 2024. Au niveau européen, Eurostat mesure 20 % d’utilisatrices parmi les entreprises de 10 salariés ou plus, contre 13,5 % un an plus tôt.",
+        "Parmi les entreprises qui n’utilisent pas l’IA, la raison la plus citée d’après l’Insee est qu’elles n’en voient pas l’utilité. C’est souvent le signe d’un point de départ mal choisi : on part de l’outil au lieu de partir des tâches. Et beaucoup d’automatisations utiles n’ont d’ailleurs pas besoin d’IA du tout."
+      ]
+    },
+    {
+      "h2": "Étape 1 : faire l’inventaire de vos tâches répétitives",
+      "paragraphes": [
+        "Pendant deux semaines, demandez à chaque personne de noter les tâches qu’elle refait souvent à l’identique, avec une estimation du temps passé. Ne cherchez pas l’exhaustivité : une quinzaine de lignes suffit pour y voir clair.",
+        "Pour chaque ligne, notez trois informations : combien de fois par semaine la tâche revient, combien de minutes elle prend, et ce qui se passe en cas d’erreur. Multipliez fréquence et durée : vous obtenez le temps réellement consacré à chaque tâche, souvent bien plus élevé qu’on ne l’imagine pour les petites actions répétées plusieurs fois par jour."
+      ],
+      "liste": [
+        "Ressaisies : recopier une commande reçue par e-mail dans le logiciel de gestion, reporter des factures fournisseurs en comptabilité.",
+        "Relances : factures impayées, devis sans réponse, documents manquants.",
+        "Réponses récurrentes : horaires, délais, suivi de commande, prise de rendez-vous.",
+        "Production de documents : devis, comptes rendus d’intervention, attestations.",
+        "Tableaux de bord : consolider chaque semaine des chiffres venant de plusieurs outils."
+      ]
+    },
+    {
+      "h2": "Étape 2 : choisir la bonne première tâche",
+      "paragraphes": [
+        "La meilleure candidate combine trois critères : elle revient souvent (volume), elle suit des règles claires, et une erreur ne serait pas grave ou serait facile à rattraper (faible risque). Relancer une facture échue depuis sept jours coche les trois cases ; décider seul d’accorder une remise, aucune.",
+        "Exemple : une entreprise de plomberie qui passe chaque lundi une heure à relancer ses devis en attente peut automatiser l’envoi d’un rappel personnalisé à J+7, en gardant la main sur les réponses. Un cabinet comptable peut, de son côté, commencer par le classement automatique des pièces reçues par e-mail."
+      ],
+      "liste": [
+        "Fréquente : plusieurs fois par semaine au minimum.",
+        "Stable : les mêmes étapes à chaque fois, sans jugement au cas par cas.",
+        "Réversible : une erreur se voit et se corrige facilement.",
+        "Mesurable : vous savez combien de temps elle prend aujourd’hui."
+      ]
+    },
+    {
+      "h2": "Étape 3 : outils existants ou développement sur mesure",
+      "paragraphes": [
+        "Regardez d’abord ce que vos logiciels actuels savent déjà faire : de nombreux outils de facturation, de CRM ou d’agenda proposent des relances, des modèles ou des règles automatiques que personne n’a activés. Viennent ensuite les outils d’automatisation sans code, qui relient plusieurs applications entre elles.",
+        "Le sur-mesure se justifie quand vos outils ne communiquent pas, quand le processus est propre à votre métier, ou quand le volume rend les solutions génériques coûteuses ou fragiles. Dans tous les cas, vérifiez un préalable souvent négligé : la qualité de vos données. Une automatisation branchée sur un fichier clients plein de doublons ou d’adresses fausses produira des erreurs plus vite."
+      ]
+    },
+    {
+      "h2": "Étape 4 : tester sur un pilote, puis mesurer",
+      "paragraphes": [
+        "Lancez l’automatisation sur un périmètre réduit (un type de client, une équipe, un mois) et gardez une vérification humaine au début. Comparez ensuite avec la situation de départ : temps passé, délais, erreurs, retours des clients et des collaborateurs. Si le résultat est bon, élargissez ; sinon, ajustez les règles ou changez de tâche.",
+        "Enfin, documentez ce qui a été automatisé et désignez un responsable : une automatisation que personne ne surveille finit par tomber en panne sans bruit. Pour aller plus loin, le portail public francenum.gouv.fr propose des guides gratuits destinés aux dirigeants de TPE et PME sur l’automatisation et l’usage de l’IA."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Insee – Les technologies de l’information et de la communication dans les entreprises en 2025",
+      "url": "https://www.insee.fr/fr/statistiques/9025878"
+    },
+    {
+      "nom": "franceinfo – Près de 20 % des entreprises implantées en France utilisent au moins une IA",
+      "url": "https://www.franceinfo.fr/economie/entreprises/intelligence-artificielle-pres-de-20-des-entreprises-implantees-en-france-utilisent-au-moins-une-ia_8116685.html"
+    },
+    {
+      "nom": "Solutions Numériques – L’utilisation de l’IA reste concentrée dans les grandes entreprises selon l’Insee",
+      "url": "https://www.solutions-numeriques.com/lutilisation-de-lia-reste-concentree-dans-les-grandes-entreprises-selon-linsee/"
+    },
+    {
+      "nom": "Eurostat – 20% of EU enterprises use AI technologies",
+      "url": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2"
+    },
+    {
+      "nom": "francenum.gouv.fr – L’automatisation : une solution indispensable pour gagner du temps et mieux gérer sa TPE PME",
+      "url": "https://www.francenum.gouv.fr/guides-et-conseils/pilotage-de-lentreprise/numerisation-des-processus/lautomatisation-une-solution"
+    },
+    {
+      "nom": "francenum.gouv.fr – Guide du déploiement de l’IA au travail à destination des dirigeants de TPE PME",
+      "url": "https://www.francenum.gouv.fr/guides-et-conseils/intelligence-artificielle/comprendre-et-adopter-lia/guide-du-deploiement-de-lia"
+    }
+  ],
+  "liens": [
+    {
+      "label": "Automatisation des processus",
+      "url": "../../services/automatisation-processus.html"
+    },
+    {
+      "label": "Guide : automatiser les devis d’un artisan",
+      "url": "../../montpellier/guides/automatiser-devis-artisan.html"
+    },
+    {
+      "label": "Guide : relances de factures impayées automatiques",
+      "url": "../../montpellier/guides/relances-factures-impayees-automatiques.html"
+    }
+  ]
+}
