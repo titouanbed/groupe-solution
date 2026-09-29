@@ -209,7 +209,7 @@ ${adv.map((a, i) => `      <article class="case reveal"><div class="n">${i + 1}<
       <p>${esc(c.profil)}</p>
       <p>Le tissu local : <strong>${esc(c.tissu)}</strong>. Chacun a ses tâches qui se répètent — et c'est là qu'un système bien pensé rend des heures chaque semaine.</p>
       <ul class="chips">${c.reperes.map(r => `<li>${esc(r)}</li>`).join('')}</ul>
-${E?.recit ? `      <div class="recit"><b>Scénario type ${esc(aName(c))}</b><p>${esc(E.recit.replace(/^Exemple\s*:\s*/i, ''))}</p></div>
+${E?.recit ? `      <div class="recit"><b>Scénario type ${esc(aName(c))}</b><p>${esc(E.recit.replace(/^Exemple\s*:\s*(.)/i, (_, l) => l.toUpperCase()))}</p></div>
 ` : ''}    </div>
     <aside class="facts reveal">
       <img class="art" src="../assets/communes/${c.slug}.jpg" alt="Illustration de ${esc(c.name)}" loading="lazy" width="1600" height="900" />
