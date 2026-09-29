@@ -3,7 +3,9 @@
 // Variables fournies automatiquement par l'intégration : KV_REST_API_URL + KV_REST_API_TOKEN
 // (ou UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN). Sans elles → 503 et le widget reste masqué.
 //   GET  /api/vote?ids=a,b,c          → { counts: { a: { utile: 3, surveiller: 1, pasmoi: 0 }, … } }
-//   POST /api/vote { id, choice }     → { ok, counts }   (1 vote par IP et par sujet, 30 jours)
+//   POST /api/vote { id, choice }     → { ok, counts }   (1 vote par IP et par sujet, 30 jours ;
+//   l'IP n'est jamais stockée en clair : seule une empreinte SHA-256 salée sert d'anti-doublon)
+import { createHash } from 'node:crypto';
 // Le nom exact dépend du préfixe choisi lors de la connexion (KV_…, STOCKAGE_…, UPSTASH_REDIS_…) :
 // on prend la première variable qui se termine par REST_API_URL / REST_URL (et le jeton en écriture associé).
 const envFind = re => Object.keys(process.env).filter(k => re.test(k) && !/READ_ONLY/.test(k)).sort()[0];
@@ -36,7 +38,8 @@ export default async function handler(req, res) {
       const id = String(body?.id || ''), choice = String(body?.choice || '');
       if (!ID_RE.test(id) || !CHOICES.includes(choice)) return send(res, 400, { error: 'invalid' });
       const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
-      const [first] = await redis([['SET', `voted:${id}:${ip}`, '1', 'NX', 'EX', 2592000]]);
+      const who = createHash('sha256').update(ip + '|' + (process.env.VOTE_SALT || 'gs-pouls-2026')).digest('hex').slice(0, 24);
+      const [first] = await redis([['SET', `voted:${id}:${who}`, '1', 'NX', 'EX', 2592000]]);
       if (first !== 'OK') { const [flat] = await redis([['HGETALL', 'poll:' + id]]); return send(res, 200, { ok: false, already: true, counts: toCounts(flat) }); }
       const [, flat] = await redis([['HINCRBY', 'poll:' + id, choice, 1], ['HGETALL', 'poll:' + id], ['ZINCRBY', 'poll:index', 1, id]]);
       return send(res, 200, { ok: true, counts: toCounts(flat) });

@@ -161,6 +161,48 @@ ${items.map(x => `      <article class="news"><span class="cat">${esc(x.c)} · $
   </script>` + foot('../../', 'pouls');
 }
 
+
+/* ── Confidentialité (ce que le site fait réellement des données) ── */
+function confidentialitePage() {
+  const url = `${HOLDING}/confidentialite.html`;
+  const title = 'Confidentialité et données personnelles | Groupe Solution';
+  const desc = 'Ce que groupsolution.fr fait de vos données : mesure d’audience avec consentement, formulaires, assistant IA, votes et parcours sur-mesure sans pistage.';
+  const S = [
+    ['Qui est responsable ?', ['Groupe Solution (Titouan Bedos), Montpellier. Pour toute question ou demande sur vos données : <a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a> ou 07 82 29 85 59.']],
+    ['Mesure d’audience', ['Google Analytics n’est chargé qu’après votre accord, donné dans le bandeau affiché à la première visite. Sans accord, aucun cookie de mesure n’est déposé. Votre choix est mémorisé dans votre navigateur.']],
+    ['Formulaires de contact', ['Les informations que vous saisissez (nom, téléphone ou e-mail, message, page d’origine) nous sont transmises par e-mail via le service Brevo, ou Formspree en secours, uniquement pour vous répondre. Elles ne sont ni revendues ni utilisées pour de la prospection sans votre accord.']],
+    ['Assistant du site', ['Quand l’assistant IA est actif, vos questions et des extraits de pages du site sont envoyés à l’API Claude d’Anthropic pour rédiger la réponse. N’y saisissez pas d’informations sensibles. L’historique de la conversation est conservé uniquement dans votre navigateur. Si vous demandez à être rappelé, votre numéro nous est transmis comme pour un formulaire.']],
+    ['Votes « Le pouls des dirigeants »', ['Seul votre choix est comptabilisé. Pour éviter les votes en double, votre adresse IP est transformée en une empreinte irréversible (hachage), conservée 30 jours puis supprimée automatiquement. L’adresse IP elle-même n’est jamais enregistrée. Les compteurs sont stockés chez Upstash, via notre hébergeur Vercel.']],
+    ['Parcours sur-mesure', ['Pour vous proposer la page de votre commune et la prochaine étape la plus utile, le site utilise deux indices : votre ville approximative, estimée à partir de votre connexion par notre hébergeur au moment de la visite et jamais conservée ; les pages consultées sur ce site, mémorisées uniquement dans votre navigateur (le temps de la visite, ou plus longtemps si vous avez accepté la mesure d’audience). Rien n’est transmis à des tiers, aucun profil n’est constitué sur nos serveurs, aucune donnée n’est croisée avec d’autres sites.', '<button type="button" class="btn" id="persoOff">Désactiver les suggestions personnalisées</button> <span id="persoState" style="margin-left:10px;font-size:14px"></span>']],
+    ['Hébergement', ['Le site est hébergé par Vercel Inc. Les journaux techniques de l’hébergeur (adresse IP, date, page demandée) servent à la sécurité et au bon fonctionnement du service.']],
+    ['Vos droits', ['Vous pouvez demander l’accès, la rectification ou la suppression de vos données, ou vous opposer à leur traitement, en écrivant à <a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a>. Vous pouvez aussi adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>).']]
+  ];
+  const jsonld = { '@context': 'https://schema.org', '@graph': [{ '@type': 'WebPage', name: 'Confidentialité', url, description: desc }, crumbs([['Groupe Solution', HOLDING + '/'], ['Confidentialité', url]])] };
+  return head({ title, desc, url, jsonld, pre: '', ogType: 'website' }) + `
+  <div class="wrap crumbs"><a href="index.html">Groupe Solution</a> › <span>Confidentialité</span></div>
+  <section class="hero actHero" style="padding-bottom:20px"><div class="wrap day">
+    <div class="kicker">Données personnelles</div>
+    <h1 style="font-size:clamp(30px,4.2vw,46px);margin-top:16px">Ce que ce site fait de vos données.</h1>
+    <p class="lead">En clair, sans jargon : ce qui est collecté, pourquoi, et comment le désactiver.</p>
+  </div></section>
+  <section class="sec" style="padding-top:6px"><div class="wrap day edBody">
+${S.map(([h, ps]) => `      <h2>${h}</h2>\n${ps.map(p => `      <p>${p}</p>`).join('\n')}`).join('\n')}
+  </div></section>
+  <script>
+  (function () {
+    var b = document.getElementById('persoOff'), st = document.getElementById('persoState');
+    function off() { try { return localStorage.getItem('gs-perso-off') || sessionStorage.getItem('gs-perso-off'); } catch (e) { return null; } }
+    function paint() { st.textContent = off() ? 'Suggestions désactivées.' : 'Suggestions actives.'; b.textContent = off() ? 'Réactiver les suggestions personnalisées' : 'Désactiver les suggestions personnalisées'; }
+    b.addEventListener('click', function () {
+      if (off()) { try { localStorage.removeItem('gs-perso-off'); sessionStorage.removeItem('gs-perso-off'); } catch (e) {} }
+      else { try { localStorage.setItem('gs-perso-off', '1'); sessionStorage.setItem('gs-perso-off', '1'); localStorage.removeItem('gs-perso-v1'); sessionStorage.removeItem('gs-perso-v1'); } catch (e) {} }
+      paint();
+    });
+    paint();
+  })();
+  </script>` + foot('', 'confidentialite').replace(/<section class="sec alt">[\s\S]*?<\/section>/, '');
+}
+
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const dossiers = loadDossiers(), questions = loadQuestions(), actus = loadActus();
   for (const k of ['dossiers', 'questions', 'pouls']) mkdirSync(join(ROOT, 'lab', k), { recursive: true });
@@ -169,5 +211,6 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   writeFileSync(join(ROOT, 'lab', 'dossiers', 'index.html'), listIndex({ kind: 'dossiers', list: dossiers, title: 'Dossiers IA, automatisation et réglementation pour les entreprises | Groupe Solution', h1: 'Les dossiers de la semaine', lead: 'Chaque lundi, un sujet de fond — IA, automatisation, réglementation — expliqué pour les dirigeants, avec ses sources.', desc: 'Chaque lundi, un dossier de fond sur l’IA, l’automatisation et la réglementation numérique, sourcé et expliqué pour les dirigeants de TPE et PME.', empty: 'Le premier dossier arrive lundi.' }), 'utf8');
   writeFileSync(join(ROOT, 'lab', 'questions', 'index.html'), listIndex({ kind: 'questions', list: questions, title: 'Questions de dirigeants sur l’IA et l’automatisation | Groupe Solution', h1: 'Les questions des dirigeants', lead: 'Les questions que se posent les entreprises sur l’IA, l’automatisation et le numérique — avec une réponse courte, une réponse complète et des sources.', desc: 'Les vraies questions des dirigeants sur l’IA, l’automatisation et le numérique : réponses courtes, explications complètes et sources vérifiées.', empty: 'Les premières réponses arrivent très bientôt.' }), 'utf8');
   writeFileSync(join(ROOT, 'lab', 'pouls', 'index.html'), poulsPage(actus, dossiers, questions), 'utf8');
+  writeFileSync(join(ROOT, 'confidentialite.html'), confidentialitePage(), 'utf8');
   console.log(`✓ Éditorial : ${dossiers.length} dossier(s), ${questions.length} question(s), page Le pouls`);
 }

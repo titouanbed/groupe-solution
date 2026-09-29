@@ -157,7 +157,10 @@
   document.body.appendChild(btn);
 
   var place = document.querySelector('[data-live-place]');
-  var placeName = place ? place.getAttribute('data-name') : null;
+  var pagePlace = place ? place.getAttribute('data-name') : null;
+  // Commune de la page, sinon commune approximative du visiteur (assets/perso.js), si la personnalisation est active.
+  function aN(n) { return /^Le /.test(n) ? 'au ' + n.slice(3) : /^Les /.test(n) ? 'aux ' + n.slice(4) : 'à ' + n; }
+  function pn() { return pagePlace || (window.GSPerso && window.GSPerso.placeName) || null; }
   var panel = document.createElement('div');
   panel.id = 'gsA'; panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Assistant Groupe Solution');
   panel.innerHTML = '<header><span class="dot"></span><div><b>Assistant Groupe Solution</b><small>Assistant automatique · répond à partir du site</small></div><button class="x" type="button" aria-label="Fermer">×</button></header>' +
@@ -173,14 +176,14 @@
     var d = document.createElement('div'); d.className = 'm ' + (role === 'user' ? 'me' : 'bot'); d.innerHTML = html; msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; return d;
   }
   function chips() {
-    var list = placeName ? ['Que pouvez-vous automatiser ' + (/^(Montpellier|Port Marianne)/.test(placeName) ? 'à ' : 'à ') + placeName + ' ?', 'Un site internet pour mon activité', 'Comment se passe un projet ?', 'Combien ça coûte ?']
+    var list = pn() ? ['Que pouvez-vous automatiser ' + aN(pn()) + ' ?', 'Un site internet pour mon activité', 'Comment se passe un projet ?', 'Combien ça coûte ?']
       : ['Que peut faire un agent IA pour moi ?', 'Un site internet pour mon activité', 'Comment se passe un projet ?', 'Combien ça coûte ?'];
     var d = add('bot', '<div class="chips">' + list.map(function (c) { return '<button type="button">' + esc(c) + '</button>'; }).join('') + '</div>');
     d.style.background = 'transparent'; d.style.border = '0'; d.style.padding = '0';
     d.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { ask(b.textContent); }); });
   }
   function greet() {
-    add('bot', md('Bonjour 👋 Je réponds à vos questions sur nos sites internet, nos automatisations et l’IA' + (placeName ? ', y compris pour **' + placeName + '**' : '') + '. Vous pouvez aussi appeler directement le [' + TEL + '](' + TEL_HREF + ').'));
+    add('bot', md('Bonjour 👋 Je réponds à vos questions sur nos sites internet, nos automatisations et l’IA' + (pn() ? ', y compris pour **' + pn() + '**' : '') + '. Vous pouvez aussi appeler directement le [' + TEL + '](' + TEL_HREF + ').'));
     chips();
   }
   function restore() { hist.forEach(function (m) { add(m.role, m.role === 'user' ? esc(m.content) : md(m.content)); }); }
@@ -230,6 +233,7 @@
   }
   function close() { panel.classList.remove('open'); btn.style.display = ''; }
   btn.addEventListener('click', open);
+  window.GSAssistant = { open: open, callback: function () { open(); callback(); }, ask: function (q) { open(); ask(q); } };
   panel.querySelector('.x').addEventListener('click', close);
   panel.querySelector('.cbk').addEventListener('click', callback);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('open')) close(); });
@@ -238,7 +242,7 @@
   if (!store.get('gsA-tip')) setTimeout(function () {
     if (panel.classList.contains('open')) return;
     var t = document.createElement('div'); t.id = 'gsA-tip'; t.setAttribute('role', 'button');
-    t.innerHTML = (placeName ? 'Un projet <b>' + (/^(Le |Les )/.test(placeName) ? '' : 'à ') + esc(placeName) + '</b> ? ' : 'Un projet ? ') + 'Posez votre question, je réponds tout de suite — ou appelez Titouan.<button class="c" type="button" aria-label="Fermer">×</button>';
+    t.innerHTML = (pn() ? 'Un projet <b>' + esc(aN(pn())) + '</b> ? ' : 'Un projet ? ') + 'Posez votre question, je réponds tout de suite — ou appelez Titouan.<button class="c" type="button" aria-label="Fermer">×</button>';
     document.body.appendChild(t); store.set('gsA-tip', 1); ga('assistant_tip');
     t.addEventListener('click', function (e) { if (e.target.classList.contains('c')) { t.remove(); return; } t.remove(); open(); });
     setTimeout(function () { if (t.parentNode) t.remove(); }, 15000);
