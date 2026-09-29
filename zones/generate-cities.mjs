@@ -96,7 +96,7 @@ ${faqJsonLd(city.faq)}
   </script>
 
   <link rel="canonical" href="${url}" />
-  <link rel="icon" type="image/svg+xml" href="../Logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -225,7 +225,7 @@ ${faqJsonLd(city.faq)}
           <div class="bulle-content">
             <h4>Création de Sites Web</h4>
             <p>Site vitrine, e-commerce ou plateforme sur-mesure. Un design moderne, adapté aux mobiles et optimisé pour ${esc(city.name)}.</p>
-            <div class="prix">Dès 250€</div>
+            <div class="prix">Sur devis</div>
             <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Rapide & Clé en main</div>
             <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">En savoir plus</button>
           </div>
@@ -246,7 +246,7 @@ ${faqJsonLd(city.faq)}
             <h4>SEO & Automatisation</h4>
             <p>Dominez Google à ${esc(city.name)} avec le référencement local. Automatisation des relances clients et des prises de RDV par IA.</p>
             <div class="prix">Sur devis</div>
-            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Gain de temps garanti</div>
+            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Du temps gagné au quotidien</div>
             <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">Me positionner 1er</button>
           </div>
         </div>
@@ -258,15 +258,11 @@ ${faqJsonLd(city.faq)}
   <section id="realisations" style="background: var(--gris-clair); padding: 80px 0;">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg> Nos Références</span>
-        <h2>Ils nous font <span class="accent">confiance</span></h2>
-        <p>Du site vitrine épuré à la plateforme logicielle sur-mesure complexe. On code tout.</p>
+        <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg> Nos Réalisations</span>
+        <h2>Conçu et codé <span class="accent">par nos équipes</span></h2>
+        <p>Les plateformes du groupe, du site vitrine épuré à l'outil sur-mesure avec matching par IA. On code tout.</p>
       </div>
       <div class="rea-grid">
-        <a href="https://twentythreeclean.com/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea1.jpg');"></div>
-          <div class="rea-content"><h4>Twenty Three Clean</h4><p>Site vitrine moderne pour une entreprise de nettoyage professionnel.</p></div>
-        </a>
         <a href="https://solutionsrecrutement.fr/" target="_blank" rel="noopener" class="rea-card reveal">
           <div class="rea-img" style="background-image: url('../rea2.jpg');"></div>
           <div class="rea-content"><h4>Solutions Recrutement</h4><p>Développement web avancé pour agence de recrutement.</p></div>

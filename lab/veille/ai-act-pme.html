@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Act : ce qu’une PME doit savoir | Groupe Solution</title>
+  <meta name="description" content="AI Act : approche par les risques, pratiques interdites, maîtrise de l’IA, transparence des chatbots. Ce que le règlement européen change pour une PME." />
+  <link rel="canonical" href="https://www.groupsolution.fr/lab/veille/ai-act-pme.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="AI Act : ce qu’une PME doit savoir | Groupe Solution" />
+  <meta property="og:description" content="AI Act : approche par les risques, pratiques interdites, maîtrise de l’IA, transparence des chatbots. Ce que le règlement européen change pour une PME." />
+  <meta property="og:url" content="https://www.groupsolution.fr/lab/veille/ai-act-pme.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta property="article:published_time" content="2026-09-29" />
+  <meta property="article:author" content="Titouan Bedos" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Act : ce qu’une PME doit savoir | Groupe Solution" />
+  <meta name="twitter:description" content="AI Act : approche par les risques, pratiques interdites, maîtrise de l’IA, transparence des chatbots. Ce que le règlement européen change pour une PME." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/holding-local.css" />
+  <style>
+.art{padding:0 0 30px}
+.col{max-width:760px;margin:0 auto}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.crumbs li+li::before{content:"›";margin-right:6px;color:var(--line2)}
+.artHead{padding:28px 0 8px}
+.artHead h1{font-size:clamp(30px,4.4vw,48px);line-height:1.1;margin-top:18px;overflow-wrap:break-word}
+.chapo{font-size:clamp(17px,2vw,19.5px);color:var(--secondary);line-height:1.7;margin-top:20px}
+.meta{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:18px}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin-top:30px}
+.toc b{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.toc ol{margin:10px 0 0 20px;font-size:15px;line-height:1.9}
+.toc a{color:var(--ink);font-weight:600}.toc a:hover{color:var(--acc)}
+.prose{font-size:17px;line-height:1.8;color:#2B2924;overflow-wrap:break-word}
+.prose h2{font-size:clamp(25px,3vw,33px);line-height:1.18;margin:54px 0 16px;scroll-margin-top:90px}
+.prose h3{font-size:clamp(19px,2.2vw,22px);font-weight:600;line-height:1.3;margin:32px 0 10px}
+.prose p{margin:0 0 18px}
+.prose ul,.prose ol{margin:0 0 22px 22px}
+.prose li{margin-bottom:9px;padding-left:2px}
+.prose strong{color:var(--ink)}
+.prose a{color:var(--acc-d);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.prose code{font-size:.86em;background:var(--olive-soft);color:var(--olive2);padding:2px 7px;border-radius:6px;word-break:break-all}
+.note{background:var(--olive-soft);border-left:4px solid var(--olive);border-radius:0 var(--r-s) var(--r-s) 0;padding:18px 22px;margin:26px 0}
+.note p{margin:0}
+.note.warn{background:var(--amber-soft);border-left-color:var(--amber)}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-s);background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px;line-height:1.55}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tr:last-child td{border-bottom:0}
+.artFaq{margin-top:54px}
+.artFaq h2{font-size:clamp(25px,3vw,33px);margin-bottom:20px}
+.sources{margin-top:48px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:24px 28px}
+.sources h2{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.sources ul{margin:12px 0 0 20px;font-size:15px;line-height:1.7;color:var(--secondary)}
+.sources p{font-size:13.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.chez{margin-top:30px;background:var(--ink);color:#fff;border-radius:var(--r-l);padding:clamp(24px,4vw,36px)}
+.chez h2{color:#fff;font-size:clamp(24px,3vw,30px)}
+.chez p{color:#CFCBC0;margin-top:12px;font-size:16px;line-height:1.7}
+.chez .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chez .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3)}.chez .btn.ghost:hover{border-color:#fff}
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-l)}
+.card .cat{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--olive2);background:var(--olive-soft);padding:5px 11px;border-radius:999px}
+.card h3{font-size:20px;font-weight:600;line-height:1.25;margin-top:14px}
+.card p{font-size:14.5px;color:var(--secondary);margin-top:10px;line-height:1.6;flex:1}
+.card .rt{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+.intro p{font-size:16.5px;color:var(--secondary);line-height:1.75;margin-top:14px}
+.watch{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s)}
+.watch h3{font-size:19px;font-weight:600}
+.watch ul{list-style:none;margin-top:12px;display:grid;gap:9px;font-size:14.5px;color:var(--secondary)}
+.watch li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--olive);margin-right:10px;vertical-align:1px}
+@media(max-width:960px){.related,.intro{grid-template-columns:1fr}}
+@media(max-width:600px){.toc{padding:18px 20px}.prose{font-size:16.5px}.cards{grid-template-columns:1fr}.chez .btn{width:100%}}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://www.groupsolution.fr/lab/veille/ai-act-pme.html#article",
+      "headline": "AI Act (règlement européen sur l’IA) : ce qu’une PME doit savoir",
+      "description": "AI Act : approche par les risques, pratiques interdites, maîtrise de l’IA, transparence des chatbots. Ce que le règlement européen change pour une PME.",
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "inLanguage": "fr-FR",
+      "mainEntityOfPage": "https://www.groupsolution.fr/lab/veille/ai-act-pme.html",
+      "image": "https://www.groupsolution.fr/assets/visuel-solutions.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Titouan Bedos",
+        "jobTitle": "Fondateur",
+        "worksFor": {
+          "@id": "https://www.groupsolution.fr/#organization"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.groupsolution.fr/#organization",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.groupsolution.fr/Logo.svg"
+        },
+        "telephone": "+33782298559",
+        "email": "contact@groupsolution.fr"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "AI Act"
+        },
+        {
+          "@type": "Thing",
+          "name": "Règlement (UE) 2024/1689"
+        },
+        {
+          "@type": "Thing",
+          "name": "Conformité"
+        },
+        {
+          "@type": "Thing",
+          "name": "Intelligence artificielle"
+        }
+      ],
+      "articleSection": "Réglementation",
+      "wordCount": 1617
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lab",
+          "item": "https://www.groupsolution.fr/lab/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Veille",
+          "item": "https://www.groupsolution.fr/lab/veille/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "AI Act (règlement européen sur l’IA) : ce qu’une PME doit savoir",
+          "item": "https://www.groupsolution.fr/lab/veille/ai-act-pme.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.groupsolution.fr/lab/veille/ai-act-pme.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Ma PME utilise ChatGPT ou un assistant équivalent : suis-je concernée ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, a minima au titre de l’obligation de maîtrise de l’IA (article 4), applicable depuis le 2 février 2025, et de la transparence si vous exposez un chatbot à vos clients. La plupart de ces usages relèvent toutefois du risque minimal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce que la « maîtrise de l’IA » exigée par le règlement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C’est l’obligation de prendre des mesures pour que le personnel qui utilise l’IA dispose des compétences et connaissances suffisantes, compte tenu du contexte. Le texte ne fixe pas de format : sensibilisation, règles d’usage et formation adaptées en sont des moyens."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Les obligations pour les systèmes à haut risque s’appliquent-elles déjà ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Le règlement (UE) 2026/1744 (« omnibus IA »), entré en vigueur le 27 juillet 2026, les a reportées : au 2 décembre 2027 pour les systèmes listés à l’annexe III et au 2 août 2028 pour ceux intégrés à des produits réglementés (annexe I). La transparence (article 50) s’applique en revanche depuis le 2 août 2026."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qui contrôle l’application de l’AI Act ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Au niveau européen, le Bureau de l’IA de la Commission supervise notamment les modèles à usage général. Chaque État membre désigne ses autorités compétentes ; consultez les sites de la CNIL et des services de l’État pour connaître l’organisation retenue en France."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="../../index.html" aria-label="Groupe Solution — accueil"><img src="../../Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links" aria-label="Navigation principale">
+    <a href="./">Veille</a>
+    <a href="../api.html">API &amp; données</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../outils/">Outils</a>
+    <a class="cta" href="#contact">Discutons 10 min</a>
+  </nav>
+</div></header>
+<main>
+  <article class="art"><div class="wrap"><div class="col">
+    <nav class="crumbs" aria-label="Fil d’Ariane"><ol>
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Lab</a></li>
+      <li><a href="./">Veille</a></li>
+      <li aria-current="page">Réglementation</li>
+    </ol></nav>
+    <header class="artHead">
+      <span class="kicker">Réglementation</span>
+      <h1>AI Act (règlement européen sur l’IA) : ce qu’une PME doit savoir</h1>
+      <p class="chapo">Le règlement européen sur l’intelligence artificielle, souvent appelé AI Act, s’applique progressivement depuis 2025. Il ne concerne pas que les géants de la tech : une PME qui utilise un chatbot, un outil de tri de candidatures ou un générateur d’images est, elle aussi, concernée à des degrés divers. Voici une lecture pragmatique, en distinguant ce qui est certain de ce qui peut encore évoluer.</p>
+      <p class="meta">Publié le <time datetime="2026-09-29">29 septembre 2026</time> · 7 min de lecture · Par Titouan Bedos, fondateur de Groupe Solution</p>
+    </header>
+    <nav class="toc" aria-label="Sommaire"><b>Sommaire</b><ol>
+      <li><a href="#definition">Ce que c’est : un règlement fondé sur les niveaux de risque</a></li>
+      <li><a href="#calendrier">Pourquoi c’est important maintenant : un calendrier par étapes</a></li>
+      <li><a href="#obligations">Ce qui concerne concrètement une PME</a></li>
+      <li><a href="#cas-usage">Cas d’usage concrets : où se situe votre entreprise ?</a></li>
+      <li><a href="#limites">Limites et précautions</a></li>
+      <li><a href="#commencer">Par où commencer</a></li>
+      <li><a href="#faq">Questions fréquentes</a></li>
+    </ol></nav>
+    <div class="prose">
+<h2 id="definition">Ce que c’est : un règlement fondé sur les niveaux de risque</h2>
+<p>L’AI Act est le <strong>règlement (UE) 2024/1689</strong> du Parlement européen et du Conseil établissant des règles harmonisées concernant l’intelligence artificielle. Publié au Journal officiel de l’Union européenne le 12 juillet 2024, il est entré en vigueur le 1<sup>er</sup> août 2024. Comme tout règlement européen, il s’applique directement dans les États membres, sans transposition.</p>
+<p>Sa logique centrale est une <strong>approche par les risques</strong> : plus un usage de l’IA peut porter atteinte à la santé, à la sécurité ou aux droits fondamentaux, plus les obligations sont lourdes.</p>
+<ul>
+<li><strong>Risque inacceptable</strong> : certaines pratiques sont purement interdites.</li>
+<li><strong>Haut risque</strong> : des usages sensibles (recrutement, accès au crédit, éducation, infrastructures critiques…) sont autorisés mais soumis à des exigences strictes.</li>
+<li><strong>Risque lié à la transparence</strong> : chatbots, contenus générés ou manipulés, reconnaissance des émotions… doivent être signalés.</li>
+<li><strong>Risque minimal</strong> : la grande majorité des usages (filtre anti-spam, aide à la rédaction, optimisation de stock) n’est pas soumise à des obligations spécifiques au-delà des règles générales.</li>
+</ul>
+<p>Le règlement prévoit en outre des règles propres aux <strong>modèles d’IA à usage général</strong> (les grands modèles de langage sur lesquels reposent les assistants du marché), qui pèsent principalement sur leurs fournisseurs.</p>
+<h3>Fournisseur ou déployeur ?</h3>
+<p>Le texte distingue notamment le <strong>fournisseur</strong> (celui qui développe un système d’IA et le met sur le marché sous son nom) et le <strong>déployeur</strong> (celui qui utilise un système d’IA dans le cadre de son activité professionnelle). Une PME qui utilise un assistant du marché est, dans la plupart des cas, déployeur. Attention : une entreprise qui développe son propre outil d’IA, ou qui modifie substantiellement un système, peut devenir fournisseur au sens du règlement.</p>
+<h2 id="calendrier">Pourquoi c’est important maintenant : un calendrier par étapes</h2>
+<p>Le règlement s’applique par paliers. Selon le calendrier fixé par le texte :</p>
+<div class="tbl"><table>
+<thead><tr><th>Date</th><th>Ce qui s’applique</th><th>Statut</th></tr></thead>
+<tbody>
+<tr><td>2 février 2025</td><td>Interdiction des pratiques à risque inacceptable ; obligation de maîtrise de l’IA (article 4)</td><td>En application</td></tr>
+<tr><td>2 août 2025</td><td>Règles relatives aux modèles d’IA à usage général ; gouvernance ; régime de sanctions</td><td>En application</td></tr>
+<tr><td>2 août 2026</td><td>Obligations de transparence (article 50 : chatbots, contenus générés), surveillance du marché, régime de sanctions</td><td>En application</td></tr>
+<tr><td>2 décembre 2027</td><td>Systèmes à haut risque listés à l’annexe III (recrutement, crédit, éducation…) — date reportée par le règlement « omnibus IA »</td><td>À venir</td></tr>
+<tr><td>2 août 2028</td><td>Systèmes à haut risque intégrés à des produits réglementés (annexe I) — date reportée</td><td>À venir</td></tr>
+</tbody></table></div>
+<div class="note"><p><strong>Mise à jour — le report est adopté :</strong> proposé par la Commission européenne le 19 novembre 2025, le règlement (UE) 2026/1744, dit « omnibus IA », a été publié au Journal officiel le 24 juillet 2026 et est entré en vigueur le 27 juillet 2026. Il reporte les obligations applicables aux systèmes à haut risque (annexe III au 2 décembre 2027, annexe I au 2 août 2028). Il ne reporte ni les pratiques interdites, ni les règles des modèles d’usage général, ni les obligations de transparence de l’article 50, applicables depuis le 2 août 2026. Consultez la version consolidée sur EUR-Lex pour le détail des autres ajustements.</p></div>
+<p>Autrement dit : pour une PME qui utilise l’IA sans développer de système à haut risque, l’essentiel s’applique déjà — pratiques interdites, maîtrise de l’IA par les équipes et transparence envers les personnes qui interagissent avec une IA.</p>
+<h2 id="obligations">Ce qui concerne concrètement une PME</h2>
+<h3>1. Ne pas recourir aux pratiques interdites</h3>
+<p>L’article 5 interdit notamment : les techniques manipulatrices ou subliminales qui altèrent substantiellement le comportement d’une personne à son détriment ; l’exploitation des vulnérabilités liées à l’âge, au handicap ou à la situation sociale ou économique ; la notation sociale ; l’évaluation du risque qu’une personne commette une infraction sur la seule base d’un profilage ; la constitution de bases de reconnaissance faciale par moissonnage non ciblé d’images ; la reconnaissance des émotions sur le lieu de travail et dans les établissements d’enseignement (sauf raisons médicales ou de sécurité) ; certaines catégorisations biométriques sensibles. Ces cas semblent éloignés du quotidien d’une PME, mais la reconnaissance des émotions des salariés, par exemple lors d’appels, est un piège réel.</p>
+<h3>2. Assurer la maîtrise de l’IA de vos équipes</h3>
+<p>L’article 4 impose aux fournisseurs et aux déployeurs de prendre des mesures pour garantir, dans toute la mesure du possible, un niveau suffisant de <strong>maîtrise de l’IA</strong> (« AI literacy ») à leur personnel et aux personnes qui utilisent les systèmes pour leur compte, en tenant compte de leurs connaissances et du contexte d’utilisation. Le texte n’impose pas de format précis : une sensibilisation adaptée, des règles d’usage écrites et une formation aux limites des outils constituent une base raisonnable. La Commission a publié des questions-réponses sur ce sujet.</p>
+<h3>3. Être transparent</h3>
+<p>L’article 50 prévoit notamment que les personnes soient informées qu’elles interagissent avec un système d’IA (chatbot, agent vocal), sauf si c’est évident ; que les contenus générés par IA soient marqués de manière détectable par les fournisseurs de systèmes génératifs ; que les « hypertrucages » (deepfakes) soient signalés par ceux qui les diffusent ; et que les textes générés par IA publiés pour informer le public sur des questions d’intérêt public soient signalés, sauf relecture humaine avec responsabilité éditoriale. Voir le calendrier ci-dessus pour la date d’application.</p>
+<h3>4. Identifier un éventuel usage à haut risque</h3>
+<p>Une PME peut être concernée sans le savoir. Exemple typique : un outil qui trie ou note automatiquement des candidatures relève des usages à haut risque liés à l’emploi. Le déployeur d’un système à haut risque doit notamment l’utiliser conformément à la notice, assurer un contrôle humain par des personnes compétentes, surveiller son fonctionnement, conserver les journaux générés et informer les salariés concernés avant la mise en service sur le lieu de travail.</p>
+<h3>5. Garder en tête les sanctions</h3>
+<p>Le règlement prévoit des amendes pouvant atteindre, pour les pratiques interdites, 35 millions d’euros ou 7 % du chiffre d’affaires annuel mondial, avec des plafonds inférieurs pour les autres manquements. Pour les PME, le texte prévoit de retenir le montant le plus faible des deux. Le RGPD continue par ailleurs de s’appliquer à tout traitement de données personnelles.</p>
+<h2 id="cas-usage">Cas d’usage concrets : où se situe votre entreprise ?</h2>
+<ul>
+<li><strong>Artisan qui utilise un assistant pour rédiger ses devis</strong> : risque minimal. Obligation de maîtrise de l’IA (savoir que l’outil peut se tromper, relire), et RGPD si des données clients sont saisies.</li>
+<li><strong>Commerce avec un chatbot sur son site</strong> : obligation d’informer les visiteurs qu’ils échangent avec une IA, selon le calendrier de l’article 50.</li>
+<li><strong>Cabinet qui trie les candidatures avec un outil de notation automatique</strong> : usage potentiellement à haut risque. Contrôle humain, information des candidats et des salariés, vérification que le fournisseur respecte ses propres obligations.</li>
+<li><strong>Domaine viticole qui génère des visuels publicitaires par IA</strong> : risque minimal en général ; transparence si le contenu représente de manière réaliste des personnes, lieux ou événements existants et pourrait être pris pour authentique.</li>
+<li><strong>Hébergement touristique avec agent vocal</strong> : information de l’appelant qu’il parle à une IA, en plus des obligations RGPD liées aux appels.</li>
+</ul>
+<h2 id="limites">Limites et précautions</h2>
+<ul>
+<li><strong>Ne pas surestimer ni sous-estimer</strong> : la plupart des usages d’une PME relèvent du risque minimal, mais la maîtrise de l’IA et la transparence concernent presque tout le monde.</li>
+<li><strong>Se méfier des « certifications AI Act » vendues clés en main</strong> : les normes harmonisées et les procédures d’évaluation sont encore en cours d’élaboration pour une partie du texte.</li>
+<li><strong>Suivre les évolutions</strong> : lignes directrices de la Commission, codes de bonnes pratiques, propositions de modification. Le paysage évolue encore.</li>
+<li><strong>Articuler avec le RGPD</strong> : l’AI Act ne remplace pas le RGPD ; les deux s’appliquent en parallèle.</li>
+</ul>
+<h2 id="commencer">Par où commencer</h2>
+<ol>
+<li><strong>Faites l’inventaire</strong> des outils d’IA utilisés dans l’entreprise, y compris ceux adoptés individuellement par les salariés.</li>
+<li><strong>Classez chaque usage</strong> : interdit, haut risque, transparence, minimal. Signalez les doutes.</li>
+<li><strong>Rédigez une charte d’usage</strong> simple : outils autorisés, données interdites, relecture obligatoire, signalement des erreurs.</li>
+<li><strong>Organisez une sensibilisation</strong> adaptée aux métiers, pour répondre à l’obligation de maîtrise de l’IA.</li>
+<li><strong>Mettez à jour vos mentions</strong> : chatbot, agent vocal, contenus générés.</li>
+<li><strong>Consultez les sources officielles</strong> ou un conseil juridique pour les cas sensibles.</li>
+</ol>
+<p>Groupe Solution intègre ces exigences dès la conception des outils qu’il développe : information des utilisateurs, contrôle humain, journalisation, documentation. Nous ne délivrons pas de conseil juridique, mais nous construisons des solutions pensées pour être conformes.</p>
+    </div>
+    <section class="artFaq faq" id="faq">
+      <h2>Questions fréquentes</h2>
+      <details><summary>Ma PME utilise ChatGPT ou un assistant équivalent : suis-je concernée ?</summary><p>Oui, a minima au titre de l’obligation de maîtrise de l’IA (article 4), applicable depuis le 2 février 2025, et de la transparence si vous exposez un chatbot à vos clients. La plupart de ces usages relèvent toutefois du risque minimal.</p></details>
+      <details><summary>Qu’est-ce que la « maîtrise de l’IA » exigée par le règlement ?</summary><p>C’est l’obligation de prendre des mesures pour que le personnel qui utilise l’IA dispose des compétences et connaissances suffisantes, compte tenu du contexte. Le texte ne fixe pas de format : sensibilisation, règles d’usage et formation adaptées en sont des moyens.</p></details>
+      <details><summary>Les obligations pour les systèmes à haut risque s’appliquent-elles déjà ?</summary><p>Non. Le règlement (UE) 2026/1744 (« omnibus IA »), entré en vigueur le 27 juillet 2026, les a reportées : au 2 décembre 2027 pour les systèmes listés à l’annexe III et au 2 août 2028 pour ceux intégrés à des produits réglementés (annexe I). La transparence (article 50) s’applique en revanche depuis le 2 août 2026.</p></details>
+      <details><summary>Qui contrôle l’application de l’AI Act ?</summary><p>Au niveau européen, le Bureau de l’IA de la Commission supervise notamment les modèles à usage général. Chaque État membre désigne ses autorités compétentes ; consultez les sites de la CNIL et des services de l’État pour connaître l’organisation retenue en France.</p></details>
+    </section>
+    <aside class="sources" aria-labelledby="src-ai-act-pme">
+      <h2 id="src-ai-act-pme">Sources officielles à consulter</h2>
+      <ul>
+        <li>Règlement (UE) 2024/1689 du 13 juin 2024 (AI Act) — Journal officiel de l’UE du 12 juillet 2024, disponible sur EUR-Lex</li>
+        <li>Règlement (UE) 2026/1744 dit « omnibus IA » — Journal officiel de l’UE du 24 juillet 2026, disponible sur EUR-Lex</li>
+        <li>Commission européenne — Bureau de l’IA (AI Office) et pages « Cadre réglementaire de l’IA »</li>
+        <li>Commission européenne — lignes directrices sur les pratiques interdites et sur la définition des systèmes d’IA (2025)</li>
+        <li>Commission européenne — questions-réponses sur la maîtrise de l’IA (article 4)</li>
+        <li>CNIL — dossiers consacrés à l’intelligence artificielle</li>
+      </ul>
+      <p>Article à jour au 29 septembre 2026. Les textes, calendriers et services évoluent : référez-vous toujours à la version en vigueur publiée par ces organismes. Cet article est informatif et ne constitue pas un conseil juridique ou fiscal.</p>
+    </aside>
+    <aside class="chez">
+      <h2>Et chez vous ?</h2>
+      <p>Vous vous demandez ce que ce sujet change concrètement dans votre activité ? Parlons-en dix minutes : nous regardons vos outils et vos tâches répétitives, et vous repartez avec une piste claire. Chaque projet fait l’objet d’un devis sur mesure.</p>
+      <div class="row"><a class="btn" href="../../automatisation/">Voir nos automatisations</a><a class="btn ghost" href="tel:+33782298559">07 82 29 85 59</a></div>
+    </aside>
+  </div></div></article>
+  <section class="sec"><div class="wrap">
+    <div class="secHead"><span class="kicker">À lire aussi</span><h2>D’autres sujets de veille</h2></div>
+    <div class="related">
+      <a class="card reveal" href="open-data-api-gouv.html"><span class="cat">API &amp; données</span><h3>L’open data public au service des entreprises : les API à connaître</h3><p>Recherche d’entreprises, Base Adresse Nationale, DVF, Géorisques, jours fériés : les API publiques gratuites pour vérifier, normaliser et anticiper.</p><span class="rt">6 min de lecture</span></a>
+      <a class="card reveal" href="rag-assistant-documents.html"><span class="cat">IA &amp; documents</span><h3>Un assistant IA branché sur vos documents (RAG) : principe, bonnes pratiques et limites</h3><p>Un assistant IA qui répond à partir de vos documents : principe du RAG, recherche vectorielle, citation des sources, hébergement, droits d’accès, limites.</p><span class="rt">6 min de lecture</span></a>
+      <a class="card reveal" href="ia-vision-documents.html"><span class="cat">IA &amp; documents</span><h3>Lire factures, bons et documents manuscrits avec l’IA : fiabilité, contrôle et intégration</h3><p>Factures, bons de livraison, manuscrits : comment les modèles vision-langage lisent vos documents, quelle fiabilité attendre et comment garder le contrôle.</p><span class="rt">5 min de lecture</span></a>
+    </div>
+  </div></section>
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Quelle tâche vous prend le plus de temps ?</h2>
+      <p>Décrivez-la en deux phrases. Je vous réponds avec une première piste concrète — gratuitement, sans engagement.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="veille/ai-act-pme" />
+        <label class="full">La tâche répétitive<textarea name="message" required placeholder="Ex : je ressaisis chaque commande dans deux logiciels…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Recevoir ma piste d'automatisation →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="../../echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../../index.html">Accueil</a>
+    <a href="./">Veille</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../solutions.html">Solutions</a>
+    <a href="../../realisations.html">Réalisations</a>
+    <a href="../../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../../echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+<script src="../../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

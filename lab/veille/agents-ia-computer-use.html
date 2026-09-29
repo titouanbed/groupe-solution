@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agents IA et portails sans API | Groupe Solution</title>
+  <meta name="description" content="Des agents IA utilisent désormais un logiciel comme un humain, écran et clavier. Ce que cela change pour les portails sans API, et comment les superviser." />
+  <link rel="canonical" href="https://www.groupsolution.fr/lab/veille/agents-ia-computer-use.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Agents IA et portails sans API | Groupe Solution" />
+  <meta property="og:description" content="Des agents IA utilisent désormais un logiciel comme un humain, écran et clavier. Ce que cela change pour les portails sans API, et comment les superviser." />
+  <meta property="og:url" content="https://www.groupsolution.fr/lab/veille/agents-ia-computer-use.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta property="article:published_time" content="2026-09-29" />
+  <meta property="article:author" content="Titouan Bedos" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agents IA et portails sans API | Groupe Solution" />
+  <meta name="twitter:description" content="Des agents IA utilisent désormais un logiciel comme un humain, écran et clavier. Ce que cela change pour les portails sans API, et comment les superviser." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/holding-local.css" />
+  <style>
+.art{padding:0 0 30px}
+.col{max-width:760px;margin:0 auto}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.crumbs li+li::before{content:"›";margin-right:6px;color:var(--line2)}
+.artHead{padding:28px 0 8px}
+.artHead h1{font-size:clamp(30px,4.4vw,48px);line-height:1.1;margin-top:18px;overflow-wrap:break-word}
+.chapo{font-size:clamp(17px,2vw,19.5px);color:var(--secondary);line-height:1.7;margin-top:20px}
+.meta{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:18px}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin-top:30px}
+.toc b{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.toc ol{margin:10px 0 0 20px;font-size:15px;line-height:1.9}
+.toc a{color:var(--ink);font-weight:600}.toc a:hover{color:var(--acc)}
+.prose{font-size:17px;line-height:1.8;color:#2B2924;overflow-wrap:break-word}
+.prose h2{font-size:clamp(25px,3vw,33px);line-height:1.18;margin:54px 0 16px;scroll-margin-top:90px}
+.prose h3{font-size:clamp(19px,2.2vw,22px);font-weight:600;line-height:1.3;margin:32px 0 10px}
+.prose p{margin:0 0 18px}
+.prose ul,.prose ol{margin:0 0 22px 22px}
+.prose li{margin-bottom:9px;padding-left:2px}
+.prose strong{color:var(--ink)}
+.prose a{color:var(--acc-d);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.prose code{font-size:.86em;background:var(--olive-soft);color:var(--olive2);padding:2px 7px;border-radius:6px;word-break:break-all}
+.note{background:var(--olive-soft);border-left:4px solid var(--olive);border-radius:0 var(--r-s) var(--r-s) 0;padding:18px 22px;margin:26px 0}
+.note p{margin:0}
+.note.warn{background:var(--amber-soft);border-left-color:var(--amber)}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-s);background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px;line-height:1.55}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tr:last-child td{border-bottom:0}
+.artFaq{margin-top:54px}
+.artFaq h2{font-size:clamp(25px,3vw,33px);margin-bottom:20px}
+.sources{margin-top:48px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:24px 28px}
+.sources h2{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.sources ul{margin:12px 0 0 20px;font-size:15px;line-height:1.7;color:var(--secondary)}
+.sources p{font-size:13.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.chez{margin-top:30px;background:var(--ink);color:#fff;border-radius:var(--r-l);padding:clamp(24px,4vw,36px)}
+.chez h2{color:#fff;font-size:clamp(24px,3vw,30px)}
+.chez p{color:#CFCBC0;margin-top:12px;font-size:16px;line-height:1.7}
+.chez .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chez .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3)}.chez .btn.ghost:hover{border-color:#fff}
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-l)}
+.card .cat{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--olive2);background:var(--olive-soft);padding:5px 11px;border-radius:999px}
+.card h3{font-size:20px;font-weight:600;line-height:1.25;margin-top:14px}
+.card p{font-size:14.5px;color:var(--secondary);margin-top:10px;line-height:1.6;flex:1}
+.card .rt{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+.intro p{font-size:16.5px;color:var(--secondary);line-height:1.75;margin-top:14px}
+.watch{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s)}
+.watch h3{font-size:19px;font-weight:600}
+.watch ul{list-style:none;margin-top:12px;display:grid;gap:9px;font-size:14.5px;color:var(--secondary)}
+.watch li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--olive);margin-right:10px;vertical-align:1px}
+@media(max-width:960px){.related,.intro{grid-template-columns:1fr}}
+@media(max-width:600px){.toc{padding:18px 20px}.prose{font-size:16.5px}.cards{grid-template-columns:1fr}.chez .btn{width:100%}}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://www.groupsolution.fr/lab/veille/agents-ia-computer-use.html#article",
+      "headline": "Agents IA qui utilisent les logiciels comme un humain : ce que ça change pour les portails sans API",
+      "description": "Des agents IA utilisent désormais un logiciel comme un humain, écran et clavier. Ce que cela change pour les portails sans API, et comment les superviser.",
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "inLanguage": "fr-FR",
+      "mainEntityOfPage": "https://www.groupsolution.fr/lab/veille/agents-ia-computer-use.html",
+      "image": "https://www.groupsolution.fr/assets/visuel-solutions.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Titouan Bedos",
+        "jobTitle": "Fondateur",
+        "worksFor": {
+          "@id": "https://www.groupsolution.fr/#organization"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.groupsolution.fr/#organization",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.groupsolution.fr/Logo.svg"
+        },
+        "telephone": "+33782298559",
+        "email": "contact@groupsolution.fr"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Agents IA"
+        },
+        {
+          "@type": "Thing",
+          "name": "Computer use"
+        },
+        {
+          "@type": "Thing",
+          "name": "Automatisation des processus"
+        }
+      ],
+      "articleSection": "Agents IA",
+      "wordCount": 1233
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lab",
+          "item": "https://www.groupsolution.fr/lab/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Veille",
+          "item": "https://www.groupsolution.fr/lab/veille/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Agents IA qui utilisent les logiciels comme un humain : ce que ça change pour les portails sans API",
+          "item": "https://www.groupsolution.fr/lab/veille/agents-ia-computer-use.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.groupsolution.fr/lab/veille/agents-ia-computer-use.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Un agent IA peut-il remplacer un collaborateur sur ces tâches ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Il peut prendre en charge des tâches répétitives et bien définies, mais il doit rester supervisé. Les erreurs restent possibles, surtout quand l’interface change. Le collaborateur passe de la saisie au contrôle."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Est-ce légal d’automatiser l’accès à un portail avec mes identifiants ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cela dépend des conditions d’utilisation du portail. Certaines interdisent l’accès automatisé. Il faut les vérifier et, en cas de doute, demander l’accord de l’éditeur ou du partenaire concerné."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle différence avec un robot RPA ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un robot RPA rejoue une séquence figée et casse si l’écran change. Un agent IA interprète l’écran à chaque étape et s’adapte mieux, mais son comportement est moins prévisible et demande davantage de contrôle."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Et si le portail propose une API ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Il faut alors utiliser l’API : c’est plus rapide, plus fiable et plus sûr. L’agent qui manipule l’interface est une solution de dernier recours pour les outils fermés."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="../../index.html" aria-label="Groupe Solution — accueil"><img src="../../Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links" aria-label="Navigation principale">
+    <a href="./">Veille</a>
+    <a href="../api.html">API &amp; données</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../outils/">Outils</a>
+    <a class="cta" href="#contact">Discutons 10 min</a>
+  </nav>
+</div></header>
+<main>
+  <article class="art"><div class="wrap"><div class="col">
+    <nav class="crumbs" aria-label="Fil d’Ariane"><ol>
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Lab</a></li>
+      <li><a href="./">Veille</a></li>
+      <li aria-current="page">Agents IA</li>
+    </ol></nav>
+    <header class="artHead">
+      <span class="kicker">Agents IA</span>
+      <h1>Agents IA qui utilisent les logiciels comme un humain : ce que ça change pour les portails sans API</h1>
+      <p class="chapo">Portail fournisseur, extranet d’un grossiste, site administratif, vieux logiciel de gestion : beaucoup d’outils du quotidien n’offrent aucune API. Jusqu’ici, les automatiser relevait du bricolage. Les agents IA capables de « voir » un écran et d’utiliser souris et clavier ouvrent une nouvelle voie — à condition de les encadrer sérieusement.</p>
+      <p class="meta">Publié le <time datetime="2026-09-29">29 septembre 2026</time> · 6 min de lecture · Par Titouan Bedos, fondateur de Groupe Solution</p>
+    </header>
+    <nav class="toc" aria-label="Sommaire"><b>Sommaire</b><ol>
+      <li><a href="#definition">Ce que c’est : une IA qui regarde l’écran et agit</a></li>
+      <li><a href="#pourquoi-maintenant">Pourquoi c’est important maintenant</a></li>
+      <li><a href="#cas-usage">Cas d’usage concrets pour une TPE/PME</a></li>
+      <li><a href="#limites">Limites, sécurité et précautions</a></li>
+      <li><a href="#commencer">Par où commencer</a></li>
+      <li><a href="#faq">Questions fréquentes</a></li>
+    </ol></nav>
+    <div class="prose">
+<h2 id="definition">Ce que c’est : une IA qui regarde l’écran et agit</h2>
+<p>On parle d’agents de type <strong>« computer use »</strong> (utilisation d’ordinateur) ou d’agents de navigation. Le principe : un modèle d’IA reçoit des captures d’écran d’un ordinateur ou d’un navigateur, comprend ce qui est affiché (boutons, champs, tableaux, messages d’erreur), puis décide de l’action suivante — cliquer à tel endroit, saisir un texte, faire défiler, ouvrir un menu. Il observe le résultat, et recommence jusqu’à atteindre l’objectif qu’on lui a fixé.</p>
+<p>Anthropic a ouvert cette capacité en version bêta publique en octobre 2024 ; d’autres éditeurs, dont OpenAI, ont ensuite proposé des agents comparables capables de piloter un navigateur. Depuis, la fiabilité de ces agents progresse, mais ils restent plus lents et moins prévisibles qu’une intégration par API.</p>
+<h3>La différence avec l’automatisation « classique »</h3>
+<p>L’automatisation robotisée des processus (souvent appelée RPA) existe depuis longtemps : un robot rejoue une séquence de clics enregistrée. Son point faible est connu : si le bouton change de place, si une fenêtre inattendue s’ouvre, le script casse. Un agent IA, lui, interprète l’écran à chaque étape. Il peut s’adapter à une mise en page modifiée, lire un message d’erreur et réagir, ou retrouver un champ dont l’intitulé a légèrement changé. En contrepartie, son comportement n’est pas totalement déterministe : deux exécutions peuvent emprunter des chemins différents.</p>
+<p>La hiérarchie reste donc la suivante : <strong>quand une API existe, on l’utilise</strong>. Elle est plus rapide, plus fiable, plus sûre. L’agent qui manipule l’écran est une solution pour les cas où aucune autre porte n’est ouverte.</p>
+<h2 id="pourquoi-maintenant">Pourquoi c’est important maintenant</h2>
+<p>Les petites entreprises sont souvent prisonnières d’outils qu’elles ne maîtrisent pas : le portail de commande d’un fournisseur, l’extranet d’une centrale de réservation, l’espace professionnel d’un organisme, un logiciel installé il y a quinze ans. Ces outils n’offrent ni export automatisé ni API, et l’éditeur n’a aucune raison d’en développer une pour un client de petite taille.</p>
+<p>Résultat : des heures de ressaisie, de téléchargements manuels de factures, de copier-coller de numéros de suivi. Les agents capables d’utiliser une interface graphique rendent enfin automatisables des tâches qui ne l’étaient pas économiquement. Ils s’ajoutent aux autres briques qui ont mûri récemment — lecture de documents par l’IA, connecteurs standardisés comme MCP — pour construire des chaînes de traitement complètes.</p>
+<p>Il faut toutefois garder la tête froide : ces agents sont encore en progression. Ils conviennent aux tâches répétitives, bien définies et à faible enjeu unitaire, sous supervision. Ils ne sont pas prêts à gérer seuls des opérations critiques.</p>
+<h2 id="cas-usage">Cas d’usage concrets pour une TPE/PME</h2>
+<h3>Récupérer factures et bons de livraison sur des portails fournisseurs</h3>
+<p>Un restaurateur ou un commerce qui travaille avec une dizaine de fournisseurs passe du temps chaque mois à se connecter à chaque espace client pour télécharger les factures. Un agent peut effectuer cette tournée, déposer les fichiers dans le bon dossier et signaler ceux qui manquent.</p>
+<h3>Passer des commandes répétitives</h3>
+<p>Un artisan qui commande régulièrement les mêmes fournitures chez un distributeur peut faire préparer le panier par l’agent à partir d’une liste validée, puis valider lui-même la commande finale.</p>
+<h3>Reporter des informations entre un portail et votre logiciel</h3>
+<p>Un hébergeur touristique reçoit des réservations sur un extranet sans connecteur vers son planning : l’agent relève les nouvelles réservations et les recopie dans l’outil interne, en signalant toute incohérence (dates qui se chevauchent, nombre de personnes inhabituel).</p>
+<h3>Suivre des démarches administratives</h3>
+<p>Un cabinet peut faire vérifier l’état de dossiers sur des espaces en ligne et recevoir un récapitulatif des changements de statut, plutôt que de se connecter manuellement à chaque portail.</p>
+<h3>Domaine viticole et export</h3>
+<p>Relever des informations de suivi d’expédition sur plusieurs sites de transporteurs et les consolider dans un tableau unique pour répondre aux clients.</p>
+<div class="note"><p><strong>Le bon critère :</strong> une tâche répétitive, sur un portail stable, avec un résultat facile à vérifier. Plus l’enjeu d’une erreur est élevé, plus la supervision doit être serrée.</p></div>
+<h2 id="limites">Limites, sécurité et précautions</h2>
+<h3>Respecter les conditions d’utilisation des sites</h3>
+<p>Certains portails interdisent explicitement l’accès automatisé dans leurs conditions générales. Avant toute automatisation, il faut les lire et, en cas de doute, demander l’accord de l’éditeur ou du partenaire. Utiliser vos propres identifiants pour vos propres données n’autorise pas pour autant à ignorer ces conditions.</p>
+<h3>Isoler l’agent</h3>
+<p>Un agent qui pilote un ordinateur doit travailler dans un environnement dédié — une machine virtuelle ou un navigateur isolé — et jamais sur le poste principal d’un collaborateur avec toutes ses sessions ouvertes. Il ne doit disposer que des accès nécessaires à sa mission.</p>
+<h3>Se protéger contre l’injection d’instructions</h3>
+<p>L’agent lit tout ce qui s’affiche. Une page web ou un document peut contenir un texte conçu pour le détourner. Les éditeurs de modèles alertent eux-mêmes sur ce risque. Parades : limiter la navigation aux sites prévus, interdire les actions sensibles sans validation, surveiller les journaux.</p>
+<h3>Gérer les identifiants avec soin</h3>
+<p>Les mots de passe ne doivent pas être écrits dans les instructions données à l’IA. On utilise un coffre-fort d’identifiants, des comptes dédiés quand le portail le permet, et on garde la main sur l’authentification forte : un agent ne doit pas contourner une double authentification.</p>
+<h3>Superviser et tracer</h3>
+<p>Chaque exécution doit laisser une trace : captures, actions réalisées, résultat. Les actions irréversibles (validation d’une commande, envoi d’un message, paiement) passent par une confirmation humaine. Un tableau de bord signale les échecs, car un portail modifié peut faire échouer l’agent.</p>
+<h3>Accepter les limites de performance</h3>
+<p>Un agent visuel est plus lent qu’un humain entraîné sur certaines tâches et consomme des ressources de calcul à chaque étape. Il est pertinent pour des volumes réguliers et fastidieux, moins pour des opérations ponctuelles.</p>
+<h2 id="commencer">Par où commencer</h2>
+<ol>
+<li><strong>Recensez les portails sur lesquels vous passez du temps</strong> chaque semaine, et estimez ce temps honnêtement.</li>
+<li><strong>Vérifiez s’il existe une alternative plus robuste</strong> : API, export automatique, flux EDI, connecteur officiel. C’est souvent le cas, et c’est toujours préférable.</li>
+<li><strong>Lisez les conditions d’utilisation</strong> des portails restants.</li>
+<li><strong>Choisissez une tâche pilote</strong> à faible enjeu, dont le résultat se vérifie facilement (par exemple, le téléchargement de factures).</li>
+<li><strong>Faites fonctionner l’agent en mode supervisé</strong> pendant plusieurs semaines, analysez les erreurs, puis élargissez prudemment.</li>
+</ol>
+<p>Groupe Solution privilégie toujours l’intégration la plus fiable disponible. Quand un portail n’offre vraiment aucune autre possibilité, nous pouvons étudier un agent supervisé, isolé et journalisé, en commençant par un périmètre réduit.</p>
+    </div>
+    <section class="artFaq faq" id="faq">
+      <h2>Questions fréquentes</h2>
+      <details><summary>Un agent IA peut-il remplacer un collaborateur sur ces tâches ?</summary><p>Il peut prendre en charge des tâches répétitives et bien définies, mais il doit rester supervisé. Les erreurs restent possibles, surtout quand l’interface change. Le collaborateur passe de la saisie au contrôle.</p></details>
+      <details><summary>Est-ce légal d’automatiser l’accès à un portail avec mes identifiants ?</summary><p>Cela dépend des conditions d’utilisation du portail. Certaines interdisent l’accès automatisé. Il faut les vérifier et, en cas de doute, demander l’accord de l’éditeur ou du partenaire concerné.</p></details>
+      <details><summary>Quelle différence avec un robot RPA ?</summary><p>Un robot RPA rejoue une séquence figée et casse si l’écran change. Un agent IA interprète l’écran à chaque étape et s’adapte mieux, mais son comportement est moins prévisible et demande davantage de contrôle.</p></details>
+      <details><summary>Et si le portail propose une API ?</summary><p>Il faut alors utiliser l’API : c’est plus rapide, plus fiable et plus sûr. L’agent qui manipule l’interface est une solution de dernier recours pour les outils fermés.</p></details>
+    </section>
+    <aside class="sources" aria-labelledby="src-agents-ia-computer-use">
+      <h2 id="src-agents-ia-computer-use">Sources officielles à consulter</h2>
+      <ul>
+        <li>Documentation d’Anthropic sur l’outil « computer use » (bêta publique annoncée en octobre 2024)</li>
+        <li>OWASP — Top 10 des risques pour les applications utilisant des LLM (injection d’instructions)</li>
+        <li>ANSSI — recommandations de sécurité pour un système d’IA générative</li>
+        <li>CNIL — recommandations sur l’IA et la protection des données</li>
+      </ul>
+      <p>Article à jour au 29 septembre 2026. Les textes, calendriers et services évoluent : référez-vous toujours à la version en vigueur publiée par ces organismes. Cet article est informatif et ne constitue pas un conseil juridique ou fiscal.</p>
+    </aside>
+    <aside class="chez">
+      <h2>Et chez vous ?</h2>
+      <p>Vous vous demandez ce que ce sujet change concrètement dans votre activité ? Parlons-en dix minutes : nous regardons vos outils et vos tâches répétitives, et vous repartez avec une piste claire. Chaque projet fait l’objet d’un devis sur mesure.</p>
+      <div class="row"><a class="btn" href="../../automatisation/">Voir nos automatisations</a><a class="btn ghost" href="tel:+33782298559">07 82 29 85 59</a></div>
+    </aside>
+  </div></div></article>
+  <section class="sec"><div class="wrap">
+    <div class="secHead"><span class="kicker">À lire aussi</span><h2>D’autres sujets de veille</h2></div>
+    <div class="related">
+      <a class="card reveal" href="agents-vocaux-ia.html"><span class="cat">Agents IA</span><h3>Agents vocaux IA au téléphone : décrocher 24 h/24, prendre des rendez-vous, transcrire</h3><p>Agents vocaux IA : décrocher 24 h/24, prendre des rendez-vous, transcrire. Fonctionnement, latence, RGPD, information de l’appelant et transfert humain.</p><span class="rt">6 min de lecture</span></a>
+      <a class="card reveal" href="facturation-electronique-2026.html"><span class="cat">Réglementation</span><h3>Facturation électronique obligatoire : calendrier, plateformes agréées et préparation</h3><p>Facturation électronique obligatoire : calendrier 2026-2027, plateformes agréées, formats Factur-X, UBL et CII, e-reporting et préparation pas à pas.</p><span class="rt">7 min de lecture</span></a>
+      <a class="card reveal" href="ai-act-pme.html"><span class="cat">Réglementation</span><h3>AI Act (règlement européen sur l’IA) : ce qu’une PME doit savoir</h3><p>AI Act : approche par les risques, pratiques interdites, maîtrise de l’IA, transparence des chatbots. Ce que le règlement européen change pour une PME.</p><span class="rt">7 min de lecture</span></a>
+    </div>
+  </div></section>
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Quelle tâche vous prend le plus de temps ?</h2>
+      <p>Décrivez-la en deux phrases. Je vous réponds avec une première piste concrète — gratuitement, sans engagement.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="veille/agents-ia-computer-use" />
+        <label class="full">La tâche répétitive<textarea name="message" required placeholder="Ex : je ressaisis chaque commande dans deux logiciels…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Recevoir ma piste d'automatisation →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="../../echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../../index.html">Accueil</a>
+    <a href="./">Veille</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../solutions.html">Solutions</a>
+    <a href="../../realisations.html">Réalisations</a>
+    <a href="../../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../../echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+<script src="../../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

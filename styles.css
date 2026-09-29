@@ -34,7 +34,8 @@ h1 i,h2 i,h3 i{font-style:normal;color:var(--olive2)}
 .nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(247,246,243,.82);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(236,234,227,.8)}
 .navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:nowrap}
 .brand{display:flex;align-items:center;flex-shrink:0}.brand img{height:40px;width:auto;display:block}
-.links{display:flex;align-items:center;gap:20px;flex-wrap:nowrap}
+.links{display:flex;align-items:center;gap:20px;flex-wrap:nowrap}.links a{white-space:nowrap}
+@media(max-width:1240px) and (min-width:701px){.links a[href="articles/"],.links a[href="../articles/"],.links a[href="partenariats.html"]{display:none}}
 .links a{font-size:14px;color:var(--secondary);font-weight:600;white-space:nowrap;transition:color .16s}
 .links a:hover,.links a.active{color:var(--ink)}
 @media(max-width:920px) and (min-width:701px){.links{gap:13px}.links a{font-size:12.5px}.links .cta{padding:9px 14px;font-size:13px}}

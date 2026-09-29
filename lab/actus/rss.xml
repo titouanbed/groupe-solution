@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Actus IA &amp; numérique — Groupe Solution</title>
+    <link>https://www.groupsolution.fr/lab/actus/</link>
+    <atom:link href="https://www.groupsolution.fr/lab/actus/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Les actualités de l'IA, du numérique et de la réglementation qui comptent pour les entreprises, sourcées et expliquées.</description>
+    <language>fr-fr</language>
+    <lastBuildDate>Tue, 29 Sep 2026 08:00:00 GMT</lastBuildDate>
+    <item>
+      <title>La facturation électronique est entrée en vigueur le 1er septembre 2026</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-09-29.html#la-facturation-electronique-est-entree-en-vigueur-le-1er-sep</link>
+      <guid isPermaLink="false">2026-09-29-la-facturation-electronique-est-entree-en-vigueur-le-1er-sep</guid>
+      <pubDate>Tue, 29 Sep 2026 08:00:00 GMT</pubDate>
+      <category>Réglementation</category>
+      <description>Depuis le 1er septembre 2026, toutes les entreprises assujetties à la TVA en France doivent être en mesure de recevoir des factures électroniques via une plateforme agréée. L'obligation d'émettre et l'e-reporting s'appliquent dès maintenant aux grandes entreprises et aux ETI ; les PME et micro-entreprises suivront au 1er septembre 2027. — Ce que ça change : Même une TPE est concernée côté réception. C'est l'occasion d'automatiser le cycle complet : réception, contrôle, rapprochement avec les commandes et les paiements, au lieu de subir un format de plus.</description>
+    </item>
+    <item>
+      <title>AI Act : le report des obligations « haut risque » est adopté</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-09-29.html#ai-act-le-report-des-obligations-haut-risque-est-adopte</link>
+      <guid isPermaLink="false">2026-09-29-ai-act-le-report-des-obligations-haut-risque-est-adopte</guid>
+      <pubDate>Tue, 29 Sep 2026 08:00:00 GMT</pubDate>
+      <category>Réglementation</category>
+      <description>Le règlement (UE) 2026/1744, dit « omnibus IA », est entré en vigueur le 27 juillet 2026. Il reporte au 2 décembre 2027 les obligations des systèmes à haut risque listés à l'annexe III, et au 2 août 2028 celles de l'annexe I. Les pratiques interdites, les règles des modèles d'usage général et les obligations de transparence (article 50, applicables depuis le 2 août 2026) ne sont pas reportées. — Ce que ça change : Pour une PME qui utilise l'IA sans développer de système à haut risque, l'essentiel s'applique déjà : pas de pratiques interdites, des équipes formées, et une information claire quand un client parle à une IA (chatbot, agent vocal).</description>
+    </item>
+    <item>
+      <title>Mistral AI lève 3 milliards d'euros dans un tour mené par Samsung</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-09-29.html#mistral-ai-leve-3-milliards-d-euros-dans-un-tour-mene-par-sa</link>
+      <guid isPermaLink="false">2026-09-29-mistral-ai-leve-3-milliards-d-euros-dans-un-tour-mene-par-sa</guid>
+      <pubDate>Tue, 29 Sep 2026 08:00:00 GMT</pubDate>
+      <category>IA européenne</category>
+      <description>Le 8 septembre 2026, la start-up française Mistral AI a annoncé une levée de 3 milliards d'euros menée par Samsung Electronics, qui la valorise à plus de 21 milliards d'euros. Les fonds doivent financer des centres de données et la montée en puissance de ses capacités de calcul. — Ce que ça change : Un acteur européen solide, c'est plus de choix pour héberger ses traitements d'IA en Europe et garder la maîtrise de ses données — un critère important pour les entreprises qui manipulent des informations sensibles.</description>
+    </item>
+    <item>
+      <title>Google DeepMind dévoile WeatherNext 3, un modèle météo mis à jour chaque heure</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-09-29.html#google-deepmind-devoile-weathernext-3-un-modele-meteo-mis-a-</link>
+      <guid isPermaLink="false">2026-09-29-google-deepmind-devoile-weathernext-3-un-modele-meteo-mis-a-</guid>
+      <pubDate>Tue, 29 Sep 2026 08:00:00 GMT</pubDate>
+      <category>IA &amp; données</category>
+      <description>Présenté le 3 septembre 2026, WeatherNext 3 génère une nouvelle prévision mondiale chaque heure à partir d'observations satellites en temps réel, sur une grille de 5 km. Google indique qu'il alimente la météo de ses services, dont l'API Weather de Google Maps Platform. — Ce que ça change : La prévision météo devient plus fine et plus fréquente : c'est une brique directement exploitable pour piloter plannings, stocks, reports de prestations ou production d'énergie solaire.</description>
+    </item>
+    <item>
+      <title>Portefeuille d'identité numérique européen : l'échéance de fin 2026 approche</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-09-29.html#portefeuille-d-identite-numerique-europeen-l-echeance-de-fin</link>
+      <guid isPermaLink="false">2026-09-29-portefeuille-d-identite-numerique-europeen-l-echeance-de-fin</guid>
+      <pubDate>Tue, 29 Sep 2026 08:00:00 GMT</pubDate>
+      <category>Identité numérique</category>
+      <description>Le règlement eIDAS 2 impose à chaque État membre de proposer un portefeuille européen d'identité numérique d'ici la fin 2026. En France, l'application France Identité doit être mise en conformité pour jouer ce rôle. — Ce que ça change : À terme, vérifier l'identité d'un client, un justificatif ou un diplôme pourra se faire en quelques secondes, sans photocopie. Les parcours d'inscription et de souscription seront à repenser.</description>
+    </item>
+  </channel>
+</rss>

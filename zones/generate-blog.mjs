@@ -103,6 +103,7 @@ function article(topic, entry, zone) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,follow" />
   <title>${esc(title)} | GroupSolution</title>
   <meta name="description" content="${esc(desc)}" />
   <meta name="keywords" content="${esc(topic.keywords(entry, zone))}" />
@@ -139,7 +140,7 @@ ${faqJsonLd(topic.faq(entry, zone))}
   </script>
 
   <link rel="canonical" href="${url}" />
-  <link rel="icon" type="image/svg+xml" href="../../Logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -247,7 +248,7 @@ ${arts}
   <title>Guides & conseils web — ${esc(zone.name)} | GroupSolution</title>
   <meta name="description" content="Tous nos guides pour réussir en ligne en ${esc(zone.name)} : prix d'un site internet, visibilité sur Google, conseils par ville. Par GroupSolution." />
   <link rel="canonical" href="${HOLDING}/${zone.slug}/blog/" />
-  <link rel="icon" type="image/svg+xml" href="../../Logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">

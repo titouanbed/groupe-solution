@@ -153,7 +153,7 @@ ${faqJsonLd(c.faq)}
   </script>
 
   <link rel="canonical" href="${url}" />
-  <link rel="icon" type="image/svg+xml" href="../../Logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -252,7 +252,7 @@ function hubPage(zone, sectors) {
   <title>Sites internet par secteur — ${esc(zone.name)} | GroupSolution</title>
   <meta name="description" content="Nos guides web par métier en ${esc(zone.name)} : restauration, tourisme &amp; hébergement, bâtiment. Comment un site et Google développent votre activité, secteur par secteur." />
   <link rel="canonical" href="${HOLDING}/${zone.slug}/secteurs/" />
-  <link rel="icon" type="image/svg+xml" href="../../Logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">

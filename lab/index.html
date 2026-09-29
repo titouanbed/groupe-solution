@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab Groupe Solution : radar des technologies, API et veille IA</title>
+  <meta name="description" content="Notre radar des technologies (agents IA, RAG, MCP, facturation électronique, open data…), un catalogue d'API gratuites avec démos en direct et notre veille." />
+  <link rel="canonical" href="https://www.groupsolution.fr/lab/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Lab Groupe Solution : radar des technologies, API et veille IA" />
+  <meta property="og:description" content="Notre radar des technologies (agents IA, RAG, MCP, facturation électronique, open data…), un catalogue d'API gratuites avec démos en direct et notre veille." />
+  <meta property="og:url" content="https://www.groupsolution.fr/lab/" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/holding-local.css" />
+  <style>
+.gs-sticky{display:none}
+@media(max-width:760px){
+  .gs-sticky{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:900;gap:8px;background:rgba(23,22,19,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .gs-sticky a,.gs-sticky button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:12px;font:800 14px/1 inherit;font-family:inherit;text-decoration:none;border:0;cursor:pointer}
+  .gs-sticky .s1{background:#fff;color:#171613}
+  .gs-sticky .s2{background:#E61E4D;color:#fff}
+  body{padding-bottom:84px}
+}
+    .labHero{background:radial-gradient(70% 90% at 90% 0%,rgba(230,30,77,.14),transparent 60%),radial-gradient(60% 80% at 0% 100%,rgba(95,107,84,.16),transparent 60%)}
+    .radarWrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    .radarWrap>div:first-child{position:sticky;top:100px}
+    .radar{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}
+    .radar .ring{fill:none;stroke:var(--line2);stroke-width:1.5}.radar .r1{fill:rgba(14,122,90,.06)}.radar .r2{fill:rgba(35,104,199,.04)}.radar .r3{fill:rgba(178,124,30,.03)}
+    .radar .axis{stroke:var(--line2);stroke-dasharray:4 6}
+    .radar .rl{font:800 10px var(--sans);letter-spacing:.14em;fill:var(--muted)}.radar .ql{font:800 11px var(--sans);letter-spacing:.12em;fill:var(--olive2)}
+    .radar circle.rd-adopter{fill:var(--green)}.radar circle.rd-tester{fill:var(--blue)}.radar circle.rd-surveiller{fill:var(--amber)}
+    .radar a circle{stroke:#fff;stroke-width:2;transition:r .2s}.radar a:hover circle{r:15}
+    .radar text:not(.rl):not(.ql){font:800 11px var(--sans);fill:#fff;pointer-events:none}
+    .rdList{display:grid;gap:10px}
+    .rdItem{display:grid;grid-template-columns:34px 1fr;gap:12px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:14px 16px;scroll-margin-top:100px}
+    .rdItem:target{border-color:var(--acc);box-shadow:0 0 0 4px var(--acc-soft)}
+    .rdNum{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px}
+    .rdNum.adopter{background:var(--green)}.rdNum.tester{background:var(--blue)}.rdNum.surveiller{background:var(--amber)}
+    .rdItem b{font-size:15px}.rdItem .meta{font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-left:6px}
+    .rdItem p{font-size:14px;color:var(--secondary);margin-top:4px;line-height:1.5}.rdItem a{font-size:13px;font-weight:800;color:var(--acc)}
+    .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:14px;font-size:13px;font-weight:700;color:var(--secondary)}
+    .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+    .labCards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.labCards.four{grid-template-columns:repeat(4,1fr)}
+    .labCard{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:28px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+    .labCard:hover{transform:translateY(-5px);box-shadow:var(--sh-l)}.labCard .k{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+    .labCard h3{font-size:22px;font-weight:600;margin-top:10px}.labCard p{color:var(--secondary);font-size:14.5px;margin-top:10px;flex:1}.labCard .go{margin-top:16px;align-self:flex-start}
+    .apiCat{margin-top:46px}.apiCat h2{font-size:clamp(24px,3vw,32px);margin-bottom:18px}
+    .apiGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .api{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:20px 22px}
+    .api h3{font-size:18px;font-weight:600}.api .dom{font-size:12.5px;color:var(--muted);font-weight:700;word-break:break-word}
+    .api .acc{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:800;color:var(--green);background:var(--green-soft);padding:4px 10px;border-radius:999px}
+    .api p{font-size:14px;color:var(--secondary);margin-top:10px;line-height:1.55}.api p.use{color:var(--ink);font-weight:600}.api p.use::before{content:"→ ";color:var(--acc)}
+    .demos{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .demo{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s)}
+    .demo h3{font-size:20px;font-weight:600}.demo .src{font-size:12px;color:var(--muted);font-weight:700;margin-top:4px}
+    .demo .row{display:flex;gap:8px;margin-top:14px}.demo input{flex:1;min-width:0;padding:12px 14px;border:1px solid var(--line2);border-radius:var(--r-s);font-family:var(--sans);font-size:15px;background:var(--sand)}
+    .demo input:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft);background:#fff}
+    .demo button{padding:12px 16px;border-radius:var(--r-s);border:0;background:var(--ink);color:#fff;font-weight:800;cursor:pointer}
+    .demoOut{margin-top:14px;display:grid;gap:8px;max-height:340px;overflow:auto}
+    .demoRow{background:var(--sand);border-radius:12px;padding:10px 12px;font-size:13.5px;display:grid;gap:2px}.demoRow b{font-size:14px}.demoRow span{color:var(--secondary)}
+    .demoRow.past{opacity:.5}.demoWait{font-size:13.5px;color:var(--muted)}
+    @media(max-width:1100px){.labCards.four{grid-template-columns:1fr 1fr}}
+    @media(max-width:960px){.radarWrap>div:first-child{position:static}.radarWrap,.labCards,.labCards.four,.apiGrid,.demos{grid-template-columns:1fr}}
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "Lab Groupe Solution",
+      "url": "https://www.groupsolution.fr/lab/",
+      "description": "Notre radar des technologies (agents IA, RAG, MCP, facturation électronique, open data…), un catalogue d'API gratuites avec démos en direct et notre veille.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lab",
+          "item": "https://www.groupsolution.fr/lab/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Lab</a><a href="actus/">Actus</a><a href="api.html">API &amp; données</a><a href="veille/">Veille</a><a href="../automatisation/">Automatisation</a><a href="../outils/">Outils</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
+<main>
+  <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <span>Lab</span></div>
+  <section class="hero labHero"><div class="wrap" style="max-width:860px;text-align:center">
+    <div class="kicker reveal">Innovation · mis à jour en continu</div>
+    <h1 class="reveal">Le Lab : ce qui arrive, avant que ça devienne évident.</h1>
+    <p class="lead reveal" style="margin-left:auto;margin-right:auto">Agents IA, nouveaux standards, données publiques, réglementation : nous testons et suivons en permanence les technologies qui vont changer le quotidien des entreprises — et nous vous disons honnêtement lesquelles sont prêtes.</p>
+  </div></section>
+
+  <section class="sec" style="padding-top:20px"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Radar technologique</div><h2>Notre lecture, sans effet de mode.</h2><p>Au centre, ce que nous déployons déjà. Au bord, ce que nous surveillons. Cliquez sur un point pour lire pourquoi.</p></div>
+    <div class="radarWrap">
+      <div class="reveal"><svg viewBox="0 0 560 560" class="radar" role="img" aria-label="Radar technologique Groupe Solution">
+    <circle cx="280" cy="280" r="255" class="ring r3"/><circle cx="280" cy="280" r="175" class="ring r2"/><circle cx="280" cy="280" r="95" class="ring r1"/>
+    <line x1="280" y1="25" x2="280" y2="535" class="axis"/><line x1="25" y1="280" x2="535" y2="280" class="axis"/>
+    <text x="280" y="203" class="rl" text-anchor="middle">ADOPTER</text><text x="280" y="123" class="rl" text-anchor="middle">TESTER</text><text x="280" y="43" class="rl" text-anchor="middle">SURVEILLER</text>
+    <text x="14" y="22" class="ql">IA</text><text x="546" y="22" class="ql" text-anchor="end">INTÉGRATION</text><text x="14" y="550" class="ql">DONNÉES</text><text x="546" y="550" class="ql" text-anchor="end">RÉGLEMENTATION</text>
+    <a href="#rd-1"><circle cx="260.9" cy="233.8" r="12" class="rd-adopter"/><text x="260.9" y="237.8" text-anchor="middle">1</text></a><a href="#rd-2"><circle cx="230.5" cy="230.5" r="12" class="rd-adopter"/><text x="230.5" y="234.5" text-anchor="middle">2</text></a><a href="#rd-3"><circle cx="233.8" cy="260.9" r="12" class="rd-adopter"/><text x="233.8" y="264.9" text-anchor="middle">3</text></a><a href="#rd-4"><circle cx="323.3" cy="255.0" r="12" class="rd-adopter"/><text x="323.3" y="259.0" text-anchor="middle">4</text></a><a href="#rd-5"><circle cx="305.0" cy="323.3" r="12" class="rd-adopter"/><text x="305.0" y="327.3" text-anchor="middle">5</text></a><a href="#rd-6"><circle cx="244.6" cy="315.4" r="12" class="rd-adopter"/><text x="244.6" y="319.4" text-anchor="middle">6</text></a><a href="#rd-7"><circle cx="315.0" cy="219.4" r="12" class="rd-adopter"/><text x="315.0" y="223.4" text-anchor="middle">7</text></a><a href="#rd-8"><circle cx="229.9" cy="159.0" r="12" class="rd-tester"/><text x="229.9" y="163.0" text-anchor="middle">8</text></a><a href="#rd-9"><circle cx="173.2" cy="173.2" r="12" class="rd-tester"/><text x="173.2" y="177.2" text-anchor="middle">9</text></a><a href="#rd-10"><circle cx="372.6" cy="187.4" r="12" class="rd-tester"/><text x="372.6" y="191.4" text-anchor="middle">10</text></a><a href="#rd-11"><circle cx="159.0" cy="229.9" r="12" class="rd-tester"/><text x="159.0" y="233.9" text-anchor="middle">11</text></a><a href="#rd-12"><circle cx="187.4" cy="372.6" r="12" class="rd-tester"/><text x="187.4" y="376.6" text-anchor="middle">12</text></a><a href="#rd-13"><circle cx="340.6" cy="315.0" r="12" class="rd-adopter"/><text x="340.6" y="319.0" text-anchor="middle">13</text></a><a href="#rd-14"><circle cx="130.8" cy="130.8" r="12" class="rd-surveiller"/><text x="130.8" y="134.8" text-anchor="middle">14</text></a><a href="#rd-15"><circle cx="385.5" cy="462.7" r="12" class="rd-surveiller"/><text x="385.5" y="466.7" text-anchor="middle">15</text></a><a href="#rd-16"><circle cx="480.1" cy="395.5" r="12" class="rd-surveiller"/><text x="480.1" y="399.5" text-anchor="middle">16</text></a>
+  </svg><div class="legend"><span><i style="background:var(--green)"></i>Adopter</span><span><i style="background:var(--blue)"></i>Tester</span><span><i style="background:var(--amber)"></i>Surveiller</span></div></div>
+      <div class="rdList">
+        <div class="rdItem" id="rd-1"><span class="rdNum adopter">1</span><div><b>Agents vocaux temps réel</b><span class="meta">Adopter · Intelligence artificielle</span><p>Décrocher, comprendre, prendre un rendez-vous : mûr pour la production, avec information claire de l'appelant.</p><a href="veille/agents-vocaux-ia.html">Lire notre analyse →</a></div></div>
+        <div class="rdItem" id="rd-2"><span class="rdNum adopter">2</span><div><b>RAG (assistant sur documents)</b><span class="meta">Adopter · Intelligence artificielle</span><p>Interroger ses procédures en langage naturel avec citations : fiable si les sources sont bien préparées.</p><a href="veille/rag-assistant-documents.html">Lire notre analyse →</a></div></div>
+        <div class="rdItem" id="rd-3"><span class="rdNum adopter">3</span><div><b>Lecture de documents par IA</b><span class="meta">Adopter · Intelligence artificielle</span><p>Les modèles vision-langage lisent factures, bons et manuscrits ; le contrôle humain reste sur les cas douteux.</p><a href="veille/ia-vision-documents.html">Lire notre analyse →</a></div></div>
+        <div class="rdItem" id="rd-4"><span class="rdNum adopter">4</span><div><b>Model Context Protocol (MCP)</b><span class="meta">Adopter · Intégration &amp; sécurité</span><p>Standard ouvert pour brancher l'IA sur ses outils : l'écosystème s'est largement structuré autour.</p><a href="veille/mcp-model-context-protocol.html">Lire notre analyse →</a></div></div>
+        <div class="rdItem" id="rd-5"><span class="rdNum adopter">5</span><div><b>Facturation électronique</b><span class="meta">Adopter · Réglementation &amp; standards</span><p>Réception obligatoire depuis septembre 2026, émission selon la taille : autant en faire un gain d'automatisation.</p><a href="veille/facturation-electronique-2026.html">Lire notre analyse →</a></div></div>
+        <div class="rdItem" id="rd-6"><span class="rdNum adopter">6</span><div><b>Open data public (API gouv)</b><span class="meta">Adopter · Données &amp; visibilité</span><p>Entreprises, adresses, découpage administratif, jours fériés : des données fiables, gratuites, sans clé.</p><a href="veille/open-data-api-gouv.html">Lire notre analyse →</a></div></div>
+        <div class="rdItem" id="rd-7"><span class="rdNum adopter">7</span><div><b>Passkeys</b><span class="meta">Adopter · Intégration &amp; sécurité</span><p>Connexion sans mot de passe, résistante à l'hameçonnage, désormais prise en charge par les principaux systèmes.</p></div></div>
+        <div class="rdItem" id="rd-8"><span class="rdNum tester">8</span><div><b>Agents « computer use »</b><span class="meta">Tester · Intelligence artificielle</span><p>Piloter des interfaces sans API : prometteur, à encadrer par supervision et journalisation.</p><a href="veille/agents-ia-computer-use.html">Lire notre analyse →</a></div></div>
+        <div class="rdItem" id="rd-9"><span class="rdNum tester">9</span><div><b>Orchestration multi-agents</b><span class="meta">Tester · Intelligence artificielle</span><p>Plusieurs agents spécialisés sur un même dossier, avec validation humaine aux étapes clés.</p></div></div>
+        <div class="rdItem" id="rd-10"><span class="rdNum tester">10</span><div><b>Protocoles inter-agents (A2A)</b><span class="meta">Tester · Intégration &amp; sécurité</span><p>Faire dialoguer des agents de fournisseurs différents : standard jeune, à suivre de près.</p></div></div>
+        <div class="rdItem" id="rd-11"><span class="rdNum tester">11</span><div><b>Modèles open-weight</b><span class="meta">Tester · Intelligence artificielle</span><p>Des modèles performants hébergeables chez soi ou en Europe, utiles pour les données sensibles.</p></div></div>
+        <div class="rdItem" id="rd-12"><span class="rdNum tester">12</span><div><b>llms.txt &amp; moteurs de réponse IA</b><span class="meta">Tester · Données &amp; visibilité</span><p>Rendre son site lisible par les assistants IA qui répondent à la place des moteurs de recherche.</p></div></div>
+        <div class="rdItem" id="rd-13"><span class="rdNum adopter">13</span><div><b>AI Act — conformité</b><span class="meta">Adopter · Réglementation &amp; standards</span><p>Interdictions, maîtrise de l'IA et transparence déjà applicables ; obligations haut risque reportées à fin 2027 par le règlement omnibus IA (juillet 2026).</p><a href="veille/ai-act-pme.html">Lire notre analyse →</a></div></div>
+        <div class="rdItem" id="rd-14"><span class="rdNum surveiller">14</span><div><b>IA embarquée (WebGPU, on-device)</b><span class="meta">Surveiller · Intelligence artificielle</span><p>Faire tourner des modèles directement dans le navigateur ou sur le téléphone, sans envoyer les données.</p></div></div>
+        <div class="rdItem" id="rd-15"><span class="rdNum surveiller">15</span><div><b>Portefeuille d’identité numérique européen</b><span class="meta">Surveiller · Réglementation &amp; standards</span><p>Le règlement eIDAS 2 prévoit un portefeuille d'identité numérique pour les citoyens de l'UE : impact à venir sur les parcours clients.</p></div></div>
+        <div class="rdItem" id="rd-16"><span class="rdNum surveiller">16</span><div><b>Passeport numérique des produits</b><span class="meta">Surveiller · Réglementation &amp; standards</span><p>Traçabilité et informations produit exigées progressivement par la réglementation européenne sur l'écoconception.</p></div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec alt"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Explorer</div><h2>Quatre portes d’entrée.</h2></div>
+    <div class="labCards four">
+      <a class="labCard reveal" href="actus/"><span class="k">Actus · 29 septembre</span><h3>Facture électronique en vigueur, AI Act recalé, Mistral change de dimension</h3><p>L'actualité IA, numérique et réglementaire, sourcée et traduite en impacts concrets.</p><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="api.html"><span class="k">API &amp; données</span><h3>Les API gratuites qui changent la donne</h3><p>Entreprises, adresses, météo, mer, cartographie, IA : le catalogue commenté, avec des démonstrations qui tournent en direct.</p><span class="go">Explorer →</span></a>
+      <a class="labCard reveal" href="veille/"><span class="k">Veille</span><h3>Nos analyses de fond</h3><p>8 articles : MCP, agents vocaux, facturation électronique 2026, AI Act, RAG, open data…</p><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="../outils/"><span class="k">Outils gratuits</span><h3>Faites le point vous-même</h3><p>Configurateur de projet, test de visibilité Google, calculateur du coût de vos tâches répétitives.</p><span class="go">Essayer →</span></a>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Dernières analyses</div><h2>Veille : ce qu’il faut savoir maintenant.</h2></div>
+    <div class="labCards">
+      <a class="labCard reveal" href="veille/agents-ia-computer-use.html"><span class="k">Veille</span><h3>Agents IA qui utilisent les logiciels comme un humain : ce que ça change pour les portails sans API</h3><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="veille/agents-vocaux-ia.html"><span class="k">Veille</span><h3>Agents vocaux IA au téléphone : décrocher 24 h/24, prendre des rendez-vous, transcrire</h3><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="veille/ai-act-pme.html"><span class="k">Veille</span><h3>AI Act (règlement européen sur l’IA) : ce qu’une PME doit savoir</h3><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="veille/facturation-electronique-2026.html"><span class="k">Veille</span><h3>Facturation électronique obligatoire : calendrier, plateformes agréées et préparation</h3><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="veille/ia-vision-documents.html"><span class="k">Veille</span><h3>Lire factures, bons et documents manuscrits avec l’IA : fiabilité, contrôle et intégration</h3><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="veille/mcp-model-context-protocol.html"><span class="k">Veille</span><h3>Le Model Context Protocol (MCP) expliqué aux entreprises : connecter l’IA à ses outils</h3><span class="go">Lire →</span></a>
+    </div>
+  </div></section>
+
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <h2>Une technologie vous intrigue ?</h2>
+      <p>Dites-nous ce que vous avez vu passer ou ce que vous aimeriez automatiser : on vous dit, honnêtement, si c’est prêt pour votre entreprise.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="lab/index" />
+        <label class="full">Votre idée ou votre question<textarea name="message" required placeholder="Ex : connecter notre ERP à un assistant IA, lire automatiquement nos bons de livraison…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <button class="btn" type="submit">Envoyer →</button>
+      </form>
+      <p class="alts">Plus rapide : <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="../echanger.html#rendez-vous">Réserver 10 min en visio</a></p>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../index.html">Accueil</a>
+    <a href="./">Lab</a>
+    <a href="actus/">Actus</a>
+    <a href="api.html">API &amp; données</a>
+    <a href="veille/">Veille</a>
+    <a href="../automatisation/">Automatisation</a>
+    <a href="../outils/">Outils gratuits</a>
+    <a href="../echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+<div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Discutons 10 min</a></div>
+<script src="../assets/live.js" defer></script>
+<script src="../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

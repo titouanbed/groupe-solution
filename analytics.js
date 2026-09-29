@@ -11,13 +11,20 @@
 (function () {
   var GA_ID = 'G-G8RWE633G4'; // ID GA4 Groupe Solution (holding + zones géo)
 
+  /* Assistant du site + barre d'appel mobile : chargés sur toutes les pages publiques
+     depuis ce point unique (voir /assets/assistant.js). */
+  if (!/\/ecole-mayotte\//.test(location.pathname) && !/\/vitrine-gbp\.html$/.test(location.pathname)) {
+    var sa = document.createElement('script'); sa.src = '/assets/assistant.js'; sa.defer = true;
+    (document.body || document.head).appendChild(sa);
+  }
+
   if (!GA_ID || /X{4,}/.test(GA_ID)) return; // pas d'ID réel → on ne fait rien
 
   var STORE = 'gs-consent-v1';
 
   /* Silos géographiques : ajoutez ici le slug de chaque nouvelle zone.
      La zone est déduite du 1er segment d'URL → content_group dans GA4. */
-  var ZONES = ['mayotte', 'reunion', 'guyane', 'martinique', 'guadeloupe', 'nouvelle-caledonie', 'polynesie-francaise'];
+  var ZONES = ['montpellier', 'automatisation', 'outils', 'lab', 'mayotte', 'reunion', 'guyane', 'martinique', 'guadeloupe', 'nouvelle-caledonie', 'polynesie-francaise'];
   var seg = (location.pathname.split('/')[1] || '').toLowerCase();
   var zone = ZONES.indexOf(seg) !== -1 ? seg : 'holding';
   window.dataLayer = window.dataLayer || [];

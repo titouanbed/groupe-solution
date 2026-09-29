@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assistant IA sur vos documents (RAG) | Groupe Solution</title>
+  <meta name="description" content="Un assistant IA qui répond à partir de vos documents : principe du RAG, recherche vectorielle, citation des sources, hébergement, droits d’accès, limites." />
+  <link rel="canonical" href="https://www.groupsolution.fr/lab/veille/rag-assistant-documents.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Assistant IA sur vos documents (RAG) | Groupe Solution" />
+  <meta property="og:description" content="Un assistant IA qui répond à partir de vos documents : principe du RAG, recherche vectorielle, citation des sources, hébergement, droits d’accès, limites." />
+  <meta property="og:url" content="https://www.groupsolution.fr/lab/veille/rag-assistant-documents.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta property="article:published_time" content="2026-09-29" />
+  <meta property="article:author" content="Titouan Bedos" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Assistant IA sur vos documents (RAG) | Groupe Solution" />
+  <meta name="twitter:description" content="Un assistant IA qui répond à partir de vos documents : principe du RAG, recherche vectorielle, citation des sources, hébergement, droits d’accès, limites." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/holding-local.css" />
+  <style>
+.art{padding:0 0 30px}
+.col{max-width:760px;margin:0 auto}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.crumbs li+li::before{content:"›";margin-right:6px;color:var(--line2)}
+.artHead{padding:28px 0 8px}
+.artHead h1{font-size:clamp(30px,4.4vw,48px);line-height:1.1;margin-top:18px;overflow-wrap:break-word}
+.chapo{font-size:clamp(17px,2vw,19.5px);color:var(--secondary);line-height:1.7;margin-top:20px}
+.meta{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:18px}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin-top:30px}
+.toc b{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.toc ol{margin:10px 0 0 20px;font-size:15px;line-height:1.9}
+.toc a{color:var(--ink);font-weight:600}.toc a:hover{color:var(--acc)}
+.prose{font-size:17px;line-height:1.8;color:#2B2924;overflow-wrap:break-word}
+.prose h2{font-size:clamp(25px,3vw,33px);line-height:1.18;margin:54px 0 16px;scroll-margin-top:90px}
+.prose h3{font-size:clamp(19px,2.2vw,22px);font-weight:600;line-height:1.3;margin:32px 0 10px}
+.prose p{margin:0 0 18px}
+.prose ul,.prose ol{margin:0 0 22px 22px}
+.prose li{margin-bottom:9px;padding-left:2px}
+.prose strong{color:var(--ink)}
+.prose a{color:var(--acc-d);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.prose code{font-size:.86em;background:var(--olive-soft);color:var(--olive2);padding:2px 7px;border-radius:6px;word-break:break-all}
+.note{background:var(--olive-soft);border-left:4px solid var(--olive);border-radius:0 var(--r-s) var(--r-s) 0;padding:18px 22px;margin:26px 0}
+.note p{margin:0}
+.note.warn{background:var(--amber-soft);border-left-color:var(--amber)}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-s);background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px;line-height:1.55}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tr:last-child td{border-bottom:0}
+.artFaq{margin-top:54px}
+.artFaq h2{font-size:clamp(25px,3vw,33px);margin-bottom:20px}
+.sources{margin-top:48px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:24px 28px}
+.sources h2{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.sources ul{margin:12px 0 0 20px;font-size:15px;line-height:1.7;color:var(--secondary)}
+.sources p{font-size:13.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.chez{margin-top:30px;background:var(--ink);color:#fff;border-radius:var(--r-l);padding:clamp(24px,4vw,36px)}
+.chez h2{color:#fff;font-size:clamp(24px,3vw,30px)}
+.chez p{color:#CFCBC0;margin-top:12px;font-size:16px;line-height:1.7}
+.chez .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chez .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3)}.chez .btn.ghost:hover{border-color:#fff}
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-l)}
+.card .cat{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--olive2);background:var(--olive-soft);padding:5px 11px;border-radius:999px}
+.card h3{font-size:20px;font-weight:600;line-height:1.25;margin-top:14px}
+.card p{font-size:14.5px;color:var(--secondary);margin-top:10px;line-height:1.6;flex:1}
+.card .rt{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+.intro p{font-size:16.5px;color:var(--secondary);line-height:1.75;margin-top:14px}
+.watch{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s)}
+.watch h3{font-size:19px;font-weight:600}
+.watch ul{list-style:none;margin-top:12px;display:grid;gap:9px;font-size:14.5px;color:var(--secondary)}
+.watch li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--olive);margin-right:10px;vertical-align:1px}
+@media(max-width:960px){.related,.intro{grid-template-columns:1fr}}
+@media(max-width:600px){.toc{padding:18px 20px}.prose{font-size:16.5px}.cards{grid-template-columns:1fr}.chez .btn{width:100%}}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://www.groupsolution.fr/lab/veille/rag-assistant-documents.html#article",
+      "headline": "Un assistant IA branché sur vos documents (RAG) : principe, bonnes pratiques et limites",
+      "description": "Un assistant IA qui répond à partir de vos documents : principe du RAG, recherche vectorielle, citation des sources, hébergement, droits d’accès, limites.",
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "inLanguage": "fr-FR",
+      "mainEntityOfPage": "https://www.groupsolution.fr/lab/veille/rag-assistant-documents.html",
+      "image": "https://www.groupsolution.fr/assets/visuel-solutions.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Titouan Bedos",
+        "jobTitle": "Fondateur",
+        "worksFor": {
+          "@id": "https://www.groupsolution.fr/#organization"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.groupsolution.fr/#organization",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.groupsolution.fr/Logo.svg"
+        },
+        "telephone": "+33782298559",
+        "email": "contact@groupsolution.fr"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "RAG"
+        },
+        {
+          "@type": "Thing",
+          "name": "Recherche vectorielle"
+        },
+        {
+          "@type": "Thing",
+          "name": "Gestion documentaire"
+        },
+        {
+          "@type": "Thing",
+          "name": "Intelligence artificielle"
+        }
+      ],
+      "articleSection": "IA & documents",
+      "wordCount": 1222
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lab",
+          "item": "https://www.groupsolution.fr/lab/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Veille",
+          "item": "https://www.groupsolution.fr/lab/veille/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Un assistant IA branché sur vos documents (RAG) : principe, bonnes pratiques et limites",
+          "item": "https://www.groupsolution.fr/lab/veille/rag-assistant-documents.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.groupsolution.fr/lab/veille/rag-assistant-documents.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Faut-il entraîner un modèle sur mes documents ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non, dans la grande majorité des cas. Le RAG laisse le modèle inchangé : il recherche les passages pertinents au moment de la question. C’est plus simple, moins coûteux, et les mises à jour de documents sont prises en compte immédiatement après réindexation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L’assistant peut-il se tromper ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Le RAG réduit fortement les inventions mais ne les élimine pas. C’est pourquoi l’assistant doit citer ses sources, dire quand il ne trouve pas l’information, et être testé régulièrement sur des questions dont on connaît la réponse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mes documents sont-ils envoyés à un fournisseur d’IA ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les passages pertinents sont transmis au modèle pour produire la réponse. Selon l’architecture choisie, le modèle peut être hébergé dans l’Union européenne ou chez un prestataire européen. Il faut vérifier les conditions contractuelles : absence de réutilisation, durée de conservation, localisation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels formats de documents sont pris en charge ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La plupart des formats courants : PDF, documents bureautiques, pages web, courriels, tableurs. Les documents scannés nécessitent une étape de lecture optique ou par IA vision, dont la qualité doit être contrôlée."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="../../index.html" aria-label="Groupe Solution — accueil"><img src="../../Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links" aria-label="Navigation principale">
+    <a href="./">Veille</a>
+    <a href="../api.html">API &amp; données</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../outils/">Outils</a>
+    <a class="cta" href="#contact">Discutons 10 min</a>
+  </nav>
+</div></header>
+<main>
+  <article class="art"><div class="wrap"><div class="col">
+    <nav class="crumbs" aria-label="Fil d’Ariane"><ol>
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Lab</a></li>
+      <li><a href="./">Veille</a></li>
+      <li aria-current="page">IA &amp; documents</li>
+    </ol></nav>
+    <header class="artHead">
+      <span class="kicker">IA &amp; documents</span>
+      <h1>Un assistant IA branché sur vos documents (RAG) : principe, bonnes pratiques et limites</h1>
+      <p class="chapo">Procédures internes, fiches techniques, contrats, catalogues, historique des échanges : le savoir d’une entreprise est dispersé dans des centaines de documents. Un assistant IA fondé sur la « génération augmentée par récupération » (RAG) peut y répondre en citant ses sources. Voici comment cela fonctionne, et comment éviter les pièges.</p>
+      <p class="meta">Publié le <time datetime="2026-09-29">29 septembre 2026</time> · 6 min de lecture · Par Titouan Bedos, fondateur de Groupe Solution</p>
+    </header>
+    <nav class="toc" aria-label="Sommaire"><b>Sommaire</b><ol>
+      <li><a href="#definition">Ce que c’est : chercher d’abord, répondre ensuite</a></li>
+      <li><a href="#pourquoi-maintenant">Pourquoi c’est important maintenant</a></li>
+      <li><a href="#cas-usage">Cas d’usage concrets pour une TPE/PME</a></li>
+      <li><a href="#limites">Limites et bonnes pratiques</a></li>
+      <li><a href="#commencer">Par où commencer</a></li>
+      <li><a href="#faq">Questions fréquentes</a></li>
+    </ol></nav>
+    <div class="prose">
+<h2 id="definition">Ce que c’est : chercher d’abord, répondre ensuite</h2>
+<p>Un modèle de langage généraliste ne connaît pas vos documents internes. Et même s’il a été entraîné sur une grande quantité de textes, il peut produire des réponses plausibles mais fausses — ce qu’on appelle des <strong>hallucinations</strong>. La technique du <strong>RAG</strong> (<em>Retrieval-Augmented Generation</em>, génération augmentée par récupération) répond à ces deux problèmes.</p>
+<p>Le principe tient en deux temps :</p>
+<ol>
+<li><strong>Récupération</strong> : quand vous posez une question, le système recherche dans vos documents les passages les plus pertinents.</li>
+<li><strong>Génération</strong> : ces passages sont fournis au modèle avec la question, et le modèle rédige une réponse fondée sur eux, en indiquant d’où vient l’information.</li>
+</ol>
+<h3>La recherche vectorielle, en termes simples</h3>
+<p>Pour retrouver les bons passages, on découpe les documents en morceaux, puis on transforme chaque morceau en une suite de nombres (un <strong>vecteur</strong>, ou <em>embedding</em>) qui représente son sens. La question est transformée de la même façon. Le système cherche les morceaux dont le vecteur est le plus « proche » de celui de la question. Avantage : il retrouve un passage pertinent même s’il n’utilise pas les mêmes mots (« résiliation » et « mettre fin au contrat »).</p>
+<p>En pratique, les meilleurs systèmes combinent cette recherche sémantique avec une recherche par mots-clés classique, très efficace pour les références précises (un numéro de pièce, un nom de produit, un article de contrat), puis réordonnent les résultats.</p>
+<h3>Pourquoi citer les sources</h3>
+<p>Un assistant RAG bien conçu indique, pour chaque réponse, les documents et passages utilisés, avec un lien pour les ouvrir. C’est essentiel : l’utilisateur peut vérifier en un clic, et repère immédiatement une réponse mal fondée.</p>
+<h2 id="pourquoi-maintenant">Pourquoi c’est important maintenant</h2>
+<p>Plusieurs évolutions récentes rendent ces assistants accessibles à des structures de taille modeste :</p>
+<ul>
+<li>Les modèles de langage acceptent désormais de longs contextes et suivent mieux la consigne de répondre uniquement à partir des documents fournis.</li>
+<li>Les modèles d’<em>embedding</em> multilingues traitent bien le français, et des bases de données courantes intègrent la recherche vectorielle.</li>
+<li>Des modèles performants sont proposés par des acteurs européens ou peuvent être hébergés dans des centres de données situés dans l’Union européenne, ce qui facilite la conformité.</li>
+<li>La lecture des documents numérisés (PDF scannés, images) par l’IA s’est nettement améliorée, ce qui élargit le corpus exploitable.</li>
+</ul>
+<p>Pour une PME, l’enjeu est concret : réduire le temps passé à chercher une information, faciliter l’intégration des nouveaux collaborateurs, répondre plus vite et de façon plus homogène aux clients.</p>
+<h2 id="cas-usage">Cas d’usage concrets pour une TPE/PME</h2>
+<h3>Artisan ou entreprise du bâtiment</h3>
+<p>Fiches techniques des fabricants, notices de pose, documents techniques de référence achetés par l’entreprise, procédures internes : un compagnon interroge l’assistant depuis son téléphone sur le chantier (« quel temps de séchage pour ce mortier ? ») et obtient la réponse avec le lien vers la fiche.</p>
+<h3>Cabinet (comptable, juridique, conseil)</h3>
+<p>Modèles de documents, notes internes, procédures qualité : l’assistant retrouve la bonne procédure ou le bon modèle, et résume un dossier volumineux en citant les pièces. Les droits d’accès doivent refléter strictement le secret professionnel.</p>
+<h3>Commerce et e-commerce</h3>
+<p>Catalogue, fiches produits, conditions de vente et de retour : un assistant aide le personnel en boutique à répondre aux questions techniques, ou alimente un chatbot client limité aux informations publiques.</p>
+<h3>Domaine viticole</h3>
+<p>Fiches techniques des cuvées, cahier des charges de l’appellation, historique des millésimes, documentation export : l’équipe commerciale répond précisément aux importateurs et aux cavistes.</p>
+<h3>Tourisme et hébergement</h3>
+<p>Livret d’accueil, règlement intérieur, informations locales : un assistant répond aux questions des voyageurs dans plusieurs langues, à partir des seules informations validées par l’établissement.</p>
+<h2 id="limites">Limites et bonnes pratiques</h2>
+<h3>Les hallucinations ne disparaissent pas totalement</h3>
+<p>Le RAG réduit fortement le risque d’invention, mais ne le supprime pas. Le modèle peut mal interpréter un passage, combiner deux informations incompatibles ou répondre alors que les documents ne contiennent pas la réponse. D’où plusieurs règles :</p>
+<ul>
+<li>Exiger que l’assistant réponde « je ne trouve pas cette information dans les documents » plutôt que d’improviser.</li>
+<li>Afficher systématiquement les sources et encourager leur vérification pour toute décision importante.</li>
+<li>Constituer un jeu de questions de test avec les bonnes réponses, et le repasser après chaque modification.</li>
+</ul>
+<h3>La qualité du corpus fait la qualité des réponses</h3>
+<p>Des documents obsolètes, contradictoires ou en double produisent des réponses incohérentes. Avant de brancher l’IA, il faut désigner les documents de référence, archiver les anciennes versions et prévoir la mise à jour de l’index quand un document change.</p>
+<h3>Les droits d’accès</h3>
+<p>C’est le point le plus souvent négligé. Si un collaborateur n’a pas le droit de lire un document, l’assistant ne doit pas pouvoir le lui résumer. Les droits doivent être appliqués au moment de la recherche, en fonction de l’utilisateur connecté, et pas seulement sur les fichiers d’origine.</p>
+<h3>L’hébergement et les données personnelles</h3>
+<p>Les documents et les questions transitent par le système. Il faut savoir où les données sont hébergées, si le fournisseur peut les réutiliser (par exemple pour entraîner ses modèles), combien de temps elles sont conservées, et disposer d’un contrat de sous-traitance conforme au RGPD. Pour des données de santé, des exigences spécifiques d’hébergement s’appliquent en France (certification HDS). Un hébergement dans l’Union européenne, voire chez un prestataire européen, est souvent préférable pour les documents sensibles.</p>
+<h3>Le risque d’injection d’instructions</h3>
+<p>Un document intégré au corpus peut contenir des instructions malveillantes. Si l’assistant est également capable d’agir (envoyer un courriel, modifier une donnée), ce risque doit être traité sérieusement : séparation des sources, validation humaine des actions.</p>
+<h2 id="commencer">Par où commencer</h2>
+<ol>
+<li><strong>Choisissez un périmètre précis</strong> : les procédures internes, ou la documentation technique d’une gamme, plutôt que « tout le serveur ».</li>
+<li><strong>Faites le ménage</strong> dans ce corpus : versions à jour, doublons supprimés, responsables identifiés.</li>
+<li><strong>Listez vingt à trente questions réelles</strong> posées par vos équipes ou vos clients, avec les bonnes réponses : ce sera votre jeu de test.</li>
+<li><strong>Définissez les droits</strong> : qui peut interroger quoi.</li>
+<li><strong>Choisissez l’hébergement</strong> en fonction de la sensibilité des documents.</li>
+<li><strong>Lancez un pilote</strong> avec quelques utilisateurs, recueillez leurs retours, mesurez la qualité sur le jeu de test, puis élargissez.</li>
+</ol>
+<p>Groupe Solution conçoit des assistants documentaires avec citations systématiques des sources, respect des droits d’accès et choix d’un hébergement adapté à la sensibilité des données.</p>
+    </div>
+    <section class="artFaq faq" id="faq">
+      <h2>Questions fréquentes</h2>
+      <details><summary>Faut-il entraîner un modèle sur mes documents ?</summary><p>Non, dans la grande majorité des cas. Le RAG laisse le modèle inchangé : il recherche les passages pertinents au moment de la question. C’est plus simple, moins coûteux, et les mises à jour de documents sont prises en compte immédiatement après réindexation.</p></details>
+      <details><summary>L’assistant peut-il se tromper ?</summary><p>Oui. Le RAG réduit fortement les inventions mais ne les élimine pas. C’est pourquoi l’assistant doit citer ses sources, dire quand il ne trouve pas l’information, et être testé régulièrement sur des questions dont on connaît la réponse.</p></details>
+      <details><summary>Mes documents sont-ils envoyés à un fournisseur d’IA ?</summary><p>Les passages pertinents sont transmis au modèle pour produire la réponse. Selon l’architecture choisie, le modèle peut être hébergé dans l’Union européenne ou chez un prestataire européen. Il faut vérifier les conditions contractuelles : absence de réutilisation, durée de conservation, localisation.</p></details>
+      <details><summary>Quels formats de documents sont pris en charge ?</summary><p>La plupart des formats courants : PDF, documents bureautiques, pages web, courriels, tableurs. Les documents scannés nécessitent une étape de lecture optique ou par IA vision, dont la qualité doit être contrôlée.</p></details>
+    </section>
+    <aside class="sources" aria-labelledby="src-rag-assistant-documents">
+      <h2 id="src-rag-assistant-documents">Sources officielles à consulter</h2>
+      <ul>
+        <li>CNIL — recommandations sur le développement des systèmes d’IA et la protection des données</li>
+        <li>ANSSI — recommandations de sécurité pour un système d’IA générative</li>
+        <li>Règlement général sur la protection des données (RGPD), article 28 (sous-traitance)</li>
+        <li>Agence du numérique en santé — référentiel de certification des hébergeurs de données de santé (HDS)</li>
+      </ul>
+      <p>Article à jour au 29 septembre 2026. Les textes, calendriers et services évoluent : référez-vous toujours à la version en vigueur publiée par ces organismes. Cet article est informatif et ne constitue pas un conseil juridique ou fiscal.</p>
+    </aside>
+    <aside class="chez">
+      <h2>Et chez vous ?</h2>
+      <p>Vous vous demandez ce que ce sujet change concrètement dans votre activité ? Parlons-en dix minutes : nous regardons vos outils et vos tâches répétitives, et vous repartez avec une piste claire. Chaque projet fait l’objet d’un devis sur mesure.</p>
+      <div class="row"><a class="btn" href="../../automatisation/">Voir nos automatisations</a><a class="btn ghost" href="tel:+33782298559">07 82 29 85 59</a></div>
+    </aside>
+  </div></div></article>
+  <section class="sec"><div class="wrap">
+    <div class="secHead"><span class="kicker">À lire aussi</span><h2>D’autres sujets de veille</h2></div>
+    <div class="related">
+      <a class="card reveal" href="ia-vision-documents.html"><span class="cat">IA &amp; documents</span><h3>Lire factures, bons et documents manuscrits avec l’IA : fiabilité, contrôle et intégration</h3><p>Factures, bons de livraison, manuscrits : comment les modèles vision-langage lisent vos documents, quelle fiabilité attendre et comment garder le contrôle.</p><span class="rt">5 min de lecture</span></a>
+      <a class="card reveal" href="mcp-model-context-protocol.html"><span class="cat">IA &amp; intégration</span><h3>Le Model Context Protocol (MCP) expliqué aux entreprises : connecter l’IA à ses outils</h3><p>Le Model Context Protocol (MCP) expliqué simplement : comment ce standard ouvert relie un assistant IA à vos logiciels et fichiers, avec quelles précautions.</p><span class="rt">7 min de lecture</span></a>
+      <a class="card reveal" href="agents-ia-computer-use.html"><span class="cat">Agents IA</span><h3>Agents IA qui utilisent les logiciels comme un humain : ce que ça change pour les portails sans API</h3><p>Des agents IA utilisent désormais un logiciel comme un humain, écran et clavier. Ce que cela change pour les portails sans API, et comment les superviser.</p><span class="rt">6 min de lecture</span></a>
+    </div>
+  </div></section>
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Quelle tâche vous prend le plus de temps ?</h2>
+      <p>Décrivez-la en deux phrases. Je vous réponds avec une première piste concrète — gratuitement, sans engagement.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="veille/rag-assistant-documents" />
+        <label class="full">La tâche répétitive<textarea name="message" required placeholder="Ex : je ressaisis chaque commande dans deux logiciels…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Recevoir ma piste d'automatisation →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="../../echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../../index.html">Accueil</a>
+    <a href="./">Veille</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../solutions.html">Solutions</a>
+    <a href="../../realisations.html">Réalisations</a>
+    <a href="../../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../../echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+<script src="../../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intégration API et connexion de vos outils | Groupe Solution</title>
+  <meta name="description" content="Intégration d’API et connecteurs : CRM, ERP, agenda, comptabilité, e-commerce, open data, webhooks et MCP. Vos outils connectés, sans ressaisie. Devis gratuit." />
+  <link rel="canonical" href="https://www.groupsolution.fr/services/integration-api-connecteurs.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Intégration API et connexion de vos outils | Groupe Solution" />
+  <meta property="og:description" content="Intégration d’API et connecteurs : CRM, ERP, agenda, comptabilité, e-commerce, open data, webhooks et MCP. Vos outils connectés, sans ressaisie. Devis gratuit." />
+  <meta property="og:url" content="https://www.groupsolution.fr/services/integration-api-connecteurs.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Intégration API et connexion de vos outils | Groupe Solution" />
+  <meta name="twitter:description" content="Intégration d’API et connecteurs : CRM, ERP, agenda, comptabilité, e-commerce, open data, webhooks et MCP. Vos outils connectés, sans ressaisie. Devis gratuit." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/holding-local.css" />
+  <style>
+.heroDevise .lab{min-width:max-content}
+.callCard .rdv{display:block;margin-top:10px;font-size:14px;font-weight:700;color:var(--secondary);text-decoration:underline;text-underline-offset:3px}
+.artSec{padding:40px 0 92px}
+.art{max-width:780px;margin:0 auto;font-size:17px;line-height:1.8;color:#2B2A26;overflow-wrap:break-word}
+.art h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;margin:64px 0 18px;scroll-margin-top:90px}
+.art h3{font-size:21px;font-weight:600;line-height:1.3;margin:30px 0 8px}
+.art p{margin:0 0 18px}
+.art ul,.art ol{margin:0 0 22px;padding-left:24px}.art li{margin:0 0 8px;padding-left:4px}
+.art a{color:var(--acc-d);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.art a:hover{color:var(--ink)}
+.art strong{color:var(--ink)}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin:0 0 8px}
+.toc p{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted);margin:0 0 10px}
+.toc ol{margin:0;padding-left:22px;font-size:15.5px;line-height:1.6}.toc li{margin:0 0 6px}
+.toc a{color:var(--ink);text-decoration:none;font-weight:600}.toc a:hover{color:var(--acc)}
+.keep{background:var(--olive-soft);border:1px solid #DDE2D5;border-radius:var(--r-m);padding:20px 24px;margin:8px 0 28px}
+.keepT{font-size:12px!important;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--olive2);margin:0 0 8px!important}
+.keep ul{margin:0;padding-left:20px;font-size:16px;color:var(--olive2)}.keep li{margin:0 0 4px}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 28px;border:1px solid var(--line);border-radius:16px;background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:600px;font-size:15px;line-height:1.55}
+.tbl caption{caption-side:top;text-align:left;padding:14px 16px 6px;font-weight:800;font-size:13px;color:var(--muted)}
+.tbl th,.tbl td{padding:12px 16px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl thead th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tbody th{font-weight:700;color:var(--ink);min-width:150px}
+.tbl td{color:var(--secondary)}
+.ctaBox{background:var(--ink);color:#fff;border-radius:var(--r-l);padding:28px 30px;margin:36px 0}
+.ctaBox .ctaT{font-family:var(--serif);font-size:24px;line-height:1.25;margin:0 0 8px;color:#fff}
+.ctaBox p{color:#D9D6CE;margin:0 0 18px;font-size:16px}
+.ctaBtns{display:flex;flex-wrap:wrap;gap:10px}
+.ctaBox .btn{padding:13px 20px;font-size:15px;text-decoration:none;color:#fff}
+.ctaBox .btn.dark{background:#fff;color:var(--ink)}
+.ctaBox .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35)}
+.case a.more{display:inline-block;margin-top:14px;font-weight:800;font-size:14px;color:var(--ink);border-bottom:2px solid var(--acc)}
+.case h3 a:hover{color:var(--acc)}
+.res{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.res div{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px}
+.res h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans);font-weight:800;color:var(--muted);margin-bottom:10px}
+.res ul{list-style:none;display:grid;gap:8px;font-size:14.5px}
+.res a{font-weight:600;color:var(--ink)}.res a:hover{color:var(--acc)}
+.zoneTxt{max-width:820px;margin:34px auto 0;text-align:center;color:var(--secondary);font-size:16px;line-height:1.7}
+.zoneTxt a{color:var(--ink);font-weight:700;border-bottom:1px solid var(--acc)}
+@media(max-width:960px){.res{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.res{grid-template-columns:1fr}.art{font-size:16.5px}.ctaBox{padding:24px 20px}.ctaBtns{flex-direction:column}.ctaBtns .btn{width:100%}.toc{padding:18px 18px}}
+
+.gs-sticky{display:none}
+@media(max-width:760px){
+  .gs-sticky{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:900;gap:8px;background:rgba(23,22,19,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .gs-sticky a,.gs-sticky button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:12px;font:800 14px/1 inherit;font-family:inherit;text-decoration:none;border:0;cursor:pointer}
+  .gs-sticky .s1{background:#fff;color:#171613}
+  .gs-sticky .s2{background:#E61E4D;color:#fff}
+  body{padding-bottom:84px}
+}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.groupsolution.fr/services/integration-api-connecteurs.html#service",
+      "name": "Intégration d’API et connexion des outils métier",
+      "serviceType": "Intégration d’API",
+      "description": "Intégration d’API et connecteurs : CRM, ERP, agenda, comptabilité, e-commerce, open data, webhooks et MCP. Vos outils connectés, sans ressaisie. Devis gratuit.",
+      "url": "https://www.groupsolution.fr/services/integration-api-connecteurs.html",
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://www.groupsolution.fr/#org",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/",
+        "logo": "https://www.groupsolution.fr/Logo.svg",
+        "telephone": "+33782298559",
+        "email": "contact@groupsolution.fr",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Montpellier",
+          "postalCode": "34000",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        }
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "France"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Hérault"
+        },
+        {
+          "@type": "City",
+          "name": "Montpellier"
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "description": "Sur devis, gratuit et personnalisé"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.groupsolution.fr/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Intégration d’API",
+          "item": "https://www.groupsolution.fr/services/integration-api-connecteurs.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce qu’une intégration API ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C’est la mise en place d’échanges automatiques de données entre logiciels via leurs interfaces de programmation (API) : par exemple, une commande du site créée automatiquement dans la gestion commerciale, puis facturée, sans ressaisie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment connecter son CRM à son site internet ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le formulaire du site envoie les données au CRM via son API ou un webhook, en créant ou mettant à jour la fiche contact. Il faut prévoir la gestion des doublons, les champs obligatoires, le consentement RGPD et une alerte en cas d’échec."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle différence entre une API et un webhook ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Avec une API, votre système va chercher ou envoyer des données quand il le décide. Avec un webhook, c’est l’outil source qui prévient immédiatement votre système qu’un événement s’est produit (nouvelle commande, paiement reçu)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que faire si mon logiciel n’a pas d’API ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On peut passer par des exports de fichiers automatisés, une base de données accessible, ou en dernier recours un robot logiciel qui reproduit les actions d’un utilisateur. Ces solutions sont moins robustes qu’une API et demandent davantage de surveillance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce que le protocole MCP ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le Model Context Protocol est un standard ouvert, présenté fin 2024, qui décrit de façon commune les outils et données mis à disposition d’un modèle d’IA. Il permet de connecter un assistant IA à vos logiciels sans refaire l’intégration pour chaque assistant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien coûte l’intégration d’une API ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le coût dépend du nombre d’outils à relier, de la qualité de leurs API, du volume de données et des exigences de fiabilité. Nous établissons un devis gratuit et personnalisé après un inventaire de vos outils."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Services</a><a href="../automatisation/">Automatisation</a><a href="../montpellier/site-internet-montpellier.html">Sites internet</a><a href="../lab/">Lab</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
+<main>
+  <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <a href="./">Services</a> › <span>Intégration d’API</span></div>
+
+  <section class="hero"><div class="wrap heroGrid">
+    <div>
+      <div class="kicker reveal">CRM · ERP · agenda · comptabilité · e-commerce · open data</div>
+      <h1 class="reveal">Intégration d’API : <em>connecter vos outils</em> pour ne plus rien ressaisir.</h1>
+      <p class="lead reveal">Votre site, votre CRM, votre agenda, votre logiciel de facturation et votre boutique en ligne détiennent chacun une partie de l’information. Les relier par API supprime la double saisie et les oublis. Voici comment fonctionne une intégration, ce que l’on peut connecter et comment la rendre fiable.</p>
+      <div class="heroDevise reveal"><span class="lab">Nos devis</span><b>Sur devis, gratuit et personnalisé. Montpellier, partout en France et dans les DOM-TOM.</b></div>
+    </div>
+    <div class="reveal"><div class="callCard">
+      <span class="callBadge">10 minutes suffisent</span>
+      <h2>Parlons de votre projet, sans engagement.</h2>
+      <p class="sub">Un appel direct avec l’équipe. Vous repartez avec des pistes concrètes.</p>
+      <a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59 →</a>
+      <a class="alt" href="#contact">ou décrire mon besoin par écrit</a>
+      <a class="rdv" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver une visio de 10 min</a>
+      <span class="micro">Réponse sous 24 h, souvent le jour même</span>
+    </div></div>
+  </div></section>
+  <section class="artSec"><div class="wrap">
+    <article class="art">
+<nav class="toc" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#api">Une API, c’est quoi ? L’explication simple</a></li><li><a href="#quoi">Ce que l’on connecte le plus souvent</a></li><li><a href="#methodes">API, webhooks, fichiers, MCP : les méthodes d’intégration</a></li><li><a href="#exemples">Exemples concrets de flux connectés</a></li><li><a href="#mcp">MCP : brancher l’IA sur vos outils</a></li><li><a href="#fiabilite">Rendre une intégration fiable et sûre</a></li><li><a href="#facturation">Facturation électronique : un chantier d’intégration</a></li><li><a href="#methode">Notre méthode d’intégration</a></li><li><a href="#faq">Questions fréquentes</a></li></ol></nav>
+<h2 id="api">Une API, c’est quoi ? L’explication simple</h2>
+<p>Une <strong>API</strong> (interface de programmation) est une porte d’entrée qu’un logiciel ouvre pour que d’autres logiciels puissent lui parler de façon structurée : « donne-moi les rendez-vous de demain », « crée ce client », « enregistre cette facture ». Au lieu qu’une personne copie des informations d’un écran à l’autre, les logiciels échangent directement les données.</p>
+<p>L’<strong>intégration d’API</strong> consiste à concevoir ces échanges : quelles données circulent, dans quel sens, à quel moment, et que se passe-t-il en cas d’erreur. Un <strong>connecteur</strong> est le composant qui réalise cet échange entre deux outils précis.</p>
+<h2 id="quoi">Ce que l’on connecte le plus souvent</h2>
+<ul><li><strong>CRM</strong> : les demandes du site et les appels arrivent directement dans la fiche client, avec leur historique ;</li><li><strong>ERP et gestion commerciale</strong> : commandes, stocks, tarifs et bons de livraison synchronisés ;</li><li><strong>Agenda et réservation</strong> : disponibilités affichées sur le site, rendez-vous créés sans double saisie ;</li><li><strong>Comptabilité et facturation</strong> : factures, paiements et relances rapprochés automatiquement ;</li><li><strong>E-commerce</strong> : commandes transmises à la préparation, statuts renvoyés au client ;</li><li><strong>Messagerie, SMS, signature électronique</strong> : envois déclenchés au bon moment ;</li><li><strong>Données publiques (open data)</strong> : vérification d’un numéro SIRET via l’API Recherche d’entreprises, normalisation des adresses avec la Base Adresse Nationale, jours fériés, données géographiques.</li></ul>
+<p>Les API publiques françaises sont une mine sous-exploitée : notre article <a href="../lab/veille/open-data-api-gouv.html">Open data et API publiques</a> présente les plus utiles pour une entreprise.</p>
+<h2 id="methodes">API, webhooks, fichiers, MCP : les méthodes d’intégration</h2>
+<div class="tbl"><table><caption>Méthodes d’intégration : quand les choisir et leurs limites</caption><thead><tr><th scope="col">Méthode</th><th scope="col">Quand la choisir</th><th scope="col">Limites</th></tr></thead><tbody><tr><th scope="row">API REST (requêtes à la demande)</th><td>Lire ou écrire des données dans un outil moderne, de façon contrôlée.</td><td>Quotas d’appels ; authentification à gérer ; l’API peut évoluer.</td></tr><tr><th scope="row">Webhooks (notifications)</th><td>Réagir immédiatement à un événement : nouvelle commande, paiement reçu, formulaire envoyé.</td><td>Il faut un point de réception fiable et gérer les notifications en double ou manquées.</td></tr><tr><th scope="row">Échange de fichiers (CSV, SFTP)</th><td>Logiciels anciens ou partenaires qui ne proposent que des exports.</td><td>Pas de temps réel ; formats fragiles si les colonnes changent.</td></tr><tr><th scope="row">Plateformes no-code d’intégration</th><td>Enchaînements simples entre outils grand public.</td><td>Coût croissant avec le volume ; logique difficile à auditer quand elle grossit.</td></tr><tr><th scope="row">MCP (Model Context Protocol)</th><td>Mettre vos outils à disposition d’un assistant ou d’un agent IA de façon standard.</td><td>Standard récent ; permissions et sécurité à concevoir avec soin.</td></tr><tr><th scope="row">Robot logiciel (RPA)</th><td>Aucune API ni export disponible.</td><td>Fragile aux changements d’interface ; dernier recours.</td></tr></tbody></table></div>
+<aside class="keep"><p class="keepT">À retenir</p><ul><li>Webhooks pour réagir tout de suite, API pour lire et écrire, fichiers quand il n’y a rien d’autre.</li><li>Chaque intégration doit prévoir ce qui se passe quand un outil ne répond pas.</li></ul></aside><aside class="ctaBox"><p class="ctaT">Quels outils aimeriez-vous voir se parler ?</p><p>En 10 minutes, nous regardons vos logiciels et ce qui peut être connecté. Devis gratuit et personnalisé.</p><div class="ctaBtns"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="#contact">Formulaire express</a><a class="btn ghost" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver 10 min en visio</a></div></aside>
+<h2 id="exemples">Exemples concrets de flux connectés</h2>
+<h3>Du formulaire au devis</h3>
+<p>Une demande envoyée depuis le site crée la fiche dans le CRM, vérifie le SIRET du client professionnel grâce aux données publiques, normalise l’adresse et prépare un brouillon de devis dans l’outil de facturation. Vous n’avez plus qu’à relire et envoyer.</p>
+<h3>De la réservation au planning</h3>
+<p>Une réservation en ligne bloque le créneau dans l’agenda de la bonne personne, envoie une confirmation au client et un rappel la veille. Une annulation libère automatiquement le créneau.</p>
+<h3>De la commande à la comptabilité</h3>
+<p>Une commande payée sur la boutique en ligne décrémente le stock, déclenche la préparation, génère la facture et l’écriture comptable, puis informe le client de l’expédition.</p>
+<h3>Du tableau de bord au pilotage</h3>
+<p>Les chiffres clés (demandes, devis signés, factures en retard) sont extraits chaque nuit de vos outils et réunis dans un tableau de bord unique, sans export manuel.</p>
+<aside class="keep"><p class="keepT">À retenir</p><ul><li>Un flux bien conçu désigne l’outil qui fait foi pour chaque donnée.</li><li>La relecture humaine reste possible aux étapes qui engagent l’entreprise.</li></ul></aside>
+<h2 id="mcp">MCP : brancher l’IA sur vos outils</h2>
+<p>Le <strong>Model Context Protocol</strong> est un protocole ouvert présenté fin 2024, adopté depuis par plusieurs grands acteurs de l’IA. Il décrit de façon standard les outils et les données qu’on met à disposition d’un modèle d’IA. Concrètement, un « serveur MCP » exposant votre agenda ou votre CRM peut être utilisé par différents assistants, sans refaire l’intégration pour chacun.</p>
+<p>C’est une brique précieuse pour les <a href="agent-ia-chatbot.html">agents IA</a> qui doivent agir dans vos logiciels, à condition de définir finement les permissions : lecture seule quand c’est suffisant, validation humaine pour les actions sensibles. Pour aller plus loin : <a href="../lab/veille/mcp-model-context-protocol.html">MCP : connecter l’IA à vos outils</a>.</p>
+<h2 id="fiabilite">Rendre une intégration fiable et sûre</h2>
+<p>Une intégration qui marche le jour de la démonstration n’est pas forcément une intégration fiable. Les points qui font la différence :</p>
+<ul><li><strong>Gestion des erreurs et reprises</strong> : si un outil est indisponible, l’échange est retenté, puis signalé ;</li><li><strong>Idempotence</strong> : une même commande reçue deux fois ne doit pas être créée deux fois ;</li><li><strong>Journalisation</strong> : chaque échange est tracé pour comprendre un écart ;</li><li><strong>Respect des quotas</strong> imposés par les API ;</li><li><strong>Sécurité des accès</strong> : clés et jetons stockés de façon sécurisée, droits minimaux, authentification OAuth quand l’outil la propose ;</li><li><strong>Surveillance</strong> : une alerte vous prévient si un flux s’arrête, avant que vos clients ne le remarquent ;</li><li><strong>Documentation</strong> : ce qui est connecté, comment, et qui contacter.</li></ul>
+<h2 id="facturation">Facturation électronique : un chantier d’intégration</h2>
+<p>Avec la réforme de la facturation électronique, les factures transitent par des plateformes agréées. La réception est obligatoire pour toutes les entreprises assujetties à la TVA depuis le 1<sup>er</sup> septembre 2026, et l’émission le sera pour les PME et micro-entreprises à partir du 1<sup>er</sup> septembre 2027, selon le calendrier en vigueur. Connecter votre plateforme de facturation à votre gestion commerciale, à votre comptabilité et à vos relances est un gain direct. Voir <a href="../lab/veille/facturation-electronique-2026.html">Facturation électronique 2026-2027</a>.</p>
+<h2 id="methode">Notre méthode d’intégration</h2>
+<ol><li><strong>Inventaire</strong> de vos outils, de leurs API ou exports, et des flux de données actuels (y compris manuels).</li><li><strong>Schéma des flux</strong> : quelle donnée va où, quel outil fait foi en cas de désaccord.</li><li><strong>Développement</strong> des connecteurs et tests sur des données réelles, dans un environnement séparé.</li><li><strong>Mise en service</strong> progressive, avec surveillance renforcée au démarrage.</li><li><strong>Suivi</strong> : adaptation quand un éditeur fait évoluer son API.</li></ol>
+<p>L’intégration est souvent la première étape d’une <a href="automatisation-processus.html">automatisation des processus</a> plus large, ou le socle d’un <a href="logiciel-sur-mesure.html">logiciel sur-mesure</a>. Pour estimer le temps perdu en ressaisies, essayez le <a href="../outils/calculateur-automatisation.html">Calculateur de tâches répétitives</a>.</p>
+<aside class="ctaBox"><p class="ctaT">Prêt à en parler ?</p><p>Appelez-nous, écrivez-nous en deux phrases ou réservez une visio de 10 minutes. Le devis est gratuit et personnalisé.</p><div class="ctaBtns"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="#contact">Formulaire express</a><a class="btn ghost" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver 10 min en visio</a></div></aside>
+    </article>
+  </div></section>
+
+  <section class="sec alt"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Nos autres services</div><h2>Tout ce qu’un éditeur de logiciels peut faire pour vous.</h2><p>Sites internet, intelligence artificielle, automatisation et logiciels sur-mesure : des briques qui se combinent. <a class="go" href="./">Voir tous nos services</a></p></div>
+    <div class="cases">
+      <article class="case reveal"><div class="n">1</div><h3><a href="creation-site-internet.html">Création de site internet</a></h3><p>Site vitrine, réservation, e-commerce ou plateforme : un site professionnel conçu pour être trouvé et pour faire appeler.</p><a class="more" href="creation-site-internet.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">2</div><h3><a href="agence-ia-entreprise.html">Intégrer l’IA en entreprise</a></h3><p>Cas d’usage utiles, données maîtrisées, AI Act, souveraineté : l’intelligence artificielle appliquée à votre activité réelle.</p><a class="more" href="agence-ia-entreprise.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">3</div><h3><a href="automatisation-processus.html">Automatisation des processus</a></h3><p>Devis, commandes, relances, documents, reporting : les tâches répétitives prises en charge par des systèmes fiables.</p><a class="more" href="automatisation-processus.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">4</div><h3><a href="logiciel-sur-mesure.html">Logiciel sur-mesure</a></h3><p>Une application métier construite autour de votre façon de travailler, dont vous restez propriétaire.</p><a class="more" href="logiciel-sur-mesure.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">5</div><h3><a href="agent-ia-chatbot.html">Agent IA et chatbot</a></h3><p>Assistant client multilingue, assistant interne sur vos documents, agents qui agissent dans vos outils, avec garde-fous.</p><a class="more" href="agent-ia-chatbot.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">6</div><h3><a href="agent-vocal-ia.html">Agent vocal IA</a></h3><p>Un standard téléphonique intelligent qui décroche, prend les rendez-vous, transfère et résume chaque appel.</p><a class="more" href="agent-vocal-ia.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">7</div><h3><a href="referencement-local.html">Référencement local</a></h3><p>Fiche Google Business Profile, avis, pages locales honnêtes, données structurées : être trouvé près de chez vos clients.</p><a class="more" href="referencement-local.html">En savoir plus →</a></article>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Pour aller plus loin</div><h2>Guides, veille et outils gratuits.</h2><p>Pour préparer votre projet, voir notre hub <a href="../automatisation/">automatisation et logiciel sur-mesure</a> et notre offre de <a href="../montpellier/site-internet-montpellier.html">création de site internet à Montpellier</a>.</p></div>
+    <div class="res">
+      <div class="reveal"><h3>Selon votre métier</h3><ul><li><a href="../montpellier/site-internet-commerce-boutique-montpellier.html">Commerce et boutique</a></li><li><a href="../montpellier/site-internet-expert-comptable-montpellier.html">Expert-comptable</a></li><li><a href="../montpellier/site-internet-hebergement-gite-montpellier.html">Hébergement et gîte</a></li><li><a href="../montpellier/site-internet-domaine-viticole-montpellier.html">Domaine viticole</a></li></ul></div>
+      <div class="reveal"><h3>Articles de veille</h3><ul><li><a href="../lab/veille/open-data-api-gouv.html">Open data et API publiques</a></li><li><a href="../lab/veille/mcp-model-context-protocol.html">MCP : connecter l’IA à vos outils</a></li><li><a href="../lab/veille/facturation-electronique-2026.html">Facturation électronique 2026-2027</a></li><li><a href="../lab/veille/agents-ia-computer-use.html">Agents IA et portails sans API</a></li></ul></div>
+      <div class="reveal"><h3>Guides pratiques</h3><ul><li><a href="../montpellier/guides/relances-factures-impayees-automatiques.html">Relancer ses factures impayées automatiquement</a></li><li><a href="../montpellier/guides/automatiser-devis-artisan.html">Automatiser ses devis quand on est artisan</a></li></ul></div>
+      <div class="reveal"><h3>Outils gratuits</h3><ul><li><a href="../outils/configurateur-site-internet.html">Configurateur de projet web et IA</a></li><li><a href="../outils/test-visibilite-google.html">Test de visibilité Google</a></li><li><a href="../outils/calculateur-automatisation.html">Calculateur de tâches répétitives</a></li><li><a href="../automatisation/">Hub automatisation</a></li></ul></div>
+    </div>
+    <p class="zoneTxt">Basés à Montpellier, nous intervenons dans toute la métropole, dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM (<a href="../implantations.html">nos implantations</a>). Chaque projet est sur devis, gratuit et personnalisé.</p>
+  </div></section>
+
+  <section class="sec alt" id="faq"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Questions fréquentes</div><h2>Vos questions, nos réponses.</h2></div>
+    <div class="faq">
+      <details class="reveal"><summary>Qu’est-ce qu’une intégration API ?</summary><p>C’est la mise en place d’échanges automatiques de données entre logiciels via leurs interfaces de programmation (API) : par exemple, une commande du site créée automatiquement dans la gestion commerciale, puis facturée, sans ressaisie.</p></details>
+      <details class="reveal"><summary>Comment connecter son CRM à son site internet ?</summary><p>Le formulaire du site envoie les données au CRM via son API ou un webhook, en créant ou mettant à jour la fiche contact. Il faut prévoir la gestion des doublons, les champs obligatoires, le consentement RGPD et une alerte en cas d’échec.</p></details>
+      <details class="reveal"><summary>Quelle différence entre une API et un webhook ?</summary><p>Avec une API, votre système va chercher ou envoyer des données quand il le décide. Avec un webhook, c’est l’outil source qui prévient immédiatement votre système qu’un événement s’est produit (nouvelle commande, paiement reçu).</p></details>
+      <details class="reveal"><summary>Que faire si mon logiciel n’a pas d’API ?</summary><p>On peut passer par des exports de fichiers automatisés, une base de données accessible, ou en dernier recours un robot logiciel qui reproduit les actions d’un utilisateur. Ces solutions sont moins robustes qu’une API et demandent davantage de surveillance.</p></details>
+      <details class="reveal"><summary>Qu’est-ce que le protocole MCP ?</summary><p>Le Model Context Protocol est un standard ouvert, présenté fin 2024, qui décrit de façon commune les outils et données mis à disposition d’un modèle d’IA. Il permet de connecter un assistant IA à vos logiciels sans refaire l’intégration pour chaque assistant.</p></details>
+      <details class="reveal"><summary>Combien coûte l’intégration d’une API ?</summary><p>Le coût dépend du nombre d’outils à relier, de la qualité de leurs API, du volume de données et des exigences de fiabilité. Nous établissons un devis gratuit et personnalisé après un inventaire de vos outils.</p></details>
+    </div>
+  </div></section>
+
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Quels outils voulez-vous connecter ?</h2>
+      <p>Listez-les en deux phrases. Je vous réponds avec une première piste d’intégration — gratuitement, sans engagement.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="services/integration-api-connecteurs" />
+        <label class="full">Vos outils à connecter<textarea name="message" required placeholder="Ex : ma boutique en ligne, mon logiciel de facturation et mon tableur de stock…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Recevoir ma piste d’intégration →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../index.html">Accueil</a>
+    <a href="./">Services</a>
+    <a href="../automatisation/">Automatisation</a>
+    <a href="../solutions.html">Solutions</a>
+    <a href="../realisations.html">Réalisations</a>
+    <a href="../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../echanger.html">Échanger</a>
+    <a href="../plan-du-site.html">Plan du site</a>
+  </nav>
+</div></footer>
+<div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Discutons 10 min</a></div>
+<script src="../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

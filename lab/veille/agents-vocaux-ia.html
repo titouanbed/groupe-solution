@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agents vocaux IA au téléphone | Groupe Solution</title>
+  <meta name="description" content="Agents vocaux IA : décrocher 24 h/24, prendre des rendez-vous, transcrire. Fonctionnement, latence, RGPD, information de l’appelant et transfert humain." />
+  <link rel="canonical" href="https://www.groupsolution.fr/lab/veille/agents-vocaux-ia.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Agents vocaux IA au téléphone | Groupe Solution" />
+  <meta property="og:description" content="Agents vocaux IA : décrocher 24 h/24, prendre des rendez-vous, transcrire. Fonctionnement, latence, RGPD, information de l’appelant et transfert humain." />
+  <meta property="og:url" content="https://www.groupsolution.fr/lab/veille/agents-vocaux-ia.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta property="article:published_time" content="2026-09-29" />
+  <meta property="article:author" content="Titouan Bedos" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agents vocaux IA au téléphone | Groupe Solution" />
+  <meta name="twitter:description" content="Agents vocaux IA : décrocher 24 h/24, prendre des rendez-vous, transcrire. Fonctionnement, latence, RGPD, information de l’appelant et transfert humain." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/holding-local.css" />
+  <style>
+.art{padding:0 0 30px}
+.col{max-width:760px;margin:0 auto}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.crumbs li+li::before{content:"›";margin-right:6px;color:var(--line2)}
+.artHead{padding:28px 0 8px}
+.artHead h1{font-size:clamp(30px,4.4vw,48px);line-height:1.1;margin-top:18px;overflow-wrap:break-word}
+.chapo{font-size:clamp(17px,2vw,19.5px);color:var(--secondary);line-height:1.7;margin-top:20px}
+.meta{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:18px}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin-top:30px}
+.toc b{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.toc ol{margin:10px 0 0 20px;font-size:15px;line-height:1.9}
+.toc a{color:var(--ink);font-weight:600}.toc a:hover{color:var(--acc)}
+.prose{font-size:17px;line-height:1.8;color:#2B2924;overflow-wrap:break-word}
+.prose h2{font-size:clamp(25px,3vw,33px);line-height:1.18;margin:54px 0 16px;scroll-margin-top:90px}
+.prose h3{font-size:clamp(19px,2.2vw,22px);font-weight:600;line-height:1.3;margin:32px 0 10px}
+.prose p{margin:0 0 18px}
+.prose ul,.prose ol{margin:0 0 22px 22px}
+.prose li{margin-bottom:9px;padding-left:2px}
+.prose strong{color:var(--ink)}
+.prose a{color:var(--acc-d);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.prose code{font-size:.86em;background:var(--olive-soft);color:var(--olive2);padding:2px 7px;border-radius:6px;word-break:break-all}
+.note{background:var(--olive-soft);border-left:4px solid var(--olive);border-radius:0 var(--r-s) var(--r-s) 0;padding:18px 22px;margin:26px 0}
+.note p{margin:0}
+.note.warn{background:var(--amber-soft);border-left-color:var(--amber)}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-s);background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px;line-height:1.55}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tr:last-child td{border-bottom:0}
+.artFaq{margin-top:54px}
+.artFaq h2{font-size:clamp(25px,3vw,33px);margin-bottom:20px}
+.sources{margin-top:48px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:24px 28px}
+.sources h2{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.sources ul{margin:12px 0 0 20px;font-size:15px;line-height:1.7;color:var(--secondary)}
+.sources p{font-size:13.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.chez{margin-top:30px;background:var(--ink);color:#fff;border-radius:var(--r-l);padding:clamp(24px,4vw,36px)}
+.chez h2{color:#fff;font-size:clamp(24px,3vw,30px)}
+.chez p{color:#CFCBC0;margin-top:12px;font-size:16px;line-height:1.7}
+.chez .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chez .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3)}.chez .btn.ghost:hover{border-color:#fff}
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-l)}
+.card .cat{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--olive2);background:var(--olive-soft);padding:5px 11px;border-radius:999px}
+.card h3{font-size:20px;font-weight:600;line-height:1.25;margin-top:14px}
+.card p{font-size:14.5px;color:var(--secondary);margin-top:10px;line-height:1.6;flex:1}
+.card .rt{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+.intro p{font-size:16.5px;color:var(--secondary);line-height:1.75;margin-top:14px}
+.watch{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s)}
+.watch h3{font-size:19px;font-weight:600}
+.watch ul{list-style:none;margin-top:12px;display:grid;gap:9px;font-size:14.5px;color:var(--secondary)}
+.watch li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--olive);margin-right:10px;vertical-align:1px}
+@media(max-width:960px){.related,.intro{grid-template-columns:1fr}}
+@media(max-width:600px){.toc{padding:18px 20px}.prose{font-size:16.5px}.cards{grid-template-columns:1fr}.chez .btn{width:100%}}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://www.groupsolution.fr/lab/veille/agents-vocaux-ia.html#article",
+      "headline": "Agents vocaux IA au téléphone : décrocher 24 h/24, prendre des rendez-vous, transcrire",
+      "description": "Agents vocaux IA : décrocher 24 h/24, prendre des rendez-vous, transcrire. Fonctionnement, latence, RGPD, information de l’appelant et transfert humain.",
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "inLanguage": "fr-FR",
+      "mainEntityOfPage": "https://www.groupsolution.fr/lab/veille/agents-vocaux-ia.html",
+      "image": "https://www.groupsolution.fr/assets/visuel-solutions.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Titouan Bedos",
+        "jobTitle": "Fondateur",
+        "worksFor": {
+          "@id": "https://www.groupsolution.fr/#organization"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.groupsolution.fr/#organization",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.groupsolution.fr/Logo.svg"
+        },
+        "telephone": "+33782298559",
+        "email": "contact@groupsolution.fr"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Agent vocal"
+        },
+        {
+          "@type": "Thing",
+          "name": "Reconnaissance vocale"
+        },
+        {
+          "@type": "Thing",
+          "name": "Relation client"
+        },
+        {
+          "@type": "Thing",
+          "name": "RGPD"
+        }
+      ],
+      "articleSection": "Agents IA",
+      "wordCount": 1328
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lab",
+          "item": "https://www.groupsolution.fr/lab/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Veille",
+          "item": "https://www.groupsolution.fr/lab/veille/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Agents vocaux IA au téléphone : décrocher 24 h/24, prendre des rendez-vous, transcrire",
+          "item": "https://www.groupsolution.fr/lab/veille/agents-vocaux-ia.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.groupsolution.fr/lab/veille/agents-vocaux-ia.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Les appelants se rendent-ils compte qu’ils parlent à une IA ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ils doivent en être informés dès le début de l’appel. C’est une bonne pratique et, avec le règlement européen sur l’IA, une obligation de transparence prévue par le texte. La qualité de la voix ne doit pas servir à tromper l’appelant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L’agent peut-il transférer l’appel à une vraie personne ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, et c’est indispensable. On définit des règles : urgence, demande complexe, mécontentement ou simple souhait de l’appelant déclenchent un transfert, un message ou une demande de rappel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Peut-on enregistrer et transcrire les appels ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, à condition d’informer les interlocuteurs, de définir une finalité, une durée de conservation et de respecter leurs droits, conformément au RGPD. Les recommandations de la CNIL sur l’enregistrement des appels sont la référence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L’agent fonctionne-t-il avec mon numéro actuel ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En général oui : on peut renvoyer les appels vers l’agent en cas de non-réponse, en dehors des horaires ou systématiquement, selon ce que permet votre opérateur ou votre standard."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="../../index.html" aria-label="Groupe Solution — accueil"><img src="../../Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links" aria-label="Navigation principale">
+    <a href="./">Veille</a>
+    <a href="../api.html">API &amp; données</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../outils/">Outils</a>
+    <a class="cta" href="#contact">Discutons 10 min</a>
+  </nav>
+</div></header>
+<main>
+  <article class="art"><div class="wrap"><div class="col">
+    <nav class="crumbs" aria-label="Fil d’Ariane"><ol>
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Lab</a></li>
+      <li><a href="./">Veille</a></li>
+      <li aria-current="page">Agents IA</li>
+    </ol></nav>
+    <header class="artHead">
+      <span class="kicker">Agents IA</span>
+      <h1>Agents vocaux IA au téléphone : décrocher 24 h/24, prendre des rendez-vous, transcrire</h1>
+      <p class="chapo">Pour un artisan sur un chantier, un restaurateur en plein service ou un cabinet débordé, chaque appel manqué peut être un client perdu. Les agents vocaux fondés sur l’IA savent désormais tenir une conversation téléphonique naturelle. Voici comment ils fonctionnent, ce qu’ils savent faire et les règles à respecter.</p>
+      <p class="meta">Publié le <time datetime="2026-09-29">29 septembre 2026</time> · 6 min de lecture · Par Titouan Bedos, fondateur de Groupe Solution</p>
+    </header>
+    <nav class="toc" aria-label="Sommaire"><b>Sommaire</b><ol>
+      <li><a href="#definition">Ce que c’est : un standard téléphonique qui comprend et répond</a></li>
+      <li><a href="#pourquoi-maintenant">Pourquoi c’est important maintenant</a></li>
+      <li><a href="#cas-usage">Cas d’usage concrets pour une TPE/PME</a></li>
+      <li><a href="#limites">Limites, RGPD et précautions</a></li>
+      <li><a href="#commencer">Par où commencer</a></li>
+      <li><a href="#faq">Questions fréquentes</a></li>
+    </ol></nav>
+    <div class="prose">
+<h2 id="definition">Ce que c’est : un standard téléphonique qui comprend et répond</h2>
+<p>Un <strong>agent vocal IA</strong> est un programme qui décroche le téléphone, comprend ce que dit l’appelant, lui répond d’une voix de synthèse et peut déclencher des actions : consulter un agenda, enregistrer une demande, envoyer un SMS de confirmation, transférer l’appel. Il ne s’agit plus du serveur vocal interactif d’autrefois (« tapez 1, tapez 2 ») : l’appelant parle normalement, avec ses propres mots.</p>
+<h3>Deux architectures principales</h3>
+<ul>
+<li><strong>La chaîne en trois étapes</strong> : la parole est transcrite en texte (reconnaissance vocale), un modèle de langage produit la réponse, puis une synthèse vocale la prononce. Cette approche est modulaire : on peut choisir chaque brique, et le texte intermédiaire facilite le contrôle et la journalisation.</li>
+<li><strong>Les modèles « voix à voix » en temps réel</strong> : un seul modèle reçoit l’audio et produit directement de l’audio. Plusieurs éditeurs proposent ce type d’interface depuis fin 2024. L’avantage est une conversation plus fluide, capable de gérer les interruptions et l’intonation ; la contrepartie est un contrôle parfois moins fin sur chaque étape.</li>
+</ul>
+<p>Dans les deux cas, l’agent est relié à la téléphonie (un numéro, un standard, un opérateur) et, pour être utile, à vos outils : agenda, logiciel de réservation, CRM, base de questions fréquentes.</p>
+<h3>La latence, nerf de la guerre</h3>
+<p>Au téléphone, le silence est pénible. Si l’agent met trop longtemps à répondre, l’appelant répète, s’impatiente ou raccroche. La qualité d’un agent vocal se juge donc beaucoup à sa réactivité : détection de la fin de phrase, rapidité du modèle, synthèse vocale qui commence à parler avant d’avoir fini de générer. La gestion des interruptions — l’appelant qui coupe la parole — est un autre marqueur de qualité.</p>
+<h2 id="pourquoi-maintenant">Pourquoi c’est important maintenant</h2>
+<p>Trois évolutions récentes rendent ces agents crédibles pour de petites structures :</p>
+<ol>
+<li><strong>La qualité des voix de synthèse</strong> s’est nettement améliorée : intonation, rythme et prononciation du français sont devenus naturels pour la plupart des échanges courants.</li>
+<li><strong>La compréhension des demandes</strong> par les modèles de langage permet de gérer les formulations variées, les hésitations, les changements d’avis (« en fait, plutôt jeudi »).</li>
+<li><strong>Les interfaces temps réel</strong> proposées par les fournisseurs de modèles ont réduit le délai de réponse à un niveau compatible avec une conversation.</li>
+</ol>
+<p>En parallèle, le cadre réglementaire se précise. Le règlement européen sur l’IA (AI Act) prévoit une obligation de transparence : les personnes doivent être informées qu’elles interagissent avec un système d’IA, sauf si c’est évident. Cette obligation de l’article 50 s’applique depuis le 2 août 2026 : le règlement « omnibus IA » de juillet 2026, qui a reporté les obligations des systèmes à haut risque, ne l’a pas reportée. Dans tous les cas, annoncer clairement l’usage d’un assistant automatique est une bonne pratique qui préserve la confiance.</p>
+<h2 id="cas-usage">Cas d’usage concrets pour une TPE/PME</h2>
+<h3>Artisan : ne plus perdre les appels du chantier</h3>
+<p>Un plombier ou un électricien ne peut pas décrocher avec les mains occupées. L’agent prend l’appel, identifie l’urgence (fuite, panne), recueille l’adresse et les coordonnées, et envoie un résumé écrit par SMS ou courriel. Pour une vraie urgence, il peut transférer l’appel sur un numéro d’astreinte.</p>
+<h3>Restaurant : réservations pendant le service</h3>
+<p>L’agent consulte les disponibilités dans l’outil de réservation, propose un créneau, enregistre le nombre de couverts et les allergies signalées, puis envoie une confirmation. L’équipe reste concentrée sur la salle.</p>
+<h3>Cabinet médical, paramédical ou de conseil : prise de rendez-vous</h3>
+<p>L’agent propose les créneaux disponibles selon le type de rendez-vous, déplace ou annule sur demande et répond aux questions pratiques (adresse, accès, pièces à apporter). Dans le domaine de la santé, les données sont particulièrement sensibles : hébergement adapté et vigilance renforcée sont indispensables.</p>
+<h3>Hébergement touristique et domaine viticole : questions fréquentes en plusieurs langues</h3>
+<p>Horaires de dégustation, accès au domaine, heure d’arrivée, stationnement : ces questions reviennent sans cesse. Un agent capable de répondre en français, en anglais ou dans d’autres langues soulage l’accueil, notamment en saison.</p>
+<h3>Transcription et résumé des appels</h3>
+<p>Même sans agent qui répond, la transcription automatique des appels (avec information des interlocuteurs) permet d’obtenir un compte rendu, de retrouver ce qui a été dit et d’alimenter le suivi client.</p>
+<h2 id="limites">Limites, RGPD et précautions</h2>
+<h3>Informer l’appelant</h3>
+<p>L’appelant doit savoir qu’il parle à un assistant automatique. Un message d’accueil simple suffit : « Bonjour, vous êtes en relation avec l’assistant automatique de… ». Si l’appel est enregistré ou transcrit, il faut l’indiquer, préciser la finalité et la manière d’exercer ses droits, conformément au RGPD. La CNIL a publié des fiches pratiques sur l’enregistrement des conversations téléphoniques qu’il est recommandé de consulter.</p>
+<h3>Toujours prévoir un transfert humain</h3>
+<p>Un bon agent vocal sait reconnaître ses limites : demande complexe, client mécontent, urgence, incompréhension répétée. Il doit alors proposer de transférer l’appel, de laisser un message ou d’être rappelé. Un appelant enfermé dans une boucle automatique est un client perdu.</p>
+<h3>Encadrer les données</h3>
+<ul>
+<li><strong>Minimisation</strong> : ne demander que ce qui est utile au traitement de l’appel.</li>
+<li><strong>Durée de conservation</strong> : définir combien de temps les enregistrements et transcriptions sont gardés, et les supprimer ensuite.</li>
+<li><strong>Sous-traitants</strong> : les fournisseurs de téléphonie, de reconnaissance vocale et de modèles traitent des données pour votre compte ; un contrat conforme à l’article 28 du RGPD est nécessaire, et le lieu d’hébergement doit être connu.</li>
+<li><strong>Voix et biométrie</strong> : utiliser la voix pour identifier une personne de manière unique relève des données biométriques, soumises à un régime beaucoup plus strict. Un agent qui se contente de comprendre la demande n’entre pas dans ce cas, mais il faut éviter toute dérive vers l’identification vocale sans cadre juridique.</li>
+</ul>
+<h3>Accepter les erreurs possibles</h3>
+<p>Accents marqués, bruit de fond, mauvaise couverture réseau, noms propres ou adresses difficiles : la reconnaissance vocale peut se tromper. Il faut prévoir la reformulation (« J’ai bien noté le 12 rue… ? ») et la confirmation écrite. Un agent ne doit jamais inventer une information qu’il ne possède pas, comme un tarif ou une disponibilité : il doit la lire dans vos outils ou dire qu’il ne sait pas.</p>
+<h3>Appels sortants : prudence</h3>
+<p>Cet article porte sur les appels entrants. Les appels sortants automatisés à des fins de prospection sont soumis à des règles spécifiques (consentement, opposition au démarchage téléphonique) qu’il faut vérifier avant tout projet.</p>
+<h2 id="commencer">Par où commencer</h2>
+<ol>
+<li><strong>Analysez vos appels</strong> : à quels moments manquez-vous des appels ? Quelles demandes reviennent le plus souvent ?</li>
+<li><strong>Commencez par un périmètre étroit</strong> : répondre en dehors des heures d’ouverture, ou prendre les messages pendant les pics d’activité, avant de confier la prise de rendez-vous.</li>
+<li><strong>Rédigez la base de connaissances</strong> : horaires, prestations, zones d’intervention, consignes. L’agent ne doit répondre qu’à partir de ces informations.</li>
+<li><strong>Définissez les règles de transfert</strong> vers un humain, et testez-les.</li>
+<li><strong>Préparez les mentions d’information</strong> et vérifiez vos contrats avec les fournisseurs.</li>
+<li><strong>Écoutez les premiers appels</strong> (avec information des appelants) et ajustez.</li>
+</ol>
+<p>Groupe Solution conçoit des agents vocaux reliés aux outils existants (agenda, réservation, CRM), avec transfert humain et mentions d’information intégrés dès le départ.</p>
+    </div>
+    <section class="artFaq faq" id="faq">
+      <h2>Questions fréquentes</h2>
+      <details><summary>Les appelants se rendent-ils compte qu’ils parlent à une IA ?</summary><p>Ils doivent en être informés dès le début de l’appel. C’est une bonne pratique et, avec le règlement européen sur l’IA, une obligation de transparence prévue par le texte. La qualité de la voix ne doit pas servir à tromper l’appelant.</p></details>
+      <details><summary>L’agent peut-il transférer l’appel à une vraie personne ?</summary><p>Oui, et c’est indispensable. On définit des règles : urgence, demande complexe, mécontentement ou simple souhait de l’appelant déclenchent un transfert, un message ou une demande de rappel.</p></details>
+      <details><summary>Peut-on enregistrer et transcrire les appels ?</summary><p>Oui, à condition d’informer les interlocuteurs, de définir une finalité, une durée de conservation et de respecter leurs droits, conformément au RGPD. Les recommandations de la CNIL sur l’enregistrement des appels sont la référence.</p></details>
+      <details><summary>L’agent fonctionne-t-il avec mon numéro actuel ?</summary><p>En général oui : on peut renvoyer les appels vers l’agent en cas de non-réponse, en dehors des horaires ou systématiquement, selon ce que permet votre opérateur ou votre standard.</p></details>
+    </section>
+    <aside class="sources" aria-labelledby="src-agents-vocaux-ia">
+      <h2 id="src-agents-vocaux-ia">Sources officielles à consulter</h2>
+      <ul>
+        <li>Règlement (UE) 2024/1689 sur l’intelligence artificielle (AI Act), article 50 — obligations de transparence</li>
+        <li>CNIL — fiches pratiques sur l’écoute et l’enregistrement des appels téléphoniques</li>
+        <li>Règlement général sur la protection des données (RGPD), notamment articles 13 et 28</li>
+        <li>Commission européenne — pages consacrées au cadre réglementaire de l’IA</li>
+      </ul>
+      <p>Article à jour au 29 septembre 2026. Les textes, calendriers et services évoluent : référez-vous toujours à la version en vigueur publiée par ces organismes. Cet article est informatif et ne constitue pas un conseil juridique ou fiscal.</p>
+    </aside>
+    <aside class="chez">
+      <h2>Et chez vous ?</h2>
+      <p>Vous vous demandez ce que ce sujet change concrètement dans votre activité ? Parlons-en dix minutes : nous regardons vos outils et vos tâches répétitives, et vous repartez avec une piste claire. Chaque projet fait l’objet d’un devis sur mesure.</p>
+      <div class="row"><a class="btn" href="../../automatisation/">Voir nos automatisations</a><a class="btn ghost" href="tel:+33782298559">07 82 29 85 59</a></div>
+    </aside>
+  </div></div></article>
+  <section class="sec"><div class="wrap">
+    <div class="secHead"><span class="kicker">À lire aussi</span><h2>D’autres sujets de veille</h2></div>
+    <div class="related">
+      <a class="card reveal" href="facturation-electronique-2026.html"><span class="cat">Réglementation</span><h3>Facturation électronique obligatoire : calendrier, plateformes agréées et préparation</h3><p>Facturation électronique obligatoire : calendrier 2026-2027, plateformes agréées, formats Factur-X, UBL et CII, e-reporting et préparation pas à pas.</p><span class="rt">7 min de lecture</span></a>
+      <a class="card reveal" href="ai-act-pme.html"><span class="cat">Réglementation</span><h3>AI Act (règlement européen sur l’IA) : ce qu’une PME doit savoir</h3><p>AI Act : approche par les risques, pratiques interdites, maîtrise de l’IA, transparence des chatbots. Ce que le règlement européen change pour une PME.</p><span class="rt">7 min de lecture</span></a>
+      <a class="card reveal" href="open-data-api-gouv.html"><span class="cat">API &amp; données</span><h3>L’open data public au service des entreprises : les API à connaître</h3><p>Recherche d’entreprises, Base Adresse Nationale, DVF, Géorisques, jours fériés : les API publiques gratuites pour vérifier, normaliser et anticiper.</p><span class="rt">6 min de lecture</span></a>
+    </div>
+  </div></section>
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Quelle tâche vous prend le plus de temps ?</h2>
+      <p>Décrivez-la en deux phrases. Je vous réponds avec une première piste concrète — gratuitement, sans engagement.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="veille/agents-vocaux-ia" />
+        <label class="full">La tâche répétitive<textarea name="message" required placeholder="Ex : je ressaisis chaque commande dans deux logiciels…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Recevoir ma piste d'automatisation →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="../../echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../../index.html">Accueil</a>
+    <a href="./">Veille</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../solutions.html">Solutions</a>
+    <a href="../../realisations.html">Réalisations</a>
+    <a href="../../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../../echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+<script src="../../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

@@ -22,7 +22,14 @@
       { "@type": "City", "name": "Lattes" },
       { "@type": "City", "name": "Pérols" },
       { "@type": "City", "name": "Castelnau-le-Lez" },
-      { "@type": "City", "name": "Saint-Jean-de-Védas" }
+      { "@type": "City", "name": "Saint-Jean-de-Védas" },
+      { "@type": "City", "name": "Vendargues" },
+      { "@type": "City", "name": "Clapiers" },
+      { "@type": "City", "name": "Mèze" },
+      { "@type": "City", "name": "Villeveyrac" },
+      { "@type": "City", "name": "Sète" },
+      { "@type": "AdministrativeArea", "name": "Montpellier Méditerranée Métropole" },
+      { "@type": "AdministrativeArea", "name": "Hérault" }
     ],
     "address": {
       "@type": "PostalAddress",
@@ -52,14 +59,14 @@
       "name": "Pourquoi choisir GroupSolution plutôt qu'une agence 100% locale à Montpellier ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Parce qu'on ne livre pas qu'un site : on construit aussi ce qui tourne derrière — devis automatiques, relances, prises de rendez-vous. On l'a fait pour 23 Twenty Three Clean (lavage auto à domicile, Montpellier) : le client envoie des photos, le devis part seul, sans appel."
+        "text": "Parce qu'on ne livre pas qu'un site : Groupe Solution est d'abord un éditeur de logiciels. On construit aussi ce qui tourne derrière — agents IA qui répondent aux clients, lecture automatique des documents, connexions entre vos outils, prévisions — conçu et intégré par la même équipe."
       }
     }, {
       "@type": "Question",
       "name": "Combien coûte la création d'un site internet à Montpellier ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nos sites vitrines démarrent à 250€. Pour un site avec réservation en ligne, devis automatique ou espace pro/particulier (comme Twenty Three Clean), le devis est sur-mesure selon les fonctionnalités."
+        "text": "Chaque projet est chiffré sur devis, gratuitement : le prix dépend du nombre de pages, des fonctionnalités (réservation, vente en ligne, automatisations, connexions à vos outils) et de ce que vous nous confiez. Vous recevez un devis détaillé avant tout engagement."
       }
     }, {
       "@type": "Question",
@@ -78,6 +85,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="montpellier.css">
+  <link rel="stylesheet" href="communes.css">
 </head>
 
 <body>
@@ -95,12 +103,13 @@
 
   <nav id="nav">
     <div class="container nav-content">
-      <a href="#" class="nav-logo"><img src="../Logo.svg" alt="GroupSolution" /></a>
+      <a href="https://www.groupsolution.fr/" class="nav-logo"><img src="../Logo.svg" alt="GroupSolution" /></a>
       <ul class="nav-links">
         <li><a href="#audit">Audit Gratuit</a></li>
         <li><a href="#solutions">Nos Services</a></li>
         <li><a href="#realisations">Réalisations</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="#communes">Communes</a></li>
         <li><a href="https://www.groupsolution.fr" class="nav-holding">Groupe Solution ↗</a></li>
       </ul>
       <div class="nav-actions">
@@ -112,7 +121,7 @@
     </div>
   </nav>
 
-  <section class="hero" id="hero" style="background-image: url('../photo1.jpg');">
+  <section class="hero gs-hero has-art" id="hero" style="background-image:url('../assets/communes/centre.jpg')">
     <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
@@ -182,18 +191,18 @@
 
       <div class="bulles-container">
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../photo7.jpg');"></div>
+          <div class="bulle-image gs-ill gs-ill-web"><svg class="icon"><use href="#i-globe"/></svg></div>
           <div class="bulle-content">
             <h4>Création de Sites Web</h4>
             <p>Site vitrine, réservation en ligne ou plateforme sur-mesure. Pensé mobile en premier, conforme (CGV, mentions légales).</p>
-            <div class="prix">Dès 250€</div>
-            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Rapide & Clé en main</div>
+            <div class="prix">Sur devis</div>
+            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Devis gratuit et détaillé</div>
             <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">En savoir plus</button>
           </div>
         </div>
 
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../photo2.jpg');"></div>
+          <div class="bulle-image gs-ill gs-ill-seo"><svg class="icon"><use href="#i-map-pin"/></svg></div>
           <div class="bulle-content">
             <h4>Référencement Local (SEO)</h4>
             <p>Fiche Google Business optimisée, référencement local, présence structurée — pour être trouvé par les clients de Montpellier et sa métropole.</p>
@@ -204,12 +213,12 @@
         </div>
 
         <div class="bulle reveal">
-          <div class="bulle-image" style="background-image: url('../photo3.jpg');"></div>
+          <div class="bulle-image gs-ill gs-ill-auto"><svg class="icon"><use href="#i-lightning"/></svg></div>
           <div class="bulle-content">
             <h4>Automatisation sur-mesure</h4>
-            <p>Devis automatiques, relances clients, prises de rendez-vous — le même principe que pour Twenty Three Clean, adapté à votre activité.</p>
+            <p>Agents IA, lecture automatique de documents, connexions entre vos outils, prévisions : les technologies les plus récentes, adaptées à votre activité.</p>
             <div class="prix">Sur devis</div>
-            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Gain de temps garanti</div>
+            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Du temps gagné au quotidien</div>
             <button onclick="openModal()" class="btn btn-primary bulle-cta" style="justify-content: center;">Automatiser mon activité</button>
           </div>
         </div>
@@ -220,38 +229,14 @@
   <section id="realisations" style="background: var(--gris-clair); padding: 80px 0;">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">
-          <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
-          Nos Références
-        </span>
+        <span class="section-tag">Conçu et codé par nos équipes</span>
         <h2>Livré, pas <span class="accent">promis</span></h2>
-        <p>Une réalisation à Montpellier même, et deux plateformes d'automatisation déployées à l'échelle nationale.</p>
+        <p>Trois plateformes conçues et opérées par Groupe Solution, en ligne aujourd'hui. La même ingénierie est au service de votre projet.</p>
       </div>
-
       <div class="rea-grid">
-        <a href="https://twentythreeclean.com/" target="_blank" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea1.jpg');"></div>
-          <div class="rea-content">
-            <h4>23 Twenty Three Clean</h4>
-            <p>Lavage auto à domicile à Montpellier — réservation en ligne et devis automatique par photo.</p>
-          </div>
-        </a>
-
-        <a href="https://solutionsrecrutement.fr/" target="_blank" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea2.jpg');"></div>
-          <div class="rea-content">
-            <h4>Solutions Recrutement</h4>
-            <p>Développement web avancé pour agence de recrutement.</p>
-          </div>
-        </a>
-
-        <a href="https://solutionalternance.fr/" target="_blank" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea3.jpg');"></div>
-          <div class="rea-content">
-            <h4>Solution Alternance</h4>
-            <p>Plateforme d'automatisation avec algorithme de matching par IA.</p>
-          </div>
-        </a>
+        <a href="https://solutionsrecrutement.fr/" target="_blank" rel="noopener" class="rea-card reveal"><div class="rea-img" style="background-image: url('../rea2.jpg');"></div><div class="rea-content"><h4>Solution Recrutement</h4><p>Plus de 565 000 offres, matching sémantique, chaque correspondance expliquée.</p></div></a>
+        <a href="https://solutionalternance.fr/" target="_blank" rel="noopener" class="rea-card reveal"><div class="rea-img" style="background-image: url('../rea3.jpg');"></div><div class="rea-content"><h4>Solution Alternance</h4><p>Chaque profil rapproché de plus de 200 000 offres d'alternance, par IA.</p></div></a>
+        <a href="https://aides-particuliers.fr/" target="_blank" rel="noopener" class="rea-card reveal"><div class="rea-img gs-ill gs-ill-seo" style="font:600 64px Georgia,serif;color:#0E7A5A">A</div><div class="rea-content"><h4>Aides Particuliers</h4><p>Un diagnostic qui identifie les aides publiques auxquelles un particulier a droit.</p></div></a>
       </div>
     </div>
   </section>
@@ -302,11 +287,11 @@
       <div class="faq">
         <div class="faq-item reveal">
           <div class="faq-q">Pourquoi vous plutôt qu'une agence 100% locale à Montpellier ?</div>
-          <div class="faq-a"><p>Parce qu'on ne livre pas qu'un site : on construit aussi ce qui tourne derrière. Pour Twenty Three Clean, le client envoie des photos de son véhicule et le devis part automatiquement — zéro appel pour chiffrer. C'est ce type de système qu'on construit, pas juste une vitrine.</p></div>
+          <div class="faq-a"><p>Parce qu'on ne livre pas qu'un site : Groupe Solution est d'abord un éditeur de logiciels. On construit aussi ce qui tourne derrière — agents IA qui répondent aux clients, lecture automatique des documents, connexions entre vos outils, prévisions — conçu et intégré par la même équipe.</p></div>
         </div>
         <div class="faq-item reveal">
           <div class="faq-q">Combien coûte un site internet à Montpellier ?</div>
-          <div class="faq-a"><p>Nos sites vitrines démarrent à <strong>250€</strong>. Pour un site avec réservation en ligne ou devis automatique, le tarif est sur-mesure selon les fonctionnalités.</p></div>
+          <div class="faq-a"><p>Chaque projet est chiffré sur devis, gratuitement : le prix dépend du nombre de pages, des fonctionnalités (réservation, vente en ligne, automatisations, connexions à vos outils) et de ce que vous nous confiez. Vous recevez un devis détaillé avant tout engagement.</p></div>
         </div>
         <div class="faq-item reveal">
           <div class="faq-q">Vous travaillez avec des artisans et indépendants ?</div>
@@ -377,6 +362,59 @@
     </div>
   </div>
 
+  <!-- COMMUNES:START (généré par zones/generate-montpellier.mjs — ne pas éditer à la main) -->
+  <section id="communes" class="gs-map-sec" style="background: var(--gris-clair);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-map-pin"/></svg> 89 communes couvertes</span>
+        <h2>Votre commune a <span class="accent">sa propre page</span></h2>
+        <p>Les 30 communes de la Métropole, le bassin de Thau, le littoral, le Pic Saint-Loup, la Petite Camargue, et jusqu'à Nîmes, Béziers, Agde et les Cévennes : chaque page parle de votre territoire, de vos clients et de ce qui marche chez vous.</p>
+      </div>
+      <div class="gm-wrap reveal">
+        <svg class="gm-map" viewBox="0 0 760 600" role="img" aria-label="Carte des communes desservies autour de Montpellier">
+  <text class="gm-sea" x="734" y="590" text-anchor="end">Mer Méditerranée</text>
+  <a href="site-internet-montpellier.html" class="gm-hub"><title>Montpellier</title><circle cx="387" cy="347" r="11"/><text x="402" y="352">Montpellier</text></a>
+  <a href="site-internet-lattes.html" class="gm-pt is-metro"><title>Lattes (34970)</title><circle cx="399" cy="375" r="5"/></a><a href="site-internet-perols.html" class="gm-pt is-metro"><title>Pérols (34470)</title><circle cx="422" cy="376" r="5"/></a><a href="site-internet-villeneuve-les-maguelone.html" class="gm-pt is-metro"><title>Villeneuve-lès-Maguelone (34750)</title><circle cx="380" cy="396" r="5"/></a><a href="site-internet-saint-jean-de-vedas.html" class="gm-pt is-metro"><title>Saint-Jean-de-Védas (34430)</title><circle cx="366" cy="369" r="5"/></a><a href="site-internet-fabregues.html" class="gm-pt is-metro"><title>Fabrègues (34690)</title><circle cx="342" cy="385" r="5"/></a><a href="site-internet-saussan.html" class="gm-pt is-metro"><title>Saussan (34570)</title><circle cx="340" cy="372" r="5"/></a><a href="site-internet-pignan.html" class="gm-pt is-metro"><title>Pignan (34570)</title><circle cx="335" cy="364" r="5"/></a><a href="site-internet-laverune.html" class="gm-pt is-metro"><title>Lavérune (34880)</title><circle cx="355" cy="360" r="5"/></a><a href="site-internet-cournonterral.html" class="gm-pt is-metro"><title>Cournonterral (34660)</title><circle cx="316" cy="380" r="5"/></a><a href="site-internet-cournonsec.html" class="gm-pt is-metro"><title>Cournonsec (34660)</title><circle cx="309" cy="386" r="5"/></a><a href="site-internet-murviel-les-montpellier.html" class="gm-pt is-metro"><title>Murviel-lès-Montpellier (34570)</title><circle cx="324" cy="351" r="5"/></a><a href="site-internet-saint-georges-d-orques.html" class="gm-pt is-metro"><title>Saint-Georges-d'Orques (34680)</title><circle cx="343" cy="347" r="5"/></a><a href="site-internet-juvignac.html" class="gm-pt is-metro"><title>Juvignac (34990)</title><circle cx="357" cy="345" r="5"/></a><a href="site-internet-grabels.html" class="gm-pt is-metro"><title>Grabels (34790)</title><circle cx="351" cy="324" r="5"/></a><a href="site-internet-castelnau-le-lez.html" class="gm-pt is-metro"><title>Castelnau-le-Lez (34170)</title><circle cx="398" cy="334" r="5"/></a><a href="site-internet-clapiers.html" class="gm-pt is-metro"><title>Clapiers (34830)</title><circle cx="392" cy="319" r="5"/></a><a href="site-internet-jacou.html" class="gm-pt is-metro"><title>Jacou (34830)</title><circle cx="403" cy="316" r="5"/></a><a href="site-internet-le-cres.html" class="gm-pt is-metro"><title>Le Crès (34920)</title><circle cx="415" cy="324" r="5"/></a><a href="site-internet-teyran.html" class="gm-pt"><title>Teyran (34820)</title><circle cx="410" cy="301" r="5"/></a><a href="site-internet-assas.html" class="gm-pt"><title>Assas (34820)</title><circle cx="397" cy="290" r="5"/></a><a href="site-internet-prades-le-lez.html" class="gm-pt is-metro"><title>Prades-le-Lez (34730)</title><circle cx="381" cy="293" r="5"/></a><a href="site-internet-montferrier-sur-lez.html" class="gm-pt is-metro"><title>Montferrier-sur-Lez (34980)</title><circle cx="378" cy="312" r="5"/></a><a href="site-internet-saint-clement-de-riviere.html" class="gm-pt"><title>Saint-Clément-de-Rivière (34980)</title><circle cx="371" cy="302" r="5"/></a><a href="site-internet-saint-gely-du-fesc.html" class="gm-pt"><title>Saint-Gély-du-Fesc (34980)</title><circle cx="355" cy="296" r="5"/></a><a href="site-internet-vendargues.html" class="gm-pt is-metro"><title>Vendargues (34740)</title><circle cx="429" cy="319" r="5"/></a><a href="site-internet-castries.html" class="gm-pt is-metro"><title>Castries (34160)</title><circle cx="436" cy="305" r="5"/></a><a href="site-internet-baillargues.html" class="gm-pt is-metro"><title>Baillargues (34670)</title><circle cx="448" cy="315" r="5"/></a><a href="site-internet-saint-bres.html" class="gm-pt is-metro"><title>Saint-Brès (34670)</title><circle cx="457" cy="312" r="5"/></a><a href="site-internet-saint-genies-des-mourgues.html" class="gm-pt is-metro"><title>Saint-Geniès-des-Mourgues (34160)</title><circle cx="458" cy="294" r="5"/></a><a href="site-internet-sussargues.html" class="gm-pt is-metro"><title>Sussargues (34160)</title><circle cx="444" cy="284" r="5"/></a><a href="site-internet-saint-drezery.html" class="gm-pt is-metro"><title>Saint-Drézéry (34160)</title><circle cx="432" cy="273" r="5"/></a><a href="site-internet-montaud.html" class="gm-pt is-metro"><title>Montaud (34160)</title><circle cx="423" cy="262" r="5"/></a><a href="site-internet-beaulieu.html" class="gm-pt is-metro"><title>Beaulieu (34160)</title><circle cx="452" cy="274" r="5"/></a><a href="site-internet-restinclieres.html" class="gm-pt is-metro"><title>Restinclières (34160)</title><circle cx="458" cy="277" r="5"/></a><a href="site-internet-mauguio-carnon.html" class="gm-pt"><title>Mauguio-Carnon (34130)</title><circle cx="446" cy="344" r="5"/></a><a href="site-internet-saint-aunes.html" class="gm-pt"><title>Saint-Aunès (34130)</title><circle cx="427" cy="329" r="5"/></a><a href="site-internet-palavas-les-flots.html" class="gm-pt"><title>Palavas-les-Flots (34250)</title><circle cx="411" cy="399" r="5"/><text x="420" y="403" text-anchor="start">Palavas-les-Flots</text></a><a href="site-internet-la-grande-motte.html" class="gm-pt"><title>La Grande-Motte (34280)</title><circle cx="481" cy="379" r="5"/></a><a href="site-internet-lunel.html" class="gm-pt"><title>Lunel (34400)</title><circle cx="504" cy="307" r="5"/><text x="513" y="311" text-anchor="start">Lunel</text></a><a href="site-internet-gigean.html" class="gm-pt"><title>Gigean (34770)</title><circle cx="312" cy="417" r="5"/></a><a href="site-internet-montbazin.html" class="gm-pt"><title>Montbazin (34560)</title><circle cx="305" cy="407" r="5"/></a><a href="site-internet-poussan.html" class="gm-pt"><title>Poussan (34560)</title><circle cx="294" cy="424" r="5"/></a><a href="site-internet-villeveyrac.html" class="gm-pt"><title>Villeveyrac (34560)</title><circle cx="265" cy="416" r="5"/><text x="274" y="420" text-anchor="start">Villeveyrac</text></a><a href="site-internet-meze.html" class="gm-pt"><title>Mèze (34140)</title><circle cx="264" cy="463" r="5"/><text x="273" y="467" text-anchor="start">Mèze</text></a><a href="site-internet-bouzigues.html" class="gm-pt"><title>Bouzigues (34140)</title><circle cx="287" cy="449" r="5"/></a><a href="site-internet-loupian.html" class="gm-pt"><title>Loupian (34140)</title><circle cx="268" cy="449" r="5"/></a><a href="site-internet-balaruc-les-bains.html" class="gm-pt"><title>Balaruc-les-Bains (34540)</title><circle cx="297" cy="453" r="5"/></a><a href="site-internet-frontignan.html" class="gm-pt"><title>Frontignan (34110)</title><circle cx="332" cy="449" r="5"/></a><a href="site-internet-sete.html" class="gm-pt"><title>Sète (34200)</title><circle cx="305" cy="477" r="5"/><text x="314" y="481" text-anchor="start">Sète</text></a><a href="site-internet-saint-mathieu-de-treviers.html" class="gm-pt"><title>Saint-Mathieu-de-Tréviers (34270)</title><circle cx="379" cy="249" r="5"/></a><a href="site-internet-gignac.html" class="gm-pt"><title>Gignac (34150)</title><circle cx="239" cy="322" r="5"/><text x="248" y="326" text-anchor="start">Gignac</text></a><a href="site-internet-vic-la-gardiole.html" class="gm-pt"><title>Vic-la-Gardiole (34110)</title><circle cx="351" cy="423" r="5"/></a><a href="site-internet-mireval.html" class="gm-pt"><title>Mireval (34110)</title><circle cx="353" cy="412" r="5"/></a><a href="site-internet-marseillan.html" class="gm-pt"><title>Marseillan (34340)</title><circle cx="229" cy="507" r="5"/></a><a href="site-internet-agde.html" class="gm-pt"><title>Agde (34300)</title><circle cx="205" cy="535" r="5"/><text x="214" y="539" text-anchor="start">Agde</text></a><a href="site-internet-pezenas.html" class="gm-pt"><title>Pézenas (34120)</title><circle cx="181" cy="442" r="5"/><text x="190" y="446" text-anchor="start">Pézenas</text></a><a href="site-internet-beziers.html" class="gm-pt"><title>Béziers (34500)</title><circle cx="88" cy="514" r="5"/><text x="97" y="518" text-anchor="start">Béziers</text></a><a href="site-internet-clermont-l-herault.html" class="gm-pt"><title>Clermont-l'Hérault (34800)</title><circle cx="185" cy="337" r="5"/><text x="194" y="341" text-anchor="start">Clermont-l'Hérault</text></a><a href="site-internet-lodeve.html" class="gm-pt"><title>Lodève (34700)</title><circle cx="134" cy="272" r="5"/><text x="143" y="276" text-anchor="start">Lodève</text></a><a href="site-internet-aniane.html" class="gm-pt"><title>Aniane (34150)</title><circle cx="255" cy="300" r="5"/></a><a href="site-internet-montarnaud.html" class="gm-pt"><title>Montarnaud (34570)</title><circle cx="305" cy="325" r="5"/></a><a href="site-internet-les-matelles.html" class="gm-pt"><title>Les Matelles (34270)</title><circle cx="358" cy="274" r="5"/></a><a href="site-internet-combaillaux.html" class="gm-pt"><title>Combaillaux (34980)</title><circle cx="337" cy="309" r="5"/></a><a href="site-internet-vailhauques.html" class="gm-pt"><title>Vailhauquès (34570)</title><circle cx="316" cy="309" r="5"/></a><a href="site-internet-saint-martin-de-londres.html" class="gm-pt"><title>Saint-Martin-de-Londres (34380)</title><circle cx="320" cy="235" r="5"/></a><a href="site-internet-ganges.html" class="gm-pt"><title>Ganges (34190)</title><circle cx="310" cy="145" r="5"/><text x="319" y="149" text-anchor="start">Ganges</text></a><a href="site-internet-mudaison.html" class="gm-pt"><title>Mudaison (34130)</title><circle cx="456" cy="333" r="5"/></a><a href="site-internet-lansargues.html" class="gm-pt"><title>Lansargues (34130)</title><circle cx="476" cy="322" r="5"/></a><a href="site-internet-candillargues.html" class="gm-pt"><title>Candillargues (34130)</title><circle cx="474" cy="343" r="5"/></a><a href="site-internet-lunel-viel.html" class="gm-pt"><title>Lunel-Viel (34400)</title><circle cx="485" cy="305" r="5"/></a><a href="site-internet-marsillargues.html" class="gm-pt"><title>Marsillargues (34590)</title><circle cx="523" cy="314" r="5"/></a><a href="site-internet-aigues-mortes.html" class="gm-pt"><title>Aigues-Mortes (30220)</title><circle cx="529" cy="375" r="5"/><text x="538" y="379" text-anchor="start">Aigues-Mortes</text></a><a href="site-internet-le-grau-du-roi.html" class="gm-pt"><title>Le Grau-du-Roi (30240)</title><circle cx="504" cy="394" r="5"/><text x="513" y="398" text-anchor="start">Le Grau-du-Roi</text></a><a href="site-internet-sommieres.html" class="gm-pt"><title>Sommières (30250)</title><circle cx="483" cy="239" r="5"/><text x="492" y="243" text-anchor="start">Sommières</text></a><a href="site-internet-nimes.html" class="gm-pt"><title>Nîmes (30000)</title><circle cx="605" cy="206" r="5"/><text x="614" y="210" text-anchor="start">Nîmes</text></a><a href="site-internet-serignan.html" class="gm-pt"><title>Sérignan (34410)</title><circle cx="115" cy="554" r="5"/></a><a href="site-internet-valras-plage.html" class="gm-pt"><title>Valras-Plage (34350)</title><circle cx="122" cy="574" r="5"/></a><a href="site-internet-vias.html" class="gm-pt"><title>Vias (34450)</title><circle cx="179" cy="534" r="5"/></a><a href="site-internet-portiragnes.html" class="gm-pt"><title>Portiragnes (34420)</title><circle cx="142" cy="539" r="5"/></a><a href="site-internet-pinet.html" class="gm-pt"><title>Pinet (34850)</title><circle cx="221" cy="476" r="5"/></a><a href="site-internet-saint-guilhem-le-desert.html" class="gm-pt"><title>Saint-Guilhem-le-Désert (34150)</title><circle cx="239" cy="271" r="5"/></a><a href="site-internet-saint-jean-de-fos.html" class="gm-pt"><title>Saint-Jean-de-Fos (34150)</title><circle cx="240" cy="291" r="5"/></a><a href="site-internet-vauvert.html" class="gm-pt"><title>Vauvert (30600)</title><circle cx="567" cy="295" r="5"/></a><a href="site-internet-saint-gilles.html" class="gm-pt"><title>Saint-Gilles (30800)</title><circle cx="638" cy="305" r="5"/></a><a href="site-internet-beaucaire.html" class="gm-pt"><title>Beaucaire (30300)</title><circle cx="734" cy="224" r="5"/></a><a href="site-internet-uzes.html" class="gm-pt"><title>Uzès (30700)</title><circle cx="632" cy="97" r="5"/></a><a href="site-internet-ales.html" class="gm-pt"><title>Alès (30100)</title><circle cx="479" cy="26" r="5"/></a><a href="site-internet-vergeze.html" class="gm-pt"><title>Vergèze (30310)</title><circle cx="543" cy="265" r="5"/></a><a href="site-internet-lamalou-les-bains.html" class="gm-pt"><title>Lamalou-les-Bains (34240)</title><circle cx="26" cy="355" r="5"/></a>
+</svg>
+        <div class="gm-legend"><span><i style="background:#262626"></i>Montpellier (base)</span><span><i style="background:#9ca3af"></i>Métropole</span><span><i style="background:#d1d5db"></i>Alentours</span></div>
+      </div>
+      <div class="gm-list">
+    <div><h4>Nord de la métropole</h4><ul><li><a href="site-internet-clapiers.html">Clapiers</a></li><li><a href="site-internet-jacou.html">Jacou</a></li><li><a href="site-internet-montferrier-sur-lez.html">Montferrier-sur-Lez</a></li><li><a href="site-internet-prades-le-lez.html">Prades-le-Lez</a></li></ul></div>
+    <div><h4>Nord-est de la métropole</h4><ul><li><a href="site-internet-beaulieu.html">Beaulieu</a></li><li><a href="site-internet-castelnau-le-lez.html">Castelnau-le-Lez</a></li><li><a href="site-internet-montaud.html">Montaud</a></li><li><a href="site-internet-restinclieres.html">Restinclières</a></li><li><a href="site-internet-saint-drezery.html">Saint-Drézéry</a></li></ul></div>
+    <div><h4>Nord-ouest de la métropole</h4><ul><li><a href="site-internet-grabels.html">Grabels</a></li></ul></div>
+    <div><h4>Est de la métropole</h4><ul><li><a href="site-internet-baillargues.html">Baillargues</a></li><li><a href="site-internet-castries.html">Castries</a></li><li><a href="site-internet-le-cres.html">Le Crès</a></li><li><a href="site-internet-saint-bres.html">Saint-Brès</a></li><li><a href="site-internet-saint-genies-des-mourgues.html">Saint-Geniès-des-Mourgues</a></li><li><a href="site-internet-sussargues.html">Sussargues</a></li><li><a href="site-internet-vendargues.html">Vendargues</a></li></ul></div>
+    <div><h4>Ouest de la métropole</h4><ul><li><a href="site-internet-cournonsec.html">Cournonsec</a></li><li><a href="site-internet-cournonterral.html">Cournonterral</a></li><li><a href="site-internet-fabregues.html">Fabrègues</a></li><li><a href="site-internet-juvignac.html">Juvignac</a></li><li><a href="site-internet-laverune.html">Lavérune</a></li><li><a href="site-internet-murviel-les-montpellier.html">Murviel-lès-Montpellier</a></li><li><a href="site-internet-pignan.html">Pignan</a></li><li><a href="site-internet-saint-georges-d-orques.html">Saint-Georges-d'Orques</a></li><li><a href="site-internet-saint-jean-de-vedas.html">Saint-Jean-de-Védas</a></li><li><a href="site-internet-saussan.html">Saussan</a></li></ul></div>
+    <div><h4>Sud de la métropole</h4><ul><li><a href="site-internet-lattes.html">Lattes</a></li><li><a href="site-internet-perols.html">Pérols</a></li><li><a href="site-internet-villeneuve-les-maguelone.html">Villeneuve-lès-Maguelone</a></li></ul></div>
+    <div><h4>Nord de Montpellier</h4><ul><li><a href="site-internet-assas.html">Assas</a></li><li><a href="site-internet-saint-clement-de-riviere.html">Saint-Clément-de-Rivière</a></li><li><a href="site-internet-saint-gely-du-fesc.html">Saint-Gély-du-Fesc</a></li><li><a href="site-internet-teyran.html">Teyran</a></li></ul></div>
+    <div><h4>Pays de l'Or</h4><ul><li><a href="site-internet-candillargues.html">Candillargues</a></li><li><a href="site-internet-lansargues.html">Lansargues</a></li><li><a href="site-internet-mauguio-carnon.html">Mauguio-Carnon</a></li><li><a href="site-internet-mudaison.html">Mudaison</a></li><li><a href="site-internet-saint-aunes.html">Saint-Aunès</a></li></ul></div>
+    <div><h4>Littoral</h4><ul><li><a href="site-internet-la-grande-motte.html">La Grande-Motte</a></li><li><a href="site-internet-palavas-les-flots.html">Palavas-les-Flots</a></li></ul></div>
+    <div><h4>Pays de Lunel</h4><ul><li><a href="site-internet-lunel.html">Lunel</a></li><li><a href="site-internet-lunel-viel.html">Lunel-Viel</a></li><li><a href="site-internet-marsillargues.html">Marsillargues</a></li></ul></div>
+    <div><h4>Petite Camargue</h4><ul><li><a href="site-internet-aigues-mortes.html">Aigues-Mortes</a></li><li><a href="site-internet-le-grau-du-roi.html">Le Grau-du-Roi</a></li><li><a href="site-internet-saint-gilles.html">Saint-Gilles</a></li><li><a href="site-internet-vauvert.html">Vauvert</a></li></ul></div>
+    <div><h4>Vidourle</h4><ul><li><a href="site-internet-sommieres.html">Sommières</a></li></ul></div>
+    <div><h4>Nîmes</h4><ul><li><a href="site-internet-nimes.html">Nîmes</a></li><li><a href="site-internet-vergeze.html">Vergèze</a></li></ul></div>
+    <div><h4>Bassin de Thau</h4><ul><li><a href="site-internet-balaruc-les-bains.html">Balaruc-les-Bains</a></li><li><a href="site-internet-bouzigues.html">Bouzigues</a></li><li><a href="site-internet-frontignan.html">Frontignan</a></li><li><a href="site-internet-gigean.html">Gigean</a></li><li><a href="site-internet-loupian.html">Loupian</a></li><li><a href="site-internet-marseillan.html">Marseillan</a></li><li><a href="site-internet-meze.html">Mèze</a></li><li><a href="site-internet-mireval.html">Mireval</a></li><li><a href="site-internet-montbazin.html">Montbazin</a></li><li><a href="site-internet-pinet.html">Pinet</a></li><li><a href="site-internet-poussan.html">Poussan</a></li><li><a href="site-internet-sete.html">Sète</a></li><li><a href="site-internet-vic-la-gardiole.html">Vic-la-Gardiole</a></li><li><a href="site-internet-villeveyrac.html">Villeveyrac</a></li></ul></div>
+    <div><h4>Agde &amp; Pézenas</h4><ul><li><a href="site-internet-agde.html">Agde</a></li><li><a href="site-internet-pezenas.html">Pézenas</a></li><li><a href="site-internet-vias.html">Vias</a></li></ul></div>
+    <div><h4>Biterrois</h4><ul><li><a href="site-internet-beziers.html">Béziers</a></li><li><a href="site-internet-portiragnes.html">Portiragnes</a></li><li><a href="site-internet-serignan.html">Sérignan</a></li><li><a href="site-internet-valras-plage.html">Valras-Plage</a></li></ul></div>
+    <div><h4>Pic Saint-Loup</h4><ul><li><a href="site-internet-combaillaux.html">Combaillaux</a></li><li><a href="site-internet-les-matelles.html">Les Matelles</a></li><li><a href="site-internet-saint-martin-de-londres.html">Saint-Martin-de-Londres</a></li><li><a href="site-internet-saint-mathieu-de-treviers.html">Saint-Mathieu-de-Tréviers</a></li><li><a href="site-internet-vailhauques.html">Vailhauquès</a></li></ul></div>
+    <div><h4>Cévennes héraultaises</h4><ul><li><a href="site-internet-ganges.html">Ganges</a></li></ul></div>
+    <div><h4>Vallée de l'Hérault</h4><ul><li><a href="site-internet-aniane.html">Aniane</a></li><li><a href="site-internet-gignac.html">Gignac</a></li><li><a href="site-internet-montarnaud.html">Montarnaud</a></li><li><a href="site-internet-saint-guilhem-le-desert.html">Saint-Guilhem-le-Désert</a></li><li><a href="site-internet-saint-jean-de-fos.html">Saint-Jean-de-Fos</a></li></ul></div>
+    <div><h4>Cœur d'Hérault</h4><ul><li><a href="site-internet-clermont-l-herault.html">Clermont-l'Hérault</a></li><li><a href="site-internet-lodeve.html">Lodève</a></li></ul></div>
+    <div><h4>Haut-Languedoc</h4><ul><li><a href="site-internet-lamalou-les-bains.html">Lamalou-les-Bains</a></li></ul></div>
+    <div><h4>Rhône gardois</h4><ul><li><a href="site-internet-beaucaire.html">Beaucaire</a></li></ul></div>
+    <div><h4>Uzège</h4><ul><li><a href="site-internet-uzes.html">Uzès</a></li></ul></div>
+    <div><h4>Cévennes gardoises</h4><ul><li><a href="site-internet-ales.html">Alès</a></li></ul></div>
+  </div>
+      <div class="gm-list">
+    <div><h4>Quartiers de Montpellier</h4><ul><li><a href="site-internet-montpellier-centre.html">Montpellier Centre</a></li><li><a href="site-internet-montpellier-port-marianne.html">Port Marianne</a></li><li><a href="site-internet-montpellier-hopitaux-facultes.html">Hôpitaux-Facultés</a></li><li><a href="site-internet-montpellier-mosson.html">Mosson</a></li><li><a href="site-internet-montpellier-cevennes.html">Les Cévennes</a></li><li><a href="site-internet-montpellier-croix-d-argent.html">Croix d'Argent</a></li><li><a href="site-internet-montpellier-pres-d-arenes.html">Près d'Arènes</a></li></ul></div>
+    <div class="gm-wide"><h4>Par métier</h4><ul><li><a href="site-internet-restaurant-montpellier.html">Restaurant</a></li><li><a href="site-internet-artisan-montpellier.html">Artisan du bâtiment</a></li><li><a href="site-internet-professionnel-de-sante-montpellier.html">Professionnel de santé</a></li><li><a href="site-internet-avocat-montpellier.html">Avocat</a></li><li><a href="site-internet-expert-comptable-montpellier.html">Cabinet comptable</a></li><li><a href="site-internet-agence-immobiliere-montpellier.html">Agence immobilière</a></li><li><a href="site-internet-coiffeur-esthetique-montpellier.html">Salon de coiffure ou institut</a></li><li><a href="site-internet-coach-salle-de-sport-montpellier.html">Coach sportif ou salle de sport</a></li><li><a href="site-internet-hebergement-gite-montpellier.html">Hébergement</a></li><li><a href="site-internet-domaine-viticole-montpellier.html">Domaine viticole</a></li><li><a href="site-internet-commerce-boutique-montpellier.html">Commerce</a></li><li><a href="site-internet-garage-automobile-montpellier.html">Garage automobile</a></li><li><a href="site-internet-organisme-de-formation-montpellier.html">Organisme de formation</a></li><li><a href="site-internet-services-a-domicile-montpellier.html">Services à domicile</a></li></ul></div>
+    <div><h4>Guides pratiques</h4><ul><li><a href="guides/prix-site-internet-montpellier.html">Prix d’un site internet</a></li><li><a href="guides/apparaitre-google-maps-montpellier.html">Apparaître sur Google Maps</a></li><li><a href="guides/automatiser-devis-artisan.html">Automatiser ses devis</a></li><li><a href="guides/obligations-legales-site-internet.html">Obligations légales d’un site</a></li><li><a href="guides/relances-factures-impayees-automatiques.html">Relancer les impayés</a></li><li><a href="guides/choisir-agence-web-montpellier.html">Choisir son agence web</a></li></ul></div>
+    <div><h4>Outils gratuits</h4><ul><li><a href="../outils/configurateur-site-internet.html">Configurateur de projet</a></li><li><a href="../outils/test-visibilite-google.html">Test de visibilité Google</a></li><li><a href="../outils/calculateur-automatisation.html">Calculateur d’automatisation</a></li></ul></div>
+    <div><h4>Lab &amp; innovation</h4><ul><li><a href="../lab/">Radar technologique</a></li><li><a href="../lab/api.html">API &amp; données en direct</a></li><li><a href="../lab/veille/">Veille IA</a></li></ul></div>
+  </div>
+    </div>
+  </section>
+  <!-- COMMUNES:END -->
+
   <section class="groupe-band" id="groupe">
     <div class="container">
       <div class="groupe-inner reveal">
@@ -410,9 +448,12 @@
         <div class="footer-links">
           <h4>Zones couvertes</h4>
           <ul>
-            <li><a href="lattes.html">Lattes</a></li>
-            <li><a href="perols.html">Pérols</a></li>
-            <li><a href="castelnau-le-lez.html">Castelnau-le-Lez</a></li>
+            <li><a href="site-internet-lattes.html">Lattes</a></li>
+            <li><a href="site-internet-perols.html">Pérols</a></li>
+            <li><a href="site-internet-castelnau-le-lez.html">Castelnau-le-Lez</a></li>
+            <li><a href="site-internet-vendargues.html">Vendargues</a></li>
+            <li><a href="site-internet-meze.html">Mèze</a></li>
+            <li><a href="#communes">Toutes les communes</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -450,15 +491,6 @@
       });
     });
 
-    const hero = document.querySelector('.hero');
-    const photos = ['../photo1.jpg', '../photo3.jpg', '../photo4.jpg', '../photo2.jpg'];
-    let currentPhotoIndex = 0;
-    photos.forEach(photo => { const img = new Image(); img.src = photo; });
-    function changeHeroBackground() {
-      currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
-      hero.style.backgroundImage = `url('${photos[currentPhotoIndex]}')`;
-    }
-    setInterval(changeHeroBackground, 5000);
 
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
@@ -493,6 +525,7 @@
       });
     }
   </script>
+  <div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><button class="s2" type="button" onclick="openModal()">Parler de mon projet</button></div>
   <script src="/analytics.js" defer></script>
 </body>
 </html>

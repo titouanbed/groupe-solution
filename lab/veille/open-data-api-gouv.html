@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open data et API publiques | Groupe Solution</title>
+  <meta name="description" content="Recherche d’entreprises, Base Adresse Nationale, DVF, Géorisques, jours fériés : les API publiques gratuites pour vérifier, normaliser et anticiper." />
+  <link rel="canonical" href="https://www.groupsolution.fr/lab/veille/open-data-api-gouv.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Open data et API publiques | Groupe Solution" />
+  <meta property="og:description" content="Recherche d’entreprises, Base Adresse Nationale, DVF, Géorisques, jours fériés : les API publiques gratuites pour vérifier, normaliser et anticiper." />
+  <meta property="og:url" content="https://www.groupsolution.fr/lab/veille/open-data-api-gouv.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta property="article:published_time" content="2026-09-29" />
+  <meta property="article:author" content="Titouan Bedos" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Open data et API publiques | Groupe Solution" />
+  <meta name="twitter:description" content="Recherche d’entreprises, Base Adresse Nationale, DVF, Géorisques, jours fériés : les API publiques gratuites pour vérifier, normaliser et anticiper." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/holding-local.css" />
+  <style>
+.art{padding:0 0 30px}
+.col{max-width:760px;margin:0 auto}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.crumbs li+li::before{content:"›";margin-right:6px;color:var(--line2)}
+.artHead{padding:28px 0 8px}
+.artHead h1{font-size:clamp(30px,4.4vw,48px);line-height:1.1;margin-top:18px;overflow-wrap:break-word}
+.chapo{font-size:clamp(17px,2vw,19.5px);color:var(--secondary);line-height:1.7;margin-top:20px}
+.meta{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:18px}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin-top:30px}
+.toc b{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.toc ol{margin:10px 0 0 20px;font-size:15px;line-height:1.9}
+.toc a{color:var(--ink);font-weight:600}.toc a:hover{color:var(--acc)}
+.prose{font-size:17px;line-height:1.8;color:#2B2924;overflow-wrap:break-word}
+.prose h2{font-size:clamp(25px,3vw,33px);line-height:1.18;margin:54px 0 16px;scroll-margin-top:90px}
+.prose h3{font-size:clamp(19px,2.2vw,22px);font-weight:600;line-height:1.3;margin:32px 0 10px}
+.prose p{margin:0 0 18px}
+.prose ul,.prose ol{margin:0 0 22px 22px}
+.prose li{margin-bottom:9px;padding-left:2px}
+.prose strong{color:var(--ink)}
+.prose a{color:var(--acc-d);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.prose code{font-size:.86em;background:var(--olive-soft);color:var(--olive2);padding:2px 7px;border-radius:6px;word-break:break-all}
+.note{background:var(--olive-soft);border-left:4px solid var(--olive);border-radius:0 var(--r-s) var(--r-s) 0;padding:18px 22px;margin:26px 0}
+.note p{margin:0}
+.note.warn{background:var(--amber-soft);border-left-color:var(--amber)}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-s);background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px;line-height:1.55}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tr:last-child td{border-bottom:0}
+.artFaq{margin-top:54px}
+.artFaq h2{font-size:clamp(25px,3vw,33px);margin-bottom:20px}
+.sources{margin-top:48px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:24px 28px}
+.sources h2{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.sources ul{margin:12px 0 0 20px;font-size:15px;line-height:1.7;color:var(--secondary)}
+.sources p{font-size:13.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.chez{margin-top:30px;background:var(--ink);color:#fff;border-radius:var(--r-l);padding:clamp(24px,4vw,36px)}
+.chez h2{color:#fff;font-size:clamp(24px,3vw,30px)}
+.chez p{color:#CFCBC0;margin-top:12px;font-size:16px;line-height:1.7}
+.chez .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chez .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3)}.chez .btn.ghost:hover{border-color:#fff}
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-l)}
+.card .cat{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--olive2);background:var(--olive-soft);padding:5px 11px;border-radius:999px}
+.card h3{font-size:20px;font-weight:600;line-height:1.25;margin-top:14px}
+.card p{font-size:14.5px;color:var(--secondary);margin-top:10px;line-height:1.6;flex:1}
+.card .rt{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+.intro p{font-size:16.5px;color:var(--secondary);line-height:1.75;margin-top:14px}
+.watch{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s)}
+.watch h3{font-size:19px;font-weight:600}
+.watch ul{list-style:none;margin-top:12px;display:grid;gap:9px;font-size:14.5px;color:var(--secondary)}
+.watch li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--olive);margin-right:10px;vertical-align:1px}
+@media(max-width:960px){.related,.intro{grid-template-columns:1fr}}
+@media(max-width:600px){.toc{padding:18px 20px}.prose{font-size:16.5px}.cards{grid-template-columns:1fr}.chez .btn{width:100%}}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://www.groupsolution.fr/lab/veille/open-data-api-gouv.html#article",
+      "headline": "L’open data public au service des entreprises : les API à connaître",
+      "description": "Recherche d’entreprises, Base Adresse Nationale, DVF, Géorisques, jours fériés : les API publiques gratuites pour vérifier, normaliser et anticiper.",
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "inLanguage": "fr-FR",
+      "mainEntityOfPage": "https://www.groupsolution.fr/lab/veille/open-data-api-gouv.html",
+      "image": "https://www.groupsolution.fr/assets/visuel-solutions.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Titouan Bedos",
+        "jobTitle": "Fondateur",
+        "worksFor": {
+          "@id": "https://www.groupsolution.fr/#organization"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.groupsolution.fr/#organization",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.groupsolution.fr/Logo.svg"
+        },
+        "telephone": "+33782298559",
+        "email": "contact@groupsolution.fr"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Open data"
+        },
+        {
+          "@type": "Thing",
+          "name": "API publiques"
+        },
+        {
+          "@type": "Thing",
+          "name": "SIRENE"
+        },
+        {
+          "@type": "Thing",
+          "name": "Base Adresse Nationale"
+        },
+        {
+          "@type": "Thing",
+          "name": "DVF"
+        },
+        {
+          "@type": "Thing",
+          "name": "Géorisques"
+        }
+      ],
+      "articleSection": "API & données",
+      "wordCount": 1233
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lab",
+          "item": "https://www.groupsolution.fr/lab/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Veille",
+          "item": "https://www.groupsolution.fr/lab/veille/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "L’open data public au service des entreprises : les API à connaître",
+          "item": "https://www.groupsolution.fr/lab/veille/open-data-api-gouv.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.groupsolution.fr/lab/veille/open-data-api-gouv.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Ces API sont-elles vraiment gratuites ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les API citées ici sont proposées gratuitement par des services publics, avec des limites de débit. Certaines demandent une inscription pour des volumes importants. Vérifiez les conditions de chaque service sur api.gouv.fr ou data.gouv.fr."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puis-je utiliser ces données dans un produit commercial ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En général oui : la plupart sont sous Licence Ouverte Etalab 2.0, qui autorise la réutilisation commerciale avec mention de la source. Certaines données, comme DVF, ont des conditions particulières, notamment l’interdiction de réidentifier les personnes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi une entreprise n’apparaît-elle pas dans la recherche ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Elle peut être très récente, avoir cessé son activité, ou relever d’une diffusion restreinte : certaines personnes physiques demandent que leurs données ne soient pas diffusées. Il faut respecter ce choix."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Les données DVF couvrent-elles toute la France ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. L’Alsace-Moselle (Bas-Rhin, Haut-Rhin, Moselle) et Mayotte ne sont pas couvertes. Les données portent sur les dernières années et sont mises à jour périodiquement par la DGFiP."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="../../index.html" aria-label="Groupe Solution — accueil"><img src="../../Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links" aria-label="Navigation principale">
+    <a href="./">Veille</a>
+    <a href="../api.html">API &amp; données</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../outils/">Outils</a>
+    <a class="cta" href="#contact">Discutons 10 min</a>
+  </nav>
+</div></header>
+<main>
+  <article class="art"><div class="wrap"><div class="col">
+    <nav class="crumbs" aria-label="Fil d’Ariane"><ol>
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Lab</a></li>
+      <li><a href="./">Veille</a></li>
+      <li aria-current="page">API &amp; données</li>
+    </ol></nav>
+    <header class="artHead">
+      <span class="kicker">API &amp; données</span>
+      <h1>L’open data public au service des entreprises : les API à connaître</h1>
+      <p class="chapo">L’État publie gratuitement des données de grande qualité : registre des entreprises, adresses, découpage administratif, ventes immobilières, risques naturels, jours fériés. Accessibles par API, elles permettent d’automatiser des vérifications que beaucoup d’entreprises font encore à la main. Tour d’horizon pratique.</p>
+      <p class="meta">Publié le <time datetime="2026-09-29">29 septembre 2026</time> · 6 min de lecture · Par Titouan Bedos, fondateur de Groupe Solution</p>
+    </header>
+    <nav class="toc" aria-label="Sommaire"><b>Sommaire</b><ol>
+      <li><a href="#definition">Ce que c’est : des données publiques ouvertes et interrogeables</a></li>
+      <li><a href="#detail">Les API en détail</a></li>
+      <li><a href="#cas-usage">Cas d’usage concrets pour une TPE/PME</a></li>
+      <li><a href="#limites">Limites et précautions</a></li>
+      <li><a href="#commencer">Par où commencer</a></li>
+      <li><a href="#faq">Questions fréquentes</a></li>
+    </ol></nav>
+    <div class="prose">
+<h2 id="definition">Ce que c’est : des données publiques ouvertes et interrogeables</h2>
+<p>L’<strong>open data</strong> désigne les données publiques mises à disposition librement, dans des formats réutilisables, généralement sous <strong>Licence Ouverte Etalab 2.0</strong> (réutilisation libre, y compris commerciale, sous réserve de mentionner la source). En France, la plateforme de référence est <a href="https://www.data.gouv.fr" rel="noopener">data.gouv.fr</a>, et le catalogue des API publiques est api.gouv.fr.</p>
+<p>Une <strong>API</strong> (interface de programmation) permet à un logiciel d’interroger ces données automatiquement : votre outil de gestion envoie une question (« quelle est l’entreprise derrière ce SIREN ? ») et reçoit une réponse structurée en quelques instants. Plusieurs de ces API sont utilisables sans inscription.</p>
+<h3>Les principales API utiles aux entreprises</h3>
+<div class="tbl"><table>
+<thead><tr><th>Service</th><th>Données</th><th>Usage typique</th></tr></thead>
+<tbody>
+<tr><td>API Recherche d’entreprises</td><td>Entreprises et établissements (répertoire SIRENE de l’Insee, complété d’autres sources)</td><td>Vérifier un client, compléter une fiche</td></tr>
+<tr><td>API Adresse (Base Adresse Nationale)</td><td>Adresses géolocalisées de France</td><td>Normaliser et géocoder des adresses</td></tr>
+<tr><td>API Découpage administratif</td><td>Communes, codes postaux, départements, régions, intercommunalités</td><td>Formulaires, zones d’intervention</td></tr>
+<tr><td>DVF (Demandes de valeurs foncières)</td><td>Ventes immobilières publiées par la DGFiP</td><td>Repères de prix, études de marché</td></tr>
+<tr><td>Géorisques</td><td>Risques naturels et technologiques</td><td>Informer, prévenir, préparer une intervention</td></tr>
+<tr><td>API Jours fériés</td><td>Jours fériés par zone (métropole, Alsace-Moselle, outre-mer)</td><td>Plannings, délais, rappels</td></tr>
+</tbody></table></div>
+<h2 id="detail">Les API en détail</h2>
+<h3>API Recherche d’entreprises</h3>
+<p>Proposée par l’État, elle permet de rechercher une entreprise par nom, SIREN, SIRET ou adresse, et renvoie notamment la dénomination, le siège, l’activité principale (code NAF), l’état administratif (active ou cessée) et, selon les cas, les dirigeants. Elle est utilisable sans clé, avec des limites de débit. C’est le moteur de l’Annuaire des entreprises (annuaire-entreprises.data.gouv.fr). Exemple d’appel :</p>
+<p><code>https://recherche-entreprises.api.gouv.fr/search?q=boulangerie%20montpellier</code></p>
+<p>Attention : certaines personnes physiques ont demandé que leurs données ne soient pas diffusées ; elles n’apparaissent alors pas ou partiellement. Il faut respecter ce choix.</p>
+<h3>API Adresse et Base Adresse Nationale</h3>
+<p>La Base Adresse Nationale (BAN) est la référence des adresses en France. Le service de géocodage historique répond à l’adresse <code>api-adresse.data.gouv.fr</code> et permet de transformer une adresse saisie librement en adresse normalisée avec coordonnées, ou l’inverse (géocodage inversé), y compris par fichier CSV. Le service est progressivement repris par la Géoplateforme de l’IGN : vérifiez l’adresse d’appel recommandée sur adresse.data.gouv.fr avant tout nouveau développement.</p>
+<h3>API Découpage administratif</h3>
+<p>Accessible sur <code>geo.api.gouv.fr</code>, elle renvoie les communes correspondant à un code postal, leur code Insee, leur département, leur région et diverses informations. Exemple : <code>https://geo.api.gouv.fr/communes?codePostal=34000</code>. Utile pour proposer la bonne commune dans un formulaire ou vérifier qu’une adresse est dans votre zone d’intervention.</p>
+<h3>DVF : les valeurs foncières</h3>
+<p>La DGFiP publie les ventes immobilières (mutations à titre onéreux) des dernières années, avec mise à jour régulière. Les données ne couvrent pas l’Alsace-Moselle (Bas-Rhin, Haut-Rhin, Moselle), où le régime du livre foncier s’applique, ni Mayotte. Un outil de consultation cartographique est disponible sur app.dvf.etalab.gouv.fr. Les conditions de réutilisation interdisent notamment la réidentification des personnes concernées.</p>
+<h3>Géorisques</h3>
+<p>Le site <a href="https://www.georisques.gouv.fr" rel="noopener">georisques.gouv.fr</a>, piloté par le ministère chargé de l’environnement avec le BRGM, informe sur les risques naturels et technologiques à une adresse : inondation, mouvements de terrain, retrait-gonflement des argiles, sismicité, radon, installations industrielles, arrêtés de catastrophe naturelle. Des API permettent d’interroger ces informations.</p>
+<h3>Jours fériés</h3>
+<p>L’API <code>calendrier.api.gouv.fr</code> renvoie les jours fériés par zone et par année, par exemple <code>https://calendrier.api.gouv.fr/jours-feries/metropole/2026.json</code>. Simple, mais précieux pour calculer des délais ou éviter d’envoyer une relance un jour férié.</p>
+<h2 id="cas-usage">Cas d’usage concrets pour une TPE/PME</h2>
+<ul>
+<li><strong>Vérifier un nouveau client professionnel</strong> : dès la saisie d’un SIRET, le logiciel complète la raison sociale et l’adresse du siège, et alerte si l’entreprise est cessée. Particulièrement utile avec la facturation électronique, qui rend le SIREN du client obligatoire.</li>
+<li><strong>Normaliser un fichier d’adresses</strong> : un commerce qui livre ou un artisan qui intervient à domicile nettoie son fichier client, corrige les adresses et calcule automatiquement les tournées.</li>
+<li><strong>Définir une zone d’intervention</strong> : un formulaire de demande de devis vérifie que la commune du prospect est bien dans le secteur couvert.</li>
+<li><strong>Estimer et argumenter</strong> : un professionnel de l’immobilier ou un diagnostiqueur s’appuie sur DVF pour situer un bien par rapport aux ventes récentes du quartier, en citant la source.</li>
+<li><strong>Prévenir des risques</strong> : un couvreur, un paysagiste ou un gestionnaire de gîtes consulte les risques connus sur une adresse avant une intervention ou pour informer ses clients.</li>
+<li><strong>Tourisme et domaines viticoles</strong> : ajuster automatiquement les plannings d’accueil et les délais de livraison selon les jours fériés, y compris pour des clients ou partenaires en Alsace-Moselle ou outre-mer, où le calendrier diffère.</li>
+</ul>
+<h2 id="limites">Limites et précautions</h2>
+<ul>
+<li><strong>Disponibilité</strong> : ces services sont gratuits, sans engagement de niveau de service contractuel équivalent à une offre commerciale. Prévoyez un fonctionnement dégradé si l’API ne répond pas.</li>
+<li><strong>Limites de débit</strong> : chaque API fixe un nombre maximal de requêtes. Pour de gros volumes, utilisez les fichiers téléchargeables (bases complètes) plutôt que des milliers d’appels.</li>
+<li><strong>Fraîcheur des données</strong> : les bases sont mises à jour selon des rythmes variables. Une entreprise tout juste créée ou une vente récente peuvent ne pas encore apparaître.</li>
+<li><strong>Données personnelles</strong> : dirigeants, entrepreneurs individuels, ventes immobilières contiennent des données personnelles. Le RGPD s’applique à leur réutilisation, et certaines licences posent des conditions spécifiques.</li>
+<li><strong>Évolution des services</strong> : les adresses d’appel et les formats changent parfois (comme le géocodage repris par l’IGN). Suivez les annonces sur data.gouv.fr et api.gouv.fr.</li>
+<li><strong>Accès restreints</strong> : certaines API publiques, comme l’API Entreprise, sont réservées aux administrations et à leurs prestataires habilités. Ne confondez pas avec l’API Recherche d’entreprises, ouverte à tous.</li>
+</ul>
+<h2 id="commencer">Par où commencer</h2>
+<ol>
+<li><strong>Repérez les ressaisies</strong> : où copiez-vous une adresse, un nom d’entreprise, un code postal ? Chacune est une candidate.</li>
+<li><strong>Testez les API dans votre navigateur</strong> : les exemples ci-dessus renvoient directement un résultat lisible.</li>
+<li><strong>Branchez-les sur vos formulaires et votre logiciel</strong> : autocomplétion d’adresse, vérification de SIRET, suggestion de commune.</li>
+<li><strong>Nettoyez vos bases existantes</strong> en lot, puis mettez en place une vérification continue.</li>
+<li><strong>Documentez les sources</strong> et respectez les licences (mention de la source).</li>
+</ol>
+<p>Groupe Solution intègre ces API publiques dans les outils de ses clients : fiches clients complétées automatiquement, adresses normalisées, contrôles de cohérence avant facturation. Nous présentons aussi une sélection de ces services sur notre page <a href="../api.html">API &amp; données</a>.</p>
+    </div>
+    <section class="artFaq faq" id="faq">
+      <h2>Questions fréquentes</h2>
+      <details><summary>Ces API sont-elles vraiment gratuites ?</summary><p>Les API citées ici sont proposées gratuitement par des services publics, avec des limites de débit. Certaines demandent une inscription pour des volumes importants. Vérifiez les conditions de chaque service sur api.gouv.fr ou data.gouv.fr.</p></details>
+      <details><summary>Puis-je utiliser ces données dans un produit commercial ?</summary><p>En général oui : la plupart sont sous Licence Ouverte Etalab 2.0, qui autorise la réutilisation commerciale avec mention de la source. Certaines données, comme DVF, ont des conditions particulières, notamment l’interdiction de réidentifier les personnes.</p></details>
+      <details><summary>Pourquoi une entreprise n’apparaît-elle pas dans la recherche ?</summary><p>Elle peut être très récente, avoir cessé son activité, ou relever d’une diffusion restreinte : certaines personnes physiques demandent que leurs données ne soient pas diffusées. Il faut respecter ce choix.</p></details>
+      <details><summary>Les données DVF couvrent-elles toute la France ?</summary><p>Non. L’Alsace-Moselle (Bas-Rhin, Haut-Rhin, Moselle) et Mayotte ne sont pas couvertes. Les données portent sur les dernières années et sont mises à jour périodiquement par la DGFiP.</p></details>
+    </section>
+    <aside class="sources" aria-labelledby="src-open-data-api-gouv">
+      <h2 id="src-open-data-api-gouv">Sources officielles à consulter</h2>
+      <ul>
+        <li>data.gouv.fr — plateforme des données publiques ouvertes (DINUM / Etalab)</li>
+        <li>api.gouv.fr — catalogue des API publiques</li>
+        <li>Insee — répertoire SIRENE ; Annuaire des entreprises (annuaire-entreprises.data.gouv.fr)</li>
+        <li>adresse.data.gouv.fr — Base Adresse Nationale ; IGN — Géoplateforme</li>
+        <li>DGFiP — Demandes de valeurs foncières (DVF), sur data.gouv.fr</li>
+        <li>georisques.gouv.fr — ministère chargé de l’environnement et BRGM</li>
+        <li>Licence Ouverte / Open Licence version 2.0 (Etalab)</li>
+      </ul>
+      <p>Article à jour au 29 septembre 2026. Les textes, calendriers et services évoluent : référez-vous toujours à la version en vigueur publiée par ces organismes. Cet article est informatif et ne constitue pas un conseil juridique ou fiscal.</p>
+    </aside>
+    <aside class="chez">
+      <h2>Et chez vous ?</h2>
+      <p>Vous vous demandez ce que ce sujet change concrètement dans votre activité ? Parlons-en dix minutes : nous regardons vos outils et vos tâches répétitives, et vous repartez avec une piste claire. Chaque projet fait l’objet d’un devis sur mesure.</p>
+      <div class="row"><a class="btn" href="../../automatisation/">Voir nos automatisations</a><a class="btn ghost" href="tel:+33782298559">07 82 29 85 59</a></div>
+    </aside>
+  </div></div></article>
+  <section class="sec"><div class="wrap">
+    <div class="secHead"><span class="kicker">À lire aussi</span><h2>D’autres sujets de veille</h2></div>
+    <div class="related">
+      <a class="card reveal" href="rag-assistant-documents.html"><span class="cat">IA &amp; documents</span><h3>Un assistant IA branché sur vos documents (RAG) : principe, bonnes pratiques et limites</h3><p>Un assistant IA qui répond à partir de vos documents : principe du RAG, recherche vectorielle, citation des sources, hébergement, droits d’accès, limites.</p><span class="rt">6 min de lecture</span></a>
+      <a class="card reveal" href="ia-vision-documents.html"><span class="cat">IA &amp; documents</span><h3>Lire factures, bons et documents manuscrits avec l’IA : fiabilité, contrôle et intégration</h3><p>Factures, bons de livraison, manuscrits : comment les modèles vision-langage lisent vos documents, quelle fiabilité attendre et comment garder le contrôle.</p><span class="rt">5 min de lecture</span></a>
+      <a class="card reveal" href="mcp-model-context-protocol.html"><span class="cat">IA &amp; intégration</span><h3>Le Model Context Protocol (MCP) expliqué aux entreprises : connecter l’IA à ses outils</h3><p>Le Model Context Protocol (MCP) expliqué simplement : comment ce standard ouvert relie un assistant IA à vos logiciels et fichiers, avec quelles précautions.</p><span class="rt">7 min de lecture</span></a>
+    </div>
+  </div></section>
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Quelle tâche vous prend le plus de temps ?</h2>
+      <p>Décrivez-la en deux phrases. Je vous réponds avec une première piste concrète — gratuitement, sans engagement.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="veille/open-data-api-gouv" />
+        <label class="full">La tâche répétitive<textarea name="message" required placeholder="Ex : je ressaisis chaque commande dans deux logiciels…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Recevoir ma piste d'automatisation →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="../../echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../../index.html">Accueil</a>
+    <a href="./">Veille</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../solutions.html">Solutions</a>
+    <a href="../../realisations.html">Réalisations</a>
+    <a href="../../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../../echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+<script src="../../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

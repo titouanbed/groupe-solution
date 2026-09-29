@@ -43,9 +43,17 @@ function meta(url, f) {
   if (path === '/') return { p: '1.0', c: 'weekly' };
   const isBlog = /\/blog\//.test(f);
   const isBlogIndex = /\/blog\/index\.html$/.test(f) || /\/blog\/$/.test(path);
-  const isRegion = /\/site-internet-(reunion|mayotte|guyane|martinique|guadeloupe|nouvelle-caledonie|polynesie-francaise)\.html$/.test(f);
+  const isRegion = /\/site-internet-(montpellier|reunion|mayotte|guyane|martinique|guadeloupe|nouvelle-caledonie|polynesie-francaise)\.html$/.test(f);
   const isCity = /\/site-internet-[a-z-]+\.html$/.test(f) && !isRegion;
   const isArticleHolding = /^articles\//.test(f);
+  const isAutoHub = f === 'automatisation/index.html';
+  const isAutoCity = /^automatisation\/[a-z-]+\.html$/.test(f) && !isAutoHub;
+  if (isAutoHub || /^services\//.test(f)) return { p: '0.9', c: 'weekly' };
+  if (/^outils\//.test(f)) return { p: '0.8', c: 'monthly' };
+  if (f === 'lab/index.html' || f === 'lab/api.html') return { p: '0.8', c: 'weekly' };
+  if (/^lab\//.test(f)) return { p: '0.7', c: 'monthly' };
+  if (/^montpellier\/guides\//.test(f)) return { p: '0.7', c: 'monthly' };
+  if (isAutoCity) return { p: '0.8', c: 'monthly' };
   if (isRegion) return { p: '0.9', c: 'weekly' };
   if (isBlogIndex) return { p: '0.7', c: 'weekly' };
   if (isCity) return { p: '0.8', c: 'monthly' };

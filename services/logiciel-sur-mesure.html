@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logiciel sur-mesure et application métier | Groupe Solution</title>
+  <meta name="description" content="Logiciel sur-mesure et application métier : quand le choisir, cadrage, MVP, propriété du code, maintenance. Par un éditeur de logiciels. Devis gratuit." />
+  <link rel="canonical" href="https://www.groupsolution.fr/services/logiciel-sur-mesure.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Logiciel sur-mesure et application métier | Groupe Solution" />
+  <meta property="og:description" content="Logiciel sur-mesure et application métier : quand le choisir, cadrage, MVP, propriété du code, maintenance. Par un éditeur de logiciels. Devis gratuit." />
+  <meta property="og:url" content="https://www.groupsolution.fr/services/logiciel-sur-mesure.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Logiciel sur-mesure et application métier | Groupe Solution" />
+  <meta name="twitter:description" content="Logiciel sur-mesure et application métier : quand le choisir, cadrage, MVP, propriété du code, maintenance. Par un éditeur de logiciels. Devis gratuit." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/holding-local.css" />
+  <style>
+.heroDevise .lab{min-width:max-content}
+.callCard .rdv{display:block;margin-top:10px;font-size:14px;font-weight:700;color:var(--secondary);text-decoration:underline;text-underline-offset:3px}
+.artSec{padding:40px 0 92px}
+.art{max-width:780px;margin:0 auto;font-size:17px;line-height:1.8;color:#2B2A26;overflow-wrap:break-word}
+.art h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;margin:64px 0 18px;scroll-margin-top:90px}
+.art h3{font-size:21px;font-weight:600;line-height:1.3;margin:30px 0 8px}
+.art p{margin:0 0 18px}
+.art ul,.art ol{margin:0 0 22px;padding-left:24px}.art li{margin:0 0 8px;padding-left:4px}
+.art a{color:var(--acc-d);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.art a:hover{color:var(--ink)}
+.art strong{color:var(--ink)}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin:0 0 8px}
+.toc p{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted);margin:0 0 10px}
+.toc ol{margin:0;padding-left:22px;font-size:15.5px;line-height:1.6}.toc li{margin:0 0 6px}
+.toc a{color:var(--ink);text-decoration:none;font-weight:600}.toc a:hover{color:var(--acc)}
+.keep{background:var(--olive-soft);border:1px solid #DDE2D5;border-radius:var(--r-m);padding:20px 24px;margin:8px 0 28px}
+.keepT{font-size:12px!important;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--olive2);margin:0 0 8px!important}
+.keep ul{margin:0;padding-left:20px;font-size:16px;color:var(--olive2)}.keep li{margin:0 0 4px}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 28px;border:1px solid var(--line);border-radius:16px;background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:600px;font-size:15px;line-height:1.55}
+.tbl caption{caption-side:top;text-align:left;padding:14px 16px 6px;font-weight:800;font-size:13px;color:var(--muted)}
+.tbl th,.tbl td{padding:12px 16px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl thead th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tbody th{font-weight:700;color:var(--ink);min-width:150px}
+.tbl td{color:var(--secondary)}
+.ctaBox{background:var(--ink);color:#fff;border-radius:var(--r-l);padding:28px 30px;margin:36px 0}
+.ctaBox .ctaT{font-family:var(--serif);font-size:24px;line-height:1.25;margin:0 0 8px;color:#fff}
+.ctaBox p{color:#D9D6CE;margin:0 0 18px;font-size:16px}
+.ctaBtns{display:flex;flex-wrap:wrap;gap:10px}
+.ctaBox .btn{padding:13px 20px;font-size:15px;text-decoration:none;color:#fff}
+.ctaBox .btn.dark{background:#fff;color:var(--ink)}
+.ctaBox .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35)}
+.case a.more{display:inline-block;margin-top:14px;font-weight:800;font-size:14px;color:var(--ink);border-bottom:2px solid var(--acc)}
+.case h3 a:hover{color:var(--acc)}
+.res{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.res div{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px}
+.res h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans);font-weight:800;color:var(--muted);margin-bottom:10px}
+.res ul{list-style:none;display:grid;gap:8px;font-size:14.5px}
+.res a{font-weight:600;color:var(--ink)}.res a:hover{color:var(--acc)}
+.zoneTxt{max-width:820px;margin:34px auto 0;text-align:center;color:var(--secondary);font-size:16px;line-height:1.7}
+.zoneTxt a{color:var(--ink);font-weight:700;border-bottom:1px solid var(--acc)}
+@media(max-width:960px){.res{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.res{grid-template-columns:1fr}.art{font-size:16.5px}.ctaBox{padding:24px 20px}.ctaBtns{flex-direction:column}.ctaBtns .btn{width:100%}.toc{padding:18px 18px}}
+
+.gs-sticky{display:none}
+@media(max-width:760px){
+  .gs-sticky{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:900;gap:8px;background:rgba(23,22,19,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .gs-sticky a,.gs-sticky button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:12px;font:800 14px/1 inherit;font-family:inherit;text-decoration:none;border:0;cursor:pointer}
+  .gs-sticky .s1{background:#fff;color:#171613}
+  .gs-sticky .s2{background:#E61E4D;color:#fff}
+  body{padding-bottom:84px}
+}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.groupsolution.fr/services/logiciel-sur-mesure.html#service",
+      "name": "Développement de logiciel sur-mesure et d’application métier",
+      "serviceType": "Développement de logiciel sur-mesure",
+      "description": "Logiciel sur-mesure et application métier : quand le choisir, cadrage, MVP, propriété du code, maintenance. Par un éditeur de logiciels. Devis gratuit.",
+      "url": "https://www.groupsolution.fr/services/logiciel-sur-mesure.html",
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://www.groupsolution.fr/#org",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/",
+        "logo": "https://www.groupsolution.fr/Logo.svg",
+        "telephone": "+33782298559",
+        "email": "contact@groupsolution.fr",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Montpellier",
+          "postalCode": "34000",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        }
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "France"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Hérault"
+        },
+        {
+          "@type": "City",
+          "name": "Montpellier"
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "description": "Sur devis, gratuit et personnalisé"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.groupsolution.fr/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Logiciel sur-mesure",
+          "item": "https://www.groupsolution.fr/services/logiciel-sur-mesure.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Combien coûte un logiciel sur-mesure ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le coût dépend du nombre d’utilisateurs et de parcours, des outils à connecter, des exigences de sécurité et du périmètre de la première version. Nous établissons un devis gratuit et personnalisé après un cadrage, en commençant si possible par un MVP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quand choisir un logiciel sur-mesure plutôt qu’un logiciel du marché ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quand votre processus est spécifique ou différenciant, quand les contournements (tableurs, doubles saisies) coûtent cher, ou quand aucun outil ne couvre votre métier. Si un logiciel existant suffit, mieux vaut l’utiliser et le connecter à vos autres outils."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce qu’une application métier ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C’est un logiciel dédié aux tâches propres à un métier : gestion des interventions, suivi de dossiers, planification, devis techniques, portail client. Elle peut être standard ou développée sur-mesure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce qu’un MVP en développement logiciel ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un produit minimum viable est la plus petite version d’un logiciel qui résout déjà le problème principal. Il permet de tester l’outil en conditions réelles et d’orienter les développements suivants selon les retours des utilisateurs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Suis-je propriétaire du code de mon logiciel sur-mesure ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cela dépend du contrat : la cession des droits sur le code spécifique doit y être prévue explicitement, avec l’accès au code source et à la documentation. Chez Groupe Solution, ces points sont précisés par écrit dans chaque proposition."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps pour développer une application métier ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cela varie fortement selon le périmètre. Une première version ciblée (MVP) peut être livrée bien plus vite qu’un logiciel complet ; les évolutions se font ensuite par itérations courtes. Un calendrier précis figure dans la proposition."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Services</a><a href="../automatisation/">Automatisation</a><a href="../montpellier/site-internet-montpellier.html">Sites internet</a><a href="../lab/">Lab</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
+<main>
+  <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <a href="./">Services</a> › <span>Logiciel sur-mesure</span></div>
+
+  <section class="hero"><div class="wrap heroGrid">
+    <div>
+      <div class="kicker reveal">Application métier · outil interne · plateforme · MVP</div>
+      <h1 class="reveal">Logiciel sur-mesure et application métier : <em>l’outil construit autour de votre façon de travailler</em>.</h1>
+      <p class="lead reveal">Quand les logiciels du marché vous obligent à contourner, ressaisir ou jongler entre tableurs, un développement sur-mesure peut devenir rentable. Voici comment savoir si c’est votre cas, et comment mener le projet sans mauvaise surprise.</p>
+      <div class="heroDevise reveal"><span class="lab">Nos devis</span><b>Sur devis, gratuit et personnalisé. Montpellier, partout en France et dans les DOM-TOM.</b></div>
+    </div>
+    <div class="reveal"><div class="callCard">
+      <span class="callBadge">10 minutes suffisent</span>
+      <h2>Parlons de votre projet, sans engagement.</h2>
+      <p class="sub">Un appel direct avec l’équipe. Vous repartez avec des pistes concrètes.</p>
+      <a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59 →</a>
+      <a class="alt" href="#contact">ou décrire mon besoin par écrit</a>
+      <a class="rdv" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver une visio de 10 min</a>
+      <span class="micro">Réponse sous 24 h, souvent le jour même</span>
+    </div></div>
+  </div></section>
+  <section class="artSec"><div class="wrap">
+    <article class="art">
+<nav class="toc" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#definition">Qu’est-ce qu’un logiciel sur-mesure ?</a></li><li><a href="#choix">Sur-mesure ou logiciel du marché : comment décider ?</a></li><li><a href="#signes">Les signes qu’un logiciel sur-mesure devient utile</a></li><li><a href="#cadrage">Le cadrage : ce qu’on écrit avant d’écrire du code</a></li><li><a href="#mvp">Commencer par un MVP : une première version utile, vite</a></li><li><a href="#propriete">Propriété du code et réversibilité</a></li><li><a href="#maintenance">Maintenance, sécurité et évolutions</a></li><li><a href="#preuve">Un éditeur de logiciels, pas seulement un prestataire</a></li><li><a href="#faq">Questions fréquentes</a></li></ol></nav>
+<h2 id="definition">Qu’est-ce qu’un logiciel sur-mesure ?</h2>
+<p>Un <strong>logiciel sur-mesure</strong> (ou <strong>application métier sur-mesure</strong>) est développé spécifiquement pour une entreprise, à partir de ses processus, de son vocabulaire et de ses contraintes. Il peut prendre la forme d’une application web accessible depuis un navigateur, d’une application mobile, d’un outil interne de gestion, d’un portail client ou d’une plateforme ouverte au public.</p>
+<p>À l’opposé, un logiciel du marché (souvent vendu en abonnement, « SaaS ») est conçu pour des milliers d’entreprises à la fois. Il est rapide à mettre en place, mais c’est à vous de vous adapter à lui. Aucune des deux options n’est meilleure dans l’absolu : tout dépend de ce que votre activité a de spécifique.</p>
+<h2 id="choix">Sur-mesure ou logiciel du marché : comment décider ?</h2>
+<div class="tbl"><table><caption>Logiciel du marché, connecteurs ou développement sur-mesure : comparer les options</caption><thead><tr><th scope="col">Option</th><th scope="col">Quand la choisir</th><th scope="col">Limites</th></tr></thead><tbody><tr><th scope="row">Logiciel du marché seul</th><td>Votre besoin est standard (comptabilité, paie, agenda) et bien couvert par des éditeurs reconnus.</td><td>Vous adaptez vos pratiques à l’outil ; les fonctionnalités évoluent au rythme de l’éditeur.</td></tr><tr><th scope="row">Logiciels du marché + connecteurs</th><td>Chaque outil fait bien son travail, mais ils ne se parlent pas.</td><td>Suffit tant que la logique reste simple ; voir <a href="integration-api-connecteurs.html">intégration d’API</a>.</td></tr><tr><th scope="row">Développement sur-mesure</th><td>Votre processus est différenciant, ou aucun outil ne couvre votre métier sans contournements lourds.</td><td>Investissement initial, cadrage exigeant, maintenance à prévoir.</td></tr><tr><th scope="row">Hybride</th><td>Garder les briques standard (compta, paiement) et développer seulement la partie spécifique.</td><td>Demande une architecture propre pour que l’ensemble reste cohérent.</td></tr></tbody></table></div>
+<p>Dans la majorité des cas que nous rencontrons, la bonne réponse est <strong>hybride</strong> : on conserve ce qui marche et l’on développe uniquement ce qui manque. Nous vous recommandons un outil existant quand il suffit — et nous vous le disons.</p>
+<h2 id="signes">Les signes qu’un logiciel sur-mesure devient utile</h2>
+<ul><li>Des <strong>tableurs partagés</strong> sont devenus le vrai système de gestion, avec des versions contradictoires ;</li><li>la même information est <strong>saisie deux ou trois fois</strong> dans des outils différents ;</li><li>vous payez plusieurs abonnements pour n’utiliser qu’une petite partie de chacun ;</li><li>votre façon de travailler est un <strong>avantage concurrentiel</strong> que les outils standards ne savent pas reproduire ;</li><li>vos clients ou partenaires ont besoin d’un <strong>espace dédié</strong> (suivi de dossier, commande, documents) ;</li><li>la croissance est freinée parce que le processus actuel ne supporte pas plus de volume.</li></ul>
+<p>Si plusieurs de ces situations vous parlent, un échange de 10 minutes permet souvent de voir s’il faut un logiciel complet, une <a href="automatisation-processus.html">automatisation ciblée</a> ou simplement un meilleur paramétrage de vos outils actuels.</p>
+<aside class="keep"><p class="keepT">À retenir</p><ul><li>Le sur-mesure se justifie quand votre processus est spécifique ou que les contournements coûtent cher.</li><li>La solution hybride — standard + spécifique — est souvent la plus raisonnable.</li></ul></aside><aside class="ctaBox"><p class="ctaT">Votre besoin justifie-t-il un logiciel sur-mesure ?</p><p>En 10 minutes, nous vous disons honnêtement si un outil existant suffit ou s’il faut développer. Devis gratuit et personnalisé.</p><div class="ctaBtns"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="#contact">Formulaire express</a><a class="btn ghost" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver 10 min en visio</a></div></aside>
+<h2 id="cadrage">Le cadrage : ce qu’on écrit avant d’écrire du code</h2>
+<p>La plupart des projets de développement qui dérapent le font faute de cadrage. Avant de coder, nous formalisons avec vous :</p>
+<ul><li>les <strong>utilisateurs</strong> et ce que chacun doit pouvoir faire ;</li><li>les <strong>parcours clés</strong> décrits pas à pas (« le technicien clôture une intervention sur son téléphone ») ;</li><li>les <strong>données</strong> manipulées, leur origine et leur sensibilité ;</li><li>les <strong>outils à connecter</strong> (comptabilité, CRM, agenda, messagerie) ;</li><li>les <strong>priorités</strong> : ce qui est indispensable au démarrage et ce qui peut attendre ;</li><li>les critères de réussite qui permettront de dire que le projet a atteint son but.</li></ul>
+<p>Ce document devient la référence commune. Il permet d’établir un devis précis — toujours gratuit et personnalisé — et d’éviter les malentendus.</p>
+<h2 id="mvp">Commencer par un MVP : une première version utile, vite</h2>
+<p>Plutôt que de tout construire d’un bloc, nous livrons d’abord un <strong>MVP</strong> (produit minimum viable) : la plus petite version du logiciel qui résout déjà le problème principal. Vos équipes l’utilisent en conditions réelles ; leurs retours orientent la suite.</p>
+<p>Cette approche a trois avantages : vous obtenez un bénéfice plus tôt, vous limitez le risque de développer des fonctionnalités inutiles, et le budget suit la valeur réellement constatée. Les développements se font ensuite par itérations courtes, avec une version de test que vous pouvez consulter à tout moment.</p>
+<h2 id="propriete">Propriété du code et réversibilité</h2>
+<p>Un logiciel sur-mesure est un actif de votre entreprise. Il est essentiel de savoir, avant de commencer, <strong>à qui appartiendra le code</strong>, où il sera stocké, et comment un autre prestataire pourrait le reprendre si nécessaire. Nous vous recommandons d’exiger :</p>
+<ul><li>la cession des droits sur le code spécifique développé pour vous, précisée au contrat ;</li><li>l’accès au dépôt de code source et à la documentation technique ;</li><li>des comptes d’hébergement et de services tiers ouverts à votre nom quand c’est possible ;</li><li>l’usage de technologies répandues plutôt que propriétaires, pour ne pas dépendre d’un seul prestataire.</li></ul>
+<p>Chez Groupe Solution, ces points sont traités par écrit dans chaque proposition.</p>
+<h2 id="maintenance">Maintenance, sécurité et évolutions</h2>
+<p>Un logiciel vit : les navigateurs évoluent, les bibliothèques reçoivent des correctifs de sécurité, les API des outils connectés changent, et votre activité aussi. Il faut donc prévoir dès le départ :</p>
+<ul><li>les <strong>mises à jour de sécurité</strong> et les sauvegardes ;</li><li>la <strong>surveillance</strong> (alertes en cas d’erreur ou d’indisponibilité) ;</li><li>un <strong>canal clair</strong> pour signaler un problème et un délai de prise en charge ;</li><li>un budget d’<strong>évolutions</strong> pour faire grandir l’outil avec vous.</li></ul>
+<p>Côté technologies, nous privilégions des briques éprouvées et largement utilisées : applications web responsives utilisables sur ordinateur, tablette et smartphone, API documentées, bases de données standards. Une application web bien conçue évite souvent de développer séparément des applications iOS et Android.</p>
+<h2 id="preuve">Un éditeur de logiciels, pas seulement un prestataire</h2>
+<p>Groupe Solution conçoit et exploite ses propres plateformes en production : Solution Recrutement, qui référence plus de 565 000 offres d’emploi, Solution Alternance, avec plus de 200 000 offres et un matching par IA, et Aides Particuliers. Faire tourner ces services au quotidien nous oblige aux mêmes exigences que celles que nous appliquons à vos projets : performance, sécurité, suivi et évolutions continues.</p>
+<p>Nous accompagnons des indépendants comme des PME, à Montpellier et partout en France. Pour aller plus loin sur l’intégration de l’IA dans une application métier, consultez notre page <a href="agence-ia-entreprise.html">agence IA</a>.</p>
+<aside class="keep"><p class="keepT">À retenir</p><ul><li>Cadrage écrit, puis MVP, puis itérations : c’est le chemin le plus sûr.</li><li>Le code spécifique doit vous appartenir et pouvoir être repris.</li><li>La maintenance fait partie du projet, pas d’une option.</li></ul></aside>
+<aside class="ctaBox"><p class="ctaT">Prêt à en parler ?</p><p>Appelez-nous, écrivez-nous en deux phrases ou réservez une visio de 10 minutes. Le devis est gratuit et personnalisé.</p><div class="ctaBtns"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="#contact">Formulaire express</a><a class="btn ghost" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver 10 min en visio</a></div></aside>
+    </article>
+  </div></section>
+
+  <section class="sec alt"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Nos autres services</div><h2>Tout ce qu’un éditeur de logiciels peut faire pour vous.</h2><p>Sites internet, intelligence artificielle, automatisation et logiciels sur-mesure : des briques qui se combinent. <a class="go" href="./">Voir tous nos services</a></p></div>
+    <div class="cases">
+      <article class="case reveal"><div class="n">1</div><h3><a href="creation-site-internet.html">Création de site internet</a></h3><p>Site vitrine, réservation, e-commerce ou plateforme : un site professionnel conçu pour être trouvé et pour faire appeler.</p><a class="more" href="creation-site-internet.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">2</div><h3><a href="agence-ia-entreprise.html">Intégrer l’IA en entreprise</a></h3><p>Cas d’usage utiles, données maîtrisées, AI Act, souveraineté : l’intelligence artificielle appliquée à votre activité réelle.</p><a class="more" href="agence-ia-entreprise.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">3</div><h3><a href="automatisation-processus.html">Automatisation des processus</a></h3><p>Devis, commandes, relances, documents, reporting : les tâches répétitives prises en charge par des systèmes fiables.</p><a class="more" href="automatisation-processus.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">4</div><h3><a href="agent-ia-chatbot.html">Agent IA et chatbot</a></h3><p>Assistant client multilingue, assistant interne sur vos documents, agents qui agissent dans vos outils, avec garde-fous.</p><a class="more" href="agent-ia-chatbot.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">5</div><h3><a href="agent-vocal-ia.html">Agent vocal IA</a></h3><p>Un standard téléphonique intelligent qui décroche, prend les rendez-vous, transfère et résume chaque appel.</p><a class="more" href="agent-vocal-ia.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">6</div><h3><a href="integration-api-connecteurs.html">Intégration d’API</a></h3><p>CRM, ERP, agenda, comptabilité, e-commerce, données publiques : vos outils connectés, sans double saisie.</p><a class="more" href="integration-api-connecteurs.html">En savoir plus →</a></article>
+      <article class="case reveal"><div class="n">7</div><h3><a href="referencement-local.html">Référencement local</a></h3><p>Fiche Google Business Profile, avis, pages locales honnêtes, données structurées : être trouvé près de chez vos clients.</p><a class="more" href="referencement-local.html">En savoir plus →</a></article>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Pour aller plus loin</div><h2>Guides, veille et outils gratuits.</h2><p>Pour préparer votre projet, voir notre hub <a href="../automatisation/">automatisation et logiciel sur-mesure</a> et notre offre de <a href="../montpellier/site-internet-montpellier.html">création de site internet à Montpellier</a>.</p></div>
+    <div class="res">
+      <div class="reveal"><h3>Selon votre métier</h3><ul><li><a href="../montpellier/site-internet-organisme-de-formation-montpellier.html">Organisme de formation</a></li><li><a href="../montpellier/site-internet-services-a-domicile-montpellier.html">Services à domicile</a></li><li><a href="../montpellier/site-internet-agence-immobiliere-montpellier.html">Agence immobilière</a></li><li><a href="../montpellier/site-internet-garage-automobile-montpellier.html">Garage automobile</a></li></ul></div>
+      <div class="reveal"><h3>Articles de veille</h3><ul><li><a href="../lab/veille/open-data-api-gouv.html">Open data et API publiques</a></li><li><a href="../lab/veille/mcp-model-context-protocol.html">MCP : connecter l’IA à vos outils</a></li><li><a href="../lab/veille/rag-assistant-documents.html">Assistant IA sur vos documents (RAG)</a></li></ul></div>
+      <div class="reveal"><h3>Guides pratiques</h3><ul><li><a href="../montpellier/guides/choisir-agence-web-montpellier.html">Choisir son agence web : 12 questions à poser</a></li><li><a href="../montpellier/guides/automatiser-devis-artisan.html">Automatiser ses devis quand on est artisan</a></li></ul></div>
+      <div class="reveal"><h3>Outils gratuits</h3><ul><li><a href="../outils/configurateur-site-internet.html">Configurateur de projet web et IA</a></li><li><a href="../outils/test-visibilite-google.html">Test de visibilité Google</a></li><li><a href="../outils/calculateur-automatisation.html">Calculateur de tâches répétitives</a></li><li><a href="../automatisation/">Hub automatisation</a></li></ul></div>
+    </div>
+    <p class="zoneTxt">Basés à Montpellier, nous intervenons dans toute la métropole, dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM (<a href="../implantations.html">nos implantations</a>). Chaque projet est sur devis, gratuit et personnalisé.</p>
+  </div></section>
+
+  <section class="sec alt" id="faq"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Questions fréquentes</div><h2>Vos questions, nos réponses.</h2></div>
+    <div class="faq">
+      <details class="reveal"><summary>Combien coûte un logiciel sur-mesure ?</summary><p>Le coût dépend du nombre d’utilisateurs et de parcours, des outils à connecter, des exigences de sécurité et du périmètre de la première version. Nous établissons un devis gratuit et personnalisé après un cadrage, en commençant si possible par un MVP.</p></details>
+      <details class="reveal"><summary>Quand choisir un logiciel sur-mesure plutôt qu’un logiciel du marché ?</summary><p>Quand votre processus est spécifique ou différenciant, quand les contournements (tableurs, doubles saisies) coûtent cher, ou quand aucun outil ne couvre votre métier. Si un logiciel existant suffit, mieux vaut l’utiliser et le connecter à vos autres outils.</p></details>
+      <details class="reveal"><summary>Qu’est-ce qu’une application métier ?</summary><p>C’est un logiciel dédié aux tâches propres à un métier : gestion des interventions, suivi de dossiers, planification, devis techniques, portail client. Elle peut être standard ou développée sur-mesure.</p></details>
+      <details class="reveal"><summary>Qu’est-ce qu’un MVP en développement logiciel ?</summary><p>Un produit minimum viable est la plus petite version d’un logiciel qui résout déjà le problème principal. Il permet de tester l’outil en conditions réelles et d’orienter les développements suivants selon les retours des utilisateurs.</p></details>
+      <details class="reveal"><summary>Suis-je propriétaire du code de mon logiciel sur-mesure ?</summary><p>Cela dépend du contrat : la cession des droits sur le code spécifique doit y être prévue explicitement, avec l’accès au code source et à la documentation. Chez Groupe Solution, ces points sont précisés par écrit dans chaque proposition.</p></details>
+      <details class="reveal"><summary>Combien de temps pour développer une application métier ?</summary><p>Cela varie fortement selon le périmètre. Une première version ciblée (MVP) peut être livrée bien plus vite qu’un logiciel complet ; les évolutions se font ensuite par itérations courtes. Un calendrier précis figure dans la proposition.</p></details>
+    </div>
+  </div></section>
+
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Décrivez l’outil qui vous manque</h2>
+      <p>Deux phrases suffisent. Je vous réponds avec une première orientation — outil existant, connecteurs ou sur-mesure — gratuitement.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="services/logiciel-sur-mesure" />
+        <label class="full">L’outil qui vous manque<textarea name="message" required placeholder="Ex : nous gérons nos interventions sur trois tableurs et des SMS…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Recevoir ma première orientation →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../index.html">Accueil</a>
+    <a href="./">Services</a>
+    <a href="../automatisation/">Automatisation</a>
+    <a href="../solutions.html">Solutions</a>
+    <a href="../realisations.html">Réalisations</a>
+    <a href="../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../echanger.html">Échanger</a>
+    <a href="../plan-du-site.html">Plan du site</a>
+  </nav>
+</div></footer>
+<div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Discutons 10 min</a></div>
+<script src="../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

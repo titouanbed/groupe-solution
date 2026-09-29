@@ -1,12 +1,119 @@
 {
   "redirects": [
-    { "source": "/site-internet-mayotte.html", "destination": "/mayotte/site-internet-mayotte.html", "permanent": true },
-    { "source": "/catalogue-demos.html", "destination": "/mayotte/catalogue-demos.html", "permanent": true },
-    { "source": "/offre-site-web.html", "destination": "/mayotte/offre-site-web.html", "permanent": true },
-    { "source": "/mentions-legales-a-propos.html", "destination": "/mayotte/mentions-legales-a-propos.html", "permanent": true },
-    { "source": "/blog", "destination": "/mayotte/blog", "permanent": true },
-    { "source": "/blog/:path*", "destination": "/mayotte/blog/:path*", "permanent": true },
-    { "source": "/ecole-mayotte", "destination": "/mayotte/ecole-mayotte", "permanent": true },
-    { "source": "/ecole-mayotte/:path*", "destination": "/mayotte/ecole-mayotte/:path*", "permanent": true }
+    {
+      "source": "/site-internet-mayotte.html",
+      "destination": "/mayotte/site-internet-mayotte.html",
+      "permanent": true
+    },
+    {
+      "source": "/catalogue-demos.html",
+      "destination": "/mayotte/catalogue-demos.html",
+      "permanent": true
+    },
+    {
+      "source": "/offre-site-web.html",
+      "destination": "/mayotte/offre-site-web.html",
+      "permanent": true
+    },
+    {
+      "source": "/mentions-legales-a-propos.html",
+      "destination": "/mayotte/mentions-legales-a-propos.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/mayotte/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/mayotte/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/ecole-mayotte",
+      "destination": "/mayotte/ecole-mayotte",
+      "permanent": true
+    },
+    {
+      "source": "/ecole-mayotte/:path*",
+      "destination": "/mayotte/ecole-mayotte/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/montpellier/lattes.html",
+      "destination": "/montpellier/site-internet-lattes.html",
+      "permanent": true
+    },
+    {
+      "source": "/montpellier/perols.html",
+      "destination": "/montpellier/site-internet-perols.html",
+      "permanent": true
+    },
+    {
+      "source": "/montpellier/castelnau-le-lez.html",
+      "destination": "/montpellier/site-internet-castelnau-le-lez.html",
+      "permanent": true
+    },
+    {
+      "source": "/automatisation/index.html",
+      "destination": "/automatisation/",
+      "permanent": true
+    },
+    {
+      "source": "/outils/prix-site-internet.html",
+      "destination": "/outils/configurateur-site-internet.html",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        }
+      ]
+    },
+    {
+      "source": "/assets/communes/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/assets/site-index.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/lab/actus/rss.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        }
+      ]
+    }
   ]
 }

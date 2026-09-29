@@ -75,7 +75,8 @@ l'overlay dans un `<style>` de la page :
 - **SEO** : `<link rel="canonical">`, JSON-LD `ProfessionalService` +
   `parentOrganization`, JSON-LD `FAQPage`.
 - **Tracking** : `<script src="/analytics.js" defer></script>` avant `</body>`.
-- **Offre & tarifs** : identiques au groupe (sites dès 250€, reste sur devis).
+- **Offre & tarifs** : identiques au groupe — offre sur devis (devis gratuit et personnalisé),
+  aucun prix chiffré affiché, aucun client cité nommément.
 
 ## Garde-fous
 
