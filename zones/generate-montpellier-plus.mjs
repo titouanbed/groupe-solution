@@ -13,7 +13,7 @@ import { HOLDING } from './zones.mjs';
 import { COMMUNES } from './montpellier-communes.mjs';
 import { METIERS, QUARTIERS } from './montpellier-plus.mjs';
 import { REA_SECTION, esc } from './lib-local.mjs';
-import { pickAvancees } from './automatisations-avancees.mjs';
+import { pickAvancees, VEILLE_OF } from './automatisations-avancees.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = 'montpellier';
@@ -159,7 +159,7 @@ ${m.mistakes.map(x => `        <div class="mt-item reveal"><i>✕</i><span>${esc
         <p>Groupe Solution est d'abord un éditeur de logiciels : le site n'est que la partie visible. Voici ce que les technologies d'aujourd'hui permettent de construire pour les ${esc(m.plural)}.</p>
       </div>
       <div class="mt-cases">
-${adv.map(a => `        <div class="gs-auto-card reveal"><span class="gs-tech">${esc(a.tech)}</span><h4>${esc(a.titre)}</h4><p>${esc(a.texte)}</p></div>`).join('\n')}
+${adv.map(a => `        <div class="gs-auto-card reveal"><span class="gs-tech">${esc(a.tech)}</span><h4>${esc(a.titre)}</h4><p>${esc(a.texte)}</p>${VEILLE_OF[a.id] ? `<p style="margin-top:10px"><a href="../lab/veille/${VEILLE_OF[a.id]}.html" style="color:var(--rose-fonce);font-weight:700;text-decoration:none">Notre analyse →</a></p>` : ''}</div>`).join('\n')}
       </div>
       <div class="mt-base reveal"><h3>Et bien sûr, les bases bien faites</h3><ul>${m.cases.map(([t, x]) => `<li><b>${esc(t)}</b> — ${esc(x)}</li>`).join('')}</ul></div>
       <p class="gs-auto-more"><a href="../outils/calculateur-automatisation.html">Calculer le temps que vous pourriez récupérer →</a></p>
@@ -235,7 +235,7 @@ ${others.map(o => `        <a href="${mFile(o)}">${esc(cap(o.label))}</a>`).join
       <div class="footer-content">
         <div class="footer-logo"><img src="../Logo.svg" alt="GroupSolution" /><p class="footer-desc">Sites internet et automatisation pour les ${esc(m.plural)} de Montpellier et de l'Hérault.</p></div>
         <div class="footer-links"><h4>Métiers</h4><ul>${others.slice(0, 6).map(o => `<li><a href="${mFile(o)}">${esc(cap(o.label))}</a></li>`).join('')}</ul></div>
-        <div class="footer-links"><h4>Groupe Solution</h4><ul><li><a href="${HOLDING}/">Le site du groupe ↗</a></li><li><a href="../automatisation/">Automatisation</a></li><li><a href="${HUB_FILE}">Agence web Montpellier</a></li><li><a href="../outils/configurateur-site-internet.html">Configurateur de projet</a></li></ul></div>
+        <div class="footer-links"><h4>Groupe Solution</h4><ul><li><a href="${HOLDING}/">Le site du groupe ↗</a></li><li><a href="../automatisation/">Automatisation</a></li><li><a href="${HUB_FILE}">Agence web Montpellier</a></li><li><a href="../outils/configurateur-site-internet.html">Configurateur de projet</a></li><li><a href="guides/">Guides pratiques</a></li><li><a href="../plan-du-site.html">Plan du site</a></li></ul></div>
         <div class="footer-contact"><h4>Contact direct</h4><p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-phone"/></svg><a href="tel:+33782298559">07 82 29 85 59</a></p><p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-mail"/></svg><a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a></p></div>
       </div>
       <div class="footer-bottom">© 2026 GroupSolution SAS. Tous droits réservés.</div>

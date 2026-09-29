@@ -1,0 +1,59 @@
+{
+  "date": "2026-09-29",
+  "titre": "Facture électronique en vigueur, AI Act recalé, Mistral change de dimension",
+  "intro": "Un mois de septembre dense pour les entreprises : la réforme de la facturation électronique est entrée en application, le calendrier de l'AI Act a été officiellement ajusté, et l'IA européenne franchit un cap financier. Notre sélection, avec ce que chaque actualité change concrètement.",
+  "items": [
+    {
+      "cat": "Réglementation",
+      "titre": "La facturation électronique est entrée en vigueur le 1er septembre 2026",
+      "resume": "Depuis le 1er septembre 2026, toutes les entreprises assujetties à la TVA en France doivent être en mesure de recevoir des factures électroniques via une plateforme agréée. L'obligation d'émettre et l'e-reporting s'appliquent dès maintenant aux grandes entreprises et aux ETI ; les PME et micro-entreprises suivront au 1er septembre 2027.",
+      "pourquoi": "Même une TPE est concernée côté réception. C'est l'occasion d'automatiser le cycle complet : réception, contrôle, rapprochement avec les commandes et les paiements, au lieu de subir un format de plus.",
+      "sources": [
+        { "nom": "economie.gouv.fr", "url": "https://www.economie.gouv.fr/tout-savoir-sur-la-facturation-electronique-pour-les-entreprises" }
+      ],
+      "lien": { "label": "Notre analyse complète de la réforme", "url": "../veille/facturation-electronique-2026.html" }
+    },
+    {
+      "cat": "Réglementation",
+      "titre": "AI Act : le report des obligations « haut risque » est adopté",
+      "resume": "Le règlement (UE) 2026/1744, dit « omnibus IA », est entré en vigueur le 27 juillet 2026. Il reporte au 2 décembre 2027 les obligations des systèmes à haut risque listés à l'annexe III, et au 2 août 2028 celles de l'annexe I. Les pratiques interdites, les règles des modèles d'usage général et les obligations de transparence (article 50, applicables depuis le 2 août 2026) ne sont pas reportées.",
+      "pourquoi": "Pour une PME qui utilise l'IA sans développer de système à haut risque, l'essentiel s'applique déjà : pas de pratiques interdites, des équipes formées, et une information claire quand un client parle à une IA (chatbot, agent vocal).",
+      "sources": [
+        { "nom": "donneespersonnelles.fr", "url": "https://www.donneespersonnelles.fr/omnibus-numerique-ia" },
+        { "nom": "dm-experts.fr", "url": "https://www.dm-experts.fr/2026/08/reglement-ue-2026-1744-simplifiant-le-reglement-sur-lintelligence-artificielle/" }
+      ],
+      "lien": { "label": "AI Act : ce qu'une PME doit savoir", "url": "../veille/ai-act-pme.html" }
+    },
+    {
+      "cat": "IA européenne",
+      "titre": "Mistral AI lève 3 milliards d'euros dans un tour mené par Samsung",
+      "resume": "Le 8 septembre 2026, la start-up française Mistral AI a annoncé une levée de 3 milliards d'euros menée par Samsung Electronics, qui la valorise à plus de 21 milliards d'euros. Les fonds doivent financer des centres de données et la montée en puissance de ses capacités de calcul.",
+      "pourquoi": "Un acteur européen solide, c'est plus de choix pour héberger ses traitements d'IA en Europe et garder la maîtrise de ses données — un critère important pour les entreprises qui manipulent des informations sensibles.",
+      "sources": [
+        { "nom": "Yahoo Finance France", "url": "https://fr.finance.yahoo.com/actualites/mistral-l%C3%A8ve-montant-record-3-084055969.html" },
+        { "nom": "Observatoire de l'Europe", "url": "https://www.observatoiredeleurope.com/mistral-ai-leve-un-montant-record-de-3-milliards-deuros-dans-le-cadre-dun-cycle-de-financement-mene-par-samsung_a94064.html" }
+      ]
+    },
+    {
+      "cat": "IA & données",
+      "titre": "Google DeepMind dévoile WeatherNext 3, un modèle météo mis à jour chaque heure",
+      "resume": "Présenté le 3 septembre 2026, WeatherNext 3 génère une nouvelle prévision mondiale chaque heure à partir d'observations satellites en temps réel, sur une grille de 5 km. Google indique qu'il alimente la météo de ses services, dont l'API Weather de Google Maps Platform.",
+      "pourquoi": "La prévision météo devient plus fine et plus fréquente : c'est une brique directement exploitable pour piloter plannings, stocks, reports de prestations ou production d'énergie solaire.",
+      "sources": [
+        { "nom": "Blog Google", "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-weathernext-3/" },
+        { "nom": "Google DeepMind", "url": "https://deepmind.google/science/weathernext/" }
+      ],
+      "lien": { "label": "Les API météo et données en direct", "url": "../api.html" }
+    },
+    {
+      "cat": "Identité numérique",
+      "titre": "Portefeuille d'identité numérique européen : l'échéance de fin 2026 approche",
+      "resume": "Le règlement eIDAS 2 impose à chaque État membre de proposer un portefeuille européen d'identité numérique d'ici la fin 2026. En France, l'application France Identité doit être mise en conformité pour jouer ce rôle.",
+      "pourquoi": "À terme, vérifier l'identité d'un client, un justificatif ou un diplôme pourra se faire en quelques secondes, sans photocopie. Les parcours d'inscription et de souscription seront à repenser.",
+      "sources": [
+        { "nom": "Deloitte France", "url": "https://www.deloitte.com/fr/fr/Industries/financial-services/analysis/eudi-wallet-eidas-integrer-identite-numerique-europeenne.html" },
+        { "nom": "Docaposte", "url": "https://www.docaposte.com/mediatheque/paroles-experts/portefeuille-europeen-didentite-numerique-comment-les-entreprises-sy-preparent-elles" }
+      ]
+    }
+  ]
+}

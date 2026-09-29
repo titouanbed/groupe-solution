@@ -71,3 +71,31 @@ Règle : jamais de contenu copié d'une commune à l'autre, et aucun fait local 
 
 - `zones/automatisations-avancees.mjs` : catalogue d'automatisations de pointe, sélectionnées automatiquement selon le tissu économique de chaque commune / métier.
 - `assets/live.js` : météo, état de la mer et données INSEE en direct sur chaque page commune + démos du Lab (API publiques, aucune clé). Open-Meteo est gratuit pour un usage non commercial : vérifier ses conditions / souscrire l'offre commerciale si nécessaire.
+
+## Tout régénérer
+
+```bash
+npm run generate          # tous les générateurs dans le bon ordre (+ --art pour les illustrations)
+npm run actus             # après avoir ajouté un fichier content/actus/AAAA-MM-JJ.json
+```
+
+## Actus quotidiennes
+
+Un fichier par jour dans `content/actus/AAAA-MM-JJ.json` : `date`, `titre`, `intro`, `items[]`
+(`cat`, `titre`, `resume`, `pourquoi` = ce que ça change pour une entreprise, `sources[]` = `{nom, url https}`
+**obligatoire**, `lien` optionnel vers une page du site). Le générateur refuse une actu sans source.
+Produit les pages `/lab/actus/`, le flux RSS et le bloc « Actus » de l'accueil.
+
+## Assistant du site
+
+- `assets/assistant.js` (chargé sur toutes les pages via `analytics.js`) : répond gratuitement à partir de
+  `assets/site-index.json` (généré par `zones/generate-search-index.mjs`), + appel / rappel / visio.
+- `api/assistant.mjs` : si la variable d'environnement Vercel `ANTHROPIC_API_KEY` est définie, les réponses
+  sont rédigées par Claude (modèle `claude-opus-5-5` par défaut, modifiable via `ASSISTANT_MODEL`), à partir
+  des extraits du site, avec les règles : pas de prix, pas de client cité, rien d'inventé.
+- `/recherche.html` : recherche plein texte sur tout le site.
+
+## Mise en production
+
+Vercel déploie automatiquement la branche `main`. Pour publier : fusionner la branche de travail dans `main`
+(pull request sur GitHub → « Merge »). Chaque pull request reçoit aussi une URL de prévisualisation Vercel.

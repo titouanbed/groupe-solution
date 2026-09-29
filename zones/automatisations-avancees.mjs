@@ -137,3 +137,12 @@ export function pickAvancees(seed, text, n = 4) {
   }).sort((x, y) => y.s - x.s);
   return scored.slice(0, n).map(x => x.a);
 }
+
+/* Analyse de veille correspondant à chaque automatisation (maillage interne). */
+export const VEILLE_OF = { 'agent-vocal': 'agents-vocaux-ia', conciergerie: 'agents-vocaux-ia', rag: 'rag-assistant-documents', idp: 'ia-vision-documents',
+  'computer-use': 'agents-ia-computer-use', mcp: 'mcp-model-context-protocol', facturx: 'facturation-electronique-2026', opendata: 'open-data-api-gouv',
+  'multi-agents': 'agents-ia-computer-use', transcription: 'rag-assistant-documents' };
+/* Tag principal de chaque page métier. */
+export const METIER_TAG = { restaurant: 'resto', artisan: 'btp', 'professionnel-de-sante': 'sante', avocat: 'cabinet', 'expert-comptable': 'cabinet',
+  'agence-immobiliere': 'immo', 'coiffeur-esthetique': 'services', 'coach-salle-de-sport': 'services', 'hebergement-gite': 'tourisme',
+  'domaine-viticole': 'viti', 'commerce-boutique': 'commerce', 'garage-automobile': 'services', 'organisme-de-formation': 'formation', 'services-a-domicile': 'services' };

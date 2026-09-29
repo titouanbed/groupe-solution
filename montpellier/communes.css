@@ -18,6 +18,7 @@
 .gs-local h2 .accent,.gs-auto h2 .accent{background:linear-gradient(135deg,var(--rose),var(--rose-fonce));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .gs-local p{color:var(--gris);font-size:1.05rem;margin-bottom:14px;line-height:1.75}
 .gs-local p strong{color:var(--gris-fonce)}
+.gs-metiers{margin-top:18px!important;font-size:.95rem!important}.gs-metiers a{color:var(--rose-fonce);font-weight:700;text-decoration:none}.gs-metiers a:hover{text-decoration:underline}
 .gs-chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .gs-chips li{background:var(--rose-clair);color:var(--rose-fonce);font-weight:700;font-size:.85rem;padding:7px 13px;border-radius:999px}
 .gs-local-card{background:var(--blanc);border:1px solid #f1f1f1;border-radius:22px;box-shadow:var(--box-shadow-lg);padding:30px;position:sticky;top:96px}

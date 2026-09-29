@@ -12,7 +12,7 @@ import { dirname, join } from 'node:path';
 import { HOLDING } from './zones.mjs';
 import { COMMUNES, neighbours, km } from './montpellier-communes.mjs';
 import { QUARTIERS, METIERS, GUIDES_LINKS, OUTILS_LINKS } from './montpellier-plus.mjs';
-import { pickAvancees } from './automatisations-avancees.mjs';
+import { pickAvancees, tagsFor, METIER_TAG } from './automatisations-avancees.mjs';
 import { liveSection, LIVE_CSS, REA_SECTION, heroArt, aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -22,6 +22,14 @@ const file = c => c.file || `site-internet-${c.slug}.html`;
 const autoHref = c => c.autoHref || `../automatisation/${c.slug}.html`;
 const isQ = c => c.placeType === 'Place';
 const metierFile = m => `site-internet-${m.slug}-montpellier.html`;
+
+/* Métiers pertinents pour une commune (tags du tissu économique), toujours au moins 3. */
+function metiersFor(c) {
+  const t = tagsFor([c.tissu, c.profil].join(' '));
+  const hit = METIERS.filter(m => t.has(METIER_TAG[m.slug]));
+  const fill = METIERS.filter(m => !hit.includes(m) && ['commerce-boutique', 'artisan', 'services-a-domicile'].includes(m.slug));
+  return [...hit, ...fill].slice(0, 5);
+}
 
 /* Maillage intra-muros + métiers, ajouté sous la liste des communes. */
 function extraLists(current) {
@@ -218,6 +226,7 @@ ${faqJsonLd(faq)}
         <p>${esc(c.profil)}</p>
         <p>Ici, nos clients sont surtout des <strong>${esc(c.tissu)}</strong>. Leur point commun : des clients qui cherchent sur leur téléphone, comparent en quelques secondes et appellent celui qui inspire le plus confiance.</p>
         <ul class="gs-chips">${c.reperes.map(r => `<li>${esc(r)}</li>`).join('')}</ul>
+        <p class="gs-metiers">Pour les métiers d'ici : ${metiersFor(c).map(m => `<a href="${metierFile(m)}">site internet pour ${esc(m.label)}</a>`).join(' · ')}.</p>
       </div>
       <aside class="gs-local-card reveal">
         <h3>Votre plan d'action ${esc(aName(c))}</h3>
@@ -404,6 +413,7 @@ ${faq.map(f => `        <div class="faq-item reveal"><div class="faq-q">${esc(f.
             <li><a href="${autoHref(c)}">Automatisation ${esc(aName(c))}</a></li>
             <li><a href="${HUB_FILE}">Agence web Montpellier</a></li>
             <li><a href="${HOLDING}/echanger.html">Prendre rendez-vous</a></li>
+            <li><a href="../plan-du-site.html">Plan du site</a></li>
           </ul>
         </div>
         <div class="footer-contact">
@@ -479,6 +489,7 @@ writeFileSync(join(ROOT, DIR, 'communes.css'), `/* Généré par zones/generate-
 .gs-local h2 .accent,.gs-auto h2 .accent{background:linear-gradient(135deg,var(--rose),var(--rose-fonce));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .gs-local p{color:var(--gris);font-size:1.05rem;margin-bottom:14px;line-height:1.75}
 .gs-local p strong{color:var(--gris-fonce)}
+.gs-metiers{margin-top:18px!important;font-size:.95rem!important}.gs-metiers a{color:var(--rose-fonce);font-weight:700;text-decoration:none}.gs-metiers a:hover{text-decoration:underline}
 .gs-chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .gs-chips li{background:var(--rose-clair);color:var(--rose-fonce);font-weight:700;font-size:.85rem;padding:7px 13px;border-radius:999px}
 .gs-local-card{background:var(--blanc);border:1px solid #f1f1f1;border-radius:22px;box-shadow:var(--box-shadow-lg);padding:30px;position:sticky;top:96px}

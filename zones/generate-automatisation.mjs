@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { HOLDING } from './zones.mjs';
 import { COMMUNES, neighbours } from './montpellier-communes.mjs';
-import { AVANCEES, pickAvancees } from './automatisations-avancees.mjs';
+import { AVANCEES, pickAvancees, VEILLE_OF } from './automatisations-avancees.mjs';
 import { liveSection, LIVE_CSS, heroArt, aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -61,6 +61,7 @@ const foot = `</main>
     <a href="../realisations.html">Réalisations</a>
     <a href="../montpellier/site-internet-montpellier.html">Sites internet</a>
     <a href="../echanger.html">Échanger</a>
+    <a href="../plan-du-site.html">Plan du site</a>
   </nav>
 </div></footer>
 <div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Discutons 10 min</a></div>
@@ -193,7 +194,7 @@ function page(c) {
   <section class="sec alt"><div class="wrap">
     <div class="secHead reveal"><div class="kicker">À la pointe</div><h2>Ce qu'on peut construire pour les entreprises ${esc(aName(c))}.</h2><p>Sélectionné pour le tissu économique local — ${esc(c.tissu)} — parmi ce que l'IA et l'automatisation permettent aujourd'hui.</p></div>
     <div class="cases cases4">
-${adv.map((a, i) => `      <article class="case reveal"><div class="n">${i + 1}</div><span class="tech">${esc(a.tech)}</span><h3>${esc(a.titre)}</h3><p>${esc(a.texte)}</p><p class="ex">${esc(a.ex(c))}</p></article>`).join('\n')}
+${adv.map((a, i) => `      <article class="case reveal"><div class="n">${i + 1}</div><span class="tech">${esc(a.tech)}</span><h3>${esc(a.titre)}</h3><p>${esc(a.texte)}</p><p class="ex">${esc(a.ex(c))}</p>${VEILLE_OF[a.id] ? `<a class="go" style="display:inline-block;margin-top:12px;font-size:13.5px" href="../lab/veille/${VEILLE_OF[a.id]}.html">Notre analyse →</a>` : ''}</article>`).join('\n')}
     </div>
     <div class="bases reveal"><h3>Et les bases, bien faites</h3><ul>${c.auto.cases.map(([t, x]) => `<li><b>${esc(t)}</b> — ${esc(x)}</li>`).join('')}</ul></div>
     <p class="center reveal" style="margin-top:22px"><a class="go" href="../lab/">Voir toutes les technologies que nous suivons →</a></p>

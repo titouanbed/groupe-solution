@@ -7,6 +7,7 @@
   <meta name="description" content="Éditeur de logiciels et d'automatisations basé à Montpellier. Devis, commandes, relances, plannings, documents : on absorbe vos tâches répétitives. Diagnostic gratuit en 10 minutes, sans engagement." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://www.groupsolution.fr/" />
+  <link rel="alternate" type="application/rss+xml" title="Actus IA & numérique — Groupe Solution" href="https://www.groupsolution.fr/lab/actus/rss.xml" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Groupe Solution" />
@@ -60,7 +61,8 @@
         "url": "https://www.groupsolution.fr/",
         "name": "Groupe Solution",
         "inLanguage": "fr-FR",
-        "publisher": { "@id": "https://www.groupsolution.fr/#org" }
+        "publisher": { "@id": "https://www.groupsolution.fr/#org" },
+        "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": "https://www.groupsolution.fr/recherche.html?q={search_term_string}" }, "query-input": "required name=search_term_string" }
       },
       {
         "@type": "FAQPage",
@@ -115,9 +117,11 @@
   /* NAV */
   .nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(247,246,243,.82);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(236,234,227,.8)}
   .navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-  .brand{display:flex;align-items:center}.brand img{height:40px;width:auto}
+  .brand{display:flex;align-items:center;flex-shrink:0}.brand img{height:40px;width:auto}
   .links{display:flex;align-items:center;gap:26px}
-  .links a{font-size:14.5px;color:var(--secondary);font-weight:600;transition:color .16s}
+  .links a{font-size:14.5px;color:var(--secondary);font-weight:600;transition:color .16s;white-space:nowrap}
+  @media(max-width:1240px){.links{gap:18px}.links a[href="articles/"],.links a[href="partenariats.html"]{display:none}}
+  @media(max-width:1000px){.links a[href="implantations.html"],.links a[href="a-propos.html"]{display:none}}
   .links a:hover,.links a.active{color:var(--ink)}
   .links .cta{padding:11px 20px;border-radius:999px;color:#fff;background:var(--acc);font-weight:800;font-size:14px;box-shadow:0 6px 16px var(--acc-ring)}
   .links .cta:hover{background:var(--acc-d);color:#fff}
@@ -131,7 +135,7 @@
   .secHead p{font-size:17.5px;color:var(--secondary);line-height:1.7;margin-top:18px}
 
   /* ── HERO (gauche : positionnement · droite : bulle d'appel) ── */
-  .hero{padding:70px 0 82px}
+  .hero{padding:70px 0 82px;overflow:hidden}
   .heroGrid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
   .heroText{max-width:560px}
   .hero h1{font-size:clamp(36px,4.8vw,56px);margin:0;line-height:1.02;max-width:13ch}
@@ -414,6 +418,18 @@
     <p class="calcNote">* Hypothèse prudente : 60 % du temps répétitif automatisable, 45 semaines travaillées. On affine avec vos vrais chiffres pendant l’appel.</p>
   </div></section>
 
+<!-- ACTUS:START (généré par zones/generate-actus.mjs) -->
+  <section class="sec" id="actus"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Actus · mardi 29 septembre 2026</div><h2>Ce qui bouge en ce moment.</h2><p>L’actualité IA, numérique et réglementaire, sourcée et traduite en impacts concrets pour votre entreprise.</p></div>
+    <div class="autoGrid">
+      <a class="auto reveal" href="lab/actus/2026-09-29.html#la-facturation-electronique-est-entree-en-vigueur-le-1er-sep"><div class="who">Réglementation</div><h3>La facturation électronique est entrée en vigueur le 1er septembre 2026</h3><p style="font-size:14.5px;color:var(--secondary);margin-top:12px;line-height:1.6">Même une TPE est concernée côté réception. C'est l'occasion d'automatiser le cycle complet : réception, contrôle, rapprochement avec les commandes et les paiements, au lieu de subir un format de plus.</p><div class="gain">Lire l’actu →</div></a>
+      <a class="auto reveal" href="lab/actus/2026-09-29.html#ai-act-le-report-des-obligations-haut-risque-est-adopte"><div class="who">Réglementation</div><h3>AI Act : le report des obligations « haut risque » est adopté</h3><p style="font-size:14.5px;color:var(--secondary);margin-top:12px;line-height:1.6">Pour une PME qui utilise l'IA sans développer de système à haut risque, l'essentiel s'applique déjà : pas de pratiques interdites, des équipes formées, et une information claire quand un client parle à une IA (chatbot, agent vocal).</p><div class="gain">Lire l’actu →</div></a>
+      <a class="auto reveal" href="lab/actus/2026-09-29.html#mistral-ai-leve-3-milliards-d-euros-dans-un-tour-mene-par-sa"><div class="who">IA européenne</div><h3>Mistral AI lève 3 milliards d'euros dans un tour mené par Samsung</h3><p style="font-size:14.5px;color:var(--secondary);margin-top:12px;line-height:1.6">Un acteur européen solide, c'est plus de choix pour héberger ses traitements d'IA en Europe et garder la maîtrise de ses données — un critère important pour les entreprises qui manipulent des informations sensibles.</p><div class="gain">Lire l’actu →</div></a>
+    </div>
+    <p class="reveal" style="text-align:center;margin-top:24px"><a href="lab/actus/" style="font-weight:800;border-bottom:2px solid var(--acc)">Toutes les actus →</a></p>
+  </div></section>
+  <!-- ACTUS:END -->
+
   <!-- ══ LA PREUVE ══ -->
   <section class="sec" id="applications"><div class="wrap">
     <div class="secHead reveal"><div class="kicker">La preuve</div><h2>On ne teste pas. On a déjà livré.</h2><p>Trois plateformes en ligne aujourd’hui, à grande échelle. Le même socle, spécialisé sur trois marchés très différents.</p></div>
@@ -548,6 +564,7 @@
     <a href="montpellier/guides/">Guides</a>
     <a href="a-propos.html">À propos</a>
     <a href="echanger.html">Échanger</a>
+    <a href="plan-du-site.html">Plan du site</a>
   </nav>
 </div></footer>
 <script>

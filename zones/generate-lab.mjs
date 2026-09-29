@@ -11,6 +11,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { HOLDING } from './zones.mjs';
 import { esc, STICKY_CSS } from './lib-local.mjs';
+import { loadActus } from './generate-actus.mjs';
+const ACTUS = loadActus();
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = 'lab';
@@ -37,7 +39,7 @@ const RADAR = [
   { n: 'Protocoles inter-agents (A2A)', r: 'tester', q: 'integration', why: "Faire dialoguer des agents de fournisseurs différents : standard jeune, à suivre de près.", v: null },
   { n: 'Modèles open-weight', r: 'tester', q: 'ia', why: "Des modèles performants hébergeables chez soi ou en Europe, utiles pour les données sensibles.", v: null },
   { n: 'llms.txt & moteurs de réponse IA', r: 'tester', q: 'data', why: "Rendre son site lisible par les assistants IA qui répondent à la place des moteurs de recherche.", v: null },
-  { n: 'AI Act — conformité', r: 'surveiller', q: 'regle', why: "Obligations progressives depuis 2025 ; le calendrier des étapes suivantes est à suivre de près.", v: 'ai-act-pme' },
+  { n: 'AI Act — conformité', r: 'adopter', q: 'regle', why: "Interdictions, maîtrise de l'IA et transparence déjà applicables ; obligations haut risque reportées à fin 2027 par le règlement omnibus IA (juillet 2026).", v: 'ai-act-pme' },
   { n: 'IA embarquée (WebGPU, on-device)', r: 'surveiller', q: 'ia', why: "Faire tourner des modèles directement dans le navigateur ou sur le téléphone, sans envoyer les données.", v: null },
   { n: 'Portefeuille d’identité numérique européen', r: 'surveiller', q: 'regle', why: "Le règlement eIDAS 2 prévoit un portefeuille d'identité numérique pour les citoyens de l'UE : impact à venir sur les parcours clients.", v: null },
   { n: 'Passeport numérique des produits', r: 'surveiller', q: 'regle', why: "Traçabilité et informations produit exigées progressivement par la réglementation européenne sur l'écoconception.", v: null }
@@ -148,7 +150,7 @@ const head = ({ title, desc, url, jsonld }) => `<!doctype html>
     .rdItem p{font-size:14px;color:var(--secondary);margin-top:4px;line-height:1.5}.rdItem a{font-size:13px;font-weight:800;color:var(--acc)}
     .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:14px;font-size:13px;font-weight:700;color:var(--secondary)}
     .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
-    .labCards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .labCards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.labCards.four{grid-template-columns:repeat(4,1fr)}
     .labCard{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:28px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
     .labCard:hover{transform:translateY(-5px);box-shadow:var(--sh-l)}.labCard .k{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
     .labCard h3{font-size:22px;font-weight:600;margin-top:10px}.labCard p{color:var(--secondary);font-size:14.5px;margin-top:10px;flex:1}.labCard .go{margin-top:16px;align-self:flex-start}
@@ -167,14 +169,15 @@ const head = ({ title, desc, url, jsonld }) => `<!doctype html>
     .demoOut{margin-top:14px;display:grid;gap:8px;max-height:340px;overflow:auto}
     .demoRow{background:var(--sand);border-radius:12px;padding:10px 12px;font-size:13.5px;display:grid;gap:2px}.demoRow b{font-size:14px}.demoRow span{color:var(--secondary)}
     .demoRow.past{opacity:.5}.demoWait{font-size:13.5px;color:var(--muted)}
-    @media(max-width:960px){.radarWrap>div:first-child{position:static}.radarWrap,.labCards,.apiGrid,.demos{grid-template-columns:1fr}}
+    @media(max-width:1100px){.labCards.four{grid-template-columns:1fr 1fr}}
+    @media(max-width:960px){.radarWrap>div:first-child{position:static}.radarWrap,.labCards,.labCards.four,.apiGrid,.demos{grid-template-columns:1fr}}
   </style>
   <script type="application/ld+json">
 ${JSON.stringify(jsonld, null, 2)}
   </script>
 </head>
 <body>
-<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Lab</a><a href="api.html">API &amp; données</a><a href="veille/">Veille</a><a href="../automatisation/">Automatisation</a><a href="../outils/">Outils</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
+<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Lab</a><a href="actus/">Actus</a><a href="api.html">API &amp; données</a><a href="veille/">Veille</a><a href="../automatisation/">Automatisation</a><a href="../outils/">Outils</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
 <main>`;
 
 const foot = `</main>
@@ -183,6 +186,7 @@ const foot = `</main>
   <nav>
     <a href="../index.html">Accueil</a>
     <a href="./">Lab</a>
+    <a href="actus/">Actus</a>
     <a href="api.html">API &amp; données</a>
     <a href="veille/">Veille</a>
     <a href="../automatisation/">Automatisation</a>
@@ -241,8 +245,9 @@ ${RADAR.map(it => `        <div class="rdItem" id="rd-${it.num}"><span class="rd
   </div></section>
 
   <section class="sec alt"><div class="wrap">
-    <div class="secHead center reveal"><div class="kicker">Explorer</div><h2>Trois portes d’entrée.</h2></div>
-    <div class="labCards">
+    <div class="secHead center reveal"><div class="kicker">Explorer</div><h2>Quatre portes d’entrée.</h2></div>
+    <div class="labCards four">
+      <a class="labCard reveal" href="actus/"><span class="k">Actus · ${esc(new Date(ACTUS[0].date + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }))}</span><h3>${esc(ACTUS[0].titre)}</h3><p>L'actualité IA, numérique et réglementaire, sourcée et traduite en impacts concrets.</p><span class="go">Lire →</span></a>
       <a class="labCard reveal" href="api.html"><span class="k">API &amp; données</span><h3>Les API gratuites qui changent la donne</h3><p>Entreprises, adresses, météo, mer, cartographie, IA : le catalogue commenté, avec des démonstrations qui tournent en direct.</p><span class="go">Explorer →</span></a>
       <a class="labCard reveal" href="veille/"><span class="k">Veille</span><h3>Nos analyses de fond</h3><p>${VEILLE.length} articles : MCP, agents vocaux, facturation électronique 2026, AI Act, RAG, open data…</p><span class="go">Lire →</span></a>
       <a class="labCard reveal" href="../outils/"><span class="k">Outils gratuits</span><h3>Faites le point vous-même</h3><p>Configurateur de projet, test de visibilité Google, calculateur du coût de vos tâches répétitives.</p><span class="go">Essayer →</span></a>

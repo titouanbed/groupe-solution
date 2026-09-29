@@ -20,6 +20,8 @@
 - [Lab](https://www.groupsolution.fr/lab/): technologies suivies, API gratuites avec démonstrations en direct.
 - [API & données](https://www.groupsolution.fr/lab/api.html)
 - [Veille](https://www.groupsolution.fr/lab/veille/)
+- [Actus IA & numérique (quotidiennes, sourcées)](https://www.groupsolution.fr/lab/actus/) — flux RSS : https://www.groupsolution.fr/lab/actus/rss.xml
+- [Plan du site](https://www.groupsolution.fr/plan-du-site.html)
 
 ## Outils gratuits
 - [Configurateur de projet web et IA](https://www.groupsolution.fr/outils/configurateur-site-internet.html)
