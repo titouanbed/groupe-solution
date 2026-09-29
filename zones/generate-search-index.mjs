@@ -9,6 +9,8 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { execSync } from 'node:child_process';
+import { COMMUNES } from './montpellier-communes.mjs';
+import { QUARTIERS, METIERS } from './montpellier-plus.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const files = execSync("git ls-files '*.html'", { cwd: ROOT }).toString().trim().split('\n')
@@ -48,5 +50,18 @@ for (const f of [...new Set(files)]) {
     if (push({ u: url, t: title, h, x: cut(x, 360), k: kind })) ns++;
   }
 }
-writeFileSync(join(ROOT, 'assets', 'site-index.json'), JSON.stringify({ v: 1, n: chunks.length, c: chunks }), 'utf8');
+/* Connaissances structurées : lieux, métiers, services (intentions de l'assistant). */
+const places = [...COMMUNES, ...QUARTIERS].map(c => ({ n: c.name, cp: c.cp, s: c.secteur, site: '/montpellier/' + (c.file || `site-internet-${c.slug}.html`), auto: c.placeType === 'Place' ? '/automatisation/' : `/automatisation/${c.slug}.html`, t: c.tissu }));
+const metiers = METIERS.map(m => ({ l: m.label, p: m.plural, u: `/montpellier/site-internet-${m.slug}-montpellier.html` }));
+let services = [];
+try { services = execSync("ls services/*.html", { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString().trim().split('\n').filter(f => !f.endsWith('index.html')).map(f => {
+  const h = readFileSync(join(ROOT, f), 'utf8'); return { t: clean((h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [, f])[1]), u: '/' + f };
+}); } catch {}
+writeFileSync(join(ROOT, 'assets', 'site-index.json'), JSON.stringify({ v: 2, n: chunks.length, c: chunks, places, metiers, services }), 'utf8');
+/* Même savoir, compact, pour le prompt système de l'assistant IA (api/assistant.mjs). */
+const kb = `Pages communes (site internet | automatisation) :\n` + places.map(p => `${p.n} (${p.cp}) : ${p.site} | ${p.auto}`).join('\n') +
+  `\n\nPages métiers :\n` + metiers.map(m => `${m.l} : ${m.u}`).join('\n') +
+  `\n\nServices :\n` + (services.length ? services.map(s => `${s.t} : ${s.u}`).join('\n') : '(voir /automatisation/ et /montpellier/site-internet-montpellier.html)') +
+  `\n\nAutres pages utiles : /outils/configurateur-site-internet.html (configurateur de projet), /outils/test-visibilite-google.html, /outils/calculateur-automatisation.html, /montpellier/guides/ (guides), /lab/ (radar technologique), /lab/api.html, /lab/veille/, /lab/actus/, /realisations.html, /echanger.html#rendez-vous, /plan-du-site.html`;
+writeFileSync(join(ROOT, 'api', '_knowledge.mjs'), '// Généré par zones/generate-search-index.mjs — ne pas éditer.\nexport const COMMUNE_COUNT = ' + COMMUNES.length + ';\nexport const SITE_KNOWLEDGE = ' + JSON.stringify(kb) + ';\n', 'utf8');
 console.log(`✓ assets/site-index.json : ${chunks.length} passages, ${seen.size} pages, ${(JSON.stringify(chunks).length / 1024).toFixed(0)} Ko`);

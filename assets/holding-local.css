@@ -74,6 +74,7 @@ main{padding-top:74px}
 .localGrid p strong{color:var(--ink)}
 .chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .chips li{font-size:13px;font-weight:700;color:var(--olive2);background:var(--olive-soft);padding:7px 13px;border-radius:999px}
+.recit{margin-top:22px;padding:18px 20px;border-left:4px solid var(--olive2);background:var(--olive-soft);border-radius:0 14px 14px 0}.recit b{display:block;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--olive2);margin-bottom:6px}.recit p{margin:0;line-height:1.6}
 .facts{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:28px;box-shadow:var(--sh-s)}
 .facts dl{display:grid;grid-template-columns:auto 1fr;gap:12px 18px;font-size:14.5px}
 .facts dt{color:var(--muted);font-weight:700}.facts dd{font-weight:700}
@@ -174,6 +175,7 @@ footer{padding:56px 0;border-top:1px solid var(--line);background:var(--sand)}
 .cases4{grid-template-columns:repeat(4,1fr)}
 .case .tech{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
 .case .ex{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line2);font-size:13.5px;color:var(--olive2);font-weight:600}
+.case h3+.ex{margin-top:10px;padding-top:0;border-top:0;font-size:15px;font-weight:500;color:var(--secondary);line-height:1.6}
 .bases{margin-top:26px;background:var(--white);border:1px dashed var(--line2);border-radius:var(--r-l);padding:22px 26px}
 .bases h3{font-size:18px;font-weight:600;margin-bottom:10px}
 .bases ul{list-style:none;display:grid;gap:8px;font-size:14.5px;color:var(--secondary)}.bases b{color:var(--ink)}

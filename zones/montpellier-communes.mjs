@@ -31,6 +31,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 import { EXTENSION } from './communes-extension.mjs';
+import { EXTENSION_2 } from './communes-extension-2.mjs';
 
 export const HUB = { name: 'Montpellier', lat: 43.6108, lng: 3.8767 };
 
@@ -1017,7 +1018,7 @@ const BASE = [
   }
 ];
 
-export const COMMUNES = [...BASE, ...EXTENSION];
+export const COMMUNES = [...BASE, ...EXTENSION, ...EXTENSION_2];
 
 /* ── Utilitaires géographiques partagés par les générateurs ── */
 const R = 6371;

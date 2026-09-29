@@ -12,7 +12,8 @@ export const SECTEUR_ORDER = [
   'Nord de la métropole', 'Nord-est de la métropole', 'Nord-ouest de la métropole', 'Est de la métropole',
   'Ouest de la métropole', 'Sud de la métropole', 'Nord de Montpellier', "Pays de l'Or", 'Littoral',
   'Pays de Lunel', 'Petite Camargue', 'Vidourle', 'Nîmes', 'Bassin de Thau', "Agde & Pézenas", 'Biterrois',
-  'Pic Saint-Loup', 'Cévennes héraultaises', "Vallée de l'Hérault", "Cœur d'Hérault"
+  'Pic Saint-Loup', 'Cévennes héraultaises', "Vallée de l'Hérault", "Cœur d'Hérault", 'Haut-Languedoc',
+  'Rhône gardois', 'Uzège', 'Cévennes gardoises'
 ];
 
 /* « à Lattes », « au Crès », « aux Matelles », « à La Grande-Motte ». */
@@ -95,6 +96,12 @@ export function communesList({ current = null, href }) {
   </div>`;
 }
 
+/* Communes du même bassin (maillage ciblé, sans répéter la liste complète sur chaque page). */
+export function secteurList({ c, href, hubHref, hubLabel }) {
+  const same = COMMUNES.filter(o => o.secteur === c.secteur && o.slug !== c.slug).sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+  return `<div class="gm-list"><div class="gm-wide"><h4>${esc(c.secteur)}${same.length ? '' : ''}</h4><ul>${same.map(o => `<li><a href="${href(o)}">${esc(o.name)}</a></li>`).join('')}<li><a href="${hubHref}" class="is-cur">${esc(hubLabel)}</a></li></ul></div></div>`;
+}
+
 /* Barre d'action mobile collante (appel / message) — commune à toutes les pages locales. */
 export const STICKY_CSS = `
 .gs-sticky{display:none}
@@ -158,3 +165,9 @@ export const LIVE_CSS = `
 @keyframes lvs{0%{background-position:200% 0}100%{background-position:-200% 0}}
 @media(prefers-reduced-motion:reduce){.lv-dot,.lv-skel{animation:none}}
 `;
+
+/* Contenu rédigé commune par commune (enjeux, récit, FAQ dédiées).
+   Page site : enjeux + faqSite. Page automatisation : récit + faqAuto (pas de texte partagé entre les deux). */
+let ENRICH = {};
+try { ({ ENRICH } = await import('./communes-enrichissement.mjs')); } catch { /* fichier absent : pages sans bloc enrichi */ }
+export const enrichOf = c => c.enrich || ENRICH[c.slug] || null;

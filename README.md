@@ -35,7 +35,7 @@ npm install
 npm run test:slots      # tests de la logique de créneaux (buffer 30 min, horaires, free/busy)
 ```
 
-## Montpellier & alentours (75 communes, 7 quartiers, 14 métiers)
+## Montpellier & alentours (89 communes, 7 quartiers, 14 métiers)
 
 Deux familles de pages générées depuis **un seul registre** : `zones/montpellier-communes.mjs` (+ `zones/communes-extension.mjs` pour Nîmes, Béziers, Agde, Cévennes…)
 (portrait, repères, tissu économique, cas d'automatisation et FAQ propres à chaque commune).

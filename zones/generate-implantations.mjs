@@ -69,14 +69,14 @@ const html = `<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos implantations — Montpellier, La Réunion, Mayotte, Antilles, Guyane, Pacifique | Groupe Solution</title>
-  <meta name="description" content="Les implantations locales de Groupe Solution : Montpellier et 75 communes de l'Hérault et du Gard, La Réunion, Mayotte, Guyane, Martinique, Guadeloupe, Nouvelle-Calédonie et Polynésie française." />
+  <meta name="description" content="Les implantations locales de Groupe Solution : Montpellier et ${COMMUNES.length} communes de l'Hérault et du Gard, La Réunion, Mayotte, Guyane, Martinique, Guadeloupe, Nouvelle-Calédonie et Polynésie française." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://www.groupsolution.fr/implantations.html" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Groupe Solution" />
   <meta property="og:title" content="Nos implantations — Montpellier, La Réunion, Mayotte, Antilles, Guyane, Pacifique | Groupe Solution" />
-  <meta property="og:description" content="Les implantations locales de Groupe Solution : Montpellier et 75 communes de l'Hérault et du Gard, La Réunion, Mayotte, Guyane, Martinique, Guadeloupe, Nouvelle-Calédonie et Polynésie française." />
+  <meta property="og:description" content="Les implantations locales de Groupe Solution : Montpellier et ${COMMUNES.length} communes de l'Hérault et du Gard, La Réunion, Mayotte, Guyane, Martinique, Guadeloupe, Nouvelle-Calédonie et Polynésie française." />
   <meta property="og:url" content="https://www.groupsolution.fr/implantations.html" />
   <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
   <meta name="twitter:card" content="summary_large_image" />

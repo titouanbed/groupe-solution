@@ -8,6 +8,25 @@
    ═══════════════════════════════════════════════════════════ */
 (function () {
   if (window.__gsAssistant) return; window.__gsAssistant = 1;
+
+  /* Toutes les demandes des formulaires (Formspree) passent d'abord par /api/lead (e-mail via Brevo,
+     sans le plafond de 50/mois) ; si l'API n'est pas configurée ou échoue → Formspree, comme avant. */
+  if (window.fetch && window.FormData) {
+    var _fetch = window.fetch.bind(window);
+    window.fetch = function (input, init) {
+      try {
+        var url = typeof input === 'string' ? input : (input && input.url) || '';
+        if (/^https:\/\/formspree\.io\//.test(url) && init && String(init.method || '').toUpperCase() === 'POST' && init.body instanceof FormData) {
+          var o = {}; init.body.forEach(function (v, k) { if (typeof v === 'string') o[k] = v; });
+          if (!o.page) o.page = location.pathname;
+          return _fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o) })
+            .then(function (r) { return r.ok ? r : _fetch(input, init); })
+            .catch(function () { return _fetch(input, init); });
+        }
+      } catch (e) {}
+      return _fetch(input, init);
+    };
+  }
   var TEL = '07 82 29 85 59', TEL_HREF = 'tel:+33782298559', RDV = '/echanger.html#rendez-vous', FORM = 'https://formspree.io/f/mzebrvjg';
   var store = { get: function (k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } }, set: function (k, v) { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
   var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
@@ -18,7 +37,7 @@
   var stopSet = {}; STOP.forEach(function (w) { stopSet[w] = 1; });
   function norm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
   function toks(s) { return norm(s).split(' ').filter(function (w) { return w.length > 1 && !stopSet[w]; }).map(function (w) { return w.length > 5 ? w.replace(/(s|x)$/, '') : w; }); }
-  var IDX = null, IDF = {}, loading = null;
+  var IDX = null, IDF = {}, loading = null, KB = { places: [], metiers: [], services: [] };
   function loadIndex() {
     if (IDX) return Promise.resolve(IDX);
     if (loading) return loading;
@@ -26,7 +45,9 @@
       var df = {}, N = d.c.length;
       d.c.forEach(function (c) { c._t = toks(c.t + ' ' + c.h); c._x = toks(c.x); var seen = {}; c._t.concat(c._x).forEach(function (w) { if (!seen[w]) { seen[w] = 1; df[w] = (df[w] || 0) + 1; } }); });
       Object.keys(df).forEach(function (w) { IDF[w] = Math.log(1 + N / df[w]); });
-      IDX = d.c; return IDX;
+      IDX = d.c; KB = { places: d.places || [], metiers: d.metiers || [], services: d.services || [] };
+      KB.places.forEach(function (p) { p._n = norm(p.n); });
+      return IDX;
     });
     return loading;
   }
@@ -48,12 +69,46 @@
 
   /* ── Rendu texte (liens internes, gras, listes) ── */
   function md(t) {
-    var h = esc(t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+    var h = esc(t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/\*([^*\n]+)\*/g, '<i>$1</i>');
     h = h.replace(/\[([^\]]+)\]\(((?:\/|https:\/\/www\.groupsolution\.fr\/|tel:)[^)\s]*)\)/g, '<a href="$2">$1</a>');
     return h.split(/\n{2,}/).map(function (p) {
       if (/^\s*[-•] /m.test(p)) return '<ul>' + p.split('\n').filter(Boolean).map(function (l) { return '<li>' + l.replace(/^\s*[-•] /, '') + '</li>'; }).join('') + '</ul>';
       return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
     }).join('');
+  }
+
+  /* ── Intentions reconnues (connaissance structurée du site) ── */
+  var CALLME = '\n\n👉 Le plus simple : [appelez Titouan au ' + TEL + '](' + TEL_HREF + '), ou cliquez sur « Être rappelé ».';
+  function findPlace(nq) {
+    var best = null;
+    KB.places.forEach(function (p) { if (p._n.length > 2 && (' ' + nq + ' ').indexOf(' ' + p._n + ' ') !== -1 && (!best || p._n.length > best._n.length)) best = p; });
+    return best;
+  }
+  var METIER_KEYS = [[/restaurant|restaurateur|bistrot|brasserie|pizzeria|traiteur/, 'restaurant'], [/artisan|plombier|electricien|macon|peintre|menuisier|couvreur|chauffagiste|paysagiste|batiment/, 'artisan du bâtiment'],
+    [/kine|osteo|infirmier|dentiste|medecin|psychologue|orthophoniste|sante|praticien/, 'professionnel de santé'], [/avocat|juriste/, 'avocat'], [/comptable|expert comptable/, 'cabinet comptable'],
+    [/immobilier|agence immo|agent immobilier/, 'agence immobilière'], [/coiffeur|coiffure|barbier|esthetique|institut|onglerie/, 'salon de coiffure ou institut'], [/coach|salle de sport|yoga|pilates|fitness/, 'coach sportif ou salle de sport'],
+    [/gite|chambre d hote|hotel|hebergement|camping|location saisonniere/, 'hébergement'], [/vigneron|domaine|cave|viticole|vin/, 'domaine viticole'], [/boutique|magasin|commerce|commercant/, 'commerce'],
+    [/garage|garagiste|carrosserie|mecanique/, 'garage automobile'], [/formation|organisme de formation|cfa|ecole/, 'organisme de formation'], [/menage|jardinage|domicile|nettoyage|lavage/, 'services à domicile']];
+  function intent(q) {
+    var nq = norm(q), place = findPlace(nq);
+    if (/\b(appel|appeler|telephone|numero|joindre|contact|contacter|rappel|rappeler|rdv|rendez vous|visio|parler)\b/.test(nq) && !place)
+      return 'Avec plaisir ! Trois façons de joindre Titouan :\n- 📞 [' + TEL + '](' + TEL_HREF + ') — réponse le jour même\n- 🗓️ [Réserver 10 minutes en visio](' + RDV + ')\n- ✉️ [contact@groupsolution.fr](mailto:contact@groupsolution.fr)\n\nOu cliquez sur « Être rappelé » : il vous rappelle.';
+    if (/\b(qui|fondateur|titouan|equipe|entreprise|groupe solution|vous etes)\b/.test(nq) && /\b(qui|fondateur|titouan|equipe|vous etes)\b/.test(nq))
+      return 'Groupe Solution est un **éditeur de logiciels et d’automatisations**, basé à Montpellier et fondé par **Titouan Bedos**. Nous concevons des sites internet, des agents IA et des automatisations sur-mesure, et nous opérons nos propres plateformes (Solution Recrutement, Solution Alternance, Aides Particuliers). Notre devise : *nous gagnons de l’argent uniquement si vous en gagnez.* [En savoir plus](/a-propos.html)' + CALLME;
+    if (/\b(delai|combien de temps|quand|rapide|vite)\b/.test(nq))
+      return 'Le délai dépend du projet : une première automatisation simple peut être livrée en quelques jours, un site ou un outil plus complet se construit par étapes. **Le délai est fixé noir sur blanc dans le devis**, gratuit.' + CALLME;
+    if (place) {
+      var m = null; METIER_KEYS.some(function (k) { if (k[0].test(nq)) { m = k[1]; return true; } });
+      var mp = m && KB.metiers.filter(function (x) { return x.l === m; })[0];
+      return 'Oui, nous intervenons ' + (/^(Le |Les )/.test(place.n) ? '' : 'à ') + '**' + place.n + '** (' + place.cp + ', ' + place.s + ') : échanges par téléphone ou visio, déplacement quand c’est utile. Tout y est :\n- [Création de site internet à ' + place.n + '](' + place.site + ')\n- [Automatisation & IA à ' + place.n + '](' + place.auto + ')' + (mp ? '\n- [Site internet pour ' + mp.p + '](' + mp.u + ')' : '') + CALLME;
+    }
+    if (/\b(intervenez|travaillez|deplacez|venez|zone|secteur)\b/.test(nq))
+      return 'Nous sommes basés à **Montpellier** et intervenons dans toute la métropole, l’Hérault et le Gard (75 communes ont leur page), **partout en France à distance**, et dans les DOM-TOM via nos agences locales. Dites-moi votre commune, je vous donne la page qui vous concerne.' + CALLME;
+    var mk = null; METIER_KEYS.some(function (k) { if (k[0].test(nq)) { mk = k[1]; return true; } });
+    var met = mk && KB.metiers.filter(function (x) { return x.l === mk; })[0];
+    if (met && /\b(site|internet|web|automatis|ia|logiciel|outil|client|reservation)\b/.test(nq))
+      return 'Pour les ' + met.p + ', nous avons une page complète : ce que doit contenir votre site, les erreurs qui font perdre des clients, et ce que l’IA peut automatiser pour vous → [Site internet pour ' + met.p + '](' + met.u + ').' + CALLME;
+    return null;
   }
 
   /* ── Réponse locale (sans IA générative) ── */
@@ -62,6 +117,7 @@
     var nq = norm(q);
     if (PRICE.test(nq)) return 'Chaque projet est chiffré **sur devis, gratuitement** : le prix dépend de vos besoins (pages, fonctionnalités, automatisations, connexions à vos outils). Le plus simple : [configurez votre projet en 2 minutes](/outils/configurateur-site-internet.html) ou appelez le [' + TEL + '](' + TEL_HREF + ') — réponse le jour même.';
     if (/\b(bonjour|salut|hello|bonsoir)\b/.test(nq) && nq.split(' ').length < 4) return 'Bonjour ! Posez-moi votre question sur un site internet, une automatisation, l’IA ou votre commune : je vous réponds à partir du contenu du site, et je peux aussi vous mettre en relation avec Titouan.';
+    var it = intent(q); if (it) return it;
     if (!res.length) return 'Je n’ai pas trouvé de réponse précise sur le site. Le plus rapide est d’en parler directement : [appelez le ' + TEL + '](' + TEL_HREF + ') ou laissez votre numéro ci-dessous, Titouan vous rappelle.';
     var top = res[0].c, out = '';
     if (top.q) out += '**' + top.h + '**\n' + top.x + '\n\nSource : [' + top.t + '](' + top.u + ')';
@@ -82,6 +138,8 @@
     '#gsA form.ask{display:flex;gap:8px;padding:12px;border-top:1px solid #ECEAE3;background:#fff}#gsA form.ask input{flex:1;min-width:0;border:1px solid #DFDCD2;border-radius:12px;padding:11px 12px;font:15px inherit;font-family:inherit}#gsA form.ask input:focus{outline:none;border-color:#E61E4D}#gsA form.ask button{border:0;border-radius:12px;background:#E61E4D;color:#fff;font-weight:800;padding:0 14px;cursor:pointer}' +
     '#gsA .cta{display:flex;gap:8px;padding:0 12px 12px;background:#fff}#gsA .cta a,#gsA .cta button{flex:1;text-align:center;border-radius:12px;padding:10px;font:800 13px inherit;font-family:inherit;text-decoration:none;cursor:pointer;border:1px solid #DFDCD2;background:#fff;color:#171613}#gsA .cta a.tel{background:#171613;color:#fff;border-color:#171613}' +
     '#gsA .cb{display:grid;gap:8px}#gsA .cb input{border:1px solid #DFDCD2;border-radius:10px;padding:9px 11px;font:14px inherit;font-family:inherit}#gsA .cb button{border:0;border-radius:10px;background:#E61E4D;color:#fff;font-weight:800;padding:10px;cursor:pointer}' +
+    '#gsA .nb,#gsA .nb2{display:inline-block;border-radius:999px;padding:8px 12px;font:800 12.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer}#gsA .nb{background:#E61E4D;color:#fff!important;border:0}#gsA .nb2{background:#fff;border:1px solid #DFDCD2;color:#171613}' +
+    '#gsA-tip{position:fixed;right:18px;bottom:78px;z-index:9998;max-width:280px;background:#fff;border:1px solid #ECEAE3;border-radius:16px 16px 4px 16px;box-shadow:0 14px 40px rgba(0,0,0,.18);padding:12px 34px 12px 14px;font:600 13.5px/1.45 "Plus Jakarta Sans",Inter,system-ui,sans-serif;color:#171613;cursor:pointer;animation:gsAi .4s ease}#gsA-tip b{color:#C81E47}#gsA-tip .c{position:absolute;right:8px;top:6px;border:0;background:none;font-size:16px;color:#8C887E;cursor:pointer}@keyframes gsAi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@media(max-width:760px){body.gsA-sticky #gsA-tip{bottom:146px}#gsA-tip{bottom:72px;right:12px}}' +
     '#gsA .typing span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:#8C887E;animation:gsAt 1s infinite}#gsA .typing span:nth-child(2){animation-delay:.15s}#gsA .typing span:nth-child(3){animation-delay:.3s}@keyframes gsAt{0%,80%,100%{opacity:.3}40%{opacity:1}}' +
     '#gsA .note{font-size:11px;color:#8C887E;text-align:center;padding:0 12px 8px;background:#fff}' +
     '.gsA-call{display:none}@media(max-width:760px){#gsA-btn span{display:none}#gsA-btn{padding:12px}body.gsA-sticky #gsA-btn{bottom:86px}#gsA{right:12px;bottom:12px}' +
@@ -135,7 +193,7 @@
     loadIndex().then(function () {
       var res = search(q, 8);
       var ctx = res.slice(0, 6).map(function (r) { return { u: r.c.u, t: r.c.t, h: r.c.h, x: r.c.x }; });
-      var done = function (answer) { typing.remove(); add('bot', md(answer)); hist.push({ role: 'user', content: q }, { role: 'assistant', content: answer }); hist = hist.slice(-16); store.set('gsA-h', hist); };
+      var done = function (answer) { typing.remove(); add('bot', md(answer)); asked++; if (asked === 2) nudge(); else if (asked === 4) callback(); hist.push({ role: 'user', content: q }, { role: 'assistant', content: answer }); hist = hist.slice(-16); store.set('gsA-h', hist); };
       if (mode === 'local') return done(localAnswer(q, res));
       fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, history: hist.slice(-8) }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
@@ -159,6 +217,11 @@
     d.querySelector('input').focus();
   }
 
+  var asked = 0;
+  function nudge() {
+    var d = add('bot', md('Vous avez un projet précis ? **Dix minutes avec Titouan** suffisent souvent pour trouver des pistes concrètes — gratuit, sans engagement.') + '<div class="chips" style="margin-top:8px"><a class="nb" href="' + TEL_HREF + '">📞 Appeler maintenant</a><button type="button" class="nb2">Être rappelé</button></div>');
+    d.querySelector('.nb2').addEventListener('click', callback); ga('assistant_nudge');
+  }
   var started = false;
   function open() {
     panel.classList.add('open'); btn.style.display = 'none';
@@ -171,5 +234,14 @@
   panel.querySelector('.cbk').addEventListener('click', callback);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('open')) close(); });
   form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value); });
+  /* Bulle d'accueil proactive (une fois par session, après 25 s) */
+  if (!store.get('gsA-tip')) setTimeout(function () {
+    if (panel.classList.contains('open')) return;
+    var t = document.createElement('div'); t.id = 'gsA-tip'; t.setAttribute('role', 'button');
+    t.innerHTML = (placeName ? 'Un projet <b>' + (/^(Le |Les )/.test(placeName) ? '' : 'à ') + esc(placeName) + '</b> ? ' : 'Un projet ? ') + 'Posez votre question, je réponds tout de suite — ou appelez Titouan.<button class="c" type="button" aria-label="Fermer">×</button>';
+    document.body.appendChild(t); store.set('gsA-tip', 1); ga('assistant_tip');
+    t.addEventListener('click', function (e) { if (e.target.classList.contains('c')) { t.remove(); return; } t.remove(); open(); });
+    setTimeout(function () { if (t.parentNode) t.remove(); }, 15000);
+  }, 25000);
   document.querySelectorAll('[data-open-assistant]').forEach(function (el) { el.addEventListener('click', function (e) { e.preventDefault(); open(); }); });
 })();

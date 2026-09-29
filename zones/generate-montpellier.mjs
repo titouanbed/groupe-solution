@@ -13,7 +13,7 @@ import { HOLDING } from './zones.mjs';
 import { COMMUNES, neighbours, km } from './montpellier-communes.mjs';
 import { QUARTIERS, METIERS, GUIDES_LINKS, OUTILS_LINKS } from './montpellier-plus.mjs';
 import { pickAvancees, tagsFor, METIER_TAG } from './automatisations-avancees.mjs';
-import { liveSection, LIVE_CSS, REA_SECTION, heroArt, aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
+import { secteurList, enrichOf, liveSection, LIVE_CSS, REA_SECTION, heroArt, aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = 'montpellier';
@@ -64,13 +64,6 @@ const GENERIC_FAQ = [
   c => ({ q: `Le site peut-il aussi me faire gagner du temps ?`, a: `Oui, c'est notre spécialité : prise de rendez-vous, devis automatique, réponses aux questions fréquentes, relances. Le site devient un outil qui travaille pour vous, pas seulement une vitrine.` })
 ];
 
-const QUIZ = [
-  "Quand on tape votre métier suivi de « {c} », vous apparaissez sur la première page Google.",
-  "Votre fiche Google Business a des photos récentes, des horaires à jour et au moins 10 avis.",
-  "Votre site s'affiche parfaitement et rapidement sur un téléphone.",
-  "Un client peut demander un devis ou un rendez-vous en ligne, sans vous appeler.",
-  "Vous savez combien de demandes votre site vous a apportées le mois dernier."
-];
 
 function faqJsonLd(faq) {
   return faq.map(f => `      { "@type": "Question", "name": ${jstr(f.q)}, "acceptedAnswer": { "@type": "Answer", "text": ${jstr(f.a)} } }`).join(',\n');
@@ -81,7 +74,8 @@ function page(c) {
   const { d, dir } = distanceText(c);
   const near = neighbours(c, 6);
   const adv = pickAvancees(c.slug, [c.tissu, c.profil, c.auto.angle].join(' '), 4);
-  const faq = [c.web.faq, ...pick(GENERIC_FAQ, c.slug, 3).map(f => f(c)), { q: c.auto.faq.q, a: c.auto.faq.a }];
+  const E = enrichOf(c);
+  const faq = [c.web.faq, ...(E?.faqSite ? [E.faqSite] : []), ...pick(GENERIC_FAQ, c.slug, 1).map(f => f(c)), { q: c.auto.faq.q, a: c.auto.faq.a }];
   const tissuShort = c.tissu.split(',').slice(0, 2).join(',');
   const title = `Création de site internet ${aName(c)} (${c.cp}) | GroupSolution`;
   const desc = `Site internet, fiche Google et référencement local pour les ${tissuShort} ${aName(c)}. Devis gratuit, audit offert en 15 min.`;
@@ -224,9 +218,11 @@ ${faqJsonLd(faq)}
         <span class="section-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-map-pin"/></svg> ${esc(c.name)}, ${esc(dist)}</span>
         <h2>Ce qui compte pour une entreprise <span class="accent">${esc(aName(c))}</span></h2>
         <p>${esc(c.profil)}</p>
-        <p>Ici, nos clients sont surtout des <strong>${esc(c.tissu)}</strong>. Leur point commun : des clients qui cherchent sur leur téléphone, comparent en quelques secondes et appellent celui qui inspire le plus confiance.</p>
+        <p>Le tissu local : <strong>${esc(c.tissu)}</strong>. Leur point commun : des clients qui cherchent sur leur téléphone, comparent en quelques secondes et appellent celui qui inspire le plus confiance.</p>
         <ul class="gs-chips">${c.reperes.map(r => `<li>${esc(r)}</li>`).join('')}</ul>
-        <p class="gs-metiers">Pour les métiers d'ici : ${metiersFor(c).map(m => `<a href="${metierFile(m)}">site internet pour ${esc(m.label)}</a>`).join(' · ')}.</p>
+${E?.enjeux ? `        <h3 class="gs-enjeux-t">Les trois enjeux web ${esc(aName(c))}</h3>
+        <ol class="gs-enjeux">${E.enjeux.map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+` : ''}        <p class="gs-metiers">Pour les métiers d'ici : ${metiersFor(c).map(m => `<a href="${metierFile(m)}">site internet pour ${esc(m.label)}</a>`).join(' · ')}.</p>
       </div>
       <aside class="gs-local-card reveal">
         <h3>Votre plan d'action ${esc(aName(c))}</h3>
@@ -285,21 +281,12 @@ ${liveSection(c)}
     </div>
   </section>
 
-  <section id="test" class="gs-quiz-sec">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-lightning"/></svg> Test en 1 minute</span>
-        <h2>Votre présence en ligne vous fait-elle <span class="accent">perdre des clients</span> ?</h2>
-        <p>Cinq affirmations. Répondez honnêtement, le score s'affiche tout de suite — sans laisser vos coordonnées.</p>
-      </div>
-      <div class="gs-quiz reveal" data-commune="${esc(c.name)}">
-${QUIZ.map((q, i) => `        <div class="gs-q"><p>${i + 1}. ${esc(q.replace('{c}', c.name))}</p><div class="gs-yn"><button type="button" data-v="1">Oui</button><button type="button" data-v="0">Non</button></div></div>`).join('\n')}
-        <div class="gs-result" hidden aria-live="polite"></div>
-      </div>
+  <section id="test" class="gs-test-band">
+    <div class="container gs-test-inner reveal">
+      <div><b>Votre entreprise ${esc(aName(c))} est-elle visible sur Google ?</b><span>Le test gratuit donne un score et les 3 corrections prioritaires, en 1 minute.</span></div>
+      <a class="btn btn-primary" href="../outils/test-visibilite-google.html">Faire le test</a>
     </div>
   </section>
-
-${REA_SECTION()}
 
   <section id="automatisation" class="gs-auto">
     <div class="container">
@@ -309,26 +296,12 @@ ${REA_SECTION()}
         <p>${esc(c.auto.angle)} Voici ce que les technologies d'aujourd'hui permettent — conçu et intégré par un éditeur de logiciels.</p>
       </div>
       <div class="gs-auto-grid">
-${adv.slice(0, 3).map(a => `        <div class="gs-auto-card reveal"><span class="gs-tech">${esc(a.tech)}</span><h4>${esc(a.titre)}</h4><p>${esc(a.texte)}</p></div>`).join('\n')}
+${adv.slice(0, 3).map(a => `        <div class="gs-auto-card reveal"><span class="gs-tech">${esc(a.tech)}</span><h4>${esc(a.titre)}</h4><p>${esc(a.ex(c))}</p></div>`).join('\n')}
       </div>
       <p class="gs-auto-more"><a href="${autoHref(c)}">Automatisation &amp; logiciel sur-mesure ${esc(aName(c))} : tous les détails →</a></p>
     </div>
   </section>
 
-  <section id="processus" style="background: var(--gris-clair);">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Méthode</span>
-        <h2>Simple, du premier appel <span class="accent">à la mise en ligne</span></h2>
-      </div>
-      <div class="process-steps">
-        <div class="process-step reveal"><div class="step-num">1</div><h4>Audit gratuit (15 min)</h4><p>On regarde votre présence actuelle ${esc(aName(c))} et ce que font vos concurrents.</p></div>
-        <div class="process-step reveal"><div class="step-num">2</div><h4>Plan & devis clair</h4><p>Ce qu'on fait, pourquoi, combien et en combien de temps.</p></div>
-        <div class="process-step reveal"><div class="step-num">3</div><h4>Création</h4><p>Site, fiche Google, automatisations : vous validez chaque étape.</p></div>
-        <div class="process-step reveal"><div class="step-num">4</div><h4>Suivi</h4><p>Mesure des demandes reçues et ajustements dans la durée.</p></div>
-      </div>
-    </div>
-  </section>
 
   <section id="faq">
     <div class="container">
@@ -356,8 +329,7 @@ ${faq.map(f => `        <div class="faq-item reveal"><div class="faq-q">${esc(f.
         ${mapSvg({ current: c.slug, href: n => file(n), hubHref: HUB_FILE, label: `Carte des communes desservies autour de ${c.name}` })}
         <div class="gm-legend"><span><i style="background:#262626"></i>Montpellier (base)</span><span><i style="background:#EC4899"></i>${esc(c.name)}</span><span><i style="background:#9ca3af"></i>Métropole</span><span><i style="background:#d1d5db"></i>Alentours</span></div>
       </div>
-      ${communesList({ current: c.slug, href: n => file(n) })}
-      ${extraLists(c.slug)}
+      ${isQ(c) ? extraLists(c.slug) : secteurList({ c, href: n => file(n), hubHref: HUB_FILE + '#communes', hubLabel: 'Toutes les communes →' })}
     </div>
   </section>
 
@@ -489,6 +461,7 @@ writeFileSync(join(ROOT, DIR, 'communes.css'), `/* Généré par zones/generate-
 .gs-local h2 .accent,.gs-auto h2 .accent{background:linear-gradient(135deg,var(--rose),var(--rose-fonce));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .gs-local p{color:var(--gris);font-size:1.05rem;margin-bottom:14px;line-height:1.75}
 .gs-local p strong{color:var(--gris-fonce)}
+.gs-enjeux-t{font-size:1.1rem;margin:22px 0 10px}.gs-enjeux{margin:0 0 6px 1.2em;padding:0;display:grid;gap:8px}.gs-enjeux li{line-height:1.55}
 .gs-metiers{margin-top:18px!important;font-size:.95rem!important}.gs-metiers a{color:var(--rose-fonce);font-weight:700;text-decoration:none}.gs-metiers a:hover{text-decoration:underline}
 .gs-chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .gs-chips li{background:var(--rose-clair);color:var(--rose-fonce);font-weight:700;font-size:.85rem;padding:7px 13px;border-radius:999px}
@@ -496,18 +469,8 @@ writeFileSync(join(ROOT, DIR, 'communes.css'), `/* Généré par zones/generate-
 .gs-local-card h3{font-size:1.2rem;font-weight:800;margin-bottom:14px}
 .gs-local-card ol{padding-left:20px;margin-bottom:22px;color:var(--gris);font-size:.95rem}
 .gs-local-card li{margin-bottom:10px;line-height:1.55}.gs-local-card b{color:var(--gris-fonce)}
-.gs-quiz-sec{padding:80px 0}
-.gs-quiz{max-width:760px;margin:0 auto;background:var(--blanc);border:1px solid #f1f1f1;border-radius:22px;box-shadow:var(--box-shadow-lg);padding:14px 28px}
-.gs-q{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0;border-bottom:1px solid #f3f4f6}
-.gs-q p{font-weight:600;font-size:.98rem;line-height:1.5}
-.gs-yn{display:flex;gap:8px;flex-shrink:0}
-.gs-yn button{padding:9px 16px;border-radius:999px;border:1.5px solid #e5e7eb;background:#fff;font:700 .9rem Inter,sans-serif;cursor:pointer;transition:var(--transition)}
-.gs-yn button:hover{border-color:var(--rose-fonce)}
-.gs-yn button.on[data-v="1"]{background:#10b981;border-color:#10b981;color:#fff}
-.gs-yn button.on[data-v="0"]{background:var(--rose-fonce);border-color:var(--rose-fonce);color:#fff}
-.gs-result{padding:24px 0 12px;text-align:center}
-.gs-result .score{font-size:2.6rem;font-weight:800;line-height:1}
-.gs-result p{color:var(--gris);margin:10px auto 18px;max-width:520px}
+.gs-test-band{padding:34px 0}.gs-test-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--gris-fonce);color:#fff;border-radius:22px;padding:26px 30px}.gs-test-inner b{display:block;font-size:1.15rem;margin-bottom:4px}.gs-test-inner span{opacity:.85;font-size:.95rem}.gs-test-inner .btn{flex-shrink:0}
+@media(max-width:700px){.gs-test-inner{flex-direction:column;align-items:flex-start}}
 .gs-auto{padding:80px 0}
 .gs-auto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .gs-auto-card{background:var(--blanc);border:1px solid #f1f1f1;border-radius:18px;padding:26px;box-shadow:var(--box-shadow);transition:var(--transition)}
@@ -519,7 +482,7 @@ writeFileSync(join(ROOT, DIR, 'communes.css'), `/* Généré par zones/generate-
 .gs-map-sec{padding:80px 0}
 .gs-2col{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 @media(max-width:860px){.gs-local-grid,.gs-auto-grid{grid-template-columns:1fr}.gs-local-card{position:static}}
-@media(max-width:560px){.gs-q{flex-direction:column;align-items:flex-start}.gs-2col{grid-template-columns:1fr}}
+@media(max-width:560px){.gs-2col{grid-template-columns:1fr}}
 ${MAP_CSS}
 ${STICKY_CSS}
 ${LIVE_CSS}

@@ -12,7 +12,7 @@ import { dirname, join } from 'node:path';
 import { HOLDING } from './zones.mjs';
 import { COMMUNES, neighbours } from './montpellier-communes.mjs';
 import { AVANCEES, pickAvancees, VEILLE_OF } from './automatisations-avancees.mjs';
-import { liveSection, LIVE_CSS, heroArt, aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
+import { enrichOf, liveSection, LIVE_CSS, heroArt, aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = 'automatisation';
@@ -151,7 +151,8 @@ function page(c) {
   const url = `${HOLDING}/${DIR}/${c.slug}.html`;
   const { d, dir } = distanceText(c);
   const near = neighbours(c, 6);
-  const faq = [c.auto.faq, COMMON_FAQ[c.slug.length % 3], { q: `Intervenez-vous vraiment ${aName(c)} ?`, a: `Oui. Groupe Solution est basé à Montpellier, ${d <= 2 ? 'juste à côté' : `à environ ${d} km`}. Le diagnostic et le suivi se font par téléphone ou visio, et on se déplace ${aName(c)} dès que c'est utile — pour observer un process sur place, former une équipe ou lancer un outil.` }, c.web.faq];
+  const E = enrichOf(c);
+  const faq = [c.auto.faq, ...(E?.faqAuto ? [E.faqAuto] : []), COMMON_FAQ[c.slug.length % 3], { q: `Intervenez-vous vraiment ${aName(c)} ?`, a: `Oui. Groupe Solution est basé à Montpellier, ${d <= 2 ? 'juste à côté' : `à environ ${d} km`}. Le diagnostic et le suivi se font par téléphone ou visio, et on se déplace ${aName(c)} dès que c'est utile — pour observer un process sur place, former une équipe ou lancer un outil.` }, c.web.faq];
   const title = `Automatisation & logiciel sur-mesure ${aName(c)} (${c.cp}) | Groupe Solution`;
   const adv = pickAvancees(c.slug, [c.tissu, c.profil, c.auto.angle].join(' '), 4);
   const desc = `${adv[0].titre}, ${adv[1].titre.charAt(0).toLowerCase() + adv[1].titre.slice(1)}… Automatisations de pointe et logiciels sur-mesure pour les entreprises ${aName(c)}. Diagnostic gratuit en 10 min.`.slice(0, 200);
@@ -194,21 +195,21 @@ function page(c) {
   <section class="sec alt"><div class="wrap">
     <div class="secHead reveal"><div class="kicker">À la pointe</div><h2>Ce qu'on peut construire pour les entreprises ${esc(aName(c))}.</h2><p>Sélectionné pour le tissu économique local — ${esc(c.tissu)} — parmi ce que l'IA et l'automatisation permettent aujourd'hui.</p></div>
     <div class="cases cases4">
-${adv.map((a, i) => `      <article class="case reveal"><div class="n">${i + 1}</div><span class="tech">${esc(a.tech)}</span><h3>${esc(a.titre)}</h3><p>${esc(a.texte)}</p><p class="ex">${esc(a.ex(c))}</p>${VEILLE_OF[a.id] ? `<a class="go" style="display:inline-block;margin-top:12px;font-size:13.5px" href="../lab/veille/${VEILLE_OF[a.id]}.html">Notre analyse →</a>` : ''}</article>`).join('\n')}
+${adv.map((a, i) => `      <article class="case reveal"><div class="n">${i + 1}</div><span class="tech">${esc(a.tech)}</span><h3>${esc(a.titre)}</h3><p class="ex">${esc(a.ex(c))}</p>${VEILLE_OF[a.id] ? `<a class="go" style="display:inline-block;margin-top:12px;font-size:13.5px" href="../lab/veille/${VEILLE_OF[a.id]}.html">Notre analyse →</a>` : ''}</article>`).join('\n')}
     </div>
     <div class="bases reveal"><h3>Et les bases, bien faites</h3><ul>${c.auto.cases.map(([t, x]) => `<li><b>${esc(t)}</b> — ${esc(x)}</li>`).join('')}</ul></div>
     <p class="center reveal" style="margin-top:22px"><a class="go" href="../lab/">Voir toutes les technologies que nous suivons →</a></p>
   </div></section>
-${calc(aName(c))}
 
   <section class="sec alt"><div class="wrap localGrid">
     <div class="reveal">
       <div class="kicker">${esc(c.name)}, vu d'ici</div>
       <h2 style="font-size:clamp(28px,3.6vw,40px);margin-top:16px">On connaît le terrain.</h2>
       <p>${esc(c.profil)}</p>
-      <p>Les entreprises avec qui l'on travaille ici : <strong>${esc(c.tissu)}</strong>. Chacune a ses tâches qui se répètent — et c'est là qu'un système bien pensé rend des heures chaque semaine.</p>
+      <p>Le tissu local : <strong>${esc(c.tissu)}</strong>. Chacun a ses tâches qui se répètent — et c'est là qu'un système bien pensé rend des heures chaque semaine.</p>
       <ul class="chips">${c.reperes.map(r => `<li>${esc(r)}</li>`).join('')}</ul>
-    </div>
+${E?.recit ? `      <div class="recit"><b>Scénario type ${esc(aName(c))}</b><p>${esc(E.recit.replace(/^Exemple\s*:\s*/i, ''))}</p></div>
+` : ''}    </div>
     <aside class="facts reveal">
       <img class="art" src="../assets/communes/${c.slug}.jpg" alt="Illustration de ${esc(c.name)}" loading="lazy" width="1600" height="900" />
       <dl>
@@ -222,8 +223,7 @@ ${calc(aName(c))}
     </aside>
   </div></section>
 ${liveSection(c, true)}
-${proof}
-${method}
+  <section class="sec alt"><div class="wrap"><div class="xlink reveal" style="margin-top:0"><p>Conçu par l'équipe qui opère Solution Recrutement, Solution Alternance et Aides Particuliers. Estimez d'abord ce que vos tâches répétitives vous coûtent.</p><a href="../outils/calculateur-automatisation.html">Calculateur gratuit →</a></div></div></section>
 ${faqBlock(faq)}
 ${express(c)}
 
