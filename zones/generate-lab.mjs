@@ -177,7 +177,7 @@ ${JSON.stringify(jsonld, null, 2)}
   </script>
 </head>
 <body>
-<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Lab</a><a href="actus/">Actus</a><a href="api.html">API &amp; données</a><a href="veille/">Veille</a><a href="../automatisation/">Automatisation</a><a href="../outils/">Outils</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
+<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Lab</a><a href="actus/">Actus</a><a href="dossiers/">Dossiers</a><a href="questions/">Questions</a><a href="api.html">API &amp; données</a><a href="veille/">Veille</a><a href="../automatisation/">Automatisation</a><a href="../outils/">Outils</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
 <main>`;
 
 const foot = `</main>
@@ -187,6 +187,9 @@ const foot = `</main>
     <a href="../index.html">Accueil</a>
     <a href="./">Lab</a>
     <a href="actus/">Actus</a>
+    <a href="dossiers/">Dossiers</a>
+    <a href="questions/">Questions</a>
+    <a href="pouls/">Le pouls des dirigeants</a>
     <a href="api.html">API &amp; données</a>
     <a href="veille/">Veille</a>
     <a href="../automatisation/">Automatisation</a>
@@ -245,12 +248,16 @@ ${RADAR.map(it => `        <div class="rdItem" id="rd-${it.num}"><span class="rd
   </div></section>
 
   <section class="sec alt"><div class="wrap">
-    <div class="secHead center reveal"><div class="kicker">Explorer</div><h2>Quatre portes d’entrée.</h2></div>
+    <div class="secHead center reveal"><div class="kicker">Explorer</div><h2>Huit portes d’entrée.</h2></div>
     <div class="labCards four">
       <a class="labCard reveal" href="actus/"><span class="k">Actus · ${esc(new Date(ACTUS[0].date + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }))}</span><h3>${esc(ACTUS[0].titre)}</h3><p>L'actualité IA, numérique et réglementaire, sourcée et traduite en impacts concrets.</p><span class="go">Lire →</span></a>
       <a class="labCard reveal" href="api.html"><span class="k">API &amp; données</span><h3>Les API gratuites qui changent la donne</h3><p>Entreprises, adresses, météo, mer, cartographie, IA : le catalogue commenté, avec des démonstrations qui tournent en direct.</p><span class="go">Explorer →</span></a>
       <a class="labCard reveal" href="veille/"><span class="k">Veille</span><h3>Nos analyses de fond</h3><p>${VEILLE.length} articles : MCP, agents vocaux, facturation électronique 2026, AI Act, RAG, open data…</p><span class="go">Lire →</span></a>
       <a class="labCard reveal" href="../outils/"><span class="k">Outils gratuits</span><h3>Faites le point vous-même</h3><p>Configurateur de projet, test de visibilité Google, calculateur du coût de vos tâches répétitives.</p><span class="go">Essayer →</span></a>
+      <a class="labCard reveal" href="dossiers/"><span class="k">Dossier de la semaine</span><h3>Un sujet de fond, chaque lundi</h3><p>IA, automatisation, réglementation : expliqué pour les dirigeants, avec ses sources.</p><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="questions/"><span class="k">Questions de dirigeants</span><h3>Vos questions sur l’IA, nos réponses sourcées</h3><p>Une réponse courte, une réponse complète, des sources vérifiées.</p><span class="go">Lire →</span></a>
+      <a class="labCard reveal" href="pouls/"><span class="k">Votes en direct</span><h3>Le pouls des dirigeants</h3><p>Utile, à surveiller ou pas pour vous ? Votez sur l’actualité et voyez l’avis des autres entreprises.</p><span class="go">Voter →</span></a>
+      <a class="labCard reveal" href="../services/"><span class="k">Nos services</span><h3>Passer de l’idée au système qui tourne</h3><p>Sites internet, agents IA, automatisation, logiciel sur-mesure, intégration d’API.</p><span class="go">Découvrir →</span></a>
     </div>
   </div></section>
 

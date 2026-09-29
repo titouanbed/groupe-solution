@@ -60,3 +60,34 @@ git add -A && git commit -m "Actus du AAAA-MM-JJ" && git push origin main
 ```
 
 Si le contrôle échoue et qu'une correction n'est pas possible sans affaiblir la vérification : supprimer le fichier et ne rien publier.
+
+---
+
+# Publications complémentaires (même exigence de vérité)
+
+Calendrier (heure de Paris), en plus des actus quotidiennes :
+- **Lundi** : un **dossier de fond** → `content/dossiers/AAAA-MM-JJ-slug.json` (page `/lab/dossiers/slug.html`).
+- **Mardi et jeudi** : une **question de dirigeant** → `content/questions/slug.json` (page `/lab/questions/slug.html`).
+
+Les actus du jour passent toujours en premier. Si le temps ou la vérification manquent, on publie les actus seules.
+
+## Dossier (lundi)
+
+- Sujet : le thème le plus important des 7 à 14 derniers jours pour une TPE/PME (réglementation, IA utile, cybersécurité, données), jamais déjà traité dans `content/dossiers/` ni `lab/veille/`.
+- 1 200 à 1 800 mots utiles : situations concrètes, étapes pratiques, pièges à éviter. Pas de remplissage.
+- Format : `date`, `slug`, `cat`, `titre` (≤ 90 car.), `description` (140–160 car.), `chapo`, `sections` [{`h2`, `paragraphes`[], `liste`[] optionnelle}] (5 à 7), `aRetenir` (3–5), `faq` [{`q`,`a`}] (4–5, formulées comme on les tape dans Google), `sources` (≥ 4, ≥ 3 domaines), `liens` (2–4 pages internes existantes, chemins relatifs depuis `/lab/dossiers/`).
+- Chaque date, chiffre, nom de texte ou d'organisme : confirmé par ≥ 2 sources indépendantes (dont la source officielle si elle existe).
+
+## Question (mardi, jeudi)
+
+- Prendre la première question non traitée de `content/questions/A-TRAITER.md` (ou une question plus actuelle vue pendant la veille), la reformuler telle qu'un dirigeant la taperait, et la cocher dans le fichier une fois publiée.
+- Format : `date`, `slug`, `cat`, `question` (finit par « ? »), `description` (140–160 car.), `reponseCourte` (2–3 phrases, ≤ 320 car.), `sections` (3 à 5, 600 à 1 000 mots), `sources` (≥ 3, ≥ 2 domaines), `liens` (1–3 pages internes existantes, chemins relatifs depuis `/lab/questions/`).
+
+## Contrôle et publication
+
+```bash
+node scripts/verify-content.mjs content/dossiers/AAAA-MM-JJ-slug.json   # ou content/questions/slug.json
+npm run publish        # actus + dossiers + questions + Lab + plan + index + sitemap
+```
+Contrôle en échec et correction impossible sans affaiblir la vérification → supprimer le fichier, ne pas le publier.
+Rédaction signée « La rédaction de Groupe Solution » (générée automatiquement par le site) : ne jamais écrire à la première personne au nom de Titouan.

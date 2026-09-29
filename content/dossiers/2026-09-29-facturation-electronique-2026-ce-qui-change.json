@@ -1,0 +1,174 @@
+{
+  "date": "2026-09-29",
+  "slug": "facturation-electronique-2026-ce-qui-change",
+  "cat": "Réglementation",
+  "titre": "Facturation électronique : ce qui change depuis septembre 2026 pour votre entreprise",
+  "description": "Réception obligatoire depuis le 1er septembre 2026, émission en 2027 pour les PME : calendrier, plateformes agréées, formats et actions concrètes pour une TPE.",
+  "chapo": "Depuis le 1er septembre 2026, toutes les entreprises assujetties à la TVA en France doivent pouvoir recevoir leurs factures sous forme électronique, via une plateforme agréée. Pour la plupart des TPE et PME, l’obligation d’émettre arrive le 1er septembre 2027 : il reste un an pour s’organiser sans précipitation. Voici ce qui s’applique vraiment, ce qu’il faut faire maintenant et ce que l’automatisation peut, ou ne peut pas, vous apporter.",
+  "sections": [
+    {
+      "h2": "Le calendrier : qui est concerné, et à partir de quand",
+      "paragraphes": [
+        "La réforme concerne les échanges de factures entre entreprises assujetties à la TVA établies en France. Elle se déploie en deux temps, et la distinction entre « recevoir » et « émettre » est essentielle pour comprendre ce qui vous concerne aujourd’hui.",
+        "Première étape, le 1er septembre 2026 : toutes les entreprises, quelle que soit leur taille, y compris les micro-entreprises, doivent être en mesure de recevoir des factures électroniques. À la même date, les grandes entreprises et les entreprises de taille intermédiaire (ETI) doivent émettre toutes leurs factures sous forme électronique et transmettre les données prévues à l’administration.",
+        "Seconde étape, le 1er septembre 2027 : l’obligation d’émettre des factures électroniques, et celle de transmettre les données de transaction (e-reporting), s’étendent aux PME et aux micro-entreprises."
+      ],
+      "liste": [
+        "Depuis le 1er septembre 2026 : réception obligatoire pour toutes les entreprises ; émission et e-reporting pour les grandes entreprises et les ETI.",
+        "Au 1er septembre 2027 : émission et e-reporting pour les PME et les micro-entreprises.",
+        "Conséquence pratique : même si vous êtes une TPE, vos fournisseurs de grande taille vous adressent déjà des factures électroniques, et vous devez pouvoir les recevoir."
+      ]
+    },
+    {
+      "h2": "Plateformes agréées, annuaire, « solution compatible » : qui fait quoi",
+      "paragraphes": [
+        "Les factures électroniques ne circulent plus par simple courriel : elles transitent par des plateformes agréées (PA), anciennement appelées plateformes de dématérialisation partenaires (PDP). Ce sont des opérateurs immatriculés par l’administration fiscale, chargés d’émettre, de transmettre et de recevoir les factures, et d’extraire les données utiles à l’administration. Leur liste officielle est publiée et régulièrement mise à jour sur impots.gouv.fr.",
+        "Le portail public de facturation, un temps envisagé comme une solution gratuite d’émission et de réception, a vu ce rôle abandonné en octobre 2024. Il conserve deux fonctions : l’annuaire, qui indique par quelle plateforme chaque entreprise reçoit ses factures, et la concentration des données transmises par les plateformes à l’administration. En clair, chaque entreprise doit passer par une plateforme agréée.",
+        "Votre logiciel de facturation, de caisse ou de comptabilité peut être une « solution compatible » : il offre des fonctions utiles (création des factures, suivi, archivage), mais il doit s’appuyer sur une plateforme agréée pour transmettre les factures et les données. Avant de changer d’outil, demandez donc à votre éditeur avec quelle plateforme il est raccordé."
+      ]
+    },
+    {
+      "h2": "Un PDF envoyé par e-mail n’est plus une facture électronique",
+      "paragraphes": [
+        "C’est le changement le plus concret pour un dirigeant. Une facture électronique, au sens de la réforme, est un fichier structuré, lisible par les logiciels, et non un PDF « à plat ». Trois formats forment le socle : UBL et CII, deux formats de données purs, et Factur-X, un format mixte qui associe un PDF lisible par un humain et un fichier XML exploitable par les machines.",
+        "Pour vous, cela signifie que les données d’une facture reçue (fournisseur, montants, TVA, échéance) arrivent déjà structurées. Plus besoin de les ressaisir, à condition que votre outil sache les exploiter.",
+        "Côté émission, quatre nouvelles mentions deviennent obligatoires au même rythme que l’obligation d’émettre (donc en septembre 2027 pour les PME et micro-entreprises) :"
+      ],
+      "liste": [
+        "le numéro SIREN du client ;",
+        "l’adresse de livraison des biens, lorsqu’elle diffère de l’adresse de facturation ;",
+        "la nature de l’opération : livraison de biens, prestation de services, ou les deux ;",
+        "la mention « Option pour le paiement de la taxe d’après les débits », si vous avez choisi cette option."
+      ]
+    },
+    {
+      "h2": "L’e-reporting : les ventes qui ne passent pas par une facture électronique",
+      "paragraphes": [
+        "Toutes les opérations ne donnent pas lieu à une facture électronique entre entreprises françaises. Les ventes à des particuliers et les opérations avec des entreprises étrangères, notamment, sont couvertes par un second volet : l’e-reporting. Il s’agit de transmettre à l’administration, via votre plateforme agréée, certaines données de transaction et, pour les prestations de services, des données de paiement.",
+        "Le calendrier est le même que celui de l’émission : grandes entreprises et ETI depuis le 1er septembre 2026, PME et micro-entreprises à partir du 1er septembre 2027. Un commerçant, un restaurateur ou un artisan qui travaille surtout avec des particuliers est donc concerné, même s’il émet peu de factures à des entreprises.",
+        "Exemple : un électricien qui intervient chez des particuliers et pour deux syndics de copropriété émettra en 2027 des factures électroniques à ses clients professionnels, et déclarera les données de ses chantiers chez les particuliers par l’e-reporting. Les deux flux passent par la même plateforme."
+      ]
+    },
+    {
+      "h2": "Ce qu’une TPE doit faire concrètement dès maintenant",
+      "paragraphes": [
+        "L’obligation de réception est déjà en vigueur : c’est la priorité. Le reste peut se préparer méthodiquement d’ici septembre 2027, idéalement avec votre expert-comptable, qui connaît vos flux et utilise souvent lui-même une plateforme."
+      ],
+      "liste": [
+        "Choisir une plateforme agréée dans la liste officielle, en vérifiant qu’elle est reliée à votre logiciel de facturation et à celui de votre comptable.",
+        "Vérifier que votre entreprise apparaît correctement dans l’annuaire, avec la bonne plateforme de réception, afin que vos fournisseurs puissent vous adresser leurs factures.",
+        "Recenser vos flux : combien de factures reçues et émises par mois, quelle part de clients particuliers, quels clients ou fournisseurs à l’étranger.",
+        "Mettre à jour votre fichier clients : les numéros SIREN de vos clients professionnels seront indispensables pour l’émission.",
+        "Tester l’émission avant l’échéance : envoyer quelques factures électroniques à des clients volontaires plutôt que tout basculer le 1er septembre 2027.",
+        "Former la personne qui gère l’administratif : où arrivent les factures, qui les valide, comment traiter un rejet."
+      ]
+    },
+    {
+      "h2": "Ce que l’automatisation apporte, et ses limites",
+      "paragraphes": [
+        "La réforme ne vous oblige pas à automatiser quoi que ce soit. Mais puisque les factures arrivent désormais sous forme de données structurées, plusieurs tâches manuelles deviennent faciles à automatiser, sans intelligence artificielle sophistiquée.",
+        "À la réception, les factures fournisseurs peuvent être récupérées depuis la plateforme, classées et rapprochées automatiquement du bon de commande ou du bon de livraison correspondant. Une facture dont le montant ne correspond pas à la commande est signalée pour vérification humaine, au lieu d’être découverte lors du paiement.",
+        "Côté trésorerie, les factures émises peuvent être rapprochées des paiements reçus sur le compte bancaire, et les relances des factures impayées déclenchées selon des règles que vous définissez : un rappel courtois à l’échéance, un second quelques jours plus tard, puis une alerte au dirigeant.",
+        "Les limites sont réelles. Une automatisation ne corrige pas un fichier clients incomplet, ni des SIREN erronés. Elle suppose que votre plateforme ou votre logiciel propose un accès aux données (export, connecteur ou API). Et les cas particuliers (avoirs, litiges, acomptes de chantier) doivent rester traités par une personne. Commencez par un flux simple et fréquent, mesurez le temps gagné, puis élargissez."
+      ]
+    },
+    {
+      "h2": "Les pièges à éviter",
+      "paragraphes": [
+        "La période est propice aux sollicitations commerciales, parfois insistantes. Quelques réflexes évitent les mauvaises surprises."
+      ],
+      "liste": [
+        "Méfiez-vous des courriels ou appels qui vous « imposent » une plateforme ou un paiement urgent au nom de l’administration : le choix de la plateforme est libre, et la liste officielle se consulte sur impots.gouv.fr.",
+        "Ne signez pas pour une solution qui ne communique pas avec votre logiciel comptable : vous recréeriez de la ressaisie.",
+        "Ne confondez pas numérisation et facture électronique : scanner vos factures papier ne suffit pas.",
+        "N’attendez pas l’été 2027 pour tester l’émission : les premiers rejets de factures mal renseignées sont plus faciles à corriger à froid.",
+        "Des amendes sont prévues en cas de manquement : renseignez-vous auprès de votre expert-comptable sur votre situation précise plutôt que sur des montants lus au hasard."
+      ]
+    }
+  ],
+  "aRetenir": [
+    "Depuis le 1er septembre 2026, toute entreprise assujettie à la TVA doit pouvoir recevoir des factures électroniques via une plateforme agréée.",
+    "L’émission et l’e-reporting s’appliquent aux grandes entreprises et ETI depuis septembre 2026, aux PME et micro-entreprises au 1er septembre 2027.",
+    "Un PDF envoyé par e-mail n’est pas une facture électronique : les formats du socle sont Factur-X, UBL et CII.",
+    "Priorité immédiate : choisir sa plateforme agréée, vérifier son inscription à l’annuaire et fiabiliser son fichier clients.",
+    "Les données structurées facilitent l’automatisation du rapprochement et des relances, à condition de garder la main sur les cas particuliers."
+  ],
+  "faq": [
+    {
+      "q": "Facture électronique : est-ce obligatoire pour une micro-entreprise ?",
+      "a": "Oui, en deux temps. Depuis le 1er septembre 2026, une micro-entreprise doit être en mesure de recevoir des factures électroniques via une plateforme agréée. Elle devra ensuite émettre ses factures sous forme électronique et transmettre les données prévues (e-reporting) à partir du 1er septembre 2027. Le plus simple est de choisir dès maintenant une plateforme agréée, idéalement reliée à votre logiciel de facturation, puis de tester l’émission avant l’échéance."
+    },
+    {
+      "q": "Quelle est la différence entre une plateforme agréée et une PDP ?",
+      "a": "Aucune sur le fond : « plateforme agréée » (PA) est le nouveau nom des plateformes de dématérialisation partenaires (PDP). Ce sont des opérateurs immatriculés par l’administration fiscale, qui émettent, transmettent et reçoivent les factures électroniques et communiquent les données nécessaires à l’administration. La liste officielle est publiée et mise à jour sur impots.gouv.fr. Votre logiciel de facturation peut s’appuyer sur l’une d’elles sans que vous ayez à changer d’outil."
+    },
+    {
+      "q": "Une facture PDF envoyée par mail est-elle encore valable ?",
+      "a": "Dans le cadre de la réforme, un simple PDF n’est pas une facture électronique. La facture doit être émise dans un format structuré (Factur-X, UBL ou CII) et transiter par une plateforme agréée. Pour les PME et micro-entreprises, l’obligation d’émettre sous cette forme s’applique à partir du 1er septembre 2027. Le format Factur-X a l’avantage de rester lisible comme un PDF classique tout en contenant les données exploitables par les logiciels."
+    },
+    {
+      "q": "Qu’est-ce que l’e-reporting et qui est concerné ?",
+      "a": "L’e-reporting est la transmission à l’administration fiscale de données sur les opérations qui ne passent pas par une facture électronique entre entreprises françaises : ventes aux particuliers, opérations internationales, et données de paiement pour les prestations de services. Il se fait via votre plateforme agréée. Il s’applique aux grandes entreprises et ETI depuis le 1er septembre 2026, et aux PME et micro-entreprises à partir du 1er septembre 2027."
+    },
+    {
+      "q": "Que doit faire une TPE avant septembre 2027 ?",
+      "a": "Choisir une plateforme agréée compatible avec son logiciel et celui de son expert-comptable, vérifier son inscription dans l’annuaire pour recevoir les factures, recenser ses flux (clients professionnels, particuliers, étranger), compléter les numéros SIREN de ses clients et tester l’émission de quelques factures avant l’échéance. C’est aussi le bon moment pour automatiser le rapprochement des factures et des paiements, afin que la réforme fasse gagner du temps au lieu d’en coûter."
+    }
+  ],
+  "sources": [
+    {
+      "nom": "economie.gouv.fr – Tout savoir sur la facturation électronique pour les entreprises",
+      "url": "https://www.economie.gouv.fr/tout-savoir-sur-la-facturation-electronique-pour-les-entreprises"
+    },
+    {
+      "nom": "impots.gouv.fr – Facturation électronique et plateformes agréées",
+      "url": "https://www.impots.gouv.fr/facturation-electronique-et-plateformes-agreees"
+    },
+    {
+      "nom": "impots.gouv.fr – Je consulte la liste des plateformes agréées",
+      "url": "https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees"
+    },
+    {
+      "nom": "francenum.gouv.fr – Quelles sont les plateformes agréées pour les TPE PME ?",
+      "url": "https://www.francenum.gouv.fr/guides-et-conseils/pilotage-de-lentreprise/dematerialisation-des-documents/facturation-0"
+    },
+    {
+      "nom": "francenum.gouv.fr – Guide du e-reporting des données de transaction et de paiement",
+      "url": "https://www.francenum.gouv.fr/guides-et-conseils/pilotage-de-lentreprise/dematerialisation-des-documents/facturation-1"
+    },
+    {
+      "nom": "economie.gouv.fr – Facturation électronique : ouverture de l’annuaire dédié",
+      "url": "https://www.economie.gouv.fr/actualites/facturation-electronique-ouverture-de-lannuaire-dedie"
+    },
+    {
+      "nom": "Daf-Mag – L’État abandonne son projet de portail public de facturation",
+      "url": "https://www.daf-mag.fr/Thematique/fonction-finance-1242/Breves/Facturation-electronique-Etat-abandonne-son-projet-portail-public-464345.htm"
+    },
+    {
+      "nom": "Cegid – Calendrier de la facture électronique 2026-2027",
+      "url": "https://www.cegid.com/fr/facture-electronique-obligatoire/calendrier-facture-electronique/"
+    },
+    {
+      "nom": "Tiime – Les nouvelles mentions obligatoires de la facturation électronique",
+      "url": "https://blog.tiime.fr/nouvelles-mentions-obligatoires-facturation-electronique"
+    },
+    {
+      "nom": "Abby – Mentions obligatoires de la facture électronique",
+      "url": "https://abby.fr/guide/facturation-electronique/mentions-obligatoires-facture-electronique"
+    }
+  ],
+  "liens": [
+    {
+      "label": "Veille : la facturation électronique 2026 en bref",
+      "url": "../veille/facturation-electronique-2026.html"
+    },
+    {
+      "label": "Automatisation des processus de gestion",
+      "url": "../../services/automatisation-processus.html"
+    },
+    {
+      "label": "Guide : automatiser les relances de factures impayées",
+      "url": "../../montpellier/guides/relances-factures-impayees-automatiques.html"
+    }
+  ]
+}
