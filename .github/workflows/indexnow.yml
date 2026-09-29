@@ -1,0 +1,45 @@
+# Après chaque mise en ligne sur main : attend que Vercel ait déployé, contrôle le site
+# (pages, assistant IA, formulaire) puis signale les pages nouvelles/modifiées à Bing & co (IndexNow).
+# Lancement manuel possible (onglet Actions → « Mise en ligne : contrôle + IndexNow » → Run workflow) pour tout renvoyer.
+name: "Mise en ligne : contrôle + IndexNow"
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Renvoyer toutes les URL du sitemap"
+        type: boolean
+        default: true
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Attendre le déploiement Vercel
+        run: |
+          # Le fichier sitemap.xml du commit doit être celui servi en ligne.
+          for i in $(seq 1 40); do
+            curl -fsS https://www.groupsolution.fr/sitemap.xml -o live.xml && cmp -s live.xml sitemap.xml && { echo "✓ Déploiement en ligne"; exit 0; }
+            sleep 15
+          done
+          echo "⚠️ Le sitemap en ligne diffère encore (déploiement lent ou sitemap inchangé) — on continue."
+      - name: Contrôle du site en ligne
+        run: node scripts/health.mjs
+      - name: IndexNow
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.all }}" = "true" ]; then
+            node scripts/indexnow.mjs
+          else
+            # Première exécution (ce fichier vient d'arriver) : on envoie tout le sitemap.
+            if git diff --name-only ${{ github.event.before }} ${{ github.sha }} 2>/dev/null | grep -q '^.github/workflows/indexnow.yml$'; then node scripts/indexnow.mjs; exit $?; fi
+            FILES=$(git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }} -- '*.html' 2>/dev/null || true)
+            if [ -z "$FILES" ]; then echo "Aucune page modifiée."; exit 0; fi
+            node scripts/indexnow.mjs --files $FILES
+          fi
