@@ -4,8 +4,11 @@
 // (ou UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN). Sans elles → 503 et le widget reste masqué.
 //   GET  /api/vote?ids=a,b,c          → { counts: { a: { utile: 3, surveiller: 1, pasmoi: 0 }, … } }
 //   POST /api/vote { id, choice }     → { ok, counts }   (1 vote par IP et par sujet, 30 jours)
-const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+// Le nom exact dépend du préfixe choisi lors de la connexion (KV_…, STOCKAGE_…, UPSTASH_REDIS_…) :
+// on prend la première variable qui se termine par REST_API_URL / REST_URL (et le jeton en écriture associé).
+const envFind = re => Object.keys(process.env).filter(k => re.test(k) && !/READ_ONLY/.test(k)).sort()[0];
+const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || process.env[envFind(/_REST_(API_)?URL$/)];
+const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || process.env[envFind(/_REST_(API_)?TOKEN$/)];
 export const CHOICES = ['utile', 'surveiller', 'pasmoi'];
 const ID_RE = /^[a-z0-9:-]{3,120}$/;
 
