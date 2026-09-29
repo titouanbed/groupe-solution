@@ -223,6 +223,7 @@ ${faqJsonLd(faq)}
 ${E?.enjeux ? `        <h3 class="gs-enjeux-t">Les trois enjeux web ${esc(aName(c))}</h3>
         <ol class="gs-enjeux">${E.enjeux.map(x => `<li>${esc(x)}</li>`).join('')}</ol>
 ` : ''}        <p class="gs-metiers">Pour les métiers d'ici : ${metiersFor(c).map(m => `<a href="${metierFile(m)}">site internet pour ${esc(m.label)}</a>`).join(' · ')}.</p>
+        <p class="gs-metiers">Nos services en détail : <a href="../services/creation-site-internet.html">création de site internet</a> · <a href="../services/referencement-local.html">référencement local</a> · <a href="../services/agence-ia-entreprise.html">IA en entreprise</a>.</p>
       </div>
       <aside class="gs-local-card reveal">
         <h3>Votre plan d'action ${esc(aName(c))}</h3>
@@ -385,6 +386,7 @@ ${faq.map(f => `        <div class="faq-item reveal"><div class="faq-q">${esc(f.
             <li><a href="${autoHref(c)}">Automatisation ${esc(aName(c))}</a></li>
             <li><a href="${HUB_FILE}">Agence web Montpellier</a></li>
             <li><a href="${HOLDING}/echanger.html">Prendre rendez-vous</a></li>
+            <li><a href="../services/">Nos services</a></li>
             <li><a href="../plan-du-site.html">Plan du site</a></li>
           </ul>
         </div>

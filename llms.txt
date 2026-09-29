@@ -16,6 +16,17 @@
 - [Échanger / prendre rendez-vous](https://www.groupsolution.fr/echanger.html)
 - [Implantations](https://www.groupsolution.fr/implantations.html)
 
+## Services (France entière)
+- [Tous nos services](https://www.groupsolution.fr/services/)
+- [Création de site internet professionnel](https://www.groupsolution.fr/services/creation-site-internet.html)
+- [Intégrer l’IA en entreprise](https://www.groupsolution.fr/services/agence-ia-entreprise.html)
+- [Agent IA et chatbot d’entreprise](https://www.groupsolution.fr/services/agent-ia-chatbot.html)
+- [Agent vocal IA (standard téléphonique)](https://www.groupsolution.fr/services/agent-vocal-ia.html)
+- [Automatisation des processus métier](https://www.groupsolution.fr/services/automatisation-processus.html)
+- [Logiciel sur-mesure et application métier](https://www.groupsolution.fr/services/logiciel-sur-mesure.html)
+- [Intégration API et connexion d’outils](https://www.groupsolution.fr/services/integration-api-connecteurs.html)
+- [Référencement local et Google Business Profile](https://www.groupsolution.fr/services/referencement-local.html)
+
 ## Lab : innovation, API et veille
 - [Lab](https://www.groupsolution.fr/lab/): technologies suivies, API gratuites avec démonstrations en direct.
 - [API & données](https://www.groupsolution.fr/lab/api.html)

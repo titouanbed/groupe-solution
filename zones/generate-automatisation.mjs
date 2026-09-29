@@ -57,6 +57,7 @@ const foot = `</main>
   <nav>
     <a href="../index.html">Accueil</a>
     <a href="./">Automatisation</a>
+    <a href="../services/">Nos services</a>
     <a href="../solutions.html">Solutions</a>
     <a href="../realisations.html">Réalisations</a>
     <a href="../montpellier/site-internet-montpellier.html">Sites internet</a>
@@ -232,7 +233,8 @@ ${express(c)}
     <div class="near">${near.map(n => `<a href="${n.slug}.html">Automatisation ${esc(aName(n))}</a>`).join('')}</div>
     <div class="gm-wrap reveal" style="margin-top:30px">${mapSvg({ current: c.slug, href: n => `${n.slug}.html`, hubHref: './', label: `Carte des communes où Groupe Solution intervient autour de ${c.name}` })}</div>
     <div class="xlink reveal"><p>Vous cherchez plutôt un site internet ${esc(aName(c))} ?</p><a href="${siteHref(c)}">Voir l'offre site internet →</a></div>
-    <div class="near" style="margin-top:18px"><a href="../outils/calculateur-automatisation.html">Calculateur détaillé →</a><a href="../montpellier/guides/automatiser-devis-artisan.html">Guide : automatiser ses devis</a><a href="../montpellier/guides/relances-factures-impayees-automatiques.html">Guide : relancer les impayés</a><a href="../outils/">Tous nos outils gratuits</a></div>
+    <div class="near" style="margin-top:18px"><a href="../services/automatisation-processus.html">Automatisation des processus</a><a href="../services/agent-ia-chatbot.html">Agent IA &amp; chatbot</a><a href="../services/agent-vocal-ia.html">Agent vocal IA</a><a href="../services/logiciel-sur-mesure.html">Logiciel sur-mesure</a><a href="../services/integration-api-connecteurs.html">Intégration API</a></div>
+    <div class="near" style="margin-top:10px"><a href="../outils/calculateur-automatisation.html">Calculateur détaillé →</a><a href="../montpellier/guides/automatiser-devis-artisan.html">Guide : automatiser ses devis</a><a href="../montpellier/guides/relances-factures-impayees-automatiques.html">Guide : relancer les impayés</a><a href="../outils/">Tous nos outils gratuits</a></div>
   </div></section>
 ` + foot;
 }

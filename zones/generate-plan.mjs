@@ -17,6 +17,7 @@ const files = [...new Set([...list("git ls-files '*.html'"), ...list("git ls-fil
 const ZONE_NAMES = { reunion: 'La Réunion', mayotte: 'Mayotte', guyane: 'Guyane', martinique: 'Martinique', guadeloupe: 'Guadeloupe', 'nouvelle-caledonie': 'Nouvelle-Calédonie', 'polynesie-francaise': 'Polynésie française' };
 function group(f) {
   if (!f.includes('/')) return ['1', 'Groupe Solution'];
+  if (f.startsWith('services/')) return ['1s', 'Nos services — site internet, IA, automatisation, logiciel'];
   if (f.startsWith('automatisation/')) return ['2', 'Automatisation & logiciel sur-mesure — Montpellier et Hérault'];
   if (/^montpellier\/guides\//.test(f)) return ['5', 'Guides pratiques'];
   if (/^montpellier\/site-internet-.*-montpellier\.html$/.test(f)) return ['3b', 'Site internet par métier'];

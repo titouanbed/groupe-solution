@@ -121,8 +121,10 @@
   .links{display:flex;align-items:center;gap:26px}
   .links a{font-size:14.5px;color:var(--secondary);font-weight:600;transition:color .16s;white-space:nowrap}
   @media(max-width:1240px){.links{gap:18px}.links a[href="articles/"],.links a[href="partenariats.html"]{display:none}}
+  .links a[href="solutions.html"]{display:none}
   @media(max-width:1000px){.links a[href="implantations.html"],.links a[href="a-propos.html"]{display:none}}
   .links a:hover,.links a.active{color:var(--ink)}
+  .svcRow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}.svcRow a{padding:10px 16px;border-radius:999px;border:1px solid var(--line);font-weight:700;font-size:14px;background:var(--white,#fff);transition:border-color .2s,color .2s}.svcRow a:hover{border-color:var(--acc);color:var(--acc)}.svcRow a.all{border-color:var(--ink);}
   .links .cta{padding:11px 20px;border-radius:999px;color:#fff;background:var(--acc);font-weight:800;font-size:14px;box-shadow:0 6px 16px var(--acc-ring)}
   .links .cta:hover{background:var(--acc-d);color:#fff}
 
@@ -340,7 +342,7 @@
   </style>
 </head>
 <body>
-<header class="nav"><div class="wrap navin"><a class="brand" href="#top" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="articles/">Ressources</a><a href="solutions.html">Solutions</a><a href="realisations.html">Réalisations</a><a href="partenariats.html">Partenariats</a><a href="automatisation/">Automatisation</a><a href="lab/">Lab</a><a href="implantations.html">Implantations</a>
+<header class="nav"><div class="wrap navin"><a class="brand" href="#top" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="articles/">Ressources</a><a href="services/">Services</a><a href="solutions.html">Solutions</a><a href="realisations.html">Réalisations</a><a href="partenariats.html">Partenariats</a><a href="automatisation/">Automatisation</a><a href="lab/">Lab</a><a href="implantations.html">Implantations</a>
     <a href="a-propos.html">À propos</a><a class="cta" href="#contact">Nous contacter</a></nav></div></header>
 <main id="top">
 
@@ -397,6 +399,7 @@
       <article class="auto reveal"><div class="who">Réglementation</div><h3>La facturation électronique, en mieux</h3><div class="ba"><span class="b">Aujourd’hui : Une réforme 2026-2027 vécue comme une contrainte de plus.</span><span class="a">Demain : Réception, contrôle et rapprochement des factures électroniques automatisés de bout en bout.</span></div><div class="gain">Factur-X · UBL · plateforme agréée</div></article>
     </div>
     <p class="reveal" style="text-align:center;margin-top:28px"><a href="lab/" style="font-weight:800;border-bottom:2px solid var(--acc)">Explorer le Lab : API, données en direct et veille technologique →</a></p>
+    <nav class="svcRow reveal" aria-label="Nos services"><a href="services/creation-site-internet.html">Création de site internet</a><a href="services/agence-ia-entreprise.html">Intégrer l’IA en entreprise</a><a href="services/agent-ia-chatbot.html">Agent IA & chatbot</a><a href="services/agent-vocal-ia.html">Agent vocal IA</a><a href="services/automatisation-processus.html">Automatisation des processus</a><a href="services/logiciel-sur-mesure.html">Logiciel sur-mesure</a><a href="services/integration-api-connecteurs.html">Intégration API</a><a href="services/referencement-local.html">Référencement local</a><a href="services/" class="all">Tous nos services →</a></nav>
   </div></section>
 
   <!-- ══ CALCULATEUR ══ -->
@@ -553,6 +556,7 @@
 <footer><div class="wrap foot">
   <span class="footBrand"><img src="Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution</span>
   <nav>
+    <a href="services/">Nos services</a>
     <a href="solutions.html">Solutions</a>
     <a href="realisations.html">Réalisations</a>
     <a href="partenariats.html">Partenariats</a>
