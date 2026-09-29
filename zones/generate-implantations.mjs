@@ -9,6 +9,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { ZONES } from './zones.mjs';
+import { COMMUNES } from './montpellier-communes.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -47,17 +48,38 @@ function card(zone) {
       </div>`;
 }
 
-const cards = ZONES.map(card).join('\n\n');
+
+/* Carte Montpellier (base du groupe) — pilotée par zones/montpellier-communes.mjs */
+const TOP = ['castelnau-le-lez', 'lattes', 'perols', 'vendargues', 'clapiers', 'saint-jean-de-vedas', 'meze', 'villeveyrac', 'sete'];
+const montpellierCard = `      <div class="terrCard reveal">
+        <div class="terrTop"><span class="terrCode">Hérault · 34</span><span class="terrState">En ligne</span></div>
+        <h3>Montpellier &amp; Hérault</h3>
+        <p>Notre base : création de sites, référencement local et automatisation sur-mesure pour les entreprises de Montpellier et de ${COMMUNES.length} communes alentour — de la Métropole au bassin de Thau.</p>
+        <div class="terrChips">
+          ${TOP.map(sl => COMMUNES.find(c => c.slug === sl)).map(c => `<a href="montpellier/site-internet-${c.slug}.html">${esc(c.name)}</a>`).join('\n          ')}
+        </div>
+        <div class="terrGo"><a class="go" href="montpellier/site-internet-montpellier.html">Voir l’agence Montpellier →</a><a class="go2" href="automatisation/">Automatisation &amp; logiciel sur-mesure →</a></div>
+      </div>`;
+
+const cards = [ZONES[0], null, ...ZONES.slice(1)].map(z => z ? card(z) : montpellierCard).join('\n\n');
 
 const html = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos implantations — Groupe Solution</title>
-  <meta name="description" content="Les implantations locales de Groupe Solution : agences digitales à La Réunion (Saint-Denis, Saint-Pierre, Saint-Paul, Le Port), à Mayotte, bientôt en Guyane. Une présence de proximité, une exigence de groupe." />
-  <link rel="icon" href="Logo.svg" type="image/svg+xml" />
+  <title>Nos implantations — Montpellier, La Réunion, Mayotte, Antilles, Guyane, Pacifique | Groupe Solution</title>
+  <meta name="description" content="Les implantations locales de Groupe Solution : Montpellier et 51 communes de l'Hérault, La Réunion, Mayotte, Guyane, Martinique, Guadeloupe, Nouvelle-Calédonie et Polynésie française." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://www.groupsolution.fr/implantations.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Nos implantations — Montpellier, La Réunion, Mayotte, Antilles, Guyane, Pacifique | Groupe Solution" />
+  <meta property="og:description" content="Les implantations locales de Groupe Solution : Montpellier et 51 communes de l'Hérault, La Réunion, Mayotte, Guyane, Martinique, Guadeloupe, Nouvelle-Calédonie et Polynésie française." />
+  <meta property="og:url" content="https://www.groupsolution.fr/implantations.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet" />
@@ -96,6 +118,7 @@ const html = `<!DOCTYPE html>
 
     @media(max-width:820px){.terr{grid-template-columns:1fr}}
   </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Groupe Solution", "item": "https://www.groupsolution.fr/"}, {"@type": "ListItem", "position": 2, "name": "Implantations", "item": "https://www.groupsolution.fr/implantations.html"}]}</script>
 </head>
 <body>
 <header class="nav"><div class="wrap navin">
@@ -104,6 +127,7 @@ const html = `<!DOCTYPE html>
     <a href="solutions.html">Solutions</a>
     <a href="realisations.html">Réalisations</a>
     <a href="partenariats.html">Partenariats</a>
+    <a href="automatisation/">Automatisation</a>
     <a href="implantations.html" class="active">Implantations</a>
     <a href="a-propos.html">À propos</a>
     <a class="cta" href="echanger.html">Échanger ↗</a>

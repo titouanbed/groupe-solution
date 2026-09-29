@@ -34,3 +34,18 @@ renseigner `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `
 npm install
 npm run test:slots      # tests de la logique de créneaux (buffer 30 min, horaires, free/busy)
 ```
+
+## Montpellier & alentours (51 communes)
+
+Deux familles de pages générées depuis **un seul registre** : `zones/montpellier-communes.mjs`
+(portrait, repères, tissu économique, cas d'automatisation et FAQ propres à chaque commune).
+
+| Script | Produit |
+|---|---|
+| `node zones/generate-montpellier.mjs` | `/montpellier/site-internet-{commune}.html` (création de site, charte silo) + bloc carte du hub |
+| `node zones/generate-automatisation.mjs` | `/automatisation/` (hub) + `/automatisation/{commune}.html` (logiciel & automatisation, charte holding) |
+| `node zones/generate-implantations.mjs` | `/implantations.html` (inclut la carte Montpellier) |
+| `node zones/generate-sitemap.mjs` | `/sitemap.xml` (après `git add`) |
+
+Ne pas éditer ces pages à la main : modifier le registre ou le générateur, puis relancer.
+Règle : jamais de contenu copié d'une commune à l'autre, et aucun fait local non vérifié.

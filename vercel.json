@@ -1,12 +1,64 @@
 {
   "redirects": [
-    { "source": "/site-internet-mayotte.html", "destination": "/mayotte/site-internet-mayotte.html", "permanent": true },
-    { "source": "/catalogue-demos.html", "destination": "/mayotte/catalogue-demos.html", "permanent": true },
-    { "source": "/offre-site-web.html", "destination": "/mayotte/offre-site-web.html", "permanent": true },
-    { "source": "/mentions-legales-a-propos.html", "destination": "/mayotte/mentions-legales-a-propos.html", "permanent": true },
-    { "source": "/blog", "destination": "/mayotte/blog", "permanent": true },
-    { "source": "/blog/:path*", "destination": "/mayotte/blog/:path*", "permanent": true },
-    { "source": "/ecole-mayotte", "destination": "/mayotte/ecole-mayotte", "permanent": true },
-    { "source": "/ecole-mayotte/:path*", "destination": "/mayotte/ecole-mayotte/:path*", "permanent": true }
+    {
+      "source": "/site-internet-mayotte.html",
+      "destination": "/mayotte/site-internet-mayotte.html",
+      "permanent": true
+    },
+    {
+      "source": "/catalogue-demos.html",
+      "destination": "/mayotte/catalogue-demos.html",
+      "permanent": true
+    },
+    {
+      "source": "/offre-site-web.html",
+      "destination": "/mayotte/offre-site-web.html",
+      "permanent": true
+    },
+    {
+      "source": "/mentions-legales-a-propos.html",
+      "destination": "/mayotte/mentions-legales-a-propos.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/mayotte/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/mayotte/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/ecole-mayotte",
+      "destination": "/mayotte/ecole-mayotte",
+      "permanent": true
+    },
+    {
+      "source": "/ecole-mayotte/:path*",
+      "destination": "/mayotte/ecole-mayotte/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/montpellier/lattes.html",
+      "destination": "/montpellier/site-internet-lattes.html",
+      "permanent": true
+    },
+    {
+      "source": "/montpellier/perols.html",
+      "destination": "/montpellier/site-internet-perols.html",
+      "permanent": true
+    },
+    {
+      "source": "/montpellier/castelnau-le-lez.html",
+      "destination": "/montpellier/site-internet-castelnau-le-lez.html",
+      "permanent": true
+    },
+    {
+      "source": "/automatisation/index.html",
+      "destination": "/automatisation/",
+      "permanent": true
+    }
   ]
 }
