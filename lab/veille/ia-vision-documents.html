@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lire factures et bons avec l’IA | Groupe Solution</title>
+  <meta name="description" content="Factures, bons de livraison, manuscrits : comment les modèles vision-langage lisent vos documents, quelle fiabilité attendre et comment garder le contrôle." />
+  <link rel="canonical" href="https://www.groupsolution.fr/lab/veille/ia-vision-documents.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Lire factures et bons avec l’IA | Groupe Solution" />
+  <meta property="og:description" content="Factures, bons de livraison, manuscrits : comment les modèles vision-langage lisent vos documents, quelle fiabilité attendre et comment garder le contrôle." />
+  <meta property="og:url" content="https://www.groupsolution.fr/lab/veille/ia-vision-documents.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta property="article:published_time" content="2026-09-29" />
+  <meta property="article:author" content="Titouan Bedos" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lire factures et bons avec l’IA | Groupe Solution" />
+  <meta name="twitter:description" content="Factures, bons de livraison, manuscrits : comment les modèles vision-langage lisent vos documents, quelle fiabilité attendre et comment garder le contrôle." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/holding-local.css" />
+  <style>
+.art{padding:0 0 30px}
+.col{max-width:760px;margin:0 auto}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.crumbs li+li::before{content:"›";margin-right:6px;color:var(--line2)}
+.artHead{padding:28px 0 8px}
+.artHead h1{font-size:clamp(30px,4.4vw,48px);line-height:1.1;margin-top:18px;overflow-wrap:break-word}
+.chapo{font-size:clamp(17px,2vw,19.5px);color:var(--secondary);line-height:1.7;margin-top:20px}
+.meta{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:18px}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin-top:30px}
+.toc b{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.toc ol{margin:10px 0 0 20px;font-size:15px;line-height:1.9}
+.toc a{color:var(--ink);font-weight:600}.toc a:hover{color:var(--acc)}
+.prose{font-size:17px;line-height:1.8;color:#2B2924;overflow-wrap:break-word}
+.prose h2{font-size:clamp(25px,3vw,33px);line-height:1.18;margin:54px 0 16px;scroll-margin-top:90px}
+.prose h3{font-size:clamp(19px,2.2vw,22px);font-weight:600;line-height:1.3;margin:32px 0 10px}
+.prose p{margin:0 0 18px}
+.prose ul,.prose ol{margin:0 0 22px 22px}
+.prose li{margin-bottom:9px;padding-left:2px}
+.prose strong{color:var(--ink)}
+.prose a{color:var(--acc-d);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.prose code{font-size:.86em;background:var(--olive-soft);color:var(--olive2);padding:2px 7px;border-radius:6px;word-break:break-all}
+.note{background:var(--olive-soft);border-left:4px solid var(--olive);border-radius:0 var(--r-s) var(--r-s) 0;padding:18px 22px;margin:26px 0}
+.note p{margin:0}
+.note.warn{background:var(--amber-soft);border-left-color:var(--amber)}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-s);background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:540px;font-size:15px;line-height:1.55}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tr:last-child td{border-bottom:0}
+.artFaq{margin-top:54px}
+.artFaq h2{font-size:clamp(25px,3vw,33px);margin-bottom:20px}
+.sources{margin-top:48px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:24px 28px}
+.sources h2{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.sources ul{margin:12px 0 0 20px;font-size:15px;line-height:1.7;color:var(--secondary)}
+.sources p{font-size:13.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.chez{margin-top:30px;background:var(--ink);color:#fff;border-radius:var(--r-l);padding:clamp(24px,4vw,36px)}
+.chez h2{color:#fff;font-size:clamp(24px,3vw,30px)}
+.chez p{color:#CFCBC0;margin-top:12px;font-size:16px;line-height:1.7}
+.chez .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chez .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3)}.chez .btn.ghost:hover{border-color:#fff}
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-l)}
+.card .cat{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--olive2);background:var(--olive-soft);padding:5px 11px;border-radius:999px}
+.card h3{font-size:20px;font-weight:600;line-height:1.25;margin-top:14px}
+.card p{font-size:14.5px;color:var(--secondary);margin-top:10px;line-height:1.6;flex:1}
+.card .rt{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+.intro p{font-size:16.5px;color:var(--secondary);line-height:1.75;margin-top:14px}
+.watch{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;box-shadow:var(--sh-s)}
+.watch h3{font-size:19px;font-weight:600}
+.watch ul{list-style:none;margin-top:12px;display:grid;gap:9px;font-size:14.5px;color:var(--secondary)}
+.watch li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--olive);margin-right:10px;vertical-align:1px}
+@media(max-width:960px){.related,.intro{grid-template-columns:1fr}}
+@media(max-width:600px){.toc{padding:18px 20px}.prose{font-size:16.5px}.cards{grid-template-columns:1fr}.chez .btn{width:100%}}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://www.groupsolution.fr/lab/veille/ia-vision-documents.html#article",
+      "headline": "Lire factures, bons et documents manuscrits avec l’IA : fiabilité, contrôle et intégration",
+      "description": "Factures, bons de livraison, manuscrits : comment les modèles vision-langage lisent vos documents, quelle fiabilité attendre et comment garder le contrôle.",
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "inLanguage": "fr-FR",
+      "mainEntityOfPage": "https://www.groupsolution.fr/lab/veille/ia-vision-documents.html",
+      "image": "https://www.groupsolution.fr/assets/visuel-solutions.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Titouan Bedos",
+        "jobTitle": "Fondateur",
+        "worksFor": {
+          "@id": "https://www.groupsolution.fr/#organization"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.groupsolution.fr/#organization",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.groupsolution.fr/Logo.svg"
+        },
+        "telephone": "+33782298559",
+        "email": "contact@groupsolution.fr"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Traitement intelligent des documents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Modèles vision-langage"
+        },
+        {
+          "@type": "Thing",
+          "name": "OCR"
+        },
+        {
+          "@type": "Thing",
+          "name": "Dématérialisation"
+        }
+      ],
+      "articleSection": "IA & documents",
+      "wordCount": 1146
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lab",
+          "item": "https://www.groupsolution.fr/lab/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Veille",
+          "item": "https://www.groupsolution.fr/lab/veille/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Lire factures, bons et documents manuscrits avec l’IA : fiabilité, contrôle et intégration",
+          "item": "https://www.groupsolution.fr/lab/veille/ia-vision-documents.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.groupsolution.fr/lab/veille/ia-vision-documents.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "L’IA sait-elle lire l’écriture manuscrite ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les modèles vision-langage récents lisent bien mieux l’écriture manuscrite que l’OCR classique, mais la fiabilité dépend fortement de la lisibilité. Pour les documents manuscrits, une vérification humaine des champs importants reste recommandée."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Avec la facturation électronique, est-ce encore utile ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Les factures structurées se lisent sans IA, mais de nombreux documents resteront en papier ou en PDF : bons de livraison, tickets, factures étrangères, notes de frais, fiches d’intervention, courriers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment savoir si l’extraction est fiable ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En la mesurant : échantillon de test représentatif, contrôles de cohérence automatiques (totaux, TVA, identifiants) et suivi du taux de corrections effectuées par les opérateurs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puis-je jeter les originaux papier une fois les données extraites ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pas sans précaution. Les règles de conservation des pièces comptables et les conditions de numérisation fidèle des factures papier sont encadrées. Renseignez-vous auprès de votre expert-comptable et de l’administration fiscale avant de détruire des originaux."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="../../index.html" aria-label="Groupe Solution — accueil"><img src="../../Logo.svg" alt="Groupe Solution" /></a>
+  <nav class="links" aria-label="Navigation principale">
+    <a href="./">Veille</a>
+    <a href="../api.html">API &amp; données</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../outils/">Outils</a>
+    <a class="cta" href="#contact">Discutons 10 min</a>
+  </nav>
+</div></header>
+<main>
+  <article class="art"><div class="wrap"><div class="col">
+    <nav class="crumbs" aria-label="Fil d’Ariane"><ol>
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../index.html">Lab</a></li>
+      <li><a href="./">Veille</a></li>
+      <li aria-current="page">IA &amp; documents</li>
+    </ol></nav>
+    <header class="artHead">
+      <span class="kicker">IA &amp; documents</span>
+      <h1>Lire factures, bons et documents manuscrits avec l’IA : fiabilité, contrôle et intégration</h1>
+      <p class="chapo">Bons de livraison froissés, factures fournisseurs aux mises en page toutes différentes, fiches d’intervention remplies à la main : la saisie de documents reste une corvée dans beaucoup d’entreprises. Les modèles d’IA capables de « lire » une image ont changé la donne. Voici ce qu’ils savent faire, avec quelle fiabilité, et comment les intégrer sans perdre le contrôle.</p>
+      <p class="meta">Publié le <time datetime="2026-09-29">29 septembre 2026</time> · 5 min de lecture · Par Titouan Bedos, fondateur de Groupe Solution</p>
+    </header>
+    <nav class="toc" aria-label="Sommaire"><b>Sommaire</b><ol>
+      <li><a href="#definition">Ce que c’est : de l’OCR aux modèles vision-langage</a></li>
+      <li><a href="#pourquoi-maintenant">Pourquoi c’est important maintenant</a></li>
+      <li><a href="#cas-usage">Cas d’usage concrets pour une TPE/PME</a></li>
+      <li><a href="#fiabilite">Fiabilité et contrôle humain</a></li>
+      <li><a href="#limites">Limites et précautions</a></li>
+      <li><a href="#commencer">Intégration : par où commencer</a></li>
+      <li><a href="#faq">Questions fréquentes</a></li>
+    </ol></nav>
+    <div class="prose">
+<h2 id="definition">Ce que c’est : de l’OCR aux modèles vision-langage</h2>
+<p>La <strong>reconnaissance optique de caractères</strong> (OCR) existe depuis des décennies : elle transforme l’image d’un texte en texte. Mais elle ne comprend pas ce qu’elle lit. Pour extraire le numéro de facture, le montant hors taxes ou la date d’échéance, il fallait définir des modèles par fournisseur, fragiles dès que la mise en page changeait.</p>
+<p>Le <strong>traitement intelligent des documents</strong> (en anglais <em>Intelligent Document Processing</em>, IDP) va plus loin : il combine lecture, compréhension et extraction de données structurées. Les approches les plus récentes s’appuient sur des <strong>modèles vision-langage</strong> : des modèles d’IA qui reçoivent directement l’image d’un document et peuvent répondre à une consigne comme « extrais le fournisseur, la date, le total HT, la TVA et chaque ligne de produit, au format JSON ».</p>
+<p>Leur force : ils comprennent la structure du document sans modèle préalable. Un tableau, un tampon, une mention manuscrite dans la marge, une facture en anglais ou en espagnol sont interprétés dans leur contexte. Ils lisent également l’écriture manuscrite bien mieux que l’OCR classique, même si la qualité dépend fortement de la lisibilité.</p>
+<h2 id="pourquoi-maintenant">Pourquoi c’est important maintenant</h2>
+<p>Deux mouvements se rejoignent :</p>
+<ul>
+<li><strong>La maturité technique</strong> : les grands modèles actuels intègrent nativement la vision, et des modèles plus légers spécialisés dans les documents sont apparus, y compris en open source. La lecture de documents variés, de photos prises au téléphone et de manuscrits est devenue exploitable en production, sous contrôle humain.</li>
+<li><strong>La facturation électronique</strong> : avec la réforme, les factures entre entreprises assujetties établies en France vont progressivement arriver dans des formats structurés. Mais de nombreux documents resteront sur papier ou en PDF : bons de livraison, tickets, factures de fournisseurs étrangers, notes de frais, documents d’intervention, courriers. La lecture automatisée reste donc utile, et devient complémentaire des flux structurés.</li>
+</ul>
+<h2 id="cas-usage">Cas d’usage concrets pour une TPE/PME</h2>
+<h3>Artisan : bons d’intervention et tickets de fournitures</h3>
+<p>Le technicien photographie la fiche d’intervention signée par le client et les tickets du distributeur. L’IA extrait heures, matériaux, références et montants, et les rattache au bon chantier. La facturation et le calcul de marge sont préparés sans ressaisie.</p>
+<h3>Restaurant et commerce : bons de livraison</h3>
+<p>Chaque livraison est photographiée ; les quantités et les prix sont comparés automatiquement à la commande. Un écart (produit manquant, prix différent) déclenche une alerte avant le paiement de la facture.</p>
+<h3>Cabinet : pièces justificatives</h3>
+<p>Un cabinet reçoit des pièces hétérogènes de ses clients : l’IA les classe par type, extrait les données utiles et signale les pièces illisibles ou incomplètes. Le collaborateur se concentre sur la vérification et l’analyse.</p>
+<h3>Domaine viticole : documents d’export et registres</h3>
+<p>Documents de transport, factures d’importateurs étrangers, fiches de suivi manuscrites en cave : l’IA aide à les numériser et à alimenter les tableaux de suivi, avec vérification humaine pour tout ce qui a une portée réglementaire.</p>
+<h3>Tourisme : formulaires et courriers</h3>
+<p>Fiches de réservation papier, courriers de réclamation, bons d’échange d’agences : extraction des informations et création automatique de la fiche dans le logiciel de gestion.</p>
+<h2 id="fiabilite">Fiabilité et contrôle humain</h2>
+<p>Aucun système de lecture n’est parfait. La question n’est pas « l’IA se trompe-t-elle ? » mais « comment détecter et corriger ses erreurs avant qu’elles ne coûtent ? ».</p>
+<h3>Les causes d’erreur</h3>
+<ul>
+<li>Qualité de l’image : flou, reflet, pli, photo prise de biais, faible résolution.</li>
+<li>Écriture manuscrite difficile, chiffres ambigus (1 et 7, 5 et S).</li>
+<li>Documents longs ou tableaux complexes, lignes qui débordent sur plusieurs pages.</li>
+<li>« Correction » abusive : un modèle vision-langage peut proposer une valeur plausible au lieu de la valeur réellement écrite, ou compléter une information absente. C’est une forme d’hallucination à surveiller particulièrement.</li>
+</ul>
+<h3>Les garde-fous indispensables</h3>
+<ul>
+<li><strong>Contrôles de cohérence automatiques</strong> : la somme des lignes correspond-elle au total ? Le taux de TVA est-il plausible ? Le SIREN du fournisseur existe-t-il ? La date est-elle cohérente ?</li>
+<li><strong>Rapprochement</strong> avec les données existantes : commande, bon de livraison, fiche fournisseur, historique des prix.</li>
+<li><strong>Validation humaine ciblée</strong> : les documents qui passent tous les contrôles peuvent être traités rapidement ; ceux qui présentent un doute sont présentés à un opérateur, avec l’image à côté des valeurs extraites.</li>
+<li><strong>Conservation de l’original</strong> : l’image ou le PDF d’origine reste attaché à la donnée extraite, pour pouvoir vérifier à tout moment.</li>
+<li><strong>Mesure continue</strong> : suivre le taux de corrections faites par les opérateurs permet de savoir objectivement où le système est fiable et où il ne l’est pas.</li>
+</ul>
+<h2 id="limites">Limites et précautions</h2>
+<ul>
+<li><strong>Données personnelles</strong> : les documents contiennent souvent des noms, adresses, parfois des données sensibles. Le RGPD s’applique : finalité, minimisation, sous-traitance encadrée, localisation de l’hébergement connue.</li>
+<li><strong>Valeur probante</strong> : la donnée extraite par l’IA ne remplace pas l’original. Les règles de conservation des pièces comptables et la numérisation fidèle des factures papier obéissent à des exigences spécifiques ; consultez votre expert-comptable et la documentation de l’administration fiscale.</li>
+<li><strong>Coût et volume</strong> : l’appel à un grand modèle vision a un coût par page. Pour de gros volumes homogènes, une combinaison OCR classique et modèle plus léger peut être plus pertinente.</li>
+<li><strong>Dépendance au fournisseur</strong> : concevoir l’extraction autour d’un schéma de données qui vous appartient permet de changer de modèle sans tout refaire.</li>
+</ul>
+<h2 id="commencer">Intégration : par où commencer</h2>
+<ol>
+<li><strong>Choisissez un type de document</strong> fréquent et pénible à saisir : bons de livraison, factures fournisseurs, fiches d’intervention.</li>
+<li><strong>Définissez les champs à extraire</strong> et les contrôles de cohérence associés.</li>
+<li><strong>Organisez la collecte</strong> : adresse courriel dédiée, dossier partagé, photo depuis une application mobile.</li>
+<li><strong>Constituez un échantillon de test</strong> représentatif, y compris les documents difficiles, et mesurez les erreurs.</li>
+<li><strong>Intégrez le résultat dans vos logiciels</strong> (gestion, comptabilité, suivi de chantier) via leurs API, avec une file de validation pour les cas douteux.</li>
+<li><strong>Suivez les corrections</strong> et ajustez les consignes et les contrôles.</li>
+</ol>
+<p>Groupe Solution met en place des chaînes de lecture automatique de documents reliées aux logiciels existants, avec contrôles de cohérence, validation humaine ciblée et conservation des originaux.</p>
+    </div>
+    <section class="artFaq faq" id="faq">
+      <h2>Questions fréquentes</h2>
+      <details><summary>L’IA sait-elle lire l’écriture manuscrite ?</summary><p>Les modèles vision-langage récents lisent bien mieux l’écriture manuscrite que l’OCR classique, mais la fiabilité dépend fortement de la lisibilité. Pour les documents manuscrits, une vérification humaine des champs importants reste recommandée.</p></details>
+      <details><summary>Avec la facturation électronique, est-ce encore utile ?</summary><p>Oui. Les factures structurées se lisent sans IA, mais de nombreux documents resteront en papier ou en PDF : bons de livraison, tickets, factures étrangères, notes de frais, fiches d’intervention, courriers.</p></details>
+      <details><summary>Comment savoir si l’extraction est fiable ?</summary><p>En la mesurant : échantillon de test représentatif, contrôles de cohérence automatiques (totaux, TVA, identifiants) et suivi du taux de corrections effectuées par les opérateurs.</p></details>
+      <details><summary>Puis-je jeter les originaux papier une fois les données extraites ?</summary><p>Pas sans précaution. Les règles de conservation des pièces comptables et les conditions de numérisation fidèle des factures papier sont encadrées. Renseignez-vous auprès de votre expert-comptable et de l’administration fiscale avant de détruire des originaux.</p></details>
+    </section>
+    <aside class="sources" aria-labelledby="src-ia-vision-documents">
+      <h2 id="src-ia-vision-documents">Sources officielles à consulter</h2>
+      <ul>
+        <li>impots.gouv.fr — règles de conservation et de numérisation des factures</li>
+        <li>CNIL — recommandations sur l’IA et la protection des données</li>
+        <li>Règlement général sur la protection des données (RGPD)</li>
+        <li>ANSSI — recommandations de sécurité pour un système d’IA générative</li>
+      </ul>
+      <p>Article à jour au 29 septembre 2026. Les textes, calendriers et services évoluent : référez-vous toujours à la version en vigueur publiée par ces organismes. Cet article est informatif et ne constitue pas un conseil juridique ou fiscal.</p>
+    </aside>
+    <aside class="chez">
+      <h2>Et chez vous ?</h2>
+      <p>Vous vous demandez ce que ce sujet change concrètement dans votre activité ? Parlons-en dix minutes : nous regardons vos outils et vos tâches répétitives, et vous repartez avec une piste claire. Chaque projet fait l’objet d’un devis sur mesure.</p>
+      <div class="row"><a class="btn" href="../../automatisation/">Voir nos automatisations</a><a class="btn ghost" href="tel:+33782298559">07 82 29 85 59</a></div>
+    </aside>
+  </div></div></article>
+  <section class="sec"><div class="wrap">
+    <div class="secHead"><span class="kicker">À lire aussi</span><h2>D’autres sujets de veille</h2></div>
+    <div class="related">
+      <a class="card reveal" href="mcp-model-context-protocol.html"><span class="cat">IA &amp; intégration</span><h3>Le Model Context Protocol (MCP) expliqué aux entreprises : connecter l’IA à ses outils</h3><p>Le Model Context Protocol (MCP) expliqué simplement : comment ce standard ouvert relie un assistant IA à vos logiciels et fichiers, avec quelles précautions.</p><span class="rt">7 min de lecture</span></a>
+      <a class="card reveal" href="agents-ia-computer-use.html"><span class="cat">Agents IA</span><h3>Agents IA qui utilisent les logiciels comme un humain : ce que ça change pour les portails sans API</h3><p>Des agents IA utilisent désormais un logiciel comme un humain, écran et clavier. Ce que cela change pour les portails sans API, et comment les superviser.</p><span class="rt">6 min de lecture</span></a>
+      <a class="card reveal" href="agents-vocaux-ia.html"><span class="cat">Agents IA</span><h3>Agents vocaux IA au téléphone : décrocher 24 h/24, prendre des rendez-vous, transcrire</h3><p>Agents vocaux IA : décrocher 24 h/24, prendre des rendez-vous, transcrire. Fonctionnement, latence, RGPD, information de l’appelant et transfert humain.</p><span class="rt">6 min de lecture</span></a>
+    </div>
+  </div></section>
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Quelle tâche vous prend le plus de temps ?</h2>
+      <p>Décrivez-la en deux phrases. Je vous réponds avec une première piste concrète — gratuitement, sans engagement.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="veille/ia-vision-documents" />
+        <label class="full">La tâche répétitive<textarea name="message" required placeholder="Ex : je ressaisis chaque commande dans deux logiciels…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Recevoir ma piste d'automatisation →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="../../echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../../index.html">Accueil</a>
+    <a href="./">Veille</a>
+    <a href="../../automatisation/">Automatisation</a>
+    <a href="../../solutions.html">Solutions</a>
+    <a href="../../realisations.html">Réalisations</a>
+    <a href="../../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../../echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+<script src="../../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

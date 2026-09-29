@@ -59,6 +59,11 @@
       "source": "/automatisation/index.html",
       "destination": "/automatisation/",
       "permanent": true
+    },
+    {
+      "source": "/outils/prix-site-internet.html",
+      "destination": "/outils/configurateur-site-internet.html",
+      "permanent": true
     }
   ]
 }

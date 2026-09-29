@@ -11,7 +11,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { HOLDING } from './zones.mjs';
 import { COMMUNES, neighbours } from './montpellier-communes.mjs';
-import { aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
+import { AVANCEES, pickAvancees } from './automatisations-avancees.mjs';
+import { liveSection, LIVE_CSS, heroArt, aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = 'automatisation';
@@ -20,7 +21,7 @@ const siteHref = c => `../montpellier/site-internet-${c.slug}.html`;
 const FORM = 'https://formspree.io/f/mzebrvjg';
 
 /* ── Blocs communs ── */
-const head = ({ title, desc, url, jsonld }) => `<!doctype html>
+const head = ({ title, desc, url, jsonld, ogImage }) => `<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -34,14 +35,14 @@ const head = ({ title, desc, url, jsonld }) => `<!doctype html>
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(desc)}" />
   <meta property="og:url" content="${url}" />
-  <meta property="og:image" content="${HOLDING}/assets/visuel-solutions.jpg" />
+  <meta property="og:image" content="${ogImage || HOLDING + '/assets/visuel-solutions.jpg'}" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/holding-local.css" />
-  <style>${MAP_CSS}${STICKY_CSS}</style>
+  <style>${MAP_CSS}${STICKY_CSS}${LIVE_CSS}</style>
   <script type="application/ld+json">
 ${JSON.stringify(jsonld, null, 2)}
   </script>
@@ -63,6 +64,7 @@ const foot = `</main>
   </nav>
 </div></footer>
 <div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Discutons 10 min</a></div>
+<script src="../assets/live.js" defer></script>
 <script src="../assets/holding-local.js" defer></script>
 <script src="/analytics.js" defer></script>
 </body>
@@ -90,12 +92,12 @@ const calc = (where) => `
 
 const proof = `
   <section class="sec alt"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">La preuve</div><h2>On ne teste pas. On a déjà livré.</h2><p>Trois plateformes à grande échelle et une automatisation locale en production — le même socle, spécialisé à chaque fois.</p></div>
+    <div class="secHead reveal"><div class="kicker">La preuve</div><h2>On ne teste pas. On a déjà livré.</h2><p>Trois plateformes conçues et opérées par Groupe Solution, en ligne aujourd'hui — le même socle, spécialisé à chaque fois.</p></div>
     <div class="proof">
-      <a class="plat reveal" href="https://twentythreeclean.com/" target="_blank" rel="noopener"><span class="tag">Montpellier</span><h3>Twenty Three Clean</h3><p>Lavage auto à domicile : le client envoie ses photos, le devis part seul, la réservation suit. Zéro appel pour chiffrer.</p><div class="stat"><b>0</b> appel pour un devis</div></a>
       <a class="plat reveal" href="https://solutionsrecrutement.fr" target="_blank" rel="noopener"><span class="tag">En ligne</span><h3>Solution Recrutement</h3><p>Matching sémantique, vivier réactivé en continu, chaque correspondance expliquée.</p><div class="stat"><b>565 000</b>+ offres</div></a>
       <a class="plat reveal" href="https://solutionalternance.fr" target="_blank" rel="noopener"><span class="tag">En ligne</span><h3>Solution Alternance</h3><p>Chaque profil rapproché des offres d'alternance sur les compétences réelles.</p><div class="stat"><b>200 000</b>+ offres comparées</div></a>
       <a class="plat reveal" href="https://aides-particuliers.fr" target="_blank" rel="noopener"><span class="tag">En ligne</span><h3>Aides Particuliers</h3><p>Un diagnostic qui identifie les aides publiques auxquelles un particulier a droit.</p><div class="stat"><b>6</b> catégories d'aides</div></a>
+      <a class="plat reveal" href="#contact" style="background:var(--ink);color:#fff;border-color:var(--ink)"><span class="tag" style="background:rgba(255,255,255,.12);color:#fff">Prochain projet</span><h3 style="color:#fff">Le vôtre ?</h3><p style="color:#CFCBBF">Même ingénierie, appliquée à votre activité. On en parle 10 minutes.</p><div class="stat" style="border-color:rgba(255,255,255,.15);color:#CFCBBF">Diagnostic gratuit →</div></a>
     </div>
   </div></section>`;
 
@@ -119,7 +121,7 @@ const express = (c) => `
       <form id="expressForm" action="${FORM}" method="POST">
         <input type="hidden" name="page" value="automatisation/${c ? c.slug : 'hub'}" />
         ${c ? `<input type="hidden" name="commune" value="${esc(c.name)} (${c.cp})" />` : ''}
-        <label class="full">La tâche répétitive<textarea name="message" required placeholder="${c ? esc('Ex : ' + c.auto.cases[0][0].toLowerCase() + '…') : 'Ex : je ressaisis chaque commande dans deux logiciels…'}"></textarea></label>
+        <label class="full">La tâche répétitive<textarea name="message" required placeholder="${c ? esc('Ex : ' + c.auto.cases[0][0].toLowerCase() + ', ou une idée plus ambitieuse…') : 'Ex : je ressaisis chaque commande dans deux logiciels…'}"></textarea></label>
         <label>Votre nom<input name="nom" autocomplete="name" required /></label>
         <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
         <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="${c ? esc(c.tissu.split(',')[0].trim()) : 'Votre secteur'}" /></label>
@@ -150,14 +152,15 @@ function page(c) {
   const near = neighbours(c, 6);
   const faq = [c.auto.faq, COMMON_FAQ[c.slug.length % 3], { q: `Intervenez-vous vraiment ${aName(c)} ?`, a: `Oui. Groupe Solution est basé à Montpellier, ${d <= 2 ? 'juste à côté' : `à environ ${d} km`}. Le diagnostic et le suivi se font par téléphone ou visio, et on se déplace ${aName(c)} dès que c'est utile — pour observer un process sur place, former une équipe ou lancer un outil.` }, c.web.faq];
   const title = `Automatisation & logiciel sur-mesure ${aName(c)} (${c.cp}) | Groupe Solution`;
-  const desc = `${c.auto.cases[0][0]}, ${c.auto.cases[1][0].toLowerCase()}… Logiciels et automatisations sur-mesure pour les entreprises ${aName(c)}. Diagnostic gratuit en 10 min.`.slice(0, 200);
+  const adv = pickAvancees(c.slug, [c.tissu, c.profil, c.auto.angle].join(' '), 4);
+  const desc = `${adv[0].titre}, ${adv[1].titre.charAt(0).toLowerCase() + adv[1].titre.slice(1)}… Automatisations de pointe et logiciels sur-mesure pour les entreprises ${aName(c)}. Diagnostic gratuit en 10 min.`.slice(0, 200);
   const jsonld = {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'Service', '@id': url + '#service', name: `Automatisation et logiciel sur-mesure ${aName(c)}`, serviceType: 'Automatisation des processus métier et développement de logiciels sur-mesure', description: desc, url,
         provider: { '@type': 'Organization', '@id': HOLDING + '/#org', name: 'Groupe Solution', url: HOLDING + '/', telephone: '+33782298559', email: 'contact@groupsolution.fr', address: { '@type': 'PostalAddress', addressLocality: 'Montpellier', postalCode: '34000', addressRegion: 'Occitanie', addressCountry: 'FR' } },
         areaServed: [{ '@type': 'City', name: c.name, postalCode: c.cp, geo: { '@type': 'GeoCoordinates', latitude: c.lat, longitude: c.lng } }, ...near.slice(0, 4).map(n => ({ '@type': 'City', name: n.name }))],
-        hasOfferCatalog: { '@type': 'OfferCatalog', name: `Automatisations pour les entreprises ${aName(c)}`, itemListElement: c.auto.cases.map(([t, x]) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: t, description: x } })) } },
+        hasOfferCatalog: { '@type': 'OfferCatalog', name: `Automatisations pour les entreprises ${aName(c)}`, itemListElement: adv.map(a => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: a.titre, description: a.texte } })) } },
       { '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Groupe Solution', item: HOLDING + '/' },
         { '@type': 'ListItem', position: 2, name: 'Automatisation Montpellier', item: `${HOLDING}/${DIR}/` },
@@ -165,7 +168,7 @@ function page(c) {
       { '@type': 'FAQPage', mainEntity: faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }
     ]
   };
-  return head({ title, desc, url, jsonld }) + `
+  return head({ title, desc, url, jsonld, ogImage: `${HOLDING}/assets/communes/${c.slug}.jpg` }) + `
   <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <a href="./">Automatisation</a> › <span>${esc(c.name)}</span></div>
 
   <section class="hero"><div class="wrap heroGrid">
@@ -188,10 +191,12 @@ function page(c) {
   </div></section>
 
   <section class="sec alt"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Cas concrets</div><h2>Ce qu'on automatise pour les entreprises ${esc(aName(c))}.</h2><p>Pas de promesse abstraite : trois exemples taillés pour le tissu économique local — ${esc(c.tissu)}.</p></div>
-    <div class="cases">
-${c.auto.cases.map(([t, x], i) => `      <article class="case reveal"><div class="n">${i + 1}</div><h3>${esc(t)}</h3><p>${esc(x)}</p></article>`).join('\n')}
+    <div class="secHead reveal"><div class="kicker">À la pointe</div><h2>Ce qu'on peut construire pour les entreprises ${esc(aName(c))}.</h2><p>Sélectionné pour le tissu économique local — ${esc(c.tissu)} — parmi ce que l'IA et l'automatisation permettent aujourd'hui.</p></div>
+    <div class="cases cases4">
+${adv.map((a, i) => `      <article class="case reveal"><div class="n">${i + 1}</div><span class="tech">${esc(a.tech)}</span><h3>${esc(a.titre)}</h3><p>${esc(a.texte)}</p><p class="ex">${esc(a.ex(c))}</p></article>`).join('\n')}
     </div>
+    <div class="bases reveal"><h3>Et les bases, bien faites</h3><ul>${c.auto.cases.map(([t, x]) => `<li><b>${esc(t)}</b> — ${esc(x)}</li>`).join('')}</ul></div>
+    <p class="center reveal" style="margin-top:22px"><a class="go" href="../lab/">Voir toutes les technologies que nous suivons →</a></p>
   </div></section>
 ${calc(aName(c))}
 
@@ -204,6 +209,7 @@ ${calc(aName(c))}
       <ul class="chips">${c.reperes.map(r => `<li>${esc(r)}</li>`).join('')}</ul>
     </div>
     <aside class="facts reveal">
+      <img class="art" src="../assets/communes/${c.slug}.jpg" alt="Illustration de ${esc(c.name)}" loading="lazy" width="1600" height="900" />
       <dl>
         <dt>Commune</dt><dd>${esc(c.name)} (${c.cp})</dd>
         <dt>Secteur</dt><dd>${esc(c.secteur)}</dd>
@@ -214,6 +220,7 @@ ${calc(aName(c))}
       <p style="margin-top:18px;font-size:14px">Besoin d'abord d'un site ? <a href="${siteHref(c)}">Création de site internet ${esc(aName(c))} →</a></p>
     </aside>
   </div></section>
+${liveSection(c, true)}
 ${proof}
 ${method}
 ${faqBlock(faq)}
@@ -233,7 +240,7 @@ ${express(c)}
 function hub() {
   const url = `${HOLDING}/${DIR}/`;
   const title = 'Automatisation & logiciel sur-mesure à Montpellier et dans l’Hérault | Groupe Solution';
-  const desc = "Éditeur de logiciels basé à Montpellier : automatisation des devis, commandes, relances, plannings et documents pour les TPE et PME de la métropole, du bassin de Thau au Pic Saint-Loup. Diagnostic gratuit en 10 min.";
+  const desc = "Éditeur de logiciels basé à Montpellier : agents IA, lecture de documents, agents vocaux, prévisions et automatisation des processus pour les TPE et PME de la métropole, du bassin de Thau au Pic Saint-Loup. Diagnostic gratuit en 10 min.";
   const faq = [...COMMON_FAQ,
     { q: 'Où intervenez-vous ?', a: `Partout autour de Montpellier : les 30 communes de la Métropole, le Pays de l'Or, le littoral, le bassin de Thau (Sète, Mèze, Villeveyrac…), le Pic Saint-Loup, Lunel, la Petite Camargue, et jusqu'à Nîmes, Béziers, Agde, Lodève et Ganges — ${COMMUNES.length} communes ont leur page dédiée. Au-delà, on travaille partout en France à distance.` },
     { q: 'Quels types d’entreprises accompagnez-vous ?', a: "Des indépendants aux PME de plusieurs dizaines de salariés : artisans du bâtiment, commerces, cabinets, domaines viticoles, conchyliculteurs, logistique, tourisme, santé. Le point commun : des tâches qui se répètent chaque semaine." }];
@@ -249,14 +256,7 @@ function hub() {
       { '@type': 'FAQPage', mainEntity: faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }
     ]
   };
-  const EX = [
-    ['Devis', 'Le client décrit son besoin (ou envoie des photos), le devis se calcule et part après votre validation d’un clic.'],
-    ['Commandes', 'Bons de commande reçus par e-mail ou PDF lus et saisis automatiquement dans votre système.'],
-    ['Relances', 'Devis sans réponse, factures impayées, documents manquants : relancés poliment, au bon moment.'],
-    ['Rendez-vous', 'Réservation en ligne, rappel la veille, liste d’attente qui remplit les annulations.'],
-    ['Documents', 'Pièces reçues reconnues, renommées, classées ; informations extraites vers vos modèles.'],
-    ['Pilotage', 'Chaque lundi, un tableau de bord clair : chiffre signé, retards, impayés — sans export Excel.']
-  ];
+  const EX = ['agent-vocal', 'rag', 'idp', 'computer-use', 'prevision', 'facturx', 'mcp', 'multi-agents', 'vision'].map(id => AVANCEES.find(a => a.id === id));
   return head({ title, desc, url, jsonld }) + `
   <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <span>Automatisation Montpellier</span></div>
   <section class="hero"><div class="wrap heroGrid">
@@ -277,9 +277,9 @@ function hub() {
   </div></section>
 
   <section class="sec alt"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Concrètement</div><h2>Ce qu'on automatise le plus souvent.</h2><p>Six familles de tâches qu'on retrouve dans presque toutes les entreprises — quel que soit le métier.</p></div>
+    <div class="secHead reveal"><div class="kicker">À la pointe</div><h2>Ce que l'on peut construire aujourd'hui.</h2><p>Bien au-delà du devis automatique : agents IA, lecture de documents, agents qui pilotent vos logiciels, prévisions, nouveaux standards — quel que soit le métier.</p></div>
     <div class="cases">
-${EX.map(([t, x], i) => `      <article class="case reveal"><div class="n">${i + 1}</div><h3>${t}</h3><p>${x}</p></article>`).join('\n')}
+${EX.map((a, i) => `      <article class="case reveal"><div class="n">${i + 1}</div><span class="tech">${esc(a.tech)}</span><h3>${esc(a.titre)}</h3><p>${esc(a.texte)}</p></article>`).join('\n')}
     </div>
   </div></section>
 ${calc('')}

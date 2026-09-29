@@ -19,7 +19,7 @@ const DATE = '2026-09-29';
 const L = {
   offre: '../site-internet-montpellier.html',
   auto: '../../automatisation/',
-  simu: '../../outils/prix-site-internet.html',
+  config: '../../outils/configurateur-site-internet.html',
   visi: '../../outils/test-visibilite-google.html',
   calc: '../../outils/calculateur-automatisation.html',
   rdv: 'https://www.groupsolution.fr/echanger.html#rendez-vous',
@@ -45,98 +45,111 @@ const GUIDES = [];
 /* ═══════════════ 1. PRIX D'UN SITE INTERNET ═══════════════ */
 GUIDES.push({
   slug: 'prix-site-internet-montpellier',
-  title: "Prix d'un site internet à Montpellier en 2026 | GroupSolution",
-  description: "Combien coûte un site internet à Montpellier en 2026 ? Fourchettes réalistes par type de site, coûts cachés à prévoir et méthode pour comparer vos devis.",
-  h1: "Prix d'un site internet à Montpellier en 2026 : ce qui fait vraiment varier le devis",
-  short: "Vitrine, e-commerce, réservation, sur-mesure : les fourchettes réalistes, les coûts cachés et la méthode pour comparer deux devis.",
-  intro: `<p>Vous avez demandé trois devis pour votre site et vous avez reçu 600 €, 2 900 € et 7 500 €. Pour ce qui ressemble au même projet. C'est la situation la plus courante chez les artisans, commerçants et indépendants que nous rencontrons à Montpellier, et elle n'a rien d'anormal : le mot « site internet » recouvre des réalités très différentes.</p>
-<p>Ce guide vous donne les ordres de grandeur que l'on observe sur le marché montpelliérain, ce qui fait réellement monter (ou baisser) une facture, les dépenses que l'on oublie presque toujours, et une grille simple pour comparer des devis qui ne se ressemblent pas.</p>`,
+  title: "Prix d'un site internet à Montpellier : lire un devis | GroupSolution",
+  description: "Prix d'un site internet à Montpellier : les facteurs qui font varier un devis, les coûts récurrents à identifier, les pièges et la méthode pour comparer.",
+  h1: "Prix d'un site internet à Montpellier : ce qui fait varier le devis",
+  short: "Périmètre, contenus, fonctionnalités, intégrations, suivi, propriété : les facteurs qui font varier un devis et la méthode pour les comparer.",
+  intro: `<p>Vous avez demandé plusieurs devis pour votre site et les montants n'ont rien à voir entre eux, pour ce qui ressemble pourtant au même projet. C'est la situation la plus courante chez les artisans, commerçants et indépendants que nous rencontrons à Montpellier, et elle n'a rien d'anormal : le mot « site internet » recouvre des réalités très différentes.</p>
+<p>Plutôt que de vous donner des fourchettes qui ne correspondront jamais exactement à votre situation, ce guide vous explique <strong>ce qui fait réellement varier un devis</strong>, les dépenses récurrentes que l'on oublie presque toujours, les pièges à éviter et une méthode simple pour comparer des propositions qui ne se ressemblent pas.</p>`,
   sections: [
-    { id: 'pourquoi-ecarts', h2: 'Pourquoi les devis vont du simple au décuple', html: `
-<p>Un devis de site internet est d'abord un devis de <strong>temps passé</strong>. Ce qui varie d'un prestataire à l'autre, ce n'est pas tellement le prix de l'heure (il reste dans une plage assez resserrée à Montpellier), c'est le nombre d'heures prévues et ce qu'elles couvrent.</p>
-<p>Concrètement, quatre facteurs expliquent l'essentiel des écarts :</p>
-<ul>
-<li><strong>Le point de départ technique</strong> : un thème prêt à l'emploi légèrement personnalisé ne demande pas le même travail qu'une maquette dessinée pour vous puis intégrée.</li>
-<li><strong>Le contenu</strong> : qui écrit les textes, qui fournit les photos, qui les optimise pour Google ? Si c'est vous, le devis baisse ; si c'est le prestataire, il monte, et c'est souvent justifié.</li>
-<li><strong>Les fonctionnalités</strong> : un formulaire de contact n'a rien à voir avec un module de réservation connecté à un agenda, un paiement en ligne ou un calcul automatique de devis.</li>
-<li><strong>Ce qui se passe après la mise en ligne</strong> : hébergement, mises à jour, sauvegardes, référencement, modifications. Certains l'incluent, d'autres le facturent à part, d'autres ne le proposent pas du tout.</li>
-</ul>
-<p>Un devis à 600 € et un devis à 3 000 € peuvent donc être tous les deux honnêtes. Ils ne vendent simplement pas la même chose.</p>
+    { id: 'pourquoi-ecarts', h2: 'Pourquoi deux devis peuvent être si différents', html: `
+<p>Un devis de site internet est d'abord un devis de <strong>temps passé</strong> et de <strong>responsabilités prises</strong>. Deux prestataires peuvent employer les mêmes mots (« site vitrine », « responsive », « optimisé pour Google ») et ne pas prévoir du tout le même travail derrière.</p>
+<p>L'un part d'un thème prêt à l'emploi, vous laisse écrire les textes et s'arrête à la mise en ligne. L'autre conçoit une structure pensée pour votre métier, rédige les contenus, configure votre fiche Google, relie le formulaire à vos outils et assure le suivi. Les deux devis peuvent être parfaitement honnêtes. Ils ne vendent simplement pas la même chose.</p>
+<p>La bonne question n'est donc pas « combien coûte un site ? », mais « qu'est-ce que ce devis comprend, et qu'est-ce qu'il ne comprend pas ? ».</p>
 ${box([
   "Comparez ce qui est inclus, pas seulement le montant final.",
-  "Le contenu (textes, photos) et l'après-mise en ligne expliquent une grande partie des écarts.",
-  "Un prix très bas n'est pas suspect en soi, s'il est clair sur ce qu'il ne comprend pas.",
+  "Un devis bas n'est pas suspect s'il est clair sur ce qu'il exclut ; un devis vague l'est davantage.",
+  "Le contenu, les fonctionnalités et l'après-mise en ligne expliquent l'essentiel des écarts.",
 ])}` },
-    { id: 'fourchettes', h2: 'Les fourchettes de prix par type de site', html: `
-<p>Les montants ci-dessous sont des <strong>ordres de grandeur</strong> constatés dans nos échanges avec des clients et dans les devis concurrents qu'ils nous montrent. Ce ne sont pas des tarifs officiels : votre projet peut sortir de ces plages, dans un sens comme dans l'autre.</p>
-${table(['Type de site', 'Freelance / offre packagée', 'Agence', 'Délai courant'], [
-  ['Site vitrine (3 à 8 pages)', '250 € à 1 500 €', '1 500 € à 5 000 €', '1 à 4 semaines'],
-  ['Site avec réservation ou prise de RDV', '800 € à 2 500 €', '2 500 € à 7 000 €', '3 à 6 semaines'],
-  ['Boutique e-commerce (jusqu\'à ~100 produits)', '1 500 € à 4 000 €', '4 000 € à 15 000 €', '4 à 10 semaines'],
-  ['Site sur-mesure / outil métier', 'rarement proposé', '8 000 € et plus', '2 à 6 mois'],
-], "Ordres de grandeur HT observés sur la métropole de Montpellier — hors coûts récurrents")}
-<h3>Le site vitrine</h3>
-<p>C'est le cas le plus fréquent : présenter votre activité, vos services, votre zone d'intervention, rassurer avec des avis et des réalisations, et donner envie d'appeler. Pour un artisan de ${commune('castelnau-le-lez', 'Castelnau-le-Lez')} ou un cabinet de ${commune('lattes', 'Lattes')}, un site de cinq ou six pages bien construit suffit dans la grande majorité des cas. Ce qui fait la différence n'est pas le nombre de pages, mais la clarté du message et la facilité à vous contacter depuis un téléphone.</p>
-<h3>Le site avec réservation</h3>
-<p>Restaurant, institut, coach, location : la réservation en ligne ajoute un agenda, des règles (durées, créneaux, acomptes), des notifications et souvent un paiement. On peut brancher un outil existant (plus rapide, abonnement mensuel à prévoir) ou développer un module adapté à des règles particulières (plus cher au départ, sans abonnement tiers).</p>
-<h3>La boutique e-commerce</h3>
-<p>Le prix dépend surtout du nombre de produits à créer, de la gestion des variantes (tailles, couleurs), des modes de livraison et des obligations légales à intégrer (CGV, rétractation, médiateur). La saisie du catalogue est un poste souvent sous-estimé : 200 fiches produits avec photos et descriptions, c'est plusieurs jours de travail, quel que soit le prestataire.</p>
-<h3>Le sur-mesure</h3>
-<p>Espace client, calcul de devis, tableau de bord, connexion à votre logiciel de facturation : on sort du site pour entrer dans l'outil métier. Les budgets sont plus élevés, mais c'est aussi là que le retour sur investissement se mesure le plus facilement, en heures gagnées chaque semaine.</p>` },
-    { id: 'couts-caches', h2: 'Les coûts cachés à prévoir (et à exiger dans le devis)', html: `
-<p>Le prix de création n'est que la première ligne. Voici les dépenses qui arrivent ensuite, et qu'un devis sérieux doit au minimum mentionner, même s'il ne les facture pas.</p>
-${table(['Poste', 'Ordre de grandeur', 'Remarque'], [
-  ['Nom de domaine (.fr ou .com)', '10 € à 25 € / an', 'Doit être enregistré à votre nom, pas à celui du prestataire.'],
-  ['Hébergement', '5 € à 40 € / mois', 'Varie selon le trafic, la technologie et le niveau de service.'],
-  ['Maintenance (mises à jour, sauvegardes, sécurité)', '0 € à 150 € / mois', 'Indispensable sur un CMS comme WordPress ; parfois incluse.'],
-  ['Photos professionnelles', '300 € à 900 € la séance', 'Souvent le meilleur investissement pour un site vitrine.'],
-  ['Rédaction des textes', '80 € à 250 € par page', 'À prévoir si vous ne voulez pas écrire vous-même.'],
-  ['Abonnements tiers (réservation, paiement, e-mailing)', '0 € à 80 € / mois', 'Plus commissions éventuelles sur les paiements.'],
-  ['Modifications après livraison', 'au forfait ou à l\'heure', 'Vérifiez combien de retouches sont incluses.'],
+    { id: 'facteurs', h2: 'Les 7 facteurs qui font varier un devis', html: `
+<p>Voici les facteurs que nous retrouvons dans pratiquement tous les projets, avec leur poids habituel sur le devis et la question à poser au prestataire pour y voir clair.</p>
+${table(['Facteur', 'Impact sur le devis', 'Question à poser'], [
+  ['Périmètre (pages, parcours)', 'Moyen', 'Combien de pages et de parcours différents sont prévus, précisément ?'],
+  ['Contenus (textes, photos, vidéos)', 'Fort', 'Qui rédige, qui fournit et retouche les visuels ?'],
+  ['Fonctionnalités', 'Fort', 'Quelles fonctionnalités exactes, listées une par une ?'],
+  ['Intégrations avec vos outils', 'Moyen à fort', 'Le site sera-t-il relié à mon agenda, ma facturation, mon CRM ?'],
+  ['Design (thème adapté ou création)', 'Moyen', 'Part-on d\'un modèle existant ou d\'une maquette dédiée ?'],
+  ['Délais', 'Faible à moyen', 'Le délai demandé implique-t-il une majoration ou des compromis ?'],
+  ['Suivi et propriété', 'Moyen', 'Qu\'est-ce qui est inclus après la livraison, et à qui appartient quoi ?'],
+], "Poids indicatif, variable selon les projets")}
+<h3>1. Le périmètre</h3>
+<p>Le nombre de pages compte moins qu'on le croit. Ce qui pèse, c'est le nombre de <strong>parcours différents</strong> : un visiteur qui veut un devis, un autre qui veut réserver, un troisième qui cherche vos horaires. Chaque parcours demande une réflexion, des contenus et des tests. Pour un artisan de ${commune('castelnau-le-lez', 'Castelnau-le-Lez')} ou un cabinet de ${commune('lattes', 'Lattes')}, un site court mais bien construit suffit souvent.</p>
+<h3>2. Les contenus</h3>
+<p>C'est le facteur le plus sous-estimé. Rédiger des textes clairs, adaptés à la recherche locale et à votre clientèle, prend du temps. Organiser une séance photo aussi. Si vous fournissez tout, le devis baisse ; si le prestataire s'en charge, il monte, et c'est généralement là que se joue la qualité du résultat.</p>
+<h3>3. Les fonctionnalités</h3>
+<p>Un formulaire de contact n'a rien à voir avec une réservation connectée à un agenda, un paiement en ligne, un espace client ou un calcul automatique de devis. Chaque fonctionnalité doit être listée, décrite et testée. Méfiez-vous des lignes du type « module de réservation » sans aucun détail sur les règles (durées, acomptes, annulations).</p>
+<h3>4. Les intégrations</h3>
+<p>Relier le site à vos outils (agenda, logiciel de devis et facturation, CRM, messagerie SMS) évite les ressaisies et fait gagner du temps chaque semaine. C'est aussi un travail spécifique, qui dépend de ce que vos outils permettent. Un prestataire sérieux vous dira ce qui est possible, ce qui ne l'est pas, et ce qui nécessite un abonnement tiers.</p>
+<h3>5. Le design</h3>
+<p>Un thème existant bien adapté donne souvent un excellent résultat pour une activité locale. Une création sur mesure se justifie quand l'image de marque est centrale ou que les parcours sont atypiques. Ni l'un ni l'autre n'est « meilleur » : l'important est de savoir ce qui est prévu.</p>
+<h3>6. Les délais</h3>
+<p>Un délai très court peut impliquer une majoration, ou des compromis sur les contenus et les tests. Dans les faits, le délai dépend souvent davantage de la remise de vos textes, photos et validations que du travail du prestataire.</p>
+<h3>7. Le suivi et la propriété</h3>
+<p>Hébergement, mises à jour, sauvegardes, modifications, référencement dans la durée : certains l'incluent, d'autres le facturent à part, d'autres ne le proposent pas. Et à la fin, qui possède le nom de domaine, le site, les comptes Google ? Ce facteur n'apparaît pas toujours dans le montant de départ, mais il pèse lourd sur plusieurs années.</p>` },
+    { id: 'couts-recurrents', h2: 'Les coûts récurrents à identifier dès le départ', html: `
+<p>Le devis de création n'est que la première ligne. Voici les postes qui reviennent ensuite, et qu'une proposition sérieuse doit au minimum mentionner, même si elle ne les facture pas elle-même.</p>
+${table(['Poste', 'Récurrence', 'Ce qu\'il faut vérifier'], [
+  ['Nom de domaine', 'Annuelle', 'Enregistré à votre nom, renouvellement automatique activé.'],
+  ['Hébergement', 'Mensuelle ou annuelle', 'Qui le gère, où sont les serveurs, quelles sauvegardes ?'],
+  ['Maintenance (mises à jour, sécurité)', 'Mensuelle ou à l\'intervention', 'Indispensable sur un CMS comme WordPress : qui s\'en charge ?'],
+  ['Abonnements tiers (réservation, paiement, e-mailing)', 'Mensuelle, parfois à la transaction', 'Quels outils, à quel nom, résiliables comment ?'],
+  ['Modifications après livraison', 'Ponctuelle', 'Combien de retouches incluses, comment sont facturées les suivantes ?'],
+  ['Contenus (photos, textes, pages locales)', 'Ponctuelle', 'Prévu dans le devis ou à votre charge ?'],
 ])}
-<p>Le poste le plus piégeux reste la <strong>maintenance</strong>. Un site WordPress non mis à jour pendant un ou deux ans devient une cible pour les attaques automatisées. Si votre devis ne dit rien à ce sujet, posez la question : qui fait les mises à jour, à quelle fréquence, et qui répare si le site tombe ?</p>
+<p>Le poste le plus piégeux reste la <strong>maintenance</strong>. Un site WordPress non mis à jour pendant longtemps devient une cible pour les attaques automatisées. Si votre devis ne dit rien à ce sujet, posez la question : qui fait les mises à jour, à quelle fréquence, et qui répare si le site tombe ?</p>
 ${box([
-  "Additionnez création + trois ans de coûts récurrents pour comparer deux offres.",
-  "Nom de domaine et hébergement doivent vous appartenir ou être transférables sans frais.",
-  "Photos et textes pèsent plus sur les résultats que le choix de la technologie.",
+  "Comparez le coût total sur plusieurs années : création + récurrent.",
+  "Nom de domaine et comptes doivent être à votre nom, ou transférables sans condition.",
+  "Photos et textes pèsent souvent plus sur les résultats que le choix de la technologie.",
 ])}` },
-    { id: 'nos-tarifs', h2: 'Nos tarifs chez GroupSolution', html: `
-<p>Pour être transparent : nos <strong>sites vitrines démarrent à 250 €</strong>. Ce tarif d'entrée correspond à un site simple, rapide, lisible sur mobile, avec les bases du référencement local, quand vous fournissez l'essentiel du contenu. Il augmente si vous avez besoin de plus de pages, de rédaction ou de fonctionnalités particulières.</p>
-<p>Tout le reste (réservation, e-commerce, devis automatiques, espace client, connexion à vos outils) est <strong>sur devis</strong>, parce que deux projets qui portent le même nom n'ont presque jamais le même périmètre. Pour <em>Twenty Three Clean</em>, service de lavage auto à domicile à Montpellier, le site intègre un parcours où le client envoie des photos de son véhicule et reçoit son devis automatiquement : ce n'est plus un site vitrine, c'est un outil qui travaille à la place du gérant.</p>
-<p>Notre différence tient surtout à ce qu'on construit derrière le site : les automatisations qui vous évitent de ressaisir, relancer ou rappeler. C'est ce qui fait qu'un site finit par rapporter plus qu'il ne coûte.</p>
-${cta({ title: 'Estimez votre budget en deux minutes', text: "Répondez à quelques questions sur votre projet et obtenez une fourchette réaliste, sans engagement.", href: L.simu, label: 'Simuler le prix de mon site', href2: L.offre, label2: 'Voir notre offre site internet' })}` },
     { id: 'comparer', h2: 'Comment comparer deux devis qui ne se ressemblent pas', html: `
 <p>Posez les devis côte à côte et vérifiez, ligne par ligne, les points suivants. Si une réponse manque, demandez-la par écrit.</p>
 <ol>
-<li><strong>Périmètre</strong> : nombre de pages, fonctionnalités listées une par une, nombre d'allers-retours de corrections inclus.</li>
-<li><strong>Contenu</strong> : qui rédige, qui fournit et retouche les photos, qui intègre les mentions légales.</li>
-<li><strong>Propriété</strong> : à qui appartiennent le nom de domaine, le code, les comptes (hébergement, Google Business Profile, Search Console) ?</li>
-<li><strong>Référencement</strong> : balises, vitesse, données structurées, fiche Google : qu'est-ce qui est réellement fait ? « Optimisé SEO » sans détail ne veut rien dire.</li>
-<li><strong>Après la livraison</strong> : maintenance, hébergement, délai d'intervention en cas de panne, prix d'une modification.</li>
-<li><strong>Engagement</strong> : durée minimale, conditions de résiliation, que récupérez-vous si vous partez ?</li>
+<li><strong>Périmètre</strong> : pages, parcours et fonctionnalités listés un par un, nombre d'allers-retours de corrections inclus.</li>
+<li><strong>Contenu</strong> : qui rédige, qui fournit et retouche les photos, qui intègre les mentions légales et la politique de confidentialité.</li>
+<li><strong>Propriété</strong> : à qui appartiennent le nom de domaine, le code, les contenus et les comptes (hébergement, Google Business Profile, Search Console) ?</li>
+<li><strong>Référencement</strong> : balises, vitesse, données structurées, fiche Google. « Optimisé SEO » sans détail ne veut rien dire.</li>
+<li><strong>Après la livraison</strong> : maintenance, hébergement, délai d'intervention en cas de panne, conditions d'une modification.</li>
+<li><strong>Engagement</strong> : durée minimale, conditions de résiliation, ce que vous récupérez si vous partez.</li>
 </ol>
-<p>Méfiez-vous surtout des offres « site à 0 € » compensées par un abonnement mensuel de 48 mois : sur la durée, elles reviennent souvent bien plus cher qu'une création payée une fois, et le site n'est pas toujours récupérable à la fin. Notre guide ${guide('choisir-agence-web-montpellier', 'pour choisir son agence web à Montpellier')} détaille les questions à poser avant de signer.</p>
-${box([
-  "Un devis vague est un risque : exigez la liste des fonctionnalités et des livrables.",
-  "Vérifiez ce que vous récupérez en cas de départ : domaine, contenus, accès.",
-  "Comparez le coût total sur trois ans, pas le prix affiché.",
-])}` },
-    { id: 'reduire', h2: 'Comment réduire le coût sans sacrifier l\'essentiel', html: `
-<p>Quelques leviers simples, qui ne dégradent pas le résultat :</p>
+<p>Un conseil pratique : envoyez la <strong>même description de projet</strong> à chaque prestataire. Sans base commune, vous comparez des projets différents, pas des prix. Notre guide ${guide('choisir-agence-web-montpellier', 'pour choisir son agence web à Montpellier')} détaille les douze questions à poser avant de signer.</p>` },
+    { id: 'pieges', h2: 'Les pièges les plus fréquents', html: `
 <ul>
-<li><strong>Préparez vos contenus</strong> avant le lancement : liste de services, zone d'intervention (par exemple Montpellier, ${commune('perols', 'Pérols')}, ${commune('saint-jean-de-vedas', 'Saint-Jean-de-Védas')}), photos de chantiers, avis clients. Le prestataire passe moins de temps à attendre et à relancer.</li>
-<li><strong>Commencez petit</strong> : un site de cinq pages bien fait vaut mieux que quinze pages vides. Vous ajouterez les pages locales ou le blog ensuite.</li>
-<li><strong>Priorisez les fonctionnalités</strong> qui font gagner du temps ou de l'argent dès le premier mois, et reportez le reste.</li>
-<li><strong>Évitez les options gadgets</strong> : animations lourdes, carrousels, chat qui ne répond pas. Ils ralentissent le site et n'aident pas à convertir.</li>
+<li><strong>Le « site offert » contre un long abonnement</strong> : sur la durée, ce modèle revient souvent plus cher qu'une création payée une fois, et le site n'est pas toujours récupérable à la fin. Ce n'est pas illégal, mais il faut le choisir en connaissance de cause.</li>
+<li><strong>Le nom de domaine au nom du prestataire</strong> : vous en dépendez pour toujours, et un changement d'agence devient compliqué.</li>
+<li><strong>Le devis sans liste de fonctionnalités</strong> : tout ce qui n'est pas écrit sera discuté (et souvent facturé) plus tard.</li>
+<li><strong>Les options gadgets</strong> : animations lourdes, carrousels, chat qui ne répond pas. Elles ralentissent le site et n'aident pas à convertir.</li>
+<li><strong>Les promesses de position sur Google</strong> : personne ne contrôle l'algorithme. Un prestataire peut s'engager sur des actions, pas sur un classement.</li>
+<li><strong>L'oubli du légal</strong> : mentions légales, cookies, confidentialité. C'est votre responsabilité d'éditeur ; vérifiez que c'est prévu (voir notre guide ${guide('obligations-legales-site-internet', 'sur les obligations légales d\'un site pro')}).</li>
 </ul>
-<p>Et si vous hésitez entre un site plus riche et une automatisation, faites le calcul : combien d'heures par semaine passez-vous à envoyer des devis, relancer ou confirmer des rendez-vous ? Notre ${`<a href="${L.calc}">calculateur d'automatisation</a>`} vous donne une estimation en quelques clics.</p>` },
+${box([
+  "Tout ce qui n'est pas écrit dans le devis n'est pas inclus.",
+  "Méfiez-vous des garanties de résultat sur Google.",
+  "Vérifiez ce que vous récupérez en cas de départ : domaine, contenus, accès.",
+], 'À retenir')}` },
+    { id: 'notre-approche', h2: 'Comment nous établissons un devis chez GroupSolution', html: `
+<p>Chez nous, <strong>tout est sur devis, gratuit et personnalisé</strong>. Pas de grille affichée, parce que deux projets qui portent le même nom n'ont presque jamais le même périmètre : un site vitrine pour un restaurant de ${commune('sete', 'Sète')} et un autre pour un électricien de ${commune('vendargues', 'Vendargues')} n'ont ni les mêmes parcours, ni les mêmes contenus, ni les mêmes outils à connecter.</p>
+<p>Notre devis détaille chaque élément : pages, fonctionnalités, contenus pris en charge, intégrations, référencement de base, hébergement et suivi. Il précise aussi ce qui vous appartient (nom de domaine, site, comptes) et ce que vous récupérez si vous partez.</p>
+<p>Notre particularité tient surtout à ce qu'on construit derrière le site : les automatisations qui vous évitent de ressaisir, relancer ou rappeler. Par exemple, une entreprise de services à domicile peut proposer à ses clients d'envoyer quelques photos et recevoir un devis préparé automatiquement, que le gérant valide avant envoi. C'est ce qui transforme un site vitrine en outil de travail.</p>
+${cta({ title: 'Décrivez votre projet en quelques minutes', text: "Notre configurateur de projet (gratuit) vous aide à lister vos pages, fonctionnalités et besoins. Vous obtenez une base claire pour demander et comparer des devis.", href: L.config, label: 'Ouvrir le configurateur de projet', href2: L.offre, label2: 'Voir notre offre site internet' })}` },
+    { id: 'preparer', h2: 'Préparer sa demande pour obtenir un devis précis', html: `
+<p>Plus votre demande est précise, plus les devis seront comparables et justes. Avant de contacter des prestataires, préparez :</p>
+<ul>
+<li><strong>Vos objectifs</strong> : recevoir des appels, des demandes de devis, des réservations, vendre en ligne ? Un objectif principal suffit souvent.</li>
+<li><strong>Votre zone</strong> : Montpellier, votre quartier, les communes que vous desservez (par exemple ${commune('perols', 'Pérols')} ou ${commune('saint-jean-de-vedas', 'Saint-Jean-de-Védas')}).</li>
+<li><strong>Vos contenus disponibles</strong> : logo, photos de réalisations, avis clients, descriptions de vos services.</li>
+<li><strong>Vos outils actuels</strong> : agenda, logiciel de devis et facturation, messagerie. Ils conditionnent les intégrations possibles.</li>
+<li><strong>Vos contraintes</strong> : date de lancement souhaitée, budget envisagé, personnes qui valideront.</li>
+<li><strong>Deux ou trois sites que vous aimez</strong>, et pourquoi.</li>
+</ul>
+<p>Et si vous hésitez entre un site plus riche et une automatisation, posez-vous une question simple : combien de temps passez-vous chaque semaine à envoyer des devis, relancer ou confirmer des rendez-vous ? Notre <a href="${L.calc}">calculateur d'automatisation</a> vous aide à le visualiser.</p>` },
   ],
   faq: [
-    { q: "Quel est le prix moyen d'un site vitrine à Montpellier ?", a: "Il n'existe pas de prix moyen officiel. Dans ce que nous observons, un site vitrine se situe le plus souvent entre quelques centaines d'euros (offres packagées, freelances) et 5 000 € (agences, avec rédaction et photos). Chez GroupSolution, les sites vitrines démarrent à 250 €." },
-    { q: "Faut-il payer un abonnement mensuel pour un site internet ?", a: "Pas obligatoirement pour la création, mais il y a toujours des coûts récurrents : nom de domaine, hébergement et, selon la technologie, maintenance. L'important est de les connaître dès le devis et de pouvoir les résilier sans perdre votre site." },
-    { q: "Un site à 250 € est-il suffisant pour être trouvé sur Google ?", a: "Pour une activité locale, un site simple, rapide et bien structuré, associé à une fiche Google Business Profile soignée, est souvent suffisant pour démarrer. La concurrence de votre métier dans votre ville décidera ensuite s'il faut aller plus loin (pages locales, contenus, avis)." },
-    { q: "Pourquoi le e-commerce coûte-t-il plus cher ?", a: "Parce qu'il faut gérer le catalogue, le paiement, la livraison, les stocks, les e-mails transactionnels et plusieurs obligations légales spécifiques à la vente à distance. La saisie des produits représente à elle seule un volume de travail important." },
-    { q: "Le prix comprend-il le référencement ?", a: "Cela dépend totalement du prestataire. Demandez la liste précise de ce qui est fait : structure des pages, balises, vitesse, données structurées, création ou optimisation de la fiche Google. Le référencement continu (contenus, avis, liens) est généralement une prestation à part." },
+    { q: "Pourquoi ne pas afficher de prix sur votre site ?", a: "Parce qu'un prix affiché sans connaître le projet serait soit trompeur, soit gonflé pour couvrir tous les cas. Nous préférons un devis gratuit et personnalisé, qui détaille exactement ce qui est inclus." },
+    { q: "Faut-il payer un abonnement mensuel pour un site internet ?", a: "Pas forcément pour la création, mais il y a toujours des coûts récurrents : nom de domaine, hébergement et, selon la technologie, maintenance. L'important est de les connaître dès le devis et de pouvoir les résilier sans perdre votre site." },
+    { q: "Qu'est-ce qui fait le plus varier le prix d'un site ?", a: "Dans nos projets, ce sont surtout les contenus (qui rédige, qui fournit les photos), les fonctionnalités (réservation, paiement, espace client, devis automatique) et les intégrations avec vos outils existants." },
+    { q: "Comment savoir si un devis est honnête ?", a: "Un devis honnête liste précisément les pages, les fonctionnalités, les contenus pris en charge, le suivi et la propriété des éléments livrés. Un devis vague, quel que soit son montant, est plus risqué qu'un devis détaillé." },
+    { q: "Le prix comprend-il le référencement ?", a: "Cela dépend totalement du prestataire. Demandez la liste précise de ce qui est fait : structure des pages, balises, vitesse, données structurées, création ou optimisation de la fiche Google. Le référencement continu est généralement une prestation distincte." },
   ],
   related: ['choisir-agence-web-montpellier', 'apparaitre-google-maps-montpellier', 'obligations-legales-site-internet'],
 });
@@ -267,25 +280,40 @@ ${box([
 <li><strong>Adresse et délai souhaité</strong> : pour vérifier que c'est dans votre zone (par exemple Montpellier, ${commune('castelnau-le-lez', 'Castelnau-le-Lez')}, ${commune('vendargues', 'Vendargues')}) et que vous êtes disponible.</li>
 </ul>
 <p>Le formulaire peut vivre sur votre site, mais aussi être envoyé par SMS en réponse automatique quand vous ne pouvez pas décrocher : « Je suis sur un chantier, décrivez votre besoin ici et je vous envoie un devis rapidement. »</p>` },
-    { id: 'photos', h2: 'Le devis par photos : l\'exemple de Twenty Three Clean', html: `
-<p><em>Twenty Three Clean</em> est un service de lavage automobile à domicile à Montpellier. Avant, chaque demande passait par un échange de messages pour connaître le véhicule, son état et les prestations souhaitées. Nous avons construit un parcours où <strong>le client envoie des photos de son véhicule</strong> et choisit ses prestations ; <strong>le devis part automatiquement</strong>, sans appel.</p>
+    { id: 'photos', h2: 'Le devis par photos : un exemple concret', html: `
+<p>Prenons une entreprise de services à domicile, par exemple un service de lavage automobile ou de nettoyage. Sans outil, chaque demande passe par un échange de messages pour connaître le véhicule ou le logement, son état et les prestations souhaitées. Avec un parcours adapté, <strong>le client envoie quelques photos</strong> et choisit ses prestations ; <strong>le devis est préparé automatiquement</strong>, puis envoyé tel quel ou après validation du gérant.</p>
 <p>Ce qui rend ce modèle efficace :</p>
 <ul>
-<li>le prix dépend de critères <strong>visibles et objectivables</strong> (taille du véhicule, niveau de salissure, options) ;</li>
+<li>le prix dépend de critères <strong>visibles et objectivables</strong> (taille, état, options choisies) ;</li>
 <li>le gérant garde la main : il peut ajuster si les photos révèlent un cas particulier ;</li>
-<li>le client obtient une réponse immédiate, au moment où il est le plus motivé.</li>
+<li>le client obtient une réponse rapide, au moment où il est le plus motivé.</li>
 </ul>
 <p>Le même principe s'applique à beaucoup de métiers : nettoyage, peinture, petite rénovation, pose de menuiseries standard, entretien d'espaces verts, débarras. Dès que votre prix repose sur quelques paramètres que l'on peut photographier ou mesurer, un devis automatique ou semi-automatique est envisageable.</p>
 ${cta({ title: 'Combien de temps vous feraient gagner des devis automatiques ?', text: "Indiquez votre nombre de demandes par semaine et le temps passé sur chacune : le calculateur estime les heures récupérées.", href: L.calc, label: 'Calculer mon gain de temps', href2: L.auto, label2: 'Voir nos automatisations' })}` },
     { id: 'chiffrage', h2: 'Étape 2 : chiffrer automatiquement… ou presque', html: `
 <p>Il y a trois niveaux possibles, à choisir selon votre métier :</p>
 <h3>Le devis entièrement automatique</h3>
-<p>Adapté aux prestations standardisées : le prix est calculé à partir de votre grille et envoyé tel quel. C'est le cas du lavage auto, d'un nettoyage de vitres au mètre carré ou d'un forfait de dépannage.</p>
+<p>Adapté aux prestations standardisées : le prix est calculé à partir de votre grille et envoyé tel quel. C'est le cas d'un lavage auto à domicile, d'un nettoyage de vitres au mètre carré ou d'un forfait de dépannage.</p>
 <h3>Le brouillon prérempli, validé par vous</h3>
-<p>Le cas le plus fréquent chez les artisans du bâtiment. Le système prépare le devis avec les lignes et quantités probables ; vous vérifiez, ajustez, et cliquez sur « envoyer ». Vous passez de trente minutes à cinq par devis, sans perdre le contrôle.</p>
+<p>Le cas le plus fréquent chez les artisans du bâtiment. Le système prépare le devis avec les lignes et quantités probables ; vous vérifiez, ajustez, et cliquez sur « envoyer ». Vous ne partez plus d'une page blanche, et vous gardez le contrôle sur chaque ligne.</p>
 <h3>La fourchette indicative, puis la visite</h3>
-<p>Pour les chantiers complexes, le formulaire donne une estimation large (« entre 8 000 et 12 000 € selon l'état des supports ») et propose directement un créneau de visite. Vous filtrez ainsi les demandes hors budget avant de vous déplacer.</p>
+<p>Pour les chantiers complexes, le formulaire donne une estimation large, clairement présentée comme indicative, et propose directement un créneau de visite. Vous filtrez ainsi les demandes hors budget avant de vous déplacer.</p>
 <p>Côté outils, de nombreux logiciels de devis et facturation pour artisans (Obat, Tolteck, Axonaut, Sellsy, Pennylane, entre autres) permettent de gérer une bibliothèque d'ouvrages et de prix. Des outils d'automatisation comme Make, Zapier ou n8n servent de lien entre votre formulaire, votre logiciel et votre messagerie. Le bon choix dépend de ce que vous utilisez déjà : l'idée n'est pas d'ajouter un outil, mais de relier ceux que vous avez.</p>` },
+    { id: 'ia', h2: 'Ce que l\'IA change aujourd\'hui dans le traitement des devis', html: `
+<p>Les automatisations « classiques » suivent des règles fixes : si le client coche telle case, on applique tel prix. Les outils d'intelligence artificielle récents permettent d'aller plus loin sur les tâches qui demandaient jusqu'ici une lecture humaine. Il est possible, par exemple :</p>
+<ul>
+<li><strong>d'extraire automatiquement les informations d'un document</strong> : un plan, un ancien devis, un cahier des charges envoyé en PDF, une photo de plaque signalétique d'appareil. L'IA en tire les dimensions, références ou quantités utiles et préremplit le devis ;</li>
+<li><strong>de faire analyser les photos envoyées</strong> pour proposer une première qualification (type de surface, état apparent, éléments à prévoir), que vous confirmez ou corrigez ;</li>
+<li><strong>de confier le premier échange à un agent IA</strong> qui pose les questions manquantes par e-mail, SMS ou chat, au lieu d'attendre votre rappel le soir ;</li>
+<li><strong>d'utiliser un assistant vocal</strong> qui répond au téléphone quand vous êtes sur un chantier, note la demande, qualifie le besoin et vous transmet un résumé écrit ;</li>
+<li><strong>d'orchestrer vos outils via leurs API</strong> : le formulaire, l'IA, votre logiciel de devis, votre agenda et votre messagerie échangent directement les données, sans ressaisie.</li>
+</ul>
+<p>Deux précautions restent indispensables. D'abord, <strong>l'IA peut se tromper</strong> : sur tout ce qui engage un prix ou une responsabilité, une validation humaine doit rester dans la boucle. Ensuite, les données de vos clients (photos de leur domicile, coordonnées) doivent être traitées conformément au RGPD, avec des outils dont vous connaissez les conditions d'hébergement et d'utilisation des données.</p>
+${box([
+  "L'IA est utile pour lire, extraire, qualifier et résumer ; la décision de prix reste la vôtre.",
+  "Un assistant vocal ou un agent IA peut absorber le premier contact pendant vos chantiers.",
+  "Les API permettent de relier vos outils existants plutôt que d'en empiler de nouveaux.",
+])}` },
     { id: 'relances-signature', h2: 'Étapes 3 et 4 : relances et signature électronique', html: `
 <h3>Des relances qui partent toutes seules</h3>
 <p>Un devis sans relance est souvent un devis oublié, pas refusé. Un calendrier simple suffit :</p>
@@ -325,7 +353,7 @@ ${table(['À automatiser', 'À garder à la main'], [
     { q: 'Faut-il changer de logiciel de devis pour automatiser ?', a: "Pas forcément. Dans beaucoup de cas, on relie votre logiciel actuel à un formulaire et à une messagerie grâce à un outil d'automatisation. On ne recommande un changement que si l'outil actuel ne permet aucun échange de données." },
     { q: 'Mes clients vont-ils accepter de remplir un formulaire ?', a: "Si le formulaire est court, clair sur mobile et promet une réponse rapide, oui. Ceux qui préfèrent appeler peuvent toujours le faire ; le formulaire traite simplement la majorité des demandes simples sans vous interrompre." },
     { q: 'Combien coûte la mise en place d\'un devis automatique ?', a: "Cela dépend du niveau d'automatisation (devis entièrement automatique, brouillon prérempli, fourchette) et des outils à connecter. Chez GroupSolution, c'est sur devis, après un échange pour comprendre votre façon de chiffrer." },
-    { q: 'Est-ce adapté aux petites entreprises ?', a: "C'est même là que le gain est le plus visible : un artisan seul ou une petite équipe n'a personne pour gérer les demandes pendant les chantiers. Quelques heures récupérées par semaine changent le quotidien." },
+    { q: 'Est-ce adapté aux petites entreprises ?', a: "C'est même là que le gain est souvent le plus visible : un artisan seul ou une petite équipe n'a personne pour gérer les demandes pendant les chantiers. Automatiser la collecte et les relances libère du temps pour le métier." },
   ],
   related: ['relances-factures-impayees-automatiques', 'apparaitre-google-maps-montpellier', 'prix-site-internet-montpellier'],
 });
@@ -512,6 +540,17 @@ ${table(['Approche', 'Pour qui', 'Avantages', 'Limites'], [
   ['Automatisation sur-mesure', 'Facturation répartie sur plusieurs outils, besoins spécifiques', 'SMS, e-mail, appel planifié, rapprochement bancaire, tableau de bord', 'Mise en place initiale plus longue'],
 ])}
 <p>La plupart des logiciels de facturation courants (Pennylane, Axonaut, Sellsy, Qonto, Tiime et d'autres) proposent des relances automatiques par e-mail. Vérifiez surtout trois points : la détection automatique des paiements, la possibilité d'exclure un client ou une facture (litige en cours), et l'envoi par SMS, souvent plus efficace auprès des particuliers et des artisans.</p>` },
+    { id: 'ia', h2: 'Aller plus loin : IA, agents et orchestration', html: `
+<p>Au-delà des scénarios de relance à dates fixes, les outils actuels ouvrent d'autres possibilités. Il est possible, par exemple :</p>
+<ul>
+<li><strong>d'extraire automatiquement les données des factures et des relevés</strong> grâce à l'IA (montant, échéance, référence, émetteur), y compris depuis des PDF ou des factures reçues par e-mail, pour alimenter votre tableau de suivi sans saisie ;</li>
+<li><strong>de rapprocher les paiements</strong> : un virement au libellé approximatif peut être associé à la bonne facture, avec une validation de votre part en cas de doute ;</li>
+<li><strong>de confier à un agent IA la rédaction des relances</strong> en tenant compte de l'historique du client (bon payeur habituel, litige en cours, échéancier accordé), plutôt que d'envoyer le même texte à tout le monde ;</li>
+<li><strong>de trier les réponses des clients</strong> : « déjà payé », « facture contestée », « demande de délai ». Chaque cas déclenche la suite adaptée, et les situations sensibles vous sont remontées ;</li>
+<li><strong>d'utiliser un assistant vocal</strong> pour un rappel téléphonique courtois de premier niveau, à condition d'être transparent sur le fait qu'il s'agit d'un assistant automatisé ;</li>
+<li><strong>d'orchestrer l'ensemble via les API</strong> de votre banque, de votre logiciel de facturation et de votre messagerie, pour que tout reste synchronisé.</li>
+</ul>
+<p>Ces outils ne remplacent pas le jugement : un client en difficulté, un litige ou un partenaire important méritent un échange humain. L'IA sert à préparer le terrain, pas à gérer seule la relation. Veillez aussi à ce que les données financières de vos clients soient traitées dans un cadre conforme au RGPD.</p>` },
     { id: 'tableau-de-bord', h2: 'Le tableau de bord de trésorerie : voir venir plutôt que subir', html: `
 <p>Les relances traitent le symptôme. Un tableau de bord simple vous permet d'anticiper. Il n'a pas besoin d'être sophistiqué ; il doit répondre, en un coup d'œil, à quatre questions :</p>
 <ul>
@@ -558,7 +597,7 @@ ${box([
 ])}` },
     { id: 'projet', h2: 'Déroulé du projet : délais, contenus, interlocuteur', html: `
 <h3>5. Quel est le délai réaliste, et de quoi dépend-il ?</h3>
-<p>Un site vitrine prend généralement de une à quatre semaines ; un site avec réservation ou boutique, davantage. Le délai dépend souvent plus de la remise de vos contenus (textes, photos, validations) que du travail de l'agence. Une bonne réponse détaille les étapes et ce qui est attendu de vous à chacune.</p>
+<p>Un site vitrine prend en général quelques semaines ; un site avec réservation ou boutique, davantage. Le délai dépend souvent plus de la remise de vos contenus (textes, photos, validations) que du travail de l'agence. Une bonne réponse détaille les étapes et ce qui est attendu de vous à chacune.</p>
 <h3>6. Qui rédige les textes et fournit les photos ?</h3>
 <p>C'est l'un des principaux postes de coût et de retard. Si vous devez tout écrire vous-même, sachez-le avant de signer. Si l'agence rédige, demandez si les textes sont pensés pour le référencement local (Montpellier, votre quartier, les communes que vous desservez comme ${commune('lattes', 'Lattes')} ou ${commune('castelnau-le-lez', 'Castelnau-le-Lez')}).</p>
 <h3>7. Qui sera mon interlocuteur, du devis à l'après-livraison ?</h3>
@@ -572,14 +611,14 @@ ${cta({ title: 'Posez-nous ces 12 questions', text: "Nous répondons à chacune 
 <h3>10. Comment se passe la maintenance, et combien coûte une modification ?</h3>
 <p>Qui fait les mises à jour de sécurité ? Que se passe-t-il si le site tombe un samedi ? Combien coûte l'ajout d'une page ou le changement d'un tarif ? Pouvez-vous modifier vous-même les textes simples ? Ces réponses pèsent plus sur votre quotidien que le design.</p>
 <h3>11. Quelle est la durée d'engagement, et comment résilier ?</h3>
-<p>Lisez le contrat. Les offres de « site gratuit » ou à petit prix mensuel s'accompagnent souvent d'un engagement de 24 à 48 mois, avec des conditions de sortie strictes. Ce modèle n'est pas illégal, mais il faut le choisir en connaissance de cause et calculer le coût total. Vérifiez aussi que le contrat mentionne la conformité légale du site (mentions, cookies, confidentialité) : voir notre guide ${guide('obligations-legales-site-internet', 'sur les obligations légales d\'un site pro')}.</p>
+<p>Lisez le contrat. Les offres de « site gratuit » ou à petit prix mensuel s'accompagnent souvent d'un engagement de plusieurs années, avec des conditions de sortie strictes. Ce modèle n'est pas illégal, mais il faut le choisir en connaissance de cause et calculer le coût total. Vérifiez aussi que le contrat mentionne la conformité légale du site (mentions, cookies, confidentialité) : voir notre guide ${guide('obligations-legales-site-internet', 'sur les obligations légales d\'un site pro')}.</p>
 ${table(['Question', 'Bonne réponse', 'Signal d\'alerte'], [
   ['Nom de domaine', 'À votre nom', 'Au nom de l\'agence'],
   ['Propriété du site', 'Cédé à la livraison, export possible', 'Location, site non récupérable'],
   ['Comptes Google', 'Créés à votre nom', 'Créés et gardés par l\'agence'],
   ['Référencement', 'Liste précise des actions', '« Optimisé SEO » sans détail'],
   ['Maintenance', 'Périmètre, délai d\'intervention, tarif', '« On verra au besoin »'],
-  ['Engagement', 'Durée claire, sortie simple', '48 mois, pénalités de résiliation'],
+  ['Engagement', 'Durée claire, sortie simple', 'Engagement long, pénalités de résiliation'],
   ['Portfolio', 'Sites en ligne, clients joignables', 'Maquettes uniquement'],
 ])}` },
     { id: 'rapporte', h2: '12. Qu\'est-ce qui fera que ce site me rapporte ?', html: `
@@ -591,7 +630,7 @@ ${table(['Question', 'Bonne réponse', 'Signal d\'alerte'], [
 <li><strong>Il se mesure</strong> : vous savez combien d'appels, de demandes de devis et de réservations il génère chaque mois.</li>
 </ul>
 <p>Demandez à l'agence comment elle compte mesurer ces résultats, et ce qu'elle propose si les demandes n'arrivent pas. Une réponse concrète vaut mieux qu'une promesse de « première page de Google », que personne ne peut garantir honnêtement.</p>
-<p>Chez GroupSolution, c'est précisément notre parti pris : un site, et le système qui travaille derrière. Pour <em>Twenty Three Clean</em>, service de lavage auto à domicile à Montpellier, le client envoie des photos de son véhicule et reçoit son devis automatiquement. Pour un commerce de ${commune('sete', 'Sète')} ou un artisan de ${commune('vendargues', 'Vendargues')}, ce sera une prise de rendez-vous, une demande d'avis automatique ou un rappel des devis en attente.</p>
+<p>Chez GroupSolution, c'est précisément notre parti pris : un site, et le système qui travaille derrière. Par exemple, une entreprise de services à domicile peut proposer à ses clients d'envoyer des photos et recevoir un devis préparé automatiquement. Pour un commerce de ${commune('sete', 'Sète')} ou un artisan de ${commune('vendargues', 'Vendargues')}, ce sera plutôt une prise de rendez-vous, une demande d'avis automatique ou un rappel des devis en attente.</p>
 ${box([
   "Un bon prestataire répond par écrit, précisément, à chacune de ces 12 questions.",
   "Méfiez-vous des garanties de position sur Google : personne ne contrôle l'algorithme.",
@@ -601,17 +640,17 @@ ${box([
 <ol>
 <li><strong>Jour 1</strong> : listez vos objectifs (appels, devis, réservations), vos pages indispensables et votre budget. Un document d'une page suffit.</li>
 <li><strong>Jours 2-3</strong> : contactez trois prestataires, envoyez-leur le même document et les 12 questions.</li>
-<li><strong>Jours 4-5</strong> : comparez les réponses dans un tableau, en calculant le coût total sur trois ans (création + hébergement + maintenance + abonnements). Notre guide ${guide('prix-site-internet-montpellier', 'sur le prix d\'un site internet à Montpellier')} vous donne les ordres de grandeur.</li>
+<li><strong>Jours 4-5</strong> : comparez les réponses dans un tableau, en calculant le coût total sur trois ans (création + hébergement + maintenance + abonnements). Notre guide ${guide('prix-site-internet-montpellier', 'sur le prix d\'un site internet à Montpellier')} explique ce qui fait varier ces montants.</li>
 <li><strong>Jours 6-7</strong> : appelez un client de chaque agence, puis décidez. Privilégiez la clarté des réponses plutôt que le prix le plus bas.</li>
 </ol>
-<p>Vous pouvez aussi commencer par une estimation rapide avec notre <a href="${L.simu}">simulateur de prix</a>, pour arriver aux rendez-vous avec un budget réaliste en tête.</p>` },
+<p>Vous pouvez aussi commencer par décrire votre projet avec notre <a href="${L.config}">configurateur de projet (gratuit)</a> : vous arriverez aux rendez-vous avec une base claire, identique pour chaque prestataire.</p>` },
   ],
   faq: [
     { q: 'Vaut-il mieux une agence locale à Montpellier ?', a: "La proximité aide pour les rendez-vous et la connaissance du tissu local (quartiers, communes, concurrence), mais ce n'est pas un critère suffisant. La clarté du contrat, la propriété de vos actifs et la qualité du suivi comptent davantage." },
-    { q: 'Freelance ou agence : que choisir ?', a: "Un freelance est souvent moins cher et très réactif, mais seul face aux imprévus. Une agence offre plus de compétences et de continuité, à un prix généralement plus élevé. Dans les deux cas, posez les mêmes questions sur la propriété, la maintenance et l'engagement." },
+    { q: 'Freelance ou agence : que choisir ?', a: "Un freelance est souvent plus léger et très réactif, mais seul face aux imprévus. Une agence offre plus de compétences et de continuité, avec une organisation plus lourde. Dans les deux cas, posez les mêmes questions sur la propriété, la maintenance et l'engagement." },
     { q: 'Une agence peut-elle garantir la première place sur Google ?', a: "Non, personne ne contrôle l'algorithme de Google. Une agence peut s'engager sur des actions précises et sur la mesure des résultats, pas sur une position garantie. Méfiez-vous de ce type de promesse." },
     { q: 'Comment récupérer mon nom de domaine s\'il est au nom de mon ancienne agence ?', a: "Demandez par écrit le transfert du domaine et le code de transfert (code AUTH). Si l'agence refuse, vérifiez votre contrat ; pour un nom de domaine en .fr, l'Afnic, qui gère cette extension, prévoit des procédures de résolution des litiges." },
-    { q: 'Quel budget prévoir pour un site professionnel à Montpellier ?', a: "Cela dépend du type de site : quelques centaines d'euros pour un site vitrine simple, plusieurs milliers pour une boutique ou un site avec réservation avancée. Chez GroupSolution, les sites vitrines démarrent à 250 €, le reste est sur devis." },
+    { q: 'Quel budget prévoir pour un site professionnel à Montpellier ?', a: "Il dépend surtout du périmètre, des contenus, des fonctionnalités et du suivi attendu. Le plus fiable est de décrire précisément votre projet et de demander des devis détaillés sur la même base. Chez GroupSolution, le devis est gratuit et personnalisé." },
   ],
   related: ['prix-site-internet-montpellier', 'apparaitre-google-maps-montpellier', 'obligations-legales-site-internet'],
 });
@@ -834,7 +873,7 @@ const crumbsLd = (extra) => ({
 function finalCta(g) {
   return AUTO_FIRST.has(g.slug)
     ? cta({ title: 'On en parle 15 minutes ?', text: "Décrivez-nous votre façon de travailler aujourd'hui : nous vous dirons honnêtement ce qui vaut la peine d'être automatisé, et ce qui ne l'est pas.", href: L.auto, label: 'Voir nos automatisations', href2: L.rdv, label2: 'Prendre rendez-vous' })
-    : cta({ title: 'Un site qui vous amène des clients, et le système derrière', text: "Sites vitrines dès 250 €, réservation, devis automatiques et référencement local pour les pros de Montpellier et de l'Hérault. Premier échange gratuit, sans engagement.", href: L.offre, label: 'Découvrir notre offre site internet', href2: L.rdv, label2: 'Prendre rendez-vous' });
+    : cta({ title: 'Un site qui vous amène des clients, et le système derrière', text: "Site vitrine, réservation, devis automatiques et référencement local pour les pros de Montpellier et de l'Hérault. Devis gratuit et personnalisé, sans engagement.", href: L.offre, label: 'Découvrir notre offre site internet', href2: L.rdv, label2: 'Prendre rendez-vous' });
 }
 
 function renderGuide(g) {

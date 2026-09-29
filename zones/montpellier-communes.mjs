@@ -598,7 +598,7 @@ const BASE = [
     tissu: "artisans, indépendants à domicile, domaines, services à la personne",
     web: {
       angle: "Dans un village comme Sussargues, les entreprises n'ont pas de passage. Tout se joue sur Google : une fiche complète et un site clair suffisent souvent à doubler les demandes.",
-      faq: { q: "Un site à 250 € peut-il vraiment faire la différence ?", a: "Pour une activité locale, oui : un site simple, rapide et bien référencé, relié à une fiche Google soignée, apporte souvent plus qu'un site coûteux mal optimisé. On commence simple, on enrichit si ça marche." }
+      faq: { q: "Un site simple peut-il vraiment faire la différence ?", a: "Pour une activité locale, oui : un site clair, rapide et bien référencé, relié à une fiche Google soignée, apporte souvent plus qu'un site ambitieux mal optimisé. On commence par l'essentiel, on enrichit si ça marche — le tout sur devis." }
     },
     auto: {
       angle: "À Sussargues, les entreprises sont petites : chaque tâche automatisée libère directement du temps pour les clients.",

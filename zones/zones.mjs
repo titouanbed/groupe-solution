@@ -34,7 +34,7 @@ export const ZONES = [
         areaServed: ['Saint-Denis', 'Sainte-Clotilde', 'La Montagne', 'Sainte-Marie'],
         faq: [
           { q: "Créez-vous des sites pour les commerces du centre-ville de Saint-Denis ?", a: "Oui, c'est même notre cœur de cible : commerces du Barachois, cabinets, artisans et TPE du chef-lieu. On crée des sites vitrines ou e-commerce pensés pour capter la clientèle du Nord." },
-          { q: "Combien coûte un site internet à Saint-Denis ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou des fonctionnalités sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Combien coûte un site internet à Saint-Denis ?", a: "Il n'y a pas de tarif unique : chaque projet fait l'objet d'un devis gratuit et personnalisé, établi après un court échange sur vos besoins (vitrine, e-commerce ou fonctionnalités sur-mesure)." },
           { q: "Pouvez-vous me positionner sur Google pour « à Saint-Denis 974 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour apparaître quand un Dionysien cherche votre service." },
           { q: "Gérez-vous aussi les réseaux sociaux des entreprises dionysiennes ?", a: "Tout à fait. Facebook, Instagram et WhatsApp sont rois à Saint-Denis. On crée vos visuels, on rédige vos posts et on pilote vos campagnes publicitaires ciblées sur le Nord." }
         ]
@@ -55,7 +55,7 @@ export const ZONES = [
         areaServed: ['Saint-Pierre', 'Le Tampon', 'Saint-Louis', 'Petite-Île'],
         faq: [
           { q: "Travaillez-vous avec les restaurants et boutiques de Saint-Pierre ?", a: "Oui, une grande partie de nos clients du Sud sont des commerces, restaurants et prestataires de services. On sait ce qui fait venir la clientèle locale et touristique à Saint-Pierre." },
-          { q: "Quel budget pour un site e-commerce à Saint-Pierre ?", a: "Une vitrine démarre à 250€. Pour vendre en ligne (boutique, paiement, livraison sur le Sud), on chiffre selon votre catalogue et vos besoins — devis clair et sans surprise." },
+          { q: "Quel budget pour un site e-commerce à Saint-Pierre ?", a: "Cela dépend de votre catalogue et des fonctionnalités voulues (boutique, paiement, livraison sur le Sud). On établit un devis gratuit et personnalisé, clair et sans surprise." },
           { q: "Faites-vous de la publicité Facebook/Instagram ciblée sur le bassin sud ?", a: "Oui. On paramètre des campagnes géociblées (Saint-Pierre, Le Tampon, Saint-Louis…) pour toucher précisément les clients potentiels autour de votre établissement." },
           { q: "Peut-on se rencontrer sur place dans le Sud ?", a: "L'échange se fait par visio ou téléphone pour aller vite, mais on reste très disponibles pour les entreprises du Sud. On commence par un audit gratuit de 15 minutes." }
         ]
@@ -97,7 +97,7 @@ export const ZONES = [
         areaServed: ['Le Port', 'La Possession', 'Saint-Paul'],
         faq: [
           { q: "Accompagnez-vous les entreprises industrielles et logistiques du Port ?", a: "Oui, c'est une spécificité de la zone : PME industrielles, transport, BTP, import-export. On crée des sites B2B crédibles et des outils qui appuient votre force commerciale." },
-          { q: "Pouvez-vous créer un site vitrine B2B pour ma société de la zone Arsenal ?", a: "Bien sûr. Un site clair qui présente vos activités, vos références et vos certifications, pensé pour rassurer un donneur d'ordre — à partir de 250€ pour une vitrine." },
+          { q: "Pouvez-vous créer un site vitrine B2B pour ma société de la zone Arsenal ?", a: "Bien sûr. Un site clair qui présente vos activités, vos références et vos certifications, pensé pour rassurer un donneur d'ordre, sur devis gratuit et personnalisé." },
           { q: "Automatisez-vous les demandes de devis et les relances clients ?", a: "C'est notre valeur ajoutée : formulaires de devis intelligents, accusés automatiques, relances programmées et suivi. Vos équipes se concentrent sur le métier, pas sur l'administratif." },
           { q: "Faites-vous du référencement pour être trouvé par les professionnels de l'Ouest ?", a: "Oui. On optimise votre visibilité sur les recherches B2B locales (« fournisseur », « prestataire » + votre secteur au Port ou dans l'Ouest) pour capter des demandes qualifiées." }
         ]
@@ -139,7 +139,7 @@ export const ZONES = [
       areaServed: ['Cayenne', 'Kourou', 'Saint-Laurent-du-Maroni', 'Matoury'],
       faq: [
         { q: "Travaillez-vous avec les entreprises de toute la Guyane ?", a: "Oui, de Cayenne à Saint-Laurent-du-Maroni en passant par Kourou et Matoury. Tout se pilote à distance (visio, téléphone), avec la même exigence de proximité." },
-        { q: "Combien coûte un site internet en Guyane ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+        { q: "Combien coûte un site internet en Guyane ?", a: "Tout est sur devis : après un court échange sur votre activité et vos objectifs, on vous remet un devis gratuit et personnalisé, qu'il s'agisse d'un site vitrine, d'une boutique en ligne ou d'un projet sur-mesure." },
         { q: "Pourquoi investir dans le web en Guyane maintenant ?", a: "Parce que le marché est jeune et la concurrence digitale encore faible : une présence en ligne soignée vous démarque durablement, avant que tout le monde s'y mette." },
         { q: "Gérez-vous le référencement local et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé (Cayenne, Kourou…) et community management sur Facebook, Instagram et WhatsApp, très utilisés localement." }
       ]
@@ -161,7 +161,7 @@ export const ZONES = [
         areaServed: ['Cayenne', 'Rémire-Montjoly', 'Matoury'],
         faq: [
           { q: "Créez-vous des sites pour les commerces du centre de Cayenne ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE du chef-lieu. On crée des sites vitrines ou e-commerce pensés pour capter la clientèle cayennaise." },
-          { q: "Combien coûte un site internet à Cayenne ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou des fonctionnalités sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Combien coûte un site internet à Cayenne ?", a: "Il n'y a pas de tarif unique : chaque projet fait l'objet d'un devis gratuit et personnalisé, établi après un court échange sur vos besoins (vitrine, e-commerce ou fonctionnalités sur-mesure)." },
           { q: "Pouvez-vous me positionner sur Google pour « à Cayenne 973 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir quand un Cayennais cherche votre service." },
           { q: "Gérez-vous les réseaux sociaux des entreprises cayennaises ?", a: "Tout à fait. Facebook, Instagram et WhatsApp sont incontournables à Cayenne. On crée vos visuels, on rédige vos posts et on pilote vos campagnes publicitaires locales." }
         ]
@@ -182,7 +182,7 @@ export const ZONES = [
         areaServed: ['Kourou', 'Sinnamary', 'Macouria'],
         faq: [
           { q: "Travaillez-vous avec les prestataires liés au spatial à Kourou ?", a: "Oui. Beaucoup d'entreprises de Kourou servent l'écosystème spatial ou sa population internationale. On crée des sites professionnels, souvent bilingues, qui rassurent ce public exigeant." },
-          { q: "Quel budget pour un site professionnel à Kourou ?", a: "Une vitrine démarre à 250€. Pour un site plus complet (bilingue, catalogue, réservation), on chiffre selon vos besoins — devis clair et transparent." },
+          { q: "Quel budget pour un site professionnel à Kourou ?", a: "Le budget dépend de vos besoins : simple vitrine ou site plus complet (bilingue, catalogue, réservation). On vous remet un devis gratuit et personnalisé, clair et transparent." },
           { q: "Pouvez-vous faire un site bilingue français / anglais ?", a: "Oui, c'est fréquent à Kourou vu la population internationale. On conçoit des sites multilingues propres, pensés pour le référencement dans chaque langue." },
           { q: "Automatisez-vous la gestion des demandes et des devis ?", a: "C'est une de nos forces : formulaires intelligents, accusés et relances automatiques, prise de RDV en ligne. Vos équipes gagnent du temps sur l'administratif." }
         ]
@@ -224,7 +224,7 @@ export const ZONES = [
         areaServed: ['Matoury', 'Cayenne', 'Rémire-Montjoly'],
         faq: [
           { q: "Accompagnez-vous les entreprises des zones d'activités de Matoury ?", a: "Oui : commerces, services, logistique et PME des zones d'activités. On crée des sites crédibles et des outils qui appuient votre développement commercial." },
-          { q: "Pouvez-vous créer un site vitrine professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, vos références et vos services, pensé pour convaincre — à partir de 250€ pour une vitrine." },
+          { q: "Pouvez-vous créer un site vitrine professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, vos références et vos services, pensé pour convaincre, sur devis gratuit et personnalisé." },
           { q: "Automatisez-vous les demandes de devis et les relances ?", a: "C'est notre valeur ajoutée : formulaires de devis, accusés automatiques, relances programmées et suivi. Vos équipes se concentrent sur le métier." },
           { q: "Référencez-vous mon entreprise sur « Matoury » et l'agglo de Cayenne ?", a: "Oui. On optimise votre visibilité sur les recherches locales de Matoury et de l'agglomération pour capter des demandes qualifiées près de chez vous." }
         ]
@@ -254,7 +254,7 @@ export const ZONES = [
       areaServed: ['Fort-de-France', 'Le Lamentin', 'Schœlcher', 'Le Robert'],
       faq: [
         { q: "Travaillez-vous avec les entreprises de toute la Martinique ?", a: "Oui, de Fort-de-France au Lamentin, de Schœlcher à l'Atlantique. Tout se pilote à distance (visio, téléphone), avec une vraie exigence de proximité." },
-        { q: "Combien coûte un site internet en Martinique ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+        { q: "Combien coûte un site internet en Martinique ?", a: "Tout est sur devis : après un court échange sur votre activité et vos objectifs, on vous remet un devis gratuit et personnalisé, qu'il s'agisse d'un site vitrine, d'une boutique en ligne ou d'un projet sur-mesure." },
         { q: "Aidez-vous les acteurs du tourisme et de la restauration ?", a: "Bien sûr : sites, réservation en ligne, avis Google et réseaux sociaux. Le tourisme est clé en Martinique, et la visibilité en ligne fait la réservation." },
         { q: "Gérez-vous le référencement local et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé (Fort-de-France, Le Lamentin…) et community management sur Facebook, Instagram et WhatsApp, très utilisés localement." }
       ]
@@ -276,7 +276,7 @@ export const ZONES = [
         areaServed: ['Fort-de-France', 'Schœlcher', 'Le Lamentin'],
         faq: [
           { q: "Créez-vous des sites pour les commerces du centre de Fort-de-France ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE de la capitale. On crée des sites vitrines ou e-commerce pensés pour capter la clientèle foyalaise." },
-          { q: "Combien coûte un site internet à Fort-de-France ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou des fonctionnalités sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Combien coûte un site internet à Fort-de-France ?", a: "Il n'y a pas de tarif unique : chaque projet fait l'objet d'un devis gratuit et personnalisé, établi après un court échange sur vos besoins (vitrine, e-commerce ou fonctionnalités sur-mesure)." },
           { q: "Pouvez-vous me positionner sur Google pour « à Fort-de-France 972 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir quand un Foyalais cherche votre service." },
           { q: "Gérez-vous les réseaux sociaux des entreprises foyalaises ?", a: "Tout à fait. Facebook, Instagram et WhatsApp sont incontournables à Fort-de-France. On crée vos visuels, on rédige vos posts et on pilote vos campagnes publicitaires locales." }
         ]
@@ -297,7 +297,7 @@ export const ZONES = [
         areaServed: ['Le Lamentin', 'Ducos', 'Fort-de-France'],
         faq: [
           { q: "Accompagnez-vous les entreprises des zones d'activités du Lamentin ?", a: "Oui : commerces, industrie, logistique et services. On crée des sites crédibles (souvent B2B) et des outils qui appuient votre développement commercial." },
-          { q: "Pouvez-vous créer un site vitrine professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, vos références et vos services, pensé pour convaincre — à partir de 250€ pour une vitrine." },
+          { q: "Pouvez-vous créer un site vitrine professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, vos références et vos services, pensé pour convaincre, sur devis gratuit et personnalisé." },
           { q: "Automatisez-vous les devis et les relances clients ?", a: "C'est notre valeur ajoutée : formulaires de devis, accusés automatiques, relances programmées et suivi. Vos équipes se concentrent sur le métier." },
           { q: "Référencez-vous mon entreprise sur « Le Lamentin » et l'agglo ?", a: "Oui. On optimise votre visibilité sur les recherches locales du Lamentin et de l'agglomération de Fort-de-France pour capter des demandes qualifiées." }
         ]
@@ -369,7 +369,7 @@ export const ZONES = [
       areaServed: ['Pointe-à-Pitre', 'Baie-Mahault', 'Le Gosier', 'Basse-Terre'],
       faq: [
         { q: "Travaillez-vous avec les entreprises de toute la Guadeloupe ?", a: "Oui, de Pointe-à-Pitre à Basse-Terre, en passant par Baie-Mahault et Le Gosier. Tout se pilote à distance (visio, téléphone), avec une vraie exigence de proximité." },
-        { q: "Combien coûte un site internet en Guadeloupe ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+        { q: "Combien coûte un site internet en Guadeloupe ?", a: "Tout est sur devis : après un court échange sur votre activité et vos objectifs, on vous remet un devis gratuit et personnalisé, qu'il s'agisse d'un site vitrine, d'une boutique en ligne ou d'un projet sur-mesure." },
         { q: "Accompagnez-vous les entreprises de la zone de Jarry ?", a: "Bien sûr : Jarry est le premier pôle d'affaires des Antilles. On crée des sites B2B crédibles et des automatisations qui appuient votre développement commercial." },
         { q: "Gérez-vous le référencement local et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé (Pointe-à-Pitre, Baie-Mahault…) et community management sur Facebook, Instagram et WhatsApp, très utilisés localement." }
       ]
@@ -391,7 +391,7 @@ export const ZONES = [
         areaServed: ['Pointe-à-Pitre', 'Les Abymes', 'Le Gosier'],
         faq: [
           { q: "Créez-vous des sites pour les commerces du centre de Pointe-à-Pitre ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE de la capitale économique. On crée des sites pensés pour capter la clientèle pointoise." },
-          { q: "Combien coûte un site internet à Pointe-à-Pitre ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Combien coûte un site internet à Pointe-à-Pitre ?", a: "Tout est sur devis : après un court échange sur votre activité et vos objectifs, on vous remet un devis gratuit et personnalisé, qu'il s'agisse d'un site vitrine, d'une boutique en ligne ou d'un projet sur-mesure." },
           { q: "Pouvez-vous me positionner sur Google pour « à Pointe-à-Pitre 971 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir quand un Guadeloupéen cherche votre service." },
           { q: "Gérez-vous les réseaux sociaux des entreprises pointoises ?", a: "Tout à fait. Facebook, Instagram et WhatsApp sont incontournables à Pointe-à-Pitre. On crée vos visuels, on rédige vos posts et on pilote vos campagnes locales." }
         ]
@@ -412,7 +412,7 @@ export const ZONES = [
         areaServed: ['Baie-Mahault', 'Pointe-à-Pitre', 'Les Abymes'],
         faq: [
           { q: "Accompagnez-vous les entreprises de la zone de Jarry ?", a: "Oui, c'est une spécificité : Jarry est le premier pôle d'affaires des Antilles. Industrie, import-export, logistique, BTP — on crée des sites B2B crédibles et des outils commerciaux." },
-          { q: "Pouvez-vous créer un site vitrine B2B pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, références et certifications, pensé pour rassurer un donneur d'ordre — à partir de 250€ pour une vitrine." },
+          { q: "Pouvez-vous créer un site vitrine B2B pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, références et certifications, pensé pour rassurer un donneur d'ordre, sur devis gratuit et personnalisé." },
           { q: "Automatisez-vous les demandes de devis et les relances ?", a: "C'est notre valeur ajoutée : formulaires de devis, accusés automatiques, relances programmées et suivi. Vos équipes se concentrent sur le métier." },
           { q: "Référencez-vous mon entreprise sur « Jarry » et l'agglo ?", a: "Oui. On optimise votre visibilité sur les recherches B2B locales (fournisseur, prestataire + secteur) autour de Baie-Mahault et de l'agglomération pointoise." }
         ]
@@ -484,7 +484,7 @@ export const ZONES = [
       areaServed: ['Nouméa', 'Dumbéa', 'Mont-Dore', 'Koné'],
       faq: [
         { q: "Travaillez-vous avec les entreprises de toute la Nouvelle-Calédonie ?", a: "Oui, du Grand Nouméa à la Province Nord. Tout se pilote à distance (visio, téléphone), avec une vraie exigence de proximité malgré le décalage horaire." },
-        { q: "Combien coûte un site internet en Nouvelle-Calédonie ?", a: "Nos sites vitrines professionnels démarrent à 250€ (équivalent en francs Pacifique communiqué au devis). Pour de l'e-commerce ou du sur-mesure, on chiffre après un court échange." },
+        { q: "Combien coûte un site internet en Nouvelle-Calédonie ?", a: "Chaque projet est chiffré sur devis gratuit et personnalisé, directement en francs Pacifique, après un court échange sur vos besoins (vitrine, e-commerce ou sur-mesure)." },
         { q: "Gérez-vous le référencement local et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé (Nouméa, Dumbéa…) et community management sur Facebook et Instagram, très suivis localement." },
         { q: "Le décalage horaire est-il un problème ?", a: "Pas du tout. On organise des points en visio aux créneaux qui vous conviennent, et le suivi de projet est fluide toute la semaine." }
       ]
@@ -506,7 +506,7 @@ export const ZONES = [
         areaServed: ['Nouméa', 'Dumbéa', 'Mont-Dore'],
         faq: [
           { q: "Créez-vous des sites pour les commerces du centre de Nouméa ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE du chef-lieu. On crée des sites pensés pour capter la clientèle nouméenne." },
-          { q: "Combien coûte un site internet à Nouméa ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Combien coûte un site internet à Nouméa ?", a: "Tout est sur devis : après un court échange sur votre activité et vos objectifs, on vous remet un devis gratuit et personnalisé, qu'il s'agisse d'un site vitrine, d'une boutique en ligne ou d'un projet sur-mesure." },
           { q: "Pouvez-vous me positionner sur Google pour « à Nouméa 988 » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir quand un Nouméen cherche votre service." },
           { q: "Gérez-vous les réseaux sociaux des entreprises nouméennes ?", a: "Tout à fait. Facebook et Instagram sont incontournables à Nouméa. On crée vos visuels, on rédige vos posts et on pilote vos campagnes locales." }
         ]
@@ -529,7 +529,7 @@ export const ZONES = [
           { q: "Créez-vous des sites pour les commerces de Dumbéa ?", a: "Oui, commerces des zones de Dumbéa-sur-Mer, services et artisans sont au cœur de notre clientèle. On crée des sites qui captent une population jeune et connectée." },
           { q: "Le marché de Dumbéa est-il porteur pour le web ?", a: "Très : Dumbéa est l'une des communes qui grandit le plus vite du Grand Nouméa. Se positionner en ligne maintenant, c'est prendre de l'avance sur la concurrence." },
           { q: "Faites-vous de la publicité ciblée sur le Grand Nouméa ?", a: "Oui. On paramètre des campagnes géociblées (Dumbéa, Nouméa, Païta…) pour toucher précisément les clients autour de votre activité." },
-          { q: "Combien coûte un site à Dumbéa ?", a: "À partir de 250€ pour une vitrine professionnelle. E-commerce et sur-mesure sur devis transparent." }
+          { q: "Combien coûte un site à Dumbéa ?", a: "Tout est sur devis gratuit et personnalisé, qu'il s'agisse d'une vitrine professionnelle, d'un site e-commerce ou d'un projet sur-mesure." }
         ]
       },
       {
@@ -548,7 +548,7 @@ export const ZONES = [
         areaServed: ['Mont-Dore', 'Nouméa', 'Dumbéa'],
         faq: [
           { q: "Créez-vous des sites pour les commerces et artisans du Mont-Dore ?", a: "Oui, commerces de proximité, artisans et services sont au cœur de notre clientèle. On crée des sites qui renforcent votre notoriété locale." },
-          { q: "Combien coûte un site internet au Mont-Dore ?", a: "À partir de 250€ pour une vitrine professionnelle. Pour des besoins spécifiques, on établit un devis transparent après un échange." },
+          { q: "Combien coûte un site internet au Mont-Dore ?", a: "Nous n'avons pas de prix fixe : après un échange sur votre projet, on établit un devis gratuit et personnalisé, adapté à vos besoins." },
           { q: "Comment attirer une clientèle de proximité ?", a: "Par le référencement local et une fiche Google soignée : quand un habitant du Mont-Dore cherche votre service, vous devez sortir en premier." },
           { q: "Gérez-vous les réseaux sociaux localement ?", a: "Oui. Facebook et WhatsApp sont très utilisés. On crée vos contenus et on anime vos pages pour développer votre notoriété." }
         ]
@@ -569,7 +569,7 @@ export const ZONES = [
         areaServed: ['Koné', 'Voh', 'Pouembout'],
         faq: [
           { q: "Accompagnez-vous les entreprises du pôle VKP et du Nord ?", a: "Oui : commerce, services, sous-traitance industrielle et minière. On crée des sites crédibles et des outils qui appuient votre développement dans le Nord." },
-          { q: "Pouvez-vous créer un site professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, références et certifications — à partir de 250€ pour une vitrine, e-commerce et sur-mesure sur devis." },
+          { q: "Pouvez-vous créer un site professionnel pour ma société ?", a: "Bien sûr. Un site clair présentant vos activités, références et certifications, sur devis gratuit et personnalisé." },
           { q: "Automatisez-vous les devis et les relances ?", a: "Oui, c'est notre valeur ajoutée : formulaires de devis, accusés automatiques, relances programmées. Vos équipes gagnent du temps sur l'administratif." },
           { q: "Référencez-vous mon entreprise sur « Koné » et la Province Nord ?", a: "Oui. On optimise votre visibilité sur les recherches locales de Koné et du pôle VKP pour capter des demandes qualifiées." }
         ]
@@ -599,7 +599,7 @@ export const ZONES = [
       areaServed: ['Papeete', 'Faaa', 'Punaauia', 'Bora-Bora'],
       faq: [
         { q: "Travaillez-vous avec les entreprises de toute la Polynésie ?", a: "Oui, de Tahiti aux îles Sous-le-Vent. Tout se pilote à distance (visio, téléphone), avec une vraie exigence de proximité malgré la distance." },
-        { q: "Combien coûte un site internet en Polynésie ?", a: "Nos sites vitrines professionnels démarrent à 250€ (équivalent en francs Pacifique au devis). E-commerce et réservation en ligne sur devis." },
+        { q: "Combien coûte un site internet en Polynésie ?", a: "Chaque projet (vitrine, e-commerce, réservation en ligne) fait l'objet d'un devis gratuit et personnalisé, établi directement en francs Pacifique." },
         { q: "Créez-vous des sites de réservation pour le tourisme ?", a: "Oui, c'est essentiel en Polynésie : réservation d'hébergements, d'excursions ou d'activités avec confirmation automatique, souvent en plusieurs langues." },
         { q: "Gérez-vous le référencement et les réseaux sociaux ?", a: "Oui : fiche Google Business, SEO géolocalisé et multilingue, et community management sur les réseaux où voyagent vos futurs clients." }
       ]
@@ -621,7 +621,7 @@ export const ZONES = [
         areaServed: ['Papeete', 'Faaa', 'Pirae'],
         faq: [
           { q: "Créez-vous des sites pour les commerces du centre de Papeete ?", a: "Oui, c'est notre cœur de cible : commerces, restaurants, artisans et TPE de la capitale. On crée des sites pensés pour capter la clientèle de Papeete." },
-          { q: "Combien coûte un site internet à Papeete ?", a: "Nos sites vitrines professionnels démarrent à 250€. Pour de l'e-commerce ou du sur-mesure, on établit un devis transparent après un court échange." },
+          { q: "Combien coûte un site internet à Papeete ?", a: "Tout est sur devis : après un court échange sur votre activité et vos objectifs, on vous remet un devis gratuit et personnalisé, qu'il s'agisse d'un site vitrine, d'une boutique en ligne ou d'un projet sur-mesure." },
           { q: "Pouvez-vous me positionner sur Google pour « à Papeete » ?", a: "Oui. Le référencement local est notre spécialité : fiche Google Business, mots-clés géolocalisés et contenus optimisés pour sortir sur les recherches locales." },
           { q: "Gérez-vous les réseaux sociaux des entreprises de Papeete ?", a: "Tout à fait. Facebook et Instagram sont incontournables à Tahiti. On crée vos visuels, on rédige vos posts et on pilote vos campagnes locales." }
         ]
@@ -643,7 +643,7 @@ export const ZONES = [
         faq: [
           { q: "Créez-vous des sites pour les commerces et services de Faaa ?", a: "Oui, commerces, services et hébergements sont au cœur de notre clientèle. On crée des sites qui captent la clientèle locale et les voyageurs de passage." },
           { q: "Un site utile pour une activité proche de l'aéroport ?", a: "Tout à fait : location, transfert, hébergement, restauration. Un site clair avec réservation en ligne rassure et convertit le voyageur avant son arrivée." },
-          { q: "Combien coûte un site internet à Faaa ?", a: "À partir de 250€ pour une vitrine professionnelle. E-commerce, réservation et sur-mesure sur devis transparent." },
+          { q: "Combien coûte un site internet à Faaa ?", a: "Tout est sur devis gratuit et personnalisé : vitrine professionnelle, e-commerce, réservation ou sur-mesure, on chiffre selon vos besoins réels." },
           { q: "Gérez-vous le référencement local ?", a: "Oui. Fiche Google Business et SEO géolocalisé pour apparaître sur les recherches locales et touristiques autour de Faaa et de l'aéroport." }
         ]
       },

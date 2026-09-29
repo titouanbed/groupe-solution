@@ -94,13 +94,7 @@
       },
       "offers": {
         "@type": "Offer",
-        "priceCurrency": "EUR",
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "minPrice": 250,
-          "priceCurrency": "EUR"
-        },
-        "description": "Site vitrine à partir de 250 €, autres prestations sur devis"
+        "description": "Sur devis, gratuit et personnalisé"
       }
     },
     {
@@ -179,6 +173,7 @@
     .mt-item i{flex-shrink:0;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:.85rem;background:#d1fae5;color:#047857}
     .mt-bad .mt-item i{background:#fce7f3;color:#be185d}
     .mt-cases{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .mt-base{max-width:960px;margin:34px auto 0;background:var(--blanc);border:1px dashed #e5e7eb;border-radius:18px;padding:22px 26px}.mt-base h3{font-size:1rem;font-weight:800;margin-bottom:10px}.mt-base ul{list-style:none;display:grid;gap:8px;color:var(--gris);font-size:.94rem}.mt-base b{color:var(--gris-fonce)}
     .mt-hook{max-width:760px;margin:0 auto 30px;text-align:center;color:var(--gris);font-size:1.08rem;line-height:1.75}
     .mt-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:10px}
     .mt-chips a{padding:10px 18px;border-radius:999px;background:var(--blanc);border:1px solid #e5e7eb;font-weight:700;font-size:.92rem;color:var(--gris-fonce);text-decoration:none;transition:var(--transition)}
@@ -208,7 +203,7 @@
         <li><a href="#indispensable">L'essentiel</a></li>
         <li><a href="#automatisation">Automatisation</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="../outils/prix-site-internet.html">Prix</a></li>
+        <li><a href="../outils/configurateur-site-internet.html">Configurateur</a></li>
         <li><a href="https://www.groupsolution.fr/" class="nav-holding">Groupe Solution ↗</a></li>
       </ul>
       <div class="nav-actions">
@@ -224,7 +219,7 @@
       <p>Avant de se déplacer, vos clients vérifient en ligne : êtes-vous ouvert, avez-vous le produit, combien ça coûte ? Le commerce qui répond à ces trois questions gagne la visite.</p>
       <div class="hero-ctas">
         <button onclick="openModal('Commerce')" class="btn btn-primary"><svg class="icon"><use href="#i-mail"/></svg><span>Parler de mon projet</span></button>
-        <a href="../outils/prix-site-internet.html" class="btn btn-ghost"><svg class="icon"><use href="#i-lightning"/></svg><span>Estimer le prix de mon site</span></a>
+        <a href="../outils/configurateur-site-internet.html" class="btn btn-ghost"><svg class="icon"><use href="#i-lightning"/></svg><span>Configurer mon projet</span></a>
       </div>
     </div>
   </section>
@@ -271,28 +266,31 @@
       <div class="section-header">
         <span class="section-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-sparkles"/></svg> Et derrière le site ?</span>
         <h2>Ce qu'on automatise pour les <span class="accent">commerçants</span></h2>
-        <p>Groupe Solution est d'abord un éditeur de logiciels : le site n'est que la partie visible. Voici ce qui peut tourner tout seul derrière.</p>
+        <p>Groupe Solution est d'abord un éditeur de logiciels : le site n'est que la partie visible. Voici ce que les technologies d'aujourd'hui permettent de construire pour les commerçants.</p>
       </div>
       <div class="mt-cases">
-        <div class="gs-auto-card reveal"><h4>Stock synchronisé</h4><p>Caisse et site partagent le même inventaire, mis à jour automatiquement.</p></div>
-        <div class="gs-auto-card reveal"><h4>Click &amp; collect</h4><p>Commande en ligne, préparation, SMS quand c'est prêt.</p></div>
-        <div class="gs-auto-card reveal"><h4>Fidélisation</h4><p>Points, anniversaires, relances des clients inactifs.</p></div>
-        <div class="gs-auto-card reveal"><h4>Réassort</h4><p>Alertes de stock bas et proposition de commande fournisseur.</p></div>
+        <div class="gs-auto-card reveal"><span class="gs-tech">Voix temps réel · compréhension du langage · agenda connecté</span><h4>Agent vocal IA au téléphone</h4><p>Il décroche à toute heure, comprend la demande en langage naturel, répond à partir de vos informations vérifiées, prend le rendez-vous dans votre agenda, transfère les urgences à un humain et vous envoie le résumé de chaque appel.</p></div>
+        <div class="gs-auto-card reveal"><span class="gs-tech">Modèles génératifs texte / image · validation humaine</span><h4>Contenus multimodaux générés sous contrôle</h4><p>Fiches produits, descriptions de biens, traductions, publications et visuels produits à partir de vos données, dans votre ton, et validés par vous avant diffusion.</p></div>
+        <div class="gs-auto-card reveal"><span class="gs-tech">Simulation · données de planning et de capacité</span><h4>Jumeau numérique de votre activité</h4><p>Un modèle de votre activité (capacités, plannings, flux) pour simuler une embauche, un nouveau créneau, une hausse d'activité ou une saison avant de décider.</p></div>
+        <div class="gs-auto-card reveal"><span class="gs-tech">Prévision · taux de remplissage · bornes fixées par vous</span><h4>Tarification dynamique encadrée</h4><p>Offres et tarifs ajustés selon la demande, la saison, la météo ou le taux de remplissage — toujours dans des bornes que vous fixez, avec un journal de chaque changement.</p></div>
       </div>
+      <div class="mt-base reveal"><h3>Et bien sûr, les bases bien faites</h3><ul><li><b>Stock synchronisé</b> — Caisse et site partagent le même inventaire, mis à jour automatiquement.</li><li><b>Click &amp; collect</b> — Commande en ligne, préparation, SMS quand c'est prêt.</li><li><b>Fidélisation</b> — Points, anniversaires, relances des clients inactifs.</li><li><b>Réassort</b> — Alertes de stock bas et proposition de commande fournisseur.</li></ul></div>
       <p class="gs-auto-more"><a href="../outils/calculateur-automatisation.html">Calculer le temps que vous pourriez récupérer →</a></p>
     </div>
   </section>
 
+
   <section id="realisations" style="background: var(--gris-clair); padding: 80px 0;">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg> Nos références</span>
+        <span class="section-tag">Conçu et codé par nos équipes</span>
         <h2>Livré, pas <span class="accent">promis</span></h2>
+        <p>Trois plateformes conçues et opérées par Groupe Solution, en ligne aujourd'hui. La même ingénierie est au service de votre projet.</p>
       </div>
       <div class="rea-grid">
-        <a href="https://twentythreeclean.com/" target="_blank" rel="noopener" class="rea-card reveal"><div class="rea-img" style="background-image: url('../rea1.jpg');"></div><div class="rea-content"><h4>23 Twenty Three Clean</h4><p>Lavage auto à domicile à Montpellier — réservation en ligne et devis automatique par photo.</p></div></a>
         <a href="https://solutionsrecrutement.fr/" target="_blank" rel="noopener" class="rea-card reveal"><div class="rea-img" style="background-image: url('../rea2.jpg');"></div><div class="rea-content"><h4>Solution Recrutement</h4><p>Plus de 565 000 offres, matching sémantique, chaque correspondance expliquée.</p></div></a>
-        <a href="https://solutionalternance.fr/" target="_blank" rel="noopener" class="rea-card reveal"><div class="rea-img" style="background-image: url('../rea3.jpg');"></div><div class="rea-content"><h4>Solution Alternance</h4><p>Matching par IA sur plus de 200 000 offres d'alternance.</p></div></a>
+        <a href="https://solutionalternance.fr/" target="_blank" rel="noopener" class="rea-card reveal"><div class="rea-img" style="background-image: url('../rea3.jpg');"></div><div class="rea-content"><h4>Solution Alternance</h4><p>Chaque profil rapproché de plus de 200 000 offres d'alternance, par IA.</p></div></a>
+        <a href="https://aides-particuliers.fr/" target="_blank" rel="noopener" class="rea-card reveal"><div class="rea-img gs-ill gs-ill-seo" style="font:600 64px Georgia,serif;color:#0E7A5A">A</div><div class="rea-content"><h4>Aides Particuliers</h4><p>Un diagnostic qui identifie les aides publiques auxquelles un particulier a droit.</p></div></a>
       </div>
     </div>
   </section>
@@ -355,7 +353,7 @@
       <div class="groupe-inner reveal">
         <span class="groupe-kicker"><svg class="icon" style="width:14px;height:14px;"><use href="#i-sparkles"/></svg> Une marque de Groupe Solution</span>
         <h2>Un site, <span class="accent">et le système qui travaille derrière</span></h2>
-        <p>Sites dès 250 €, référencement local et automatisations sur-mesure, par un éditeur de logiciels basé à Montpellier.</p>
+        <p>Sites sur devis, référencement local et automatisations de pointe, par un éditeur de logiciels basé à Montpellier.</p>
         <div class="groupe-ctas">
           <a href="https://www.groupsolution.fr/echanger.html#rendez-vous" class="btn btn-primary"><svg class="icon"><use href="#i-mail"/></svg><span>Réserver 10 min</span></a>
           <a href="../automatisation/" class="btn btn-secondary"><svg class="icon"><use href="#i-arrow-right"/></svg><span>Automatisation</span></a>
@@ -388,7 +386,7 @@
       <div class="footer-content">
         <div class="footer-logo"><img src="../Logo.svg" alt="GroupSolution" /><p class="footer-desc">Sites internet et automatisation pour les commerçants de Montpellier et de l'Hérault.</p></div>
         <div class="footer-links"><h4>Métiers</h4><ul><li><a href="site-internet-restaurant-montpellier.html">Restaurant</a></li><li><a href="site-internet-artisan-montpellier.html">Artisan du bâtiment</a></li><li><a href="site-internet-professionnel-de-sante-montpellier.html">Professionnel de santé</a></li><li><a href="site-internet-avocat-montpellier.html">Avocat</a></li><li><a href="site-internet-expert-comptable-montpellier.html">Cabinet comptable</a></li><li><a href="site-internet-agence-immobiliere-montpellier.html">Agence immobilière</a></li></ul></div>
-        <div class="footer-links"><h4>Groupe Solution</h4><ul><li><a href="https://www.groupsolution.fr/">Le site du groupe ↗</a></li><li><a href="../automatisation/">Automatisation</a></li><li><a href="site-internet-montpellier.html">Agence web Montpellier</a></li><li><a href="../outils/prix-site-internet.html">Simulateur de prix</a></li></ul></div>
+        <div class="footer-links"><h4>Groupe Solution</h4><ul><li><a href="https://www.groupsolution.fr/">Le site du groupe ↗</a></li><li><a href="../automatisation/">Automatisation</a></li><li><a href="site-internet-montpellier.html">Agence web Montpellier</a></li><li><a href="../outils/configurateur-site-internet.html">Configurateur de projet</a></li></ul></div>
         <div class="footer-contact"><h4>Contact direct</h4><p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-phone"/></svg><a href="tel:+33782298559">07 82 29 85 59</a></p><p><svg class="icon" style="width: 16px; height: 16px;"><use href="#i-mail"/></svg><a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a></p></div>
       </div>
       <div class="footer-bottom">© 2026 GroupSolution SAS. Tous droits réservés.</div>

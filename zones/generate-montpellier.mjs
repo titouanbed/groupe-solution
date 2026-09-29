@@ -12,7 +12,8 @@ import { dirname, join } from 'node:path';
 import { HOLDING } from './zones.mjs';
 import { COMMUNES, neighbours, km } from './montpellier-communes.mjs';
 import { QUARTIERS, METIERS, GUIDES_LINKS, OUTILS_LINKS } from './montpellier-plus.mjs';
-import { aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
+import { pickAvancees } from './automatisations-avancees.mjs';
+import { liveSection, LIVE_CSS, REA_SECTION, heroArt, aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = 'montpellier';
@@ -29,6 +30,7 @@ function extraLists(current) {
     <div class="gm-wide"><h4>Par métier</h4><ul>${METIERS.map(m => `<li><a href="${metierFile(m)}">${esc(m.label.charAt(0).toUpperCase() + m.label.slice(1))}</a></li>`).join('')}</ul></div>
     <div><h4>Guides pratiques</h4><ul>${GUIDES_LINKS.map(([s, l]) => `<li><a href="guides/${s}.html">${esc(l)}</a></li>`).join('')}</ul></div>
     <div><h4>Outils gratuits</h4><ul>${OUTILS_LINKS.map(([s, l]) => `<li><a href="../outils/${s}.html">${esc(l)}</a></li>`).join('')}</ul></div>
+    <div><h4>Lab &amp; innovation</h4><ul><li><a href="../lab/">Radar technologique</a></li><li><a href="../lab/api.html">API &amp; données en direct</a></li><li><a href="../lab/veille/">Veille IA</a></li></ul></div>
   </div>`;
 }
 
@@ -44,8 +46,8 @@ function pick(pool, seed, n) {
 
 /* Questions génériques reformulées commune par commune (3 tirées sur 8). */
 const GENERIC_FAQ = [
-  c => ({ q: `Combien coûte un site internet ${aName(c)} ?`, a: `Nos sites vitrines démarrent à 250 €. Pour la réservation en ligne, la vente ou un devis automatique, on établit un devis clair après un court échange — le prix est le même ${aName(c)} qu'à Montpellier.` }),
-  c => ({ q: `En combien de temps mon site peut-il être en ligne ?`, a: `Pour un site vitrine, comptez en général une à deux semaines entre le premier échange et la mise en ligne, selon la rapidité à rassembler textes et photos. On vous guide à chaque étape.` }),
+  c => ({ q: `Combien coûte un site internet ${aName(c)} ?`, a: `Chaque projet est chiffré sur devis, gratuitement. Le prix dépend du nombre de pages, des fonctionnalités (réservation, vente en ligne, automatisations, connexions à vos outils) et de ce que vous nous confiez (textes, photos, suivi). Vous recevez un devis détaillé avant tout engagement.` }),
+  c => ({ q: `En combien de temps mon site peut-il être en ligne ?`, a: `Cela dépend du projet et de la rapidité à réunir textes et photos. Le délai est fixé noir sur blanc dans le devis, et on vous guide à chaque étape pour le tenir.` }),
   c => ({ q: `Faut-il se rencontrer pour travailler ensemble ?`, a: `Non, mais c'est possible. La plupart des échanges se font par téléphone ou visio, ce qui va plus vite. ${isQ(c) ? `Nous sommes basés à Montpellier : on se déplace ${aName(c)} sans difficulté quand le projet le demande.` : `Nous sommes basés à Montpellier, à environ ${Math.max(1, Math.round(km({ lat: 43.6108, lng: 3.8767 }, c)))} km : on se déplace ${aName(c)} quand le projet le demande.`}` }),
   c => ({ q: `Le référencement Google est-il inclus ?`, a: `Chaque site est livré avec les bases techniques du référencement (vitesse, balises, données structurées, version mobile). La fiche Google Business et le travail local pour ressortir sur « votre métier ${aName(c)} » font l'objet d'un accompagnement dédié.` }),
   c => ({ q: `Qui s'occupe du site une fois en ligne ?`, a: `Vous pouvez le faire vous-même ou nous le confier. Hébergement, sécurité, petites modifications : on propose un suivi simple pour que votre site reste à jour sans que vous ayez à vous en soucier.` }),
@@ -70,10 +72,11 @@ function page(c) {
   const url = `${HOLDING}/${DIR}/${file(c)}`;
   const { d, dir } = distanceText(c);
   const near = neighbours(c, 6);
+  const adv = pickAvancees(c.slug, [c.tissu, c.profil, c.auto.angle].join(' '), 4);
   const faq = [c.web.faq, ...pick(GENERIC_FAQ, c.slug, 3).map(f => f(c)), { q: c.auto.faq.q, a: c.auto.faq.a }];
   const tissuShort = c.tissu.split(',').slice(0, 2).join(',');
   const title = `Création de site internet ${aName(c)} (${c.cp}) | GroupSolution`;
-  const desc = `Site internet, fiche Google et référencement local pour les ${tissuShort} ${aName(c)}. Sites dès 250 €, audit gratuit en 15 min.`;
+  const desc = `Site internet, fiche Google et référencement local pour les ${tissuShort} ${aName(c)}. Devis gratuit, audit offert en 15 min.`;
   const dist = isQ(c) ? 'en plein Montpellier' : d <= 2 ? 'aux portes de Montpellier' : `à ${d} km ${dir} de Montpellier`;
   return `<!doctype html>
 <html lang="fr">
@@ -89,7 +92,7 @@ function page(c) {
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(desc)}" />
   <meta property="og:url" content="${url}" />
-  <meta property="og:image" content="${HOLDING}/rea1.jpg" />
+  <meta property="og:image" content="${HOLDING}/assets/communes/${c.slug}.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="geo.region" content="FR-34" />
   <meta name="geo.placename" content="${esc(c.name)}" />
@@ -117,7 +120,7 @@ ${near.slice(0, 4).map(n => `          { "@type": "City", "name": ${jstr(n.name)
         "hasOfferCatalog": {
           "@type": "OfferCatalog", "name": "Services web",
           "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Création de site vitrine" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 250, "priceCurrency": "EUR" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Création de site internet (sur devis)" } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Référencement local et fiche Google Business" } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatisation (devis, rendez-vous, relances)" } }
           ]
@@ -182,7 +185,7 @@ ${faqJsonLd(faq)}
     </div>
   </nav>
 
-  <section class="hero gs-hero" id="hero">
+  <section class="hero gs-hero has-art" id="hero" ${heroArt(c.slug)}>
     <div class="container hero-content">
       <div class="hero-badge">
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-map-pin"/></svg>
@@ -229,6 +232,8 @@ ${faqJsonLd(faq)}
     </div>
   </section>
 
+${liveSection(c)}
+
   <section id="solutions" style="background: var(--gris-clair);">
     <div class="container">
       <div class="section-header">
@@ -242,8 +247,8 @@ ${faqJsonLd(faq)}
           <div class="bulle-content">
             <h4>Création de site web</h4>
             <p>Vitrine, réservation en ligne ou e-commerce. Pensé mobile en premier, rapide, conforme (mentions légales, RGPD).</p>
-            <div class="prix">Dès 250€</div>
-            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> En ligne en 1 à 2 semaines</div>
+            <div class="prix">Sur devis</div>
+            <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Devis gratuit et détaillé</div>
             <button onclick="openModal('Création de site')" class="btn btn-primary bulle-cta" style="justify-content: center;">Mon site ${esc(aName(c))}</button>
           </div>
         </div>
@@ -261,7 +266,7 @@ ${faqJsonLd(faq)}
           <div class="bulle-image gs-ill gs-ill-auto"><svg class="icon"><use href="#i-lightning"/></svg></div>
           <div class="bulle-content">
             <h4>Automatisation</h4>
-            <p>${esc(c.auto.cases[0][0])}, ${esc(c.auto.cases[1][0].charAt(0).toLowerCase() + c.auto.cases[1][0].slice(1))}… le site devient un outil qui travaille pour vous.</p>
+            <p>${esc(adv[0].titre)}, ${esc(adv[1].titre.charAt(0).toLowerCase() + adv[1].titre.slice(1))}… le site devient un outil qui travaille pour vous.</p>
             <div class="prix">Sur devis</div>
             <div class="delai"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-clock"/></svg> Des heures gagnées chaque semaine</div>
             <a href="${autoHref(c)}" class="btn btn-primary bulle-cta" style="justify-content: center;">Voir les exemples</a>
@@ -285,39 +290,17 @@ ${QUIZ.map((q, i) => `        <div class="gs-q"><p>${i + 1}. ${esc(q.replace('{c
     </div>
   </section>
 
-  <section id="realisations" style="background: var(--gris-clair); padding: 80px 0;">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag"><svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg> Nos références</span>
-        <h2>Livré, pas <span class="accent">promis</span></h2>
-        <p>Une réalisation dans la métropole, et deux plateformes d'automatisation déployées à l'échelle nationale.</p>
-      </div>
-      <div class="rea-grid">
-        <a href="https://twentythreeclean.com/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea1.jpg');"></div>
-          <div class="rea-content"><h4>23 Twenty Three Clean</h4><p>Lavage auto à domicile à Montpellier — réservation en ligne et devis automatique par photo.</p></div>
-        </a>
-        <a href="https://solutionsrecrutement.fr/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea2.jpg');"></div>
-          <div class="rea-content"><h4>Solution Recrutement</h4><p>Plus de 565 000 offres, matching sémantique et chaque correspondance expliquée.</p></div>
-        </a>
-        <a href="https://solutionalternance.fr/" target="_blank" rel="noopener" class="rea-card reveal">
-          <div class="rea-img" style="background-image: url('../rea3.jpg');"></div>
-          <div class="rea-content"><h4>Solution Alternance</h4><p>Plateforme d'automatisation avec algorithme de matching par IA, plus de 200 000 offres.</p></div>
-        </a>
-      </div>
-    </div>
-  </section>
+${REA_SECTION()}
 
   <section id="automatisation" class="gs-auto">
     <div class="container">
       <div class="section-header">
         <span class="section-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-sparkles"/></svg> Et derrière le site ?</span>
-        <h2>Ce qu'on automatise pour les entreprises <span class="accent">${esc(aName(c))}</span></h2>
-        <p>${esc(c.auto.angle)}</p>
+        <h2>Ce qu'on peut construire pour les entreprises <span class="accent">${esc(aName(c))}</span></h2>
+        <p>${esc(c.auto.angle)} Voici ce que les technologies d'aujourd'hui permettent — conçu et intégré par un éditeur de logiciels.</p>
       </div>
       <div class="gs-auto-grid">
-${c.auto.cases.map(([t, x]) => `        <div class="gs-auto-card reveal"><h4>${esc(t)}</h4><p>${esc(x)}</p></div>`).join('\n')}
+${adv.slice(0, 3).map(a => `        <div class="gs-auto-card reveal"><span class="gs-tech">${esc(a.tech)}</span><h4>${esc(a.titre)}</h4><p>${esc(a.texte)}</p></div>`).join('\n')}
       </div>
       <p class="gs-auto-more"><a href="${autoHref(c)}">Automatisation &amp; logiciel sur-mesure ${esc(aName(c))} : tous les détails →</a></p>
     </div>
@@ -437,6 +420,7 @@ ${faq.map(f => `        <div class="faq-item reveal"><div class="faq-q">${esc(f.
   <div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><button class="s2" type="button" onclick="openModal()">Mon projet ${esc(aName(c))}</button></div>
 
   <script src="communes.js" defer></script>
+  <script src="../assets/live.js" defer></script>
   <script src="/analytics.js" defer></script>
 </body>
 </html>
@@ -477,8 +461,11 @@ writeFileSync(hubPath, hub, 'utf8');
 /* ── CSS additionnelle (composants communes) ── */
 writeFileSync(join(ROOT, DIR, 'communes.css'), `/* Généré par zones/generate-montpellier.mjs — composants des pages communes */
 :root{--gm-bg:#fff;--gm-line:#e5e7eb;--gm-ink:#1a1a1a;--gm-muted:#6b7280;--gm-dot:#d1d5db;--gm-metro:#9ca3af;--gm-acc:#EC4899}
-.gs-hero{background:radial-gradient(90% 70% at 85% 10%,rgba(236,72,153,.55),transparent 60%),radial-gradient(70% 60% at 10% 100%,rgba(16,185,129,.28),transparent 60%),linear-gradient(160deg,#141821 0%,#1f2433 55%,#2a1f2e 100%)!important;min-height:auto!important;padding:150px 0 110px!important}
-.gs-hero::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23ffffff' fill-opacity='.08'/%3E%3C/svg%3E")!important}
+.gs-hero{min-height:auto!important;padding:150px 0 110px!important;background-size:cover!important;background-position:center!important}
+.gs-hero:not(.has-art){background:radial-gradient(90% 70% at 85% 10%,rgba(236,72,153,.55),transparent 60%),radial-gradient(70% 60% at 10% 100%,rgba(16,185,129,.28),transparent 60%),linear-gradient(160deg,#141821 0%,#1f2433 55%,#2a1f2e 100%)!important;min-height:auto!important;padding:150px 0 110px!important}
+.gs-hero.has-art::before{background:linear-gradient(180deg,rgba(10,12,24,.62) 0%,rgba(10,12,24,.38) 45%,rgba(10,12,24,.78) 100%)!important}
+.gs-tech{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#EC4899;margin-bottom:8px}
+.gs-hero:not(.has-art)::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23ffffff' fill-opacity='.08'/%3E%3C/svg%3E")!important}
 .gs-ill{display:grid;place-items:center;background:linear-gradient(135deg,#fdf2f8,#fce7f3)!important}
 .gs-ill::after{display:none!important}
 .gs-ill .icon{width:64px;height:64px;stroke:#EC4899;stroke-width:1.5}
@@ -524,6 +511,7 @@ writeFileSync(join(ROOT, DIR, 'communes.css'), `/* Généré par zones/generate-
 @media(max-width:560px){.gs-q{flex-direction:column;align-items:flex-start}.gs-2col{grid-template-columns:1fr}}
 ${MAP_CSS}
 ${STICKY_CSS}
+${LIVE_CSS}
 `, 'utf8');
 
 console.log(`✓ ${COMMUNES.length} communes + ${QUARTIERS.length} quartiers : site internet générées dans /${DIR}/ + hub mis à jour + communes.css`);

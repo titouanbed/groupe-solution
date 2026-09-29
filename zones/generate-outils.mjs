@@ -19,10 +19,10 @@ mkdirSync(join(ROOT, DIR), { recursive: true });
 const FORM = 'https://formspree.io/f/mzebrvjg';
 
 const TOOLS = [
-  { slug: 'prix-site-internet', name: 'Simulateur de prix de site internet', short: 'Combien coûte votre site ?', icon: '€',
-    title: 'Simulateur prix site internet : estimez votre devis en 1 min | GroupSolution',
-    desc: "Simulateur gratuit : type de site, pages, options (réservation, e-commerce, rédaction, multilingue). Obtenez une fourchette de prix indicative en une minute.",
-    lead: "Vitrine, réservation, e-commerce, sur-mesure : choisissez ce dont vous avez besoin, le simulateur affiche une fourchette indicative et ce qu'elle comprend. Sans inscription." },
+  { slug: 'configurateur-site-internet', name: 'Configurateur de projet web', short: 'Configurez votre projet en 2 minutes', icon: '✦',
+    title: 'Configurateur de projet web et IA : votre cahier des charges en 2 min | GroupSolution',
+    desc: "Configurateur gratuit : type de site, fonctionnalités, automatisations et IA. Obtenez un cahier des charges clair et un devis gratuit et personnalisé.",
+    lead: "Site vitrine, réservation, boutique, plateforme, agents IA, automatisations : cochez ce dont vous avez besoin. Vous obtenez un cahier des charges structuré, prêt à être chiffré gratuitement." },
   { slug: 'test-visibilite-google', name: 'Test de visibilité Google', short: 'Votre entreprise est-elle visible ?', icon: 'G',
     title: 'Test de visibilité Google gratuit pour entreprise locale | GroupSolution',
     desc: "10 questions pour mesurer la visibilité locale de votre entreprise sur Google et Google Maps. Score immédiat et 3 actions prioritaires personnalisées.",
@@ -112,7 +112,7 @@ const foot = `</main>
   <nav>
     <a href="../index.html">Accueil</a>
     <a href="./">Outils gratuits</a>
-    <a href="prix-site-internet.html">Simulateur de prix</a>
+    <a href="configurateur-site-internet.html">Configurateur</a>
     <a href="test-visibilite-google.html">Test Google</a>
     <a href="calculateur-automatisation.html">Calculateur</a>
     <a href="../montpellier/guides/">Guides</a>
@@ -158,7 +158,7 @@ const others = cur => `
     <div class="secHead center reveal"><div class="kicker">Les autres outils</div><h2>Continuez le diagnostic.</h2></div>
     <div class="toolsGrid">${TOOLS.filter(t => t.slug !== cur).map(t => `
       <a class="toolCard reveal" href="${t.slug}.html"><div class="ic">${t.icon}</div><h2>${esc(t.name)}</h2><p>${esc(t.lead)}</p><span class="go">Essayer →</span></a>`).join('')}
-      <a class="toolCard reveal" href="../montpellier/guides/"><div class="ic">¶</div><h2>Guides pratiques</h2><p>Prix d'un site, Google Maps, devis automatiques, obligations légales, relances d'impayés : nos guides détaillés.</p><span class="go">Lire →</span></a>
+      <a class="toolCard reveal" href="../montpellier/guides/"><div class="ic">¶</div><h2>Guides pratiques</h2><p>Ce qui fait varier un devis, Google Maps, devis automatiques, obligations légales, relances d'impayés : nos guides détaillés.</p><span class="go">Lire →</span></a>
     </div>
   </div></section>`;
 
@@ -179,55 +179,63 @@ const hero = (t, kicker) => `
     <p class="lead reveal" style="margin-left:auto;margin-right:auto">${esc(t.lead)}</p>
   </div></section>`;
 
-/* ── 1. Simulateur de prix ── */
+/* ── 1. Configurateur de projet (aucun prix : tout est sur devis) ── */
 function prix() {
   const t = TOOLS[0];
   const faq = [
-    { q: 'Le prix affiché est-il un devis ?', a: "Non, c'est une fourchette indicative calculée à partir de projets courants. Le devis définitif dépend de vos contenus, de vos intégrations et de vos délais ; il est gratuit et sans engagement." },
-    { q: 'Pourquoi les prix des sites varient-ils autant ?', a: "Parce qu'un « site » peut aller d'une page de présentation à une plateforme avec paiement, réservation et connexions à vos logiciels. Le nombre de pages, la rédaction, les fonctionnalités et le suivi font l'essentiel de l'écart." },
-    { q: "Qu'est-ce qui est compris dans nos sites ?", a: "Un site rapide et pensé mobile, les bases techniques du référencement, la conformité (mentions légales, cookies) et la mise en ligne. Le site et le nom de domaine vous appartiennent." },
-    { q: 'Y a-t-il des frais chaque mois ?', a: "L'hébergement et le nom de domaine ont un coût annuel modeste. Le suivi (mises à jour, sécurité, modifications) est optionnel et proposé à part, sans engagement imposé." }
+    { q: 'Pourquoi le configurateur n’affiche-t-il pas de prix ?', a: "Parce que chaque projet est différent et que nous n'avons pas de grille figée : nous chiffrons sur devis, gratuitement, à partir de votre besoin réel. Le configurateur sert à formuler ce besoin clairement pour obtenir un devis précis et rapide." },
+    { q: 'Que se passe-t-il après l’envoi ?', a: "Nous étudions votre cahier des charges et revenons vers vous sous 24 h avec des questions éventuelles, puis un devis détaillé. Sans engagement." },
+    { q: 'Je ne sais pas encore ce qu’il me faut : est-ce grave ?', a: "Non. Cochez ce qui vous semble utile, ajoutez vos questions dans le message : le premier échange sert justement à clarifier le besoin." },
+    { q: 'Le site et les développements m’appartiennent-ils ?', a: "Oui : le site, les contenus et le nom de domaine sont à vous. Les conditions sont écrites noir sur blanc dans le devis." }
   ];
   const { url, jsonld } = ld(t, faq);
   const opt = (name, type, value, label, small, checked) => `<label class="opt"><input type="${type}" name="${name}" value="${value}"${checked ? ' checked' : ''} /><span>${label}${small ? `<small>${small}</small>` : ''}</span></label>`;
-  return head({ title: t.title, desc: t.desc, url, jsonld }) + hero(t, 'Outil gratuit · 1 minute') + `
+  return head({ title: t.title, desc: t.desc, url, jsonld }) + hero(t, 'Outil gratuit · 2 minutes') + `
   <section class="sec" style="padding-top:10px"><div class="wrap">
-    <div class="tool reveal" id="prixTool"><div class="toolGrid">
+    <div class="tool reveal" id="cfgTool"><div class="toolGrid">
       <div class="toolIn">
-        <fieldset class="fs"><legend>1. Quel type de site ?</legend><div class="opts">
-          ${opt('type', 'radio', 'vitrine', 'Vitrine simple', '1 à 3 pages, présentation et contact', true)}
-          ${opt('type', 'radio', 'vitrine-plus', 'Vitrine complète', 'Plusieurs pages, services, réalisations')}
+        <fieldset class="fs"><legend>1. Votre projet</legend><div class="opts">
+          ${opt('type', 'radio', 'vitrine', 'Site vitrine', 'Présenter, rassurer, être trouvé', true)}
           ${opt('type', 'radio', 'reservation', 'Réservation / rendez-vous', 'Créneaux, acomptes, rappels')}
           ${opt('type', 'radio', 'ecommerce', 'Boutique en ligne', 'Catalogue, paiement, livraison')}
-          ${opt('type', 'radio', 'surmesure', 'Plateforme sur-mesure', 'Espace client, logique métier')}
+          ${opt('type', 'radio', 'plateforme', 'Plateforme / outil métier', 'Espace client, logique sur-mesure')}
+          ${opt('type', 'radio', 'automatisation', 'Automatisation seule', 'Sans nouveau site')}
         </div></fieldset>
-        <fieldset class="fs range"><legend>2. Combien de pages environ ?</legend><label>Pages <b id="pagesOut">5</b><input type="range" id="pages" min="1" max="40" value="5" /></label></fieldset>
-        <fieldset class="fs"><legend>3. Options utiles</legend><div class="opts">
-          ${opt('opt', 'checkbox', 'redaction', 'Rédaction des textes', 'Optimisés pour Google')}
-          ${opt('opt', 'checkbox', 'gbp', 'Fiche Google Business', 'Création / optimisation')}
-          ${opt('opt', 'checkbox', 'multilingue', 'Version anglaise', 'ou autre langue')}
-          ${opt('opt', 'checkbox', 'logo', 'Logo / identité', 'Création ou refonte simple')}
-          ${opt('opt', 'checkbox', 'devisauto', 'Devis automatique', 'Formulaire intelligent, photos')}
-          ${opt('opt', 'checkbox', 'blog', 'Blog / actualités', 'Pour le référencement')}
+        <fieldset class="fs"><legend>2. Visibilité et contenus</legend><div class="opts">
+          ${opt('opt', 'checkbox', 'Référencement local et fiche Google', 'Référencement local', 'Fiche Google, pages locales')}
+          ${opt('opt', 'checkbox', 'Rédaction des contenus', 'Rédaction', 'Textes optimisés')}
+          ${opt('opt', 'checkbox', 'Version multilingue', 'Multilingue', 'Clientèle internationale')}
+          ${opt('opt', 'checkbox', 'Identité visuelle', 'Identité visuelle', 'Logo, charte')}
         </div></fieldset>
-        <fieldset class="fs"><legend>4. Suivi après mise en ligne</legend><div class="opts">
-          ${opt('suivi', 'radio', 'non', 'Je gère moi-même', '', true)}
-          ${opt('suivi', 'radio', 'oui', 'Suivi mensuel', 'Mises à jour, sécurité, modifications')}
+        <fieldset class="fs"><legend>3. Automatisations et IA</legend><div class="opts">
+          ${opt('ia', 'checkbox', 'Agent vocal IA au téléphone', 'Agent vocal IA', 'Décroche et prend les RDV')}
+          ${opt('ia', 'checkbox', 'Assistant IA multilingue (site / messagerie)', 'Assistant IA', 'Répond aux clients 24 h/24')}
+          ${opt('ia', 'checkbox', 'Lecture automatique de documents', 'Lecture de documents', 'Factures, bons, pièces')}
+          ${opt('ia', 'checkbox', 'Assistant interne sur nos documents (RAG)', 'Assistant interne (RAG)', 'Vos procédures interrogeables')}
+          ${opt('ia', 'checkbox', 'Connexion de nos outils (CRM, ERP, agenda) via API / MCP', 'Connexion des outils', 'API, MCP, synchronisations')}
+          ${opt('ia', 'checkbox', 'Prévision de la demande', 'Prévisions', 'Ventes, fréquentation, stocks')}
+          ${opt('ia', 'checkbox', 'Facturation électronique automatisée', 'Facturation électronique', 'Réforme 2026-2027')}
+          ${opt('ia', 'checkbox', 'Tableau de bord automatique', 'Tableau de bord', 'Indicateurs à jour')}
+        </div></fieldset>
+        <fieldset class="fs"><legend>4. Votre calendrier</legend><div class="opts">
+          ${opt('when', 'radio', 'Dès que possible', 'Dès que possible', '', true)}
+          ${opt('when', 'radio', 'Dans les 3 mois', 'Dans les 3 mois', '')}
+          ${opt('when', 'radio', 'Je me renseigne', 'Je me renseigne', '')}
         </div></fieldset>
       </div>
       <aside class="toolOut" aria-live="polite">
-        <span class="lbl">Estimation indicative</span>
-        <div class="big" id="prixOut">—</div>
-        <span class="lbl" id="suiviOut"></span>
-        <ul id="prixList"></ul>
-        <a class="btn" href="#contact" id="prixCta">Recevoir un devis précis →</a>
-        <span class="lbl">Gratuit, sans engagement · réponse sous 24 h</span>
+        <span class="lbl">Votre cahier des charges</span>
+        <div class="big" id="cfgLevel">—</div>
+        <span class="lbl" id="cfgLevelTxt"></span>
+        <ul id="cfgList"></ul>
+        <a class="btn" href="#contact">Recevoir mon devis gratuit →</a>
+        <span class="lbl">Sur devis, gratuit et personnalisé · réponse sous 24 h</span>
       </aside>
     </div></div>
-    <p class="disclaimer">Fourchettes indicatives constatées sur des projets courants, hors photos professionnelles et frais d'hébergement/nom de domaine. Le devis final dépend de votre projet.</p>
+    <p class="disclaimer">Aucun prix affiché : chaque projet est chiffré sur devis, gratuitement, à partir de votre besoin réel.</p>
   </div></section>
 ${faqBlock(faq)}
-${express(t.slug, 'Recevez votre devis précis', "Votre estimation est jointe automatiquement. Ajoutez quelques mots sur votre activité : je vous réponds sous 24 h avec un devis clair.")}
+${express(t.slug, 'Recevez votre devis gratuit', "Votre cahier des charges est joint automatiquement. Ajoutez quelques mots sur votre activité : nous revenons vers vous sous 24 h.")}
 ${others(t.slug)}
 ` + foot;
 }
@@ -332,8 +340,8 @@ ${others(t.slug)}
 /* ── Index ── */
 function index() {
   const url = `${HOLDING}/${DIR}/`;
-  const title = 'Outils gratuits pour entreprises : prix de site, visibilité Google, automatisation | Groupe Solution';
-  const desc = "Trois outils gratuits et sans inscription : simulateur de prix de site internet, test de visibilité Google et calculateur du coût de vos tâches répétitives.";
+  const title = 'Outils gratuits pour entreprises : projet web, visibilité Google, automatisation | Groupe Solution';
+  const desc = "Trois outils gratuits et sans inscription : configurateur de projet web et IA, test de visibilité Google et calculateur du coût de vos tâches répétitives.";
   const jsonld = { '@context': 'https://schema.org', '@graph': [
     { '@type': 'CollectionPage', name: 'Outils gratuits Groupe Solution', url, description: desc, hasPart: TOOLS.map(t => ({ '@type': 'WebApplication', name: t.name, url: `${HOLDING}/${DIR}/${t.slug}.html` })) },
     { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Groupe Solution', item: HOLDING + '/' }, { '@type': 'ListItem', position: 2, name: 'Outils gratuits', item: url }] }] };
@@ -342,7 +350,7 @@ function index() {
   <section class="hero" style="padding-bottom:30px"><div class="wrap" style="max-width:820px;text-align:center">
     <div class="kicker reveal">Gratuit · sans inscription</div>
     <h1 class="reveal">Trois outils pour y voir clair, en quelques minutes.</h1>
-    <p class="lead reveal" style="margin-left:auto;margin-right:auto">Avant de parler à qui que ce soit, faites le point vous-même : combien coûterait votre site, êtes-vous visible sur Google, combien vous coûtent vos tâches répétitives.</p>
+    <p class="lead reveal" style="margin-left:auto;margin-right:auto">Avant de parler à qui que ce soit, faites le point vous-même : de quoi votre projet a besoin, êtes-vous visible sur Google, combien vous coûtent vos tâches répétitives.</p>
   </div></section>
   <section class="sec" style="padding-top:20px"><div class="wrap">
     <div class="toolsGrid">${TOOLS.map(t => `
@@ -353,7 +361,7 @@ ${express('index', 'Une question plus précise ?', 'Décrivez votre situation en
 ` + foot;
 }
 
-writeFileSync(join(ROOT, DIR, 'prix-site-internet.html'), prix(), 'utf8');
+writeFileSync(join(ROOT, DIR, 'configurateur-site-internet.html'), prix(), 'utf8');
 writeFileSync(join(ROOT, DIR, 'test-visibilite-google.html'), test(), 'utf8');
 writeFileSync(join(ROOT, DIR, 'calculateur-automatisation.html'), calc(), 'utf8');
 writeFileSync(join(ROOT, DIR, 'index.html'), index(), 'utf8');

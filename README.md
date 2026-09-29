@@ -54,3 +54,20 @@ Ne pas éditer ces pages à la main : modifier le registre ou le générateur, p
 Règle : jamais de contenu copié d'une commune à l'autre, et aucun fait local non vérifié.
 
 `llms.txt` (racine) résume l'entreprise et ses pages clés pour les moteurs de réponse IA.
+
+## Règles de contenu (impératives)
+
+- **Aucun prix affiché** : toutes les prestations sont « sur devis, gratuit et personnalisé ».
+- **Aucun client cité nommément** (seules les plateformes du groupe servent de preuve).
+- **Rien d'invérifiable** : pas de statistique inventée, formulations prudentes sur les calendriers réglementaires.
+
+## Innovation, illustrations et données en direct
+
+| Script | Produit |
+|---|---|
+| `node zones/generate-art.mjs` | `/assets/communes/{slug}.jpg` : une illustration unique par commune/quartier (paysage + repère emblématique), rendue via Chromium |
+| `node zones/generate-veille.mjs` | `/lab/veille/` : articles de veille (MCP, agents vocaux, facturation électronique, AI Act, RAG…) |
+| `node zones/generate-lab.mjs` | `/lab/` (radar technologique) + `/lab/api.html` (catalogue d'API + démos en direct) — à lancer après la veille |
+
+- `zones/automatisations-avancees.mjs` : catalogue d'automatisations de pointe, sélectionnées automatiquement selon le tissu économique de chaque commune / métier.
+- `assets/live.js` : météo, état de la mer et données INSEE en direct sur chaque page commune + démos du Lab (API publiques, aucune clé). Open-Meteo est gratuit pour un usage non commercial : vérifier ses conditions / souscrire l'offre commerciale si nécessaire.

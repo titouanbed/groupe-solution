@@ -50,6 +50,8 @@ function meta(url, f) {
   const isAutoCity = /^automatisation\/[a-z-]+\.html$/.test(f) && !isAutoHub;
   if (isAutoHub) return { p: '0.9', c: 'weekly' };
   if (/^outils\//.test(f)) return { p: '0.8', c: 'monthly' };
+  if (f === 'lab/index.html' || f === 'lab/api.html') return { p: '0.8', c: 'weekly' };
+  if (/^lab\//.test(f)) return { p: '0.7', c: 'monthly' };
   if (/^montpellier\/guides\//.test(f)) return { p: '0.7', c: 'monthly' };
   if (isAutoCity) return { p: '0.8', c: 'monthly' };
   if (isRegion) return { p: '0.9', c: 'weekly' };

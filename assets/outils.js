@@ -1,42 +1,29 @@
 /* Groupe Solution — logique des outils gratuits (/outils/).
-   ─────────────────────────────────────────────────────────
-   ⚠️ GRILLE DE PRIX INDICATIVE : à ajuster librement ci-dessous (en €).
-      [min, max] pour chaque type ; options ajoutées aux deux bornes.
-   ───────────────────────────────────────────────────────── */
+   Aucun prix n'est affiché : tout est sur devis. */
 (function () {
-  var PRIX = {
-    base: { 'vitrine': [250, 600], 'vitrine-plus': [600, 1500], 'reservation': [900, 2500], 'ecommerce': [1500, 4500], 'surmesure': [3500, 12000] },
-    pagesIncluses: { 'vitrine': 3, 'vitrine-plus': 8, 'reservation': 6, 'ecommerce': 10, 'surmesure': 10 },
-    parPage: [40, 90],                                   // au-delà des pages incluses
-    options: { redaction: [150, 450], gbp: [90, 250], multilingue: [250, 800], logo: [150, 450], devisauto: [400, 1500], blog: [150, 400] },
-    suiviMensuel: [29, 79]
-  };
-  var LIB = { 'vitrine': 'Site vitrine simple', 'vitrine-plus': 'Site vitrine complet', 'reservation': 'Site avec réservation en ligne', 'ecommerce': 'Boutique en ligne', 'surmesure': 'Plateforme sur-mesure' };
-  var OPT = { redaction: 'Rédaction des textes', gbp: 'Fiche Google Business', multilingue: 'Version multilingue', logo: 'Logo / identité', devisauto: 'Devis automatique', blog: 'Blog / actualités' };
   var fmt = function (n) { return new Intl.NumberFormat('fr-FR').format(Math.round(n / 10) * 10) + ' €'; };
   var $ = function (id) { return document.getElementById(id); };
   function setResult(txt) { var r = $('toolResult'); if (r) r.value = txt; var m = document.querySelector('#expressForm textarea'); if (m && !m.dataset.touched) m.value = txt + '\n\nMon projet : '; }
   document.addEventListener('input', function (e) { if (e.target.matches && e.target.matches('#expressForm textarea')) e.target.dataset.touched = '1'; });
 
-  /* ── Simulateur de prix ── */
-  var prix = $('prixTool');
-  if (prix) {
-    var upd = function () {
-      var type = prix.querySelector('[name=type]:checked').value;
-      var pages = +$('pages').value; $('pagesOut').textContent = pages;
-      var min = PRIX.base[type][0], max = PRIX.base[type][1];
-      var extra = Math.max(0, pages - PRIX.pagesIncluses[type]);
-      min += extra * PRIX.parPage[0]; max += extra * PRIX.parPage[1];
-      var chosen = [].slice.call(prix.querySelectorAll('[name=opt]:checked')).map(function (x) { return x.value; });
-      chosen.forEach(function (o) { min += PRIX.options[o][0]; max += PRIX.options[o][1]; });
-      var suivi = prix.querySelector('[name=suivi]:checked').value === 'oui';
-      $('prixOut').textContent = type === 'vitrine' && !chosen.length && extra === 0 ? 'dès ' + fmt(min) : fmt(min) + ' – ' + fmt(max);
-      $('suiviOut').textContent = suivi ? '+ suivi : ' + PRIX.suiviMensuel[0] + ' à ' + PRIX.suiviMensuel[1] + ' € / mois' : '';
-      var items = [LIB[type] + ', ' + pages + ' page' + (pages > 1 ? 's' : ''), 'Design pensé mobile, rapide', 'Bases du référencement + conformité légale'].concat(chosen.map(function (o) { return OPT[o]; }));
-      $('prixList').innerHTML = items.map(function (i) { return '<li>' + i + '</li>'; }).join('');
-      setResult('Simulateur : ' + LIB[type] + ', ' + pages + ' pages' + (chosen.length ? ', options : ' + chosen.map(function (o) { return OPT[o]; }).join(', ') : '') + (suivi ? ', avec suivi mensuel' : '') + ' → estimation ' + $('prixOut').textContent + '.');
+  /* ── Configurateur de projet ── */
+  var cfg = $('cfgTool');
+  if (cfg) {
+    var LIB = { vitrine: 'Site vitrine', reservation: 'Site avec réservation en ligne', ecommerce: 'Boutique en ligne', plateforme: 'Plateforme / outil métier sur-mesure', automatisation: 'Automatisation (sans nouveau site)' };
+    var updCfg = function () {
+      var type = cfg.querySelector('[name=type]:checked').value;
+      var opts = [].slice.call(cfg.querySelectorAll('[name=opt]:checked')).map(function (x) { return x.value; });
+      var ia = [].slice.call(cfg.querySelectorAll('[name=ia]:checked')).map(function (x) { return x.value; });
+      var when = cfg.querySelector('[name=when]:checked').value;
+      var pts = { vitrine: 1, reservation: 2, ecommerce: 3, plateforme: 4, automatisation: 2 }[type] + opts.length * 0.5 + ia.length;
+      var level = pts <= 2 ? 'Essentiel' : pts <= 4.5 ? 'Avancé' : 'Sur-mesure';
+      $('cfgLevel').textContent = level;
+      $('cfgLevelTxt').textContent = level === 'Essentiel' ? 'Un projet simple, rapide à cadrer.' : level === 'Avancé' ? 'Plusieurs briques à orchestrer : on vous propose un phasage.' : 'Un vrai projet logiciel : on commence par un atelier de cadrage.';
+      var items = [LIB[type]].concat(opts, ia, ['Calendrier : ' + when.toLowerCase()]);
+      $('cfgList').innerHTML = items.map(function (i) { return '<li>' + i + '</li>'; }).join('');
+      setResult('Configurateur (' + level + ') : ' + items.join(' ; ') + '.');
     };
-    prix.addEventListener('input', upd); prix.addEventListener('change', upd); upd();
+    cfg.addEventListener('change', updCfg); updCfg();
   }
 
   /* ── Test de visibilité ── */

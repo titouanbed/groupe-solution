@@ -1,14 +1,14 @@
 # Groupe Solution (GroupSolution)
 
-> Éditeur de logiciels et d'automatisations sur-mesure, et agence de création de sites internet, basé à Montpellier (Hérault, France). Nous concevons des systèmes qui absorbent les tâches répétitives des entreprises (devis, saisie de commandes, relances, rendez-vous, documents, reporting) et des sites internet qui génèrent des demandes (dès 250 € pour un site vitrine). Devise : « Nous gagnons de l'argent uniquement si vous en gagnez. »
+> Éditeur de logiciels et d'automatisations sur-mesure, et agence de création de sites internet, basé à Montpellier (Hérault, France). Nous concevons des systèmes qui absorbent les tâches répétitives des entreprises : agents IA (vocaux, conversationnels, qui pilotent des logiciels), lecture automatique de documents, assistants branchés sur les documents internes (RAG), connexions d'outils (API, MCP), prévisions, facturation électronique et des sites internet qui génèrent des demandes. Toutes les prestations sont sur devis, gratuit et personnalisé. Devise : « Nous gagnons de l'argent uniquement si vous en gagnez. »
 
 - Fondateur : Titouan Bedos
 - Contact : 07 82 29 85 59 · contact@groupsolution.fr
 - Zone : Montpellier, Montpellier Méditerranée Métropole (30 communes), Hérault et Gard proche (75 communes ont leur page), partout en France à distance, DOM-TOM via agences locales.
-- Plateformes en production : Solution Alternance (matching IA, 200 000+ offres), Solution Recrutement (565 000+ offres), Aides Particuliers ; réalisation locale : Twenty Three Clean (devis automatique par photos, Montpellier).
+- Plateformes en production : Solution Alternance (matching IA, 200 000+ offres), Solution Recrutement (565 000+ offres), Aides Particuliers.
 
 ## Pages principales
-- [Accueil](https://www.groupsolution.fr/): logiciels sur-mesure et automatisation, exemples concrets, calculateur.
+- [Accueil](https://www.groupsolution.fr/): logiciels sur-mesure, agents IA et automatisation avancée, calculateur.
 - [Automatisation à Montpellier](https://www.groupsolution.fr/automatisation/): hub + une page par commune.
 - [Création de site internet à Montpellier](https://www.groupsolution.fr/montpellier/site-internet-montpellier.html): offre site, quartiers, communes, métiers.
 - [Réalisations](https://www.groupsolution.fr/realisations.html)
@@ -16,8 +16,13 @@
 - [Échanger / prendre rendez-vous](https://www.groupsolution.fr/echanger.html)
 - [Implantations](https://www.groupsolution.fr/implantations.html)
 
+## Lab : innovation, API et veille
+- [Lab](https://www.groupsolution.fr/lab/): technologies suivies, API gratuites avec démonstrations en direct.
+- [API & données](https://www.groupsolution.fr/lab/api.html)
+- [Veille](https://www.groupsolution.fr/lab/veille/)
+
 ## Outils gratuits
-- [Simulateur de prix de site internet](https://www.groupsolution.fr/outils/prix-site-internet.html)
+- [Configurateur de projet web et IA](https://www.groupsolution.fr/outils/configurateur-site-internet.html)
 - [Test de visibilité Google](https://www.groupsolution.fr/outils/test-visibilite-google.html)
 - [Calculateur du coût des tâches répétitives](https://www.groupsolution.fr/outils/calculateur-automatisation.html)
 

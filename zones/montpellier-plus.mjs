@@ -72,7 +72,7 @@ export const QUARTIERS = [
     reperes: ['La Paillade', 'les Hauts de Massane', 'Celleneuve', 'le stade de la Mosson', 'le terminus du tram 1'],
     tissu: "commerces de proximité, auto-entrepreneurs et jeunes entreprises, artisans, associations, services à la personne",
     web: {
-      angle: "Beaucoup d'entrepreneurs de la Mosson se lancent avec peu de moyens. Un site simple à 250 € et une fiche Google bien faite donnent tout de suite une image professionnelle et les premiers clients.",
+      angle: "Beaucoup d'entrepreneurs de la Mosson se lancent avec peu de moyens. Un site simple, chiffré sur devis selon vos moyens, et une fiche Google bien faite donnent tout de suite une image professionnelle et les premiers clients.",
       faq: { q: "Je lance mon activité avec un petit budget : qu'est-ce qui compte le plus ?", a: "D'abord une fiche Google complète (gratuite) et un site simple d'une à trois pages qui explique clairement votre offre et comment vous contacter. C'est souvent suffisant pour obtenir les premiers clients ; on enrichit ensuite." }
     },
     auto: {
@@ -151,22 +151,22 @@ export const METIERS = [
   {
     slug: 'restaurant', label: 'restaurant', plural: 'restaurateurs', h1: 'Site internet pour restaurant à Montpellier',
     title: 'Site internet pour restaurant à Montpellier | GroupSolution',
-    desc: "Site de restaurant à Montpellier : menu, réservation en ligne, click & collect, fiche Google Maps et avis. Moins de tables vides, dès 250 €. Audit gratuit.",
+    desc: "Site de restaurant à Montpellier : menu, réservation en ligne, click & collect, fiche Google Maps et avis. Moins de tables vides. Devis gratuit, audit offert.",
     hook: "À Montpellier, un client choisit son restaurant sur Google Maps en moins d'une minute : photos, note, menu, possibilité de réserver. Si l'un manque, il passe au suivant.",
     must: ["Le menu à jour, lisible sur mobile (pas un PDF illisible)", "La réservation en ligne, reliée à votre planning", "Horaires, jours de fermeture et congés toujours exacts", "Des photos réelles de la salle, de la terrasse et des plats", "Le click & collect ou la vente à emporter si vous en faites", "L'accès (tram, parking) et un bouton d'appel direct"],
     mistakes: ["Menu en PDF ou photo de l'ardoise illisible sur téléphone", "Horaires différents entre le site, Google et les réseaux", "Aucune réponse aux avis, surtout aux négatifs", "Dépendre entièrement d'une plateforme de réservation qui prend une commission par couvert"],
     cases: [['Rappels anti no-show', "Confirmation et rappel la veille avec lien d'annulation : les tables se libèrent au lieu d'être perdues."], ['Liste d\'attente automatique', "Une annulation ? La table est proposée automatiquement au client suivant."], ['Avis après le repas', "Un message de remerciement avec lien vers Google le lendemain : la note monte, la fiche aussi."], ['Commandes fournisseurs', "Les ventes du jour alimentent une proposition de commande pour le lendemain."]],
-    faq: [{ q: "Pourquoi un site si je suis déjà sur les plateformes de réservation ?", a: "Pour que les clients qui vous trouvent sur Google réservent en direct, sans commission, et pour garder la maîtrise de votre image et de votre fichier clients. Les plateformes restent un complément." }, { q: "Combien coûte un site de restaurant ?", a: "Un site vitrine avec menu et informations pratiques démarre à 250 €. Réservation intégrée, click & collect ou multilingue : sur devis clair après un échange." }],
+    faq: [{ q: "Pourquoi un site si je suis déjà sur les plateformes de réservation ?", a: "Pour que les clients qui vous trouvent sur Google réservent en direct, sans commission, et pour garder la maîtrise de votre image et de votre fichier clients. Les plateformes restent un complément." }, { q: "Combien coûte un site de restaurant ?", a: "Tout est sur devis, gratuit : le prix dépend de ce que vous voulez (menu et infos pratiques, réservation intégrée, click & collect, plusieurs langues, automatisations). Vous recevez un devis détaillé avant tout engagement." }],
     communes: ['palavas-les-flots', 'sete', 'meze', 'la-grande-motte', 'lattes', 'perols', 'marseillan', 'aigues-mortes']
   },
   {
     slug: 'artisan', label: 'artisan du bâtiment', plural: 'artisans', h1: 'Site internet pour artisan à Montpellier',
     title: 'Site internet pour artisan du bâtiment à Montpellier | GroupSolution',
-    desc: "Plombier, électricien, maçon, peintre, menuisier à Montpellier : un site qui montre vos chantiers et des devis automatiques. Plus de demandes qualifiées, dès 250 €.",
+    desc: "Plombier, électricien, maçon, peintre, menuisier à Montpellier : un site qui montre vos chantiers et des devis automatiques. Plus de demandes qualifiées, devis gratuit.",
     hook: "Plombier, électricien, maçon, peintre, menuisier, paysagiste : à Montpellier, le client tape « votre métier + sa commune », regarde trois fiches et appelle celle qui montre de vrais chantiers et de bons avis.",
     must: ["Vos réalisations en photos avant/après, localisées", "Votre zone d'intervention réelle (communes, délais)", "Un formulaire de devis qui pose les bonnes questions (et accepte les photos)", "Vos assurances et qualifications (décennale, labels) visibles", "Un bouton d'appel direct sur mobile", "Des avis clients récents"],
     mistakes: ["Un site sans aucune photo de chantier", "Des pages copiées pour chaque ville, sans contenu réel", "Un formulaire trop vague qui oblige à rappeler pour comprendre le besoin", "Laisser les demandes du week-end sans réponse jusqu'au lundi"],
-    cases: [['Devis par photos', "Le client décrit son besoin et envoie ses photos ; une estimation est préparée, vous validez d'un clic — comme pour Twenty Three Clean."], ['Relances de devis', "J+5 et J+12, poliment ; vous êtes prévenu dès qu'un devis est signé."], ['Planning et tournées', "Chantiers regroupés par secteur pour limiter les trajets dans la métropole."], ['Rappels d\'entretien', "Chaudière, clim, toiture : le client est relancé chaque année, votre planning se remplit en basse saison."]],
+    cases: [['Devis par photos', "Le client décrit son besoin et envoie ses photos ; une estimation est préparée, vous validez d'un clic."], ['Relances de devis', "J+5 et J+12, poliment ; vous êtes prévenu dès qu'un devis est signé."], ['Planning et tournées', "Chantiers regroupés par secteur pour limiter les trajets dans la métropole."], ['Rappels d\'entretien', "Chaudière, clim, toiture : le client est relancé chaque année, votre planning se remplit en basse saison."]],
     faq: [{ q: "J'ai déjà trop de travail : pourquoi un site ?", a: "Pour choisir vos chantiers : plus de demandes qualifiées, c'est la possibilité de privilégier les plus rentables et les plus proches. Et une sécurité si le bouche-à-oreille ralentit." }, { q: "Et si je n'ai pas le temps de m'en occuper ?", a: "On s'occupe de tout : textes, photos à partir de vos chantiers, fiche Google. Votre rôle : nous envoyer des photos depuis votre téléphone de temps en temps." }],
     communes: ['vendargues', 'le-cres', 'fabregues', 'saint-jean-de-vedas', 'castries', 'montarnaud', 'beaulieu', 'cournonsec']
   },
@@ -294,12 +294,12 @@ export const METIERS = [
   {
     slug: 'services-a-domicile', label: 'services à domicile', plural: 'entreprises de services à domicile', h1: 'Site internet pour services à domicile à Montpellier',
     title: 'Site internet pour ménage, jardinage, lavage auto à domicile à Montpellier | GroupSolution',
-    desc: "Ménage, jardinage, lavage auto, bricolage, garde : site avec devis ou réservation en ligne, planning des intervenants et facturation automatique. Exemple : Twenty Three Clean.",
-    hook: "Ménage, jardinage, bricolage, lavage auto à domicile : le client veut un prix et un créneau tout de suite, sans rappeler. C'est exactement ce qu'on a construit pour Twenty Three Clean à Montpellier : le client envoie ses photos, le devis part seul.",
+    desc: "Ménage, jardinage, lavage auto, bricolage, garde : site avec devis ou réservation en ligne, planning des intervenants et facturation automatique. Devis sur mesure.",
+    hook: "Ménage, jardinage, bricolage, lavage auto à domicile : le client veut un prix et un créneau tout de suite, sans rappeler. Le site peut le permettre : le client décrit son besoin ou envoie des photos, et reçoit une proposition sans attendre.",
     must: ["Un devis instantané ou une réservation en ligne", "Votre zone d'intervention (communes desservies)", "Les tarifs ou fourchettes de prix", "Les avantages fiscaux si votre activité y ouvre droit", "Des avis clients", "Un paiement en ligne simple"],
     mistakes: ["Obliger à appeler pour avoir un prix", "Un planning d'intervenants tenu à la main", "Des factures et attestations faites en fin d'année dans l'urgence", "Aucune relance des clients ponctuels"],
-    cases: [['Devis instantané par photos', "Comme pour Twenty Three Clean : le client décrit, envoie ses photos, reçoit son devis sans appel."], ['Planning des intervenants', "Interventions réparties par secteur, intervenants prévenus, clients confirmés automatiquement."], ['Facturation et attestations', "Factures après chaque intervention et documents annuels générés automatiquement."], ['Récurrence', "Les clients ponctuels reçoivent une proposition d'abonnement au bon moment."]],
-    faq: [{ q: "Pouvez-vous faire pour moi ce que vous avez fait pour Twenty Three Clean ?", a: "Oui, adapté à votre métier : devis automatique à partir de photos ou de quelques questions, réservation en ligne et planning. C'est notre réalisation locale la plus parlante." }, { q: "Mon activité ouvre droit au crédit d'impôt : que mettre en avant ?", a: "Si votre activité est déclarée comme service à la personne, l'avantage fiscal est un argument fort à afficher clairement, avec les conditions exactes. On vous aide à le présenter sans erreur." }],
+    cases: [['Devis instantané par photos', "Le client décrit son besoin, envoie ses photos et reçoit une proposition sans appel ; vous validez avant envoi."], ['Planning des intervenants', "Interventions réparties par secteur, intervenants prévenus, clients confirmés automatiquement."], ['Facturation et attestations', "Factures après chaque intervention et documents annuels générés automatiquement."], ['Récurrence', "Les clients ponctuels reçoivent une proposition d'abonnement au bon moment."]],
+    faq: [{ q: "Un devis automatique à partir de photos, c'est réaliste ?", a: "Oui : l'analyse d'images et quelques questions bien posées suffisent pour préparer une proposition que vous validez avant envoi. On l'adapte à votre métier et à vos règles de prix." }, { q: "Mon activité ouvre droit au crédit d'impôt : que mettre en avant ?", a: "Si votre activité est déclarée comme service à la personne, l'avantage fiscal est un argument fort à afficher clairement, avec les conditions exactes. On vous aide à le présenter sans erreur." }],
     communes: ['lattes', 'castelnau-le-lez', 'saint-gely-du-fesc', 'juvignac', 'perols', 'mauguio-carnon', 'teyran', 'palavas-les-flots']
   }
 ];
@@ -314,7 +314,7 @@ export const GUIDES_LINKS = [
   ['choisir-agence-web-montpellier', 'Choisir son agence web']
 ];
 export const OUTILS_LINKS = [
-  ['prix-site-internet', 'Simulateur de prix'],
+  ['configurateur-site-internet', 'Configurateur de projet'],
   ['test-visibilite-google', 'Test de visibilité Google'],
   ['calculateur-automatisation', 'Calculateur d’automatisation']
 ];
