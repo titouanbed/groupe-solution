@@ -1,0 +1,33 @@
+# Groupe Solution (GroupSolution)
+
+> Éditeur de logiciels et d'automatisations sur-mesure, et agence de création de sites internet, basé à Montpellier (Hérault, France). Nous concevons des systèmes qui absorbent les tâches répétitives des entreprises (devis, saisie de commandes, relances, rendez-vous, documents, reporting) et des sites internet qui génèrent des demandes (dès 250 € pour un site vitrine). Devise : « Nous gagnons de l'argent uniquement si vous en gagnez. »
+
+- Fondateur : Titouan Bedos
+- Contact : 07 82 29 85 59 · contact@groupsolution.fr
+- Zone : Montpellier, Montpellier Méditerranée Métropole (30 communes), Hérault et Gard proche (75 communes ont leur page), partout en France à distance, DOM-TOM via agences locales.
+- Plateformes en production : Solution Alternance (matching IA, 200 000+ offres), Solution Recrutement (565 000+ offres), Aides Particuliers ; réalisation locale : Twenty Three Clean (devis automatique par photos, Montpellier).
+
+## Pages principales
+- [Accueil](https://www.groupsolution.fr/): logiciels sur-mesure et automatisation, exemples concrets, calculateur.
+- [Automatisation à Montpellier](https://www.groupsolution.fr/automatisation/): hub + une page par commune.
+- [Création de site internet à Montpellier](https://www.groupsolution.fr/montpellier/site-internet-montpellier.html): offre site, quartiers, communes, métiers.
+- [Réalisations](https://www.groupsolution.fr/realisations.html)
+- [Solutions](https://www.groupsolution.fr/solutions.html)
+- [Échanger / prendre rendez-vous](https://www.groupsolution.fr/echanger.html)
+- [Implantations](https://www.groupsolution.fr/implantations.html)
+
+## Outils gratuits
+- [Simulateur de prix de site internet](https://www.groupsolution.fr/outils/prix-site-internet.html)
+- [Test de visibilité Google](https://www.groupsolution.fr/outils/test-visibilite-google.html)
+- [Calculateur du coût des tâches répétitives](https://www.groupsolution.fr/outils/calculateur-automatisation.html)
+
+## Guides
+- [Prix d'un site internet à Montpellier](https://www.groupsolution.fr/montpellier/guides/prix-site-internet-montpellier.html)
+- [Apparaître sur Google Maps à Montpellier](https://www.groupsolution.fr/montpellier/guides/apparaitre-google-maps-montpellier.html)
+- [Automatiser ses devis d'artisan](https://www.groupsolution.fr/montpellier/guides/automatiser-devis-artisan.html)
+- [Obligations légales d'un site professionnel](https://www.groupsolution.fr/montpellier/guides/obligations-legales-site-internet.html)
+- [Relancer ses factures impayées automatiquement](https://www.groupsolution.fr/montpellier/guides/relances-factures-impayees-automatiques.html)
+- [Choisir son agence web à Montpellier](https://www.groupsolution.fr/montpellier/guides/choisir-agence-web-montpellier.html)
+
+## Métiers accompagnés (Montpellier)
+Restaurants, artisans du bâtiment, professionnels de santé, avocats, experts-comptables, agences immobilières, coiffeurs et instituts, coachs et salles de sport, hébergements, domaines viticoles, commerces, garages, organismes de formation, services à domicile.

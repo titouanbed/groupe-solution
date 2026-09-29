@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.groupsolution.fr/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-montpellier.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -59,6 +59,24 @@
     <lastmod>2026-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/agde.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/aigues-mortes.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/aniane.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.groupsolution.fr/automatisation/assas.html</loc>
@@ -85,7 +103,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/automatisation/beziers.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/automatisation/bouzigues.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/candillargues.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -104,6 +134,18 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/automatisation/clapiers.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/clermont-l-herault.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/combaillaux.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -128,6 +170,12 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/automatisation/frontignan.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/ganges.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -169,6 +217,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/automatisation/lansargues.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/automatisation/lattes.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -187,13 +241,49 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/automatisation/le-grau-du-roi.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/les-matelles.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/lodeve.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/automatisation/loupian.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/automatisation/lunel-viel.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/automatisation/lunel.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/marseillan.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/marsillargues.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -206,6 +296,18 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/automatisation/meze.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/mireval.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/montarnaud.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -229,7 +331,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/automatisation/mudaison.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/automatisation/murviel-les-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/nimes.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -242,6 +356,12 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/automatisation/perols.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/pezenas.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -319,6 +439,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/automatisation/saint-martin-de-londres.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/automatisation/saint-mathieu-de-treviers.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -337,6 +463,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/automatisation/sommieres.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/automatisation/sussargues.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -349,7 +481,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/automatisation/vailhauques.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/automatisation/vendargues.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/automatisation/vic-la-gardiole.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -439,7 +583,43 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-agde.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-agence-immobiliere-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-aigues-mortes.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-aniane.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-artisan-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-assas.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-avocat-montpellier.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -463,7 +643,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-beziers.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-bouzigues.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-candillargues.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -487,6 +679,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-clermont-l-herault.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-coach-salle-de-sport-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-coiffeur-esthetique-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-combaillaux.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-commerce-boutique-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-cournonsec.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -499,6 +721,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-domaine-viticole-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-expert-comptable-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-fabregues.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -506,6 +740,18 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-frontignan.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-ganges.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-garage-automobile-montpellier.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -529,6 +775,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-hebergement-gite-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-jacou.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -542,6 +794,12 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-la-grande-motte.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-lansargues.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -565,13 +823,49 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-le-grau-du-roi.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-les-matelles.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-lodeve.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-loupian.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-lunel-viel.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-lunel.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-marseillan.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-marsillargues.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -584,6 +878,18 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-meze.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-mireval.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-montarnaud.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -607,7 +913,67 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-montpellier-centre.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-montpellier-cevennes.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-montpellier-croix-d-argent.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-montpellier-hopitaux-facultes.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-montpellier-mosson.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-montpellier-port-marianne.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-montpellier-pres-d-arenes.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-mudaison.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-murviel-les-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-nimes.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-organisme-de-formation-montpellier.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -620,6 +986,12 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-perols.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-pezenas.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -638,6 +1010,18 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-prades-le-lez.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-professionnel-de-sante-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-restaurant-montpellier.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -697,6 +1081,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-saint-martin-de-londres.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-saint-mathieu-de-treviers.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -709,7 +1099,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-services-a-domicile-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-sete.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-sommieres.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -727,7 +1129,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-vailhauques.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/montpellier/site-internet-vendargues.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/site-internet-vic-la-gardiole.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -765,6 +1179,30 @@
   <url>
     <loc>https://www.groupsolution.fr/nouvelle-caledonie/site-internet-noumea.html</loc>
     <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/outils/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/outils/calculateur-automatisation.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/outils/prix-site-internet.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/outils/test-visibilite-google.html</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -818,13 +1256,13 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/a-propos.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.groupsolution.fr/echanger.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -890,7 +1328,7 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/implantations.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -961,6 +1399,48 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/montpellier/guides/apparaitre-google-maps-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/guides/automatiser-devis-artisan.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/guides/choisir-agence-web-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/guides/index.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/guides/obligations-legales-site-internet.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/guides/prix-site-internet-montpellier.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/montpellier/guides/relances-factures-impayees-automatiques.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/nouvelle-caledonie/blog/</loc>
     <lastmod>2026-09-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -992,7 +1472,7 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/partenariats.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1028,7 +1508,7 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/realisations.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1064,13 +1544,13 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/solutions.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.groupsolution.fr/articles/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

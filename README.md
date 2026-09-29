@@ -35,17 +35,22 @@ npm install
 npm run test:slots      # tests de la logique de créneaux (buffer 30 min, horaires, free/busy)
 ```
 
-## Montpellier & alentours (51 communes)
+## Montpellier & alentours (75 communes, 7 quartiers, 14 métiers)
 
-Deux familles de pages générées depuis **un seul registre** : `zones/montpellier-communes.mjs`
+Deux familles de pages générées depuis **un seul registre** : `zones/montpellier-communes.mjs` (+ `zones/communes-extension.mjs` pour Nîmes, Béziers, Agde, Cévennes…)
 (portrait, repères, tissu économique, cas d'automatisation et FAQ propres à chaque commune).
 
 | Script | Produit |
 |---|---|
 | `node zones/generate-montpellier.mjs` | `/montpellier/site-internet-{commune}.html` (création de site, charte silo) + bloc carte du hub |
 | `node zones/generate-automatisation.mjs` | `/automatisation/` (hub) + `/automatisation/{commune}.html` (logiciel & automatisation, charte holding) |
+| `node zones/generate-montpellier-plus.mjs` | `/montpellier/site-internet-{metier}-montpellier.html` (14 métiers, registre `zones/montpellier-plus.mjs` — quartiers inclus dans generate-montpellier) |
+| `node zones/generate-guides.mjs` | `/montpellier/guides/` (6 guides longs + index) |
+| `node zones/generate-outils.mjs` | `/outils/` : simulateur de prix (grille éditable en tête de `assets/outils.js`), test de visibilité Google, calculateur d'automatisation |
 | `node zones/generate-implantations.mjs` | `/implantations.html` (inclut la carte Montpellier) |
 | `node zones/generate-sitemap.mjs` | `/sitemap.xml` (après `git add`) |
 
 Ne pas éditer ces pages à la main : modifier le registre ou le générateur, puis relancer.
 Règle : jamais de contenu copié d'une commune à l'autre, et aucun fait local non vérifié.
+
+`llms.txt` (racine) résume l'entreprise et ses pages clés pour les moteurs de réponse IA.

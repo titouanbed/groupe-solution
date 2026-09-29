@@ -11,16 +11,28 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { HOLDING } from './zones.mjs';
 import { COMMUNES, neighbours, km } from './montpellier-communes.mjs';
-import { esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
+import { QUARTIERS, METIERS, GUIDES_LINKS, OUTILS_LINKS } from './montpellier-plus.mjs';
+import { aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = 'montpellier';
 const HUB_FILE = 'site-internet-montpellier.html';
-const file = c => `site-internet-${c.slug}.html`;
-const autoHref = c => `../automatisation/${c.slug}.html`;
+const file = c => c.file || `site-internet-${c.slug}.html`;
+const autoHref = c => c.autoHref || `../automatisation/${c.slug}.html`;
+const isQ = c => c.placeType === 'Place';
+const metierFile = m => `site-internet-${m.slug}-montpellier.html`;
+
+/* Maillage intra-muros + métiers, ajouté sous la liste des communes. */
+function extraLists(current) {
+  return `<div class="gm-list">
+    <div><h4>Quartiers de Montpellier</h4><ul>${QUARTIERS.map(q => `<li><a href="${file(q)}"${q.slug === current ? ' class="is-cur" aria-current="page"' : ''}>${esc(q.name)}</a></li>`).join('')}</ul></div>
+    <div class="gm-wide"><h4>Par métier</h4><ul>${METIERS.map(m => `<li><a href="${metierFile(m)}">${esc(m.label.charAt(0).toUpperCase() + m.label.slice(1))}</a></li>`).join('')}</ul></div>
+    <div><h4>Guides pratiques</h4><ul>${GUIDES_LINKS.map(([s, l]) => `<li><a href="guides/${s}.html">${esc(l)}</a></li>`).join('')}</ul></div>
+    <div><h4>Outils gratuits</h4><ul>${OUTILS_LINKS.map(([s, l]) => `<li><a href="../outils/${s}.html">${esc(l)}</a></li>`).join('')}</ul></div>
+  </div>`;
+}
 
 /* Nom avec la bonne préposition : « à Lattes », « au Crès », « à La Grande-Motte ». */
-export const aName = c => c.name.startsWith('Le ') ? 'au ' + c.name.slice(3) : 'à ' + c.name;
 
 /* Choix déterministe (stable d'une génération à l'autre) dans un pool. */
 function pick(pool, seed, n) {
@@ -34,7 +46,7 @@ function pick(pool, seed, n) {
 const GENERIC_FAQ = [
   c => ({ q: `Combien coûte un site internet ${aName(c)} ?`, a: `Nos sites vitrines démarrent à 250 €. Pour la réservation en ligne, la vente ou un devis automatique, on établit un devis clair après un court échange — le prix est le même ${aName(c)} qu'à Montpellier.` }),
   c => ({ q: `En combien de temps mon site peut-il être en ligne ?`, a: `Pour un site vitrine, comptez en général une à deux semaines entre le premier échange et la mise en ligne, selon la rapidité à rassembler textes et photos. On vous guide à chaque étape.` }),
-  c => ({ q: `Faut-il se rencontrer pour travailler ensemble ?`, a: `Non, mais c'est possible. La plupart des échanges se font par téléphone ou visio, ce qui va plus vite. Nous sommes basés à Montpellier, à environ ${Math.max(1, Math.round(km({ lat: 43.6108, lng: 3.8767 }, c)))} km : on se déplace ${aName(c)} quand le projet le demande.` }),
+  c => ({ q: `Faut-il se rencontrer pour travailler ensemble ?`, a: `Non, mais c'est possible. La plupart des échanges se font par téléphone ou visio, ce qui va plus vite. ${isQ(c) ? `Nous sommes basés à Montpellier : on se déplace ${aName(c)} sans difficulté quand le projet le demande.` : `Nous sommes basés à Montpellier, à environ ${Math.max(1, Math.round(km({ lat: 43.6108, lng: 3.8767 }, c)))} km : on se déplace ${aName(c)} quand le projet le demande.`}` }),
   c => ({ q: `Le référencement Google est-il inclus ?`, a: `Chaque site est livré avec les bases techniques du référencement (vitesse, balises, données structurées, version mobile). La fiche Google Business et le travail local pour ressortir sur « votre métier ${aName(c)} » font l'objet d'un accompagnement dédié.` }),
   c => ({ q: `Qui s'occupe du site une fois en ligne ?`, a: `Vous pouvez le faire vous-même ou nous le confier. Hébergement, sécurité, petites modifications : on propose un suivi simple pour que votre site reste à jour sans que vous ayez à vous en soucier.` }),
   c => ({ q: `Mon site actuel est vieillissant : faut-il tout refaire ?`, a: `Pas forcément. On commence par un audit gratuit : parfois quelques corrections (vitesse, mobile, textes, fiche Google) suffisent. Si une refonte est préférable, on vous explique pourquoi, chiffres à l'appui.` }),
@@ -62,7 +74,7 @@ function page(c) {
   const tissuShort = c.tissu.split(',').slice(0, 2).join(',');
   const title = `Création de site internet ${aName(c)} (${c.cp}) | GroupSolution`;
   const desc = `Site internet, fiche Google et référencement local pour les ${tissuShort} ${aName(c)}. Sites dès 250 €, audit gratuit en 15 min.`;
-  const dist = d <= 2 ? 'aux portes de Montpellier' : `à ${d} km ${dir} de Montpellier`;
+  const dist = isQ(c) ? 'en plein Montpellier' : d <= 2 ? 'aux portes de Montpellier' : `à ${d} km ${dir} de Montpellier`;
   return `<!doctype html>
 <html lang="fr">
 <head>
@@ -99,7 +111,7 @@ function page(c) {
         "priceRange": "€€",
         "address": { "@type": "PostalAddress", "addressLocality": "Montpellier", "addressRegion": "Occitanie", "postalCode": "34000", "addressCountry": "FR" },
         "areaServed": [
-          { "@type": "City", "name": ${jstr(c.name)}, "postalCode": "${c.cp}", "geo": { "@type": "GeoCoordinates", "latitude": ${c.lat}, "longitude": ${c.lng} } },
+          { "@type": "${c.placeType || 'City'}", "name": ${jstr(c.name)}, "postalCode": "${c.cp}", "geo": { "@type": "GeoCoordinates", "latitude": ${c.lat}, "longitude": ${c.lng} } },
 ${near.slice(0, 4).map(n => `          { "@type": "City", "name": ${jstr(n.name)} }`).join(',\n')}
         ],
         "hasOfferCatalog": {
@@ -346,13 +358,14 @@ ${faq.map(f => `        <div class="faq-item reveal"><div class="faq-q">${esc(f.
       <div class="section-header">
         <span class="section-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-map-pin"/></svg> Autour de ${esc(c.name)}</span>
         <h2>On intervient aussi <span class="accent">tout près</span></h2>
-        <p>${near.slice(0, 5).map(n => `<a href="${file(n)}">${esc(n.name)}</a>`).join(', ')} — et partout entre Montpellier, la mer, le bassin de Thau et le Pic Saint-Loup.</p>
+        <p>${near.slice(0, 5).map(n => `<a href="${file(n)}">${esc(n.name)}</a>`).join(', ')} — et partout de Nîmes à Béziers, de la mer aux Cévennes.</p>
       </div>
       <div class="gm-wrap reveal">
         ${mapSvg({ current: c.slug, href: n => file(n), hubHref: HUB_FILE, label: `Carte des communes desservies autour de ${c.name}` })}
         <div class="gm-legend"><span><i style="background:#262626"></i>Montpellier (base)</span><span><i style="background:#EC4899"></i>${esc(c.name)}</span><span><i style="background:#9ca3af"></i>Métropole</span><span><i style="background:#d1d5db"></i>Alentours</span></div>
       </div>
       ${communesList({ current: c.slug, href: n => file(n) })}
+      ${extraLists(c.slug)}
     </div>
   </section>
 
@@ -431,7 +444,7 @@ ${faq.map(f => `        <div class="faq-item reveal"><div class="faq-q">${esc(f.
 }
 
 /* ── Écriture des pages ── */
-for (const c of COMMUNES) writeFileSync(join(ROOT, DIR, file(c)), page(c), 'utf8');
+for (const c of [...COMMUNES, ...QUARTIERS]) writeFileSync(join(ROOT, DIR, file(c)), page(c), 'utf8');
 
 /* ── Bloc communes de la page hub (entre marqueurs) ── */
 const hubPath = join(ROOT, DIR, HUB_FILE);
@@ -442,13 +455,14 @@ const block = `<!-- COMMUNES:START (généré par zones/generate-montpellier.mjs
       <div class="section-header">
         <span class="section-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-map-pin"/></svg> ${COMMUNES.length} communes couvertes</span>
         <h2>Votre commune a <span class="accent">sa propre page</span></h2>
-        <p>Les 30 communes de la Métropole, le bassin de Thau, le littoral, le Pic Saint-Loup, Lunel et la vallée de l'Hérault : chaque page parle de votre territoire, de vos clients et de ce qui marche chez vous.</p>
+        <p>Les 30 communes de la Métropole, le bassin de Thau, le littoral, le Pic Saint-Loup, la Petite Camargue, et jusqu'à Nîmes, Béziers, Agde et les Cévennes : chaque page parle de votre territoire, de vos clients et de ce qui marche chez vous.</p>
       </div>
       <div class="gm-wrap reveal">
         ${mapSvg({ current: null, href: n => file(n), hubHref: HUB_FILE, label: 'Carte des communes desservies autour de Montpellier' })}
         <div class="gm-legend"><span><i style="background:#262626"></i>Montpellier (base)</span><span><i style="background:#9ca3af"></i>Métropole</span><span><i style="background:#d1d5db"></i>Alentours</span></div>
       </div>
       ${communesList({ href: n => file(n) })}
+      ${extraLists(null)}
     </div>
   </section>
   <!-- COMMUNES:END -->`;
@@ -512,4 +526,4 @@ ${MAP_CSS}
 ${STICKY_CSS}
 `, 'utf8');
 
-console.log(`✓ ${COMMUNES.length} pages site internet générées dans /${DIR}/ + hub mis à jour + communes.css`);
+console.log(`✓ ${COMMUNES.length} communes + ${QUARTIERS.length} quartiers : site internet générées dans /${DIR}/ + hub mis à jour + communes.css`);

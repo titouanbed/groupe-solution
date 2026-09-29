@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculateur : combien vous coûtent vos tâches répétitives ? | GroupSolution</title>
+  <meta name="description" content="Devis, saisie, relances, rendez-vous, documents : cochez vos tâches répétitives et calculez le temps et l'argent récupérables grâce à l'automatisation." />
+  <link rel="canonical" href="https://www.groupsolution.fr/outils/calculateur-automatisation.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Calculateur : combien vous coûtent vos tâches répétitives ? | GroupSolution" />
+  <meta property="og:description" content="Devis, saisie, relances, rendez-vous, documents : cochez vos tâches répétitives et calculez le temps et l'argent récupérables grâce à l'automatisation." />
+  <meta property="og:url" content="https://www.groupsolution.fr/outils/calculateur-automatisation.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/holding-local.css" />
+  <style>
+.gs-sticky{display:none}
+@media(max-width:760px){
+  .gs-sticky{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:900;gap:8px;background:rgba(23,22,19,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .gs-sticky a,.gs-sticky button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:12px;font:800 14px/1 inherit;font-family:inherit;text-decoration:none;border:0;cursor:pointer}
+  .gs-sticky .s1{background:#fff;color:#171613}
+  .gs-sticky .s2{background:#E61E4D;color:#fff}
+  body{padding-bottom:84px}
+}
+    .tool{max-width:1000px;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--sh-m);overflow:hidden}
+    .toolGrid{display:grid;grid-template-columns:1.25fr .75fr}
+    .toolIn{padding:34px}
+    .toolOut{background:var(--ink);color:#fff;padding:34px;display:flex;flex-direction:column;gap:14px;position:sticky;top:90px;align-self:start;min-height:100%}
+    .toolOut .big{font-family:var(--serif);font-size:clamp(34px,4.4vw,50px);line-height:1.05;letter-spacing:-.03em}
+    .toolOut .lbl{font-size:13px;color:#BDB9AE;font-weight:600}
+    .toolOut ul{list-style:none;display:grid;gap:7px;font-size:14px;color:#E7E4DC}
+    .toolOut li::before{content:"✓ ";color:#7DD3B0;font-weight:800}
+    .toolOut .btn{margin-top:6px}
+    .fs{border:0;margin:0 0 26px}
+    .fs legend{font-weight:800;font-size:15px;margin-bottom:12px}
+    .opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+    .opt{position:relative}
+    .opt input{position:absolute;opacity:0;pointer-events:none}
+    .opt span{display:block;height:100%;padding:13px 15px;border:1.5px solid var(--line2);border-radius:14px;cursor:pointer;font-size:14px;font-weight:700;transition:border-color .15s,background .15s}
+    .opt span small{display:block;font-weight:500;color:var(--muted);font-size:12.5px;margin-top:3px}
+    .opt input:checked + span{border-color:var(--acc);background:var(--acc-soft)}
+    .opt input:focus-visible + span{outline:3px solid var(--acc-ring)}
+    .range label{display:block;font-size:14px;font-weight:700}.range label b{float:right;font-family:var(--serif);font-size:18px;color:var(--olive2)}
+    .range input{width:100%;margin-top:10px;accent-color:var(--acc)}
+    .q{padding:16px 0;border-bottom:1px solid var(--line)}
+    .q p{font-weight:700;font-size:15px;margin-bottom:10px}
+    .q .opts{grid-template-columns:repeat(3,1fr)}
+    .q .opt span{text-align:center;padding:10px}
+    .score{font-family:var(--serif);font-size:64px;line-height:1}
+    .bar{height:10px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}.bar i{display:block;height:100%;width:0;background:#E61E4D;transition:width .5s var(--ease)}
+    .actions{counter-reset:a;display:grid;gap:10px}
+    .actions div{counter-increment:a;background:rgba(255,255,255,.07);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.5}
+    .actions div::before{content:counter(a) ". ";font-weight:800;color:#FF7A99}
+    .task{display:grid;grid-template-columns:auto 1fr 120px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+    .task input[type=checkbox]{width:20px;height:20px;accent-color:var(--acc)}
+    .task label{font-weight:700;font-size:14.5px}.task label small{display:block;font-weight:500;color:var(--muted);font-size:12.5px}
+    .task input[type=number]{width:100%;padding:9px 10px;border:1px solid var(--line2);border-radius:10px;font-family:var(--sans);font-size:14px}
+    .disclaimer{max-width:1000px;margin:14px auto 0;font-size:12.5px;color:var(--muted);text-align:center}
+    .toolsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .toolCard{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:30px;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+    .toolCard:hover{transform:translateY(-5px);box-shadow:var(--sh-l)}
+    .toolCard .ic{width:52px;height:52px;border-radius:16px;background:var(--acc-soft);color:var(--acc);display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-weight:600;margin-bottom:18px}
+    .toolCard h2{font-size:24px;font-weight:600}.toolCard p{color:var(--secondary);font-size:15px;margin-top:10px;flex:1}
+    .toolCard .go{margin-top:18px;font-weight:800;color:var(--acc)}
+    @media(max-width:900px){.toolGrid,.toolsGrid{grid-template-columns:1fr}.toolOut{position:static}.q .opts{grid-template-columns:1fr 1fr 1fr}}
+    @media(max-width:600px){.toolIn,.toolOut{padding:24px}.task{grid-template-columns:auto 1fr;}.task input[type=number]{grid-column:2}}
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Calculateur de gain d'automatisation",
+      "url": "https://www.groupsolution.fr/outils/calculateur-automatisation.html",
+      "description": "Devis, saisie, relances, rendez-vous, documents : cochez vos tâches répétitives et calculez le temps et l'argent récupérables grâce à l'automatisation.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Tous (navigateur web)",
+      "isAccessibleForFree": true,
+      "inLanguage": "fr-FR",
+      "offers": {
+        "@type": "Offer",
+        "price": 0,
+        "priceCurrency": "EUR"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Groupe Solution",
+        "url": "https://www.groupsolution.fr/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Outils gratuits",
+          "item": "https://www.groupsolution.fr/outils/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Calculateur de gain d'automatisation",
+          "item": "https://www.groupsolution.fr/outils/calculateur-automatisation.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Pourquoi 60 % et pas 100 % ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Parce qu'une automatisation honnête laisse à l'humain la décision et les cas particuliers. 60 % est une hypothèse prudente ; sur certaines tâches très répétitives (relances, saisie), le taux réel est souvent plus élevé."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien coûte une automatisation ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ça dépend de la tâche, mais on part toujours du gain calculé ici : on ne propose que ce qui se rembourse nettement. Notre devise : nous gagnons de l'argent uniquement si vous en gagnez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mes réponses sont-elles envoyées quelque part ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non, le calcul se fait dans votre navigateur. Vous pouvez choisir de nous transmettre le résultat via le formulaire pour en discuter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Et si je ne sais pas combien de temps je passe sur chaque tâche ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gardez les valeurs par défaut, elles correspondent à ce qu'on observe souvent dans les petites entreprises. Lors de l'appel, on affine ensemble."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Outils gratuits</a><a href="../automatisation/">Automatisation</a><a href="../montpellier/site-internet-montpellier.html">Sites internet</a><a href="../montpellier/guides/">Guides</a><a class="cta" href="#contact">Être rappelé</a></nav></div></header>
+<main>
+  <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <a href="./">Outils gratuits</a> › <span>Calculateur de gain d'automatisation</span></div>
+  <section class="hero" style="padding-bottom:40px"><div class="wrap" style="max-width:820px;text-align:center">
+    <div class="kicker reveal">Outil gratuit · 1 minute</div>
+    <h1 class="reveal">Combien vous coûtent vos tâches répétitives ?</h1>
+    <p class="lead reveal" style="margin-left:auto;margin-right:auto">Cochez les tâches qui reviennent chaque semaine dans votre entreprise, ajustez les temps, et voyez ce qu'elles vous coûtent vraiment — et ce que l'automatisation peut vous rendre.</p>
+  </div></section>
+  <section class="sec" style="padding-top:10px"><div class="wrap">
+    <div class="tool reveal" id="calcTool"><div class="toolGrid">
+      <div class="toolIn">
+        <fieldset class="fs"><legend>1. Vos tâches répétitives (heures par semaine, toute l'équipe)</legend>
+          <div class="task"><input type="checkbox" id="t-devis" data-k="devis" checked /><label for="t-devis">Rédiger et envoyer des devis<small>Chiffrage, mise en forme, envoi</small></label><input type="number" min="0" max="80" step="0.5" value="3" aria-label="Heures par semaine — Rédiger et envoyer des devis" data-h="devis" /></div>
+          <div class="task"><input type="checkbox" id="t-saisie" data-k="saisie" checked /><label for="t-saisie">Ressaisir des commandes ou des données<small>D'un e-mail, PDF ou tableur vers un logiciel</small></label><input type="number" min="0" max="80" step="0.5" value="4" aria-label="Heures par semaine — Ressaisir des commandes ou des données" data-h="saisie" /></div>
+          <div class="task"><input type="checkbox" id="t-relances" data-k="relances" checked /><label for="t-relances">Relancer devis et factures impayées<small>E-mails, appels, suivi</small></label><input type="number" min="0" max="80" step="0.5" value="2" aria-label="Heures par semaine — Relancer devis et factures impayées" data-h="relances" /></div>
+          <div class="task"><input type="checkbox" id="t-rdv" data-k="rdv" checked /><label for="t-rdv">Gérer les rendez-vous et rappels<small>Appels, messages, confirmations</small></label><input type="number" min="0" max="80" step="0.5" value="3" aria-label="Heures par semaine — Gérer les rendez-vous et rappels" data-h="rdv" /></div>
+          <div class="task"><input type="checkbox" id="t-docs" data-k="docs" /><label for="t-docs">Classer et chercher des documents<small>Pièces clients, justificatifs</small></label><input type="number" min="0" max="80" step="0.5" value="2" aria-label="Heures par semaine — Classer et chercher des documents" data-h="docs" /></div>
+          <div class="task"><input type="checkbox" id="t-reporting" data-k="reporting" /><label for="t-reporting">Préparer des tableaux de suivi<small>Exports, copier-coller, calculs</small></label><input type="number" min="0" max="80" step="0.5" value="2" aria-label="Heures par semaine — Préparer des tableaux de suivi" data-h="reporting" /></div>
+          <div class="task"><input type="checkbox" id="t-questions" data-k="questions" /><label for="t-questions">Répondre aux mêmes questions<small>Horaires, tarifs, disponibilité</small></label><input type="number" min="0" max="80" step="0.5" value="2" aria-label="Heures par semaine — Répondre aux mêmes questions" data-h="questions" /></div>
+          <div class="task"><input type="checkbox" id="t-factures" data-k="factures" /><label for="t-factures">Établir les factures<small>Après chaque prestation ou commande</small></label><input type="number" min="0" max="80" step="0.5" value="2" aria-label="Heures par semaine — Établir les factures" data-h="factures" /></div>
+        </fieldset>
+        <fieldset class="fs range"><legend>2. Coût horaire chargé moyen</legend><label>Coût horaire <b id="rateOut">35 €</b><input type="range" id="rate" min="15" max="150" step="5" value="35" /></label></fieldset>
+      </div>
+      <aside class="toolOut" aria-live="polite">
+        <span class="lbl">Coût annuel de ces tâches</span>
+        <div class="big" id="calcCost">—</div>
+        <span class="lbl" id="calcHours"></span>
+        <ul>
+          <li id="calcSaved"></li>
+          <li id="calcDays"></li>
+          <li id="calcTop"></li>
+        </ul>
+        <a class="btn" href="#contact" id="calcCta">Voir ce qu'on peut automatiser →</a>
+        <span class="lbl">Hypothèse : 60 % automatisable, 45 semaines/an.</span>
+      </aside>
+    </div></div>
+  </div></section>
+
+  <section class="sec" id="faq"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Questions fréquentes</div><h2>Bon à savoir.</h2></div>
+    <div class="faq">
+      <details class="reveal"><summary>Pourquoi 60 % et pas 100 % ?</summary><p>Parce qu'une automatisation honnête laisse à l'humain la décision et les cas particuliers. 60 % est une hypothèse prudente ; sur certaines tâches très répétitives (relances, saisie), le taux réel est souvent plus élevé.</p></details>
+      <details class="reveal"><summary>Combien coûte une automatisation ?</summary><p>Ça dépend de la tâche, mais on part toujours du gain calculé ici : on ne propose que ce qui se rembourse nettement. Notre devise : nous gagnons de l'argent uniquement si vous en gagnez.</p></details>
+      <details class="reveal"><summary>Mes réponses sont-elles envoyées quelque part ?</summary><p>Non, le calcul se fait dans votre navigateur. Vous pouvez choisir de nous transmettre le résultat via le formulaire pour en discuter.</p></details>
+      <details class="reveal"><summary>Et si je ne sais pas combien de temps je passe sur chaque tâche ?</summary><p>Gardez les valeurs par défaut, elles correspondent à ce qu'on observe souvent dans les petites entreprises. Lors de l'appel, on affine ensemble.</p></details>
+    </div>
+  </div></section>
+
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <h2>Transformez ce chiffre en plan d’action</h2>
+      <p>Votre calcul est joint automatiquement. En 10 minutes d'appel, on identifie la première automatisation à mettre en place et ce qu'elle vous rapportera.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="outils/calculateur-automatisation" />
+        <input type="hidden" name="resultat" id="toolResult" value="" />
+        <label class="full">Votre projet ou votre question<textarea name="message" required></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité et votre commune (optionnel)<input name="entreprise" placeholder="ex : restaurant à Sète" /></label>
+        <button class="btn" type="submit">Envoyer →</button>
+      </form>
+      <p class="alts">Plus rapide : <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="../echanger.html#rendez-vous">Réserver 10 min en visio</a></p>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Les autres outils</div><h2>Continuez le diagnostic.</h2></div>
+    <div class="toolsGrid">
+      <a class="toolCard reveal" href="prix-site-internet.html"><div class="ic">€</div><h2>Simulateur de prix de site internet</h2><p>Vitrine, réservation, e-commerce, sur-mesure : choisissez ce dont vous avez besoin, le simulateur affiche une fourchette indicative et ce qu'elle comprend. Sans inscription.</p><span class="go">Essayer →</span></a>
+      <a class="toolCard reveal" href="test-visibilite-google.html"><div class="ic">G</div><h2>Test de visibilité Google</h2><p>Dix questions sur votre fiche Google, votre site et vos avis. Vous obtenez un score sur 100 et les trois actions qui vous rapporteront le plus de clients, dans l'ordre.</p><span class="go">Essayer →</span></a>
+      <a class="toolCard reveal" href="../montpellier/guides/"><div class="ic">¶</div><h2>Guides pratiques</h2><p>Prix d'un site, Google Maps, devis automatiques, obligations légales, relances d'impayés : nos guides détaillés.</p><span class="go">Lire →</span></a>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../index.html">Accueil</a>
+    <a href="./">Outils gratuits</a>
+    <a href="prix-site-internet.html">Simulateur de prix</a>
+    <a href="test-visibilite-google.html">Test Google</a>
+    <a href="calculateur-automatisation.html">Calculateur</a>
+    <a href="../montpellier/guides/">Guides</a>
+    <a href="../echanger.html">Échanger</a>
+  </nav>
+</div></footer>
+<div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Être rappelé</a></div>
+<script src="../assets/outils.js" defer></script>
+<script src="../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

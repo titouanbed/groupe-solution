@@ -11,8 +11,12 @@ export const jstr = s => JSON.stringify(String(s));
 export const SECTEUR_ORDER = [
   'Nord de la métropole', 'Nord-est de la métropole', 'Nord-ouest de la métropole', 'Est de la métropole',
   'Ouest de la métropole', 'Sud de la métropole', 'Nord de Montpellier', "Pays de l'Or", 'Littoral',
-  'Pays de Lunel', 'Bassin de Thau', 'Pic Saint-Loup', "Vallée de l'Hérault"
+  'Pays de Lunel', 'Petite Camargue', 'Vidourle', 'Nîmes', 'Bassin de Thau', "Agde & Pézenas", 'Biterrois',
+  'Pic Saint-Loup', 'Cévennes héraultaises', "Vallée de l'Hérault", "Cœur d'Hérault"
 ];
+
+/* « à Lattes », « au Crès », « aux Matelles », « à La Grande-Motte ». */
+export const aName = c => c.aname ? c.aname : c.name.startsWith('Le ') ? 'au ' + c.name.slice(3) : c.name.startsWith('Les ') ? 'aux ' + c.name.slice(4) : 'à ' + c.name;
 
 export function bySecteur() {
   const map = new Map(SECTEUR_ORDER.map(s => [s, []]));
@@ -35,7 +39,7 @@ const SCALE = (W - PAD * 2) / ((maxLng - minLng) * K);
 const H = Math.round((maxLat - minLat) * SCALE + PAD * 2);
 const px = c => [Math.round(PAD + (c.lng - minLng) * K * SCALE), Math.round(PAD + (maxLat - c.lat) * SCALE)];
 
-const LABELLED = new Set(['sete', 'lunel', 'meze', 'la-grande-motte', 'gignac', 'palavas-les-flots', 'saint-mathieu-de-treviers', 'villeveyrac', 'vendargues', 'lattes', 'juvignac', 'castelnau-le-lez']);
+const LABELLED = new Set(['sete', 'lunel', 'meze', 'gignac', 'palavas-les-flots', 'villeveyrac', 'nimes', 'beziers', 'agde', 'pezenas', 'lodeve', 'ganges', 'clermont-l-herault', 'aigues-mortes', 'le-grau-du-roi', 'sommieres']);
 
 /**
  * @param {object} o
@@ -77,6 +81,7 @@ export const MAP_CSS = `
 .gm-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--gm-muted);font-weight:600;margin:10px 4px 0}
 .gm-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 .gm-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px 28px;margin-top:30px}
+.gm-wide{grid-column:span 2}@media(max-width:560px){.gm-wide{grid-column:auto}}
 .gm-list h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gm-muted);margin-bottom:8px;font-weight:800}
 .gm-list ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}
 .gm-list a{display:inline-block;padding:5px 11px;border-radius:999px;border:1px solid var(--gm-line);background:#fff;font-size:13.5px;font-weight:600;color:var(--gm-ink);text-decoration:none;transition:border-color .2s,color .2s}

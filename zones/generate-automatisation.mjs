@@ -11,12 +11,11 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { HOLDING } from './zones.mjs';
 import { COMMUNES, neighbours } from './montpellier-communes.mjs';
-import { esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
+import { aName, esc, jstr, mapSvg, communesList, distanceText, MAP_CSS, STICKY_CSS } from './lib-local.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = 'automatisation';
 mkdirSync(join(ROOT, DIR), { recursive: true });
-const aName = c => c.name.startsWith('Le ') ? 'au ' + c.name.slice(3) : 'à ' + c.name;
 const siteHref = c => `../montpellier/site-internet-${c.slug}.html`;
 const FORM = 'https://formspree.io/f/mzebrvjg';
 
@@ -225,6 +224,7 @@ ${express(c)}
     <div class="near">${near.map(n => `<a href="${n.slug}.html">Automatisation ${esc(aName(n))}</a>`).join('')}</div>
     <div class="gm-wrap reveal" style="margin-top:30px">${mapSvg({ current: c.slug, href: n => `${n.slug}.html`, hubHref: './', label: `Carte des communes où Groupe Solution intervient autour de ${c.name}` })}</div>
     <div class="xlink reveal"><p>Vous cherchez plutôt un site internet ${esc(aName(c))} ?</p><a href="${siteHref(c)}">Voir l'offre site internet →</a></div>
+    <div class="near" style="margin-top:18px"><a href="../outils/calculateur-automatisation.html">Calculateur détaillé →</a><a href="../montpellier/guides/automatiser-devis-artisan.html">Guide : automatiser ses devis</a><a href="../montpellier/guides/relances-factures-impayees-automatiques.html">Guide : relancer les impayés</a><a href="../outils/">Tous nos outils gratuits</a></div>
   </div></section>
 ` + foot;
 }
@@ -235,7 +235,7 @@ function hub() {
   const title = 'Automatisation & logiciel sur-mesure à Montpellier et dans l’Hérault | Groupe Solution';
   const desc = "Éditeur de logiciels basé à Montpellier : automatisation des devis, commandes, relances, plannings et documents pour les TPE et PME de la métropole, du bassin de Thau au Pic Saint-Loup. Diagnostic gratuit en 10 min.";
   const faq = [...COMMON_FAQ,
-    { q: 'Où intervenez-vous ?', a: `Partout autour de Montpellier : les 30 communes de la Métropole, le Pays de l'Or, le littoral, le bassin de Thau (Sète, Mèze, Villeveyrac…), le Pic Saint-Loup, Lunel et la vallée de l'Hérault — ${COMMUNES.length} communes ont leur page dédiée. Au-delà, on travaille partout en France à distance.` },
+    { q: 'Où intervenez-vous ?', a: `Partout autour de Montpellier : les 30 communes de la Métropole, le Pays de l'Or, le littoral, le bassin de Thau (Sète, Mèze, Villeveyrac…), le Pic Saint-Loup, Lunel, la Petite Camargue, et jusqu'à Nîmes, Béziers, Agde, Lodève et Ganges — ${COMMUNES.length} communes ont leur page dédiée. Au-delà, on travaille partout en France à distance.` },
     { q: 'Quels types d’entreprises accompagnez-vous ?', a: "Des indépendants aux PME de plusieurs dizaines de salariés : artisans du bâtiment, commerces, cabinets, domaines viticoles, conchyliculteurs, logistique, tourisme, santé. Le point commun : des tâches qui se répètent chaque semaine." }];
   const jsonld = {
     '@context': 'https://schema.org',
@@ -291,6 +291,7 @@ ${proof}
       <div class="gm-legend"><span><i style="background:#171613"></i>Montpellier (base)</span><span><i style="background:#5F6B54"></i>Métropole</span><span><i style="background:#CFCBBF"></i>Alentours</span></div>
     </div>
     ${communesList({ href: n => `${n.slug}.html` })}
+    <div class="near" style="margin-top:18px"><a href="../outils/calculateur-automatisation.html">Calculateur détaillé →</a><a href="../montpellier/guides/automatiser-devis-artisan.html">Guide : automatiser ses devis</a><a href="../montpellier/guides/relances-factures-impayees-automatiques.html">Guide : relancer les impayés</a><a href="../outils/">Tous nos outils gratuits</a></div>
   </div></section>
 ${method}
 ${faqBlock(faq)}

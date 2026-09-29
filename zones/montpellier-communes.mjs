@@ -30,9 +30,11 @@
      node zones/generate-sitemap.mjs
    ═══════════════════════════════════════════════════════════ */
 
+import { EXTENSION } from './communes-extension.mjs';
+
 export const HUB = { name: 'Montpellier', lat: 43.6108, lng: 3.8767 };
 
-export const COMMUNES = [
+const BASE = [
   /* ═════════════════ MÉTROPOLE — SUD & LITTORAL ═════════════════ */
   {
     slug: 'lattes', name: 'Lattes', cp: '34970', lat: 43.5670, lng: 3.9030, metro: true, secteur: 'Sud de la métropole',
@@ -1014,6 +1016,8 @@ export const COMMUNES = [
     }
   }
 ];
+
+export const COMMUNES = [...BASE, ...EXTENSION];
 
 /* ── Utilitaires géographiques partagés par les générateurs ── */
 const R = 6371;
