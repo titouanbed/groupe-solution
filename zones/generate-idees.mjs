@@ -72,7 +72,7 @@ const audace = n => `<span class="aud">Audace <b>${'●'.repeat(n)}${'○'.repea
 function sectorPage(s) {
   const url = `${HOLDING}/idees/${s.slug}.html`;
   const title = `Idées d’innovation pour ${s.label.toLowerCase()} : IA, automatisation | Groupe Solution`;
-  const desc = `${s.accroche} ${s.idees.length} idées concrètes d’innovation pour ${s.label.toLowerCase()}, et les plans imaginés en direct par notre IA.`.slice(0, 158);
+  const desc = `${s.accroche} ${s.idees.length} idées concrètes d’innovation pour ${s.label.toLowerCase()}, et les plans imaginés en direct par notre IA.`;
   const jsonld = { '@context': 'https://schema.org', '@graph': [
     { '@type': 'CollectionPage', name: `Idées d’innovation — ${s.label}`, url, description: desc,
       mainEntity: { '@type': 'ItemList', itemListElement: s.idees.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.titre, description: x.idee })) } },

@@ -91,7 +91,7 @@ export const TOPICS = [
       <p>${cap(c.h1suffix)} comme ailleurs, on cherche depuis son téléphone. Un site lent ou mal affiché sur mobile est pénalisé par Google et fait fuir les visiteurs. Vitesse, mobile et contenu local : le trio gagnant.</p>
 
       <h2>${cap(c.h1suffix)}, jouez la carte de la proximité</h2>
-      <p>${localAngle(c)} La bonne nouvelle : la concurrence sur le référencement local reste souvent faible. En soignant ces quatre points, une TPE ${de(c)} peut réellement dominer sa recherche locale — et capter des clients tous les jours, sans budget publicitaire.</p>
+      <p>${localAngle(c)} La bonne nouvelle : la concurrence sur le référencement local reste souvent faible. En soignant ces quatre points, une TPE ${de(c)} peut réellement se démarquer dans sa recherche locale — et capter des clients tous les jours, sans budget publicitaire.</p>
 
       <div class="callout"><p>On audite gratuitement votre visibilité actuelle ${c.h1suffix} et on vous dit, concrètement, quoi améliorer en premier.</p></div>`,
     faq: (c) => [

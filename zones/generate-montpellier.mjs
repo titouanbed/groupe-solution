@@ -113,7 +113,6 @@ function page(c) {
         "image": "${HOLDING}/Logo.svg",
         "telephone": "+33782298559",
         "email": "contact@groupsolution.fr",
-        "priceRange": "€€",
         "address": { "@type": "PostalAddress", "addressLocality": "Montpellier", "addressRegion": "Occitanie", "postalCode": "34000", "addressCountry": "FR" },
         "areaServed": [
           { "@type": "${c.placeType || 'City'}", "name": ${jstr(c.name)}, "postalCode": "${c.cp}", "geo": { "@type": "GeoCoordinates", "latitude": ${c.lat}, "longitude": ${c.lng} } },
@@ -351,7 +350,7 @@ ${faq.map(f => `        <div class="faq-item reveal"><div class="faq-q">${esc(f.
   <div class="modal-overlay" id="contactModal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()" aria-label="Fermer"><svg class="icon"><use href="#i-x"/></svg></button>
-      <div class="modal-header"><h3>Parlons de votre projet<br><span class="accent">${esc(aName(c))}</span></h3><p>Décrivez votre besoin. Réponse sous 24 h, souvent le jour même.</p></div>
+      <div class="modal-header"><h3>Parlons de votre projet<br><span class="accent">${esc(aName(c))}</span></h3><p>Décrivez votre besoin. Réponse sous 24 h ouvrées.</p></div>
       <form action="https://formspree.io/f/mzebrvjg" method="POST" id="contactForm">
         <input type="hidden" name="commune" value="${esc(c.name)} (${c.cp})" />
         <input type="hidden" name="page" value="site-internet/${c.slug}" />

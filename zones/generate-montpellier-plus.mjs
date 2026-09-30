@@ -38,7 +38,7 @@ function page(m) {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'Service', '@id': url + '#service', name: m.h1, serviceType: `Création de site internet et automatisation pour ${m.label}`, description: m.desc, url,
-        provider: { '@type': 'ProfessionalService', name: 'GroupSolution', url: `${HOLDING}/${DIR}/${HUB_FILE}`, telephone: '+33782298559', email: 'contact@groupsolution.fr', priceRange: '€€', image: `${HOLDING}/Logo.svg`, address: { '@type': 'PostalAddress', addressLocality: 'Montpellier', postalCode: '34000', addressRegion: 'Occitanie', addressCountry: 'FR' }, parentOrganization: { '@type': 'Organization', name: 'Groupe Solution', url: HOLDING + '/' } },
+        provider: { '@type': 'ProfessionalService', name: 'Groupe Solution', url: `${HOLDING}/${DIR}/${HUB_FILE}`, telephone: '+33782298559', email: 'contact@groupsolution.fr', image: `${HOLDING}/Logo.svg`, address: { '@type': 'PostalAddress', addressLocality: 'Montpellier', postalCode: '34000', addressRegion: 'Occitanie', addressCountry: 'FR' }, parentOrganization: { '@type': 'Organization', name: 'Groupe Solution', url: HOLDING + '/' } },
         areaServed: [{ '@type': 'City', name: 'Montpellier' }, ...communes.map(c => ({ '@type': 'City', name: c.name })), { '@type': 'AdministrativeArea', name: 'Hérault' }],
         audience: { '@type': 'BusinessAudience', audienceType: cap(m.plural) },
         offers: { '@type': 'Offer', description: 'Sur devis, gratuit et personnalisé' } },
@@ -214,7 +214,7 @@ ${others.map(o => `        <a href="${mFile(o)}">${esc(cap(o.label))}</a>`).join
   <div class="modal-overlay" id="contactModal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()" aria-label="Fermer"><svg class="icon"><use href="#i-x"/></svg></button>
-      <div class="modal-header"><h3>Parlons de votre<br><span class="accent">${esc(m.label)}</span></h3><p>Décrivez votre besoin. Réponse sous 24 h, souvent le jour même.</p></div>
+      <div class="modal-header"><h3>Parlons de votre<br><span class="accent">${esc(m.label)}</span></h3><p>Décrivez votre besoin. Réponse sous 24 h ouvrées.</p></div>
       <form action="https://formspree.io/f/mzebrvjg" method="POST" id="contactForm">
         <input type="hidden" name="page" value="metier/${m.slug}" />
         <input type="hidden" name="sujet" id="fSujet" value="" />

@@ -94,7 +94,7 @@
   function intent(q) {
     var nq = norm(q), place = findPlace(nq);
     if (/\b(appel|appeler|telephone|numero|joindre|contact|contacter|rappel|rappeler|rdv|rendez vous|visio|parler)\b/.test(nq) && !place)
-      return 'Avec plaisir ! Trois façons de joindre Titouan :\n- 📞 [' + TEL + '](' + TEL_HREF + ') — réponse le jour même\n- 🗓️ [Réserver 10 minutes en visio](' + RDV + ')\n- ✉️ [contact@groupsolution.fr](mailto:contact@groupsolution.fr)\n\nOu cliquez sur « Être rappelé » : il vous rappelle.';
+      return 'Avec plaisir ! Trois façons de joindre Titouan :\n- 📞 [' + TEL + '](' + TEL_HREF + ') — réponse rapide\n- 🗓️ [Réserver 10 minutes en visio](' + RDV + ')\n- ✉️ [contact@groupsolution.fr](mailto:contact@groupsolution.fr)\n\nOu cliquez sur « Être rappelé » : il vous rappelle.';
     if (/\b(qui|fondateur|titouan|equipe|entreprise|groupe solution|vous etes)\b/.test(nq) && /\b(qui|fondateur|titouan|equipe|vous etes)\b/.test(nq))
       return 'Groupe Solution est un **éditeur de logiciels et d’automatisations**, basé à Montpellier et fondé par **Titouan Bedos**. Nous concevons des sites internet, des agents IA et des automatisations sur-mesure, et nous opérons nos propres plateformes (Solution Recrutement, Solution Alternance, Aides Particuliers). Notre devise : *nous gagnons de l’argent uniquement si vous en gagnez.* [En savoir plus](/a-propos.html)' + CALLME;
     if (/\b(delai|combien de temps|quand|rapide|vite)\b/.test(nq))
@@ -117,7 +117,7 @@
   var PRICE = /\b(prix|tarif|tarifs|cout|coute|combien|budget|devis|cher)\b/;
   function localAnswer(q, res) {
     var nq = norm(q);
-    if (PRICE.test(nq)) return 'Chaque projet est chiffré **sur devis, gratuitement** : le prix dépend de vos besoins (pages, fonctionnalités, automatisations, connexions à vos outils). Le plus simple : [configurez votre projet en 2 minutes](/outils/configurateur-site-internet.html) ou appelez le [' + TEL + '](' + TEL_HREF + ') — réponse le jour même.';
+    if (PRICE.test(nq)) return 'Chaque projet est chiffré **sur devis, gratuitement** : le prix dépend de vos besoins (pages, fonctionnalités, automatisations, connexions à vos outils). Le plus simple : [configurez votre projet en 2 minutes](/outils/configurateur-site-internet.html) ou appelez le [' + TEL + '](' + TEL_HREF + ') — réponse rapide.';
     if (/\b(bonjour|salut|hello|bonsoir)\b/.test(nq) && nq.split(' ').length < 4) return 'Bonjour ! Posez-moi votre question sur un site internet, une automatisation, l’IA ou votre commune : je vous réponds à partir du contenu du site, et je peux aussi vous mettre en relation avec Titouan.';
     var it = intent(q); if (it) return it;
     if (!res.length) return 'Je n’ai pas trouvé de réponse précise sur le site. Le plus rapide est d’en parler directement : [appelez le ' + TEL + '](' + TEL_HREF + ') ou laissez votre numéro ci-dessous, Titouan vous rappelle.';

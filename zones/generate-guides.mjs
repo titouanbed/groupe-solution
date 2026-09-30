@@ -859,7 +859,7 @@ function head({ title, description, url, ogType, jsonld }) {
 </head>`;
 }
 
-const ORG = { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Groupe Solution', url: `${SITE}/`, logo: { '@type': 'ImageObject', url: `${SITE}/Logo.svg` } };
+const ORG = { '@type': 'Organization', '@id': `${SITE}/#org`, name: 'Groupe Solution', url: `${SITE}/`, logo: { '@type': 'ImageObject', url: `${SITE}/Logo.svg` } };
 const crumbsLd = (extra) => ({
   '@type': 'BreadcrumbList',
   itemListElement: [

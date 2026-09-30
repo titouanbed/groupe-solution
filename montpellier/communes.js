@@ -70,7 +70,7 @@
     fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
       .then(function (r) {
         if (r.ok) {
-          form.innerHTML = '<div style="text-align:center;padding:20px 0"><div style="font-size:2.4rem">✓</div><h3 style="margin:10px 0">Merci, c\'est bien reçu.</h3><p style="color:#6b7280">Je vous recontacte sous 24 h, souvent le jour même. Pour aller plus vite : <a href="tel:+33782298559" style="color:#EC4899;font-weight:700">07 82 29 85 59</a>.</p></div>';
+          form.innerHTML = '<div style="text-align:center;padding:20px 0"><div style="font-size:2.4rem">✓</div><h3 style="margin:10px 0">Merci, c\'est bien reçu.</h3><p style="color:#6b7280">Je vous recontacte sous 24 h ouvrées. Pour aller plus vite : <a href="tel:+33782298559" style="color:#EC4899;font-weight:700">07 82 29 85 59</a>.</p></div>';
           if (window.gtag) gtag('event', 'generate_lead', { method: 'form' });
         } else alert('Une erreur est survenue. Réessayez ou appelez le 07 82 29 85 59.');
       })
