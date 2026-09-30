@@ -14,10 +14,14 @@ const list = cmd => execSync(cmd, { cwd: ROOT }).toString().trim().split('\n').f
 const files = [...new Set([...list("git ls-files '*.html'"), ...list("git ls-files --others --exclude-standard '*.html'")])]
   .filter(f => !/^mayotte\/ecole-mayotte\//.test(f) && f !== 'plan-du-site.html' && !/^_/.test(f));
 
+// Pages piliers (zones/generate-piliers.mjs) : rubrique dédiée, en tête du plan.
+const PILIERS = new Set(['logiciel-sur-mesure-pme', 'application-metier-sur-mesure', 'logiciel-de-gestion-sur-mesure', 'automatisation-entreprise', 'agent-ia-entreprise-exemples'].map(s => `services/${s}.html`));
 const ZONE_NAMES = { reunion: 'La Réunion', mayotte: 'Mayotte', guyane: 'Guyane', martinique: 'Martinique', guadeloupe: 'Guadeloupe', 'nouvelle-caledonie': 'Nouvelle-Calédonie', 'polynesie-francaise': 'Polynésie française' };
 function group(f) {
   if (!f.includes('/')) return ['1', 'Groupe Solution'];
+  if (PILIERS.has(f)) return ['1r', 'Dossiers de référence — logiciel, application, gestion, automatisation, agents IA'];
   if (f.startsWith('services/')) return ['1s', 'Nos services — site internet, IA, automatisation, logiciel'];
+  if (/^[a-z-]+\/automatisation-[a-z-]+\.html$/.test(f) && ZONE_NAMES[f.split('/')[0]]) return ['1t', 'Automatisation et logiciel sur-mesure en outre-mer'];
   if (f.startsWith('automatisation/')) return ['2', 'Automatisation & logiciel sur-mesure — Montpellier et Hérault'];
   if (/^montpellier\/guides\//.test(f)) return ['5', 'Guides pratiques'];
   if (/^montpellier\/site-internet-.*-montpellier\.html$/.test(f)) return ['3b', 'Site internet par métier'];

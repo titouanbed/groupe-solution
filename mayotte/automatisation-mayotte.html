@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatisation et logiciel sur-mesure à Mayotte (976)</title>
+  <meta name="description" content="Automatisation et logiciel sur-mesure à Mayotte, par un fondateur installé sur l’île : BTP, commerce, services, dossiers, hors ligne, RGPD. Sur devis." />
+  <link rel="canonical" href="https://www.groupsolution.fr/mayotte/automatisation-mayotte.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Automatisation et logiciel sur-mesure à Mayotte (976)" />
+  <meta property="og:description" content="Automatisation et logiciel sur-mesure à Mayotte, par un fondateur installé sur l’île : BTP, commerce, services, dossiers, hors ligne, RGPD. Sur devis." />
+  <meta property="og:url" content="https://www.groupsolution.fr/mayotte/automatisation-mayotte.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/og-accueil.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Automatisation et logiciel sur-mesure à Mayotte (976)" />
+  <meta name="twitter:description" content="Automatisation et logiciel sur-mesure à Mayotte, par un fondateur installé sur l’île : BTP, commerce, services, dossiers, hors ligne, RGPD. Sur devis." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/silo.css" />
+  <style>
+  .gsnav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.05);padding:12px 0}
+  .gsnav .container{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .gsnav .nav-logo img{height:32px;display:block}
+  .gsnav .l{display:flex;gap:20px;align-items:center}
+  .gsnav .l a{color:var(--gris-fonce);font-weight:500;font-size:.88rem;text-decoration:none;white-space:nowrap}
+  .gsnav .l a:hover{color:var(--rose-fonce)}
+  .gsnav .l a.btn{font-weight:700;padding:8px 16px}
+  .ahead{padding:96px 0 34px;background:linear-gradient(135deg,var(--rose-clair) 0%,var(--blanc) 100%)}
+  .crumb{font-size:12.5px;color:var(--gris);font-weight:600;overflow-wrap:anywhere}
+  .crumb a{color:var(--rose-fonce);text-decoration:none}
+  .tag{display:inline-flex;align-items:center;gap:6px;background:var(--blanc);color:var(--rose-fonce);border:1px solid var(--rose);padding:5px 13px;border-radius:999px;font-size:.75rem;font-weight:700;margin:16px 0 4px}
+  .ahead h1{font-size:clamp(1.8rem,4.2vw,2.8rem);font-weight:800;line-height:1.12;letter-spacing:-.02em;margin-top:10px;max-width:24ch;color:var(--gris-fonce)}
+  .ahead .lead{font-size:1.12rem;line-height:1.7;color:#374151;max-width:760px;margin-top:16px}
+  .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .ctas .btn{padding:12px 18px;font-size:.95rem;text-decoration:none}
+  .devise{margin-top:18px;font-size:.92rem;color:var(--gris-fonce)}
+  .devise b{font-weight:700}
+  .abody{padding:30px 0 56px;background:var(--blanc)}
+  .prose{max-width:780px;margin:0 auto;font-size:1.05rem;line-height:1.8;color:#374151;overflow-wrap:break-word}
+  .prose h2{font-size:clamp(1.35rem,2.4vw,1.75rem);font-weight:800;line-height:1.22;margin:40px 0 12px;color:var(--gris-fonce);scroll-margin-top:80px}
+  .prose h3{font-size:1.12rem;font-weight:700;margin:24px 0 6px;color:var(--gris-fonce)}
+  .prose p{margin:14px 0}
+  .prose ul,.prose ol{margin:14px 0;padding-left:22px}
+  .prose li{margin:9px 0}
+  .prose strong{color:var(--gris-fonce);font-weight:700}
+  .prose a{color:var(--rose-fonce);text-decoration:underline;text-underline-offset:3px}
+  .toc{background:var(--gris-clair);border:1px solid #eee;border-radius:16px;padding:18px 22px;margin:6px 0 10px}
+  .toc p{margin:0 0 8px!important;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--gris)}
+  .toc ol{margin:0!important;font-size:.95rem;line-height:1.55}
+  .toc a{color:var(--gris-fonce);text-decoration:none;font-weight:600}
+  .ex{display:grid;gap:14px;margin:18px 0}
+  .ex div{border:1px solid #eee;border-radius:16px;padding:16px 18px;background:var(--blanc);box-shadow:var(--box-shadow)}
+  .ex h3{margin:0 0 4px!important}
+  .ex p{margin:0!important;font-size:1rem}
+  .callout{background:var(--rose-clair);border-left:3px solid var(--rose-fonce);border-radius:12px;padding:18px 22px;margin:26px 0}
+  .callout p{margin:0!important;color:var(--gris-fonce)}
+  .cta2{max-width:780px;margin:34px auto 0;background:var(--gris-fonce);color:var(--blanc);border-radius:20px;padding:30px 26px;text-align:center}
+  .cta2 h2{font-size:1.45rem;font-weight:800;margin-bottom:8px;color:var(--blanc)}
+  .cta2 p{opacity:.85;margin-bottom:18px}
+  .cta2 .ctas{justify-content:center}
+  .gfaq{background:var(--gris-clair);padding:56px 0}
+  .gfaq h2{font-size:1.8rem;font-weight:800;text-align:center;margin-bottom:22px}
+  .gfaq .list{max-width:820px;margin:0 auto}
+  .gfaq details{background:var(--blanc);border:1px solid #eee;border-radius:14px;margin-bottom:10px;padding:0 20px}
+  .gfaq summary{cursor:pointer;list-style:none;padding:17px 26px 17px 0;font-weight:700;position:relative}
+  .gfaq summary::-webkit-details-marker{display:none}
+  .gfaq summary::after{content:"+";position:absolute;right:0;top:12px;font-size:1.4rem;color:var(--gris)}
+  .gfaq details[open] summary::after{content:"–"}
+  .gfaq details p{padding:0 0 18px;color:#374151;line-height:1.7}
+  .gform{padding:56px 0;background:var(--blanc)}
+  .gform .box{max-width:720px;margin:0 auto;border:1px solid #eee;border-radius:20px;box-shadow:var(--box-shadow-lg);padding:28px 24px}
+  .gform h2{font-size:1.6rem;font-weight:800;text-align:center}
+  .gform .sub{text-align:center;color:var(--gris);margin:8px 0 20px}
+  .gform form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .gform label{display:flex;flex-direction:column;gap:6px;font-size:.85rem;font-weight:700}
+  .gform .full{grid-column:1/-1}
+  .gform input,.gform textarea{padding:12px 14px;border:1px solid #ddd;border-radius:12px;font:inherit;font-size:16px;width:100%}
+  .gform textarea{min-height:100px;resize:vertical}
+  .gform button{grid-column:1/-1;justify-content:center}
+  .gform .alts{text-align:center;margin-top:14px;font-size:.92rem;color:var(--gris)}
+  .gform .alts a{color:var(--rose-fonce);font-weight:700}
+  .gfoot{background:var(--noir-doux);color:#a1a1aa;padding:40px 0 30px;text-align:center;font-size:.88rem}
+  .gfoot a{color:var(--rose)}
+  .gfoot p{margin:6px 0}
+  @media(max-width:760px){.gsnav .l a:not(.btn){display:none}.ctas{flex-direction:column}.ctas .btn{width:100%;justify-content:center}.gform form{grid-template-columns:1fr}.ahead{padding-top:86px}}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.groupsolution.fr/mayotte/automatisation-mayotte.html#service",
+      "name": "Automatisation et logiciel sur-mesure à Mayotte",
+      "serviceType": "Automatisation d’entreprise et développement de logiciel sur-mesure",
+      "description": "Automatisation et logiciel sur-mesure à Mayotte, par un fondateur installé sur l’île : BTP, commerce, services, dossiers, hors ligne, RGPD. Sur devis.",
+      "url": "https://www.groupsolution.fr/mayotte/automatisation-mayotte.html",
+      "provider": {
+        "@id": "https://www.groupsolution.fr/#org",
+        "@type": "Organization",
+        "name": "Groupe Solution"
+      },
+      "areaServed": [
+        {
+          "@type": "State",
+          "name": "Mayotte"
+        },
+        {
+          "@type": "City",
+          "name": "Mamoudzou"
+        },
+        {
+          "@type": "City",
+          "name": "Koungou"
+        },
+        {
+          "@type": "City",
+          "name": "Dzaoudzi"
+        },
+        {
+          "@type": "City",
+          "name": "Pamandzi"
+        },
+        {
+          "@type": "City",
+          "name": "Dembéni"
+        },
+        {
+          "@type": "City",
+          "name": "Sada"
+        },
+        {
+          "@type": "City",
+          "name": "Chirongui"
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "description": "Sur devis"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Mayotte",
+          "item": "https://www.groupsolution.fr/mayotte/site-internet-mayotte.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Automatisation et logiciel sur-mesure",
+          "item": "https://www.groupsolution.fr/mayotte/automatisation-mayotte.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Êtes-vous présents à Mayotte ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Titouan Bedos, fondateur de Groupe Solution, vit à Mayotte et couvre toute l’île, Grande-Terre comme Petite-Terre. Un premier rendez-vous peut se faire sur place, par téléphone ou en visio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vos outils fonctionnent-ils malgré les coupures de réseau ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, lorsque c’est nécessaire nous concevons des applications capables de fonctionner hors ligne : les données sont enregistrées sur l’appareil puis synchronisées automatiquement au retour de la connexion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pouvez-vous aider les entreprises du BTP engagées dans la reconstruction ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Suivi de chantier avec photos, bons signés, suivi des matériaux, préparation des situations de travaux, des factures et des dossiers d’assurance ou d’aide : ce sont des automatisations particulièrement utiles dans le contexte actuel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L’assistant IA peut-il répondre en shimaoré ou en kibushi ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les modèles d’intelligence artificielle actuels maîtrisent encore mal le shimaoré et le kibushi. Nous préférons le dire franchement : l’assistant répond en français et transfère vers un humain pour les autres langues, plutôt que de risquer des réponses approximatives."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "La facturation électronique s’applique-t-elle à Mayotte ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La réforme est liée à la TVA, qui n’est pas applicable à Mayotte à ce jour ; sa portée y diffère donc de la métropole. Votre expert-comptable peut confirmer votre situation. Automatiser vos factures et vos relances reste utile dans tous les cas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien coûte un projet d’automatisation à Mayotte ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chaque projet est sur devis : le coût dépend des tâches à automatiser, des outils à connecter, du fonctionnement hors ligne éventuel et du suivi souhaité. Le devis est établi après un premier échange de 10 minutes."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="gsnav" aria-label="Navigation principale">
+    <div class="container">
+      <a href="site-internet-mayotte.html" class="nav-logo"><img src="../Logo.svg" alt="Groupe Solution" width="120" height="32" /></a>
+      <div class="l">
+        <a href="site-internet-mayotte.html">Mayotte</a>
+        <a href="secteurs/">Secteurs</a>
+        <a href="../services/">Services</a>
+        <a href="../index.html">Groupe Solution</a>
+        <a href="tel:+33782298559" class="btn btn-primary">Appeler</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="ahead"><div class="container">
+      <div class="crumb"><a href="../index.html">Groupe Solution</a> › <a href="site-internet-mayotte.html">Mayotte</a> › Automatisation et logiciel sur-mesure</div>
+      <span class="tag">Mayotte (976) · sur place · automatisation · logiciel</span>
+      <h1>Automatisation et logiciel sur-mesure à Mayotte</h1>
+      <p class="lead">Reconstruction, coupures, trajets imprévisibles, dossiers administratifs lourds : à Mayotte, chaque heure gagnée compte. Titouan Bedos, fondateur de Groupe Solution, vit à Mayotte et accompagne les entreprises de toute l’île, de Grande-Terre à Petite-Terre, avec des outils pensés pour les réalités locales.</p>
+      <div class="ctas"><a class="btn btn-primary" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn btn-secondary" href="#contact">Être rappelé</a><a class="btn btn-secondary" href="/#heroAI">Décrire mon projet à l’assistant</a><a class="btn btn-secondary" href="/echanger.html#rendez-vous">Visio de 10 min</a></div>
+      <p class="devise">Notre devise : <b>« Nous gagnons de l’argent uniquement si vous en gagnez. »</b> Chaque projet est sur devis.</p>
+    </div></header>
+
+    <section class="abody"><div class="container">
+      <article class="prose">
+<div class="toc" role="navigation" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#economie">L’économie mahoraise et ce qu’elle implique</a></li><li><a href="#contraintes">Les contraintes propres à Mayotte</a></li><li><a href="#exemples">Exemples d’automatisations adaptées à Mayotte</a></li><li><a href="#logiciel">Logiciel sur-mesure à Mayotte : quand est-ce pertinent ?</a></li><li><a href="#methode">Comment se déroule un projet avec Groupe Solution</a></li><li><a href="#cadre">Données, réglementation et sécurité</a></li><li><a href="#aller-plus-loin">Pour aller plus loin</a></li><li><a href="#faq">Questions fréquentes</a></li></ol></div>
+<h2 id="economie">L’économie mahoraise et ce qu’elle implique</h2>
+<p>Mayotte est devenue le 101<sup>e</sup> département français en 2011, puis une région ultrapériphérique de l’Union européenne en 2014. Son économie repose fortement sur le <strong>secteur public</strong>, le <strong>commerce</strong>, le <strong>BTP</strong> et une multitude de <strong>petites entreprises</strong> de services. La population y est particulièrement jeune, ce qui nourrit des besoins importants en logement, en équipements, en formation et en services.</p>
+<p>Le passage du cyclone Chido, en décembre 2024, a durement touché l’île. La reconstruction mobilise fortement les entreprises du bâtiment, les commerces de matériaux, les transporteurs et les services, avec une pression forte sur les délais, les approvisionnements et les dossiers (assurances, aides, marchés publics).</p>
+<p>La quasi-totalité des marchandises arrive par le port de Longoni. Pour une petite entreprise mahoraise, le temps passé à suivre les commandes, relancer les paiements, monter des dossiers et répondre au téléphone est souvent le premier frein à la croissance : c’est précisément là que l’automatisation apporte le plus.</p>
+<h2 id="contraintes">Les contraintes propres à Mayotte</h2>
+<ul>
+<li><strong>Le décalage horaire</strong> : Mayotte vit à l’heure UTC+3, sans heure d’été, soit deux heures d’avance sur la métropole en hiver et une heure en été.</li>
+<li><strong>Les coupures</strong> d’eau, d’électricité ou de réseau, qui imposent des outils capables de fonctionner hors ligne et de se synchroniser au retour de la connexion.</li>
+<li><strong>Les trajets</strong> : embouteillages autour de Mamoudzou, liaison par barge entre Petite-Terre et Grande-Terre, routes du sud et du nord. Un planning réaliste doit intégrer ces temps.</li>
+<li><strong>Les approvisionnements</strong> par conteneurs, avec des délais et des aléas qui obligent à anticiper.</li>
+<li><strong>Le plurilinguisme</strong> : le français côtoie le shimaoré et le kibushi. Les modèles d’IA actuels maîtrisent encore mal ces deux langues ; nous le disons franchement et prévoyons un relais humain plutôt qu’une traduction approximative.</li>
+</ul>
+<h2 id="exemples">Exemples d’automatisations adaptées à Mayotte</h2><p>Des cas types pensés pour le terrain mahorais :</p><div class="ex"><div><h3>Suivi de chantier et de reconstruction</h3><p>Photos avant et après, avancement, matériaux utilisés, bons signés : tout remonte du chantier vers le bureau, même sans réseau, et alimente directement les situations de travaux, les factures et les dossiers d’assurance ou d’aide.</p></div><div><h3>Une application qui fonctionne hors ligne</h3><p>Fiches d’intervention, inventaires, relevés : les équipes saisissent sur leur téléphone sans connexion, et tout se synchronise automatiquement quand le réseau revient.</p></div><div><h3>Planning qui intègre les trajets et la barge</h3><p>Un planning d’interventions qui tient compte des temps de trajet réels, des horaires de la barge et des zones de l’île, et prévient automatiquement les clients en cas de retard.</p></div><div><h3>Stocks et arrivages de conteneurs</h3><p>Un suivi des commandes fournisseurs, des arrivages au port de Longoni et des stocks, avec alertes avant rupture et réservation des marchandises attendues pour vos clients.</p></div><div><h3>Dossiers administratifs préparés automatiquement</h3><p>Les pièces récurrentes (attestations, extraits, références) sont rassemblées et tenues à jour, les dossiers de marchés publics ou de demandes d’aide pré-remplis, les échéances rappelées à temps.</p></div><div><h3>Accueil client par messagerie</h3><p>Réponses aux questions fréquentes, prise de rendez-vous et confirmations sur les messageries très utilisées sur l’île, en français, avec transfert immédiat vers un humain pour les autres langues et les cas particuliers.</p></div></div><div class="callout"><p>Être sur place change tout : les outils sont testés dans les vraies conditions de l’île — réseau, trajets, coupures — avant d’être mis en service.</p></div>
+<h2 id="logiciel">Logiciel sur-mesure à Mayotte : quand est-ce pertinent ?</h2>
+<p>Un logiciel sur-mesure se justifie à Mayotte lorsque les outils nationaux supposent une connexion permanente, des délais de livraison courts ou une organisation standard. C’est souvent le cas pour les entreprises du BTP en pleine reconstruction, les commerces qui gèrent des arrivages irréguliers, ou les structures de services dont les équipes circulent sur toute l’île. Le logiciel se construit par étapes, avec les personnes qui l’utiliseront, et reste relié à vos outils de comptabilité et de facturation.</p>
+<p>Pour comparer avec un logiciel du marché, voir notre dossier <a href="../services/application-metier-sur-mesure.html">application métier sur-mesure</a>.</p>
+<h2 id="methode">Comment se déroule un projet avec Groupe Solution</h2>
+<p>Titouan Bedos, fondateur de Groupe Solution, est installé à Mayotte et couvre toute l’île, de Mamoudzou au sud de Grande-Terre et à Petite-Terre. Un rendez-vous sur place est possible. Groupe Solution dispose aussi de son agence à Saint-Jean-de-Védas, dans la métropole de Montpellier.</p>
+<ol>
+<li><strong>Un appel de 10 minutes</strong>, par téléphone ou en visio, pour comprendre votre activité et repérer ce qui vous fait perdre du temps. Le premier échange peut aussi se faire directement dans vos locaux.</li>
+<li><strong>Une proposition écrite, sur devis</strong> : automatisations ou modules retenus, outils connectés, validations humaines, propriété du code et des données, suivi.</li>
+<li><strong>Une construction par étapes</strong>, testée sur vos cas réels avant d’être généralisée.</li>
+<li><strong>La mise en service</strong>, avec prise en main par vos équipes et ajustements.</li>
+<li><strong>Le suivi</strong> : maintenance, sécurité, évolutions selon vos priorités.</li>
+</ol>
+<p>La propriété du code, l’export de vos données et la détention des accès sont toujours fixés par écrit. Et notre devise s’applique partout : <strong>nous gagnons de l’argent uniquement si vous en gagnez</strong>.</p>
+<h2 id="cadre">Données, réglementation et sécurité</h2>
+<p>Comme partout dans l’Union européenne, le <strong>RGPD</strong> s’applique : chaque automatisation doit limiter les données collectées, fixer des durées de conservation, identifier ses sous-traitants (hébergeur, fournisseur de modèle d’IA, envoi de SMS) et encadrer les éventuels transferts hors Union européenne. Le <strong>règlement européen sur l’IA</strong> (AI Act) s’applique progressivement ; il prévoit notamment d’informer les personnes lorsqu’elles échangent avec un système d’IA.</p>
+<p>La <strong>TVA</strong> n’étant pas applicable à Mayotte à ce jour, la portée de la réforme de la facturation électronique, liée à la TVA, y diffère de la métropole : faites le point avec votre expert-comptable. Automatiser la production, l’envoi et le suivi de vos factures reste de toute façon l’un des gains les plus rapides. Pour le calendrier national, voir notre article <a href="../lab/veille/facturation-electronique-2026.html">facturation électronique 2026-2027</a>.</p>
+<p>Côté sécurité, nos principes ne changent pas d’un territoire à l’autre : droits d’accès par rôle, authentification forte pour les comptes sensibles, journal des actions, sauvegardes testées et mises à jour régulières. Et pour les actions engageantes — envoyer un devis, payer, répondre à une réclamation sensible — une validation humaine reste la règle.</p>
+<h2 id="aller-plus-loin">Pour aller plus loin</h2>
+<p>Nos dossiers de référence détaillent chaque sujet : <a href="../services/automatisation-entreprise.html">automatisation d’entreprise</a>, <a href="../services/logiciel-sur-mesure-pme.html">logiciel sur-mesure pour PME</a>, <a href="../services/application-metier-sur-mesure.html">application métier sur-mesure</a>, <a href="../services/logiciel-de-gestion-sur-mesure.html">logiciel de gestion sur-mesure</a>, <a href="../services/agent-ia-entreprise-exemples.html">agents IA : exemples par métier</a>.</p>
+<ul><li>Par secteur à Mayotte : <a href="secteurs/batiment-artisans.html">bâtiment et artisans</a>, <a href="secteurs/restauration.html">restauration</a>, <a href="secteurs/tourisme-hebergement.html">tourisme et hébergement</a> (<a href="secteurs/">tous les secteurs</a>).</li><li>Des idées concrètes par métier dans notre <a href="../idees/">laboratoire d’idées</a>, par exemple pour <a href="../idees/artisan.html">les artisans du bâtiment</a>, <a href="../idees/commerce-boutique.html">le commerce</a>, <a href="../idees/services-a-domicile.html">les services à domicile</a>.</li><li>Votre site internet à Mayotte : <a href="site-internet-mayotte.html">création de site internet à Mayotte</a>.</li><li>Un premier chiffrage du temps perdu : notre <a href="../outils/calculateur-automatisation.html">calculateur de tâches répétitives</a>.</li></ul>
+      </article>
+      <aside class="cta2">
+        <h2>Parlons de votre projet à Mayotte</h2>
+        <p>Dix minutes suffisent pour savoir ce qui peut être automatisé chez vous, et par où commencer.</p>
+        <div class="ctas"><a class="btn btn-primary" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn btn-secondary" href="#contact">Être rappelé</a><a class="btn btn-secondary" href="/#heroAI">Décrire mon projet à l’assistant</a><a class="btn btn-secondary" href="/echanger.html#rendez-vous">Visio de 10 min</a></div>
+      </aside>
+    </div></section>
+
+    <section class="gfaq" id="faq"><div class="container">
+      <h2>Questions fréquentes</h2>
+      <div class="list">
+        <details><summary>Êtes-vous présents à Mayotte ?</summary><p>Oui. Titouan Bedos, fondateur de Groupe Solution, vit à Mayotte et couvre toute l’île, Grande-Terre comme Petite-Terre. Un premier rendez-vous peut se faire sur place, par téléphone ou en visio.</p></details>
+        <details><summary>Vos outils fonctionnent-ils malgré les coupures de réseau ?</summary><p>Oui, lorsque c’est nécessaire nous concevons des applications capables de fonctionner hors ligne : les données sont enregistrées sur l’appareil puis synchronisées automatiquement au retour de la connexion.</p></details>
+        <details><summary>Pouvez-vous aider les entreprises du BTP engagées dans la reconstruction ?</summary><p>Oui. Suivi de chantier avec photos, bons signés, suivi des matériaux, préparation des situations de travaux, des factures et des dossiers d’assurance ou d’aide : ce sont des automatisations particulièrement utiles dans le contexte actuel.</p></details>
+        <details><summary>L’assistant IA peut-il répondre en shimaoré ou en kibushi ?</summary><p>Les modèles d’intelligence artificielle actuels maîtrisent encore mal le shimaoré et le kibushi. Nous préférons le dire franchement : l’assistant répond en français et transfère vers un humain pour les autres langues, plutôt que de risquer des réponses approximatives.</p></details>
+        <details><summary>La facturation électronique s’applique-t-elle à Mayotte ?</summary><p>La réforme est liée à la TVA, qui n’est pas applicable à Mayotte à ce jour ; sa portée y diffère donc de la métropole. Votre expert-comptable peut confirmer votre situation. Automatiser vos factures et vos relances reste utile dans tous les cas.</p></details>
+        <details><summary>Combien coûte un projet d’automatisation à Mayotte ?</summary><p>Chaque projet est sur devis : le coût dépend des tâches à automatiser, des outils à connecter, du fonctionnement hors ligne éventuel et du suivi souhaité. Le devis est établi après un premier échange de 10 minutes.</p></details>
+      </div>
+    </div></section>
+
+    <section class="gform" id="contact"><div class="container"><div class="box">
+      <h2>Être rappelé</h2>
+      <p class="sub">Décrivez votre besoin en deux phrases : nous vous rappelons avec une première piste concrète, sans engagement.</p>
+      <form action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="mayotte/automatisation-mayotte" />
+        <input type="hidden" name="_zone" value="Mayotte — automatisation" />
+        <label class="full">Votre besoin<textarea name="message" required placeholder="Ex : entreprise du BTP à Mamoudzou, nos bons de chantier papier se perdent et la facturation prend du retard…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou e-mail<input name="contact" autocomplete="email" required /></label>
+        <button class="btn btn-primary" type="submit">Être rappelé →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="/echanger.html#rendez-vous">Réserver une visio de 10 min</a> · <a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a></p>
+    </div></div></section>
+  </main>
+
+  <footer class="gfoot"><div class="container">
+    <p><a href="site-internet-mayotte.html">Site internet à Mayotte</a> · <a href="secteurs/">Secteurs</a> · <a href="../services/">Services</a> · <a href="../idees/">Idées par secteur</a> · <a href="../echanger.html">Échanger</a> · <a href="../plan-du-site.html">Plan du site</a></p>
+    <p>Groupe Solution · éditeur de logiciels et d’automatisations sur-mesure · <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a></p>
+  </div></footer>
+  <script src="/analytics.js" defer></script>
+</body>
+</html>

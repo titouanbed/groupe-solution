@@ -17,6 +17,8 @@ const steps = [
   'node zones/generate-outils.mjs',
   'node zones/generate-lab.mjs',
   'node zones/generate-implantations.mjs',
+  'node zones/generate-piliers.mjs',
+  'node zones/generate-automatisation-outremer.mjs',
   'node zones/seo-polish.mjs',
   'git add -A',
   'node zones/generate-plan.mjs',

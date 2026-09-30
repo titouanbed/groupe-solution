@@ -26,8 +26,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // 1) Toutes les pages HTML versionnées (git = ce qui est réellement publié)
-const files = execSync("git ls-files '*.html'", { cwd: ROOT })
-  .toString().trim().split('\n').filter(Boolean);
+// (+ pages nouvellement générées pas encore versionnées, comme le plan du site)
+const lsf = cmd => execSync(cmd, { cwd: ROOT }).toString().trim().split('\n').filter(Boolean);
+const files = [...new Set([...lsf("git ls-files '*.html'"), ...lsf("git ls-files --others --exclude-standard '*.html'")])];
 
 // Date de dernière modif git de chaque fichier (fallback : aujourd'hui)
 function lastmod(f) {
@@ -49,6 +50,7 @@ function meta(url, f) {
   const isAutoHub = f === 'automatisation/index.html';
   const isAutoCity = /^automatisation\/[a-z-]+\.html$/.test(f) && !isAutoHub;
   if (isAutoHub || /^services\//.test(f)) return { p: '0.9', c: 'weekly' };
+  if (/^(reunion|mayotte|guyane|martinique|guadeloupe|nouvelle-caledonie|polynesie-francaise)\/automatisation-[a-z-]+\.html$/.test(f)) return { p: '0.9', c: 'monthly' };
   if (/^outils\//.test(f)) return { p: '0.8', c: 'monthly' };
   if (f === 'lab/index.html' || f === 'lab/api.html' || /^lab\/(dossiers|questions|actus|pouls)\/index\.html$/.test(f)) return { p: '0.8', c: 'daily' };
   if (/^lab\/(dossiers|questions)\//.test(f)) return { p: '0.8', c: 'monthly' };
