@@ -24,7 +24,7 @@ const SPRITE = readFileSync(join(ROOT, DIR, 'site-internet-lattes.html'), 'utf8'
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 
 const GENERIC = [
-  { q: 'Travaillez-vous uniquement à Montpellier ?', a: `Non : nous sommes basés à Montpellier et intervenons dans ${COMMUNES.length} communes de l'Hérault et du Gard, de Nîmes à Béziers, et partout en France à distance.` },
+  { q: 'Travaillez-vous uniquement à Montpellier ?', a: `Non : nous sommes basés dans la métropole de Montpellier et intervenons dans ${COMMUNES.length} communes de l'Hérault et du Gard, de Nîmes à Béziers, et partout en France à distance.` },
   { q: 'Le site m’appartient-il ?', a: "Oui. Le site, les contenus et le nom de domaine sont à vous. Vous pouvez gérer vous-même le site ou nous confier le suivi, sans engagement de durée imposé." }
 ];
 
@@ -38,7 +38,7 @@ function page(m) {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'Service', '@id': url + '#service', name: m.h1, serviceType: `Création de site internet et automatisation pour ${m.label}`, description: m.desc, url,
-        provider: { '@type': 'ProfessionalService', name: 'Groupe Solution', url: `${HOLDING}/${DIR}/${HUB_FILE}`, telephone: '+33782298559', email: 'contact@groupsolution.fr', image: `${HOLDING}/Logo.svg`, address: { '@type': 'PostalAddress', addressLocality: 'Montpellier', postalCode: '34000', addressRegion: 'Occitanie', addressCountry: 'FR' }, parentOrganization: { '@type': 'Organization', name: 'Groupe Solution', url: HOLDING + '/' } },
+        provider: { '@type': 'ProfessionalService', name: 'Groupe Solution', url: `${HOLDING}/${DIR}/${HUB_FILE}`, telephone: '+33782298559', email: 'contact@groupsolution.fr', image: `${HOLDING}/Logo.svg`, address: { '@type': 'PostalAddress', addressLocality: 'Saint-Jean-de-Védas', postalCode: '34430', addressRegion: 'Occitanie', addressCountry: 'FR' }, parentOrganization: { '@type': 'Organization', name: 'Groupe Solution', url: HOLDING + '/' } },
         areaServed: [{ '@type': 'City', name: 'Montpellier' }, ...communes.map(c => ({ '@type': 'City', name: c.name })), { '@type': 'AdministrativeArea', name: 'Hérault' }],
         audience: { '@type': 'BusinessAudience', audienceType: cap(m.plural) },
         offers: { '@type': 'Offer', description: 'Sur devis, gratuit et personnalisé' } },
@@ -202,7 +202,7 @@ ${others.map(o => `        <a href="${mFile(o)}">${esc(cap(o.label))}</a>`).join
       <div class="groupe-inner reveal">
         <span class="groupe-kicker"><svg class="icon" style="width:14px;height:14px;"><use href="#i-sparkles"/></svg> Une marque de Groupe Solution</span>
         <h2>Un site, <span class="accent">et le système qui travaille derrière</span></h2>
-        <p>Sites sur devis, référencement local et automatisations de pointe, par un éditeur de logiciels basé à Montpellier.</p>
+        <p>Sites sur devis, référencement local et automatisations de pointe, par un éditeur de logiciels basé dans la métropole de Montpellier.</p>
         <div class="groupe-ctas">
           <a href="${HOLDING}/echanger.html#rendez-vous" class="btn btn-primary"><svg class="icon"><use href="#i-mail"/></svg><span>Réserver 10 min</span></a>
           <a href="../automatisation/" class="btn btn-secondary"><svg class="icon"><use href="#i-arrow-right"/></svg><span>Automatisation</span></a>

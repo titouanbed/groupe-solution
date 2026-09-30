@@ -26,7 +26,10 @@ Oui : un agent vocal peut décrocher, répondre aux questions courantes, prendre
 On choisit des offres professionnelles où vos données ne servent pas à entraîner les modèles, on limite ce qui est transmis au strict nécessaire et on respecte le RGPD. Le cadre est défini avec vous avant de commencer.
 
 ## Travaillez-vous seulement à Montpellier ?
-Non. Nous sommes basés à Montpellier et travaillons partout en France à distance, ainsi que dans les DOM-TOM. Les échanges se font par téléphone ou en visio, et nous nous déplaçons quand c'est utile.
+Non. Notre agence est à Saint-Jean-de-Védas, dans la métropole de Montpellier, et couvre toute la région ; Titouan Bedos, le fondateur, est à Mayotte et couvre toute l'île. Nous travaillons aussi avec des entreprises de toute la France et de l'outre-mer : les échanges se font par téléphone ou en visio, et nous nous déplaçons quand c'est utile.
+
+## Comment se passe un devis ?
+Après un échange (dans le chat ou au téléphone), vous recevez un cahier des charges clair, puis un devis détaillé que vous pouvez lire et signer en ligne, depuis votre téléphone, en un geste. Le devis est gratuit et sans engagement.
 
 ## Qui êtes-vous ?
 Groupe Solution, fondé par Titouan Bedos : éditeur de logiciels et d'automatisations sur-mesure et agence de création de sites internet. Nous faisons tourner nos propres plateformes (Solution Recrutement, Solution Alternance, Aides Particuliers). Notre devise : nous gagnons de l'argent uniquement si vous en gagnez.

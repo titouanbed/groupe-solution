@@ -161,7 +161,7 @@ ${faqJsonLd(city.faq)}
         <svg class="icon" style="width: 14px; height: 14px;"><use href="#i-sparkles"/></svg>
         ${esc(city.badge)}
       </div>
-      <h1>Agence Web & <span class="accent">Digitale</span><br>${esc(city.h1suffix)}</h1>
+      <h1>Création de site internet & <span class="accent">Digitale</span><br>${esc(city.h1suffix)}</h1>
       <p>${esc(city.heroSub)}</p>
       <div class="hero-ctas">
         <button onclick="openModal()" class="btn btn-primary">
@@ -308,7 +308,7 @@ ${faqHtml(city.faq)}
   <section class="villes-band" id="villes">
     <div class="container">
       <h3>GroupSolution partout à ${ZONE_NAME}</h3>
-      <p>On accompagne les entreprises sur toute l'île. Trouvez votre agence de proximité :</p>
+      <p>On accompagne les entreprises sur toute l'île. Trouvez la page de votre ville :</p>
       <div class="villes-grid">
         <a class="region" href="${REGION_PAGE}">🌴 Toute ${ZONE_NAME}</a>
         ${cities.map(c => c.slug === city.slug
@@ -395,8 +395,8 @@ ${faqHtml(city.faq)}
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="../Logo.svg" alt="GroupSolution Agence Digitale" />
-          <p class="footer-desc">Agence web à ${esc(city.name)} (${ZONE_NAME}, ${zone.code}). Création de sites, SEO, réseaux sociaux et automatisation.</p>
+          <img src="../Logo.svg" alt="Groupe Solution" />
+          <p class="footer-desc">Création de site internet à ${esc(city.name)} (${ZONE_NAME}, ${zone.code}). Création de sites, SEO, réseaux sociaux et automatisation.</p>
         </div>
         <div class="footer-links">
           <h4>Nos villes à ${ZONE_NAME}</h4>

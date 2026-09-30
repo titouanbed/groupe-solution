@@ -153,7 +153,7 @@ function page(c) {
   const { d, dir } = distanceText(c);
   const near = neighbours(c, 6);
   const E = enrichOf(c);
-  const faq = [c.auto.faq, ...(E?.faqAuto ? [E.faqAuto] : []), COMMON_FAQ[c.slug.length % 3], { q: `Intervenez-vous vraiment ${aName(c)} ?`, a: `Oui. Groupe Solution est basé à Montpellier, ${d <= 2 ? 'juste à côté' : `à environ ${d} km`}. Le diagnostic et le suivi se font par téléphone ou visio, et on se déplace ${aName(c)} dès que c'est utile — pour observer un process sur place, former une équipe ou lancer un outil.` }, c.web.faq];
+  const faq = [c.auto.faq, ...(E?.faqAuto ? [E.faqAuto] : []), COMMON_FAQ[c.slug.length % 3], { q: `Intervenez-vous vraiment ${aName(c)} ?`, a: `Oui. Groupe Solution est basé dans la métropole de Montpellier, ${d <= 2 ? 'juste à côté' : `à environ ${d} km`}. Le diagnostic et le suivi se font par téléphone ou visio, et on se déplace ${aName(c)} dès que c'est utile — pour observer un process sur place, former une équipe ou lancer un outil.` }, c.web.faq];
   const title = `Automatisation & logiciel sur-mesure ${aName(c)} (${c.cp}) | Groupe Solution`;
   const adv = pickAvancees(c.slug, [c.tissu, c.profil, c.auto.angle].join(' '), 4);
   // Description ≤ 160 caractères, jamais coupée au milieu d'un mot : on garde la version la plus riche qui tient.
@@ -168,7 +168,7 @@ function page(c) {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'Service', '@id': url + '#service', name: `Automatisation et logiciel sur-mesure ${aName(c)}`, serviceType: 'Automatisation des processus métier et développement de logiciels sur-mesure', description: desc, url,
-        provider: { '@type': 'Organization', '@id': HOLDING + '/#org', name: 'Groupe Solution', url: HOLDING + '/', telephone: '+33782298559', email: 'contact@groupsolution.fr', address: { '@type': 'PostalAddress', addressLocality: 'Montpellier', postalCode: '34000', addressRegion: 'Occitanie', addressCountry: 'FR' } },
+        provider: { '@type': 'Organization', '@id': HOLDING + '/#org', name: 'Groupe Solution', url: HOLDING + '/', telephone: '+33782298559', email: 'contact@groupsolution.fr', address: { '@type': 'PostalAddress', addressLocality: 'Saint-Jean-de-Védas', postalCode: '34430', addressRegion: 'Occitanie', addressCountry: 'FR' } },
         areaServed: [{ '@type': 'City', name: c.name, postalCode: c.cp, geo: { '@type': 'GeoCoordinates', latitude: c.lat, longitude: c.lng } }, ...near.slice(0, 4).map(n => ({ '@type': 'City', name: n.name }))],
         hasOfferCatalog: { '@type': 'OfferCatalog', name: `Automatisations pour les entreprises ${aName(c)}`, itemListElement: adv.map(a => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: a.titre, description: a.texte } })) } },
       { '@type': 'BreadcrumbList', itemListElement: [
@@ -195,7 +195,7 @@ function page(c) {
         <p class="sub">Un appel direct, sans engagement. Vous repartez avec des pistes concrètes, chiffrées.</p>
         <a class="btn" href="tel:+33782298559">Appeler maintenant →</a>
         <a class="alt" href="#contact">ou décrire ma tâche par écrit</a>
-        <span class="micro">Réponse sous 24 h ouvrées · basé à Montpellier</span>
+        <span class="micro">Réponse sous 24 h ouvrées · basé dans la métropole de Montpellier</span>
       </div>
     </div>
   </div></section>
@@ -250,7 +250,7 @@ ${express(c)}
 function hub() {
   const url = `${HOLDING}/${DIR}/`;
   const title = 'Automatisation & logiciel sur-mesure à Montpellier et dans l’Hérault | Groupe Solution';
-  const desc = "Éditeur de logiciels basé à Montpellier : agents IA, lecture de documents, agents vocaux, prévisions et automatisation des processus pour les TPE et PME de la métropole, du bassin de Thau au Pic Saint-Loup. Diagnostic gratuit en 10 min.";
+  const desc = "Éditeur de logiciels basé dans la métropole de Montpellier : agents IA, lecture de documents, agents vocaux, prévisions et automatisation des processus pour les TPE et PME de la métropole, du bassin de Thau au Pic Saint-Loup. Diagnostic gratuit en 10 min.";
   const faq = [...COMMON_FAQ,
     { q: 'Où intervenez-vous ?', a: `Partout autour de Montpellier : les 31 communes de la Métropole, le Pays de l'Or, le littoral, le bassin de Thau (Sète, Mèze, Villeveyrac…), le Pic Saint-Loup, Lunel, la Petite Camargue, et jusqu'à Nîmes, Béziers, Agde, Lodève et Ganges — ${COMMUNES.length} communes ont leur page dédiée. Au-delà, on travaille partout en France à distance.` },
     { q: 'Quels types d’entreprises accompagnez-vous ?', a: "Des indépendants aux PME de plusieurs dizaines de salariés : artisans du bâtiment, commerces, cabinets, domaines viticoles, conchyliculteurs, logistique, tourisme, santé. Le point commun : des tâches qui se répètent chaque semaine." }];
@@ -258,7 +258,7 @@ function hub() {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'ProfessionalService', '@id': url + '#service', name: 'Groupe Solution — automatisation et logiciel sur-mesure, Montpellier', description: desc, url, image: HOLDING + '/Logo.svg', telephone: '+33782298559', email: 'contact@groupsolution.fr',
-        address: { '@type': 'PostalAddress', addressLocality: 'Montpellier', postalCode: '34000', addressRegion: 'Occitanie', addressCountry: 'FR' },
+        address: { '@type': 'PostalAddress', addressLocality: 'Saint-Jean-de-Védas', postalCode: '34430', addressRegion: 'Occitanie', addressCountry: 'FR' },
         geo: { '@type': 'GeoCoordinates', latitude: 43.6108, longitude: 3.8767 },
         areaServed: [{ '@type': 'City', name: 'Montpellier' }, { '@type': 'AdministrativeArea', name: 'Montpellier Méditerranée Métropole' }, { '@type': 'AdministrativeArea', name: 'Hérault' }, ...COMMUNES.map(c => ({ '@type': 'City', name: c.name }))],
         parentOrganization: { '@type': 'Organization', '@id': HOLDING + '/#org', name: 'Groupe Solution', url: HOLDING + '/' } },
@@ -273,7 +273,7 @@ function hub() {
     <div>
       <div class="kicker reveal">Montpellier · Hérault · ${COMMUNES.length} communes</div>
       <h1 class="reveal">Automatisation &amp; logiciel sur-mesure <em>à Montpellier</em>.</h1>
-      <p class="lead reveal">Devis, commandes, relances, plannings, documents : on construit les systèmes qui absorbent vos tâches répétitives. Basés à Montpellier, on connaît le tissu local — du Salaison à Vendargues aux mas conchylicoles de Mèze.</p>
+      <p class="lead reveal">Devis, commandes, relances, plannings, documents : on construit les systèmes qui absorbent vos tâches répétitives. Basés dans la métropole de Montpellier, on connaît le tissu local — du Salaison à Vendargues aux mas conchylicoles de Mèze.</p>
       <div class="heroDevise reveal"><span class="lab">Notre devise</span><b>Nous gagnons de l'argent uniquement si vous en gagnez.</b></div>
     </div>
     <div class="reveal"><div class="callCard">

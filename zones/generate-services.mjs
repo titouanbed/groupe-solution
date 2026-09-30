@@ -8,8 +8,8 @@
    Règles de contenu : aucun prix, aucun client cité, aucune
    statistique inventée. Tout est « sur devis, gratuit et personnalisé ».
    ═══════════════════════════════════════════════════════════ */
-import { writeFileSync, mkdirSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -66,6 +66,23 @@ const OUTILS = {
   'test-visibilite-google': 'Test de visibilité Google',
   'calculateur-automatisation': 'Calculateur de tâches répétitives',
 };
+
+/* ── Dossiers de référence (pages piliers, zones/generate-piliers.mjs) ── */
+const PILIERS = [
+  { slug: 'logiciel-sur-mesure-pme', name: 'Logiciel sur-mesure pour PME', blurb: 'Quand un logiciel conçu pour votre PME devient plus rentable qu’un empilement d’outils du marché, et comment le mener sans risque.' },
+  { slug: 'application-metier-sur-mesure', name: 'Application métier sur-mesure', blurb: 'Une application web ou mobile pensée pour le terrain, le bureau et vos clients, construite autour de vos gestes réels.' },
+  { slug: 'logiciel-de-gestion-sur-mesure', name: 'Logiciel de gestion sur-mesure', blurb: 'Devis, stocks, planning, facturation, suivi client : une gestion d’entreprise unifiée, à votre image, dont vous gardez les données.' },
+  { slug: 'automatisation-entreprise', name: 'Automatisation d’entreprise', blurb: 'Processus, outils et IA : la méthode complète pour automatiser une entreprise sans perdre le contrôle.' },
+  { slug: 'agent-ia-entreprise-exemples', name: 'Agent IA : exemples par métier', blurb: 'Dix-huit métiers passés en revue : ce que l’agent fait, les outils branchés et les garde-fous à prévoir.' },
+];
+
+/* ── Laboratoire d'idées par secteur (content/idees/secteurs.json) ── */
+const IDEES = (() => {
+  try {
+    const d = JSON.parse(readFileSync(join(ROOT, 'content/idees/secteurs.json'), 'utf8'));
+    return Object.fromEntries(d.secteurs.filter(x => existsSync(join(ROOT, 'idees', `${x.slug}.html`))).map(x => [x.slug, x.label]));
+  } catch { return {}; }
+})();
 
 /* ── Raccourcis de liens utilisables dans les contenus ─────── */
 const svc = (slug, text) => `<a href="${slug}.html">${text}</a>`;
@@ -808,7 +825,7 @@ const ORG = {
   logo: `${SITE}/Logo.svg`,
   telephone: '+33782298559',
   email: 'contact@groupsolution.fr',
-  address: { '@type': 'PostalAddress', addressLocality: 'Montpellier', postalCode: '34000', addressRegion: 'Occitanie', addressCountry: 'FR' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Saint-Jean-de-Védas', postalCode: '34430', addressRegion: 'Occitanie', addressCountry: 'FR' },
 };
 const AREA = [
   { '@type': 'Country', name: 'France' },
@@ -851,15 +868,14 @@ const STYLE = `<style>
 .ctaBox .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35)}
 .case a.more{display:inline-block;margin-top:14px;font-weight:800;font-size:14px;color:var(--ink);border-bottom:2px solid var(--acc)}
 .case h3 a:hover{color:var(--acc)}
-.res{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
 .res div{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px}
 .res h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans);font-weight:800;color:var(--muted);margin-bottom:10px}
 .res ul{list-style:none;display:grid;gap:8px;font-size:14.5px}
 .res a{font-weight:600;color:var(--ink)}.res a:hover{color:var(--acc)}
 .zoneTxt{max-width:820px;margin:34px auto 0;text-align:center;color:var(--secondary);font-size:16px;line-height:1.7}
 .zoneTxt a{color:var(--ink);font-weight:700;border-bottom:1px solid var(--acc)}
-@media(max-width:960px){.res{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.res{grid-template-columns:1fr}.art{font-size:16.5px}.ctaBox{padding:24px 20px}.ctaBtns{flex-direction:column}.ctaBtns .btn{width:100%}.toc{padding:18px 18px}}
+@media(max-width:600px){.art{font-size:16.5px}.ctaBox{padding:24px 20px}.ctaBtns{flex-direction:column}.ctaBtns .btn{width:100%}.toc{padding:18px 18px}}
 
 .gs-sticky{display:none}
 @media(max-width:760px){
@@ -955,6 +971,8 @@ const FOOT = `
     <a href="../index.html">Accueil</a>
     <a href="./">Services</a>
     <a href="../automatisation/">Automatisation</a>
+    <a href="agent-ia-entreprise-exemples.html">Agents IA par métier</a>
+    <a href="../idees/">Idées par secteur</a>
     <a href="../solutions.html">Solutions</a>
     <a href="../realisations.html">Réalisations</a>
     <a href="../montpellier/site-internet-montpellier.html">Sites internet</a>
@@ -969,7 +987,7 @@ const FOOT = `
 </html>
 `;
 
-const ZONE = `<p class="zoneTxt">Basés à Montpellier, nous intervenons dans toute la métropole, dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM (<a href="../implantations.html">nos implantations</a>). Chaque projet est sur devis, gratuit et personnalisé.</p>`;
+const ZONE = `<p class="zoneTxt">Basés dans la métropole de Montpellier, nous intervenons dans toute la métropole, dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM (<a href="../implantations.html">nos implantations</a>). Chaque projet est sur devis, gratuit et personnalisé.</p>`;
 
 function faqHtml(faq) {
   return `
@@ -1037,7 +1055,9 @@ ${others.map((s, i) => `      <article class="case reveal"><div class="n">${i + 
       <div class="reveal"><h3>Articles de veille</h3><ul>${p.veille.map(v => li(`../lab/veille/${v}.html`, VEILLE[v])).join('')}</ul></div>
       <div class="reveal"><h3>Guides pratiques</h3><ul>${p.guides.map(g => li(`../montpellier/guides/${g}.html`, GUIDES[g])).join('')}</ul></div>
       <div class="reveal"><h3>Outils gratuits</h3><ul>${Object.keys(OUTILS).map(o => li(`../outils/${o}.html`, OUTILS[o])).join('')}${li('../automatisation/', 'Hub automatisation')}</ul></div>
+      <div class="reveal"><h3>Idées par secteur</h3><ul>${p.metiers.filter(m => IDEES[m]).map(m => li(`../idees/${m}.html`, `Idées IA : ${IDEES[m]}`)).join('')}${li('../idees/', 'Laboratoire d’idées')}</ul></div>
     </div>
+    <p class="zoneTxt">Nos dossiers de référence : ${PILIERS.map(x => `<a href="${x.slug}.html">${x.name}</a>`).join(' · ')}</p>
     ${ZONE}
   </div></section>`;
 
@@ -1064,7 +1084,7 @@ function renderIndex() {
   const desc = 'Nos services : création de site internet, intégration de l’IA, automatisation, logiciel sur-mesure, agents IA et vocaux, API, SEO local. Devis gratuit.';
   const faq = [
     { q: 'Quels services propose Groupe Solution ?', a: 'Création de sites internet, intégration de l’intelligence artificielle, automatisation des processus, logiciels et applications métier sur-mesure, agents IA et chatbots, agents vocaux, intégration d’API et référencement local.' },
-    { q: 'Où intervenez-vous ?', a: 'Nous sommes basés à Montpellier et intervenons dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM.' },
+    { q: 'Où intervenez-vous ?', a: 'Nous sommes basés dans la métropole de Montpellier et intervenons dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM.' },
     { q: 'Combien coûtent vos services ?', a: 'Chaque projet est sur devis, gratuit et personnalisé, établi après un court échange pour comprendre votre besoin.' },
   ];
   const jsonld = {
@@ -1106,6 +1126,12 @@ ${SERVICES.map((s, i) => `      <article class="case reveal"><div class="n">${i 
     </div>
   </div></section>
   <section class="sec"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Dossiers de référence</div><h2>Les guides complets pour décider.</h2><p>Logiciel, application métier, gestion, automatisation, agents IA : cinq dossiers approfondis, avec méthode, critères de choix et questions fréquentes. Et pour trouver l’inspiration, notre <a class="go" href="../idees/">laboratoire d’idées par secteur</a>.</p></div>
+    <div class="cases">
+${PILIERS.map((s, i) => `      <article class="case reveal"><div class="n">${i + 1}</div><h3><a href="${s.slug}.html">${s.name}</a></h3><p>${s.blurb}</p><a class="more" href="${s.slug}.html">Lire le dossier →</a></article>`).join('\n')}
+    </div>
+  </div></section>
+  <section class="sec"><div class="wrap">
     <div class="secHead reveal"><div class="kicker">Notre façon de travailler</div><h2>Partir de votre problème, pas d’une technologie.</h2></div>
     <div class="steps">
       <div class="step reveal"><h3>Échange de 10 min</h3><p>Nous comprenons votre activité et ce qui vous fait perdre du temps ou des clients.</p></div>
@@ -1121,7 +1147,12 @@ ${contactForm('services/index', { h2: 'Parlez-nous de votre besoin', p: 'Deux ph
 ${FOOT}`;
 }
 
-/* ── Écriture ─────────────────────────────────────────────── */
+/* ── Exports (réutilisés par zones/generate-piliers.mjs) ──── */
+export { SITE, BASE, OG_IMAGE, TEL, TEL_TXT, RDV, FONTS, SERVICES, PILIERS, IDEES, METIERS, VEILLE, GUIDES, OUTILS,
+  keep, table, ul, ol, esc, strip, ld, ORG, AREA, STYLE, head, contactForm, FOOT, faqHtml };
+
+/* ── Écriture (uniquement quand le script est lancé directement) ── */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 mkdirSync(OUT_DIR, { recursive: true });
 for (const p of PAGES) {
   writeFileSync(join(OUT_DIR, `${p.slug}.html`), renderPage(p));
@@ -1129,3 +1160,4 @@ for (const p of PAGES) {
 }
 writeFileSync(join(OUT_DIR, 'index.html'), renderIndex());
 console.log('services/index.html');
+}

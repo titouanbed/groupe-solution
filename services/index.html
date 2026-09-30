@@ -57,15 +57,14 @@
 .ctaBox .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35)}
 .case a.more{display:inline-block;margin-top:14px;font-weight:800;font-size:14px;color:var(--ink);border-bottom:2px solid var(--acc)}
 .case h3 a:hover{color:var(--acc)}
-.res{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
 .res div{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px}
 .res h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans);font-weight:800;color:var(--muted);margin-bottom:10px}
 .res ul{list-style:none;display:grid;gap:8px;font-size:14.5px}
 .res a{font-weight:600;color:var(--ink)}.res a:hover{color:var(--acc)}
 .zoneTxt{max-width:820px;margin:34px auto 0;text-align:center;color:var(--secondary);font-size:16px;line-height:1.7}
 .zoneTxt a{color:var(--ink);font-weight:700;border-bottom:1px solid var(--acc)}
-@media(max-width:960px){.res{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.res{grid-template-columns:1fr}.art{font-size:16.5px}.ctaBox{padding:24px 20px}.ctaBtns{flex-direction:column}.ctaBtns .btn{width:100%}.toc{padding:18px 18px}}
+@media(max-width:600px){.art{font-size:16.5px}.ctaBox{padding:24px 20px}.ctaBtns{flex-direction:column}.ctaBtns .btn{width:100%}.toc{padding:18px 18px}}
 
 .gs-sticky{display:none}
 @media(max-width:760px){
@@ -101,8 +100,8 @@
         "email": "contact@groupsolution.fr",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Montpellier",
-          "postalCode": "34000",
+          "addressLocality": "Saint-Jean-de-Védas",
+          "postalCode": "34430",
           "addressRegion": "Occitanie",
           "addressCountry": "FR"
         }
@@ -194,7 +193,7 @@
           "name": "Où intervenez-vous ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Nous sommes basés à Montpellier et intervenons dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM."
+            "text": "Nous sommes basés dans la métropole de Montpellier et intervenons dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM."
           }
         },
         {
@@ -247,6 +246,16 @@
     </div>
   </div></section>
   <section class="sec"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Dossiers de référence</div><h2>Les guides complets pour décider.</h2><p>Logiciel, application métier, gestion, automatisation, agents IA : cinq dossiers approfondis, avec méthode, critères de choix et questions fréquentes. Et pour trouver l’inspiration, notre <a class="go" href="../idees/">laboratoire d’idées par secteur</a>.</p></div>
+    <div class="cases">
+      <article class="case reveal"><div class="n">1</div><h3><a href="logiciel-sur-mesure-pme.html">Logiciel sur-mesure pour PME</a></h3><p>Quand un logiciel conçu pour votre PME devient plus rentable qu’un empilement d’outils du marché, et comment le mener sans risque.</p><a class="more" href="logiciel-sur-mesure-pme.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">2</div><h3><a href="application-metier-sur-mesure.html">Application métier sur-mesure</a></h3><p>Une application web ou mobile pensée pour le terrain, le bureau et vos clients, construite autour de vos gestes réels.</p><a class="more" href="application-metier-sur-mesure.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">3</div><h3><a href="logiciel-de-gestion-sur-mesure.html">Logiciel de gestion sur-mesure</a></h3><p>Devis, stocks, planning, facturation, suivi client : une gestion d’entreprise unifiée, à votre image, dont vous gardez les données.</p><a class="more" href="logiciel-de-gestion-sur-mesure.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">4</div><h3><a href="automatisation-entreprise.html">Automatisation d’entreprise</a></h3><p>Processus, outils et IA : la méthode complète pour automatiser une entreprise sans perdre le contrôle.</p><a class="more" href="automatisation-entreprise.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">5</div><h3><a href="agent-ia-entreprise-exemples.html">Agent IA : exemples par métier</a></h3><p>Dix-huit métiers passés en revue : ce que l’agent fait, les outils branchés et les garde-fous à prévoir.</p><a class="more" href="agent-ia-entreprise-exemples.html">Lire le dossier →</a></article>
+    </div>
+  </div></section>
+  <section class="sec"><div class="wrap">
     <div class="secHead reveal"><div class="kicker">Notre façon de travailler</div><h2>Partir de votre problème, pas d’une technologie.</h2></div>
     <div class="steps">
       <div class="step reveal"><h3>Échange de 10 min</h3><p>Nous comprenons votre activité et ce qui vous fait perdre du temps ou des clients.</p></div>
@@ -254,7 +263,7 @@
       <div class="step reveal"><h3>Première version</h3><p>Une version utile rapidement, testée sur vos cas réels, puis améliorée.</p></div>
       <div class="step reveal"><h3>Suivi dans la durée</h3><p>Mesure des résultats, maintenance, évolutions selon vos besoins.</p></div>
     </div>
-    <p class="zoneTxt">Basés à Montpellier, nous intervenons dans toute la métropole, dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM (<a href="../implantations.html">nos implantations</a>). Chaque projet est sur devis, gratuit et personnalisé.</p>
+    <p class="zoneTxt">Basés dans la métropole de Montpellier, nous intervenons dans toute la métropole, dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM (<a href="../implantations.html">nos implantations</a>). Chaque projet est sur devis, gratuit et personnalisé.</p>
     <p class="zoneTxt">Voir aussi : <a href="../automatisation/">notre hub automatisation</a> · <a href="../montpellier/site-internet-montpellier.html">sites internet à Montpellier</a> · <a href="../outils/">nos outils gratuits</a> · <a href="../lab/veille/">notre veille</a> · <a href="../montpellier/guides/">nos guides</a></p>
   </div></section>
 
@@ -262,7 +271,7 @@
     <div class="secHead center reveal"><div class="kicker">Questions fréquentes</div><h2>Vos questions, nos réponses.</h2></div>
     <div class="faq">
       <details class="reveal"><summary>Quels services propose Groupe Solution ?</summary><p>Création de sites internet, intégration de l’intelligence artificielle, automatisation des processus, logiciels et applications métier sur-mesure, agents IA et chatbots, agents vocaux, intégration d’API et référencement local.</p></details>
-      <details class="reveal"><summary>Où intervenez-vous ?</summary><p>Nous sommes basés à Montpellier et intervenons dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM.</p></details>
+      <details class="reveal"><summary>Où intervenez-vous ?</summary><p>Nous sommes basés dans la métropole de Montpellier et intervenons dans l’Hérault et le Gard, partout en France à distance et dans les DOM-TOM.</p></details>
       <details class="reveal"><summary>Combien coûtent vos services ?</summary><p>Chaque projet est sur devis, gratuit et personnalisé, établi après un court échange pour comprendre votre besoin.</p></details>
     </div>
   </div></section>
@@ -291,6 +300,8 @@
     <a href="../index.html">Accueil</a>
     <a href="./">Services</a>
     <a href="../automatisation/">Automatisation</a>
+    <a href="agent-ia-entreprise-exemples.html">Agents IA par métier</a>
+    <a href="../idees/">Idées par secteur</a>
     <a href="../solutions.html">Solutions</a>
     <a href="../realisations.html">Réalisations</a>
     <a href="../montpellier/site-internet-montpellier.html">Sites internet</a>

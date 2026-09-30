@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatisation d’entreprise : processus et IA | Groupe Solution</title>
+  <meta name="description" content="Automatisation d’entreprise : quels processus automatiser, avec quels outils (no-code, code, IA), comment mesurer les gains et garder le contrôle. Sur devis." />
+  <link rel="canonical" href="https://www.groupsolution.fr/services/automatisation-entreprise.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Automatisation d’entreprise : processus et IA | Groupe Solution" />
+  <meta property="og:description" content="Automatisation d’entreprise : quels processus automatiser, avec quels outils (no-code, code, IA), comment mesurer les gains et garder le contrôle. Sur devis." />
+  <meta property="og:url" content="https://www.groupsolution.fr/services/automatisation-entreprise.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Automatisation d’entreprise : processus et IA | Groupe Solution" />
+  <meta name="twitter:description" content="Automatisation d’entreprise : quels processus automatiser, avec quels outils (no-code, code, IA), comment mesurer les gains et garder le contrôle. Sur devis." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/holding-local.css" />
+  <style>
+.heroDevise .lab{min-width:max-content}
+.callCard .rdv{display:block;margin-top:10px;font-size:14px;font-weight:700;color:var(--secondary);text-decoration:underline;text-underline-offset:3px}
+.artSec{padding:40px 0 92px}
+.art{max-width:780px;margin:0 auto;font-size:17px;line-height:1.8;color:#2B2A26;overflow-wrap:break-word}
+.art h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;margin:64px 0 18px;scroll-margin-top:90px}
+.art h3{font-size:21px;font-weight:600;line-height:1.3;margin:30px 0 8px}
+.art p{margin:0 0 18px}
+.art ul,.art ol{margin:0 0 22px;padding-left:24px}.art li{margin:0 0 8px;padding-left:4px}
+.art a{color:var(--acc-d);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.art a:hover{color:var(--ink)}
+.art strong{color:var(--ink)}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin:0 0 8px}
+.toc p{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted);margin:0 0 10px}
+.toc ol{margin:0;padding-left:22px;font-size:15.5px;line-height:1.6}.toc li{margin:0 0 6px}
+.toc a{color:var(--ink);text-decoration:none;font-weight:600}.toc a:hover{color:var(--acc)}
+.keep{background:var(--olive-soft);border:1px solid #DDE2D5;border-radius:var(--r-m);padding:20px 24px;margin:8px 0 28px}
+.keepT{font-size:12px!important;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--olive2);margin:0 0 8px!important}
+.keep ul{margin:0;padding-left:20px;font-size:16px;color:var(--olive2)}.keep li{margin:0 0 4px}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 28px;border:1px solid var(--line);border-radius:16px;background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:600px;font-size:15px;line-height:1.55}
+.tbl caption{caption-side:top;text-align:left;padding:14px 16px 6px;font-weight:800;font-size:13px;color:var(--muted)}
+.tbl th,.tbl td{padding:12px 16px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl thead th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tbody th{font-weight:700;color:var(--ink);min-width:150px}
+.tbl td{color:var(--secondary)}
+.ctaBox{background:var(--ink);color:#fff;border-radius:var(--r-l);padding:28px 30px;margin:36px 0}
+.ctaBox .ctaT{font-family:var(--serif);font-size:24px;line-height:1.25;margin:0 0 8px;color:#fff}
+.ctaBox p{color:#D9D6CE;margin:0 0 18px;font-size:16px}
+.ctaBtns{display:flex;flex-wrap:wrap;gap:10px}
+.ctaBox .btn{padding:13px 20px;font-size:15px;text-decoration:none;color:#fff}
+.ctaBox .btn.dark{background:#fff;color:var(--ink)}
+.ctaBox .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35)}
+.case a.more{display:inline-block;margin-top:14px;font-weight:800;font-size:14px;color:var(--ink);border-bottom:2px solid var(--acc)}
+.case h3 a:hover{color:var(--acc)}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.res div{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px}
+.res h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans);font-weight:800;color:var(--muted);margin-bottom:10px}
+.res ul{list-style:none;display:grid;gap:8px;font-size:14.5px}
+.res a{font-weight:600;color:var(--ink)}.res a:hover{color:var(--acc)}
+.zoneTxt{max-width:820px;margin:34px auto 0;text-align:center;color:var(--secondary);font-size:16px;line-height:1.7}
+.zoneTxt a{color:var(--ink);font-weight:700;border-bottom:1px solid var(--acc)}
+@media(max-width:600px){.art{font-size:16.5px}.ctaBox{padding:24px 20px}.ctaBtns{flex-direction:column}.ctaBtns .btn{width:100%}.toc{padding:18px 18px}}
+
+.gs-sticky{display:none}
+@media(max-width:760px){
+  .gs-sticky{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:900;gap:8px;background:rgba(23,22,19,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .gs-sticky a,.gs-sticky button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:12px;font:800 14px/1 inherit;font-family:inherit;text-decoration:none;border:0;cursor:pointer}
+  .gs-sticky .s1{background:#fff;color:#171613}
+  .gs-sticky .s2{background:#E61E4D;color:#fff}
+  body{padding-bottom:84px}
+}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.groupsolution.fr/services/automatisation-entreprise.html#service",
+      "name": "Automatisation d’entreprise : processus, outils et intelligence artificielle",
+      "serviceType": "Automatisation des processus d’entreprise",
+      "description": "Automatisation d’entreprise : quels processus automatiser, avec quels outils (no-code, code, IA), comment mesurer les gains et garder le contrôle. Sur devis.",
+      "url": "https://www.groupsolution.fr/services/automatisation-entreprise.html",
+      "provider": {
+        "@id": "https://www.groupsolution.fr/#org",
+        "@type": "Organization",
+        "name": "Groupe Solution"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "France"
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "description": "Sur devis"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.groupsolution.fr/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Automatisation d’entreprise",
+          "item": "https://www.groupsolution.fr/services/automatisation-entreprise.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce que l’automatisation d’entreprise ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C’est l’ensemble des moyens qui permettent à une tâche de s’exécuter sans intervention humaine ou avec une simple validation : des règles, des intégrations entre logiciels et, lorsque c’est utile, de l’intelligence artificielle pour traiter du texte, de la voix ou des documents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels processus automatiser en premier ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ceux qui sont fréquents, chronophages, sujets aux erreurs et stables : saisie des factures, relances, création de fiches clients, prise de rendez-vous, reporting. Un processus qui change souvent doit d’abord être clarifié."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il utiliser un outil no-code ou du code sur-mesure ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le no-code convient pour tester et pour des flux simples. Le code sur-mesure est préférable pour ce qui est critique, volumineux ou complexe, car il offre robustesse, traçabilité, tests et coûts d’exécution maîtrisés. Les deux peuvent coexister."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L’IA est-elle indispensable pour automatiser ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Beaucoup d’automatisations reposent sur de simples règles et intégrations. L’IA devient utile lorsqu’il faut comprendre un contenu non structuré, comme un e-mail, une facture photographiée ou un appel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment garder le contrôle sur les automatisations ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En prévoyant une validation humaine pour les actions engageantes, un journal de chaque action, des alertes en cas d’échec, la possibilité de revenir au manuel et un périmètre explicite pour les agents IA."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien coûte un projet d’automatisation ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le coût dépend du nombre de processus et d’outils à connecter, de leur ouverture technique, de la part d’IA, des volumes et du suivi attendu. Chaque projet est sur devis, établi après un appel de 10 minutes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps gagne-t-on en automatisant ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cela dépend entièrement de vos volumes et de vos processus. Nous estimons les gains avec vous à partir de vos propres chiffres, et notre calculateur gratuit de tâches répétitives permet d’en faire une première estimation."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+<style>
+.heroCtas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.heroCtas .btn{padding:14px 22px;font-size:15px}
+.callCard .ai{display:block;margin-top:10px;font-size:14px;font-weight:700;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.metier{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:20px 22px 8px;margin:0 0 18px}
+.metier h3{margin-top:0!important}
+.metier dl{margin:0 0 10px}
+.metier dt{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--olive2);margin:10px 0 2px}
+.metier dd{margin:0 0 6px;font-size:16px;line-height:1.7}
+.metier .mlinks{font-size:14px;margin:6px 0 12px;color:var(--muted)}
+.pilNav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.pilNav a{font-size:14px;font-weight:700;color:var(--ink);background:var(--white);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.pilNav a:hover{border-color:var(--acc)}
+@media(max-width:600px){.heroCtas{flex-direction:column}.heroCtas .btn{width:100%}.metier{padding:16px 16px 6px}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Services</a><a href="../automatisation/">Automatisation</a><a href="../montpellier/site-internet-montpellier.html">Sites internet</a><a href="../lab/">Lab</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
+<main>
+  <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <a href="./">Services</a> › <span>Automatisation d’entreprise</span></div>
+
+  <section class="hero"><div class="wrap heroGrid">
+    <div>
+      <div class="kicker reveal">Processus · outils · intelligence artificielle</div>
+      <h1 class="reveal">Automatisation d’entreprise : <em>processus, outils et IA, la méthode complète</em>.</h1>
+      <p class="lead reveal">Automatiser une entreprise ne consiste pas à tout confier à des robots, mais à retirer aux équipes les tâches répétitives qui n’apportent rien, tout en gardant la main sur les décisions. Voici une méthode complète : quoi automatiser, avec quels outils, dans quel ordre, et avec quels garde-fous.</p>
+      <div class="heroCtas reveal"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="/#heroAI">Décrire mon projet à l’assistant</a></div>
+      <div class="heroDevise reveal"><span class="lab">Notre devise</span><b>Nous gagnons de l’argent uniquement si vous en gagnez.</b></div>
+    </div>
+    <div class="reveal"><div class="callCard">
+      <span class="callBadge">10 minutes suffisent</span>
+      <h2>Parlons de votre projet, sans engagement.</h2>
+      <p class="sub">Un échange direct avec l’équipe. Vous repartez avec des pistes concrètes, même si vous ne travaillez pas avec nous.</p>
+      <a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59 →</a>
+      <a class="alt" href="#contact">Être rappelé</a>
+      <a class="rdv" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver une visio de 10 min</a>
+      <a class="ai" href="/#heroAI">Décrire mon projet à l’assistant</a>
+      <span class="micro">Chaque projet est sur devis</span>
+    </div></div>
+  </div></section>
+  <section class="artSec"><div class="wrap">
+    <article class="art">
+<nav class="toc" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#definition">Qu’est-ce que l’automatisation d’entreprise ?</a></li><li><a href="#quoi">Ce que l’on automatise, service par service</a></li><li><a href="#outils">Les outils : no-code, code sur-mesure, RPA et agents IA</a></li><li><a href="#prioriser">Comment choisir quoi automatiser en premier</a></li><li><a href="#exemple">Exemple de chaîne automatisée : de la demande client à la facture</a></li><li><a href="#controle">Garder le contrôle : humain dans la boucle et traçabilité</a></li><li><a href="#projet">Comment se déroule un projet d’automatisation</a></li><li><a href="#devis">Ce qui influence le devis d’une automatisation</a></li><li><a href="#cadre">Propriété, sécurité, RGPD et AI Act</a></li><li><a href="#faq">Questions fréquentes</a></li></ol></nav>
+<h2 id="definition">Qu’est-ce que l’automatisation d’entreprise ?</h2>
+<p>L’<strong>automatisation d’entreprise</strong> regroupe tout ce qui permet à une tâche de s’exécuter sans intervention humaine, ou avec une simple validation. On peut la représenter en trois niveaux, qui se combinent :</p>
+<ol><li><strong>Les règles</strong> : « quand une commande est payée, créer la facture et prévenir l’entrepôt ». Simples, fiables, prévisibles.</li><li><strong>Les intégrations</strong> : faire circuler automatiquement les données entre vos outils (site, CRM, agenda, comptabilité, messagerie) pour supprimer la double saisie.</li><li><strong>L’intelligence artificielle</strong> : traiter ce qui n’est pas structuré — lire un e-mail ou une facture, classer une demande, rédiger une réponse, résumer un appel — là où une règle fixe ne suffit pas.</li></ol>
+<p>Un bon projet utilise le niveau le plus simple qui résout le problème. L’IA est puissante, mais une règle claire reste préférable quand elle suffit : elle coûte moins cher à faire tourner et ne se trompe pas.</p>
+<h2 id="quoi">Ce que l’on automatise, service par service</h2>
+<div class="tbl"><table><caption>Exemples d’automatisations par fonction de l’entreprise</caption><thead><tr><th scope="col">Fonction</th><th scope="col">Exemples d’automatisations</th><th scope="col">Niveau le plus fréquent</th></tr></thead><tbody><tr><th scope="row">Ventes</th><td>Qualification des demandes entrantes, création de fiches dans le CRM, relances de devis, prise de rendez-vous.</td><td>Intégrations et IA</td></tr><tr><th scope="row">Administration et finance</th><td>Saisie des factures fournisseurs, rapprochement bancaire, relances d’impayés, export comptable.</td><td>Règles, IA de lecture</td></tr><tr><th scope="row">Ressources humaines</th><td>Tri des candidatures, parcours d’arrivée, collecte des justificatifs, planning des absences.</td><td>Règles et intégrations</td></tr><tr><th scope="row">Opérations</th><td>Planification des interventions, commandes fournisseurs au seuil, suivi de livraison, bons signés.</td><td>Intégrations</td></tr><tr><th scope="row">Service client</th><td>Réponses aux questions fréquentes, suivi de commande, accueil téléphonique, tri des e-mails.</td><td>IA avec garde-fous</td></tr><tr><th scope="row">Direction</th><td>Tableaux de bord consolidés, alertes sur écarts, rapport hebdomadaire préparé automatiquement.</td><td>Intégrations</td></tr></tbody></table></div>
+<p>Pour des exemples par métier, voir notre dossier <a href="agent-ia-entreprise-exemples.html">agents IA : exemples concrets par métier</a> et notre <a href="../idees/">laboratoire d’idées par secteur</a>.</p>
+<h2 id="outils">Les outils : no-code, code sur-mesure, RPA et agents IA</h2>
+<h3>Les plateformes no-code et low-code</h3>
+<p>Des outils de type Zapier, Make ou n8n relient des applications par des scénarios visuels. Ils sont parfaits pour démarrer vite sur des flux simples. Leurs limites apparaissent avec le volume, la complexité des règles, le coût par opération et la difficulté à tester et à documenter des dizaines de scénarios.</p>
+<h3>Le code sur-mesure</h3>
+<p>Un programme écrit pour votre besoin, hébergé sur votre infrastructure ou celle de votre choix. Il demande plus de conception au départ, mais offre robustesse, traçabilité, tests automatisés et coûts d’exécution maîtrisés. C’est notre spécialité d’<a href="logiciel-sur-mesure.html">éditeur de logiciels sur-mesure</a>.</p>
+<h3>La RPA et l’automatisation de navigation</h3>
+<p>Quand un logiciel ou un portail n’offre aucune API, un robot peut reproduire les clics d’un utilisateur. C’est une solution de dernier recours, plus fragile, mais parfois indispensable ; les agents capables de piloter une interface la rendent plus souple (voir <a href="../lab/veille/agents-ia-computer-use.html">Agents IA et portails sans API</a>).</p>
+<h3>Les agents IA</h3>
+<p>Un agent IA combine un modèle de langage et des outils qu’il a le droit d’utiliser : lire un dossier, consulter un agenda, créer un brouillon, mettre à jour une fiche. Des standards comme le protocole MCP facilitent ces branchements (voir <a href="../lab/veille/mcp-model-context-protocol.html">MCP : connecter l’IA à vos outils</a>). Ils excellent sur les tâches variées, à condition d’être encadrés.</p>
+<aside class="keep"><p class="keepT">À retenir</p><ul><li>Le no-code pour tester et pour les flux simples.</li><li>Le code sur-mesure pour ce qui est critique, volumineux ou complexe.</li><li>L’IA uniquement là où il faut comprendre du texte, de la voix ou des images.</li></ul></aside>
+<h2 id="prioriser">Comment choisir quoi automatiser en premier</h2>
+<p>La tentation est de commencer par ce qui est techniquement amusant. La bonne méthode consiste à noter chaque tâche candidate sur quatre critères :</p>
+<ul><li><strong>La fréquence</strong> : combien de fois par jour, par semaine ou par mois ?</li><li><strong>Le temps unitaire</strong> : combien de minutes à chaque fois, en comptant les interruptions ?</li><li><strong>Le coût d’une erreur</strong> : une faute de saisie sur une facture ou une commande coûte parfois bien plus que le temps passé.</li><li><strong>La stabilité du processus</strong> : un processus qui change tous les mois doit d’abord être clarifié.</li></ul>
+<p>Les meilleures candidates sont fréquentes, chronophages, sujettes aux erreurs et stables. Notre <a href="../outils/calculateur-automatisation.html">Calculateur de tâches répétitives</a> vous aide à chiffrer le temps en jeu avec vos propres données. Les gains réels dépendent de votre situation : nous les estimons avec vous, sur vos chiffres, sans promesse générique.</p><aside class="ctaBox"><p class="ctaT">Quelles tâches pourriez-vous ne plus faire ?</p><p>En 10 minutes, nous repérons avec vous les automatisations les plus utiles pour votre entreprise.</p><div class="ctaBtns"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="#contact">Être rappelé</a><a class="btn ghost" href="/#heroAI">Décrire mon projet à l’assistant</a><a class="btn ghost" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Visio de 10 min</a></div></aside>
+<h2 id="exemple">Exemple de chaîne automatisée : de la demande client à la facture</h2>
+<p>Pour rendre les choses concrètes, voici une chaîne type dans une entreprise de services. Chaque étape peut être mise en place séparément.</p>
+<ol><li><strong>La demande arrive</strong> par le site, par e-mail ou par téléphone. Un agent IA la lit, identifie le client (ou crée sa fiche dans le CRM) et classe la demande par type et par urgence.</li><li><strong>Le devis est préparé</strong> à partir de vos règles de chiffrage et de vos tarifs. Un collaborateur le relit et le valide en un clic ; il part avec un lien de signature électronique.</li><li><strong>Le devis signé déclenche la suite</strong> : création du dossier, demande d’acompte, proposition de créneaux d’intervention selon le planning des équipes.</li><li><strong>L’intervention est réalisée</strong> : le technicien remplit une fiche sur son téléphone, photos et signature à l’appui ; les informations remontent sans ressaisie.</li><li><strong>La facture est émise</strong> automatiquement à partir du dossier, transmise dans le format exigé par la facturation électronique, puis suivie : relance aimable à l’échéance, alerte au responsable si le retard persiste.</li><li><strong>Le tableau de bord se met à jour</strong> : chiffre d’affaires, encours, délais moyens, sans que personne n’ait à compiler de tableur.</li></ol>
+<p>Dans cette chaîne, l’humain garde les décisions (valider un devis, traiter un litige) et l’automatisation se charge des recopies, des relances et des vérifications. Pour les artisans, notre guide <a href="../montpellier/guides/automatiser-devis-artisan.html">Automatiser ses devis quand on est artisan</a> détaille la partie devis ; pour les impayés, voir <a href="../montpellier/guides/relances-factures-impayees-automatiques.html">Relancer ses factures impayées automatiquement</a>.</p>
+<h2 id="controle">Garder le contrôle : humain dans la boucle et traçabilité</h2>
+<p>Une automatisation fiable se reconnaît à ce qui se passe quand quelque chose sort de l’ordinaire. Nos principes :</p>
+<ul><li><strong>Validation humaine</strong> pour les actions engageantes : envoi d’un devis, paiement, réponse sensible à un client.</li><li><strong>Journal de chaque action</strong> : qui (ou quel automatisme) a fait quoi, quand, à partir de quelles données.</li><li><strong>Alertes en cas d’échec</strong> plutôt qu’un silence qui laisse croire que tout va bien.</li><li><strong>Possibilité de revenir au manuel</strong> à tout moment, sans perte de données.</li><li><strong>Périmètre explicite</strong> pour les agents IA : ce qu’ils ont le droit de lire, de proposer et d’exécuter.</li></ul>
+<h2 id="projet">Comment se déroule un projet d’automatisation</h2><p>Nous procédons par petites automatisations utiles, mises en service rapidement puis consolidées.</p><ol><li><strong>Appel de 10 minutes</strong> pour repérer les tâches répétitives qui pèsent le plus.</li><li><strong>Proposition sur devis</strong> : automatisations retenues, outils utilisés, points de validation humaine, propriété des scénarios et des accès, suivi.</li><li><strong>Construction par étapes</strong>, une automatisation après l’autre, testée sur des cas réels avant d’être généralisée.</li><li><strong>Mise en service</strong> avec une période d’observation : on vérifie les résultats, on ajuste les règles, on traite les cas particuliers.</li><li><strong>Suivi</strong> : surveillance, maintenance quand un outil connecté change, nouvelles automatisations.</li></ol><p>Le calendrier est fixé dans la proposition selon le nombre d’automatisations et d’outils à connecter. Pour les entreprises de la région de Montpellier, notre <a href="../automatisation/">hub automatisation et logiciel sur-mesure</a> présente l’offre locale.</p>
+<h2 id="devis">Ce qui influence le devis d’une automatisation</h2>
+<ul><li>le <strong>nombre de processus</strong> et d’outils à connecter ;</li><li>l’<strong>ouverture technique</strong> de ces outils (API documentée, export, ou absence d’accès) ;</li><li>la <strong>part d’IA</strong> nécessaire, qui implique aussi des coûts d’usage à anticiper ;</li><li>les <strong>volumes</strong> traités et les exigences de fiabilité ;</li><li>le <strong>niveau de suivi</strong> et de surveillance attendu.</li></ul>
+<p>Chaque projet est sur devis. Fidèles à notre devise — « nous gagnons de l’argent uniquement si vous en gagnez » — nous commençons par les automatisations dont le bénéfice est le plus clair pour vous.</p>
+<h2 id="cadre">Propriété, sécurité, RGPD et AI Act</h2>
+<p>Faites écrire à qui appartiennent les scénarios, le code et la documentation, qui détient les comptes des plateformes utilisées et les clés d’API, et comment tout récupérer en fin de contrat. Une automatisation dont vous n’avez pas les accès est une dépendance.</p>
+<p>Les automatisations manipulent souvent des données personnelles : elles doivent respecter le RGPD (minimisation, durées de conservation, sous-traitants identifiés, transferts hors Union européenne encadrés). Lorsque de l’IA intervient, le règlement européen sur l’IA prévoit notamment d’informer les personnes qui échangent avec un système d’IA ; voir <a href="../lab/veille/ai-act-pme.html">AI Act : ce qu’une PME doit savoir</a>. Enfin, la facturation électronique, obligatoire en réception depuis le 1<sup>er</sup> septembre 2026 et en émission pour les PME et microentreprises au 1<sup>er</sup> septembre 2027, est une bonne occasion d’automatiser toute la chaîne des factures (<a href="../lab/veille/facturation-electronique-2026.html">notre article</a>).</p>
+<aside class="ctaBox"><p class="ctaT">Prêt à en parler ?</p><p>Appelez-nous, demandez à être rappelé, décrivez votre projet à notre assistant ou réservez une visio de 10 minutes. Chaque projet est sur devis.</p><div class="ctaBtns"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="#contact">Être rappelé</a><a class="btn ghost" href="/#heroAI">Décrire mon projet à l’assistant</a><a class="btn ghost" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Visio de 10 min</a></div></aside>
+    </article>
+  </div></section>
+
+  <section class="sec alt"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Dossiers de référence</div><h2>Les autres dossiers pour décider.</h2><p>Chaque dossier va au bout du sujet : méthode, critères de choix, limites et questions fréquentes. <a class="go" href="./">Voir tous nos services</a></p></div>
+    <div class="cases">
+      <article class="case reveal"><div class="n">1</div><h3><a href="logiciel-sur-mesure-pme.html">Logiciel sur-mesure pour PME</a></h3><p>Quand un logiciel conçu pour votre PME devient plus rentable qu’un empilement d’outils du marché, et comment le mener sans risque.</p><a class="more" href="logiciel-sur-mesure-pme.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">2</div><h3><a href="application-metier-sur-mesure.html">Application métier sur-mesure</a></h3><p>Une application web ou mobile pensée pour le terrain, le bureau et vos clients, construite autour de vos gestes réels.</p><a class="more" href="application-metier-sur-mesure.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">3</div><h3><a href="logiciel-de-gestion-sur-mesure.html">Logiciel de gestion sur-mesure</a></h3><p>Devis, stocks, planning, facturation, suivi client : une gestion d’entreprise unifiée, à votre image, dont vous gardez les données.</p><a class="more" href="logiciel-de-gestion-sur-mesure.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">4</div><h3><a href="agent-ia-entreprise-exemples.html">Agent IA : exemples par métier</a></h3><p>Dix-huit métiers passés en revue : ce que l’agent fait, les outils branchés et les garde-fous à prévoir.</p><a class="more" href="agent-ia-entreprise-exemples.html">Lire le dossier →</a></article>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Pour aller plus loin</div><h2>Services, idées, veille et outils.</h2><p>Pour trouver l’inspiration, parcourez notre <a class="go" href="../idees/">laboratoire d’idées par secteur</a> et notre hub <a class="go" href="../automatisation/">automatisation et logiciel sur-mesure</a>.</p></div>
+    <div class="res">
+      <div class="reveal"><h3>Nos services</h3><ul><li><a href="automatisation-processus.html">Automatisation des processus</a></li><li><a href="integration-api-connecteurs.html">Intégration d’API</a></li><li><a href="agent-ia-chatbot.html">Agent IA et chatbot</a></li><li><a href="agent-vocal-ia.html">Agent vocal IA</a></li></ul></div>
+      <div class="reveal"><h3>Idées par secteur</h3><ul><li><a href="../idees/expert-comptable.html">Cabinet comptable</a></li><li><a href="../idees/agence-immobiliere.html">Agence immobilière</a></li><li><a href="../idees/transport-logistique.html">Transport et logistique</a></li><li><a href="../idees/organisme-de-formation.html">Organisme de formation</a></li><li><a href="../idees/association-collectivite.html">Association ou collectivité</a></li><li><a href="../idees/">Toutes les idées</a></li></ul></div>
+      <div class="reveal"><h3>Veille et guides</h3><ul><li><a href="../lab/veille/mcp-model-context-protocol.html">MCP : connecter l’IA à vos outils</a></li><li><a href="../lab/veille/agents-ia-computer-use.html">Agents IA et portails sans API</a></li><li><a href="../lab/veille/facturation-electronique-2026.html">Facturation électronique 2026-2027</a></li><li><a href="../lab/veille/ai-act-pme.html">AI Act : ce qu’une PME doit savoir</a></li><li><a href="../montpellier/guides/automatiser-devis-artisan.html">Automatiser ses devis quand on est artisan</a></li><li><a href="../montpellier/guides/relances-factures-impayees-automatiques.html">Relancer ses factures impayées automatiquement</a></li></ul></div>
+      <div class="reveal"><h3>Outils gratuits</h3><ul><li><a href="../outils/configurateur-site-internet.html">Configurateur de projet web et IA</a></li><li><a href="../outils/test-visibilite-google.html">Test de visibilité Google</a></li><li><a href="../outils/calculateur-automatisation.html">Calculateur de tâches répétitives</a></li></ul></div>
+      <div class="reveal"><h3>Sites par métier</h3><ul><li><a href="../montpellier/site-internet-expert-comptable-montpellier.html">Expert-comptable</a></li><li><a href="../montpellier/site-internet-agence-immobiliere-montpellier.html">Agence immobilière</a></li><li><a href="../montpellier/site-internet-avocat-montpellier.html">Avocat</a></li></ul></div>
+    </div>
+    <p class="zoneTxt">Notre agence est à Saint-Jean-de-Védas, dans la métropole de Montpellier, et couvre Montpellier et sa région ; Titouan Bedos, fondateur de Groupe Solution, est à Mayotte et couvre toute l’île. Nous accompagnons les entreprises de toute la France et des outre-mer. Chaque projet est sur devis.</p>
+  </div></section>
+
+  <section class="sec alt" id="faq"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Questions fréquentes</div><h2>Vos questions, nos réponses.</h2></div>
+    <div class="faq">
+      <details class="reveal"><summary>Qu’est-ce que l’automatisation d’entreprise ?</summary><p>C’est l’ensemble des moyens qui permettent à une tâche de s’exécuter sans intervention humaine ou avec une simple validation : des règles, des intégrations entre logiciels et, lorsque c’est utile, de l’intelligence artificielle pour traiter du texte, de la voix ou des documents.</p></details>
+      <details class="reveal"><summary>Quels processus automatiser en premier ?</summary><p>Ceux qui sont fréquents, chronophages, sujets aux erreurs et stables : saisie des factures, relances, création de fiches clients, prise de rendez-vous, reporting. Un processus qui change souvent doit d’abord être clarifié.</p></details>
+      <details class="reveal"><summary>Faut-il utiliser un outil no-code ou du code sur-mesure ?</summary><p>Le no-code convient pour tester et pour des flux simples. Le code sur-mesure est préférable pour ce qui est critique, volumineux ou complexe, car il offre robustesse, traçabilité, tests et coûts d’exécution maîtrisés. Les deux peuvent coexister.</p></details>
+      <details class="reveal"><summary>L’IA est-elle indispensable pour automatiser ?</summary><p>Non. Beaucoup d’automatisations reposent sur de simples règles et intégrations. L’IA devient utile lorsqu’il faut comprendre un contenu non structuré, comme un e-mail, une facture photographiée ou un appel.</p></details>
+      <details class="reveal"><summary>Comment garder le contrôle sur les automatisations ?</summary><p>En prévoyant une validation humaine pour les actions engageantes, un journal de chaque action, des alertes en cas d’échec, la possibilité de revenir au manuel et un périmètre explicite pour les agents IA.</p></details>
+      <details class="reveal"><summary>Combien coûte un projet d’automatisation ?</summary><p>Le coût dépend du nombre de processus et d’outils à connecter, de leur ouverture technique, de la part d’IA, des volumes et du suivi attendu. Chaque projet est sur devis, établi après un appel de 10 minutes.</p></details>
+      <details class="reveal"><summary>Combien de temps gagne-t-on en automatisant ?</summary><p>Cela dépend entièrement de vos volumes et de vos processus. Nous estimons les gains avec vous à partir de vos propres chiffres, et notre calculateur gratuit de tâches répétitives permet d’en faire une première estimation.</p></details>
+    </div>
+  </div></section>
+
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Quelle tâche voulez-vous automatiser ?</h2>
+      <p>Décrivez une tâche répétitive en deux phrases : nous vous rappelons avec une première piste concrète.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="services/automatisation-entreprise" />
+        <label class="full">Votre tâche répétitive<textarea name="message" required placeholder="Ex : chaque matin, nous recopions les commandes reçues par e-mail dans notre logiciel…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Être rappelé →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../index.html">Accueil</a>
+    <a href="./">Services</a>
+    <a href="../automatisation/">Automatisation</a>
+    <a href="agent-ia-entreprise-exemples.html">Agents IA par métier</a>
+    <a href="../idees/">Idées par secteur</a>
+    <a href="../solutions.html">Solutions</a>
+    <a href="../realisations.html">Réalisations</a>
+    <a href="../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../echanger.html">Échanger</a>
+    <a href="../plan-du-site.html">Plan du site</a>
+  </nav>
+</div></footer>
+<div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Discutons 10 min</a></div>
+<script src="../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

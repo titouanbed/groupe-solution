@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent IA pour entreprise : exemples par métier | Groupe Solution</title>
+  <meta name="description" content="Agent IA pour entreprise : 18 exemples concrets par métier (BTP, restaurant, comptable, santé, commerce…), outils branchés et garde-fous. Sur devis." />
+  <link rel="canonical" href="https://www.groupsolution.fr/services/agent-ia-entreprise-exemples.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="Agent IA pour entreprise : exemples par métier | Groupe Solution" />
+  <meta property="og:description" content="Agent IA pour entreprise : 18 exemples concrets par métier (BTP, restaurant, comptable, santé, commerce…), outils branchés et garde-fous. Sur devis." />
+  <meta property="og:url" content="https://www.groupsolution.fr/services/agent-ia-entreprise-exemples.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agent IA pour entreprise : exemples par métier | Groupe Solution" />
+  <meta name="twitter:description" content="Agent IA pour entreprise : 18 exemples concrets par métier (BTP, restaurant, comptable, santé, commerce…), outils branchés et garde-fous. Sur devis." />
+  <meta name="twitter:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/holding-local.css" />
+  <style>
+.heroDevise .lab{min-width:max-content}
+.callCard .rdv{display:block;margin-top:10px;font-size:14px;font-weight:700;color:var(--secondary);text-decoration:underline;text-underline-offset:3px}
+.artSec{padding:40px 0 92px}
+.art{max-width:780px;margin:0 auto;font-size:17px;line-height:1.8;color:#2B2A26;overflow-wrap:break-word}
+.art h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;margin:64px 0 18px;scroll-margin-top:90px}
+.art h3{font-size:21px;font-weight:600;line-height:1.3;margin:30px 0 8px}
+.art p{margin:0 0 18px}
+.art ul,.art ol{margin:0 0 22px;padding-left:24px}.art li{margin:0 0 8px;padding-left:4px}
+.art a{color:var(--acc-d);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.art a:hover{color:var(--ink)}
+.art strong{color:var(--ink)}
+.toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px 26px;margin:0 0 8px}
+.toc p{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted);margin:0 0 10px}
+.toc ol{margin:0;padding-left:22px;font-size:15.5px;line-height:1.6}.toc li{margin:0 0 6px}
+.toc a{color:var(--ink);text-decoration:none;font-weight:600}.toc a:hover{color:var(--acc)}
+.keep{background:var(--olive-soft);border:1px solid #DDE2D5;border-radius:var(--r-m);padding:20px 24px;margin:8px 0 28px}
+.keepT{font-size:12px!important;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--olive2);margin:0 0 8px!important}
+.keep ul{margin:0;padding-left:20px;font-size:16px;color:var(--olive2)}.keep li{margin:0 0 4px}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 28px;border:1px solid var(--line);border-radius:16px;background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:600px;font-size:15px;line-height:1.55}
+.tbl caption{caption-side:top;text-align:left;padding:14px 16px 6px;font-weight:800;font-size:13px;color:var(--muted)}
+.tbl th,.tbl td{padding:12px 16px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl thead th{background:var(--sand);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--secondary)}
+.tbl tbody th{font-weight:700;color:var(--ink);min-width:150px}
+.tbl td{color:var(--secondary)}
+.ctaBox{background:var(--ink);color:#fff;border-radius:var(--r-l);padding:28px 30px;margin:36px 0}
+.ctaBox .ctaT{font-family:var(--serif);font-size:24px;line-height:1.25;margin:0 0 8px;color:#fff}
+.ctaBox p{color:#D9D6CE;margin:0 0 18px;font-size:16px}
+.ctaBtns{display:flex;flex-wrap:wrap;gap:10px}
+.ctaBox .btn{padding:13px 20px;font-size:15px;text-decoration:none;color:#fff}
+.ctaBox .btn.dark{background:#fff;color:var(--ink)}
+.ctaBox .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35)}
+.case a.more{display:inline-block;margin-top:14px;font-weight:800;font-size:14px;color:var(--ink);border-bottom:2px solid var(--acc)}
+.case h3 a:hover{color:var(--acc)}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.res div{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:22px}
+.res h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans);font-weight:800;color:var(--muted);margin-bottom:10px}
+.res ul{list-style:none;display:grid;gap:8px;font-size:14.5px}
+.res a{font-weight:600;color:var(--ink)}.res a:hover{color:var(--acc)}
+.zoneTxt{max-width:820px;margin:34px auto 0;text-align:center;color:var(--secondary);font-size:16px;line-height:1.7}
+.zoneTxt a{color:var(--ink);font-weight:700;border-bottom:1px solid var(--acc)}
+@media(max-width:600px){.art{font-size:16.5px}.ctaBox{padding:24px 20px}.ctaBtns{flex-direction:column}.ctaBtns .btn{width:100%}.toc{padding:18px 18px}}
+
+.gs-sticky{display:none}
+@media(max-width:760px){
+  .gs-sticky{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:900;gap:8px;background:rgba(23,22,19,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .gs-sticky a,.gs-sticky button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:12px;font:800 14px/1 inherit;font-family:inherit;text-decoration:none;border:0;cursor:pointer}
+  .gs-sticky .s1{background:#fff;color:#171613}
+  .gs-sticky .s2{background:#E61E4D;color:#fff}
+  body{padding-bottom:84px}
+}
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.groupsolution.fr/services/agent-ia-entreprise-exemples.html#service",
+      "name": "Conception et intégration d’agents IA pour entreprise",
+      "serviceType": "Agent IA pour entreprise",
+      "description": "Agent IA pour entreprise : 18 exemples concrets par métier (BTP, restaurant, comptable, santé, commerce…), outils branchés et garde-fous. Sur devis.",
+      "url": "https://www.groupsolution.fr/services/agent-ia-entreprise-exemples.html",
+      "provider": {
+        "@id": "https://www.groupsolution.fr/#org",
+        "@type": "Organization",
+        "name": "Groupe Solution"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "France"
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "description": "Sur devis"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Groupe Solution",
+          "item": "https://www.groupsolution.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.groupsolution.fr/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Agent IA : exemples par métier",
+          "item": "https://www.groupsolution.fr/services/agent-ia-entreprise-exemples.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce qu’un agent IA pour entreprise ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C’est un programme qui s’appuie sur un modèle de langage pour comprendre une demande formulée librement, choisir des actions parmi celles qu’on lui a autorisées, les exécuter dans vos outils, comme l’agenda, le CRM ou la messagerie, et rendre compte, dans un cadre défini par des règles et des validations humaines."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle différence entre un chatbot et un agent IA ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un chatbot répond à des questions. Un agent IA peut en plus agir : créer un rendez-vous, préparer un devis, mettre à jour une fiche client, dans la limite des droits qui lui sont accordés."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Un agent IA peut-il se tromper ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, c’est pourquoi il doit s’appuyer sur vos données validées, dire qu’il ne sait pas plutôt que d’inventer, faire valider les actions engageantes par un humain et conserver un journal de ses actions. Il est testé sur vos cas réels avant la mise en service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels outils un agent IA peut-il utiliser ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tous ceux qui offrent un accès technique : agenda, CRM, logiciel métier, boutique en ligne, messagerie, téléphonie, base documentaire. Lorsqu’un outil n’a pas d’API, d’autres méthodes existent, comme l’automatisation de navigation, avec davantage de précautions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien coûte un agent IA ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le coût dépend du nombre d’outils branchés, des actions autorisées, des canaux, des langues, des exigences d’hébergement, des volumes et du suivi. Chaque projet est sur devis, établi après un appel de 10 minutes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mes données sont-elles protégées ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Elles doivent l’être : hébergement choisi selon vos exigences, accès limités, fournisseurs de modèles identifiés et contractuellement encadrés, conformité au RGPD. Ces points sont fixés par écrit dans la proposition."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il informer les clients qu’ils parlent à une IA ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Le règlement européen sur l’IA prévoit que les personnes soient informées lorsqu’elles interagissent avec un système d’IA, et c’est de toute façon une bonne pratique de confiance. Les clients doivent aussi pouvoir joindre un humain."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+<style>
+.heroCtas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.heroCtas .btn{padding:14px 22px;font-size:15px}
+.callCard .ai{display:block;margin-top:10px;font-size:14px;font-weight:700;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.metier{background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:20px 22px 8px;margin:0 0 18px}
+.metier h3{margin-top:0!important}
+.metier dl{margin:0 0 10px}
+.metier dt{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--olive2);margin:10px 0 2px}
+.metier dd{margin:0 0 6px;font-size:16px;line-height:1.7}
+.metier .mlinks{font-size:14px;margin:6px 0 12px;color:var(--muted)}
+.pilNav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.pilNav a{font-size:14px;font-weight:700;color:var(--ink);background:var(--white);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.pilNav a:hover{border-color:var(--acc)}
+@media(max-width:600px){.heroCtas{flex-direction:column}.heroCtas .btn{width:100%}.metier{padding:16px 16px 6px}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="./">Services</a><a href="../automatisation/">Automatisation</a><a href="../montpellier/site-internet-montpellier.html">Sites internet</a><a href="../lab/">Lab</a><a class="cta" href="#contact">Discutons 10 min</a></nav></div></header>
+<main>
+  <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <a href="./">Services</a> › <span>Agent IA : exemples par métier</span></div>
+
+  <section class="hero"><div class="wrap heroGrid">
+    <div>
+      <div class="kicker reveal">18 métiers · outils branchés · garde-fous</div>
+      <h1 class="reveal">Agent IA pour entreprise : <em>exemples concrets par métier</em>.</h1>
+      <p class="lead reveal">Un agent IA n’est utile que s’il fait quelque chose de précis, dans vos outils, avec des limites claires. Voici dix-huit métiers passés en revue : ce que l’agent fait concrètement, ce à quoi il est branché, et les garde-fous à prévoir.</p>
+      <div class="heroCtas reveal"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="/#heroAI">Décrire mon projet à l’assistant</a></div>
+      <div class="heroDevise reveal"><span class="lab">Notre devise</span><b>Nous gagnons de l’argent uniquement si vous en gagnez.</b></div>
+    </div>
+    <div class="reveal"><div class="callCard">
+      <span class="callBadge">10 minutes suffisent</span>
+      <h2>Parlons de votre projet, sans engagement.</h2>
+      <p class="sub">Un échange direct avec l’équipe. Vous repartez avec des pistes concrètes, même si vous ne travaillez pas avec nous.</p>
+      <a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59 →</a>
+      <a class="alt" href="#contact">Être rappelé</a>
+      <a class="rdv" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver une visio de 10 min</a>
+      <a class="ai" href="/#heroAI">Décrire mon projet à l’assistant</a>
+      <span class="micro">Chaque projet est sur devis</span>
+    </div></div>
+  </div></section>
+  <section class="artSec"><div class="wrap">
+    <article class="art">
+<nav class="toc" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#definition">Agent IA, chatbot, automatisation : ce qui change</a></li><li><a href="#lire">Comment lire les exemples ci-dessous</a></li><li><a href="#metiers">Dix-huit exemples d’agents IA par métier</a></li><li><a href="#gardefous">Les garde-fous communs à tous les agents</a></li><li><a href="#projet">Comment se déroule un projet d’agent IA</a></li><li><a href="#devis">Ce qui influence le devis d’un agent IA</a></li><li><a href="#cadre">Données, propriété, RGPD et AI Act</a></li><li><a href="#faq">Questions fréquentes</a></li></ol></nav>
+<h2 id="definition">Agent IA, chatbot, automatisation : ce qui change</h2>
+<p>Un <strong>chatbot</strong> répond à des questions. Une <strong>automatisation</strong> exécute une suite d’étapes fixée à l’avance. Un <strong>agent IA</strong> combine les deux : il comprend une demande formulée librement (un e-mail, un appel, un message), décide quelles actions mener parmi celles qu’on lui a autorisées, les exécute dans vos outils et rend compte. Par exemple : lire la demande d’un client, vérifier les disponibilités dans l’agenda, proposer deux créneaux, puis créer le rendez-vous une fois la réponse reçue.</p>
+<p>Techniquement, un agent repose sur un modèle de langage, des <strong>outils</strong> qu’il peut appeler (API de vos logiciels, recherche dans vos documents, envoi de messages), et un <strong>cadre</strong> : instructions, droits d’accès, validations humaines et journal. Des standards comme <a href="../lab/veille/mcp-model-context-protocol.html">le protocole MCP</a> simplifient le branchement aux outils, et <a href="../lab/veille/rag-assistant-documents.html">la recherche dans vos documents (RAG)</a> lui permet de s’appuyer sur vos propres informations plutôt que sur des généralités.</p>
+<h2 id="lire">Comment lire les exemples ci-dessous</h2>
+<p>Chaque fiche décrit un agent type, réaliste avec les technologies actuelles. Ce ne sont pas des produits sur étagère : chaque agent se conçoit à partir de vos outils, de vos règles et de votre ton. Les « outils branchés » sont des catégories ; nous travaillons avec les logiciels que vous utilisez déjà quand ils le permettent. Les garde-fous sont indispensables : un agent sans limites claires n’a pas sa place dans une entreprise.</p>
+<h2 id="metiers">Dix-huit exemples d’agents IA par métier</h2>
+<div class="metier"><h3>1. Artisan du bâtiment</h3><dl><dt>Ce que fait l’agent</dt><dd>Il répond aux demandes de devis reçues par le site, par e-mail ou par message, pose les questions manquantes (surface, accès, photos), prépare un pré-chiffrage selon vos règles et propose une date de visite technique.</dd><dt>Outils branchés</dt><dd>Formulaire du site, messagerie, agenda, outil de devis, stockage des photos.</dd><dt>Garde-fous</dt><dd>Aucun devis n’est envoyé sans votre validation ; les prix viennent de votre base, jamais de l’imagination du modèle.</dd></dl><p class="mlinks"><a href="../idees/artisan.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-artisan-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>2. Restaurant</h3><dl><dt>Ce que fait l’agent</dt><dd>Il prend les réservations au téléphone et par message, y compris dans d’autres langues, note allergies et demandes particulières, gère la liste d’attente et répond aux questions pratiques (horaires, accès, menus).</dd><dt>Outils branchés</dt><dd>Agent vocal, logiciel de réservation, plan de salle, fiche Google Business Profile.</dd><dt>Garde-fous</dt><dd>Informations sur les allergènes issues uniquement de vos fiches validées ; transfert vers l’équipe pour les groupes et les demandes inhabituelles.</dd></dl><p class="mlinks"><a href="../idees/restaurant.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-restaurant-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>3. Cabinet d’expertise comptable</h3><dl><dt>Ce que fait l’agent</dt><dd>Il relance les clients pour les pièces manquantes, lit les justificatifs reçus, les classe par dossier et prépare les écritures à valider par le collaborateur.</dd><dt>Outils branchés</dt><dd>Portail de dépôt de pièces, logiciel de production comptable, messagerie, lecture de documents.</dd><dt>Garde-fous</dt><dd>Aucune écriture n’est validée automatiquement ; chaque proposition est tracée et vérifiable ; données hébergées selon vos exigences de confidentialité.</dd></dl><p class="mlinks"><a href="../idees/expert-comptable.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-expert-comptable-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>4. Cabinet d’avocat</h3><dl><dt>Ce que fait l’agent</dt><dd>Il accueille les demandes de premier contact, qualifie le domaine de droit, vérifie les conflits d’intérêts dans votre base et propose un rendez-vous ; en interne, il recherche dans vos modèles et vos notes.</dd><dt>Outils branchés</dt><dd>Formulaire, agenda, logiciel de gestion de cabinet, base documentaire interne.</dd><dt>Garde-fous</dt><dd>L’agent ne donne jamais de conseil juridique ; secret professionnel respecté par un hébergement et des accès strictement maîtrisés.</dd></dl><p class="mlinks"><a href="../idees/avocat.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-avocat-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>5. Agence immobilière</h3><dl><dt>Ce que fait l’agent</dt><dd>Il répond aux questions sur les annonces, qualifie les acquéreurs et locataires (budget, critères, calendrier), organise les visites et relance après visite.</dd><dt>Outils branchés</dt><dd>Logiciel de transaction, portails d’annonces, agenda des négociateurs, messagerie.</dd><dt>Garde-fous</dt><dd>Critères de sélection conformes au droit de la non-discrimination ; aucune promesse sur le prix ou la disponibilité sans validation.</dd></dl><p class="mlinks"><a href="../idees/agence-immobiliere.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-agence-immobiliere-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>6. Garage automobile</h3><dl><dt>Ce que fait l’agent</dt><dd>Il prend les rendez-vous d’entretien, prépare l’ordre de réparation à partir de la plaque et du motif, prévient le client quand le véhicule est prêt et envoie le devis complémentaire à valider.</dd><dt>Outils branchés</dt><dd>Logiciel de garage, agenda atelier, SMS, messagerie.</dd><dt>Garde-fous</dt><dd>Tout travail supplémentaire exige l’accord écrit du client ; aucun diagnostic technique affirmé par l’agent.</dd></dl><p class="mlinks"><a href="../idees/garage-automobile.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-garage-automobile-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>7. E-commerce</h3><dl><dt>Ce que fait l’agent</dt><dd>Il répond aux questions sur les produits, le suivi de commande et les retours, propose des alternatives en cas de rupture et prépare les demandes de remboursement.</dd><dt>Outils branchés</dt><dd>Boutique en ligne, transporteurs, outil de service client, base produits.</dd><dt>Garde-fous</dt><dd>Remboursements et gestes commerciaux soumis à validation au-delà de règles fixées par vous ; informations produits tirées du catalogue uniquement.</dd></dl></div>
+<div class="metier"><h3>8. Santé et cabinet médical</h3><dl><dt>Ce que fait l’agent</dt><dd>Il gère la prise de rendez-vous, les rappels, les annulations et les questions administratives (documents à apporter, accès, tarifs affichés).</dd><dt>Outils branchés</dt><dd>Agenda médical, téléphonie, SMS.</dd><dt>Garde-fous</dt><dd>Aucun avis médical, orientation immédiate vers le 15 ou le praticien en cas d’urgence exprimée ; données de santé hébergées chez un hébergeur certifié HDS lorsque c’est requis.</dd></dl><p class="mlinks"><a href="../idees/professionnel-de-sante.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-professionnel-de-sante-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>9. Transport et logistique</h3><dl><dt>Ce que fait l’agent</dt><dd>Il saisit les ordres de transport reçus par e-mail, répond aux demandes de suivi, prévient les destinataires des créneaux de livraison et collecte les preuves de livraison.</dd><dt>Outils branchés</dt><dd>Logiciel de gestion des transports, messagerie, géolocalisation, application chauffeur.</dd><dt>Garde-fous</dt><dd>Les tarifs spéciaux et les litiges passent par l’exploitation ; chaque ordre créé est vérifiable.</dd></dl><p class="mlinks"><a href="../idees/transport-logistique.html">Idées IA pour ce secteur</a></p></div>
+<div class="metier"><h3>10. Industrie</h3><dl><dt>Ce que fait l’agent</dt><dd>Il répond aux demandes de disponibilité et de délai à partir de l’état réel de la production, prépare les accusés de réception de commande et aide les équipes à retrouver une procédure ou une fiche technique.</dd><dt>Outils branchés</dt><dd>ERP ou gestion de production, base documentaire qualité, messagerie.</dd><dt>Garde-fous</dt><dd>Délais annoncés uniquement à partir des données de production, avec validation commerciale ; accès en lecture seule aux systèmes critiques.</dd></dl><p class="mlinks"><a href="../idees/industrie-pme.html">Idées IA pour ce secteur</a></p></div>
+<div class="metier"><h3>11. Hôtellerie et gîte</h3><dl><dt>Ce que fait l’agent</dt><dd>Il répond aux voyageurs avant, pendant et après le séjour, dans leur langue : disponibilités, arrivée autonome, recommandations locales, demandes particulières.</dd><dt>Outils branchés</dt><dd>Logiciel de réservation ou gestionnaire de canaux, messagerie, livret d’accueil numérique.</dd><dt>Garde-fous</dt><dd>Aucune modification de réservation ou de tarif sans validation ; réponses fondées sur votre livret et vos règles.</dd></dl><p class="mlinks"><a href="../idees/hebergement-gite.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-hebergement-gite-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>12. Organisme de formation</h3><dl><dt>Ce que fait l’agent</dt><dd>Il renseigne les candidats sur les programmes, vérifie les prérequis, gère les inscriptions, envoie convocations et documents, et collecte les évaluations.</dd><dt>Outils branchés</dt><dd>Logiciel de gestion de formation, agenda des sessions, messagerie, signature électronique.</dd><dt>Garde-fous</dt><dd>Aucune information sur les financements qui ne soit issue de vos contenus validés ; décisions d’admission prises par l’équipe.</dd></dl><p class="mlinks"><a href="../idees/organisme-de-formation.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-organisme-de-formation-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>13. Services à domicile</h3><dl><dt>Ce que fait l’agent</dt><dd>Il reçoit les demandes des familles, propose des créneaux compatibles avec les plannings des intervenants, gère les remplacements et prévient en cas de retard.</dd><dt>Outils branchés</dt><dd>Logiciel de planification, application des intervenants, téléphonie, SMS.</dd><dt>Garde-fous</dt><dd>Les situations sensibles (santé, sécurité d’une personne) sont immédiatement transmises à un responsable humain.</dd></dl><p class="mlinks"><a href="../idees/services-a-domicile.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-services-a-domicile-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>14. Association et collectivité</h3><dl><dt>Ce que fait l’agent</dt><dd>Il répond aux questions des usagers ou des adhérents sur les démarches et les horaires, oriente vers le bon service et pré-remplit les demandes.</dd><dt>Outils branchés</dt><dd>Site internet, base de connaissances, outil de gestion des demandes, données publiques ouvertes.</dd><dt>Garde-fous</dt><dd>Réponses limitées aux informations publiées et à jour ; transparence sur le fait qu’il s’agit d’une IA ; accessibilité soignée.</dd></dl><p class="mlinks"><a href="../idees/association-collectivite.html">Idées IA pour ce secteur</a></p></div>
+<div class="metier"><h3>15. Commerce de détail</h3><dl><dt>Ce que fait l’agent</dt><dd>Il indique la disponibilité d’un produit en magasin, prend les réservations et les commandes à retirer, et répond aux questions sur les horaires et les services.</dd><dt>Outils branchés</dt><dd>Caisse et gestion de stock, boutique en ligne, messagerie, fiche Google Business Profile.</dd><dt>Garde-fous</dt><dd>Disponibilités lues en temps réel dans le stock ; aucune promotion inventée.</dd></dl><p class="mlinks"><a href="../idees/commerce-boutique.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-commerce-boutique-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>16. Coiffure et esthétique</h3><dl><dt>Ce que fait l’agent</dt><dd>Il prend et déplace les rendez-vous, adapte la durée selon la prestation, relance les clients habituels et remplit les créneaux libérés.</dd><dt>Outils branchés</dt><dd>Logiciel de réservation, SMS, messagerie, réseaux sociaux.</dd><dt>Garde-fous</dt><dd>Pas de conseil sur des soins à risque ; questions techniques transmises au professionnel.</dd></dl><p class="mlinks"><a href="../idees/coiffeur-esthetique.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-coiffeur-esthetique-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>17. Salle de sport et coaching</h3><dl><dt>Ce que fait l’agent</dt><dd>Il gère les réservations de cours, les listes d’attente, les questions sur les abonnements et la relance des membres inactifs.</dd><dt>Outils branchés</dt><dd>Logiciel de gestion des membres, planning des cours, messagerie.</dd><dt>Garde-fous</dt><dd>Aucun conseil médical ; résiliations et litiges traités par l’équipe.</dd></dl><p class="mlinks"><a href="../idees/coach-salle-de-sport.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-coach-salle-de-sport-montpellier.html">Site internet pour ce métier</a></p></div>
+<div class="metier"><h3>18. Domaine viticole</h3><dl><dt>Ce que fait l’agent</dt><dd>Il répond aux professionnels et aux particuliers sur les cuvées et les disponibilités, organise les visites et dégustations, et prépare les commandes.</dd><dt>Outils branchés</dt><dd>Gestion des stocks de bouteilles, boutique en ligne, agenda du caveau, messagerie.</dd><dt>Garde-fous</dt><dd>Vente d’alcool conforme à la réglementation (vérification de la majorité en ligne notamment) ; tarifs professionnels réservés aux comptes validés.</dd></dl><p class="mlinks"><a href="../idees/domaine-viticole.html">Idées IA pour ce secteur</a> · <a href="../montpellier/site-internet-domaine-viticole-montpellier.html">Site internet pour ce métier</a></p></div>
+<p>Vous ne trouvez pas votre métier ? Notre <a href="../idees/">laboratoire d’idées par secteur</a> propose d’autres pistes, et l’assistant de notre page d’accueil peut explorer votre cas en quelques questions.</p><aside class="ctaBox"><p class="ctaT">Quel agent IA pour votre métier ?</p><p>Décrivez votre activité : nous identifions avec vous le cas d’usage le plus utile pour commencer.</p><div class="ctaBtns"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="#contact">Être rappelé</a><a class="btn ghost" href="/#heroAI">Décrire mon projet à l’assistant</a><a class="btn ghost" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Visio de 10 min</a></div></aside>
+<h2 id="gardefous">Les garde-fous communs à tous les agents</h2>
+<ul><li><strong>Un périmètre écrit</strong> : ce que l’agent peut lire, proposer et exécuter, et ce qui lui est interdit.</li><li><strong>La validation humaine</strong> pour les actions engageantes : envoi d’un devis, paiement, engagement contractuel, réponse sensible.</li><li><strong>Des sources maîtrisées</strong> : l’agent s’appuie sur vos données et vos documents validés, et dit qu’il ne sait pas plutôt que d’inventer.</li><li><strong>La transparence</strong> : les personnes savent qu’elles échangent avec une IA et peuvent joindre un humain.</li><li><strong>Un journal complet</strong> des échanges et des actions, pour contrôler et améliorer.</li><li><strong>Des tests sur vos cas réels</strong> avant la mise en service, puis une surveillance régulière.</li></ul>
+<h2 id="projet">Comment se déroule un projet d’agent IA</h2><p>Un agent IA se construit en partant d’un seul cas d’usage bien choisi, puis s’étend.</p><ol><li><strong>Appel de 10 minutes</strong> : le cas d’usage, les outils en place, les volumes, les limites à respecter.</li><li><strong>Proposition sur devis</strong> : périmètre de l’agent, outils branchés, garde-fous, hébergement et choix du modèle, propriété, suivi.</li><li><strong>Construction par étapes</strong> : d’abord un agent qui propose sans agir, testé sur vos cas réels ; puis, une fois la qualité vérifiée, l’autorisation d’exécuter certaines actions.</li><li><strong>Mise en service</strong> progressive, avec relecture des échanges et ajustement des instructions.</li><li><strong>Suivi</strong> : qualité des réponses, évolution des modèles, nouvelles actions autorisées.</li></ol><p>Pour les appels téléphoniques, voir notre page <a href="agent-vocal-ia.html">agent vocal IA</a> et notre article <a href="../lab/veille/agents-vocaux-ia.html">Agents vocaux IA au téléphone</a>.</p>
+<h2 id="devis">Ce qui influence le devis d’un agent IA</h2>
+<p>Le nombre d’outils branchés et leur ouverture technique ; le nombre d’actions autorisées ; la quantité et la qualité des documents sur lesquels l’agent s’appuie ; les canaux (site, e-mail, messagerie, téléphone) ; les langues ; les exigences d’hébergement et de confidentialité ; les volumes, qui déterminent les coûts d’usage des modèles ; le niveau de suivi. Chaque projet est sur devis.</p>
+<h2 id="cadre">Données, propriété, RGPD et AI Act</h2>
+<p>Faites écrire à qui appartiennent les instructions, les connecteurs, le code et les journaux, où sont hébergées les données, quels fournisseurs de modèles sont utilisés et si vos données peuvent servir à entraîner leurs modèles. Le RGPD s’applique pleinement : information des personnes, minimisation, durées de conservation, sous-traitants et transferts hors Union européenne encadrés.</p>
+<p>Le règlement européen sur l’IA (AI Act) s’applique progressivement ; il prévoit notamment que les personnes soient informées lorsqu’elles interagissent avec un système d’IA, et encadre plus strictement certains usages dits à haut risque, par exemple dans le recrutement. Notre article <a href="../lab/veille/ai-act-pme.html">AI Act : ce qu’une PME doit savoir</a> fait le point pour les PME.</p>
+<aside class="ctaBox"><p class="ctaT">Prêt à en parler ?</p><p>Appelez-nous, demandez à être rappelé, décrivez votre projet à notre assistant ou réservez une visio de 10 minutes. Chaque projet est sur devis.</p><div class="ctaBtns"><a class="btn" href="tel:+33782298559">Appeler le 07 82 29 85 59</a><a class="btn dark" href="#contact">Être rappelé</a><a class="btn ghost" href="/#heroAI">Décrire mon projet à l’assistant</a><a class="btn ghost" href="https://www.groupsolution.fr/echanger.html#rendez-vous">Visio de 10 min</a></div></aside>
+    </article>
+  </div></section>
+
+  <section class="sec alt"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Dossiers de référence</div><h2>Les autres dossiers pour décider.</h2><p>Chaque dossier va au bout du sujet : méthode, critères de choix, limites et questions fréquentes. <a class="go" href="./">Voir tous nos services</a></p></div>
+    <div class="cases">
+      <article class="case reveal"><div class="n">1</div><h3><a href="logiciel-sur-mesure-pme.html">Logiciel sur-mesure pour PME</a></h3><p>Quand un logiciel conçu pour votre PME devient plus rentable qu’un empilement d’outils du marché, et comment le mener sans risque.</p><a class="more" href="logiciel-sur-mesure-pme.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">2</div><h3><a href="application-metier-sur-mesure.html">Application métier sur-mesure</a></h3><p>Une application web ou mobile pensée pour le terrain, le bureau et vos clients, construite autour de vos gestes réels.</p><a class="more" href="application-metier-sur-mesure.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">3</div><h3><a href="logiciel-de-gestion-sur-mesure.html">Logiciel de gestion sur-mesure</a></h3><p>Devis, stocks, planning, facturation, suivi client : une gestion d’entreprise unifiée, à votre image, dont vous gardez les données.</p><a class="more" href="logiciel-de-gestion-sur-mesure.html">Lire le dossier →</a></article>
+      <article class="case reveal"><div class="n">4</div><h3><a href="automatisation-entreprise.html">Automatisation d’entreprise</a></h3><p>Processus, outils et IA : la méthode complète pour automatiser une entreprise sans perdre le contrôle.</p><a class="more" href="automatisation-entreprise.html">Lire le dossier →</a></article>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="secHead reveal"><div class="kicker">Pour aller plus loin</div><h2>Services, idées, veille et outils.</h2><p>Pour trouver l’inspiration, parcourez notre <a class="go" href="../idees/">laboratoire d’idées par secteur</a> et notre hub <a class="go" href="../automatisation/">automatisation et logiciel sur-mesure</a>.</p></div>
+    <div class="res">
+      <div class="reveal"><h3>Nos services</h3><ul><li><a href="agent-ia-chatbot.html">Agent IA et chatbot</a></li><li><a href="agent-vocal-ia.html">Agent vocal IA</a></li><li><a href="agence-ia-entreprise.html">Intégrer l’IA en entreprise</a></li><li><a href="automatisation-processus.html">Automatisation des processus</a></li></ul></div>
+      <div class="reveal"><h3>Idées par secteur</h3><ul><li><a href="../idees/restaurant.html">Restaurant</a></li><li><a href="../idees/artisan.html">Artisan du bâtiment</a></li><li><a href="../idees/professionnel-de-sante.html">Professionnel de santé</a></li><li><a href="../idees/agence-immobiliere.html">Agence immobilière</a></li><li><a href="../idees/hebergement-gite.html">Hébergement touristique</a></li><li><a href="../idees/">Toutes les idées</a></li></ul></div>
+      <div class="reveal"><h3>Veille et guides</h3><ul><li><a href="../lab/veille/mcp-model-context-protocol.html">MCP : connecter l’IA à vos outils</a></li><li><a href="../lab/veille/agents-vocaux-ia.html">Agents vocaux IA au téléphone</a></li><li><a href="../lab/veille/rag-assistant-documents.html">Assistant IA sur vos documents (RAG)</a></li><li><a href="../lab/veille/ai-act-pme.html">AI Act : ce qu’une PME doit savoir</a></li></ul></div>
+      <div class="reveal"><h3>Outils gratuits</h3><ul><li><a href="../outils/configurateur-site-internet.html">Configurateur de projet web et IA</a></li><li><a href="../outils/test-visibilite-google.html">Test de visibilité Google</a></li><li><a href="../outils/calculateur-automatisation.html">Calculateur de tâches répétitives</a></li></ul></div>
+      <div class="reveal"><h3>Sites par métier</h3><ul><li><a href="../montpellier/site-internet-restaurant-montpellier.html">Restaurant</a></li><li><a href="../montpellier/site-internet-artisan-montpellier.html">Artisan du bâtiment</a></li><li><a href="../montpellier/site-internet-avocat-montpellier.html">Avocat</a></li><li><a href="../montpellier/site-internet-professionnel-de-sante-montpellier.html">Professionnel de santé</a></li></ul></div>
+    </div>
+    <p class="zoneTxt">Notre agence est à Saint-Jean-de-Védas, dans la métropole de Montpellier, et couvre Montpellier et sa région ; Titouan Bedos, fondateur de Groupe Solution, est à Mayotte et couvre toute l’île. Nous accompagnons les entreprises de toute la France et des outre-mer. Chaque projet est sur devis.</p>
+  </div></section>
+
+  <section class="sec alt" id="faq"><div class="wrap">
+    <div class="secHead center reveal"><div class="kicker">Questions fréquentes</div><h2>Vos questions, nos réponses.</h2></div>
+    <div class="faq">
+      <details class="reveal"><summary>Qu’est-ce qu’un agent IA pour entreprise ?</summary><p>C’est un programme qui s’appuie sur un modèle de langage pour comprendre une demande formulée librement, choisir des actions parmi celles qu’on lui a autorisées, les exécuter dans vos outils, comme l’agenda, le CRM ou la messagerie, et rendre compte, dans un cadre défini par des règles et des validations humaines.</p></details>
+      <details class="reveal"><summary>Quelle différence entre un chatbot et un agent IA ?</summary><p>Un chatbot répond à des questions. Un agent IA peut en plus agir : créer un rendez-vous, préparer un devis, mettre à jour une fiche client, dans la limite des droits qui lui sont accordés.</p></details>
+      <details class="reveal"><summary>Un agent IA peut-il se tromper ?</summary><p>Oui, c’est pourquoi il doit s’appuyer sur vos données validées, dire qu’il ne sait pas plutôt que d’inventer, faire valider les actions engageantes par un humain et conserver un journal de ses actions. Il est testé sur vos cas réels avant la mise en service.</p></details>
+      <details class="reveal"><summary>Quels outils un agent IA peut-il utiliser ?</summary><p>Tous ceux qui offrent un accès technique : agenda, CRM, logiciel métier, boutique en ligne, messagerie, téléphonie, base documentaire. Lorsqu’un outil n’a pas d’API, d’autres méthodes existent, comme l’automatisation de navigation, avec davantage de précautions.</p></details>
+      <details class="reveal"><summary>Combien coûte un agent IA ?</summary><p>Le coût dépend du nombre d’outils branchés, des actions autorisées, des canaux, des langues, des exigences d’hébergement, des volumes et du suivi. Chaque projet est sur devis, établi après un appel de 10 minutes.</p></details>
+      <details class="reveal"><summary>Mes données sont-elles protégées ?</summary><p>Elles doivent l’être : hébergement choisi selon vos exigences, accès limités, fournisseurs de modèles identifiés et contractuellement encadrés, conformité au RGPD. Ces points sont fixés par écrit dans la proposition.</p></details>
+      <details class="reveal"><summary>Faut-il informer les clients qu’ils parlent à une IA ?</summary><p>Oui. Le règlement européen sur l’IA prévoit que les personnes soient informées lorsqu’elles interagissent avec un système d’IA, et c’est de toute façon une bonne pratique de confiance. Les clients doivent aussi pouvoir joindre un humain.</p></details>
+    </div>
+  </div></section>
+
+  <section class="sec alt" id="contact"><div class="wrap">
+    <div class="express reveal" id="express">
+      <div class="kicker" style="display:flex;width:max-content;margin:0 auto 16px">Réponse sous 24 h</div>
+      <h2>Décrivez votre métier et votre besoin</h2>
+      <p>Deux phrases suffisent : nous vous rappelons avec une idée d’agent adaptée à votre activité.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="services/agent-ia-entreprise-exemples" />
+        <label class="full">Votre activité et votre besoin<textarea name="message" required placeholder="Ex : nous sommes un garage, le téléphone sonne sans arrêt pour des prises de rendez-vous…"></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <label class="full">Votre activité (optionnel)<input name="entreprise" placeholder="Votre secteur" /></label>
+        <button class="btn" type="submit">Être rappelé →</button>
+      </form>
+      <p class="alts">Vous préférez parler ? <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="https://www.groupsolution.fr/echanger.html#rendez-vous">Réserver une visio de 10 min</a></p>
+    </div>
+  </div></section>
+
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="../Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav>
+    <a href="../index.html">Accueil</a>
+    <a href="./">Services</a>
+    <a href="../automatisation/">Automatisation</a>
+    <a href="agent-ia-entreprise-exemples.html">Agents IA par métier</a>
+    <a href="../idees/">Idées par secteur</a>
+    <a href="../solutions.html">Solutions</a>
+    <a href="../realisations.html">Réalisations</a>
+    <a href="../montpellier/site-internet-montpellier.html">Sites internet</a>
+    <a href="../echanger.html">Échanger</a>
+    <a href="../plan-du-site.html">Plan du site</a>
+  </nav>
+</div></footer>
+<div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Discutons 10 min</a></div>
+<script src="../assets/holding-local.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

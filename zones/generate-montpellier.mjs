@@ -56,7 +56,7 @@ function pick(pool, seed, n) {
 const GENERIC_FAQ = [
   c => ({ q: `Combien coûte un site internet ${aName(c)} ?`, a: `Chaque projet est chiffré sur devis, gratuitement. Le prix dépend du nombre de pages, des fonctionnalités (réservation, vente en ligne, automatisations, connexions à vos outils) et de ce que vous nous confiez (textes, photos, suivi). Vous recevez un devis détaillé avant tout engagement.` }),
   c => ({ q: `En combien de temps mon site peut-il être en ligne ?`, a: `Cela dépend du projet et de la rapidité à réunir textes et photos. Le délai est fixé noir sur blanc dans le devis, et on vous guide à chaque étape pour le tenir.` }),
-  c => ({ q: `Faut-il se rencontrer pour travailler ensemble ?`, a: `Non, mais c'est possible. La plupart des échanges se font par téléphone ou visio, ce qui va plus vite. ${isQ(c) ? `Nous sommes basés à Montpellier : on se déplace ${aName(c)} sans difficulté quand le projet le demande.` : `Nous sommes basés à Montpellier, à environ ${Math.max(1, Math.round(km({ lat: 43.6108, lng: 3.8767 }, c)))} km : on se déplace ${aName(c)} quand le projet le demande.`}` }),
+  c => ({ q: `Faut-il se rencontrer pour travailler ensemble ?`, a: `Non, mais c'est possible. La plupart des échanges se font par téléphone ou visio, ce qui va plus vite. ${isQ(c) ? `Nous sommes basés dans la métropole de Montpellier : on se déplace ${aName(c)} sans difficulté quand le projet le demande.` : `Nous sommes basés dans la métropole de Montpellier, à environ ${Math.max(1, Math.round(km({ lat: 43.6108, lng: 3.8767 }, c)))} km : on se déplace ${aName(c)} quand le projet le demande.`}` }),
   c => ({ q: `Le référencement Google est-il inclus ?`, a: `Chaque site est livré avec les bases techniques du référencement (vitesse, balises, données structurées, version mobile). La fiche Google Business et le travail local pour ressortir sur « votre métier ${aName(c)} » font l'objet d'un accompagnement dédié.` }),
   c => ({ q: `Qui s'occupe du site une fois en ligne ?`, a: `Vous pouvez le faire vous-même ou nous le confier. Hébergement, sécurité, petites modifications : on propose un suivi simple pour que votre site reste à jour sans que vous ayez à vous en soucier.` }),
   c => ({ q: `Mon site actuel est vieillissant : faut-il tout refaire ?`, a: `Pas forcément. On commence par un audit gratuit : parfois quelques corrections (vitesse, mobile, textes, fiche Google) suffisent. Si une refonte est préférable, on vous explique pourquoi, chiffres à l'appui.` }),
@@ -113,7 +113,7 @@ function page(c) {
         "image": "${HOLDING}/Logo.svg",
         "telephone": "+33782298559",
         "email": "contact@groupsolution.fr",
-        "address": { "@type": "PostalAddress", "addressLocality": "Montpellier", "addressRegion": "Occitanie", "postalCode": "34000", "addressCountry": "FR" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Saint-Jean-de-Védas", "addressRegion": "Occitanie", "postalCode": "34430", "addressCountry": "FR" },
         "areaServed": [
           { "@type": "${c.placeType || 'City'}", "name": ${jstr(c.name)}, "postalCode": "${c.cp}", "geo": { "@type": "GeoCoordinates", "latitude": ${c.lat}, "longitude": ${c.lng} } },
 ${near.slice(0, 4).map(n => `          { "@type": "City", "name": ${jstr(n.name)} }`).join(',\n')}
