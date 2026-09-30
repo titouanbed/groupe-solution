@@ -45,11 +45,16 @@
   function read()  { try { return localStorage.getItem(STORE); } catch (e) { return null; } }
   function write(v){ try { localStorage.setItem(STORE, v); } catch (e) {} }
 
+  // Choix distinct pour l'expérience sur-mesure par IA (voir /assets/perso.js et /api/perso)
+  function writeAI(v){ try { localStorage.setItem('gs-perso-ai', v); } catch (e) {} }
   function decide(v) {
     write(v);
+    var box = document.getElementById('gscAI');
+    writeAI(v === 'granted' && box && box.checked ? 'granted' : 'denied');
     var b = document.getElementById('gsConsent');
     if (b && b.parentNode) b.parentNode.removeChild(b);
     if (v === 'granted') loadGA();
+    document.dispatchEvent(new CustomEvent('gs-consent', { detail: { analytics: v, ai: box && box.checked && v === 'granted' } }));
   }
 
   function injectStyles() {
@@ -62,6 +67,9 @@
       '#gsConsent .gsc-refuse:hover{color:#fff;border-color:rgba(255,255,255,.5)}' +
       '#gsConsent .gsc-accept{background:#E61E4D;color:#fff;border:0;border-radius:999px;padding:11px 22px;font-size:13px;font-weight:800;cursor:pointer}' +
       '#gsConsent .gsc-accept:hover{background:#C81E47}' +
+      '#gsConsent .gsc-ai{flex-basis:100%;display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.5;color:#EDEBE6;cursor:pointer}' +
+      '#gsConsent .gsc-ai input{margin-top:3px;width:17px;height:17px;accent-color:#E61E4D;flex-shrink:0}#gsConsent .gsc-ai b{color:#fff}#gsConsent .gsc-ai small{display:block;color:#B9B5AD;font-size:12px;margin-top:2px}' +
+      '#gsConsent a{color:#fff;text-decoration:underline}' +
       '@media(max-width:560px){#gsConsent .gsc-btns{width:100%}#gsConsent .gsc-refuse,#gsConsent .gsc-accept{flex:1;text-align:center}}';
     var st = document.createElement('style');
     st.textContent = css;
@@ -72,13 +80,17 @@
     var d = document.createElement('div');
     d.id = 'gsConsent';
     d.setAttribute('role', 'dialog');
-    d.setAttribute('aria-label', 'Consentement à la mesure d’audience');
+    d.setAttribute('aria-label', 'Consentement : mesure d’audience et expérience sur-mesure');
     d.innerHTML =
       '<div class="gsc-card">' +
         '<p class="gsc-txt">Nous mesurons l’audience du site (Google Analytics) pour l’améliorer. ' +
-        'Aucun cookie de suivi n’est déposé sans votre accord.</p>' +
+        'Aucun cookie de suivi n’est déposé sans votre accord. <a href="/confidentialite.html">En savoir plus</a></p>' +
+        '<label class="gsc-ai"><input type="checkbox" id="gscAI" />' +
+          '<span><b>✨ Activer aussi l’expérience sur-mesure par IA</b> : le site adapte ses titres et ses conseils à ce qui vous intéresse.' +
+          '<small>Analyse automatique par IA (Anthropic) des pages vues ici et de votre commune approximative. Aucun humain de notre équipe ne consulte ces données, nous ne les stockons pas et ne les revendons jamais ; ni votre nom, ni votre e-mail, ni votre adresse IP ne sont transmis.</small></span>' +
+        '</label>' +
         '<div class="gsc-btns">' +
-          '<button type="button" class="gsc-refuse" id="gscRefuse">Refuser</button>' +
+          '<button type="button" class="gsc-refuse" id="gscRefuse">Tout refuser</button>' +
           '<button type="button" class="gsc-accept" id="gscAccept">Accepter</button>' +
         '</div>' +
       '</div>';

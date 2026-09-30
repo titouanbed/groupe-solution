@@ -99,8 +99,11 @@
       <h2>Votes « Le pouls des dirigeants »</h2>
       <p>Seul votre choix est comptabilisé. Pour éviter les votes en double, votre adresse IP est transformée en une empreinte irréversible (hachage), conservée 30 jours puis supprimée automatiquement. L’adresse IP elle-même n’est jamais enregistrée. Les compteurs sont stockés chez Upstash, via notre hébergeur Vercel.</p>
       <h2>Parcours sur-mesure</h2>
-      <p>Pour vous proposer la page de votre commune et la prochaine étape la plus utile, le site utilise deux indices : votre ville approximative, estimée à partir de votre connexion par notre hébergeur au moment de la visite et jamais conservée ; les pages consultées sur ce site, mémorisées uniquement dans votre navigateur (le temps de la visite, ou plus longtemps si vous avez accepté la mesure d’audience). Rien n’est transmis à des tiers, aucun profil n’est constitué sur nos serveurs, aucune donnée n’est croisée avec d’autres sites.</p>
+      <p>Pour vous proposer la page de votre commune et la prochaine étape la plus utile, le site utilise deux indices : votre ville approximative, estimée à partir de votre connexion par notre hébergeur au moment de la visite et jamais conservée ; les pages consultées sur ce site, mémorisées uniquement dans votre navigateur (le temps de la visite, ou plus longtemps si vous avez accepté la mesure d’audience). Sans l’expérience sur-mesure par IA (ci-dessous), rien n’est transmis à des tiers ; dans tous les cas, aucun profil n’est constitué sur nos serveurs et aucune donnée n’est croisée avec d’autres sites.</p>
       <p><button type="button" class="btn" id="persoOff">Désactiver les suggestions personnalisées</button> <span id="persoState" style="margin-left:10px;font-size:14px"></span></p>
+      <h2>Expérience sur-mesure par IA (optionnelle)</h2>
+      <p>Uniquement si vous l’activez (case du bandeau, invitation sur le site ou bouton ci-dessous), certaines pages adaptent leur titre, leur texte d’accroche et leurs recommandations à ce qui vous intéresse. Pour cela, nous envoyons à notre fournisseur d’IA, Anthropic, une liste de signaux anonymes : titres des pages consultées sur ce site, commune approximative, nombre de visites, moment de la journée, type d’appareil et site de provenance. Ni votre nom, ni votre e-mail, ni votre adresse IP ne sont transmis. Aucun humain chez Groupe Solution ne consulte ces données, nous ne les stockons pas et elles ne sont jamais revendues. Le résultat n’est conservé que dans votre navigateur, le temps de la visite.</p>
+      <p><button type="button" class="btn" id="aiToggle">Activer l’expérience sur-mesure par IA</button> <span id="aiState" style="margin-left:10px;font-size:14px"></span></p>
       <h2>Hébergement</h2>
       <p>Le site est hébergé par Vercel Inc. Les journaux techniques de l’hébergeur (adresse IP, date, page demandée) servent à la sécurité et au bon fonctionnement du service.</p>
       <h2>Vos droits</h2>
@@ -117,6 +120,11 @@
       paint();
     });
     paint();
+    var a = document.getElementById('aiToggle'), as = document.getElementById('aiState');
+    function aiOn() { try { return localStorage.getItem('gs-perso-ai') === 'granted'; } catch (e) { return false; } }
+    function paintAI() { as.textContent = aiOn() ? 'Expérience sur-mesure activée.' : 'Expérience sur-mesure désactivée.'; a.textContent = aiOn() ? 'Désactiver l’expérience sur-mesure par IA' : 'Activer l’expérience sur-mesure par IA'; }
+    a.addEventListener('click', function () { try { var v = aiOn() ? 'denied' : 'granted'; localStorage.setItem('gs-perso-ai', v); sessionStorage.setItem('gs-perso-ai', v); } catch (e) {} paintAI(); });
+    paintAI();
   })();
   </script>
   
