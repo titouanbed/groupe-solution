@@ -121,6 +121,8 @@
     log.appendChild(d); log.scrollTop = log.scrollHeight;
   }
   function builder(j) {
+    // Projet gardé 7 jours sur cet appareil : le visiteur peut revenir l'envoyer plus tard.
+    try { localStorage.setItem(DV, JSON.stringify({ id: j.id, titre: j.titre, d: Date.now() })); } catch (e) {}
     setTimeout(function () { if (!memOffered) offerMemory({ titre: j.titre, idees: [] }); }, 400);
     var c = el('div', 'aiPlan aiBuild'), LAB = { essentiel: 'Essentiel', recommande: 'Recommandé', option: 'Option' };
     c.appendChild(el('span', 'k', 'Votre projet · budget ' + j.budget)); c.appendChild(el('h3', null, j.titre)); c.appendChild(el('p', 'sub', j.resume));
@@ -170,6 +172,7 @@
           f.innerHTML = '<p class="ok">' + I('check') + 'C’est parti ! Titouan a votre projet' + (f.email.value ? ' et une copie vous attend par e-mail' : '') + '. Votre devis détaillé arrive sous 24 h ouvrées.</p><a class="call" href="' + TEL_HREF + '">' + I('telephone') + 'Pressé ? Appeler Titouan</a>';
           [].forEach.call(c.querySelectorAll('input[type=checkbox]'), function (x) { x.disabled = true; });
           ga('generate_lead', { method: 'accueil_devis' });
+          try { localStorage.removeItem(DV); } catch (e) {}
           hist.push({ role: 'assistant', content: 'Demande de devis envoyée à Titouan : ' + j.titre + ' (budget ' + j.budget + ').' });
         })
         .catch(function (x) { b.disabled = false; b.textContent = 'Réessayer'; err.textContent = (x && x.message) || 'L’envoi n’a pas abouti. Appelez directement le ' + TEL + '.'; });
@@ -210,9 +213,27 @@
     };
     log.appendChild(d); log.scrollTop = log.scrollHeight;
   }
+  var DV = 'gs-devis';
+  // Relance douce : un projet composé mais pas envoyé reste disponible 7 jours, en un clic.
+  (function devisEnCours() {
+    var v = null; try { v = JSON.parse(localStorage.getItem(DV) || 'null'); } catch (e) {}
+    if (!v || !v.id || Date.now() - v.d > 7 * 864e5) { try { localStorage.removeItem(DV); } catch (e) {} return; }
+    var b = el('div', 'aiBack');
+    b.innerHTML = '<button type="button" class="go">' + I('devis') + 'Votre projet « ' + esc(v.titre) + ' » est prêt à envoyer</button><button type="button" class="x" aria-label="Oublier ce projet">×</button>';
+    form.parentNode.insertBefore(b, form.nextSibling);
+    b.querySelector('.x').onclick = function () { try { localStorage.removeItem(DV); } catch (e) {} b.remove(); };
+    b.querySelector('.go').onclick = function () {
+      var go = this; go.disabled = true;
+      fetch('/api/devis?estimation=' + encodeURIComponent(v.id)).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+        b.remove(); open(); stopType(); memOffered = true;
+        add('b', md('Voici votre projet **' + esc(j.titre) + '**, tel que vous l’aviez composé. Ajustez les briques si besoin, puis envoyez-le à Titouan : devis détaillé sous 24 h ouvrées, gratuit.'));
+        builder(j); ga('home_ai_devis_resume');
+      }).catch(function () { try { localStorage.removeItem(DV); } catch (e) {} b.remove(); });
+    };
+  })();
   (function welcomeBack() {
     var m = null; try { m = JSON.parse(localStorage.getItem(MEM) || 'null'); } catch (e) {}
-    if (!m || !m.d || Date.now() - m.d > 90 * 864e5) return;
+    if (!m || !m.d || Date.now() - m.d > 90 * 864e5 || document.querySelector('.aiBack')) return;
     var b = el('div', 'aiBack');
     b.innerHTML = '<button type="button" class="go">' + I('etincelle') + 'Bon retour ! Reprendre notre échange' + (m.titre ? ' sur « ' + esc(m.titre) + ' »' : '') + '</button><button type="button" class="x" aria-label="Oublier cet échange">×</button>';
     form.parentNode.insertBefore(b, form.nextSibling);
@@ -302,6 +323,8 @@
   function renderFiche(res, q) {
     if (!res.entreprise && !res.site) return;
     var e = res.entreprise, s = res.site, c = el('div', 'aiFiche');
+    // La page s'adapte à l'entreprise analysée (bloc « Pour vous » sous le chat).
+    try { document.dispatchEvent(new CustomEvent('gs:ctx', { detail: { texte: [res.entreprise && res.entreprise.secteur, res.entreprise && res.entreprise.nom, res.site && res.site.titre, q].filter(Boolean).join(' '), commune: res.entreprise && res.entreprise.commune } })); } catch (x) {}
     // En-tête : monogramme, nom, ligne d'identité.
     var nm = (e && e.nom) || (s && (s.titre || s.url.replace(/^https?:\/\/(www\.)?/, '').split('/')[0])) || 'Votre entreprise';
     var hd = el('div', 'fHead'), mono = el('span', 'fMono', nm.replace(/[^A-Za-zÀ-ÿ0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase() || '·');
@@ -343,6 +366,7 @@
     if (asked >= MAX_Q) { add('b', md('On a déjà bien avancé ! Pour la suite, le plus efficace est d’en parler de vive voix : Titouan vous dit en 10 minutes ce qui est faisable et comment.')); if (!ctaMax) { ctaMax = true; cta(true); } input.disabled = true; send.disabled = true; return; }
     busy = true; send.disabled = true;
     add('u', esc(q)); input.value = ''; grow();
+    try { document.dispatchEvent(new CustomEvent('gs:ctx', { detail: { texte: q } })); } catch (x) {}
     // Le visiteur parle de son entreprise : l'assistant va la rechercher, on l'annonce.
     var looks = !company && /(entreprise|soci[ée]t[ée]|siren|siret|je travaille|travail(le)? (chez|dans)|mon (site|commerce|cabinet|restaurant|garage|agence|magasin)|\.(fr|com|re|yt)\b|www\.)/i.test(q);
     var wait = add('b', (looks ? '<span class="aiLook">' + I('recherche') + 'Je regarde votre entreprise : annuaire officiel, site, présence en ligne…</span> ' : '') + '<span class="aiDotsT" aria-label="L’assistant écrit"><i></i><i></i><i></i></span>');

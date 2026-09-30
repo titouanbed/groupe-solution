@@ -46,6 +46,46 @@ export async function sendMail({ to, subject, html, replyTo }) {
   }
 }
 
+// Traduit une erreur Brevo en consigne claire (affichée dans le tableau de bord).
+export function explique(err) {
+  const e = String(err || "");
+  if (!e) return "";
+  if (/manquante/.test(e)) return "Ajoutez BREVO_API_KEY et LEAD_FROM dans Vercel → Settings → Environment Variables, puis redéployez.";
+  if (/unrecognised IP|IP address/i.test(e)) return "Brevo bloque les envois depuis Vercel : Brevo → Paramètres → Sécurité → Adresses IP autorisées → « Désactiver le blocage ». Les serveurs Vercel changent d'IP, la liste ne peut pas fonctionner.";
+  if (/401|unauthori[sz]ed|Key not found|invalid api key/i.test(e)) return "La clé BREVO_API_KEY est refusée. Créez une clé « API » (elle commence par xkeysib-) dans Brevo → SMTP & API → Clés API, collez-la dans Vercel, puis redéployez.";
+  if (/sender|expéditeur|not valid|not verified|validated/i.test(e)) return "L'adresse LEAD_FROM n'est pas un expéditeur validé dans Brevo : Brevo → Expéditeurs, domaines et IP dédiées → ajoutez et validez cette adresse (ou authentifiez le domaine groupsolution.fr).";
+  if (/permission|not enabled|activated|suspend/i.test(e)) return "Le compte Brevo n'a pas encore l'envoi transactionnel activé : ouvrez Brevo → Transactionnel et suivez l'activation (souvent une validation de compte par Brevo).";
+  if (/injoignable|Timeout|Abort/i.test(e)) return "Brevo n'a pas répondu à temps : c'est en général passager, l'entretien automatique réessaiera.";
+  return "Réponse inattendue de Brevo : ouvrez Brevo → Transactionnel → Logs pour le détail.";
+}
+
+// Diagnostic complet de la configuration e-mail : chaque point avec son état et la marche à suivre.
+export async function diagMail() {
+  const key = String(process.env.BREVO_API_KEY || "").trim(), from = String(process.env.LEAD_FROM || "").trim().toLowerCase();
+  const out = [];
+  const add = (nom, ok, detail, fix = "") => out.push({ nom, ok, detail, fix });
+  add("Clé Brevo présente", !!key, key ? `${key.slice(0, 8)}… (${key.length} caractères)` : "absente", key ? "" : explique("manquante"));
+  if (key && /^xsmtpsib-/.test(key)) add("Type de clé", false, "C'est une clé SMTP (xsmtpsib-), pas une clé API.", "Brevo → SMTP & API → onglet « Clés API » → Générer une nouvelle clé API (xkeysib-…), puis remplacez BREVO_API_KEY dans Vercel et redéployez.");
+  else if (key) add("Type de clé", /^xkeysib-/.test(key), /^xkeysib-/.test(key) ? "Clé API (xkeysib-)" : "Format inhabituel", /^xkeysib-/.test(key) ? "" : explique("401"));
+  add("Expéditeur (LEAD_FROM)", !!from, from || "absent", from ? "" : explique("manquante"));
+  if (!key) return out;
+  const h = { "api-key": key, Accept: "application/json" };
+  try {
+    const r = await fetch("https://api.brevo.com/v3/account", { headers: h, signal: AbortSignal.timeout(8000) });
+    const t = await r.text();
+    if (!r.ok) add("Connexion au compte Brevo", false, `Brevo ${r.status} : ${t.slice(0, 200)}`, explique(`${r.status} ${t}`));
+    else { let a = {}; try { a = JSON.parse(t); } catch {} add("Connexion au compte Brevo", true, [a.companyName, a.email].filter(Boolean).join(" · ") || "OK");
+      const plan = (a.plan || []).map(p => `${p.type}${p.credits != null ? " (" + p.credits + " crédits)" : ""}`).join(", ");
+      if (plan) add("Offre Brevo", !(a.plan || []).some(p => p.credits === 0 && p.type !== "subscription"), plan, "Crédits d'envoi épuisés : attendez le renouvellement quotidien ou changez d'offre."); }
+  } catch (e) { add("Connexion au compte Brevo", false, "Brevo injoignable", explique("injoignable")); return out; }
+  if (from) try {
+    const r = await fetch("https://api.brevo.com/v3/senders", { headers: h, signal: AbortSignal.timeout(8000) });
+    if (r.ok) { const s = (await r.json()).senders || []; const m = s.find(x => String(x.email).toLowerCase() === from);
+      add("Expéditeur validé dans Brevo", !!(m && m.active !== false), m ? (m.active === false ? "présent mais non validé" : "validé") : `absent (expéditeurs connus : ${s.map(x => x.email).join(", ") || "aucun"})`, m && m.active !== false ? "" : explique("sender not valid")); }
+  } catch {}
+  return out;
+}
+
 // Gabarit sobre, lisible sur téléphone.
 export const layout = (title, body) => `<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:600px;margin:0 auto;color:#171613;line-height:1.6">
 <p style="font-weight:800;font-size:18px;margin:0 0 4px">Groupe Solution</p>

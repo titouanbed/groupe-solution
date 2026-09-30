@@ -28,11 +28,24 @@ export function fitDesc(d, max = 160) {
   const cut = d.slice(0, max - 1).replace(/[\s,;:–—-]+\S*$/, '').replace(/[\s,;:–—-]+$/, '');
   return cut + '…';
 }
-export function fitTitle(t, max = 65) {
+export function fitTitle(t, max = 65, hard = 70) {
   t = t.replace(/\s+/g, ' ').trim();
   if (t.length <= max) return t;
-  const noBrand = t.replace(/\s*[|–—-]\s*Groupe ?Solution[^|]*$/i, '').trim();
-  return noBrand.length >= 20 ? noBrand : t;
+  const noBrand = t.replace(/\s*[|–—-]\s*Groupe? ?Solution[^|]*$/i, '').trim();
+  t = noBrand.length >= 20 ? noBrand : t;
+  if (t.length <= hard) return t;
+  // 1. Une accroche après « : » ou « — » : on garde la partie principale si elle se suffit.
+  const m = t.match(/^(.{30,}?)\s+[:—–|]\s+.{12,}$/);
+  if (m && m[1].length <= hard) return m[1].replace(/[\s,;:]+$/, '');
+  // 2. Énumérations : on retire les éléments du milieu, en partant de la fin (la ville reste).
+  let u = t, prev;
+  do { prev = u; u = u.replace(/,\s[^,:—–|]+?(?=,\s|\s(?:et|ou)\s)(?!.*,\s[^,:—–|]+?(?:,\s|\s(?:et|ou)\s))/, ''); } while (u.length > hard && u !== prev);
+  if (u.length <= hard) return u;
+  // 3. Dernier recours : coupe au dernier mot entier, sans mot de liaison en fin — en gardant le lieu final.
+  const lieu = (u.match(/\s(?:à|en|au|aux|dans)\s[A-ZÀ-Ý][^,:—–|]{2,30}$/) || [''])[0];
+  const cut = s => s.replace(/\s+\S*$/, '').replace(/(\s+(de|des|du|d’|d'|à|au|aux|pour|et|ou|le|la|les|en|sur|avec|un|une))+$/i, '').replace(/[\s,;:–—-]+$/, '');
+  if (lieu && lieu.length < 36) return cut(u.slice(0, u.length - lieu.length).slice(0, hard - lieu.length + 1)) + lieu;
+  return u.slice(0, hard + 1).replace(/\s+\S*$/, '').replace(/(\s+(de|des|du|d’|d'|à|au|aux|pour|et|ou|le|la|les|en|sur|avec|un|une))+$/i, '').replace(/[\s,;:–—-]+$/, '');
 }
 
 function walk(dir, out = []) {
@@ -44,6 +57,18 @@ function walk(dir, out = []) {
   return out;
 }
 
+// Titres réécrits à la main quand la coupe automatique perdrait le sens (ou le lieu).
+const TITRES = {
+  'articles/partenariat-techno-metier-partage-valeur.html': 'Partenariat techno-métier : qui apporte quoi, qui gagne quoi',
+  'lab/questions/agent-vocal-ia-legal-france.html': 'Agent vocal IA : peut-il légalement répondre à votre téléphone ?',
+  'lab/questions/chatgpt-donnees-clients-rgpd.html': 'ChatGPT et données clients : que permet le RGPD ?',
+  'montpellier/site-internet-organisme-de-formation-montpellier.html': 'Site internet pour organisme de formation à Montpellier',
+  'montpellier/site-internet-services-a-domicile-montpellier.html': 'Site internet pour services à domicile à Montpellier',
+  'nouvelle-caledonie/secteurs/batiment-artisans.html': 'Site internet pour une entreprise de BTP en Nouvelle-Calédonie',
+  'polynesie-francaise/secteurs/tourisme-hebergement.html': 'Site internet pour pension ou hébergement en Polynésie française',
+  'guyane/site-internet-saint-laurent-du-maroni.html': 'Création de site internet à Saint-Laurent-du-Maroni (973)',
+  'implantations.html': 'Nos implantations : Montpellier, Mayotte, La Réunion, Antilles, Guyane'
+};
 let nd = 0, nt = 0, no = 0;
 for (const f of walk(ROOT)) {
   const s = readFileSync(f, 'utf8');
@@ -59,7 +84,7 @@ for (const f of walk(ROOT)) {
   }
   const mt = o.match(/<title>([^<]*)<\/title>/);
   if (mt) {
-    const old = dec(mt[1]), neu = fitTitle(old);
+    const old = dec(mt[1]), neu = TITRES[relative(ROOT, f)] || fitTitle(old);
     if (neu !== old) {
       nt++;
       o = o.replace(mt[0], `<title>${enc(neu)}</title>`).split(`content="${mt[1]}"`).join(`content="${enc(neu)}"`);
