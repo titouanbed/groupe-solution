@@ -17,10 +17,11 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { randomBytes, createHash, timingSafeEqual } from "node:crypto";
 import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
-import { sendMail, layout, esc, OWNER, MAIL_OK, lastMailError } from "./_mail.mjs";
+import { sendMail, layout, esc, OWNER, MAIL_OK, lastMailError, explique, diagMail } from "./_mail.mjs";
 import { tagConv, listConvs, getConv, SID_RE, setConvStatus } from "./_conv.mjs";
 import { runRadar, listRadar, setRadarStatus } from "./_radar.mjs";
 import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount, nlResend, nlList } from "./_newsletter.mjs";
+import { listReal, previewReal, saveReal, deleteReal, moveReal, realImage, devisEnAttente, marquerRelance, runEntretien, lastEntretien, etatPublic } from "./_site.mjs";
 
 const MODEL = process.env.CONCEPT_MODEL || process.env.ASSISTANT_MODEL || "claude-opus-5-5";
 const SITE = "https://www.groupsolution.fr";
@@ -94,6 +95,15 @@ async function radarEtResume() {
   return r;
 }
 
+// Vue publique d'une estimation : jamais de montant, seulement l'envergure (et la part du budget si la jauge est activée).
+function publicEst(rec) {
+  const G = rec.grille || {}, budgetMax = rec.budget?.max || 0, gauge = !!G.jauge && budgetMax > 0;
+  return { id: rec.id, titre: rec.titre, resume: rec.resume, questions: rec.questions, budget: rec.budget.label, jauge: gauge, minimumPart: gauge && G.minimum ? Math.round(G.minimum / budgetMax * 100) : 0,
+    // Envergure (sans aucun montant) : légère ≤ 2 j, moyenne ≤ 6 j, conséquente au-delà.
+    briques: rec.briques.map(x => ({ id: x.id, titre: x.titre, detail: x.detail, niveau: x.niveau, recurrent: x.recurrent, effort: x.jours <= 2 ? 1 : x.jours <= 6 ? 2 : 3, part: gauge ? Math.max(1, Math.round(x.cout / budgetMax * 100)) : null })) };
+}
+const pub = (res, body, sec = 300) => { res.statusCode = 200; res.setHeader("Content-Type", "application/json; charset=utf-8"); res.setHeader("Cache-Control", `public, s-maxage=${sec}, stale-while-revalidate=86400`); res.setHeader("X-Robots-Tag", "noindex"); res.end(JSON.stringify(body)); };
+
 export default async function handler(req, res) {
   if (!UPSTASH) return send(res, 503, { configured: false });
   const admin = isAdmin(req);
@@ -111,6 +121,24 @@ export default async function handler(req, res) {
         const r = await nlSend(); await redis([["SET", "cron:last:newsletter", JSON.stringify({ date: new Date().toISOString(), ...r })]]);
         return send(res, 200, r);
       }
+      // Contenu public : réalisations (ajoutées depuis le tableau de bord), leurs photos, état du site.
+      if (q.get("real") === "1") return pub(res, { items: (await listReal()).map(({ visible, ...x }) => x) });
+      if (q.has("img")) {
+        const im = await realImage(q.get("img") || "");
+        if (!im) return send(res, 404, { error: "img" });
+        res.statusCode = 200; res.setHeader("Content-Type", im.type); res.setHeader("Cache-Control", "public, max-age=31536000, immutable"); return res.end(im.buf);
+      }
+      if (q.get("etat") === "1") return pub(res, await etatPublic(), 600);
+      // Reprise d'un devis commencé (lien gardé sur l'appareil du visiteur, 7 jours).
+      if (q.has("estimation")) {
+        const e = ID_RE.test(q.get("estimation") || "") ? await get("estimation:" + q.get("estimation")) : null;
+        return e ? send(res, 200, publicEst(e)) : send(res, 404, { error: "expired" });
+      }
+      if (q.get("cron") === "entretien") {
+        if (!admin && !(await cronOk(req, "entretien"))) return send(res, 401, { error: "unauthorized" });
+        const r = await runEntretien();
+        return send(res, 200, { ok: r.ok, alertes: r.alertes, corrige: r.corrige });
+      }
       if (q.get("cron") === "radar") {
         if (!admin && !(await cronOk(req, "radar"))) return send(res, 401, { error: "unauthorized" });
         return send(res, 200, await radarEtResume());
@@ -121,6 +149,7 @@ export default async function handler(req, res) {
       if (A === "demande" && ID_RE.test(id)) return send(res, 200, { demande: await get("demande:" + id) });
       if (A === "radar") return send(res, 200, { radar: await listRadar(150), cron: true });
       if (A === "newsletter") return send(res, 200, { abonnes: await nlCount() });
+      if (A === "diag") return send(res, 200, { mail: await diagMail() });
       if (A === "convs") return send(res, 200, { convs: await listConvs(120) });
       if (A === "conv") { const sid = q.get("sid") || ""; return send(res, 200, { conv: SID_RE.test(sid) ? await getConv(sid) : null }); }
       if (A === "dashboard") {
@@ -128,7 +157,7 @@ export default async function handler(req, res) {
         const all = (ids || []).length ? await redis(ids.map(i => ["GET", "demande:" + i])) : [];
         const demandes = all.map(v => { try { return v ? JSON.parse(v) : null; } catch { return null; } }).filter(Boolean)
           .map(d => ({ id: d.id, sid: d.sid || null, date: d.date, titre: d.titre, resume: d.resume, contact: d.contact, budget: d.budget?.label, delai: d.delai, jours: d.estimation?.jours || 0, statut: d.statut || "nouveau", choisies: (d.choisies || []).map(x => x.titre) }));
-        const [convs, radar, abonnes, nl] = await Promise.all([listConvs(150), listRadar(150), nlCount(), nlList()]);
+        const [convs, radar, abonnes, nl, realisations, attente, entretien] = await Promise.all([listConvs(150), listRadar(150), nlCount(), nlList(), listReal(true), devisEnAttente(), lastEntretien()]);
         // Contacts laissés via les formulaires du site (rappel, contact), sauvegardés avant tout envoi.
         const [lids] = await redis([["LRANGE", "leads:list", 0, 149]]);
         const lraw = (lids || []).length ? await redis(lids.map(i => ["GET", "lead:" + i])) : [];
@@ -140,7 +169,7 @@ export default async function handler(req, res) {
         const sante = { mail: MAIL_OK(), ia: Boolean(process.env.ANTHROPIC_API_KEY), base: true,
           mailsOk: mc.slice(0, 7).reduce((a, v) => a + (+v || 0), 0), mailsKo: mc.slice(7, 14).reduce((a, v) => a + (+v || 0), 0),
           erreurs: (mc[14] || []).map(parse).filter(Boolean), radar: parse(mc[15]), newsletter: parse(mc[16]) };
-        return send(res, 200, { demandes, convs, radar, abonnes, nl, leads, sante, mail: MAIL_OK() });
+        return send(res, 200, { demandes, convs, radar, abonnes, nl, leads, sante, realisations, attente, entretien, mail: MAIL_OK() });
       }
       if (A === "list") {
         const [ids] = await redis([["LRANGE", "demandes:list", 0, 149]]);
@@ -171,7 +200,7 @@ export default async function handler(req, res) {
       if (!admin) return send(res, 401, { error: "unauthorized" });
       if (action === "mail_test") {
         const ok = await sendMail({ to: OWNER(), subject: "✅ Test d'envoi — tableau de bord Groupe Solution", html: layout("Les e-mails du site fonctionnent", `<p>Si vous lisez ceci, Brevo envoie bien les e-mails du site (demandes, newsletter, radar) vers ${esc(OWNER())}.</p>`) });
-        return send(res, 200, { ok, destinataire: OWNER(), erreur: ok ? null : lastMailError });
+        return send(res, 200, { ok, destinataire: OWNER(), erreur: ok ? null : lastMailError, conseil: ok ? "" : explique(lastMailError) });
       }
       if (action === "nl_resend") return send(res, 200, await nlResend(str(b.email, 190)));
       const id = String(b.id || ""); if (!/^[a-f0-9]{24}$/.test(id)) return send(res, 400, {});
@@ -179,6 +208,15 @@ export default async function handler(req, res) {
       const l = JSON.parse(v); l.statut = b.statut === "traite" ? "traite" : "nouveau";
       await redis([["SET", "lead:" + id, JSON.stringify(l), "KEEPTTL"]]);
       return send(res, 200, { ok: true });
+    }
+    if (["real_save", "real_preview", "real_delete", "real_move", "relance_ok", "entretien_run"].includes(action)) {
+      if (!admin) return send(res, 401, { error: "unauthorized" });
+      if (action === "real_save") { const r = await saveReal(b); return send(res, r.ok ? 200 : 400, r); }
+      if (action === "real_preview") return send(res, 200, await previewReal(str(b.lien, 300)));
+      if (action === "real_delete") return send(res, (await deleteReal(String(b.id || ""))) ? 200 : 400, { ok: true });
+      if (action === "real_move") return send(res, (await moveReal(String(b.id || ""), +b.dir || 1)) ? 200 : 400, { ok: true });
+      if (action === "relance_ok") return send(res, (await marquerRelance(String(b.id || ""))) ? 200 : 400, { ok: true });
+      return send(res, 200, await runEntretien());
     }
     if (action === "radar_run" || action === "radar_status") {
       if (!admin) return send(res, 401, { error: "unauthorized" });
@@ -218,13 +256,11 @@ export default async function handler(req, res) {
       const id = newId();
       const rec = { id, date: new Date().toISOString(), titre: str(out.titre, 120), resume: str(out.resume, 600), questions: (out.questions || []).slice(0, 3).map(x => str(x, 200)), briques, budget, delai, conversation: conv, besoin: extra, grille: G };
       rec.sid = SID_RE.test(b.sid || "") ? b.sid : null;
-      await redis([["SET", "estimation:" + id, JSON.stringify(rec), "EX", 86400]]);
+      // Gardée 7 jours : le visiteur peut reprendre son projet, et Titouan voit les devis commencés non envoyés.
+      await redis([["SET", "estimation:" + id, JSON.stringify(rec), "EX", 7 * 86400], ["LPUSH", "estimations:list", id], ["LTRIM", "estimations:list", 0, 199]]);
       await tagConv(rec.sid, { evenement: `Estimation de devis : ${rec.titre} (budget ${budget.label})` });
       // Seule la part de chaque brique dans le budget du visiteur est renvoyée (arrondie), jamais un montant.
-      const gauge = G.jauge && budgetMax > 0;
-      return send(res, 200, { id, titre: rec.titre, resume: rec.resume, questions: rec.questions, budget: budget.label, jauge: gauge, minimumPart: gauge && G.minimum ? Math.round(G.minimum / budgetMax * 100) : 0,
-        // Envergure (sans aucun montant) : légère ≤ 2 j, moyenne ≤ 6 j, conséquente au-delà.
-        briques: briques.map(x => ({ id: x.id, titre: x.titre, detail: x.detail, niveau: x.niveau, recurrent: x.recurrent, effort: x.jours <= 2 ? 1 : x.jours <= 6 ? 2 : 3, part: gauge ? Math.max(1, Math.round(x.cout / budgetMax * 100)) : null })) });
+      return send(res, 200, publicEst(rec));
     }
 
     if (action === "envoyer") {
@@ -244,7 +280,7 @@ export default async function handler(req, res) {
       await tagConv(est.sid, { evenement: `Demande de devis envoyée : ${est.titre}`, contact });
       const dem = { id: newId(), sid: est.sid || null, date: new Date().toISOString(), titre: est.titre, resume: est.resume, questions: est.questions, contact, message, budget: est.budget, delai: est.delai,
         choisies, ecartees, estimation: { jours, choisi: total, part, tjm: est.grille.tjm }, conversation: est.conversation, besoin: est.besoin };
-      await redis([["SET", "demande:" + dem.id, JSON.stringify(dem), "EX", 180 * 86400], ["LPUSH", "demandes:list", dem.id], ["LTRIM", "demandes:list", 0, 499], ["DEL", "estimation:" + id]]);
+      await redis([["SET", "demande:" + dem.id, JSON.stringify(dem), "EX", 180 * 86400], ["LPUSH", "demandes:list", dem.id], ["LTRIM", "demandes:list", 0, 499], ["DEL", "estimation:" + id], ["LREM", "estimations:list", 0, id]]);
       const who = [contact.nom, contact.entreprise].filter(Boolean).join(" · ") || "Visiteur";
       const li = arr => arr.map(x => `<li><b>${esc(x.titre)}</b> <small>(${esc(x.niveau)}${x.recurrent ? ", coût mensuel" : ""} · ${x.jours} j${x.cout ? " · " + eur(x.cout) : ""})</small><br>${esc(x.detail)}</li>`).join("");
       await sendMail({ to: OWNER(), replyTo: EMAIL.test(contact.email) ? contact.email : undefined, subject: `💶 Demande de devis — ${who} — budget ${est.budget.label}`,

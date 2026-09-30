@@ -158,6 +158,10 @@
   },
   "crons": [
     {
+      "path": "/api/devis?cron=entretien",
+      "schedule": "41 3 * * *"
+    },
+    {
       "path": "/api/devis?cron=radar",
       "schedule": "17 5 * * *"
     },

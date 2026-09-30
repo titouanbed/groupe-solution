@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>État du site : vérifié automatiquement chaque nuit</title>
+  <meta name="description" content="fr vérifie ses pages, ses formulaires, ses e-mails, son assistant et ses publications, corrige ce qui peut l’être et affiche ici le résultat." />
+  <link rel="canonical" href="https://www.groupsolution.fr/etat.html" />
+  <link rel="alternate" type="application/rss+xml" title="Actus IA & numérique — Groupe Solution" href="https://www.groupsolution.fr/lab/actus/rss.xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Groupe Solution" />
+  <meta property="og:title" content="État du site : vérifié automatiquement chaque nuit" />
+  <meta property="og:description" content="fr vérifie ses pages, ses formulaires, ses e-mails, son assistant et ses publications, corrige ce qui peut l’être et affiche ici le résultat." />
+  <meta property="og:url" content="https://www.groupsolution.fr/etat.html" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-ressources.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/holding-local.css" />
+  <style>
+.gs-sticky{display:none}
+@media(max-width:760px){
+  .gs-sticky{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:900;gap:8px;background:rgba(23,22,19,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .gs-sticky a,.gs-sticky button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:12px;font:800 14px/1 inherit;font-family:inherit;text-decoration:none;border:0;cursor:pointer}
+  .gs-sticky .s1{background:#fff;color:#171613}
+  .gs-sticky .s2{background:#E61E4D;color:#fff}
+  body{padding-bottom:84px}
+}
+.actHero{background:radial-gradient(70% 90% at 90% 0%,rgba(230,30,77,.12),transparent 60%)}
+.day{max-width:860px;margin:0 auto}
+.dayHead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:22px}
+.dayHead h2{font-size:clamp(24px,3vw,32px)}.dayHead time{font-size:13px;font-weight:800;color:var(--muted);text-transform:capitalize}
+.dayIntro{font-size:17px;color:var(--secondary);line-height:1.7;margin-bottom:24px}
+.news{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);padding:26px 28px;margin-bottom:16px;box-shadow:var(--sh-s);scroll-margin-top:100px}
+.news:target{border-color:var(--acc);box-shadow:0 0 0 4px var(--acc-soft)}
+.news .cat{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+.news h3{font-size:22px;font-weight:600;margin-top:8px;line-height:1.25}
+.news p{font-size:15.5px;color:var(--secondary);line-height:1.7;margin-top:10px}
+.news .why{background:var(--olive-soft);border-radius:14px;padding:14px 16px;color:var(--olive2);font-weight:600;font-size:14.5px}
+.news .why.act{background:#FDECEF;color:#9E1239;margin-top:8px}
+.news .why b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.news .src{font-size:13px;color:var(--muted);margin-top:12px}.news .src a{color:var(--ink);font-weight:700;text-decoration:underline}
+.news .more{display:inline-block;margin-top:12px;font-weight:800;font-size:14px;border-bottom:2px solid var(--acc)}
+.archive{max-width:860px;margin:30px auto 0;display:grid;gap:10px}
+.archive a{display:flex;justify-content:space-between;gap:14px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:14px 18px;font-weight:700}
+.archive a span{color:var(--muted);font-weight:600;font-size:13px;text-transform:capitalize;white-space:nowrap}
+.rss{display:inline-flex;gap:8px;align-items:center;font-size:13px;font-weight:800;color:var(--amber);background:var(--amber-soft);padding:7px 13px;border-radius:999px}</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "État du site",
+  "description": "Chaque nuit, groupsolution.fr vérifie ses pages, ses formulaires, ses e-mails, son assistant et ses publications, corrige ce qui peut l’être et affiche ici le résultat.",
+  "url": "https://www.groupsolution.fr/etat.html",
+  "inLanguage": "fr-FR",
+  "publisher": {
+    "@id": "https://www.groupsolution.fr/#org"
+  }
+}
+  </script>
+<style>
+.etH{text-align:center;padding:clamp(44px,7vw,88px) 0 10px}.etH h1{font-size:clamp(34px,5vw,58px);letter-spacing:-.04em;margin:12px auto}.etH p{color:var(--secondary);font-size:17px;max-width:620px;margin:0 auto}
+.etBox{max-width:760px;margin:34px auto 0;border-top:1px solid var(--line2)}.etRow{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 2px;border-bottom:1px solid var(--line2);font:500 19px var(--serif)}
+.etSt{display:inline-flex;align-items:center;gap:8px;font:700 14px var(--sans)}.etSt::before{content:"";width:9px;height:9px;border-radius:50%;background:#1F7A4C}.etSt.wa::before{background:#B7791F}.etSt.ko::before{background:#E61E4D}
+.etMaj{max-width:760px;margin:16px auto 0;color:var(--muted);font-size:14px;text-align:center}
+.etHow{max-width:760px;margin:48px auto 0}.etHow h2{font-size:clamp(24px,3vw,32px);margin:0 0 12px}.etHow li{margin:0 0 8px;color:var(--secondary);line-height:1.65}
+</style></head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand" href="index.html" aria-label="Groupe Solution — accueil"><img src="Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="lab/actus/">Actus</a><a href="lab/dossiers/">Dossiers</a><a href="lab/questions/">Questions</a><a href="lab/veille/">Veille</a><a href="lab/">Lab</a><a href="automatisation/">Automatisation</a><a class="cta" href="tel:+33782298559">07 82 29 85 59</a></nav></div></header>
+<main>
+  <div class="wrap crumbs"><a href="index.html">Groupe Solution</a> › <span>État du site</span></div>
+  <section class="etH"><div class="wrap"><div class="kicker">Entretien automatique</div><h1>État du site</h1><p>Chaque nuit, le site se vérifie lui-même, répare ce qui peut l’être et nous alerte pour le reste. Voici le dernier résultat.</p></div></section>
+  <section class="sec" style="padding-top:0"><div class="wrap">
+    <div class="etBox" id="etBox"><div class="etRow"><span>Chargement…</span></div></div>
+    <p class="etMaj" id="etMaj"></p>
+    <div class="etHow">
+      <h2>Ce qui est vérifié</h2>
+      <ul>
+        <li><b>Site</b> : les pages clés et un échantillon tiré au hasard dans le plan du site répondent et ont leurs balises.</li>
+        <li><b>E-mails</b> : la configuration d’envoi est valide ; les confirmations bloquées sont renvoyées automatiquement. Vos demandes sont enregistrées avant tout envoi : aucune n’est perdue.</li>
+        <li><b>Publication</b> : les actus du jour sont bien publiées.</li>
+        <li><b>Services</b> : l’assistant IA et les registres publics qu’il consulte sont joignables.</li>
+        <li><b>Automatismes</b> : les tâches planifiées (veille des nouvelles entreprises, newsletter du lundi) se sont exécutées.</li>
+      </ul>
+      <p style="margin-top:18px">Chaque semaine, un contrôle qualité complet parcourt aussi toutes les pages (liens, données structurées, questions fréquentes). Une anomalie ? Écrivez à <a href="mailto:contact@groupsolution.fr">contact@groupsolution.fr</a>.</p>
+    </div>
+  </div></section>
+  <script>(function(){var L={ok:'Opérationnel',wa:'À surveiller',ko:'Incident en cours'};fetch('/api/devis?etat=1').then(function(r){return r.ok?r.json():null;}).then(function(j){var b=document.getElementById('etBox');if(!j||!j.groupes||!j.groupes.length){b.innerHTML='<div class="etRow"><span>Premier contrôle à venir</span><span class="etSt wa">En attente</span></div>';return;}b.innerHTML=j.groupes.map(function(g){return '<div class="etRow"><span>'+g.nom+'</span><span class="etSt '+g.niveau+'">'+L[g.niveau]+'</span></div>';}).join('');document.getElementById('etMaj').textContent='Dernière vérification : '+new Date(j.maj).toLocaleString('fr-FR',{dateStyle:'long',timeStyle:'short'});}).catch(function(){document.getElementById('etBox').innerHTML='<div class="etRow"><span>État indisponible pour le moment</span></div>';});})();</script>
+  <section class="sec alt"><div class="wrap">
+    <div class="express reveal" id="contact">
+      <h2>Une de ces évolutions vous concerne ?</h2>
+      <p>On vous dit en 10 minutes ce qu'elle change pour votre entreprise — et ce qu'on peut automatiser au passage.</p>
+      <form id="expressForm" action="https://formspree.io/f/mzebrvjg" method="POST">
+        <input type="hidden" name="page" value="etat" />
+        <label class="full">Votre question<textarea name="message" required></textarea></label>
+        <label>Votre nom<input name="nom" autocomplete="name" required /></label>
+        <label>Téléphone ou email<input name="contact" autocomplete="email" required /></label>
+        <button class="btn" type="submit">Envoyer →</button>
+      </form>
+      <p class="alts">Plus rapide : <a href="tel:+33782298559">07 82 29 85 59</a> · <a href="echanger.html#rendez-vous">Réserver 10 min en visio</a></p>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap foot">
+  <span class="footBrand"><img src="Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
+  <nav><a href="index.html">Accueil</a><a href="lab/actus/">Actus</a><a href="lab/dossiers/">Dossiers</a><a href="lab/questions/">Questions</a><a href="lab/pouls/">Le pouls</a><a href="idees/">Laboratoire d’idées</a><a href="lab/coulisses.html">Coulisses</a><a href="lab/actus/rss.xml">Flux RSS</a><a href="lab/veille/">Veille</a><a href="lab/">Lab</a><a href="automatisation/">Automatisation</a><a href="plan-du-site.html">Plan du site</a></nav>
+</div></footer>
+<div class="gs-sticky"><a class="s1" href="tel:+33782298559"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:6px"><path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>Appeler</a><a class="s2" href="#contact">Poser ma question</a></div>
+<script src="assets/holding-local.js" defer></script>
+<script src="assets/pouls.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

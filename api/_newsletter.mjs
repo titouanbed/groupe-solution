@@ -3,7 +3,7 @@
 // Envoi chaque lundi (tâche Vercel) : les actus vérifiées de la semaine, lues depuis le flux RSS du site.
 import { randomBytes, createHash } from "node:crypto";
 import { redis } from "./_guard.mjs";
-import { sendMail, esc } from "./_mail.mjs";
+import { sendMail, esc, lastMailError, explique } from "./_mail.mjs";
 
 const SITE = "https://www.groupsolution.fr";
 const EMAIL = /^[^\s@<>"]{1,64}@[^\s@<>"]{1,190}\.[a-z]{2,}$/i;
@@ -36,13 +36,13 @@ export async function nlResend(email) {
   const sub = JSON.parse(cur); if (sub.ok) return { ok: true, deja: true };
   await redis([["SET", "nl:tok:" + sub.t, h, "EX", 60 * 86400]]);
   const sent = await mailConfirmation(sub.email, sub.t);
-  sub.envoi = sent ? "envoye" : "echec"; sub.essai = new Date().toISOString();
+  sub.envoi = sent ? "envoye" : "echec"; sub.essai = new Date().toISOString(); sub.essais = (sub.essais || 0) + 1;
   await redis([["HSET", "nl:subs", h, JSON.stringify(sub)]]);
-  return { ok: sent };
+  return sent ? { ok: true } : { ok: false, erreur: lastMailError, conseil: explique(lastMailError) };
 }
 export async function nlList() {
   const [all] = await redis([["HVALS", "nl:subs"]]);
-  return (all || []).map(v => { try { const x = JSON.parse(v); return { email: x.email, ok: !!x.ok, date: x.date, confirme: x.confirme || null, envoi: x.envoi || null, source: x.source || "" }; } catch { return null; } }).filter(Boolean).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  return (all || []).map(v => { try { const x = JSON.parse(v); return { email: x.email, ok: !!x.ok, date: x.date, confirme: x.confirme || null, envoi: x.envoi || null, source: x.source || "", essais: x.essais || 0, lien: x.ok ? null : `${SITE}/api/devis?nl=confirm&t=${x.t}` }; } catch { return null; } }).filter(Boolean).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
 }
 async function byToken(t) {
   if (!/^[a-f0-9]{32}$/.test(t)) return null;
@@ -100,4 +100,13 @@ export async function nlSend() {
     n += res.filter(Boolean).length;
   }
   return { envoyes: n, abonnes: subs.length, actus: items.length };
+}
+
+// Entretien : renvoie automatiquement les confirmations restées bloquées (3 essais maximum par adresse).
+export async function nlRetry() {
+  const [all] = await redis([["HVALS", "nl:subs"]]);
+  const bloques = (all || []).map(v => { try { return JSON.parse(v); } catch { return null; } }).filter(x => x && !x.ok && x.envoi === "echec" && (x.essais || 0) < 3);
+  let ok = 0;
+  for (const x of bloques.slice(0, 20)) if ((await nlResend(x.email)).ok) ok++;
+  return { bloques: bloques.length, renvoyes: ok };
 }

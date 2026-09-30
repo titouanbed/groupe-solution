@@ -21,6 +21,12 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* ── Produits déployés ── */
+    .rlSec{padding:20px 0 56px;background:var(--paper)}.rlSec h2{font-size:clamp(28px,3.2vw,40px);letter-spacing:-.02em;margin:0 0 6px}.rlSec .sub{color:var(--secondary);margin:0 0 26px}
+    .rlGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .rlCard a,.rlCard>div{display:block;color:inherit;text-decoration:none;height:100%}.rlCard{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-s);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}.rlCard:hover{transform:translateY(-4px);box-shadow:var(--sh-l)}
+    .rlPh{aspect-ratio:4/3;background:#F1EFEA;display:grid;place-items:center;overflow:hidden}.rlPh img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}.rlCard:hover .rlPh img{transform:scale(1.03)}.rlPh span{font-family:var(--serif);font-size:64px;color:#C9C3B8}
+    .rlTx{padding:18px 20px 20px}.rlTx small{color:var(--muted,#8A857B);font-size:12.5px;font-weight:600;letter-spacing:.02em}.rlTx h3{font-family:var(--serif);font-weight:500;font-size:23px;line-height:1.15;margin:6px 0 8px}.rlTx p{color:var(--secondary);font-size:14.5px;line-height:1.6;margin:0}.rlLk{display:inline-block;margin-top:12px;font-size:13px;font-weight:700}
+    @media(max-width:900px){.rlGrid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.rlGrid{grid-template-columns:1fr}}
     .proofs{padding:64px 0 36px;background:var(--paper)}
     .proofGrid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     .proof{border:1px solid var(--line);background:var(--white);border-radius:var(--r-l);box-shadow:var(--sh-s);padding:38px;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
@@ -190,6 +196,13 @@
     </div>
   </div></section>
 
+  <section class="rlSec" data-real-wrap hidden><div class="wrap">
+    <div class="kicker reveal">Projets livrés</div>
+    <h2>Ce que nous avons construit pour des entreprises.</h2>
+    <p class="sub">Sites, logiciels et automatisations en service, présentés avec l’accord de nos clients.</p>
+    <div class="rlGrid" data-real="grille"></div>
+  </div></section>
+
 
   <section class="demoSection"><div class="wrap">
     <div class="demoHead">
@@ -233,6 +246,7 @@
 </div></footer>
 
 <script src="site.js"></script>
+<script src="/assets/realisations.js" defer></script>
 <script>
 /* ── Démo live du matching : 6 étapes, données fictives, contrôlée pas à pas ── */
 (function(){

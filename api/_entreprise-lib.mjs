@@ -37,14 +37,14 @@ function checkURL(raw) {
   return u;
 }
 
-function get(u) {
+function get(u, want = /html/i, max = MAX_BYTES) {
   return new Promise(resolve => {
     const lib = u.protocol === "https:" ? https : http;
-    const req = lib.get(u, { lookup: safeLookup, timeout: TIMEOUT, headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml", "Accept-Encoding": "identity" } }, r => {
+    const req = lib.get(u, { lookup: safeLookup, timeout: TIMEOUT, headers: { "User-Agent": UA, Accept: want.source.includes("image") ? "image/*" : "text/html,application/xhtml+xml", "Accept-Encoding": "identity" } }, r => {
       const status = r.statusCode || 0, type = String(r.headers["content-type"] || "");
-      if ([301, 302, 303, 307, 308].includes(status) || status < 200 || status >= 300 || !/html/i.test(type)) { r.resume(); req.destroy(); return resolve({ status, location: r.headers.location, type }); }
+      if ([301, 302, 303, 307, 308].includes(status) || status < 200 || status >= 300 || !want.test(type)) { r.resume(); req.destroy(); return resolve({ status, location: r.headers.location, type }); }
       const chunks = []; let size = 0;
-      r.on("data", c => { size += c.length; if (size > MAX_BYTES) { req.destroy(); resolve({ status, type, body: Buffer.concat(chunks), size }); } else chunks.push(c); });
+      r.on("data", c => { size += c.length; if (size > max) { req.destroy(); resolve({ status, type, body: Buffer.concat(chunks), size, cut: true }); } else chunks.push(c); });
       r.on("end", () => resolve({ status, type, body: Buffer.concat(chunks), size }));
       r.on("error", () => resolve({ status, type, body: Buffer.concat(chunks), size }));
     });
@@ -71,6 +71,19 @@ async function fetchPage(raw) {
     return { url: u.href, https: u.protocol === "https:", ms: Date.now() - t0, bytes: r.size, html };
   }
   return { error: "trop de redirections" };
+}
+
+// Image publique (aperçu d'un site : og:image), mêmes protections que les pages. Retourne un data URL.
+async function fetchImage(raw) {
+  let u = checkURL(raw); if (!u) return null;
+  for (let hop = 0; hop < 4; hop++) {
+    const r = await get(u, /^image\/(jpeg|png|webp)/i, 3_000_000);
+    if (r.error) return null;
+    if ([301, 302, 303, 307, 308].includes(r.status)) { try { u = checkURL(new URL(String(r.location || ""), u).href); } catch { return null; } if (!u) return null; continue; }
+    if (!r.body || r.cut) return null;
+    return `data:${r.type.split(";")[0].trim().toLowerCase()};base64,${r.body.toString("base64")}`;
+  }
+  return null;
 }
 
 /* ── Lecture de la page (ce que voit un internaute) ── */
@@ -151,4 +164,4 @@ export async function registreListe(q, { commune = "" } = {}) {
 }
 export async function registre(q) { return (await registreListe(q))[0] || null; }
 
-export { fetchPage, analyse, checkURL };
+export { fetchPage, fetchImage, analyse, checkURL };

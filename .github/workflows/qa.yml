@@ -1,9 +1,9 @@
-# Contrôle qualité du site : chaque lundi matin, à chaque pull request et à la demande.
+# Contrôle qualité du site : chaque matin, à chaque pull request et à la demande.
 # Échec = e-mail automatique de GitHub au propriétaire du dépôt (liens cassés, données structurées, FAQ, balises).
 name: "Contrôle qualité du site"
 on:
   schedule:
-    - cron: "23 5 * * 1"
+    - cron: "23 5 * * *"
   pull_request:
   workflow_dispatch:
 jobs:

@@ -58,8 +58,15 @@ pre.mail{white-space:pre-wrap;font:14px/1.55 var(--sans);background:var(--bg);bo
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:700 13px var(--sans);cursor:pointer}.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10px 0 4px}input.f{width:100%;font:15px var(--sans);padding:10px 12px;border:1px solid var(--line);border-radius:12px}
 .login{max-width:420px;margin:14vh auto 0;padding:0 18px;text-align:center}.login h1{font:600 30px var(--serif);margin:16px 0 6px}.login p{color:var(--sec)}.login input{width:100%;font:16px var(--sans);padding:14px 16px;border:1px solid var(--line);border-radius:14px;margin-top:10px}.login .btn{width:100%;justify-content:center;min-height:50px;margin-top:10px;font-size:15px}.err{color:var(--acc);font-weight:700;font-size:14px;margin-top:10px}
+/* Réalisations */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--sh)}.rcard .ph{aspect-ratio:4/3;background:#F1EFEA center/cover no-repeat;display:grid;place-items:center;color:var(--muted);font-size:13px}.rcard .bd{padding:12px 14px}.rcard .acts{margin:10px 0 0}.rcard.off{opacity:.55}
+.rform{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.rform .full{grid-column:1/-1}textarea.f{width:100%;font:15px var(--sans);padding:10px 12px;border:1px solid var(--line);border-radius:12px;resize:vertical}
+.drop{border:1.5px dashed var(--line);border-radius:16px;min-height:150px;display:grid;place-items:center;text-align:center;color:var(--muted);cursor:pointer;background:#FCFBF8 center/cover no-repeat;font-size:13.5px;padding:12px}.drop.has{border-style:solid;color:transparent}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}.chk:last-child{border:0}.chk .st{flex-shrink:0;margin-top:1px}.chk small{display:block;color:var(--muted);font-size:12.5px}.chk .fix{display:block;margin-top:4px;background:#FDECEF;color:#8A1233;border-radius:10px;padding:8px 10px;font-size:13px}
+.big{display:flex;align-items:center;gap:14px}.big .ring{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}.big .ring svg{width:26px;height:26px}
 @media(max-width:980px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:640px){.topIn{grid-template-columns:1fr auto;padding-top:10px}.logo span{display:none}.search{grid-column:1/-1;grid-row:2;justify-self:stretch}.kpis{grid-template-columns:repeat(2,1fr)}.kpis .kpi:first-child{grid-column:1/-1}.cats{gap:22px}.acts,.tr,details.more{margin-left:0}.item{grid-template-columns:38px 1fr}.item .pill{grid-column:2;justify-self:start;margin-top:4px}.av{width:38px;height:38px;font-size:13.5px}}
+@media(max-width:640px){.rform{grid-template-columns:1fr}.topIn{grid-template-columns:1fr auto;padding-top:10px}.logo span{display:none}.search{grid-column:1/-1;grid-row:2;justify-self:stretch}.kpis{grid-template-columns:repeat(2,1fr)}.kpis .kpi:first-child{grid-column:1/-1}.cats{gap:22px}.acts,.tr,details.more{margin-left:0}.item{grid-template-columns:38px 1fr}.item .pill{grid-column:2;justify-self:start;margin-top:4px}.av{width:38px;height:38px;font-size:13.5px}}
 </style>
 </head>
 <body>
@@ -97,6 +104,8 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     radar: P('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'), nl: P('<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>'),
     sante: P('<path d="M12 20s-7.5-4.5-7.5-10A4.3 4.3 0 0 1 12 7.3 4.3 4.3 0 0 1 19.5 10c0 5.5-7.5 10-7.5 10z"/><path d="M8.5 12h2l1-2 1.5 4 1-2h1.5"/>'),
     tel: P('<path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/>'), mail: P('<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>'),
+    real: P('<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/>'),
+    ent: P('<path d="M14.5 5.5a4 4 0 0 0-5.3 5.1L4 15.8 6.2 18l5.2-5.2a4 4 0 0 0 5.1-5.3l-2.3 2.3-2-2z"/>'),
     ok: P('<path d="m5 12.5 4.5 4.5L19 7.5"/>'), eye: P('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/>')
   };
   var COLORS = ['#E61E4D', '#3A4DB0', '#1F7A4C', '#B7791F', '#6B4FB8', '#0E7490', '#9D174D', '#57534B'];
@@ -128,15 +137,18 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     var conv = D.convs.filter(function (c) { return c.statut !== 'traite' && !seen[c.sid] && c.contact && (c.contact.telephone || c.contact.email); });
     var rad = D.radar.filter(function (x) { return x.statut === 'nouveau'; });
     var nlp = (D.nl || []).filter(function (x) { return !x.ok && x.envoi === 'echec'; });
-    return { dem: dem, leads: leads, conv: conv, rad: rad, nlp: nlp, n: dem.length + leads.length + conv.length + rad.length + nlp.length };
+    var att = (D.attente || []).filter(function (e) { return !e.relance && convOf(e.sid) && convOf(e.sid).contact && !seen[e.sid]; });
+    return { dem: dem, leads: leads, conv: conv, rad: rad, nlp: nlp, att: att, n: dem.length + leads.length + conv.length + rad.length + nlp.length + att.length };
   }
+  function convOf(sid) { if (!sid) return null; for (var i = 0; i < D.convs.length; i++) if (D.convs[i].sid === sid) return D.convs[i]; return null; }
+  function rap() { return (D.entretien && D.entretien.rapport) || null; }
   function cats() {
-    var t = todo(), sante = D.sante || {}, sk = (!sante.mail || !sante.ia || (sante.erreurs && sante.erreurs.length && new Date() - new Date(sante.erreurs[0].date) < 2 * 864e5)) ? 1 : 0;
-    var list = [['home', 'Aujourd’hui', t.n], ['contacts', 'Contacts', t.leads.length + t.conv.length], ['convs', 'Conversations', 0], ['dem', 'Devis', t.dem.length], ['radar', 'Radar', t.rad.length], ['nl', 'Newsletter', t.nlp.length], ['sante', 'Santé', sk]];
-    $('#cats').innerHTML = list.map(function (c) { return '<button class="cat' + (c[0] === TAB && !Q ? ' on' : '') + '" data-t="' + c[0] + '">' + IC[c[0]] + c[1] + (c[2] ? '<i>' + c[2] + '</i>' : '') + '</button>'; }).join('');
+    var t = todo(), sante = D.sante || {}, r = rap(), sk = r ? r.checks.filter(function (c) { return c.niveau === 'ko'; }).length : (!sante.mail || !sante.ia) ? 1 : 0;
+    var list = [['home', 'Aujourd’hui', t.n], ['contacts', 'Contacts', t.leads.length + t.conv.length], ['convs', 'Conversations', 0], ['dem', 'Devis', t.dem.length + t.att.length], ['radar', 'Radar', t.rad.length], ['nl', 'Newsletter', t.nlp.length], ['real', 'Réalisations', 0], ['sante', 'Entretien', sk]];
+    $('#cats').innerHTML = list.map(function (c) { return '<button class="cat' + (c[0] === TAB && !Q ? ' on' : '') + '" data-t="' + c[0] + '">' + (IC[c[0]] || IC.ent) + c[1] + (c[2] ? '<i>' + c[2] + '</i>' : '') + '</button>'; }).join('');
     [].forEach.call(document.querySelectorAll('.cat'), function (b) { b.onclick = function () { $('#q').value = ''; Q = ''; show(b.getAttribute('data-t')); }; });
   }
-  function show(t) { TAB = t; cats(); ({ home: home, contacts: contacts, convs: convs, dem: dems, radar: radar, nl: nl, sante: sante })[t](); scrollTo(0, 0); }
+  function show(t) { TAB = t; cats(); ({ home: home, contacts: contacts, convs: convs, dem: dems, radar: radar, nl: nl, real: real, sante: sante })[t](); scrollTo(0, 0); }
   var week = function (d) { return d && Date.now() - new Date(d) < 7 * 864e5; };
   function contactBtns(c, subject) { c = c || {}; var h = ''; if (c.telephone) h += '<a class="btn a" href="tel:' + esc(String(c.telephone).replace(/\s/g, '')) + '">' + IC.tel + esc(c.telephone) + '</a>'; if (c.email) h += '<a class="btn" href="mailto:' + encodeURIComponent(c.email) + (subject ? '?subject=' + encodeURIComponent(subject) : '') + '">' + IC.mail + esc(c.email) + '</a>'; return h; }
 
@@ -163,7 +175,14 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
       '<details class="more"><summary>E-mail prêt : ' + esc(x.objet) + '</summary><pre class="mail">' + esc(x.email) + '</pre></details>' +
       '<div class="acts">' + (mail ? '<a class="btn a" data-sent="' + x.id + '" href="' + mail + '">' + IC.mail + 'Envoyer l’e-mail</a>' : '<button class="btn" data-copy="' + x.id + '">Copier l’e-mail</button>') + (c.telephone ? '<a class="btn" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">' + IC.tel + 'Appeler</a>' : '') + (c.site ? '<a class="btn" target="_blank" rel="noopener" href="' + esc(c.site) + '">Site</a>' : '') + (x.statut !== 'rdv' ? '<button class="btn" data-rs="' + x.id + ':rdv">RDV obtenu</button>' : '') + (x.statut === 'nouveau' ? '<button class="btn" data-rs="' + x.id + ':ecarte">Pas pour nous</button>' : '') + '</div></div>';
   }
-  function nlCard(x) { return '<div class="card"><div class="item">' + avatar(x.email) + '<div><div class="t">' + esc(x.email) + '</div><div class="m">inscrit ' + ago(x.date) + (x.confirme ? ' · confirmé ' + ago(x.confirme) : x.envoi === 'echec' ? ' · <b style="color:var(--acc)">e-mail de confirmation non parti</b>' : ' · en attente de confirmation') + '</div></div><span class="pill ' + (x.ok ? 'p-ok' : 'p-nl') + '">' + (x.ok ? 'Abonné' : 'En attente') + '</span></div>' + (!x.ok ? '<div class="acts"><button class="btn" data-resend="' + esc(x.email) + '">' + IC.mail + 'Renvoyer la confirmation</button><a class="btn" href="mailto:' + encodeURIComponent(x.email) + '">Écrire</a></div>' : '') + '</div>'; }
+  function attCard(e) {
+    var c = convOf(e.sid), ct = (c && c.contact) || {}, who = ct.nom || (c && c.entreprise) || 'Visiteur anonyme';
+    var corps = 'Bonjour' + (ct.nom ? ' ' + ct.nom.split(' ')[0] : '') + ',\n\nVous avez commencé à composer votre projet « ' + e.titre + ' » sur notre site. Je peux vous envoyer le devis détaillé, gratuitement et sans engagement : il me suffit de votre accord (ou d’un créneau de 10 minutes pour en parler).\n\nBonne journée,\nTitouan Bedos — Groupe Solution\n07 82 29 85 59';
+    return '<div class="card"><div class="item">' + avatar(who) + '<div><div class="t">' + esc(who) + '</div><div class="s">' + esc(e.titre) + '</div><div class="m">' + ago(e.date) + ' · budget ' + esc(e.budget) + ' · ' + esc(e.delai) + (e.relance ? ' · relancé ' + ago(e.relance) : '') + '</div></div><span class="pill p-rad">' + (e.relance ? 'Relancé' : 'Pas envoyé') + '</span></div>' +
+      '<details class="more"><summary>Ce qu’il composait</summary><p class="s" style="-webkit-line-clamp:unset">' + esc(e.resume) + '</p><ul>' + e.briques.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' + (e.besoin ? '<p class="m">En vrac : ' + esc(e.besoin) + '</p>' : '') + '</details>' +
+      '<div class="acts">' + (ct.email ? '<a class="btn a" data-rel="' + e.id + '" href="mailto:' + encodeURIComponent(ct.email) + '?subject=' + encodeURIComponent('Votre projet — ' + e.titre) + '&body=' + encodeURIComponent(corps) + '">' + IC.mail + 'Relance douce</a>' : '') + (ct.telephone ? '<a class="btn" data-rel="' + e.id + '" href="tel:' + esc(String(ct.telephone).replace(/\s/g, '')) + '">' + IC.tel + 'Appeler</a>' : '') + (e.sid ? '<button class="btn" data-open="' + e.sid + '">' + IC.eye + 'Conversation</button>' : '') + (!ct.email && !ct.telephone ? '<span class="m">Pas de coordonnées : il retrouvera son projet sur son appareil à sa prochaine visite (7 jours).</span>' : '') + '</div>' + (e.sid ? '<div id="cv' + e.sid + '"></div>' : '') + '</div>';
+  }
+  function nlCard(x) { return '<div class="card"><div class="item">' + avatar(x.email) + '<div><div class="t">' + esc(x.email) + '</div><div class="m">inscrit ' + ago(x.date) + (x.confirme ? ' · confirmé ' + ago(x.confirme) : x.envoi === 'echec' ? ' · <b style="color:var(--acc)">e-mail de confirmation non parti</b>' : ' · en attente de confirmation') + '</div></div><span class="pill ' + (x.ok ? 'p-ok' : 'p-nl') + '">' + (x.ok ? 'Abonné' : 'En attente') + '</span></div>' + (!x.ok ? '<div class="acts"><button class="btn" data-resend="' + esc(x.email) + '">' + IC.mail + 'Renvoyer la confirmation</button>' + (x.lien ? '<a class="btn p" href="mailto:' + encodeURIComponent(x.email) + '?subject=' + encodeURIComponent('Confirmez votre inscription à L’essentiel du lundi') + '&body=' + encodeURIComponent('Bonjour,\n\nMerci pour votre inscription à L’essentiel du lundi, les actualités IA et numériques de la semaine traduites en actions concrètes.\n\nUn clic pour confirmer :\n' + x.lien + '\n\nTitouan Bedos — Groupe Solution') + '">Envoyer depuis ma messagerie</a>' : '') + '</div><p class="m" style="margin-left:56px" data-rr="' + esc(x.email) + '"></p>' : '') + '</div>'; }
 
   function bind() {
     [].forEach.call(document.querySelectorAll('[data-open]'), function (b) { b.onclick = function () { openConv(b.getAttribute('data-open')); }; });
@@ -171,7 +190,8 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     [].forEach.call(document.querySelectorAll('[data-rs]'), function (b) { b.onclick = function () { var p = b.getAttribute('data-rs').split(':'); api('', { action: 'radar_status', id: p[0], statut: p[1] }).then(load); }; });
     [].forEach.call(document.querySelectorAll('[data-sent]'), function (a) { a.addEventListener('click', function () { setTimeout(function () { api('', { action: 'radar_status', id: a.getAttribute('data-sent'), statut: 'contacte' }).then(load); }, 900); }); });
     [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) { b.onclick = function () { var x = D.radar.find(function (y) { return y.id === b.getAttribute('data-copy'); }); navigator.clipboard && navigator.clipboard.writeText('Objet : ' + x.objet + '\n\n' + x.email); b.textContent = 'Copié ✓'; }; });
-    [].forEach.call(document.querySelectorAll('[data-resend]'), function (b) { b.onclick = function () { b.disabled = true; api('', { action: 'nl_resend', email: b.getAttribute('data-resend') }).then(function (r) { b.textContent = r.ok ? 'Renvoyé ✓' : 'Échec : voir Santé'; setTimeout(load, 1200); }); }; });
+    [].forEach.call(document.querySelectorAll('[data-resend]'), function (b) { b.onclick = function () { b.disabled = true; b.textContent = 'Envoi…'; var out = document.querySelector('[data-rr="' + b.getAttribute('data-resend') + '"]'); api('', { action: 'nl_resend', email: b.getAttribute('data-resend') }).then(function (r) { b.textContent = r.ok ? 'Renvoyé ✓' : 'Échec'; if (out) out.innerHTML = r.ok ? 'Accepté par Brevo.' : '<b style="color:var(--acc)">' + esc(r.erreur || 'Échec') + '</b><br>' + esc(r.conseil || '') + ' En attendant, « Envoyer depuis ma messagerie » part tout de suite.'; if (r.ok) setTimeout(load, 1500); }); }; });
+    [].forEach.call(document.querySelectorAll('[data-rel]'), function (a) { a.addEventListener('click', function () { setTimeout(function () { api('', { action: 'relance_ok', id: a.getAttribute('data-rel') }).then(load); }, 900); }); });
   }
   function openConv(sid) {
     var box = document.getElementById('cv' + sid); if (!box) return;
@@ -194,7 +214,7 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     var html = '<div class="hello"><div><h1>' + hello + '</h1><p>' + (t.n ? '<b>' + t.n + ' action' + (t.n > 1 ? 's' : '') + '</b> vous attend' + (t.n > 1 ? 'ent' : '') + ' aujourd’hui.' : 'Tout est à jour. Profitez-en pour lancer le radar.') + '</p></div><small>Actualisé ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }) + '</small></div>';
     var kp = [['c1', 'convs', c7.length, 'conversations · 7 j'], ['c2', 'contacts', contacts7, 'contacts laissés · 7 j'], ['c3', 'dem', D.demandes.filter(function (x) { return week(x.date); }).length, 'demandes de devis · 7 j'], ['c4', 'radar', D.radar.filter(function (x) { return x.statut === 'contacte' || x.statut === 'rdv'; }).length + ' / ' + D.radar.length, 'radar contactées / repérées'], ['c5', 'nl', D.abonnes, 'abonnés newsletter']];
     html += '<div class="kpis">' + kp.map(function (k) { return '<button class="kpi ' + k[0] + '" data-go="' + k[1] + '"><span class="ic">' + IC[k[1]] + '</span><b>' + k[2] + '</b><span>' + k[3] + '</span></button>'; }).join('') + '</div>';
-    var left = section('À faire', t.n ? t.n + ' en attente' : 'rien en attente', t.n ? t.dem.map(demCard).join('') + t.leads.map(leadCard).join('') + t.conv.map(convCard).join('') + t.rad.slice(0, 4).map(radCard).join('') + t.nlp.map(nlCard).join('') + (t.rad.length > 4 ? '<p class="m">+ ' + (t.rad.length - 4) + ' entreprise(s) dans Radar.</p>' : '') : empty('Rien en attente', 'Les demandes de devis, les visiteurs qui laissent leurs coordonnées et le radar du matin arrivent ici.'));
+    var left = section('À faire', t.n ? t.n + ' en attente' : 'rien en attente', t.n ? t.dem.map(demCard).join('') + t.leads.map(leadCard).join('') + t.conv.map(convCard).join('') + t.rad.slice(0, 4).map(radCard).join('') + t.nlp.map(nlCard).join('') + t.att.map(attCard).join('') + (t.rad.length > 4 ? '<p class="m">+ ' + (t.rad.length - 4) + ' entreprise(s) dans Radar.</p>' : '') : empty('Rien en attente', 'Les demandes de devis, les visiteurs qui laissent leurs coordonnées et le radar du matin arrivent ici.'));
     var right = section('Activité · 14 jours', '', '<div class="card">' + chart() + '</div>') + section('Fil d’activité', '', '<div class="card feed">' + feed() + '</div>') + section('Santé', '', '<div class="card health">' + healthRows(true) + '</div>');
     html += '<div class="grid"><div>' + left + '</div><div>' + right + '</div></div>';
     $('#view').innerHTML = html; bind(); chartHover();
@@ -234,6 +254,7 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
       ['Assistant IA', s.ia ? '<span class="st">Actif</span>' : '<span class="st ko">Clé absente</span>'],
       ['Base de données', '<span class="st">Connectée</span>'],
       ['Radar du matin', s.radar ? '<span class="st">' + ago(s.radar.date) + ' · ' + s.radar.retenues + ' retenue(s)</span>' : '<span class="st wa">Pas encore passé</span>'],
+      ['Entretien automatique', rap() ? (rap().ok ? '<span class="st">' + ago(rap().date) + ' · tout va bien</span>' : '<span class="st ' + (rap().checks.some(function (c) { return c.niveau === 'ko'; }) ? 'ko' : 'wa') + '">' + rap().alertes + ' point(s) à voir</span>') : '<span class="st wa">Première nuit à venir</span>'],
       ['Newsletter du lundi', s.newsletter ? '<span class="st">' + ago(s.newsletter.date) + ' · ' + (s.newsletter.envoyes || 0) + ' envoi(s)</span>' : '<span class="st wa">Pas encore passée</span>']
     ];
     return rows.map(function (r) { return '<div class="row"><span>' + r[0] + '</span>' + r[1] + '</div>'; }).join('') + (short && recent ? '<p class="m" style="margin:8px 0 0">Dernière erreur : ' + esc(err.erreur).slice(0, 140) + ' — <a href="#" data-go="sante">détails</a></p>' : '');
@@ -246,7 +267,7 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     $('#view').innerHTML = section('Conversations', D.convs.length + ' sur 30 jours', '<div class="filters">' + [['all', 'Toutes'], ['contact', 'Avec coordonnées'], ['ent', 'Entreprise analysée'], ['act', 'Avec action']].map(function (f) { return '<button data-f="' + f[0] + '"' + (f[0] === CF ? ' class="on"' : '') + '>' + f[1] + '</button>'; }).join('') + '</div>' + (list.length ? list.map(convCard).join('') : empty('Aucune conversation', 'Chaque échange avec l’assistant (accueil et bulle) apparaît ici, conservé 30 jours.')));
     [].forEach.call(document.querySelectorAll('[data-f]'), function (b) { b.onclick = function () { CF = b.getAttribute('data-f'); convs(); }; }); bind();
   }
-  function dems() { $('#view').innerHTML = section('Demandes de devis', 'chiffrez dans Indy, puis « Devis envoyé »', D.demandes.length ? D.demandes.map(demCard).join('') : empty('Aucune demande pour l’instant', 'Elles arrivent ici (et par e-mail) quand un visiteur prépare son devis dans le chat.')); bind(); }
+  function dems() { var a = D.attente || []; $('#view').innerHTML = section('Demandes de devis', 'chiffrez dans Indy, puis « Devis envoyé »', D.demandes.length ? D.demandes.map(demCard).join('') : empty('Aucune demande pour l’instant', 'Elles arrivent ici (et par e-mail) quand un visiteur prépare son devis dans le chat.')) + (a.length ? '<div style="margin-top:26px">' + section('Commencés, pas envoyés', a.length + ' sur 7 jours · relance douce en un clic', a.map(attCard).join('')) + '</div>' : ''); bind(); }
   function radar() {
     var act = D.radar.filter(function (x) { return x.statut !== 'ecarte'; });
     $('#view').innerHTML = section('Radar', 'nouvelles sociétés, France et outre-mer', '<div class="card"><p class="m" style="margin:0">Chaque matin, les sociétés créées la veille (annonces officielles) sont triées ; les plus prometteuses sont analysées avec une idée et un e-mail prêts. « Envoyer l’e-mail » l’ouvre dans votre messagerie.</p><div class="acts" style="margin-left:0"><button class="btn p" id="rrun">Lancer le radar maintenant</button><span class="m" id="rmsg"></span></div></div>' + (act.length ? act.map(radCard).join('') : empty('Aucune entreprise retenue pour l’instant', 'Lancez le radar : il analyse les créations des deux derniers jours.')));
@@ -254,23 +275,87 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     bind();
   }
   function nl() { var l = D.nl || []; $('#view').innerHTML = section('Newsletter', D.abonnes + ' abonné(s) · envoi automatique chaque lundi', l.length ? l.map(nlCard).join('') : empty('Aucun inscrit pour l’instant', 'Le formulaire est sous les actus de l’accueil.')); bind(); }
+  /* ── Réalisations : ajoutées ici, publiées aussitôt sur le site ── */
+  var EDIT = null, PHOTO;
+  function real() {
+    var l = D.realisations || [];
+    $('#view').innerHTML = section('Réalisations', l.length + ' projet' + (l.length > 1 ? 's' : '') + ' · en ligne aussitôt sur la page Réalisations et l’accueil', '<div class="card" id="rf"></div>' + (l.length ? '<div class="rgrid">' + l.map(function (x, i) { return '<div class="rcard' + (x.visible === false ? ' off' : '') + '"><div class="ph" style="' + (x.img ? 'background-image:url(/api/devis?img=' + x.id + '&v=' + x.img + ')' : '') + '">' + (x.img ? '' : 'Sans photo') + '</div><div class="bd"><div class="t">' + esc(x.titre) + '</div><div class="m">' + esc([x.secteur, x.lieu, x.annee].filter(Boolean).join(' · ')) + (x.visible === false ? ' · masqué' : '') + '</div>' + (x.lien ? '<div class="m"><a target="_blank" rel="noopener" href="' + esc(x.lien) + '">' + esc(x.lien.replace(/^https?:\/\/(www\.)?/, '').slice(0, 40)) + '</a></div>' : '') + '<div class="acts"><button class="btn" data-re="' + x.id + '">Modifier</button>' + (i ? '<button class="btn" data-mv="' + x.id + ':-1" title="Monter">↑</button>' : '') + (i < l.length - 1 ? '<button class="btn" data-mv="' + x.id + ':1" title="Descendre">↓</button>' : '') + '</div></div></div>'; }).join('') + '</div>' : empty('Aucune réalisation pour l’instant', 'Collez le lien d’un projet livré : titre, texte et photo se remplissent tout seuls.')) + '<p class="m" style="margin-top:14px">Page publique : <a href="/realisations.html" target="_blank">groupsolution.fr/realisations.html</a> — ne publiez que des projets que le client accepte de montrer.</p>');
+    form();
+    [].forEach.call(document.querySelectorAll('[data-re]'), function (b) { b.onclick = function () { EDIT = l.find(function (x) { return x.id === b.getAttribute('data-re'); }); PHOTO = undefined; form(); scrollTo(0, 0); }; });
+    [].forEach.call(document.querySelectorAll('[data-mv]'), function (b) { b.onclick = function () { var p = b.getAttribute('data-mv').split(':'); api('', { action: 'real_move', id: p[0], dir: +p[1] }).then(load); }; });
+  }
+  function form() {
+    var x = EDIT || {}, box = $('#rf');
+    box.innerHTML = '<div class="t">' + (EDIT ? 'Modifier « ' + esc(x.titre) + ' »' : 'Ajouter une réalisation') + '</div><div class="rform">' +
+      '<div class="full"><label>Lien du projet</label><div style="display:flex;gap:8px;flex-wrap:wrap"><input class="f" style="flex:1 1 220px;width:auto" id="r_lien" placeholder="https://site-du-client.fr" value="' + esc(x.lien || '') + '"><button class="btn p" id="r_auto" type="button" style="flex-shrink:0">Remplir depuis le lien</button></div><p class="m" id="r_am"></p></div>' +
+      '<div><label>Titre</label><input class="f" id="r_titre" maxlength="90" value="' + esc(x.titre || '') + '"><label>Secteur</label><input class="f" id="r_secteur" maxlength="60" placeholder="Ex. : restauration" value="' + esc(x.secteur || '') + '"><label>Lieu</label><input class="f" id="r_lieu" maxlength="60" placeholder="Ex. : Montpellier" value="' + esc(x.lieu || '') + '"><label>Année</label><input class="f" id="r_annee" maxlength="7" placeholder="' + new Date().getFullYear() + '" value="' + esc(x.annee || '') + '"></div>' +
+      '<div><label>Photo (capture d’écran, photo du projet…)</label><div class="drop" id="r_drop">Touchez pour choisir une photo<br><small>ou elle viendra du lien</small></div><input type="file" id="r_file" accept="image/*" hidden>' + (EDIT && x.img ? '<button class="btn" id="r_nophoto" type="button" style="margin-top:8px">Retirer la photo</button>' : '') + '</div>' +
+      '<div class="full"><label>Ce qui a été fait (2 phrases)</label><textarea class="f" id="r_texte" rows="3" maxlength="400">' + esc(x.texte || '') + '</textarea></div>' +
+      '<div class="full" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px"><button class="btn a" id="r_save">' + (EDIT ? 'Enregistrer' : 'Publier') + '</button>' + (EDIT ? '<button class="btn" id="r_vis">' + (x.visible === false ? 'Afficher sur le site' : 'Masquer du site') + '</button><button class="btn" id="r_del">Supprimer</button><button class="btn" id="r_cancel">Annuler</button>' : '') + '<span class="m" id="r_msg"></span></div></div>';
+    var drop = $('#r_drop'), file = $('#r_file');
+    function showPhoto(src) { drop.style.backgroundImage = src ? 'url(' + src + ')' : ''; drop.classList.toggle('has', !!src); }
+    if (EDIT && x.img && PHOTO === undefined) showPhoto('/api/devis?img=' + x.id + '&v=' + x.img);
+    if (PHOTO) showPhoto(PHOTO);
+    drop.onclick = function () { file.click(); };
+    file.onchange = function () { var f = file.files[0]; if (!f) return; var rd = new FileReader(); rd.onload = function () { shrink(rd.result, function (d) { PHOTO = d; showPhoto(d); }); }; rd.readAsDataURL(f); };
+    if ($('#r_nophoto')) $('#r_nophoto').onclick = function () { PHOTO = null; showPhoto(''); };
+    $('#r_auto').onclick = function () {
+      var b = this, lien = $('#r_lien').value.trim(); if (!lien) return; b.disabled = true; $('#r_am').textContent = 'Lecture du site…';
+      api('', { action: 'real_preview', lien: lien }).then(function (r) {
+        b.disabled = false; if (!r.ok) { $('#r_am').textContent = r.message; return; }
+        $('#r_lien').value = r.lien; if (r.titre && !$('#r_titre').value) $('#r_titre').value = r.titre; if (r.texte && !$('#r_texte').value) $('#r_texte').value = r.texte;
+        if (r.photo && !PHOTO) shrink(r.photo, function (d) { PHOTO = d; showPhoto(d); });
+        $('#r_am').textContent = 'Rempli ✓ Relisez et ajustez si besoin' + (r.photo ? '' : ' (pas d’image d’aperçu sur ce site : ajoutez une photo)') + '.';
+      }).catch(function () { b.disabled = false; $('#r_am').textContent = 'Lecture impossible.'; });
+    };
+    function payload(extra) { var o = { action: 'real_save', id: x.id, titre: $('#r_titre').value, lien: $('#r_lien').value, secteur: $('#r_secteur').value, lieu: $('#r_lieu').value, annee: $('#r_annee').value, texte: $('#r_texte').value, visible: x.visible !== false }; if (PHOTO !== undefined) o.photo = PHOTO; for (var k in extra) o[k] = extra[k]; return o; }
+    function save(o) { $('#r_msg').textContent = 'Enregistrement…'; api('', o).then(function () { EDIT = null; PHOTO = undefined; load(); }).catch(function (e) { $('#r_msg').textContent = (e && e.message) || 'Erreur'; }); }
+    $('#r_save').onclick = function () { save(payload()); };
+    if (EDIT) {
+      $('#r_vis').onclick = function () { save(payload({ visible: x.visible === false })); };
+      $('#r_del').onclick = function () { if (confirm('Supprimer « ' + x.titre + ' » du site ?')) api('', { action: 'real_delete', id: x.id }).then(function () { EDIT = null; load(); }); };
+      $('#r_cancel').onclick = function () { EDIT = null; PHOTO = undefined; form(); };
+    }
+  }
+  // Photo réduite dans le navigateur (1600 px, JPEG) : légère pour le site, nette sur écran Retina.
+  function shrink(src, cb) {
+    var im = new Image(); im.onload = function () {
+      var W = 1600, s = Math.min(1, W / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * s); c.height = Math.round(im.height * s);
+      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+      var q = .84, d = c.toDataURL('image/jpeg', q); while (d.length > 650000 && q > .4) { q -= .1; d = c.toDataURL('image/jpeg', q); } cb(d);
+    }; im.onerror = function () { alert('Image illisible.'); }; im.src = src;
+  }
+
+  /* ── Entretien : le site se vérifie et se répare lui-même chaque nuit ── */
   function sante() {
-    var s = D.sante || {};
-    $('#view').innerHTML = section('Santé du site', 'tout ce qui doit fonctionner, vérifié en direct', '<div class="card health">' + healthRows(false) + '</div>' +
-      '<div class="card"><div class="t">Tester les e-mails</div><p class="m">Envoie un e-mail de test à votre adresse et affiche la réponse exacte de Brevo en cas de problème.</p><div class="acts" style="margin-left:0"><button class="btn a" id="mt">Envoyer un e-mail de test</button></div><p class="m" id="mtr"></p></div>' +
-      '<div class="card"><div class="t">Derniers échecs d’envoi</div>' + ((s.erreurs || []).length ? s.erreurs.map(function (e) { return '<div class="row" style="display:block;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px"><b>' + ago(e.date) + '</b> · ' + esc(e.subject || '') + ' → ' + esc(e.to || '') + '<br><span style="color:var(--acc)">' + esc(e.erreur) + '</span></div>'; }).join('') + '<p class="m">Causes fréquentes : expéditeur (LEAD_FROM) non validé dans Brevo, ou restriction d’adresses IP activée dans Brevo (Paramètres → Sécurité → IP autorisées : désactivez-la, Vercel change d’adresse).</p>' : '<p class="m">Aucun échec enregistré.</p>') + '</div>' +
-      '<div class="card"><details><summary>Grille privée (facultatif)</summary><p class="m">Sans grille, le visiteur voit l’envergure de chaque brique. Avec un taux journalier, il voit en plus une jauge « ce qui tient dans votre budget ». Aucun montant n’est jamais affiché.</p><label>Taux journalier moyen (€ HT)</label><input class="f" id="g_tjm" type="number"><div class="acts" style="margin-left:0"><button class="btn p" id="gs">Enregistrer</button><span class="m" id="gm"></span></div></details></div>');
-    $('#mt').onclick = function () { var b = this; b.disabled = true; $('#mtr').textContent = 'Envoi…'; api('', { action: 'mail_test' }).then(function (r) { b.disabled = false; $('#mtr').innerHTML = r.ok ? '✅ Accepté par Brevo : vérifiez ' + esc(r.destinataire) + ' (et les courriers indésirables).' : '<b style="color:var(--acc)">Échec :</b> ' + esc(r.erreur); setTimeout(load, 1500); }).catch(function () { b.disabled = false; }); };
+    var s = D.sante || {}, r = rap(), hist = (D.entretien && D.entretien.historique) || [];
+    var ko = r ? r.checks.filter(function (c) { return c.niveau === 'ko'; }).length : 0, wa = r ? r.checks.filter(function (c) { return c.niveau === 'wa'; }).length : 0;
+    var col = !r ? 'var(--muted)' : ko ? 'var(--acc)' : wa ? 'var(--warn)' : 'var(--ok)', bg = !r ? '#F1EFEA' : ko ? '#FDECEF' : wa ? '#FFF4E0' : '#E8F5EE';
+    var head = '<div class="card"><div class="big"><span class="ring" style="background:' + bg + ';color:' + col + '">' + (ko || wa ? IC.ent : IC.ok) + '</span><div><div class="t" style="font-size:18px">' + (!r ? 'Premier entretien cette nuit' : ko ? ko + ' problème' + (ko > 1 ? 's' : '') + ' à régler' : wa ? 'Tout fonctionne · ' + wa + ' point' + (wa > 1 ? 's' : '') + ' à surveiller' : 'Tout fonctionne') + '</div><div class="m">' + (r ? 'Vérifié ' + ago(r.date) + ' · ' + r.checks.length + ' contrôles' + (r.corrige.length ? ' · corrigé automatiquement : ' + esc(r.corrige.join(', ')) : '') : 'Chaque nuit, le site vérifie ses pages, ses e-mails, ses publications et ses tâches, répare ce qui peut l’être et vous dit le reste ici.') + '</div></div></div><div class="acts" style="margin-left:0"><button class="btn p" id="erun">Lancer l’entretien maintenant</button><span class="m" id="emsg"></span></div>' +
+      (hist.length ? '<div style="display:flex;gap:3px;margin-top:12px" title="30 dernières nuits">' + hist.slice().reverse().map(function (h) { return '<i title="' + esc(new Date(h.date).toLocaleDateString('fr-FR')) + '" style="flex:1;height:22px;border-radius:4px;background:' + (h.ok ? (h.alertes ? '#E9C46A' : '#7BC49A') : '#F08BA0') + '"></i>'; }).join('') + '</div>' : '') + '</div>';
+    var groups = '';
+    if (r) { var g = {}; r.checks.forEach(function (c) { (g[c.groupe] = g[c.groupe] || []).push(c); });
+      groups = Object.keys(g).map(function (k) { return '<div class="card"><div class="t">' + esc(k) + '</div>' + g[k].map(function (c) { return '<div class="chk"><span class="st ' + (c.niveau === 'ko' ? 'ko' : c.niveau === 'wa' ? 'wa' : '') + '"></span><div><b>' + esc(c.nom) + '</b><small>' + esc(c.detail) + '</small>' + (c.fix && c.niveau !== 'ok' ? '<span class="fix">' + esc(c.fix) + '</span>' : '') + '</div></div>'; }).join('') + '</div>'; }).join(''); }
+    $('#view').innerHTML = section('Entretien du site', 'automatique, chaque nuit', head + '<div class="grid"><div>' + groups +
+      '</div><div><div class="card"><div class="t">E-mails : diagnostic en direct</div><div id="diag"><p class="m">Vérification de Brevo…</p></div><div class="acts" style="margin-left:0"><button class="btn a" id="mt">Envoyer un e-mail de test</button></div><p class="m" id="mtr"></p></div>' +
+      '<div class="card"><div class="t">Derniers échecs d’envoi</div>' + ((s.erreurs || []).length ? s.erreurs.map(function (e) { return '<div class="chk"><span class="st ko"></span><div><b>' + ago(e.date) + '</b> · ' + esc(e.subject || '') + '<small>→ ' + esc(e.to || '') + '</small><small style="color:var(--acc)">' + esc(e.erreur) + '</small></div></div>'; }).join('') : '<p class="m">Aucun échec enregistré.</p>') + '</div>' +
+      '<div class="card health"><div class="t">Services</div>' + healthRows(false) + '</div>' +
+      '<div class="card"><details><summary>Grille privée (facultatif)</summary><p class="m">Sans grille, le visiteur voit l’envergure de chaque brique. Avec un taux journalier, il voit en plus une jauge « ce qui tient dans votre budget ». Aucun montant n’est jamais affiché.</p><label>Taux journalier moyen (€ HT)</label><input class="f" id="g_tjm" type="number"><div class="acts" style="margin-left:0"><button class="btn p" id="gs">Enregistrer</button><span class="m" id="gm"></span></div></details></div></div></div>');
+    $('#erun').onclick = function () { var b = this; b.disabled = true; $('#emsg').textContent = 'Vérification en cours (environ 30 s)…'; api('', { action: 'entretien_run' }).then(function () { load(); }).catch(function () { b.disabled = false; $('#emsg').textContent = 'Réessayer'; }); };
+    api('?admin=diag').then(function (d) { var el = document.getElementById('diag'); if (el) el.innerHTML = d.mail.map(function (c) { return '<div class="chk"><span class="st ' + (c.ok ? '' : 'ko') + '"></span><div><b>' + esc(c.nom) + '</b><small>' + esc(c.detail) + '</small>' + (c.fix ? '<span class="fix">' + esc(c.fix) + '</span>' : '') + '</div></div>'; }).join(''); }).catch(function () {});
+    $('#mt').onclick = function () { var b = this; b.disabled = true; $('#mtr').textContent = 'Envoi…'; api('', { action: 'mail_test' }).then(function (r) { b.disabled = false; $('#mtr').innerHTML = r.ok ? '✅ Accepté par Brevo : vérifiez ' + esc(r.destinataire) + ' (et les courriers indésirables).' : '<b style="color:var(--acc)">Échec :</b> ' + esc(r.erreur) + '<span class="fix" style="display:block;margin-top:6px;background:#FDECEF;border-radius:10px;padding:8px 10px">' + esc(r.conseil || '') + '</span>'; }).catch(function () { b.disabled = false; }); };
     api('?admin=settings').then(function (r) { var i = document.getElementById('g_tjm'); if (i) i.value = (r.grille && r.grille.tjm) || ''; }).catch(function () {});
     $('#gs').onclick = function () { api('', { action: 'settings', grille: { tjm: $('#g_tjm').value, jauge: true } }).then(function () { $('#gm').textContent = 'Enregistré ✓'; }).catch(function () { $('#gm').textContent = 'Erreur'; }); };
+    bindGo();
   }
+  function bindGo() { [].forEach.call(document.querySelectorAll('[data-go]'), function (b) { b.onclick = function (e) { e.preventDefault(); show(b.getAttribute('data-go')); }; }); }
   /* ── Recherche globale ── */
   function search() {
     cats();
     var q = Q, hit = function (o) { return JSON.stringify(o).toLowerCase().indexOf(q) >= 0; };
-    var d = D.demandes.filter(hit), l = (D.leads || []).filter(hit), c = D.convs.filter(hit), r = D.radar.filter(hit), n = (D.nl || []).filter(hit);
-    var tot = d.length + l.length + c.length + r.length + n.length;
-    $('#view').innerHTML = section('Résultats pour « ' + esc(Q) + ' »', tot + ' résultat' + (tot > 1 ? 's' : ''), tot ? d.map(demCard).join('') + l.map(leadCard).join('') + c.map(convCard).join('') + r.map(radCard).join('') + n.map(nlCard).join('') : empty('Aucun résultat', 'Essayez un nom, une entreprise, un e-mail, une ville ou un mot de la conversation.'));
+    var d = D.demandes.filter(hit), l = (D.leads || []).filter(hit), c = D.convs.filter(hit), r = D.radar.filter(hit), n = (D.nl || []).filter(hit), a = (D.attente || []).filter(hit);
+    var tot = d.length + l.length + c.length + r.length + n.length + a.length;
+    $('#view').innerHTML = section('Résultats pour « ' + esc(Q) + ' »', tot + ' résultat' + (tot > 1 ? 's' : ''), tot ? d.map(demCard).join('') + l.map(leadCard).join('') + c.map(convCard).join('') + r.map(radCard).join('') + n.map(nlCard).join('') + a.map(attCard).join('') : empty('Aucun résultat', 'Essayez un nom, une entreprise, un e-mail, une ville ou un mot de la conversation.'));
     bind();
   }
   if (/radar/.test(location.hash)) TAB = 'radar'; else if (/demande/.test(location.hash)) TAB = 'dem';
