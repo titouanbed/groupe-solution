@@ -156,7 +156,14 @@ function page(c) {
   const faq = [c.auto.faq, ...(E?.faqAuto ? [E.faqAuto] : []), COMMON_FAQ[c.slug.length % 3], { q: `Intervenez-vous vraiment ${aName(c)} ?`, a: `Oui. Groupe Solution est basé à Montpellier, ${d <= 2 ? 'juste à côté' : `à environ ${d} km`}. Le diagnostic et le suivi se font par téléphone ou visio, et on se déplace ${aName(c)} dès que c'est utile — pour observer un process sur place, former une équipe ou lancer un outil.` }, c.web.faq];
   const title = `Automatisation & logiciel sur-mesure ${aName(c)} (${c.cp}) | Groupe Solution`;
   const adv = pickAvancees(c.slug, [c.tissu, c.profil, c.auto.angle].join(' '), 4);
-  const desc = `${adv[0].titre}, ${adv[1].titre.charAt(0).toLowerCase() + adv[1].titre.slice(1)}… Automatisations de pointe et logiciels sur-mesure pour les entreprises ${aName(c)}. Diagnostic gratuit en 10 min.`.slice(0, 200);
+  // Description ≤ 160 caractères, jamais coupée au milieu d'un mot : on garde la version la plus riche qui tient.
+  const lc = t => t.charAt(0).toLowerCase() + t.slice(1);
+  const desc = [
+    `Automatisation et logiciel sur-mesure ${aName(c)} : ${lc(adv[0].titre)}, ${lc(adv[1].titre)}. Diagnostic gratuit en 10 min.`,
+    `Automatisation et logiciel sur-mesure ${aName(c)} : ${lc(adv[0].titre)}. Diagnostic gratuit en 10 min.`,
+    `Automatisation et logiciel sur-mesure pour les entreprises ${aName(c)} (${c.cp}) : agents IA, connexions d'outils. Diagnostic gratuit en 10 min.`,
+    `Automatisation et logiciel sur-mesure ${aName(c)}. Diagnostic gratuit en 10 min.`
+  ].find(t => t.length <= 160) || `Automatisation et logiciel sur-mesure ${aName(c)}.`;
   const jsonld = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -188,7 +195,7 @@ function page(c) {
         <p class="sub">Un appel direct, sans engagement. Vous repartez avec des pistes concrètes, chiffrées.</p>
         <a class="btn" href="tel:+33782298559">Appeler maintenant →</a>
         <a class="alt" href="#contact">ou décrire ma tâche par écrit</a>
-        <span class="micro">Réponse le jour même · basé à Montpellier</span>
+        <span class="micro">Réponse sous 24 h ouvrées · basé à Montpellier</span>
       </div>
     </div>
   </div></section>
@@ -245,12 +252,12 @@ function hub() {
   const title = 'Automatisation & logiciel sur-mesure à Montpellier et dans l’Hérault | Groupe Solution';
   const desc = "Éditeur de logiciels basé à Montpellier : agents IA, lecture de documents, agents vocaux, prévisions et automatisation des processus pour les TPE et PME de la métropole, du bassin de Thau au Pic Saint-Loup. Diagnostic gratuit en 10 min.";
   const faq = [...COMMON_FAQ,
-    { q: 'Où intervenez-vous ?', a: `Partout autour de Montpellier : les 30 communes de la Métropole, le Pays de l'Or, le littoral, le bassin de Thau (Sète, Mèze, Villeveyrac…), le Pic Saint-Loup, Lunel, la Petite Camargue, et jusqu'à Nîmes, Béziers, Agde, Lodève et Ganges — ${COMMUNES.length} communes ont leur page dédiée. Au-delà, on travaille partout en France à distance.` },
+    { q: 'Où intervenez-vous ?', a: `Partout autour de Montpellier : les 31 communes de la Métropole, le Pays de l'Or, le littoral, le bassin de Thau (Sète, Mèze, Villeveyrac…), le Pic Saint-Loup, Lunel, la Petite Camargue, et jusqu'à Nîmes, Béziers, Agde, Lodève et Ganges — ${COMMUNES.length} communes ont leur page dédiée. Au-delà, on travaille partout en France à distance.` },
     { q: 'Quels types d’entreprises accompagnez-vous ?', a: "Des indépendants aux PME de plusieurs dizaines de salariés : artisans du bâtiment, commerces, cabinets, domaines viticoles, conchyliculteurs, logistique, tourisme, santé. Le point commun : des tâches qui se répètent chaque semaine." }];
   const jsonld = {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'ProfessionalService', '@id': url + '#service', name: 'Groupe Solution — automatisation et logiciel sur-mesure, Montpellier', description: desc, url, image: HOLDING + '/Logo.svg', telephone: '+33782298559', email: 'contact@groupsolution.fr', priceRange: '€€',
+      { '@type': 'ProfessionalService', '@id': url + '#service', name: 'Groupe Solution — automatisation et logiciel sur-mesure, Montpellier', description: desc, url, image: HOLDING + '/Logo.svg', telephone: '+33782298559', email: 'contact@groupsolution.fr',
         address: { '@type': 'PostalAddress', addressLocality: 'Montpellier', postalCode: '34000', addressRegion: 'Occitanie', addressCountry: 'FR' },
         geo: { '@type': 'GeoCoordinates', latitude: 43.6108, longitude: 3.8767 },
         areaServed: [{ '@type': 'City', name: 'Montpellier' }, { '@type': 'AdministrativeArea', name: 'Montpellier Méditerranée Métropole' }, { '@type': 'AdministrativeArea', name: 'Hérault' }, ...COMMUNES.map(c => ({ '@type': 'City', name: c.name }))],
@@ -275,7 +282,7 @@ function hub() {
       <p class="sub">Un appel direct, sans engagement. Vous repartez avec des pistes concrètes.</p>
       <a class="btn" href="tel:+33782298559">Appeler maintenant →</a>
       <a class="alt" href="#contact">ou décrire ma tâche par écrit</a>
-      <span class="micro">Réponse le jour même</span>
+      <span class="micro">Réponse sous 24 h ouvrées</span>
     </div></div>
   </div></section>
 

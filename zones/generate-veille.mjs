@@ -838,8 +838,8 @@ const foot = `<footer><div class="wrap foot">
 </html>
 `;
 
-const PUBLISHER = { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Groupe Solution', url: `${SITE}/`, logo: { '@type': 'ImageObject', url: `${SITE}/Logo.svg` }, telephone: '+33782298559', email: 'contact@groupsolution.fr' };
-const AUTHOR = { '@type': 'Person', name: 'Titouan Bedos', jobTitle: 'Fondateur', worksFor: { '@id': `${SITE}/#organization` } };
+const PUBLISHER = { '@type': 'Organization', '@id': `${SITE}/#org`, name: 'Groupe Solution', url: `${SITE}/`, logo: { '@type': 'ImageObject', url: `${SITE}/Logo.svg` }, telephone: '+33782298559', email: 'contact@groupsolution.fr' };
+const AUTHOR = { '@type': 'Person', name: 'Titouan Bedos', jobTitle: 'Fondateur', worksFor: { '@id': `${SITE}/#org` } };
 const card = a => `<a class="card reveal" href="${a.slug}.html"><span class="cat">${esc(a.category)}</span><h3>${esc(a.h1)}</h3><p>${esc(a.description)}</p><span class="rt">${minutes(a)} min de lecture</span></a>`;
 
 function renderArticle(a, i) {

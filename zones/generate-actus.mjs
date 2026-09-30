@@ -98,7 +98,7 @@ export const foot = (pre = '../../', page = 'actus') => `
 </main>
 <footer><div class="wrap foot">
   <span class="footBrand"><img src="${pre}Logo.svg" alt="Groupe Solution" /> © <span id="year"></span> Groupe Solution · Montpellier</span>
-  <nav><a href="${pre}index.html">Accueil</a><a href="${pre}lab/actus/">Actus</a><a href="${pre}lab/dossiers/">Dossiers</a><a href="${pre}lab/questions/">Questions</a><a href="${pre}lab/pouls/">Le pouls</a><a href="${pre}lab/actus/rss.xml">Flux RSS</a><a href="${pre}lab/veille/">Veille</a><a href="${pre}lab/">Lab</a><a href="${pre}automatisation/">Automatisation</a><a href="${pre}plan-du-site.html">Plan du site</a></nav>
+  <nav><a href="${pre}index.html">Accueil</a><a href="${pre}lab/actus/">Actus</a><a href="${pre}lab/dossiers/">Dossiers</a><a href="${pre}lab/questions/">Questions</a><a href="${pre}lab/pouls/">Le pouls</a><a href="${pre}idees/">Laboratoire d’idées</a><a href="${pre}lab/coulisses.html">Coulisses</a><a href="${pre}lab/actus/rss.xml">Flux RSS</a><a href="${pre}lab/veille/">Veille</a><a href="${pre}lab/">Lab</a><a href="${pre}automatisation/">Automatisation</a><a href="${pre}plan-du-site.html">Plan du site</a></nav>
 </div></footer>
 <div class="gs-sticky"><a class="s1" href="tel:+33782298559">📞 Appeler</a><a class="s2" href="#contact">Poser ma question</a></div>
 <script src="${pre}assets/holding-local.js" defer></script>

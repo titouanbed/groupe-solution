@@ -1,0 +1,994 @@
+{
+  "secteurs": [
+    {
+      "slug": "restaurant",
+      "label": "Restaurant",
+      "accroche": "Une cuisine qui anticipe le rush, un téléphone qui ne sonne plus dans le vide, une carte qui suit les arrivages.",
+      "idees": [
+        {
+          "titre": "Le maître d’hôtel vocal multilingue",
+          "probleme": "En plein service, personne ne peut décrocher et les réservations partent chez le voisin.",
+          "idee": "Un agent vocal IA répond au téléphone dans la langue de l’appelant, prend la réservation, note les allergies et les demandes particulières, puis l’inscrit directement dans votre planning de salle. Quand c’est complet, il propose un autre créneau ou une liste d’attente et rappelle automatiquement si une table se libère.",
+          "techno": ["agent vocal IA", "traduction en temps réel", "connecteur logiciel de réservation"],
+          "local": "Sur le littoral en saison, il absorbe les appels des touristes étrangers en anglais, espagnol ou allemand sans recruter de standardiste.",
+          "audace": 1
+        },
+        {
+          "titre": "La météo des couverts",
+          "probleme": "On commande trop un soir de pluie, pas assez le jour où la terrasse déborde.",
+          "idee": "Un modèle de prévision croise votre historique de caisse avec la météo, les vacances scolaires, les jours fériés et l’agenda des événements locaux pour estimer chaque matin le nombre de couverts à venir. Il en déduit une suggestion de mise en place et de commandes fournisseurs, que le chef ajuste en un geste.",
+          "techno": ["prévision météo", "calendrier scolaire officiel", "apprentissage automatique", "données de caisse"],
+          "local": "Idéal pour les établissements dont la fréquentation dépend d’un match, d’un festival ou d’un week-end de plage.",
+          "audace": 2
+        },
+        {
+          "titre": "La poubelle qui compte le gaspillage",
+          "probleme": "On sait qu’on jette, mais personne ne sait vraiment quoi, ni pourquoi.",
+          "idee": "Une petite caméra placée au-dessus du bac de déchets de la cuisine reconnaît les aliments jetés et en estime le volume. Chaque semaine, un rapport simple indique les plats qui reviennent le plus souvent entamés et les préparations surproduites, pour ajuster portions, recettes et commandes.",
+          "techno": ["vision par ordinateur", "balance connectée", "tableau de bord"],
+          "local": "Un vrai levier là où l’approvisionnement coûte cher et arrive par bateau, comme en outre-mer ou sur les îles.",
+          "audace": 3
+        },
+        {
+          "titre": "L’ardoise qui s’écrit avec les arrivages",
+          "probleme": "Chaque matin, il faut réécrire les suggestions, les allergènes et le post du jour à partir de ce qui vient d’être livré.",
+          "idee": "Vous photographiez le bon de livraison : l’IA lit les produits reçus, propose des suggestions du jour cohérentes avec vos fiches recettes, met à jour la liste des allergènes et prépare le texte de l’ardoise, du site et des réseaux sociaux. Vous validez, tout est publié.",
+          "techno": ["lecture de documents", "génération de contenus", "base de recettes"],
+          "local": "Parfait pour mettre en avant la pêche du jour ou le producteur du marché voisin avec un vrai récit local.",
+          "audace": 2
+        },
+        {
+          "titre": "Le registre HACCP qui se remplit tout seul",
+          "probleme": "Relever les températures à la main est fastidieux et une panne de chambre froide la nuit se découvre trop tard.",
+          "idee": "Des sondes connectées suivent en continu frigos, chambres froides et congélateurs. En cas de dérive, une alerte part sur le téléphone du responsable, et le registre de traçabilité est généré automatiquement, prêt à être présenté lors d’un contrôle.",
+          "techno": ["capteurs connectés", "alertes SMS", "traçabilité automatique"],
+          "local": "Précieux dans les zones chaudes et humides, ou lors des coupures de courant liées aux orages et aux épisodes cycloniques.",
+          "audace": 1
+        },
+        {
+          "titre": "Le jumeau numérique du coup de feu",
+          "probleme": "Changer la carte, le plan de salle ou l’effectif d’un service se fait à l’instinct, et les erreurs se paient en temps d’attente.",
+          "idee": "À partir des tickets de caisse horodatés et des temps de préparation, on reconstitue une simulation de votre service. Vous testez virtuellement une nouvelle carte, une table de plus en terrasse ou un serveur de moins, et vous voyez où se forment les goulets d’étranglement avant de les vivre.",
+          "techno": ["jumeau numérique", "simulation", "données de caisse"],
+          "local": "Utile pour préparer l’ouverture d’une terrasse d’été ou le passage d’un service simple à un double service en haute saison.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "artisan",
+      "label": "Artisan du bâtiment",
+      "accroche": "Moins de soirées sur les papiers, plus de temps sur les chantiers : l’IA comme compagnon de camionnette.",
+      "idees": [
+        {
+          "titre": "Le métré à partir d’une simple vidéo",
+          "probleme": "Se déplacer pour mesurer une pièce avant même de savoir si le projet est sérieux fait perdre des demi-journées.",
+          "idee": "Le client filme la pièce avec son téléphone en suivant un guide à l’écran. Une reconstruction en 3D estime surfaces, linéaires et ouvertures, et prépare une base de chiffrage que vous vérifiez et complétez avant tout déplacement.",
+          "techno": ["photogrammétrie", "reconstruction 3D", "vision par ordinateur"],
+          "local": "En zone rurale, où chaque visite représente beaucoup de kilomètres, c’est un filtre précieux avant de prendre la route.",
+          "audace": 3
+        },
+        {
+          "titre": "Le compte rendu dicté depuis la camionnette",
+          "probleme": "Le soir, il faut encore rédiger le suivi de chantier, classer les photos et noter le matériel à commander.",
+          "idee": "Vous racontez votre journée à voix haute en quelques phrases. L’IA en tire un compte rendu propre pour le client, met à jour l’avancement du chantier, range les photos au bon endroit et prépare la liste des fournitures à commander.",
+          "techno": ["dictée vocale IA", "synthèse automatique", "classement de photos"],
+          "local": "Fonctionne même avec une couverture réseau faible : l’enregistrement part dès que le téléphone capte à nouveau.",
+          "audace": 1
+        },
+        {
+          "titre": "Le planning qui regarde le ciel",
+          "probleme": "Une toiture ou une dalle prévue un jour de pluie ou de gel, c’est une équipe immobilisée et un client à rappeler.",
+          "idee": "Le planning des chantiers est relié aux prévisions météo locales. Les tâches sensibles à la pluie, au vent ou au froid sont signalées à l’avance, l’outil propose une réorganisation des équipes et prépare les messages d’information pour les clients concernés.",
+          "techno": ["prévision météo", "planification automatique", "notifications clients"],
+          "local": "Dans le Sud, il intègre aussi les épisodes méditerranéens et les fortes chaleurs ; en outre-mer, les vigilances cycloniques.",
+          "audace": 2
+        },
+        {
+          "titre": "Le copilote des aides à la rénovation",
+          "probleme": "Les clients demandent quelles aides ils peuvent obtenir et les règles changent souvent.",
+          "idee": "Un assistant branché sur les textes publics des dispositifs de rénovation énergétique pose au client les bonnes questions, indique les pistes d’éligibilité et prépare la liste des pièces à fournir. Vous gardez la main sur le conseil, l’outil fait le tri documentaire.",
+          "techno": ["assistant IA sur documentation", "formulaire conversationnel", "lecture de documents"],
+          "local": "Il peut intégrer les aides propres à une région ou à un territoire d’outre-mer, qui diffèrent souvent du cadre national.",
+          "audace": 2
+        },
+        {
+          "titre": "Le pré-diagnostic par photo",
+          "probleme": "Fissures, traces d’humidité, défauts de pose : décrire un désordre au téléphone est rarement précis.",
+          "idee": "Le client envoie quelques photos ; un modèle de vision repère et localise les signes visibles de désordres et les classe par type. Vous arrivez au rendez-vous avec une première lecture, et les mêmes photos alimentent le dossier de réception ou de garantie.",
+          "techno": ["vision par ordinateur", "classification d’images", "dossier numérique"],
+          "local": "Sur le littoral, il peut être entraîné à reconnaître la corrosion saline et les dégâts liés aux embruns.",
+          "audace": 3
+        },
+        {
+          "titre": "Le carnet de vie du logement en QR code",
+          "probleme": "Des années plus tard, plus personne ne sait quel matériau a été posé ni quand entretenir l’équipement.",
+          "idee": "À la fin du chantier, un QR code collé près du tableau électrique ou de la chaudière donne accès aux matériaux utilisés, aux notices, aux photos avant fermeture des cloisons et aux dates d’entretien. Des rappels automatiques permettent au client de vous recontacter au bon moment.",
+          "techno": ["QR code", "espace client en ligne", "rappels automatiques"],
+          "local": "En zone cyclonique, le carnet peut rappeler les vérifications à faire avant la saison des tempêtes.",
+          "audace": 1
+        }
+      ]
+    },
+    {
+      "slug": "professionnel-de-sante",
+      "label": "Professionnel de santé",
+      "accroche": "Rendre du temps médical : moins d’administratif, plus d’écoute, sans jamais remplacer le jugement du soignant.",
+      "idees": [
+        {
+          "titre": "Le secrétariat vocal qui oriente sans diagnostiquer",
+          "probleme": "Le téléphone sonne pendant les consultations et les demandes urgentes se perdent parmi les prises de rendez-vous.",
+          "idee": "Un agent vocal prend les rendez-vous, répond aux questions pratiques et suit un arbre de questions que vous avez vous-même validé. Face à des mots d’alerte, il redirige immédiatement vers les numéros d’urgence et vous signale l’appel ; il ne donne jamais d’avis médical.",
+          "techno": ["agent vocal IA", "scénarios validés par le praticien", "agenda connecté"],
+          "local": "En désert médical, il évite que les patients renoncent faute d’avoir réussi à joindre le cabinet.",
+          "audace": 1
+        },
+        {
+          "titre": "Le compte rendu écrit pendant que vous écoutez",
+          "probleme": "La rédaction des comptes rendus grignote les soirées et détourne le regard du patient pendant la consultation.",
+          "idee": "Avec l’accord du patient, l’échange est transcrit puis transformé en brouillon de compte rendu structuré selon vos modèles. Vous relisez, corrigez et validez ; les données restent sur un hébergement certifié pour les données de santé.",
+          "techno": ["transcription vocale", "génération de texte structuré", "hébergement de données de santé"],
+          "local": "La transcription peut comprendre les échanges qui alternent entre français et créole ou une autre langue régionale.",
+          "audace": 3
+        },
+        {
+          "titre": "Le tri intelligent du courrier médical",
+          "probleme": "Résultats, courriers de confrères et ordonnances scannées s’empilent et doivent être rattachés à la main.",
+          "idee": "Chaque document entrant est lu, identifié, résumé en quelques lignes et proposé au rattachement dans le bon dossier patient. Les éléments qui demandent une action sont mis en avant pour que rien d’important ne dorme dans la pile.",
+          "techno": ["lecture de documents", "reconnaissance de caractères", "résumé automatique"],
+          "local": "Utile pour les maisons de santé pluridisciplinaires qui partagent un secrétariat entre plusieurs praticiens.",
+          "audace": 2
+        },
+        {
+          "titre": "L’interprète de consultation",
+          "probleme": "Avec un patient qui ne parle pas français, la consultation devient longue, approximative et parfois risquée.",
+          "idee": "Une application traduit l’échange en temps réel, à la voix et à l’écran, avec un glossaire médical adapté à votre spécialité. Le texte des deux langues reste visible pour vérifier la bonne compréhension des consignes essentielles.",
+          "techno": ["traduction vocale en temps réel", "glossaire spécialisé", "sous-titrage"],
+          "local": "Précieux dans les villes touristiques en été et dans les territoires ultramarins où se croisent français, créole, anglais ou espagnol.",
+          "audace": 3
+        },
+        {
+          "titre": "Le questionnaire qui prépare la consultation",
+          "probleme": "Les premières minutes de rendez-vous servent souvent à recueillir des informations qui auraient pu être collectées avant.",
+          "idee": "Avant le rendez-vous, le patient répond à un questionnaire conversationnel adapté au motif de consultation. Vous recevez une synthèse claire à l’ouverture du dossier, sans interprétation médicale, pour consacrer la consultation à l’essentiel.",
+          "techno": ["formulaire conversationnel", "synthèse automatique", "dossier patient connecté"],
+          "local": "Le questionnaire peut être proposé en plusieurs langues et en version audio pour les patients peu à l’aise avec l’écrit.",
+          "audace": 2
+        },
+        {
+          "titre": "La liste d’attente qui remplit les créneaux libérés",
+          "probleme": "Un rendez-vous annulé la veille, c’est un créneau perdu alors que d’autres patients attendent.",
+          "idee": "Dès qu’un patient annule, le système propose automatiquement le créneau aux personnes en liste d’attente, par ordre de priorité que vous définissez. Des rappels personnalisés, avec confirmation en un clic, réduisent les oublis.",
+          "techno": ["agenda connecté", "messages automatiques", "règles de priorité"],
+          "local": "En zone rurale, il peut privilégier les patients les plus proches pour les créneaux libérés à la dernière minute.",
+          "audace": 1
+        }
+      ]
+    },
+    {
+      "slug": "avocat",
+      "label": "Cabinet d’avocat",
+      "accroche": "Votre savoir-faire, vos dossiers et la jurisprudence publique, enfin interrogeables en langage naturel.",
+      "idees": [
+        {
+          "titre": "Le moteur de recherche de vos propres dossiers",
+          "probleme": "Une argumentation déjà rédigée il y a trois ans dort dans un dossier que personne ne retrouve.",
+          "idee": "Un assistant indexe vos conclusions, consultations et modèles internes, et les croise avec les données publiques de jurisprudence et les textes officiels. Il répond à une question en citant précisément ses sources, pour que chaque affirmation soit vérifiable.",
+          "techno": ["assistant IA sur vos documents (RAG)", "open data des décisions de justice", "recherche sémantique"],
+          "local": "Il peut mettre en avant les décisions des juridictions de votre ressort et les spécificités du droit applicable outre-mer.",
+          "audace": 2
+        },
+        {
+          "titre": "La frise chronologique automatique",
+          "probleme": "Reconstituer la chronologie d’un dossier à partir de centaines d’e-mails et de pièces prend des heures.",
+          "idee": "Vous déposez les pièces du dossier : l’IA en extrait les dates, les faits, les parties et les montants mentionnés, puis construit une chronologie interactive reliée aux pièces sources. Le bordereau de communication de pièces est généré dans la foulée.",
+          "techno": ["lecture de documents", "extraction d’entités", "visualisation chronologique"],
+          "local": "Précieux pour les contentieux de la construction ou du tourisme, fréquents dans les régions littorales.",
+          "audace": 2
+        },
+        {
+          "titre": "L’accueil qui qualifie les nouvelles demandes",
+          "probleme": "Beaucoup d’appels ne relèvent pas de vos domaines, et les vrais dossiers arrivent sans les informations utiles.",
+          "idee": "Un formulaire conversationnel sur le site accueille la personne, identifie la nature de sa demande, vérifie les éventuels conflits d’intérêts dans votre base et prépare une fiche de premier rendez-vous. Les demandes hors domaine sont réorientées avec courtoisie.",
+          "techno": ["formulaire conversationnel", "vérification de conflits", "prise de rendez-vous en ligne"],
+          "local": "Disponible en plusieurs langues pour les clientèles internationales des grandes villes et des zones frontalières.",
+          "audace": 1
+        },
+        {
+          "titre": "La relecture par écart à vos clauses de référence",
+          "probleme": "Relire un contrat reçu de la partie adverse ligne à ligne pour repérer ce qui a bougé est long et fatigant.",
+          "idee": "L’outil compare le contrat reçu à votre bibliothèque de clauses types, surligne les écarts, explique les risques associés selon vos propres notes et propose une rédaction alternative. L’avocat décide, l’outil évite de passer à côté d’un détail.",
+          "techno": ["comparaison sémantique", "bibliothèque de clauses", "génération de texte"],
+          "local": "Adaptable aux baux commerciaux saisonniers ou aux contrats agricoles selon le tissu économique local.",
+          "audace": 2
+        },
+        {
+          "titre": "Le simulateur de plaidoirie",
+          "probleme": "S’entraîner face à des objections réalistes demande de mobiliser un confrère qui n’a pas toujours le temps.",
+          "idee": "Un agent IA nourri des pièces du dossier joue la partie adverse ou le magistrat : il soulève des objections, pose des questions dérangeantes et relève les points faibles de l’argumentation. Un débriefing écrit liste les pistes à renforcer.",
+          "techno": ["agent conversationnel vocal", "analyse d’argumentation", "assistant IA sur vos documents (RAG)"],
+          "local": "Un outil de formation interne intéressant pour les jeunes collaborateurs, où que soit implanté le cabinet.",
+          "audace": 3
+        },
+        {
+          "titre": "La veille réglementaire rédigée pour chaque client",
+          "probleme": "Suivre les nouveaux textes et prévenir chaque client concerné est rarement fait de façon systématique.",
+          "idee": "Un agent surveille les publications officielles et les décisions publiques, repère celles qui touchent chaque client selon son secteur et ses dossiers, et rédige une note synthétique personnalisée. L’avocat relit et envoie : une veille proactive devient un service récurrent.",
+          "techno": ["agent de veille IA", "Journal officiel et données publiques", "génération de notes"],
+          "local": "Il peut suivre en parallèle les réglementations locales, par exemple en urbanisme littoral ou en droit spécifique à un territoire.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "expert-comptable",
+      "label": "Cabinet comptable",
+      "accroche": "La facture électronique arrive : l’occasion de passer de la saisie au conseil, avec des agents qui font le reste.",
+      "idees": [
+        {
+          "titre": "Le copilote de la facturation électronique",
+          "probleme": "Avec la réforme de la facture électronique, vos clients ont des questions et les anomalies se multiplient.",
+          "idee": "Un outil contrôle chaque facture reçue ou émise : mentions obligatoires, cohérence de la TVA, doublons, rapprochement avec les paiements. Il explique en langage simple aux clients ce qui bloque et comment le corriger.",
+          "techno": ["facturation électronique intelligente", "contrôles automatiques", "connecteurs API"],
+          "local": "Il intègre les régimes de TVA particuliers applicables dans certains territoires d’outre-mer.",
+          "audace": 1
+        },
+        {
+          "titre": "L’agent qui récupère les pièces manquantes",
+          "probleme": "Courir après les justificatifs de chaque client occupe une part énorme du temps des collaborateurs.",
+          "idee": "Un agent envoie à chaque client la liste précise des pièces attendues, accepte une photo, un transfert d’e-mail ou un message vocal, lit la pièce reçue et la rattache à la bonne écriture. Il relance avec tact et ne remonte au collaborateur que les cas bloquants.",
+          "techno": ["agent IA", "lecture de documents", "messagerie automatisée"],
+          "local": "Adapté aux clients artisans et commerçants saisonniers, souvent peu disponibles en pleine saison.",
+          "audace": 2
+        },
+        {
+          "titre": "Le prévisionnel qui se pilote en posant une question",
+          "probleme": "Les dirigeants se demandent s’ils peuvent embaucher ou investir, mais un prévisionnel classique leur parle peu.",
+          "idee": "À partir des données comptables et bancaires, le dirigeant pose sa question en langage courant et obtient une simulation de trésorerie commentée, avec plusieurs scénarios. Le cabinet valide les hypothèses et s’appuie sur la simulation pour un vrai rendez-vous de conseil.",
+          "techno": ["assistant conversationnel", "simulation de trésorerie", "synchronisation bancaire"],
+          "local": "Pour les activités très saisonnières, les scénarios tiennent compte des creux hors saison touristique.",
+          "audace": 3
+        },
+        {
+          "titre": "Le détecteur d’écritures inhabituelles",
+          "probleme": "Doublons, erreurs d’imputation ou changement suspect de coordonnées bancaires d’un fournisseur passent parfois inaperçus.",
+          "idee": "Un modèle apprend le comportement habituel de chaque dossier et signale les écritures atypiques : montant inhabituel, fournisseur nouveau, coordonnées bancaires modifiées juste avant un paiement. Le collaborateur vérifie en priorité ce qui mérite son attention.",
+          "techno": ["détection d’anomalies", "apprentissage automatique", "alertes"],
+          "local": "Une protection bienvenue pour les petites structures, cibles fréquentes des tentatives de fraude au faux fournisseur.",
+          "audace": 2
+        },
+        {
+          "titre": "La mémoire fiscale du cabinet",
+          "probleme": "Les réponses aux questions techniques sont dispersées entre les collaborateurs, les e-mails et les notes internes.",
+          "idee": "Un assistant réunit vos notes internes, vos réponses passées et la doctrine fiscale publiée, et répond aux questions des collaborateurs en citant ses sources. Chaque nouvelle réponse validée enrichit la base.",
+          "techno": ["assistant IA sur vos documents (RAG)", "doctrine fiscale publique", "recherche sémantique"],
+          "local": "Il peut regrouper les spécificités fiscales locales, comme celles des départements et collectivités d’outre-mer.",
+          "audace": 2
+        },
+        {
+          "titre": "Le bilan commenté et comparé au secteur",
+          "probleme": "Un bilan brut ne dit pas au dirigeant s’il fait mieux ou moins bien que les entreprises comparables.",
+          "idee": "Les comptes du client sont automatiquement mis en regard de données publiques sectorielles et territoriales. L’outil génère un commentaire lisible et des graphiques clairs, que l’expert enrichit avant le rendez-vous de présentation.",
+          "techno": ["données ouvertes économiques", "génération de commentaires", "tableau de bord"],
+          "local": "La comparaison peut se faire à l’échelle du département ou du bassin d’emploi, plus parlante pour un commerçant local.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "agence-immobiliere",
+      "label": "Agence immobilière",
+      "accroche": "Des biens qui se visitent et se racontent seuls, des acquéreurs enfin compris au-delà de trois critères.",
+      "idees": [
+        {
+          "titre": "La visite virtuelle qui répond aux questions",
+          "probleme": "Les visiteurs d’annonces posent toujours les mêmes questions, souvent le soir ou le week-end.",
+          "idee": "La visite 3D du bien est accompagnée d’un assistant qui répond à partir des documents du dossier : diagnostics, règlement de copropriété, charges, travaux votés. Les questions posées et l’intérêt manifesté aident le négociateur à préparer son rappel.",
+          "techno": ["visite 3D", "assistant IA sur documents", "suivi d’intérêt"],
+          "local": "Idéal pour les acquéreurs à distance qui cherchent une résidence secondaire sur le littoral ou en outre-mer.",
+          "audace": 3
+        },
+        {
+          "titre": "Le home staging virtuel assumé",
+          "probleme": "Un appartement vide ou daté se projette mal, et un home staging physique est lourd à organiser.",
+          "idee": "À partir des photos du bien, l’IA génère des versions meublées ou rafraîchies de chaque pièce dans plusieurs styles. Chaque image est clairement étiquetée comme simulation pour rester transparent avec les acquéreurs.",
+          "techno": ["génération d’images", "retouche IA", "mention de simulation"],
+          "local": "Les styles peuvent refléter l’habitat local : mas provençal, maison créole, appartement haussmannien.",
+          "audace": 2
+        },
+        {
+          "titre": "Le dossier locataire lu et vérifié",
+          "probleme": "Examiner les justificatifs un par un est long, et les faux documents sont de plus en plus soignés.",
+          "idee": "Les pièces déposées sont lues automatiquement, vérifiées pour leur cohérence entre elles et analysées pour repérer les signes de falsification. Le gestionnaire obtient une fiche synthétique et garde la décision finale.",
+          "techno": ["lecture de documents", "détection de fraude documentaire", "contrôles de cohérence"],
+          "local": "Très utile dans les grandes villes étudiantes où les candidatures affluent à la rentrée.",
+          "audace": 2
+        },
+        {
+          "titre": "L’estimation nourrie par les données publiques",
+          "probleme": "Justifier un prix auprès d’un vendeur demande des références solides et un contexte clair.",
+          "idee": "Le rapport d’estimation croise les ventes réelles publiées sur data.gouv.fr, les risques naturels, le bruit, les écoles et les transports autour du bien. Il est généré en quelques minutes, sourcé, et le négociateur y ajoute son expertise du terrain.",
+          "techno": ["données ouvertes des ventes immobilières", "carte des risques", "génération de rapports"],
+          "local": "Il met en avant les informations qui comptent localement : submersion marine sur le littoral, risque cyclonique outre-mer.",
+          "audace": 1
+        },
+        {
+          "titre": "Le matching par description libre",
+          "probleme": "Les critères classiques ratent l’essentiel : « lumineux, calme, près d’un marché, un coin pour télétravailler ».",
+          "idee": "L’acquéreur décrit son projet avec ses mots. Une recherche sémantique compare cette description aux textes et aux photos des biens, y compris ceux pas encore publiés, et alerte le négociateur dès qu’un bien correspond vraiment.",
+          "techno": ["recherche sémantique", "analyse d’images", "alertes intelligentes"],
+          "local": "Pertinent pour les néo-ruraux et télétravailleurs qui cherchent un cadre de vie plus qu’une surface.",
+          "audace": 2
+        },
+        {
+          "titre": "Le jumeau numérique de l’immeuble géré",
+          "probleme": "En gestion locative, l’historique des équipements et des interventions est éparpillé et mal transmis.",
+          "idee": "Chaque immeuble géré dispose d’une maquette numérique simple reliée aux équipements, aux contrats d’entretien, aux interventions et, si besoin, à des capteurs (fuite, humidité). Le gestionnaire anticipe les remplacements et répond vite aux locataires.",
+          "techno": ["jumeau numérique", "capteurs connectés", "suivi des interventions"],
+          "local": "Il aide à suivre l’humidité et la corrosion des biens proches de la mer ou en climat tropical.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "coiffeur-esthetique",
+      "label": "Salon de coiffure ou institut",
+      "accroche": "Montrer le résultat avant le premier coup de ciseaux, et se souvenir de chaque cliente comme au premier jour.",
+      "idees": [
+        {
+          "titre": "L’essayage de coupe et de couleur sur selfie",
+          "probleme": "Les clientes hésitent à changer de tête faute de pouvoir se projeter.",
+          "idee": "Depuis le site ou en salon, la cliente charge un selfie et essaie différentes coupes et nuances grâce à l’IA générative. Le choix retenu est joint à la réservation, pour que la conversation au bac démarre sur une image partagée.",
+          "techno": ["génération d’images", "réalité augmentée", "réservation en ligne"],
+          "local": "Un bon moyen de se démarquer en centre-ville où la concurrence entre salons est forte.",
+          "audace": 2
+        },
+        {
+          "titre": "La fiche technique dictée entre deux clientes",
+          "probleme": "La formule de couleur ou le temps de pose de la dernière fois est noté à la va-vite, ou pas du tout.",
+          "idee": "La coiffeuse dicte en quelques secondes la formule, le temps de pose et les remarques. Tout est rangé dans la fiche de la cliente et remonte automatiquement à l’écran lors de son prochain rendez-vous, même avec une autre personne de l’équipe.",
+          "techno": ["dictée vocale IA", "fiche client", "historique des prestations"],
+          "local": "Précieux pour les salons qui accueillent des renforts saisonniers dans les stations touristiques.",
+          "audace": 1
+        },
+        {
+          "titre": "La réservation en langage naturel",
+          "probleme": "Les demandes arrivent par message, en vrac, et il faut jongler entre téléphone et agenda.",
+          "idee": "Un agent comprend un message comme « samedi matin avec Julie pour un balayage » : il sait combien de temps dure chaque prestation, qui la pratique, et propose le bon créneau. Il confirme, rappelle et gère les annulations.",
+          "techno": ["agent conversationnel", "agenda connecté", "messagerie"],
+          "local": "Il peut répondre en créole ou en anglais pour les salons des territoires ultramarins ou des zones touristiques.",
+          "audace": 1
+        },
+        {
+          "titre": "Le rappel au rythme de chaque repousse",
+          "probleme": "Les relances génériques tombent trop tôt ou trop tard et finissent ignorées.",
+          "idee": "L’outil apprend l’intervalle habituel de chaque cliente selon ses prestations et lui propose un créneau au moment où elle en a vraiment besoin, avec un message personnalisé. Les créneaux creux de la semaine peuvent être mis en avant en priorité.",
+          "techno": ["prédiction d’intervalle", "messages personnalisés", "agenda connecté"],
+          "local": "Il tient compte des départs en vacances et des périodes de fêtes locales qui concentrent les demandes.",
+          "audace": 2
+        },
+        {
+          "titre": "L’analyse de peau et de cheveu par photo",
+          "probleme": "Conseiller un soin ou un produit repose souvent sur une observation rapide en début de rendez-vous.",
+          "idee": "Une photo prise dans des conditions contrôlées permet à un modèle de vision d’évaluer des critères cosmétiques visibles, comme la brillance ou la texture. L’esthéticienne s’appuie sur cette lecture pour personnaliser la prestation et suivre l’évolution d’une séance à l’autre, sans aucune visée médicale.",
+          "techno": ["vision par ordinateur", "suivi photo", "recommandations personnalisées"],
+          "local": "Les recommandations peuvent intégrer l’exposition au soleil et l’humidité du climat local.",
+          "audace": 3
+        },
+        {
+          "titre": "Le tutoriel de coiffage personnalisé",
+          "probleme": "Une fois rentrée chez elle, la cliente ne sait pas reproduire le coiffage du salon.",
+          "idee": "Pendant la prestation, quelques plans sont filmés au poste. L’IA monte une courte vidéo tutorielle personnalisée, sous-titrée, avec les gestes et produits utilisés, envoyée à la cliente le soir même.",
+          "techno": ["montage vidéo automatique", "sous-titrage IA", "envoi automatisé"],
+          "local": "Le tutoriel peut être généré en plusieurs langues pour la clientèle touristique de passage.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "coach-salle-de-sport",
+      "label": "Coach sportif ou salle de sport",
+      "accroche": "Un œil de coach sur chaque mouvement, même quand le coach n’est pas dans la salle.",
+      "idees": [
+        {
+          "titre": "Le correcteur de mouvement par caméra",
+          "probleme": "En autonomie, les adhérents répètent des gestes mal exécutés sans s’en rendre compte.",
+          "idee": "Une application utilise la caméra du téléphone pour suivre la posture pendant un exercice, compter les répétitions et signaler les écarts courants par rapport au geste de référence. Le coach reçoit un résumé pour ajuster le programme.",
+          "techno": ["vision par ordinateur", "estimation de posture", "application mobile"],
+          "local": "Pratique pour les adhérents qui s’entraînent chez eux en zone rurale, loin de la salle.",
+          "audace": 2
+        },
+        {
+          "titre": "Le programme qui s’adapte au sommeil et à la forme",
+          "probleme": "Un programme figé ne tient pas compte d’une mauvaise nuit ou d’une semaine chargée.",
+          "idee": "Avec l’accord de l’adhérent, les données de sa montre connectée (sommeil, fréquence cardiaque, activité) ajustent l’intensité de la séance du jour. Le coach garde la main sur les règles et voit d’un coup d’œil qui est en surcharge.",
+          "techno": ["objets connectés", "règles d’adaptation", "tableau de bord coach"],
+          "local": "Les séances peuvent être allégées automatiquement lors des épisodes de forte chaleur.",
+          "audace": 2
+        },
+        {
+          "titre": "Le signal faible avant l’abandon",
+          "probleme": "On découvre qu’un adhérent a décroché au moment où il résilie.",
+          "idee": "Un modèle repère les signaux faibles : fréquentation qui baisse, créneaux habituels délaissés, cours annulés. Le coach reçoit une liste courte de personnes à recontacter avec une suggestion de message bienveillant et personnalisé.",
+          "techno": ["analyse prédictive", "données de fréquentation", "messages personnalisés"],
+          "local": "Il tient compte des rythmes saisonniers, comme les départs d’été dans les villes étudiantes.",
+          "audace": 2
+        },
+        {
+          "titre": "L’affluence en direct et prévue",
+          "probleme": "Les adhérents arrivent tous aux mêmes heures et repartent frustrés par l’attente aux machines.",
+          "idee": "Des capteurs de passage anonymes mesurent l’affluence en temps réel, affichée sur l’application. Une prévision tenant compte de la météo et des vacances scolaires suggère les créneaux plus calmes de la semaine.",
+          "techno": ["capteurs de passage", "prévision de fréquentation", "calendrier scolaire officiel"],
+          "local": "En ville, la prévision peut intégrer les grands événements qui modifient les habitudes du quartier.",
+          "audace": 1
+        },
+        {
+          "titre": "Le double numérique du coach sur messagerie",
+          "probleme": "Entre deux séances, les adhérents ont des questions et le coach ne peut pas répondre à tout le monde.",
+          "idee": "Un assistant entraîné sur les contenus, la méthode et le ton du coach répond aux questions courantes, rappelle les séances et motive au bon moment. Les questions sensibles, notamment de santé, sont systématiquement renvoyées vers le coach ou un professionnel.",
+          "techno": ["assistant IA sur vos contenus (RAG)", "messagerie", "règles d’escalade"],
+          "local": "Il permet à un coach indépendant de suivre des clients dispersés sur un large territoire.",
+          "audace": 3
+        },
+        {
+          "titre": "Les séances outdoor générées selon le terrain",
+          "probleme": "Proposer des séances en extérieur variées demande de repérer sans cesse de nouveaux parcours.",
+          "idee": "L’outil génère des séances en plein air à partir des données cartographiques ouvertes (dénivelé, escaliers, parcs, bord de mer) et de la météo du jour. Chaque adhérent reçoit un parcours adapté à son niveau et à sa position.",
+          "techno": ["données cartographiques ouvertes", "prévision météo", "génération de programmes"],
+          "local": "Idéal sur le littoral et en garrigue, en décalant les horaires quand la chaleur monte.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "hebergement-gite",
+      "label": "Hébergement touristique",
+      "accroche": "Un accueil attentionné à toute heure et dans toutes les langues, une maison qui se gère presque seule.",
+      "idees": [
+        {
+          "titre": "Le concierge multilingue du séjour",
+          "probleme": "Code du portail, wifi, heure d’arrivée : les mêmes questions arrivent à toute heure, dans toutes les langues.",
+          "idee": "Un assistant répond aux voyageurs par messagerie à partir de votre livret d’accueil et de vos consignes. Il gère les questions pratiques jour et nuit, et vous transfère uniquement ce qui demande une intervention humaine.",
+          "techno": ["assistant conversationnel", "traduction automatique", "base de connaissances du lieu"],
+          "local": "Il parle anglais, allemand ou néerlandais pour la clientèle européenne des gîtes ruraux et du littoral.",
+          "audace": 1
+        },
+        {
+          "titre": "Le livret d’accueil qui change chaque matin",
+          "probleme": "Un livret figé ne dit pas qu’il pleut aujourd’hui ni qu’un marché a lieu au village voisin.",
+          "idee": "Chaque matin, le voyageur reçoit une suggestion de journée générée selon la météo, son profil (famille, randonneurs, cyclistes) et l’agenda local : marchés, fêtes, visites. Vos adresses favorites restent au cœur des recommandations.",
+          "techno": ["génération de contenus", "prévision météo", "agenda des événements locaux"],
+          "local": "En outre-mer, il intègre les vigilances météo et oriente vers des activités abritées en cas d’alerte.",
+          "audace": 2
+        },
+        {
+          "titre": "Le tarif conseillé par l’agenda du territoire",
+          "probleme": "Fixer ses tarifs à l’avance fait passer à côté des périodes de forte demande locale.",
+          "idee": "L’outil surveille les événements du territoire, les vacances scolaires, la météo annoncée et votre taux de remplissage, puis suggère un ajustement de tarif et de durée minimale de séjour. Vous validez ou refusez chaque suggestion.",
+          "techno": ["prévision de la demande", "calendrier scolaire officiel", "agenda des événements locaux"],
+          "local": "Particulièrement utile autour des grands festivals, des courses sportives ou des ponts de printemps.",
+          "audace": 2
+        },
+        {
+          "titre": "Le ménage orchestré et vérifié par photo",
+          "probleme": "Coordonner ménage et linge entre plusieurs plateformes de réservation génère oublis et appels de dernière minute.",
+          "idee": "Le planning des prestataires se met à jour automatiquement avec les réservations. À la fin du ménage, l’intervenant prend quelques photos : un modèle de vision vérifie la liste de contrôle (lits faits, serviettes, cuisine rangée) et signale ce qui manque.",
+          "techno": ["synchronisation des réservations", "vision par ordinateur", "listes de contrôle"],
+          "local": "Précieux pour les propriétaires qui vivent loin de leur location, par exemple en métropole pour un bien ultramarin.",
+          "audace": 2
+        },
+        {
+          "titre": "Le jumeau énergétique du gîte",
+          "probleme": "Chauffer ou climatiser une maison vide gaspille, mais arriver dans un logement glacé gâche le séjour.",
+          "idee": "Un modèle thermique simple de la maison, relié à des capteurs et à la météo, calcule quand lancer le chauffage ou la climatisation pour atteindre le confort à l’heure d’arrivée annoncée. Il coupe tout entre deux séjours et signale fuites ou fenêtres restées ouvertes.",
+          "techno": ["jumeau numérique", "capteurs connectés", "prévision météo"],
+          "local": "En montagne, il anticipe les grands froids ; en outre-mer, il gère la climatisation et l’humidité.",
+          "audace": 3
+        },
+        {
+          "titre": "L’agent qui pilote les extranets de réservation",
+          "probleme": "Mettre à jour disponibilités, messages et avis sur plusieurs plateformes est un travail répétitif et chronophage.",
+          "idee": "Là où il n’existe pas de connecteur, un agent IA pilote les interfaces des plateformes comme le ferait une personne : il synchronise le calendrier, prépare des réponses aux avis et signale les écarts. Vous gardez la validation des messages publics.",
+          "techno": ["agent qui pilote des logiciels", "automatisation de navigateur", "génération de réponses"],
+          "local": "Il permet de rester présent sur les plateformes étrangères utilisées par la clientèle internationale.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "domaine-viticole",
+      "label": "Domaine viticole",
+      "accroche": "De la parcelle au verre : des capteurs dans les rangs, une histoire dans chaque bouteille.",
+      "idees": [
+        {
+          "titre": "L’alerte maladie et gel à la parcelle",
+          "probleme": "Les décisions de traitement ou de protection contre le gel se prennent souvent avec des prévisions trop générales.",
+          "idee": "Des stations météo connectées dans les parcelles, combinées aux prévisions publiques, alimentent des modèles de risque de maladies et de gel. Le vigneron reçoit des alertes ciblées par parcelle pour intervenir au bon moment, et seulement là où c’est nécessaire.",
+          "techno": ["capteurs connectés", "prévision météo", "modèles de risque"],
+          "local": "En Languedoc, il suit aussi le stress hydrique et les épisodes de chaleur extrême de plus en plus fréquents.",
+          "audace": 2
+        },
+        {
+          "titre": "Le comptage des grappes par vidéo",
+          "probleme": "Estimer la récolte à venir repose sur des comptages manuels longs et partiels.",
+          "idee": "Une caméra fixée sur le tracteur ou le quad filme les rangs lors d’un passage habituel. Un modèle de vision compte les grappes et estime leur volume, parcelle par parcelle, pour préparer vendanges, cuverie et commandes de matériel sec.",
+          "techno": ["vision par ordinateur", "géolocalisation", "cartographie des parcelles"],
+          "local": "Adapté aux domaines morcelés en coteaux où les comptages à pied prennent beaucoup de temps.",
+          "audace": 3
+        },
+        {
+          "titre": "Le sommelier virtuel du domaine",
+          "probleme": "Au caveau ou à distance, les visiteurs veulent des conseils d’accords et l’histoire des cuvées, parfois quand personne n’est disponible.",
+          "idee": "Un assistant accessible par QR code sur l’étiquette ou au caveau présente chaque cuvée, suggère des accords mets-vins et raconte le domaine, dans la langue du visiteur. Il s’appuie uniquement sur les fiches et les textes que vous avez validés.",
+          "techno": ["assistant IA sur vos contenus", "QR code", "traduction automatique"],
+          "local": "Un atout pour l’œnotourisme, avec une clientèle internationale nombreuse en été.",
+          "audace": 1
+        },
+        {
+          "titre": "La bouteille qui raconte son parcours",
+          "probleme": "Les acheteurs, notamment à l’export, veulent des preuves d’origine et de pratiques, et la contrefaçon inquiète.",
+          "idee": "Chaque lot est relié à un identifiant unique imprimé sur la bouteille. En le scannant, l’acheteur retrouve la parcelle, le millésime, les pratiques culturales et les étapes d’élaboration, et le domaine peut vérifier l’authenticité d’une bouteille.",
+          "techno": ["traçabilité", "identifiant unique", "page produit dynamique"],
+          "local": "Il valorise les appellations et le terroir auprès de marchés lointains.",
+          "audace": 2
+        },
+        {
+          "titre": "Le registre de cave qui se tient tout seul",
+          "probleme": "Registres, déclarations et documents d’accompagnement mobilisent des heures en pleine période d’activité.",
+          "idee": "Les mouvements de cave saisis simplement (ou dictés) et les documents reçus sont lus et consolidés automatiquement. L’outil prépare le registre et les brouillons de déclarations, que vous vérifiez avant envoi.",
+          "techno": ["lecture de documents", "dictée vocale IA", "préparation de déclarations"],
+          "local": "Adapté aux petits domaines familiaux sans personnel administratif dédié.",
+          "audace": 2
+        },
+        {
+          "titre": "Le jumeau numérique de la cuve",
+          "probleme": "Suivre les fermentations la nuit et le week-end impose des allers-retours au chai.",
+          "idee": "Des capteurs de température et de densité suivent chaque cuve en continu. Un modèle compare la courbe observée à la courbe attendue, prédit la fin de fermentation et alerte en cas de dérive ou d’arrêt.",
+          "techno": ["jumeau numérique", "capteurs connectés", "alertes sur téléphone"],
+          "local": "Pendant les vendanges tardives et chaudes du Sud, il aide à maîtriser les températures de fermentation.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "commerce-boutique",
+      "label": "Commerce de proximité",
+      "accroche": "La boutique du quartier, avec la réactivité d’un grand site et la chaleur d’un vrai commerçant.",
+      "idees": [
+        {
+          "titre": "La vitrine en ligne qui se remplit d’une photo",
+          "probleme": "Mettre ses produits en ligne un par un décourage la plupart des commerçants.",
+          "idee": "Vous photographiez un produit en rayon : l’IA en rédige la fiche, suggère une catégorie et publie le tout sur votre site et votre fiche d’établissement. Le stock est mis à jour à chaque vente en caisse.",
+          "techno": ["reconnaissance d’images", "génération de fiches produits", "connecteur de caisse"],
+          "local": "Il rend visible en ligne le commerce de bourg rural qui n’a pas le temps de gérer un site.",
+          "audace": 1
+        },
+        {
+          "titre": "Le réassort guidé par la météo et le calendrier",
+          "probleme": "Parasols en rupture le premier jour de chaleur, stock dormant quand la pluie s’installe.",
+          "idee": "Un modèle de prévision relie les ventes passées de chaque famille de produits à la météo, aux vacances scolaires et aux événements locaux. Il propose une liste de réassort chaque semaine, que vous ajustez selon votre flair.",
+          "techno": ["prévision de la demande", "prévision météo", "calendrier scolaire officiel"],
+          "local": "Décisif pour les boutiques de station balnéaire dont l’activité dépend de quelques semaines d’été.",
+          "audace": 2
+        },
+        {
+          "titre": "Le vendeur augmenté dans la poche",
+          "probleme": "Face à une question pointue, le vendeur doit chercher dans des catalogues ou appeler un fournisseur.",
+          "idee": "Un assistant vocal sur téléphone répond aux questions du vendeur à partir des catalogues fournisseurs, des fiches techniques et du stock : compatibilités, alternatives, délais de réassort. Le client obtient une réponse sur-le-champ.",
+          "techno": ["assistant IA sur catalogues (RAG)", "commande vocale", "consultation du stock"],
+          "local": "Précieux pour les quincailleries et magasins spécialisés de zone rurale, qui couvrent un large assortiment.",
+          "audace": 2
+        },
+        {
+          "titre": "Le rayon surveillé par caméra",
+          "probleme": "Les ruptures en rayon et les étiquettes manquantes se remarquent souvent trop tard.",
+          "idee": "Une caméra filmant les rayons, sans filmer les clients, repère les emplacements vides, les produits mal rangés et les étiquettes absentes. Le personnel reçoit une liste de tâches priorisée pendant la journée.",
+          "techno": ["vision par ordinateur", "détection d’anomalies", "liste de tâches"],
+          "local": "Adapté aux supérettes de proximité en ville, avec peu de personnel et une forte rotation.",
+          "audace": 3
+        },
+        {
+          "titre": "La fidélité sans carte, mais personnelle",
+          "probleme": "Les programmes de fidélité génériques n’intéressent plus les clients.",
+          "idee": "À partir de l’historique d’achats de clients qui l’acceptent, l’outil rédige des messages vraiment personnels : arrivée d’un produit apprécié, conseil d’utilisation, invitation à un atelier. Vous gardez une relation de commerçant, pas de publicité de masse.",
+          "techno": ["personnalisation", "génération de messages", "consentement client"],
+          "local": "Il renforce le lien avec la clientèle fidèle hors saison touristique.",
+          "audace": 2
+        },
+        {
+          "titre": "La commande par message vocal",
+          "probleme": "Beaucoup de clients préfèrent parler plutôt que remplir un formulaire de commande en ligne.",
+          "idee": "Le client laisse un message vocal ou écrit en langage courant ; l’IA le transforme en panier précis, vérifie le stock, propose des remplacements et confirme l’heure de retrait. Le commerçant prépare la commande sans ressaisie.",
+          "techno": ["reconnaissance vocale", "agent IA", "connecteur de stock"],
+          "local": "Pratique pour les clients âgés en zone rurale et pour les clientèles qui parlent créole ou une autre langue.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "garage-automobile",
+      "label": "Garage automobile",
+      "accroche": "Un diagnostic qui s’appuie sur toute l’expérience de l’atelier, et des clients qui comprennent enfin la réparation.",
+      "idees": [
+        {
+          "titre": "Le diagnostic nourri de l’histoire de l’atelier",
+          "probleme": "Une panne rare a déjà été résolue il y a deux ans, mais la solution est restée dans la tête d’un mécanicien.",
+          "idee": "Un assistant croise les codes défaut lus sur le véhicule, les symptômes décrits et la base de vos réparations passées. Il propose des pistes classées et les vérifications à faire, en citant les interventions similaires déjà réalisées à l’atelier.",
+          "techno": ["assistant IA sur vos historiques (RAG)", "lecture des codes défaut", "recherche sémantique"],
+          "local": "Il capitalise sur les pannes typiques locales : corrosion saline, climatisation sollicitée, pistes poussiéreuses.",
+          "audace": 2
+        },
+        {
+          "titre": "L’état des lieux carrosserie en photo",
+          "probleme": "Une rayure constatée au retour du véhicule peut vite tourner au litige.",
+          "idee": "À l’arrivée, quelques photos du véhicule sont analysées par un modèle de vision qui repère et localise rayures, bosses et impacts. Un état des lieux horodaté est partagé avec le client, puis comparé au moment de la restitution.",
+          "techno": ["vision par ordinateur", "horodatage", "rapport partagé"],
+          "local": "Utile pour les garages qui travaillent avec les loueurs de véhicules des zones touristiques.",
+          "audace": 2
+        },
+        {
+          "titre": "L’accueil vocal qui qualifie la panne",
+          "probleme": "Au téléphone, « ça fait un bruit » ne permet ni de prévoir le temps d’atelier, ni de commander la pièce.",
+          "idee": "Un agent vocal pose les bonnes questions (type de bruit, voyant allumé, circonstances, kilométrage), prépare un pré-ordre de réparation et propose un créneau adapté à la durée probable. Le chef d’atelier retrouve tout à l’écran.",
+          "techno": ["agent vocal IA", "questionnaire guidé", "agenda d’atelier"],
+          "local": "Il décharge les petits garages ruraux où le mécanicien fait aussi l’accueil.",
+          "audace": 1
+        },
+        {
+          "titre": "La vidéo qui explique la réparation",
+          "probleme": "Les clients doutent parfois d’une réparation qu’ils ne voient pas et hésitent à la valider.",
+          "idee": "Le mécanicien filme en quelques secondes la pièce usée. L’IA ajoute sous-titres, schéma et explication claire, puis envoie la vidéo au client avec un bouton pour donner son accord.",
+          "techno": ["montage vidéo automatique", "sous-titrage IA", "validation en ligne"],
+          "local": "La vidéo peut être sous-titrée dans la langue du client de passage, un vrai plus en zone touristique.",
+          "audace": 1
+        },
+        {
+          "titre": "L’entretien prédictif des flottes",
+          "probleme": "Les véhicules de flotte tombent en panne au pire moment, immobilisant l’activité des entreprises clientes.",
+          "idee": "Des boîtiers connectés remontent les données des véhicules de vos clients professionnels. Un modèle repère les signes précurseurs d’usure et propose un passage à l’atelier avant la panne, planifié au moment le moins pénalisant.",
+          "techno": ["capteurs embarqués", "maintenance prédictive", "planification automatique"],
+          "local": "Pertinent pour les artisans et services à domicile d’un territoire rural qui dépendent de leur véhicule.",
+          "audace": 3
+        },
+        {
+          "titre": "L’agent qui cherche la pièce chez tous les fournisseurs",
+          "probleme": "Trouver la bonne pièce disponible rapidement impose de naviguer sur plusieurs portails fournisseurs.",
+          "idee": "À partir de l’identification du véhicule, un agent IA consulte les portails de vos fournisseurs, compare références, disponibilités et délais, puis prépare la commande à valider. Le mécanicien reste à l’établi.",
+          "techno": ["agent qui pilote des logiciels", "identification du véhicule", "comparaison automatique"],
+          "local": "En outre-mer, il intègre les délais d’acheminement maritime et aérien pour choisir la meilleure option.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "organisme-de-formation",
+      "label": "Organisme de formation",
+      "accroche": "Des parcours qui s’adaptent à chaque apprenant, des mises en situation réalistes et une conformité sans paperasse.",
+      "idees": [
+        {
+          "titre": "Le parcours né de vos supports existants",
+          "probleme": "Transformer des supports de formation en modules en ligne attractifs est long et coûteux en temps.",
+          "idee": "Vos présentations, documents et enregistrements sont découpés automatiquement en modules courts, accompagnés de quiz, fiches mémo et résumés audio. Le formateur relit et ajuste avant publication.",
+          "techno": ["génération de contenus pédagogiques", "lecture de documents", "synthèse vocale"],
+          "local": "Il permet de proposer une version à distance aux apprenants éloignés, notamment en outre-mer.",
+          "audace": 1
+        },
+        {
+          "titre": "Le tuteur disponible entre deux sessions",
+          "probleme": "Les apprenants restent bloqués sur une notion le soir et perdent le fil avant la session suivante.",
+          "idee": "Un tuteur IA branché uniquement sur vos contenus répond aux questions, propose des exercices et reformule les notions. Le formateur reçoit une synthèse des points les plus souvent incompris pour ajuster sa prochaine intervention.",
+          "techno": ["assistant IA sur vos contenus (RAG)", "exercices générés", "tableau de bord formateur"],
+          "local": "Le tuteur peut expliquer en créole ou en anglais pour les publics qui apprennent mieux dans leur langue.",
+          "audace": 2
+        },
+        {
+          "titre": "Les preuves qualité collectées au fil de l’eau",
+          "probleme": "Préparer un audit de certification qualité impose de rassembler des preuves éparpillées.",
+          "idee": "Émargements numériques, évaluations, questionnaires de satisfaction et suivi des réclamations sont collectés automatiquement et rangés par indicateur. Le dossier d’audit est prêt en permanence, avec les manques signalés à l’avance.",
+          "techno": ["émargement numérique", "collecte automatique", "tableau de conformité"],
+          "local": "Adapté aux petits organismes indépendants, nombreux en région, qui n’ont pas de responsable qualité dédié.",
+          "audace": 1
+        },
+        {
+          "titre": "Les jeux de rôle avec un personnage IA",
+          "probleme": "Les mises en situation réalistes demandent des comédiens ou mobilisent le formateur pour chaque apprenant.",
+          "idee": "Un personnage IA vocal joue un client mécontent, un patient anxieux ou un recruteur exigeant, avec un caractère et un scénario définis par le formateur. Après l’échange, l’apprenant reçoit un débriefing sur sa posture et ses formulations.",
+          "techno": ["agent vocal IA", "scénarios pédagogiques", "analyse de conversation"],
+          "local": "Les scénarios peuvent refléter les métiers du territoire : accueil touristique, viticulture, aide à la personne.",
+          "audace": 3
+        },
+        {
+          "titre": "Le positionnement qui s’adapte à chaque réponse",
+          "probleme": "Un test d’entrée identique pour tous est soit trop facile, soit décourageant.",
+          "idee": "Un test adaptatif ajuste la difficulté des questions selon les réponses précédentes pour situer rapidement le niveau réel. Il en déduit un parcours personnalisé et un rapport clair pour le financeur et l’apprenant.",
+          "techno": ["test adaptatif", "recommandation de parcours", "rapport automatique"],
+          "local": "Utile pour les publics en reconversion, nombreux dans les bassins d’emploi en mutation.",
+          "audace": 2
+        },
+        {
+          "titre": "Le radar des compétences recherchées",
+          "probleme": "Concevoir de nouvelles formations sans savoir quelles compétences les employeurs locaux recherchent vraiment est un pari.",
+          "idee": "Un outil analyse les offres d’emploi publiques et les données ouvertes sur les métiers en tension pour faire ressortir les compétences émergentes, par territoire. Il suggère des modules à créer ou à faire évoluer.",
+          "techno": ["analyse de texte", "données ouvertes sur l’emploi", "cartographie des compétences"],
+          "local": "Il révèle les besoins propres à chaque bassin : tourisme sur le littoral, agriculture en zone rurale, numérique en métropole.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "services-a-domicile",
+      "label": "Services à domicile",
+      "accroche": "Moins de route et de ressaisie pour les intervenants, plus d’attention et de sérénité pour les personnes aidées.",
+      "idees": [
+        {
+          "titre": "Les tournées qui se recomposent en temps réel",
+          "probleme": "Un intervenant malade ou un bouchon et toute la journée de planning s’effondre.",
+          "idee": "Un moteur d’optimisation construit les tournées en tenant compte du trafic, des compétences, des horaires imposés et de la continuité avec les mêmes personnes. En cas d’imprévu, il propose aussitôt une nouvelle répartition et prévient les familles concernées.",
+          "techno": ["optimisation de tournées", "trafic en temps réel", "notifications automatiques"],
+          "local": "En zone rurale, il tient compte des longues distances ; en ville, des difficultés de stationnement.",
+          "audace": 1
+        },
+        {
+          "titre": "Le cahier de liaison dicté en fin de visite",
+          "probleme": "Les transmissions écrites sont bâclées faute de temps, et des signaux importants passent inaperçus.",
+          "idee": "L’intervenant raconte sa visite en quelques phrases. L’IA structure le cahier de liaison et signale à la coordinatrice les éléments qui méritent attention : baisse d’appétit, chute évoquée, isolement. La famille peut recevoir un résumé si la personne aidée l’accepte.",
+          "techno": ["dictée vocale IA", "synthèse structurée", "alertes coordinatrice"],
+          "local": "La dictée peut se faire en créole ou dans la langue de l’intervenant, avec une transcription en français.",
+          "audace": 2
+        },
+        {
+          "titre": "Les capteurs discrets qui repèrent un changement",
+          "probleme": "Une dégradation progressive de l’autonomie se remarque souvent trop tard.",
+          "idee": "Quelques capteurs non intrusifs, sans caméra (mouvement, ouverture de porte, réfrigérateur), apprennent les habitudes de la personne. Une rupture de routine déclenche une alerte douce vers l’aidant ou la coordinatrice, avec le consentement de la personne.",
+          "techno": ["capteurs connectés", "détection de rupture de routine", "alertes"],
+          "local": "Précieux pour les personnes âgées isolées dans les villages, loin de leur famille.",
+          "audace": 3
+        },
+        {
+          "titre": "Le bon intervenant pour la bonne personne",
+          "probleme": "Une affectation mal pensée crée de l’inconfort, du turnover et des annulations.",
+          "idee": "Un outil de matching propose les binômes en croisant compétences, langues parlées, centres d’intérêt, contraintes horaires et proximité géographique. Les retours des deux côtés affinent les suggestions au fil du temps.",
+          "techno": ["matching", "préférences et retours", "géolocalisation"],
+          "local": "Il valorise les intervenants qui parlent la langue régionale ou la langue d’origine de la personne aidée.",
+          "audace": 2
+        },
+        {
+          "titre": "Le compagnon vocal de la personne aidée",
+          "probleme": "Entre deux passages, la personne aidée peut se sentir seule et oublier un rendez-vous ou une prise de médicament.",
+          "idee": "Un assistant vocal très simple, sans écran compliqué, rappelle les rendez-vous, propose des jeux de mémoire, lit les nouvelles et permet d’appeler un proche à la voix. En cas de demande d’aide, il prévient l’aidant désigné.",
+          "techno": ["assistant vocal IA", "rappels personnalisés", "appel d’urgence"],
+          "local": "Il peut converser en créole ou en langue régionale pour des échanges plus naturels.",
+          "audace": 3
+        },
+        {
+          "titre": "Les attestations et plans d’aide gérés sans ressaisie",
+          "probleme": "Plans d’aide, prises en charge et attestations annuelles demandent beaucoup de ressaisie administrative.",
+          "idee": "Les plans d’aide reçus sont lus automatiquement pour paramétrer les heures prévues. Les heures réalisées alimentent la facturation, et les attestations annuelles sont générées et envoyées aux bénéficiaires sans intervention manuelle.",
+          "techno": ["lecture de documents", "facturation automatique", "génération d’attestations"],
+          "local": "Il s’adapte aux règles propres à chaque département financeur.",
+          "audace": 1
+        }
+      ]
+    },
+    {
+      "slug": "industrie-pme",
+      "label": "PME industrielle",
+      "accroche": "L’industrie du futur à l’échelle d’une PME : des machines qui préviennent et un savoir-faire qui ne part plus à la retraite.",
+      "idees": [
+        {
+          "titre": "Le contrôle qualité par caméra en bout de ligne",
+          "probleme": "Le contrôle visuel humain fatigue, varie d’un opérateur à l’autre et laisse passer des défauts.",
+          "idee": "Une caméra et un modèle entraîné sur vos propres défauts inspectent chaque pièce en bout de ligne. Les pièces suspectes sont écartées pour vérification humaine, et chaque défaut est photographié et tracé pour remonter à sa cause.",
+          "techno": ["vision par ordinateur", "apprentissage sur vos défauts", "traçabilité"],
+          "local": "Accessible aux petits ateliers de sous-traitance qui n’ont pas de service méthodes dédié.",
+          "audace": 2
+        },
+        {
+          "titre": "La machine qui prévient avant de casser",
+          "probleme": "Une panne imprévue arrête la production et retarde les livraisons.",
+          "idee": "Des capteurs de vibration, de température et de consommation électrique sont posés sur les machines critiques. Un modèle repère les dérives qui précèdent une panne et propose une intervention planifiée pendant un arrêt prévu.",
+          "techno": ["capteurs connectés", "maintenance prédictive", "planification"],
+          "local": "Crucial en outre-mer, où une pièce de rechange peut mettre des semaines à arriver.",
+          "audace": 2
+        },
+        {
+          "titre": "La mémoire des anciens",
+          "probleme": "Le départ d’un technicien expérimenté emporte des années de tours de main et d’astuces jamais écrits.",
+          "idee": "Des entretiens guidés par l’IA recueillent à la voix le savoir-faire des experts, directement devant la machine. Tout est transcrit, structuré et rendu interrogeable par les nouveaux arrivants via un assistant qui cite les explications d’origine.",
+          "techno": ["entretiens vocaux guidés", "assistant IA sur savoir-faire (RAG)", "vidéo annotée"],
+          "local": "Essentiel dans les bassins industriels où les recrutements sont difficiles et les départs en retraite nombreux.",
+          "audace": 2
+        },
+        {
+          "titre": "Le chiffrage à partir du plan",
+          "probleme": "Répondre à une consultation demande d’étudier chaque plan à la main, et beaucoup de devis restent sans suite.",
+          "idee": "L’IA lit le plan reçu (PDF ou fichier de conception), extrait cotes, matières, tolérances et opérations, puis estime les temps de fabrication à partir de vos historiques. Le chargé d’affaires ajuste et envoie un chiffrage bien plus vite.",
+          "techno": ["lecture de plans", "extraction de données techniques", "estimation par historique"],
+          "local": "Il aide les sous-traitants régionaux à répondre plus vite aux donneurs d’ordres des grandes filières locales.",
+          "audace": 3
+        },
+        {
+          "titre": "Le jumeau numérique de l’atelier",
+          "probleme": "Accepter une commande urgente, c’est deviner l’impact sur toutes les autres.",
+          "idee": "Une simulation de l’atelier, alimentée par les ordres de fabrication et les temps réels, permet de tester une commande urgente, une panne ou une nouvelle machine avant de décider. Le planning optimisé est proposé à l’ordonnanceur.",
+          "techno": ["jumeau numérique", "simulation", "ordonnancement optimisé"],
+          "local": "Utile pour les PME qui font face à des pics saisonniers, par exemple dans l’agroalimentaire.",
+          "audace": 3
+        },
+        {
+          "titre": "Le compteur d’énergie par machine",
+          "probleme": "La facture énergétique est connue globalement, mais on ignore quelles machines et quels horaires la font grimper.",
+          "idee": "Des compteurs connectés mesurent la consommation par machine et par poste. Un tableau de bord montre les consommations à vide, suggère des décalages vers les heures les plus avantageuses et prépare les données pour le bilan carbone.",
+          "techno": ["compteurs connectés", "tableau de bord énergie", "recommandations automatiques"],
+          "local": "En territoire insulaire au réseau électrique fragile, il aide aussi à lisser les pointes de consommation.",
+          "audace": 1
+        }
+      ]
+    },
+    {
+      "slug": "transport-logistique",
+      "label": "Transport et logistique",
+      "accroche": "Des quais qui voient, des documents qui se lisent seuls et des clients qui savent enfin quand leur livraison arrive.",
+      "idees": [
+        {
+          "titre": "Les documents de transport lus automatiquement",
+          "probleme": "Lettres de voiture, bons de livraison et preuves de livraison photographiées sont ressaisis à la main.",
+          "idee": "Chaque document, même froissé ou photographié en cabine, est lu automatiquement : références, quantités, réserves, signatures. Les données sont rapprochées des commandes et de la facturation, et les écarts sont signalés.",
+          "techno": ["lecture de documents", "reconnaissance d’écriture", "rapprochement automatique"],
+          "local": "Il gère aussi les documents multilingues des transports internationaux et des liaisons avec l’outre-mer.",
+          "audace": 1
+        },
+        {
+          "titre": "L’heure d’arrivée qu’on peut croire",
+          "probleme": "Les clients appellent sans cesse pour savoir où en est leur livraison.",
+          "idee": "Un modèle combine la position du véhicule, le trafic, les temps d’arrêt habituels chez chaque client et l’historique des tournées pour calculer une heure d’arrivée fiable. Le destinataire est prévenu automatiquement en cas de glissement.",
+          "techno": ["géolocalisation", "trafic en temps réel", "prévision d’arrivée"],
+          "local": "En métropole, il intègre les zones à faibles émissions ; sur le littoral, les embouteillages estivaux.",
+          "audace": 2
+        },
+        {
+          "titre": "L’assistant multilingue des chauffeurs à quai",
+          "probleme": "Consignes de quai et créneaux sont mal compris par les chauffeurs qui ne parlent pas français.",
+          "idee": "Un assistant accessible par QR code à l’entrée du site accueille le chauffeur dans sa langue, lui indique son quai, les consignes de sécurité et les documents à présenter, et répond à ses questions. L’exploitation voit en temps réel qui est arrivé.",
+          "techno": ["assistant conversationnel", "traduction automatique", "gestion des créneaux"],
+          "local": "Adapté aux plateformes proches des grands axes européens et des ports.",
+          "audace": 2
+        },
+        {
+          "titre": "Le quai qui voit les palettes",
+          "probleme": "Comptage, contrôle de l’état des palettes et lecture des étiquettes ralentissent la réception.",
+          "idee": "Des caméras au passage de quai comptent les palettes, lisent les étiquettes et repèrent les emballages abîmés. Les réserves sont photographiées et associées automatiquement à la réception pour les éventuels litiges.",
+          "techno": ["vision par ordinateur", "lecture d’étiquettes", "preuve photo horodatée"],
+          "local": "Précieux dans les ports et hubs ultramarins où les marchandises subissent de longues manipulations.",
+          "audace": 3
+        },
+        {
+          "titre": "Le plan de chargement calculé en 3D",
+          "probleme": "Charger un camion au jugé laisse de la place perdue ou oblige à décharger pour accéder aux colis.",
+          "idee": "À partir des dimensions, poids et ordre de livraison, un algorithme calcule le plan de chargement optimal et l’affiche en 3D sur une tablette pour les caristes. Les contraintes de répartition des charges sont respectées.",
+          "techno": ["optimisation combinatoire", "visualisation 3D", "tablette au quai"],
+          "local": "Utile pour les tournées rurales multi-arrêts où l’ordre de déchargement compte beaucoup.",
+          "audace": 2
+        },
+        {
+          "titre": "La cotation fret depuis un simple e-mail",
+          "probleme": "Les demandes de prix arrivent en texte libre et chaque cotation demande de tout ressaisir.",
+          "idee": "Un agent lit la demande reçue par e-mail, en extrait origine, destination, volumes et contraintes, consulte vos grilles et disponibilités, puis prépare une proposition que l’exploitant valide. Les demandes incomplètes reçoivent automatiquement les bonnes questions.",
+          "techno": ["agent IA", "extraction d’informations", "connecteurs API"],
+          "local": "Il intègre les spécificités du fret maritime et aérien vers les territoires ultramarins.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "association-collectivite",
+      "label": "Association ou collectivité",
+      "accroche": "Un service public et associatif plus accessible, plus réactif et plus inclusif, sans alourdir les équipes.",
+      "idees": [
+        {
+          "titre": "L’assistant des démarches en langage clair",
+          "probleme": "Les habitants ne trouvent pas l’information et saturent l’accueil de questions simples.",
+          "idee": "Un assistant sur le site et au téléphone répond à partir des règlements, horaires, délibérations et pages officielles de la structure. Il reformule en langage clair, propose une version facile à lire et à comprendre, et oriente vers le bon service.",
+          "techno": ["assistant IA sur documents officiels", "langage facile à lire", "agent vocal"],
+          "local": "Il peut répondre en créole, en shimaoré ou en langue régionale selon le territoire.",
+          "audace": 1
+        },
+        {
+          "titre": "Le signalement citoyen par photo",
+          "probleme": "Dépôts sauvages, nids-de-poule et éclairages en panne sont signalés de façon incomplète ou au mauvais service.",
+          "idee": "L’habitant prend une photo : un modèle de vision identifie le type de problème, la géolocalisation est ajoutée et le signalement est transmis au bon service. L’habitant est informé du traitement de sa demande.",
+          "techno": ["vision par ordinateur", "géolocalisation", "suivi des demandes"],
+          "local": "Après une tempête ou un cyclone, il permet de cartographier rapidement les dégâts signalés par les habitants.",
+          "audace": 2
+        },
+        {
+          "titre": "L’assistant des dossiers de subvention",
+          "probleme": "Repérer les appels à projets et rédiger les dossiers épuise les équipes bénévoles et salariées.",
+          "idee": "Un agent surveille les appels à projets publics, repère ceux qui correspondent à votre projet associatif et pré-rédige les dossiers à partir de vos documents : statuts, bilans, projets passés. L’équipe relit et complète.",
+          "techno": ["agent de veille IA", "assistant IA sur vos documents (RAG)", "génération de texte"],
+          "local": "Il intègre les dispositifs régionaux, départementaux et européens propres à chaque territoire.",
+          "audace": 2
+        },
+        {
+          "titre": "Le jumeau numérique du territoire face aux risques",
+          "probleme": "Anticiper crues, canicules ou submersions demande de croiser des données dispersées.",
+          "idee": "Une carte vivante du territoire croise les données publiques de vigilance météo, de crues et de risques naturels avec les équipements sensibles (écoles, établissements pour personnes âgées, routes). Elle simule les zones touchées et prépare les messages d’alerte ciblés.",
+          "techno": ["jumeau numérique", "données publiques de vigilance", "cartographie"],
+          "local": "Pensé pour les épisodes méditerranéens, la submersion marine sur le littoral et les cyclones en outre-mer.",
+          "audace": 3
+        },
+        {
+          "titre": "Le bon bénévole au bon moment",
+          "probleme": "Mobiliser des bénévoles repose sur des messages envoyés à tout le monde et des tableaux partagés confus.",
+          "idee": "Un outil de matching propose chaque mission aux bénévoles les plus adaptés selon leurs compétences, disponibilités et proximité. Les confirmations et rappels sont automatiques, et le responsable voit en un coup d’œil les besoins non couverts.",
+          "techno": ["matching", "gestion des disponibilités", "rappels automatiques"],
+          "local": "Précieux en zone rurale où les bénévoles sont dispersés entre plusieurs communes.",
+          "audace": 2
+        },
+        {
+          "titre": "Les réunions publiques sous-titrées et traduites en direct",
+          "probleme": "Conseils municipaux et assemblées restent inaccessibles aux personnes sourdes, malentendantes ou non francophones.",
+          "idee": "Les séances sont sous-titrées en direct, traduites dans les langues utiles au territoire, puis résumées et indexées. Les habitants retrouvent facilement un sujet dans l’enregistrement grâce à la recherche dans la transcription.",
+          "techno": ["transcription en temps réel", "traduction automatique", "recherche dans les transcriptions"],
+          "local": "Adapté aux territoires multilingues d’outre-mer et aux villes accueillant de nombreux résidents étrangers.",
+          "audace": 3
+        }
+      ]
+    },
+    {
+      "slug": "startup-tech",
+      "label": "Startup et entreprise tech",
+      "accroche": "Rendre votre produit utilisable par les agents IA de vos clients, et laisser des agents tester, supporter et écouter à votre place.",
+      "idees": [
+        {
+          "titre": "Le connecteur MCP de votre produit",
+          "probleme": "Vos clients travaillent de plus en plus via des assistants IA qui ne savent pas utiliser votre produit.",
+          "idee": "On expose les fonctions clés de votre produit via un serveur MCP sécurisé, avec gestion des droits et journalisation. Les assistants IA de vos clients peuvent alors consulter, créer ou mettre à jour des données dans votre outil, en langage naturel.",
+          "techno": ["connecteur MCP", "API sécurisée", "gestion des autorisations"],
+          "local": "Un argument différenciant pour les startups de l’écosystème montpelliérain qui visent des clients à l’international.",
+          "audace": 2
+        },
+        {
+          "titre": "Le support de premier niveau qui connaît le code",
+          "probleme": "L’équipe technique est interrompue sans cesse par des questions dont la réponse est dans la documentation.",
+          "idee": "Un assistant de support s’appuie sur la documentation, l’historique des tickets et les notes de version pour répondre aux clients. Quand il ne sait pas, il transmet un ticket déjà qualifié avec le contexte, les étapes de reproduction et les logs utiles.",
+          "techno": ["assistant IA sur documentation (RAG)", "qualification de tickets", "connecteurs API"],
+          "local": "Il assure une réponse dans plusieurs langues et sur plusieurs fuseaux horaires, y compris vers l’outre-mer.",
+          "audace": 1
+        },
+        {
+          "titre": "La démo personnalisée générée pour chaque prospect",
+          "probleme": "Une démo générique parle rarement au métier précis du prospect.",
+          "idee": "À partir du site et des informations publiques du prospect, l’outil prépare un environnement de démonstration peuplé de données fictives réalistes adaptées à son secteur, avec un scénario de présentation sur mesure.",
+          "techno": ["génération de données fictives", "personnalisation", "environnement de démo automatisé"],
+          "local": "Utile pour adresser des secteurs très régionaux comme la viticulture, le tourisme ou l’agriculture.",
+          "audace": 2
+        },
+        {
+          "titre": "L’agent qui teste votre application comme un utilisateur",
+          "probleme": "Les tests automatisés vérifient ce qu’on a prévu, pas ce qu’un vrai utilisateur va essayer.",
+          "idee": "Des agents IA pilotent votre application dans un navigateur avec des profils d’utilisateurs différents, explorent les parcours, tentent des actions inattendues et remontent bugs, blocages et incohérences avec captures et étapes de reproduction.",
+          "techno": ["agent qui pilote des logiciels", "tests exploratoires", "rapports automatiques"],
+          "local": "Il peut simuler des utilisateurs avec une connexion lente, comme dans certaines zones rurales ou insulaires.",
+          "audace": 3
+        },
+        {
+          "titre": "L’écoute client transformée en feuille de route",
+          "probleme": "Les retours clients sont dispersés entre tickets, appels, avis et messages, et la priorisation se fait au ressenti.",
+          "idee": "Tous les retours sont collectés, regroupés par thème grâce à l’analyse sémantique et reliés aux comptes clients. L’équipe produit voit les demandes récurrentes, leur évolution dans le temps et les citations d’origine pour décider en connaissance de cause.",
+          "techno": ["analyse sémantique", "regroupement automatique", "tableau de bord produit"],
+          "local": "Il permet de distinguer les besoins spécifiques à certains marchés ou territoires.",
+          "audace": 2
+        },
+        {
+          "titre": "Le banc d’essai permanent de vos fonctions IA",
+          "probleme": "Une fonctionnalité IA peut se dégrader silencieusement après un changement de modèle ou de consigne.",
+          "idee": "On met en place un banc d’évaluation continue : jeux de cas de test métier, garde-fous, suivi de la qualité des réponses, des coûts et des temps de réponse. Chaque modification est comparée à la version précédente avant mise en production.",
+          "techno": ["évaluation automatique", "garde-fous", "surveillance en production"],
+          "local": "Un gage de sérieux pour les startups qui travaillent avec des acteurs publics ou de santé exigeants.",
+          "audace": 3
+        }
+      ]
+    }
+  ]
+}

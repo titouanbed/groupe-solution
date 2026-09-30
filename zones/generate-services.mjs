@@ -922,7 +922,7 @@ function hero({ kicker, h1, lead }) {
       <a class="btn" href="${TEL}">Appeler le ${TEL_TXT} →</a>
       <a class="alt" href="#contact">ou décrire mon besoin par écrit</a>
       <a class="rdv" href="${RDV}">Réserver une visio de 10 min</a>
-      <span class="micro">Réponse sous 24 h, souvent le jour même</span>
+      <span class="micro">Réponse sous 24 h ouvrées</span>
     </div></div>
   </div></section>`;
 }

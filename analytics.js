@@ -25,6 +25,20 @@
 
   var STORE = 'gs-consent-v1';
 
+  /* Retirer son choix doit être aussi simple que le donner (CNIL) : window.GSConsent.reset()
+     efface le choix et les cookies Google Analytics, puis réaffiche le bandeau. */
+  window.GSConsent = {
+    reset: function () {
+      try { localStorage.removeItem(STORE); localStorage.removeItem('gs-perso-ai'); } catch (e) {}
+      var dom = location.hostname.replace(/^www\./, '');
+      document.cookie.split(';').forEach(function (c) {
+        var n = c.split('=')[0].trim();
+        if (/^_ga/.test(n)) ['', '; domain=.' + dom, '; domain=' + location.hostname].forEach(function (d) { document.cookie = n + '=; Max-Age=0; path=/' + d; });
+      });
+      location.reload();
+    }
+  };
+
   /* Silos géographiques : ajoutez ici le slug de chaque nouvelle zone.
      La zone est déduite du 1er segment d'URL → content_group dans GA4. */
   var ZONES = ['montpellier', 'automatisation', 'outils', 'lab', 'mayotte', 'reunion', 'guyane', 'martinique', 'guadeloupe', 'nouvelle-caledonie', 'polynesie-francaise'];
@@ -87,7 +101,7 @@
         'Aucun cookie de suivi n’est déposé sans votre accord. <a href="/confidentialite.html">En savoir plus</a></p>' +
         '<label class="gsc-ai"><input type="checkbox" id="gscAI" />' +
           '<span><b>✨ Activer aussi l’expérience sur-mesure par IA</b> : le site adapte ses titres et ses conseils à ce qui vous intéresse.' +
-          '<small>Analyse automatique par IA (Anthropic) des pages vues ici et de votre commune approximative. Aucun humain de notre équipe ne consulte ces données, nous ne les stockons pas et ne les revendons jamais ; ni votre nom, ni votre e-mail, ni votre adresse IP ne sont transmis.</small></span>' +
+          '<small>Analyse automatique par IA (Anthropic) des pages vues ici, de la page en cours, de votre commune approximative, du site d’où vous venez et du type d’appareil. Aucun humain de notre équipe ne consulte ces données, nous ne les stockons pas et ne les revendons jamais ; ni votre nom, ni votre e-mail, ni votre adresse IP ne sont transmis.</small></span>' +
         '</label>' +
         '<div class="gsc-btns">' +
           '<button type="button" class="gsc-refuse" id="gscRefuse">Tout refuser</button>' +

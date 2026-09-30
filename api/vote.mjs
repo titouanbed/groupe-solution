@@ -1,44 +1,38 @@
 // /api/vote  (Vercel Function) — « Le pouls des dirigeants » : votes sur les actus et dossiers.
 // Stockage : Upstash Redis (Vercel → Storage → Upstash for Redis, offre gratuite), via son API REST.
-// Variables fournies automatiquement par l'intégration : KV_REST_API_URL + KV_REST_API_TOKEN
-// (ou UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN). Sans elles → 503 et le widget reste masqué.
+// Sans base connectée → 503 et le widget reste masqué.
 //   GET  /api/vote?ids=a,b,c          → { counts: { a: { utile: 3, surveiller: 1, pasmoi: 0 }, … } }
-//   POST /api/vote { id, choice }     → { ok, counts }   (1 vote par IP et par sujet, 30 jours ;
-//   l'IP n'est jamais stockée en clair : seule une empreinte SHA-256 salée sert d'anti-doublon)
-import { createHash } from 'node:crypto';
-// Le nom exact dépend du préfixe choisi lors de la connexion (KV_…, STOCKAGE_…, UPSTASH_REDIS_…) :
-// on prend la première variable qui se termine par REST_API_URL / REST_URL (et le jeton en écriture associé).
-const envFind = re => Object.keys(process.env).filter(k => re.test(k) && !/READ_ONLY/.test(k)).sort()[0];
-const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || process.env[envFind(/_REST_(API_)?URL$/)];
-const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || process.env[envFind(/_REST_(API_)?TOKEN$/)];
-export const CHOICES = ['utile', 'surveiller', 'pasmoi'];
-const ID_RE = /^[a-z0-9:-]{3,120}$/;
+//   POST /api/vote { id, choice }     → { ok, counts }   (1 vote par connexion et par sujet, 30 jours ;
+//   l'IP n'est jamais stockée : seule une empreinte HMAC-SHA-256, avec une clé secrète, sert d'anti-doublon)
+import { createHmac } from 'node:crypto';
+import { allow, sameSite, readBody, redis, clientKey, UPSTASH } from './_guard.mjs';
 
-const send = (res, status, body) => { res.statusCode = status; res.setHeader('Content-Type', 'application/json; charset=utf-8'); res.setHeader('Cache-Control', 'no-store'); res.end(JSON.stringify(body)); };
-const redis = async commands => {
-  const r = await fetch(URL_ + '/pipeline', { method: 'POST', headers: { Authorization: 'Bearer ' + TOKEN, 'Content-Type': 'application/json' }, body: JSON.stringify(commands) });
-  if (!r.ok) throw new Error('redis ' + r.status);
-  return (await r.json()).map(x => x.result);
-};
+export const CHOICES = ['utile', 'surveiller', 'pasmoi'];
+// Seuls les sujets publiés par la rédaction : actu-…, dossier-…, question-…
+const ID_RE = /^(actu|dossier|question)-[a-z0-9-]{3,110}$/;
+// Clé secrète : VOTE_SALT si définie, sinon le jeton (secret) de la base — jamais une valeur écrite dans le code.
+const SECRET = process.env.VOTE_SALT || UPSTASH?.token || '';
+
+const send = (res, status, body, cache) => { res.statusCode = status; res.setHeader('Content-Type', 'application/json; charset=utf-8'); res.setHeader('Cache-Control', cache || 'no-store'); res.end(JSON.stringify(body)); };
 const toCounts = flat => { const o = Object.fromEntries(CHOICES.map(c => [c, 0])); for (let i = 0; i + 1 < (flat || []).length; i += 2) if (CHOICES.includes(flat[i])) o[flat[i]] = +flat[i + 1] || 0; return o; };
 
 export default async function handler(req, res) {
-  if (!URL_ || !TOKEN) return send(res, 503, { configured: false });
+  if (!UPSTASH || !SECRET) return send(res, 503, { configured: false });
   try {
     if (req.method === 'GET') {
-      const ids = String(req.query?.ids || new URL(req.url, 'http://x').searchParams.get('ids') || '').split(',').filter(id => ID_RE.test(id)).slice(0, 60);
+      const ids = [...new Set(String(req.query?.ids || new URL(req.url, 'http://x').searchParams.get('ids') || '').split(','))].filter(id => ID_RE.test(id)).slice(0, 20);
       if (!ids.length) return send(res, 400, { error: 'ids' });
+      if (!(await allow('vote-get', req, 120, 600, 50000))) return send(res, 429, { error: 'rate_limited' });
       const out = await redis(ids.map(id => ['HGETALL', 'poll:' + id]));
-      res.setHeader('Cache-Control', 'public, s-maxage=30, stale-while-revalidate=120');
-      return send(res, 200, { counts: Object.fromEntries(ids.map((id, i) => [id, toCounts(out[i])])) });
+      return send(res, 200, { counts: Object.fromEntries(ids.map((id, i) => [id, toCounts(out[i])])) }, 'public, s-maxage=30, stale-while-revalidate=120');
     }
     if (req.method === 'POST') {
-      let body = req.body;
-      if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
-      const id = String(body?.id || ''), choice = String(body?.choice || '');
+      if (!sameSite(req)) return send(res, 403, { error: 'forbidden' });
+      if (!(await allow('vote', req, 30, 3600, 5000))) return send(res, 429, { error: 'rate_limited' });
+      const body = readBody(req);
+      const id = String(body.id || ''), choice = String(body.choice || '');
       if (!ID_RE.test(id) || !CHOICES.includes(choice)) return send(res, 400, { error: 'invalid' });
-      const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
-      const who = createHash('sha256').update(ip + '|' + (process.env.VOTE_SALT || 'gs-pouls-2026')).digest('hex').slice(0, 24);
+      const who = createHmac('sha256', SECRET).update(clientKey(req)).digest('hex').slice(0, 24);
       const [first] = await redis([['SET', `voted:${id}:${who}`, '1', 'NX', 'EX', 2592000]]);
       if (first !== 'OK') { const [flat] = await redis([['HGETALL', 'poll:' + id]]); return send(res, 200, { ok: false, already: true, counts: toCounts(flat) }); }
       const [, flat] = await redis([['HINCRBY', 'poll:' + id, choice, 1], ['HGETALL', 'poll:' + id], ['ZINCRBY', 'poll:index', 1, id]]);

@@ -64,24 +64,16 @@ function page(city, zone) {
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": ${jstr('GroupSolution - Agence Web ' + city.name)},
-    "image": "${HOLDING}/Logo.svg",
+    "@type": "Service",
+    "name": ${jstr('Création de site internet et référencement local – ' + city.name)},
+    "serviceType": "Création de site internet, référencement local et automatisation",
     "description": ${jstr(city.desc)},
     "areaServed": [
 ${areaServedJsonLd(city, ZONE_NAME)}
     ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": ${jstr(city.name)},
-      "addressRegion": ${jstr(ZONE_NAME)},
-      "addressCountry": "FR"
-    },
-    "telephone": "+33782298559",
-    "email": "contact@groupsolution.fr",
     "url": ${jstr(url)},
-    "priceRange": "€€",
-    "parentOrganization": { "@type": "Organization", "name": "Groupe Solution", "url": "${HOLDING}" }
+    "image": "${HOLDING}/Logo.svg",
+    "provider": { "@type": "Organization", "@id": "${HOLDING}/#org", "name": "Groupe Solution", "url": "${HOLDING}/", "telephone": "+33782298559", "email": "contact@groupsolution.fr" }
   }
   </script>
 
@@ -345,7 +337,7 @@ ${faqHtml(city.faq)}
   <section id="a-propos" style="background: var(--blanc); padding: 80px 0; border-bottom: 1px solid var(--gris-clair);">
     <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; max-width: 900px; margin: 0 auto;">
       <div style="text-align: center;" class="reveal">
-        <img src="../photo-president.jpg" alt="Titouan Bedos - Fondateur GroupSolution" style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%; border: 4px solid var(--rose); box-shadow: var(--box-shadow-lg);" onerror="this.src='https://via.placeholder.com/250x250/FFD1DC/EC4899?text=Photo+Titouan'">
+        <img src="../photo-president.jpg" alt="Titouan Bedos - Fondateur GroupSolution" width="250" height="250" loading="lazy" decoding="async" style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%; border: 4px solid var(--rose); box-shadow: var(--box-shadow-lg);">
       </div>
       <div class="reveal">
         <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: var(--gris-fonce);">L'ingénierie digitale, <span class="accent" style="background: linear-gradient(135deg, var(--rose), var(--rose-fonce)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">sans blabla.</span></h2>
@@ -366,7 +358,7 @@ ${faqHtml(city.faq)}
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()" aria-label="Fermer"><svg class="icon"><use href="#i-x"/></svg></button>
       <div class="modal-header">
-        <h3>Prêt à dominer le web <br><span class="accent">${esc(city.h1suffix)} ?</span></h3>
+        <h3>Prêt à développer votre activité <br><span class="accent">${esc(city.h1suffix)} ?</span></h3>
         <p>Décrivez votre besoin. Je vous recontacte sous 24h.</p>
       </div>
       <form action="https://formspree.io/f/mzebrvjg" method="POST" id="contactForm">

@@ -28,6 +28,6 @@ console.log(a.s === 200 ? '✓ Assistant IA actif (ANTHROPIC_API_KEY OK)' : a.s 
 const l = await post('/api/lead', { _gotcha: 'controle-automatique' });
 console.log(l.s === 200 ? '✓ Formulaires via Brevo configurés (BREVO_API_KEY + LEAD_FROM)' : l.s === 503 ? 'ℹ️ Formulaires : BREVO_API_KEY ou LEAD_FROM manquante → repli Formspree (50 demandes/mois)' : `⚠️ Formulaires : HTTP ${l.s}`);
 // Votes « Le pouls » : 200 = base Upstash connectée, 503 = pas encore connectée (widget masqué).
-const v = await fetch(SITE + '/api/vote?ids=controle-auto').then(r => r.status).catch(() => 0);
+const v = await fetch(SITE + '/api/vote?ids=actu-controle-auto').then(r => r.status).catch(() => 0);
 console.log(v === 200 ? '✓ Votes « Le pouls » actifs (base Upstash connectée)' : v === 503 ? 'ℹ️ Votes : base Upstash non connectée → widget masqué' : `⚠️ Votes : HTTP ${v}`);
 if (fail) { console.log(`✗ ${fail} contrôle(s) en échec`); process.exit(1); }

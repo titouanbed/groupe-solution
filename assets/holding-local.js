@@ -47,7 +47,7 @@
     fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
       .then(function (res) {
         if (res.ok) {
-          f.outerHTML = '<div class="ok"><b>C’est reçu, merci.</b><p>Je reviens vers vous sous 24 h — souvent le jour même — avec une première idée concrète. Pressé ? <a href="tel:+33782298559"><strong>07 82 29 85 59</strong></a></p></div>';
+          f.outerHTML = '<div class="ok"><b>C’est reçu, merci.</b><p>Je reviens vers vous sous 24 h ouvrées avec une première idée concrète. Pressé ? <a href="tel:+33782298559"><strong>07 82 29 85 59</strong></a></p></div>';
           if (window.gtag) gtag('event', 'generate_lead', { method: 'express_form' });
         } else { alert('Une erreur est survenue. Réessayez ou appelez le 07 82 29 85 59.'); }
       })

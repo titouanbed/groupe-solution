@@ -67,5 +67,9 @@ const kb = `Pages communes (site internet | automatisation) :\n` + places.map(p 
   `\n\nPages métiers :\n` + metiers.map(m => `${m.l} : ${m.u}`).join('\n') +
   `\n\nServices :\n` + (services.length ? services.map(s => `${s.t} : ${s.u}`).join('\n') : '(voir /automatisation/ et /montpellier/site-internet-montpellier.html)') +
   `\n\nAutres pages utiles : /outils/configurateur-site-internet.html (configurateur de projet), /outils/test-visibilite-google.html, /outils/calculateur-automatisation.html, /montpellier/guides/ (guides), /lab/ (radar technologique), /lab/api.html, /lab/veille/, /lab/actus/, /realisations.html, /echanger.html#rendez-vous, /plan-du-site.html`;
-writeFileSync(join(ROOT, 'api', '_knowledge.mjs'), '// Généré par zones/generate-search-index.mjs — ne pas éditer.\nexport const COMMUNE_COUNT = ' + COMMUNES.length + ';\nexport const SITE_KNOWLEDGE = ' + JSON.stringify(kb) + ';\n', 'utf8');
+/* Réponses de référence (content/reference.md, modifiables par Titouan) : modèle de réponse pour l'assistant. */
+let ref = '';
+try { ref = readFileSync(join(ROOT, 'content', 'reference.md'), 'utf8').split(/\n## /).slice(1).map(b => { const [q, ...a] = b.split('\n'); return `Q : ${q.trim()}\nR : ${a.join(' ').replace(/\s+/g, ' ').trim()}`; }).join('\n\n'); } catch {}
+const kbFull = kb + (ref ? `\n\nRéponses de référence (à suivre sur le fond, reformulées selon la question) :\n${ref}` : '');
+writeFileSync(join(ROOT, 'api', '_knowledge.mjs'), '// Généré par zones/generate-search-index.mjs — ne pas éditer.\nexport const COMMUNE_COUNT = ' + COMMUNES.length + ';\nexport const SITE_KNOWLEDGE = ' + JSON.stringify(kbFull) + ';\n', 'utf8');
 console.log(`✓ assets/site-index.json : ${chunks.length} passages, ${seen.size} pages, ${(JSON.stringify(chunks).length / 1024).toFixed(0)} Ko`);

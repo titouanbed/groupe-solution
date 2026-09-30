@@ -197,7 +197,7 @@
   function aiState() { return get(LS, AI_KEY) || get(SS, AI_KEY); }
   function setAI(v) { set(LS, AI_KEY, v); set(SS, AI_KEY, v); ga(v === 'granted' ? 'perso_ai_on' : 'perso_ai_off'); }
   api.setAI = setAI;
-  var AI_PAGES = /^\/(index\.html)?$|^\/services\/$|^\/automatisation\/$|^\/montpellier\/site-internet-montpellier\.html$|^\/lab\/$|^\/solutions\.html$|^\/realisations\.html$/;
+  var AI_PAGES = /^\/services\/$|^\/automatisation\/$|^\/montpellier\/site-internet-montpellier\.html$|^\/lab\/$|^\/solutions\.html$|^\/realisations\.html$/;
   var EXTRA = [['/services/', 'Tous nos services'], ['/services/logiciel-sur-mesure.html', 'Logiciel sur-mesure'], ['/services/integration-api-connecteurs.html', 'Connecter vos outils (API)'], ['/services/agence-ia-entreprise.html', 'Intégrer l’IA dans votre entreprise'], ['/lab/dossiers/', 'Le dossier de la semaine'], ['/lab/questions/', 'Les questions des dirigeants']];
   function candidates() {
     var seen = {}, out = [];
