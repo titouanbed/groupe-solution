@@ -41,6 +41,7 @@ const CSS = `${STICKY_CSS}
 .news h3{font-size:22px;font-weight:600;margin-top:8px;line-height:1.25}
 .news p{font-size:15.5px;color:var(--secondary);line-height:1.7;margin-top:10px}
 .news .why{background:var(--olive-soft);border-radius:14px;padding:14px 16px;color:var(--olive2);font-weight:600;font-size:14.5px}
+.news .why.act{background:#FDECEF;color:#9E1239;margin-top:8px}
 .news .why b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 .news .src{font-size:13px;color:var(--muted);margin-top:12px}.news .src a{color:var(--ink);font-weight:700;text-decoration:underline}
 .news .more{display:inline-block;margin-top:12px;font-weight:800;font-size:14px;border-bottom:2px solid var(--acc)}
@@ -113,7 +114,8 @@ const newsHTML = (d, it, i, linkBase = '') => `
       <span class="cat">${esc(it.cat)}</span>
       <h3>${esc(it.titre)}</h3>
       <p>${esc(it.resume)}</p>
-      <p class="why"><b>Ce que ça change pour vous</b>${esc(it.pourquoi)}</p>
+      <p class="why"><b>Ce que ça change pour vous</b>${esc(it.pourquoi)}</p>${it.action ? `
+      <p class="why act"><b>À faire cette semaine</b>${esc(it.action)}</p>` : ''}
       <p class="src">Sources : ${it.sources.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.nom)}</a>`).join(' · ')}</p>
       ${it.lien ? `<a class="more" href="${linkBase}${esc(it.lien.url)}">${esc(it.lien.label)} →</a>` : ''}
       <div class="poll" data-poll="actu-${d.date}-${slugify(it.titre).slice(0, 80)}" hidden></div>
@@ -192,12 +194,13 @@ ${items}
 function homeBlock(all) {
   const items = all.flatMap(d => d.items.map(it => ({ d, it }))).slice(0, 3);
   return `<!-- ACTUS:START (généré par zones/generate-actus.mjs) -->
-  <section class="sec" id="actus"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Actus · ${esc(fdate(all[0].date))}</div><h2>Ce qui bouge en ce moment.</h2><p>L’actualité IA, numérique et réglementaire, sourcée et traduite en impacts concrets pour votre entreprise.</p></div>
-    <div class="autoGrid">
-${items.map(({ d, it }) => `      <a class="auto reveal" href="lab/actus/${d.date}.html#${slugify(it.titre)}"><div class="who">${esc(it.cat)}</div><h3>${esc(it.titre)}</h3><p style="font-size:14.5px;color:var(--secondary);margin-top:12px;line-height:1.6">${esc(it.pourquoi)}</p><div class="gain">Lire l’actu →</div></a>`).join('\n')}
+  <section class="sec hx alt" id="actus"><div class="wrap">
+    <div class="hxHead reveal"><div class="kicker">En direct · ${esc(fdate(all[0].date))}</div><h2>Ce qui bouge en ce moment.</h2></div>
+    <div class="hxNews">
+${items.map(({ d, it }) => `      <a class="reveal" href="lab/actus/${d.date}.html#${slugify(it.titre)}"><small>${esc(it.cat)}</small><b>${esc(it.titre)}</b></a>`).join('\n')}
     </div>
-    <p class="reveal" style="text-align:center;margin-top:24px;display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center"><a href="lab/actus/" style="font-weight:800;border-bottom:2px solid var(--acc)">Toutes les actus →</a><a href="lab/dossiers/" style="font-weight:800;border-bottom:2px solid var(--acc)">Le dossier de la semaine →</a><a href="lab/questions/" style="font-weight:800;border-bottom:2px solid var(--acc)">Vos questions sur l’IA →</a><a href="lab/pouls/" style="font-weight:800;border-bottom:2px solid var(--acc)">Votez : le pouls des dirigeants →</a></p>
+    <div class="hxNl reveal"><form id="nlForm"><div><b>L’essentiel du lundi</b><span>Les actus de la semaine et l’action à mener, dans votre boîte mail. Désinscription en un clic.</span></div><input type="email" name="email" required placeholder="Votre e-mail professionnel" autocomplete="email" aria-label="Votre e-mail"><button type="submit">Je m’inscris</button><p class="nlMsg" role="status"></p></form><a class="hxAll" href="lab/actus/">Toutes les actus →</a></div>
+    <script>(function(){var f=document.getElementById('nlForm');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.nlMsg');b.disabled=true;fetch('/api/devis',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'newsletter',email:f.email.value,source:'accueil'})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j;});}).then(function(j){m.textContent=j.deja?'Vous êtes déjà inscrit, merci !':'Presque fini : confirmez votre inscription dans l’e-mail que nous venons d’envoyer.';f.email.value='';if(window.gtag)gtag('event','newsletter_signup');}).catch(function(j){b.disabled=false;m.textContent=(j&&j.message)||'L’inscription n’a pas abouti, réessayez.';});});})();</script>
   </div></section>
   <!-- ACTUS:END -->`;
 }

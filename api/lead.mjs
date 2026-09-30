@@ -4,6 +4,7 @@
 // Variables Vercel : BREVO_API_KEY, LEAD_FROM (expéditeur validé dans Brevo), LEAD_TO (défaut : contact@groupsolution.fr).
 // Sans BREVO_API_KEY → 503 { configured:false } et le navigateur bascule sur Formspree (comportement actuel).
 import { allow, sameSite, readBody } from "./_guard.mjs";
+import { tagConv } from "./_conv.mjs";
 const send = (res, status, body) => { res.statusCode = status; res.setHeader("Content-Type", "application/json; charset=utf-8"); res.setHeader("Cache-Control", "no-store"); res.end(JSON.stringify(body)); };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const EMAIL = /^[^\s@<>"]{1,64}@[^\s@<>"]{1,190}\.[a-z]{2,}$/i;
@@ -16,7 +17,8 @@ export default async function handler(req, res) {
   if (body._gotcha) return send(res, 200, { ok: true }); // pot de miel anti-robots
   // 6 demandes / heure par visiteur, 150 / jour au total (partagé entre instances).
   if (!(await allow("lead", req, 6, 3600, 150))) return send(res, 429, { error: "rate_limited" });
-  const fields = Object.entries(body).filter(([k, v]) => typeof v === "string" && v.trim() && k.length < 40).slice(0, 20).map(([k, v]) => [k, v.slice(0, 4000)]);
+  const fields = Object.entries(body).filter(([k, v]) => k !== "sid" && typeof v === "string" && v.trim() && k.length < 40).slice(0, 20).map(([k, v]) => [k, v.slice(0, 4000)]);
+  await tagConv(String(body.sid || ""), { evenement: "Demande de rappel", contact: { nom: body.nom, telephone: body.telephone, email: body.email } });
   const get = k => (fields.find(([f]) => f === k) || [])[1] || "";
   const contact = get("telephone") || get("contact") || get("email");
   if (!contact) return send(res, 400, { error: "missing_contact" });

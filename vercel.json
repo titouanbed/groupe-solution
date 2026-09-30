@@ -146,6 +146,19 @@
     },
     "api/entreprise.mjs": {
       "maxDuration": 30
+    },
+    "api/devis.mjs": {
+      "maxDuration": 60
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/devis?cron=radar",
+      "schedule": "17 5 * * *"
+    },
+    {
+      "path": "/api/devis?cron=newsletter",
+      "schedule": "11 6 * * 1"
+    }
+  ]
 }
