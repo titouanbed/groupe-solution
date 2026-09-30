@@ -142,7 +142,7 @@ ${faqJsonLd(city.faq)}
         <li><a href="#audit">Audit Gratuit</a></li>
         <li><a href="#solutions">Nos Services</a></li>
         <li><a href="#villes">Nos Villes</a></li>
-        <li><a href="blog/index.html">Guides</a></li>
+        <li><a href="${zone.guides ? zone.guides[0].href : 'blog/index.html'}">Guides</a></li>
         <li><a href="https://www.groupsolution.fr" class="nav-holding">Groupe Solution ↗</a></li>
       </ul>
       <div class="nav-actions">
@@ -327,9 +327,9 @@ ${faqHtml(city.faq)}
         <p>Tarifs, visibilité, réseaux, e-commerce, automatisation : nos conseils concrets pour développer votre entreprise ${esc(city.h1suffix)}.</p>
       </div>
       <div class="guides-grid">
-        ${TOPICS.map(t => `<a class="guides-card reveal" href="blog/${t.slug}-${city.slug}.html"><span class="gt">${esc(t.label)}</span><h4>${esc(t.title(city, zone))}</h4><span class="more">Lire le guide →</span></a>`).join('\n        ')}
+        ${zone.guides ? zone.guides.map(g => `<a class="guides-card reveal" href="${g.href}"><span class="gt">${esc(g.label)}</span><h4>${esc(g.title)}</h4><span class="more">Lire le guide →</span></a>`).join('\n        ') : TOPICS.map(t => `<a class="guides-card reveal" href="blog/${t.slug}-${city.slug}.html"><span class="gt">${esc(t.label)}</span><h4>${esc(t.title(city, zone))}</h4><span class="more">Lire le guide →</span></a>`).join('\n        ')}
       </div>
-      <div class="guides-all"><a href="blog/index.html">Voir tous les guides ${esc(city.h1suffix)} →</a></div>
+      ${zone.guides ? '' : `<div class="guides-all"><a href="blog/index.html">Voir tous les guides ${esc(city.h1suffix)} →</a></div>`}
     </div>
   </section>
 

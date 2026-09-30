@@ -29,7 +29,7 @@ const FAQ = [
   ['Y a-t-il des coûts cachés ?', 'Non. Les éventuels coûts récurrents (hébergement, abonnement IA, maintenance) sont listés dans le devis, avant tout engagement.']
 ];
 const jsonld = { '@context': 'https://schema.org', '@graph': [
-  { '@type': 'Article', headline: 'Pourquoi un logiciel sur-mesure est plus accessible qu’on ne l’imagine', description: desc, url, inLanguage: 'fr-FR', author: { '@type': 'Person', name: 'Titouan Bedos', worksFor: { '@id': HOLDING + '/#org' } }, publisher: { '@id': HOLDING + '/#org' }, datePublished: '2026-09-30', dateModified: new Date().toISOString().slice(0, 10) },
+  { '@type': 'Article', headline: 'Pourquoi un logiciel sur-mesure est plus accessible qu’on ne l’imagine', description: desc, url, inLanguage: 'fr-FR', author: { '@type': 'Person', name: 'Titouan Bedos', sameAs: ['https://www.linkedin.com/in/titouan-bedos/'], worksFor: { '@id': HOLDING + '/#org' } }, publisher: { '@id': HOLDING + '/#org' }, datePublished: '2026-09-30', dateModified: new Date().toISOString().slice(0, 10) },
   { '@type': 'FAQPage', mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
   { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Groupe Solution', item: HOLDING + '/' }, { '@type': 'ListItem', position: 2, name: 'Pourquoi c’est accessible', item: url }] }] };
 const CSS = `<style>

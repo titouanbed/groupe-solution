@@ -127,7 +127,7 @@ function dayPage(d, all) {
   const desc = d.intro.length > 158 ? d.intro.slice(0, 155).replace(/\s+\S*$/, '') + '…' : d.intro;
   const jsonld = { '@context': 'https://schema.org', '@graph': [
     { '@type': 'NewsArticle', headline: d.titre, description: desc, datePublished: d.date, dateModified: d.date, url, inLanguage: 'fr-FR',
-      author: { '@type': 'Person', name: 'Titouan Bedos' }, publisher: { '@type': 'Organization', name: 'Groupe Solution', logo: { '@type': 'ImageObject', url: HOLDING + '/Logo.svg' } },
+      author: { '@type': 'Person', name: 'Titouan Bedos', sameAs: ['https://www.linkedin.com/in/titouan-bedos/'] }, publisher: { '@type': 'Organization', name: 'Groupe Solution', logo: { '@type': 'ImageObject', url: HOLDING + '/Logo.svg' } },
       image: HOLDING + '/assets/visuel-ressources.jpg', citation: d.items.flatMap(it => it.sources.map(s => s.url)) },
     { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Groupe Solution', item: HOLDING + '/' }, { '@type': 'ListItem', position: 2, name: 'Actus', item: `${HOLDING}/lab/actus/` }, { '@type': 'ListItem', position: 3, name: d.date, item: url }] }] };
   const i = all.indexOf(d), prev = all[i + 1], next = all[i - 1];

@@ -84,7 +84,7 @@
         } else { list.innerHTML = DEF.list; $('pvAct').innerHTML = DEF.act + (st.dom ? '<a class="edLink" href="' + st.dom + '/automatisation-' + st.dom + '.html">Nos solutions ' + esc(st.lieuDe) + '</a>' : ''); }
       }
       // Photo : le territoire du visiteur en outre-mer, sinon l'atelier.
-      var img = $('pvImg'), src = st.dom ? (st.dom === 'mayotte' ? 'photo6.jpg' : 'assets/' + st.dom + '/hero-1.jpg') : 'assets/visuel-solutions.jpg';
+      var img = $('pvImg'), src = st.dom ? (st.dom === 'mayotte' ? 'assets/mayotte-900.webp' : 'assets/' + st.dom + '/hero-900.webp') : 'assets/visuel-solutions-900.webp';
       if (img.getAttribute('src') !== src) { img.style.opacity = 0; img.onload = function () { img.style.opacity = 1; }; img.src = src; img.alt = st.dom ? 'Paysage ' + st.lieuDe : DEF.alt; }
       $('pvCap').textContent = st.dom === 'mayotte' ? 'Mayotte, où Titouan est installé.' : st.dom ? cap(st.lieu) + '.' : '';
       var why = $('pvWhy'); why.hidden = !(m || lieu); $('pvWhyTx').hidden = true;

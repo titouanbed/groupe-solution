@@ -277,7 +277,7 @@ function api() {
   const title = 'API gratuites pour entreprises : catalogue et démos en direct | Groupe Solution';
   const desc = "Entreprises (SIRENE), adresses, jours fériés, météo, mer, cartographie, IA : les API gratuites ou ouvertes utiles aux entreprises, avec démos en direct.";
   const jsonld = { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'TechArticle', headline: 'API gratuites et ouvertes utiles aux entreprises', description: desc, url, datePublished: '2026-09-29', dateModified: '2026-09-29', author: { '@type': 'Person', name: 'Titouan Bedos' }, publisher: { '@type': 'Organization', name: 'Groupe Solution', logo: { '@type': 'ImageObject', url: HOLDING + '/Logo.svg' } } },
+    { '@type': 'TechArticle', headline: 'API gratuites et ouvertes utiles aux entreprises', description: desc, url, datePublished: '2026-09-29', dateModified: '2026-09-29', author: { '@type': 'Person', name: 'Titouan Bedos', sameAs: ['https://www.linkedin.com/in/titouan-bedos/'] }, publisher: { '@type': 'Organization', name: 'Groupe Solution', logo: { '@type': 'ImageObject', url: HOLDING + '/Logo.svg' } } },
     { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Groupe Solution', item: HOLDING + '/' }, { '@type': 'ListItem', position: 2, name: 'Lab', item: `${HOLDING}/${DIR}/` }, { '@type': 'ListItem', position: 3, name: 'API & données', item: url }] }] };
   return head({ title, desc, url, jsonld }) + `
   <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <a href="./">Lab</a> › <span>API &amp; données</span></div>

@@ -283,7 +283,7 @@ ${cards}
 
 let n = 0, idx = 0;
 for (const zone of ZONES) {
-  if (zone.status !== 'online') continue;
+  if (zone.status !== 'online' || zone.guides) continue; // zone avec ses propres guides rédigés à la main (Mayotte)
   const entries = [];
   if (zone.region) entries.push(zone.region);
   if (zone.cities) entries.push(...zone.cities.filter(c => c.faq));
