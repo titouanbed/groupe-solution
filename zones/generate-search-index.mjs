@@ -57,6 +57,10 @@ let services = [];
 try { services = execSync("ls services/*.html", { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString().trim().split('\n').filter(f => !f.endsWith('index.html')).map(f => {
   const h = readFileSync(join(ROOT, f), 'utf8'); return { t: clean((h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [, f])[1]).replace(/\s+([.,])/g, '$1'), u: '/' + f };
 }); } catch {}
+/* Communes pour la personnalisation (assets/perso.js) : nom, coordonnées, pages. */
+const persoPlaces = [{ n: 'Montpellier', la: 43.611, lo: 3.877, site: '/montpellier/site-internet-montpellier.html', auto: '/automatisation/' },
+  ...COMMUNES.map(c => ({ n: c.name, la: +c.lat.toFixed(3), lo: +c.lng.toFixed(3), site: '/montpellier/site-internet-' + c.slug + '.html', auto: '/automatisation/' + c.slug + '.html' }))];
+writeFileSync(join(ROOT, 'assets', 'perso-places.json'), JSON.stringify(persoPlaces), 'utf8');
 writeFileSync(join(ROOT, 'assets', 'site-index.json'), JSON.stringify({ v: 2, n: chunks.length, c: chunks, places, metiers, services }), 'utf8');
 /* Même savoir, compact, pour le prompt système de l'assistant IA (api/assistant.mjs). */
 const kb = `Pages communes (site internet | automatisation) :\n` + places.map(p => `${p.n} (${p.cp}) : ${p.site} | ${p.auto}`).join('\n') +

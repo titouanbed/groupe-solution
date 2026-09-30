@@ -16,6 +16,9 @@
   if (!/\/ecole-mayotte\//.test(location.pathname) && !/\/vitrine-gbp\.html$/.test(location.pathname)) {
     var sa = document.createElement('script'); sa.src = '/assets/assistant.js'; sa.defer = true;
     (document.body || document.head).appendChild(sa);
+    // Parcours sur-mesure (commune du visiteur, prochaine étape utile) — voir /assets/perso.js
+    var sp = document.createElement('script'); sp.src = '/assets/perso.js'; sp.defer = true;
+    (document.body || document.head).appendChild(sp);
   }
 
   if (!GA_ID || /X{4,}/.test(GA_ID)) return; // pas d'ID réel → on ne fait rien
