@@ -142,7 +142,8 @@
   @property --gsa{syntax:'<angle>';initial-value:0deg;inherits:false}
   .hero-ai{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - 74px);display:flex;align-items:center;padding:48px 0 56px}
   .aiBg{position:absolute;inset:0;z-index:-1;background:radial-gradient(120% 90% at 50% -10%,#fff 0%,var(--paper) 62%)}
-  .orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.5;animation:gsaFloat 20s ease-in-out infinite alternate;will-change:transform}
+  .orb{position:absolute;border-radius:50%;opacity:.55;animation:gsaFloat 20s ease-in-out infinite alternate;will-change:transform}
+  @media(max-width:760px){.orb{animation:none;will-change:auto}}
   .o1{width:52vmax;height:52vmax;left:-18vmax;top:-26vmax;background:radial-gradient(circle,rgba(255,56,92,.75),rgba(255,56,92,0) 62%)}
   .o2{width:44vmax;height:44vmax;right:-18vmax;top:-10vmax;background:radial-gradient(circle,rgba(255,150,105,.7),rgba(255,150,105,0) 62%);animation-duration:24s;animation-delay:-6s}
   .o3{width:40vmax;height:40vmax;left:28%;bottom:-28vmax;background:radial-gradient(circle,rgba(170,140,255,.5),rgba(170,140,255,0) 62%);animation-duration:28s;animation-delay:-12s}
