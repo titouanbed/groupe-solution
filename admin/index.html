@@ -97,6 +97,7 @@ a{color:var(--acc)}
       '<label class="row" style="justify-content:flex-start;gap:8px"><input id="g_j" type="checkbox" style="width:auto"' + (G.jauge !== false ? ' checked' : '') + '> Afficher la jauge budget aux visiteurs</label>' +
       '<label>Note pour vous</label><textarea id="g_note">' + esc(G.note || '') + '</textarea>' +
       '<div class="bar"><button class="btn" id="gs">Enregistrer</button></div><p class="note" id="gm"></p></div>';
+    api('?admin=newsletter').then(function (r) { $('#view').insertAdjacentHTML('beforeend', '<div class="card"><b>Newsletter « L’essentiel du lundi »</b><p class="note">' + r.abonnes + ' abonné(s) confirmé(s). Envoi automatique chaque lundi matin avec les actus de la semaine.</p></div>'); }).catch(function () {});
     $('#gs').onclick = function () { api('', { action: 'settings', grille: { tjm: $('#g_tjm').value, minimum: $('#g_min').value, jauge: $('#g_j').checked, note: $('#g_note').value } }).then(function (r) { G = r.grille; $('#gm').textContent = 'Enregistré ✅'; }).catch(function () { $('#gm').textContent = 'Erreur'; }); };
   }
   function ago(d) { var m = Math.round((Date.now() - new Date(d)) / 60000); return m < 1 ? 'à l’instant' : m < 60 ? 'il y a ' + m + ' min' : m < 1440 ? 'il y a ' + Math.round(m / 60) + ' h' : new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }); }

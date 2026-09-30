@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,follow" />
+<title>L'essentiel du lundi | Groupe Solution</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<style>
+body{margin:0;background:#F7F6F3;color:#171613;font:16px/1.6 -apple-system,"Segoe UI",Roboto,sans-serif;display:grid;place-items:center;min-height:100vh;padding:16px;box-sizing:border-box}
+.c{max-width:520px;background:#fff;border:1px solid #E7E4DC;border-radius:22px;padding:30px 26px;text-align:center}
+h1{font:600 28px/1.2 Georgia,serif;margin:14px 0 8px}p{color:#57534B;margin:0 0 18px}a.b{display:inline-block;background:#E61E4D;color:#fff;border-radius:999px;padding:12px 22px;font-weight:800;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="c"><img src="/Logo.svg" alt="Groupe Solution" width="120" height="34" /><h1 id="t">L'essentiel du lundi</h1><p id="m">Chaque lundi, les actualités IA, numériques et réglementaires de la semaine, vérifiées et traduites en actions concrètes.</p><a class="b" href="/">Retour au site</a></div>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), t = document.getElementById('t'), m = document.getElementById('m');
+  if (q.get('ok') === '1') { t.textContent = 'C’est confirmé !'; m.textContent = 'Rendez-vous lundi matin dans votre boîte mail. Désinscription en un clic dans chaque envoi.'; }
+  else if (q.get('ok') === '0') { t.textContent = 'Lien expiré'; m.textContent = 'Ce lien de confirmation n’est plus valable : réinscrivez-vous depuis la page d’accueil.'; }
+  else if (q.get('stop') === '1') { t.textContent = 'Vous êtes désinscrit'; m.textContent = 'Vous ne recevrez plus L’essentiel du lundi. Merci de nous avoir lus.'; }
+  else if (q.get('stop') === '0') { t.textContent = 'Déjà désinscrit'; m.textContent = 'Cette adresse ne reçoit plus nos e-mails.'; }
+})();
+</script>
+</body>
+</html>

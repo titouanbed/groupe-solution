@@ -20,6 +20,7 @@ import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
 import { sendMail, layout, esc, OWNER, MAIL_OK } from "./_mail.mjs";
 import { tagConv, listConvs, getConv, SID_RE } from "./_conv.mjs";
 import { runRadar, listRadar, setRadarStatus } from "./_radar.mjs";
+import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount } from "./_newsletter.mjs";
 
 const MODEL = process.env.CONCEPT_MODEL || process.env.ASSISTANT_MODEL || "claude-opus-5-5";
 const SITE = "https://www.groupsolution.fr";
@@ -84,6 +85,16 @@ export default async function handler(req, res) {
     if (req.method === "GET") {
       const q = new URL(req.url, "http://x").searchParams, A = q.get("admin"), id = q.get("id") || "";
       // Tâche planifiée Vercel (chaque matin) : en-tête Authorization: Bearer CRON_SECRET.
+      // Newsletter : confirmation (double opt-in) et désinscription en un clic, puis retour sur une page du site.
+      if (q.get("nl") === "confirm" || q.get("nl") === "stop") {
+        const ok = q.get("nl") === "confirm" ? await nlConfirm(q.get("t") || "") : await nlStop(q.get("t") || "");
+        res.statusCode = 302; res.setHeader("Location", `/newsletter.html?${q.get("nl") === "confirm" ? "ok" : "stop"}=${ok ? 1 : 0}`); return res.end();
+      }
+      if (q.get("cron") === "newsletter") {
+        const cs = process.env.CRON_SECRET || "", h = String(req.headers.authorization || "");
+        if (!(cs.length >= 16 && h === "Bearer " + cs) && !admin) return send(res, 401, { error: "unauthorized" });
+        return send(res, 200, await nlSend());
+      }
       if (q.get("cron") === "radar") {
         const cs = process.env.CRON_SECRET || "", h = String(req.headers.authorization || "");
         if (!(cs.length >= 16 && h === "Bearer " + cs) && !admin) return send(res, 401, { error: "unauthorized" });
@@ -94,6 +105,7 @@ export default async function handler(req, res) {
       if (A === "settings") return send(res, 200, { grille: await get("settings:grille") || {}, mail: MAIL_OK() });
       if (A === "demande" && ID_RE.test(id)) return send(res, 200, { demande: await get("demande:" + id) });
       if (A === "radar") return send(res, 200, { radar: await listRadar(150), cron: (process.env.CRON_SECRET || "").length >= 16 });
+      if (A === "newsletter") return send(res, 200, { abonnes: await nlCount() });
       if (A === "convs") return send(res, 200, { convs: await listConvs(120) });
       if (A === "conv") { const sid = q.get("sid") || ""; return send(res, 200, { conv: SID_RE.test(sid) ? await getConv(sid) : null }); }
       if (A === "list") {
@@ -108,6 +120,12 @@ export default async function handler(req, res) {
     if (req.method !== "POST") return send(res, 405, { error: "method_not_allowed" });
     const b = readBody(req), action = String(b.action || "");
 
+    if (action === "newsletter") {
+      if (!sameSite(req)) return send(res, 403, { error: "forbidden" });
+      if (!(await allow("newsletter", req, 3, 3600, 300))) return send(res, 429, { error: "rate_limited" });
+      const r = await nlSubscribe(str(b.email, 190), str(b.source, 60));
+      return send(res, r.ok ? 200 : 400, r);
+    }
     if (action === "radar_run" || action === "radar_status") {
       if (!admin) return send(res, 401, { error: "unauthorized" });
       if (action === "radar_status") return send(res, (await setRadarStatus(String(b.id || ""), String(b.statut || ""))) ? 200 : 400, { ok: true });

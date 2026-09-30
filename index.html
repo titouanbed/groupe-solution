@@ -114,15 +114,15 @@
           "name": "Qu'est-ce qu'on peut automatiser dans une petite entreprise ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Tout ce qui se répète chaque semaine : devis, saisie des commandes, relances de factures et de devis, prises de rendez-vous, tri et classement de documents, reporting. Dans la plupart des TPE et PME, on trouve plusieurs heures par semaine à récupérer dès le premier appel."
+            "text": "Tout ce qui se répète chaque semaine : devis, saisie des commandes, relances de factures et de devis, prises de rendez-vous, tri et classement de documents, reporting — et bien au-delà, avec des agents IA qui répondent, lisent et agissent pour vous."
           }
         },
         {
           "@type": "Question",
-          "name": "Combien coûte une automatisation ?",
+          "name": "Combien ça coûte ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "On part toujours du gain : on estime ce que la tâche vous coûte aujourd'hui et on ne propose que ce qui se rembourse nettement. Notre devise : nous gagnons de l'argent uniquement si vous en gagnez. Pour certains projets, on partage la valeur créée plutôt que de facturer une prestation."
+            "text": "Tout est sur devis, gratuit et sans engagement. Indiquez votre budget dans le chat : vous voyez tout de suite ce qui tient dedans. Parce que nous construisons avec l'IA, c'est souvent bien plus accessible qu'on ne l'imagine."
           }
         },
         {
@@ -138,15 +138,7 @@
           "name": "Où êtes-vous basés ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "À Montpellier. On intervient sur toute la métropole et l'Hérault (bassin de Thau, littoral, Pic Saint-Loup, Lunel, vallée de l'Hérault), et partout en France à distance, ainsi que dans les DOM-TOM via nos agences locales."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Combien de temps avant de voir un résultat ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Une première automatisation simple (relances, réponses automatiques, prise de rendez-vous) est livrée en quelques jours. Un outil sur-mesure plus complet se construit par étapes, avec un premier gain mesurable en quelques semaines."
+            "text": "Notre agence est à Saint-Jean-de-Védas, aux portes de Montpellier, et Titouan est à Mayotte. Nous travaillons avec les entreprises de toute la France et de l'outre-mer, en visio ou sur place quand c'est utile."
           }
         }
       ]
@@ -215,6 +207,24 @@
 
   /* ── HERO (gauche : positionnement · droite : bulle d'appel) ── */
 
+  /* ══ Accueil épuré ══ */
+  .hx{padding:clamp(44px,6vw,76px) 0}.hxHead{max-width:760px;margin:0 0 30px}.hxHead.center{margin:0 auto 26px;text-align:center}.hxHead h2{font-size:clamp(28px,3.6vw,44px);margin:10px 0 0;letter-spacing:-.03em}
+  .hxTiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.hxTile{display:flex;flex-direction:column;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:22px 20px;color:var(--ink);transition:transform .2s var(--ease),border-color .2s,box-shadow .2s}
+  .hxTile:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:var(--sh-m,0 14px 34px rgba(0,0,0,.08))}.hxIc{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:#FDECEF;color:var(--acc);margin-bottom:6px}
+  .hxTile b{font-size:17px;line-height:1.25}.hxTile span:last-child{color:var(--secondary);font-size:14.5px;line-height:1.5}
+  .hxSteps{list-style:none;counter-reset:hx;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.hxSteps li{counter-increment:hx;display:flex;gap:14px;align-items:baseline;border-top:2px solid var(--ink);padding-top:14px}
+  .hxSteps li::before{content:counter(hx,decimal-leading-zero);font:600 24px var(--serif);color:var(--acc)}.hxSteps b{display:block;font-size:16px}.hxSteps span{color:var(--secondary);font-size:14.5px}
+  .hxGo{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;margin:30px 0 0}.hxAll{font-weight:800;border-bottom:2px solid var(--acc);color:var(--ink)}
+  .hxProof{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.hxProof a{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:22px;color:var(--ink)}.hxProof b{display:block;font:600 clamp(32px,4vw,46px)/1 var(--serif);letter-spacing:-.03em}.hxProof span{display:block;margin-top:8px;color:var(--secondary);font-size:14px}
+  .hxMe{display:flex;gap:18px;align-items:center;margin:26px 0 0;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:20px}.hxMe img{width:84px;height:84px;border-radius:50%;object-fit:cover;flex-shrink:0}.hxMe p{margin:0;font:500 clamp(17px,1.8vw,20px)/1.45 var(--serif)}.hxMe small{display:block;margin-top:8px;color:var(--muted);font-size:13px}
+  .hxNear{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:22px}.hxNear span{font-size:13px;font-weight:800;color:var(--muted);margin-right:4px}.hxNear a{border:1px solid var(--line2);border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:700;color:var(--ink);background:var(--white)}
+  .hxNews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.hxNews a{display:flex;flex-direction:column;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px 20px;color:var(--ink)}.hxNews a:hover{border-color:var(--ink)}.hxNews small{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}.hxNews b{font-size:16px;line-height:1.35}
+  .hxNl{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;margin-top:22px}.hxNl form{flex:1 1 560px;display:grid;grid-template-columns:1fr minmax(200px,280px) auto;gap:10px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+  .hxNl form b{display:block;font-size:15px}.hxNl form span{display:block;font-size:13px;color:var(--secondary)}.hxNl input{min-height:46px;border:1px solid var(--line2);border-radius:12px;padding:0 14px;font:16px var(--sans)}.hxNl button{min-height:46px;border:0;border-radius:12px;background:var(--ink);color:#fff;font:800 14.5px var(--sans);padding:0 18px;cursor:pointer}
+  .hxNl .nlMsg{grid-column:1/-1;margin:0;font-size:13.5px;font-weight:700;color:#2F7D4F}.hxNl .nlMsg:empty{display:none}
+  @media(max-width:760px){.hxNl form{grid-template-columns:1fr}}
+  @media(max-width:960px){.hxTiles{grid-template-columns:1fr 1fr}.hxNews{grid-template-columns:1fr}}
+  @media(max-width:640px){.hxTiles,.hxSteps,.hxProof{grid-template-columns:1fr}.hxTile{padding:18px}.hxMe{align-items:flex-start}.hxMe img{width:60px;height:60px}}
   /* ══ HERO IA ══ */
   @property --gsa{syntax:'<angle>';initial-value:0deg;inherits:false}
   .hero-ai{position:relative;isolation:isolate;overflow:hidden;scroll-margin-top:74px;min-height:calc(100svh - 74px);display:flex;align-items:center;padding:48px 0 56px}
@@ -331,6 +341,9 @@
   .rEff{margin:0;font-size:13.5px;color:#2F7D4F;font-weight:700}.rEff .gsi{width:16px;height:16px}
   .rGo{margin-top:12px;min-height:44px;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:0 16px;font:800 14px var(--sans);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center}.rGo .gsi{margin:0 0 0 8px;width:16px;height:16px}.rGo:hover{border-color:var(--acc);color:var(--acc)}
   .aiFiche .next.small li{font-size:13px;color:var(--secondary)}
+  .fHead{display:flex;gap:14px;align-items:center;margin-bottom:12px}.fMono{flex-shrink:0;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--ink);color:#fff;font:600 20px var(--serif);letter-spacing:.02em}.fHead h3{margin:2px 0 0!important}
+  .fGood{display:flex;flex-wrap:wrap;gap:6px}.fGood span{display:inline-flex;align-items:center;gap:4px;background:#EEF4EF;color:#2F5D3E;border-radius:999px;padding:6px 11px;font-size:13px;font-weight:700}.fGood .gsi{width:14px;height:14px;margin:0}
+  .fTune{margin-top:12px}.fTune summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--muted)}.fTune ul{margin-top:8px}
   .aiDevis label{display:block;font-size:12.5px;font-weight:800;color:var(--secondary);margin:12px 0 6px}.aiDevis textarea{width:100%;border:1px solid var(--line2);border-radius:14px;padding:10px 14px;font:16px var(--sans);background:var(--sand,#F9F8F5);resize:vertical}
   .aiDevis input[name=montant]{width:100%;min-height:44px;margin-top:8px;border:1px solid var(--line2);border-radius:14px;padding:0 14px;font:16px var(--sans);background:var(--sand,#F9F8F5)}
   .dvChips{display:flex;flex-wrap:wrap;gap:8px}.dvChips button{min-height:42px;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:8px 14px;font:700 14px var(--sans);color:var(--ink);cursor:pointer}.dvChips button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -613,146 +626,65 @@
   </section>
   <div class="aiDevise"><div class="wrap"><span class="lab">Notre devise</span><b>Nous gagnons de l’argent uniquement si vous en gagnez.</b></div></div>
 
-  <!-- ══ LE CHOIX ══ -->
-  <section class="sec alt"><div class="wrap">
-    <div class="secHead center reveal"><div class="kicker">Concrètement</div><h2>Site internet ou logiciel sur-mesure : deux façons de travailler ensemble.</h2><p>Dans les deux cas, on part de votre activité — pas d’un discours générique.</p></div>
-    <div class="choiceGrid">
-      <div class="choice a reveal">
-        <span class="choiceTag">Option A · Automatisation</span>
-        <div class="choiceIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></div>
-        <h3>Vous avez un processus à automatiser</h3>
-        <p>Une tâche répétitive vous coûte des heures ? Vous voulez un outil sur-mesure pour votre activité ? On analyse ce qui vous coûte du temps, on construit le système, on le déploie — et vous récupérez vos heures.</p>
-        <div class="go"><a class="btn choiceCTA" href="#contact" data-topic="Automatiser un process / créer un outil sur-mesure">Automatiser mon activité →</a></div>
-      </div>
-      <div class="choice b reveal">
-        <span class="choiceTag">Option B · Partenariat</span>
-        <div class="choiceIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0L12 5.35l-.77-.77a5.4 5.4 0 0 0-7.65 7.65l.77.77L12 20.66l7.65-7.66.77-.77a5.4 5.4 0 0 0 0-7.65Z"/></svg></div>
-        <h3>Vous cherchez un partenaire stratégique</h3>
-        <p>Vous connaissez votre marché en profondeur ? On apporte la technologie, vous apportez le terrain. On s’associe dans la durée et on partage la valeur créée par le volume. Pas un prestataire de plus — un associé.</p>
-        <div class="go"><a class="btn dark choiceCTA" href="#contact" data-topic="Partenariat stratégique">Explorer un partenariat →</a></div>
-      </div>
+  <!-- ══ CE QU'ON CONSTRUIT (épuré) ══ -->
+  <section class="sec hx" id="exemples"><div class="wrap">
+    <div class="hxHead reveal"><div class="kicker">Ce qu’on construit</div><h2>Des solutions qui travaillent pour vous.</h2></div>
+    <div class="hxTiles">
+      <a class="hxTile reveal" href="services/agent-vocal-ia.html"><span class="hxIc"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg></span><b>Un agent qui décroche</b><span>Il répond, prend le rendez-vous et vous résume l’appel.</span></a>
+      <a class="hxTile reveal" href="services/automatisation-processus.html"><span class="hxIc"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>L’IA qui lit vos documents</b><span>Factures, bons, formulaires : saisis et vérifiés tout seuls.</span></a>
+      <a class="hxTile reveal" href="services/logiciel-sur-mesure.html"><span class="hxIc"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 13h3M8 16h6M15 13h1"/></svg></span><b>Un logiciel taillé pour vous</b><span>Vos règles, votre métier, vos outils enfin branchés.</span></a>
+      <a class="hxTile reveal" href="services/creation-site-internet.html"><span class="hxIc"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.4 3.6 5.3 3.6 8.5s-1.1 6.1-3.6 8.5c-2.5-2.4-3.6-5.3-3.6-8.5S9.5 5.9 12 3.5z"/></svg></span><b>Un site qui fait venir des clients</b><span>Rapide, trouvé sur Google, pensé pour convertir.</span></a>
     </div>
-  </div></section>
-
-  <!-- ══ CE QU'ON PEUT CONSTRUIRE ══ -->
-  <section class="sec" id="exemples"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">À la pointe</div><h2>Automatisation et agents IA : bien plus loin qu’un devis automatique.</h2><p>Voici ce que l’IA et l’automatisation permettent de construire aujourd’hui — et ce que nous concevons, intégrons et faisons tourner pour les entreprises.</p></div>
-    <div class="autoGrid">
-      <article class="auto reveal"><div class="who">Accueil · téléphone</div><h3>Un agent vocal IA qui décroche</h3><div class="ba"><span class="b">Aujourd’hui : Des appels manqués pendant que vous travaillez, des messages à rappeler le soir.</span><span class="a">Demain : Il répond en langage naturel, prend le rendez-vous dans votre agenda, transfère les urgences et vous envoie le résumé.</span></div><div class="gain">Voix temps réel · agenda connecté</div></article>
-      <article class="auto reveal"><div class="who">Documents</div><h3>L'IA qui lit vos documents</h3><div class="ba"><span class="b">Aujourd’hui : Des factures, bons et pièces ressaisis à la main, ligne par ligne.</span><span class="a">Demain : Les informations sont extraites par des modèles vision-langage, contrôlées et injectées dans vos logiciels.</span></div><div class="gain">Modèles vision-langage · validation humaine</div></article>
-      <article class="auto reveal"><div class="who">Savoir interne</div><h3>Un assistant branché sur vos documents</h3><div class="ba"><span class="b">Aujourd’hui : Des procédures introuvables, des questions répétées aux mêmes personnes.</span><span class="a">Demain : L'équipe pose sa question en langage naturel ; la réponse cite la procédure d'où elle vient.</span></div><div class="gain">RAG · recherche vectorielle · hébergement européen</div></article>
-      <article class="auto reveal"><div class="who">Logiciels sans API</div><h3>Des agents qui pilotent vos logiciels</h3><div class="ba"><span class="b">Aujourd’hui : Des heures sur des portails fournisseurs ou administratifs qui ne communiquent avec rien.</span><span class="a">Demain : Un agent IA remplit, télécharge et vérifie à votre place, sous supervision, avec un journal de chaque action.</span></div><div class="gain">Agents « computer use » · MCP</div></article>
-      <article class="auto reveal"><div class="who">Pilotage</div><h3>Prévoir au lieu de subir</h3><div class="ba"><span class="b">Aujourd’hui : Des plannings, des stocks et des achats décidés à l'intuition.</span><span class="a">Demain : Un modèle croise votre historique, la météo, les vacances et les événements pour anticiper la demande.</span></div><div class="gain">Apprentissage automatique · open data</div></article>
-      <article class="auto reveal"><div class="who">Réglementation</div><h3>La facturation électronique, en mieux</h3><div class="ba"><span class="b">Aujourd’hui : Une réforme 2026-2027 vécue comme une contrainte de plus.</span><span class="a">Demain : Réception, contrôle et rapprochement des factures électroniques automatisés de bout en bout.</span></div><div class="gain">Factur-X · UBL · plateforme agréée</div></article>
-    </div>
-    <p class="reveal" style="text-align:center;margin-top:28px"><a href="lab/" style="font-weight:800;border-bottom:2px solid var(--acc)">Explorer le Lab : API, données en direct et veille technologique →</a></p>
-    <nav class="svcRow reveal" aria-label="Nos services"><a href="services/creation-site-internet.html">Création de site internet</a><a href="services/agence-ia-entreprise.html">Intégrer l’IA en entreprise</a><a href="services/agent-ia-chatbot.html">Agent IA & chatbot</a><a href="services/agent-vocal-ia.html">Agent vocal IA</a><a href="services/automatisation-processus.html">Automatisation des processus</a><a href="services/logiciel-sur-mesure.html">Logiciel sur-mesure</a><a href="services/integration-api-connecteurs.html">Intégration API</a><a href="services/referencement-local.html">Référencement local</a><a href="services/" class="all">Tous nos services →</a></nav>
-  </div></section>
-
-  <!-- ══ CALCULATEUR ══ -->
-  <section class="sec alt" id="calculateur"><div class="wrap">
-    <div class="secHead center reveal"><div class="kicker">Calculateur</div><h2>Combien vous coûtent vos tâches répétitives ?</h2><p>Trois curseurs, un ordre de grandeur honnête. C’est souvent le chiffre qui déclenche la décision.</p></div>
-    <div class="calc reveal" data-calc>
-      <div class="calcIn">
-        <label>Personnes concernées <span data-out="people"></span><input type="range" name="people" min="1" max="30" value="3" /></label>
-        <label>Heures perdues par personne et par semaine <span data-out="hours"></span><input type="range" name="hours" min="1" max="20" value="5" /></label>
-        <label>Coût horaire chargé <span data-out="rate"></span><input type="range" name="rate" min="15" max="120" step="5" value="35" /></label>
-      </div>
-      <div class="calcOut" aria-live="polite">
-        <div class="big" data-out="cost"></div>
-        <div class="lbl">dépensés chaque année en saisie, relances, copier-coller… (<span data-out="yearh"></span>)</div>
-        <div class="row"><div><b data-out="saved"></b><span>récupérables / an*</span></div><div><b data-out="days"></b><span>de travail rendues</span></div></div>
-        <a class="btn" href="#contact" data-out="cta">Voir ce qu’on peut récupérer →</a>
-      </div>
-    </div>
-    <p class="calcNote">* Hypothèse prudente : 60 % du temps répétitif automatisable, 45 semaines travaillées. On affine avec vos vrais chiffres pendant l’appel.</p>
+    <ol class="hxSteps reveal">
+      <li><b>Décrivez</b><span>Votre besoin, en vrac, dans le chat.</span></li>
+      <li><b>Composez</b><span>Votre projet, face à votre budget.</span></li>
+      <li><b>On livre</b><span>Vite : nous construisons avec l’IA.</span></li>
+    </ol>
+    <p class="hxGo reveal"><a class="btn" href="#heroAI">Décrire mon projet →</a><a class="hxAll" href="services/">Tous nos services</a></p>
   </div></section>
 
 <!-- ACTUS:START (généré par zones/generate-actus.mjs) -->
-  <section class="sec" id="actus"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Actus · mercredi 30 septembre 2026</div><h2>Ce qui bouge en ce moment.</h2><p>L’actualité IA, numérique et réglementaire, sourcée et traduite en impacts concrets pour votre entreprise.</p></div>
-    <div class="autoGrid">
-      <a class="auto reveal" href="lab/actus/2026-09-30.html#citrix-netscaler-deux-failles-critiques-activement-exploitee"><div class="who">Cybersécurité</div><h3>Citrix NetScaler : deux failles critiques activement exploitées, le CERT-FR appelle à corriger</h3><p style="font-size:14.5px;color:var(--secondary);margin-top:12px;line-height:1.6">Si votre accès à distance (VPN, portail d'applications) repose sur un boîtier NetScaler, chez vous ou chez votre prestataire informatique, faites vérifier sans attendre que les correctifs sont appliqués et que l'équipement ne montre pas de trace de compromission.</p><div class="gain">Lire l’actu →</div></a>
-      <a class="auto reveal" href="lab/actus/2026-09-30.html#openai-lance-dots-des-agents-ia-qui-travaillent-en-continu-d"><div class="who">IA</div><h3>OpenAI lance Dots, des agents IA qui travaillent en continu dans le cloud</h3><p style="font-size:14.5px;color:var(--secondary);margin-top:12px;line-height:1.6">Les agents passent de l'assistant qui répond à l'assistant qui exécute des tâches longues. Avant d'en confier une, définissez précisément les accès donnés (messagerie, logiciels, comptes) et gardez une validation humaine sur les actions sensibles.</p><div class="gain">Lire l’actu →</div></a>
-      <a class="auto reveal" href="lab/actus/2026-09-30.html#anthropic-lance-claude-sonnet-5-5-plus-rapide-et-moins-coute"><div class="who">IA</div><h3>Anthropic lance Claude Sonnet 5.5, plus rapide et moins coûteux par tâche</h3><p style="font-size:14.5px;color:var(--secondary);margin-top:12px;line-height:1.6">Pour les usages quotidiens (synthèses, documents, automatisations), un modèle plus rapide et plus économe réduit le temps d'attente et la facture d'usage. Mesurez-le sur vos propres cas avant de changer de modèle dans un outil en production.</p><div class="gain">Lire l’actu →</div></a>
+  <section class="sec hx alt" id="actus"><div class="wrap">
+    <div class="hxHead reveal"><div class="kicker">En direct · mercredi 30 septembre 2026</div><h2>Ce qui bouge en ce moment.</h2></div>
+    <div class="hxNews">
+      <a class="reveal" href="lab/actus/2026-09-30.html#citrix-netscaler-deux-failles-critiques-activement-exploitee"><small>Cybersécurité</small><b>Citrix NetScaler : deux failles critiques activement exploitées, le CERT-FR appelle à corriger</b></a>
+      <a class="reveal" href="lab/actus/2026-09-30.html#openai-lance-dots-des-agents-ia-qui-travaillent-en-continu-d"><small>IA</small><b>OpenAI lance Dots, des agents IA qui travaillent en continu dans le cloud</b></a>
+      <a class="reveal" href="lab/actus/2026-09-30.html#anthropic-lance-claude-sonnet-5-5-plus-rapide-et-moins-coute"><small>IA</small><b>Anthropic lance Claude Sonnet 5.5, plus rapide et moins coûteux par tâche</b></a>
     </div>
-    <p class="reveal" style="text-align:center;margin-top:24px;display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center"><a href="lab/actus/" style="font-weight:800;border-bottom:2px solid var(--acc)">Toutes les actus →</a><a href="lab/dossiers/" style="font-weight:800;border-bottom:2px solid var(--acc)">Le dossier de la semaine →</a><a href="lab/questions/" style="font-weight:800;border-bottom:2px solid var(--acc)">Vos questions sur l’IA →</a><a href="lab/pouls/" style="font-weight:800;border-bottom:2px solid var(--acc)">Votez : le pouls des dirigeants →</a></p>
+    <div class="hxNl reveal"><form id="nlForm"><div><b>L’essentiel du lundi</b><span>Les actus de la semaine et l’action à mener, dans votre boîte mail. Désinscription en un clic.</span></div><input type="email" name="email" required placeholder="Votre e-mail professionnel" autocomplete="email" aria-label="Votre e-mail"><button type="submit">Je m’inscris</button><p class="nlMsg" role="status"></p></form><a class="hxAll" href="lab/actus/">Toutes les actus →</a></div>
+    <script>(function(){var f=document.getElementById('nlForm');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.nlMsg');b.disabled=true;fetch('/api/devis',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'newsletter',email:f.email.value,source:'accueil'})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j;});}).then(function(j){m.textContent=j.deja?'Vous êtes déjà inscrit, merci !':'Presque fini : confirmez votre inscription dans l’e-mail que nous venons d’envoyer.';f.email.value='';if(window.gtag)gtag('event','newsletter_signup');}).catch(function(j){b.disabled=false;m.textContent=(j&&j.message)||'L’inscription n’a pas abouti, réessayez.';});});})();</script>
   </div></section>
   <!-- ACTUS:END -->
 
-  <!-- ══ LA PREUVE ══ -->
-  <section class="sec" id="applications"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">La preuve</div><h2>On ne teste pas. On a déjà livré.</h2><p>Trois plateformes en ligne aujourd’hui, à grande échelle. Le même socle, spécialisé sur trois marchés très différents.</p></div>
-    <div class="platGrid">
-      <a class="plat green reveal" href="https://solutionalternance.fr" target="_blank" rel="noopener">
-        <div class="platHead"><div class="platIcon">A</div><div><div class="platName">Solution Alternance</div><div class="platMeta">Formation & apprentissage</div></div><span class="platLive">En ligne</span></div>
-        <p>Rapproche chaque profil des offres d’alternance sur les compétences réelles, à l’échelle d’une base nationale.</p>
-        <div class="platFoot"><span class="stat"><b class="counter" data-target="200000">200 000</b>+ offres comparées</span><span class="go">Voir ↗</span></div>
-      </a>
-      <a class="plat blue reveal" href="https://solutionsrecrutement.fr" target="_blank" rel="noopener">
-        <div class="platHead"><div class="platIcon">R</div><div><div class="platName">Solution Recrutement</div><div class="platMeta">Emploi & recrutement</div></div><span class="platLive">En ligne</span></div>
-        <p>Matching sémantique, vivier réactivé en continu et chaque correspondance expliquée.</p>
-        <div class="platFoot"><span class="stat"><b class="counter" data-target="565000">565 000</b>+ offres disponibles</span><span class="go">Voir ↗</span></div>
-      </a>
-      <a class="plat amber reveal" href="https://aides-particuliers.fr" target="_blank" rel="noopener">
-        <div class="platHead"><div class="platIcon">A</div><div><div class="platName">Aides Particuliers</div><div class="platMeta">Aides publiques</div></div><span class="platLive">En ligne</span></div>
-        <p>Un diagnostic gratuit qui identifie les aides publiques auxquelles un particulier a droit, et les démarches à suivre.</p>
-        <div class="platFoot"><span class="stat"><b>6</b> catégories d’aides</span><span class="go">Voir ↗</span></div>
-      </a>
+  <!-- ══ PREUVE + FONDATEUR (épuré) ══ -->
+  <section class="sec alt hx" id="applications"><div class="wrap">
+    <div class="hxHead reveal"><div class="kicker">La preuve</div><h2>Déjà en ligne, à grande échelle.</h2></div>
+    <div class="hxProof reveal">
+      <a href="https://solutionalternance.fr" target="_blank" rel="noopener"><b class="counter" data-target="200000">200 000</b><span>offres comparées · Solution Alternance</span></a>
+      <a href="https://solutionsrecrutement.fr" target="_blank" rel="noopener"><b class="counter" data-target="565000">565 000</b><span>offres disponibles · Solution Recrutement</span></a>
+      <a href="https://aides-particuliers.fr" target="_blank" rel="noopener"><b>6</b><span>catégories d’aides · Aides Particuliers</span></a>
     </div>
-  </div></section>
-
-  <!-- ══ FONDATEUR ══ -->
-  <section class="sec alt" id="fondateur"><div class="wrap">
-    <div class="founder reveal">
-      <div class="kicker">Qui est derrière ?</div>
-      <blockquote>« Je ne crois pas aux logiciels qui remplacent les gens. Je construis des systèmes qui <i>absorbent le volume répétitif</i> — pour que chaque métier garde la main sur ce qui compte vraiment : la décision et la relation. Une même architecture, spécialisée marché par marché. »</blockquote>
-      <div class="founderSig">
-        <div class="founderAvatar"><img src="photo-president.jpg" alt="Titouan, fondateur de Groupe Solution" /></div>
-        <div class="founderId"><div class="nm">Titouan</div><div class="ti">Fondateur — Groupe Solution</div></div>
-      </div>
+    <div class="hxMe reveal" id="fondateur">
+      <img src="photo-president.jpg" alt="Titouan Bedos, fondateur de Groupe Solution" width="84" height="84" loading="lazy" decoding="async" />
+      <div><p>« Je construis des systèmes qui absorbent le volume répétitif, pour que vous gardiez la main sur l’essentiel : la décision et la relation. »</p><small>Titouan Bedos · fondateur · agence à Saint-Jean-de-Védas, présent à Mayotte</small></div>
     </div>
-  </div></section>
-
-  <!-- ══ ANCRAGE LOCAL + SITE INTERNET ══ -->
-  <section class="sec" id="montpellier"><div class="wrap">
-    <div class="secHead reveal"><div class="kicker">Agence à Saint-Jean-de-Védas · présents à Mayotte</div><h2>Un éditeur de logiciels, au coin de la rue.</h2><p>On construit des systèmes à l’échelle nationale, mais on travaille d’abord avec les entreprises d’ici — de la zone du Salaison aux mas conchylicoles du bassin de Thau.</p></div>
-    <div class="localBand">
-      <div class="lbCard reveal">
-        <h3>Automatisation près de chez vous</h3>
-        <p>Chaque commune a sa page, avec des exemples pensés pour son économie : logistique à Vendargues, cabinets à Castelnau, oenotourisme à Villeveyrac, commandes des fêtes à Mèze…</p>
-        <div class="lbChips">
-          <a href="automatisation/castelnau-le-lez.html">Castelnau-le-Lez</a><a href="automatisation/lattes.html">Lattes</a><a href="automatisation/vendargues.html">Vendargues</a><a href="automatisation/saint-jean-de-vedas.html">Saint-Jean-de-Védas</a><a href="automatisation/clapiers.html">Clapiers</a><a href="automatisation/perols.html">Pérols</a><a href="automatisation/meze.html">Mèze</a><a href="automatisation/villeveyrac.html">Villeveyrac</a><a href="automatisation/sete.html">Sète</a><a href="automatisation/lunel.html">Lunel</a>
-        </div>
-        <a class="go" href="automatisation/">Voir les 89 communes →</a>
-      </div>
-      <div class="lbCard site reveal">
-        <h3>Besoin d’abord d’un site internet ?</h3>
-        <p>Site vitrine, réservation en ligne, fiche Google et référencement local — avec, en option, l’automatisation qui travaille derrière.</p>
-        <div class="price">Sur devis<small>gratuit et personnalisé</small></div>
-        <a class="btn" href="montpellier/site-internet-montpellier.html">Voir l’offre site internet →</a>
-      </div>
-    </div>
-    <div class="lbChips reveal" style="justify-content:center;margin-top:26px">
-      <a href="outils/configurateur-site-internet.html">Configurateur de projet</a><a href="outils/test-visibilite-google.html">Test de visibilité Google</a><a href="outils/calculateur-automatisation.html">Calculateur d’automatisation</a><a href="montpellier/guides/">Guides pratiques</a><a href="montpellier/site-internet-restaurant-montpellier.html">Restaurants</a><a href="montpellier/site-internet-artisan-montpellier.html">Artisans</a><a href="montpellier/site-internet-professionnel-de-sante-montpellier.html">Santé</a><a href="montpellier/site-internet-agence-immobiliere-montpellier.html">Immobilier</a>
-    </div>
+    <div class="hxNear reveal" id="montpellier"><span>Près de chez vous :</span><a href="automatisation/saint-jean-de-vedas.html">Saint-Jean-de-Védas</a><a href="montpellier/site-internet-montpellier.html">Montpellier</a><a href="automatisation/lattes.html">Lattes</a><a href="automatisation/castelnau-le-lez.html">Castelnau-le-Lez</a><a href="automatisation/sete.html">Sète</a><a href="mayotte/site-internet-mayotte.html">Mayotte</a><a href="implantations.html">Partout en France →</a></div>
   </div></section>
 
   <!-- ══ FAQ ══ -->
-  <section class="sec alt" id="faq"><div class="wrap">
-    <div class="secHead center reveal"><div class="kicker">Avant de nous appeler</div><h2>Les questions qu’on nous pose.</h2></div>
+  <section class="sec hx" id="faq"><div class="wrap">
+    <div class="hxHead center reveal"><h2>Les questions qu’on nous pose.</h2></div>
     <div class="faqH">
-      <details class="reveal"><summary>Qu’est-ce qu’on peut automatiser dans une petite entreprise ?</summary><p>Tout ce qui se répète chaque semaine : devis, saisie des commandes, relances de factures et de devis, prises de rendez-vous, tri et classement de documents, reporting. Dans la plupart des TPE et PME, on trouve plusieurs heures par semaine à récupérer dès le premier appel.</p></details>
-      <details class="reveal"><summary>Combien coûte une automatisation ?</summary><p>On part toujours du gain : on estime ce que la tâche vous coûte aujourd’hui et on ne propose que ce qui se rembourse nettement. Notre devise : nous gagnons de l’argent uniquement si vous en gagnez. Pour certains projets, on partage la valeur créée plutôt que de facturer une prestation.</p></details>
+      <details class="reveal"><summary>Qu’est-ce qu’on peut automatiser dans une petite entreprise ?</summary><p>Tout ce qui se répète chaque semaine : devis, saisie des commandes, relances de factures et de devis, prises de rendez-vous, tri et classement de documents, reporting — et bien au-delà, avec des agents IA qui répondent, lisent et agissent pour vous.</p></details>
+      <details class="reveal"><summary>Combien ça coûte ?</summary><p>Tout est sur devis, gratuit et sans engagement. Indiquez votre budget dans le chat : vous voyez tout de suite ce qui tient dedans. Parce que nous construisons avec l’IA, c’est souvent bien plus accessible qu’on ne l’imagine.</p></details>
       <details class="reveal"><summary>Faut-il changer mes logiciels actuels ?</summary><p>Rarement. On se branche sur ce que vous utilisez déjà (agenda, logiciel métier, tableur, messagerie, ERP) et on automatise les échanges entre eux. Le but est de retirer des tâches, pas d’ajouter un outil à apprendre.</p></details>
-      <details class="reveal"><summary>Où êtes-vous basés ?</summary><p>À Montpellier. On intervient sur toute la métropole et l’Hérault (bassin de Thau, littoral, Pic Saint-Loup, Lunel, vallée de l’Hérault), et partout en France à distance, ainsi que dans les DOM-TOM via nos <a href="implantations.html" style="font-weight:700;text-decoration:underline">agences locales</a>.</p></details>
-      <details class="reveal"><summary>Combien de temps avant de voir un résultat ?</summary><p>Une première automatisation simple (relances, réponses automatiques, prise de rendez-vous) est livrée en quelques jours. Un outil sur-mesure plus complet se construit par étapes, avec un premier gain mesurable en quelques semaines.</p></details>
+      <details class="reveal"><summary>Où êtes-vous basés ?</summary><p>Notre agence est à Saint-Jean-de-Védas, aux portes de Montpellier, et Titouan est à Mayotte. Nous travaillons avec les entreprises de toute la France et de l’outre-mer, en visio ou sur place quand c’est utile.</p></details>
     </div>
   </div></section>
 
   <!-- ══ CONTACT · 3 canaux ══ -->
   <section class="sec" id="contact"><div class="wrap">
-    <div class="secHead center reveal"><div class="kicker">Passons à l’action</div><h2>Parlons de votre activité.</h2><p>Dix minutes suffisent pour trouver des pistes concrètes. Choisissez le canal qui vous arrange.</p></div>
+    <div class="secHead center reveal"><h2>Parlons de votre activité.</h2><p>Dix minutes suffisent. Choisissez votre canal.</p></div>
     <div class="contactGrid">
       <a class="ccard reveal" href="tel:+33782298559">
         <div class="cIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
