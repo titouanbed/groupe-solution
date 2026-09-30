@@ -1,25 +1,49 @@
 // Envoi d'e-mails transactionnels via Brevo (fichier « _ » : pas une route).
 // Variables : BREVO_API_KEY, LEAD_FROM (expéditeur validé), LEAD_TO (défaut contact@groupsolution.fr).
-export const MAIL_OK = () => Boolean(process.env.BREVO_API_KEY && process.env.LEAD_FROM);
+import { redis, UPSTASH } from "./_guard.mjs";
+export const MAIL_OK = () => Boolean(String(process.env.BREVO_API_KEY || "").trim() && String(process.env.LEAD_FROM || "").trim());
 export const OWNER = () => process.env.LEAD_TO || "contact@groupsolution.fr";
 export const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
+// Chaque envoi est journalisé : compteur du jour et 30 derniers échecs avec la réponse exacte de Brevo
+// (visible dans le tableau de bord → Réglages → E-mails). Retourne true si Brevo a accepté l'e-mail.
+export let lastMailError = null;
+async function journal(ok, info) {
+  if (!UPSTASH) return;
+  const day = new Date().toISOString().slice(0, 10);
+  const cmds = [["INCR", `mail:${ok ? "ok" : "ko"}:${day}`], ["EXPIRE", `mail:${ok ? "ok" : "ko"}:${day}`, 40 * 86400]];
+  if (!ok) cmds.push(["LPUSH", "mail:errors", JSON.stringify({ date: new Date().toISOString(), ...info })], ["LTRIM", "mail:errors", 0, 29]);
+  try { await redis(cmds); } catch {}
+}
 export async function sendMail({ to, subject, html, replyTo }) {
-  if (!MAIL_OK()) return false;
+  const dest = (Array.isArray(to) ? to : [to]).filter(Boolean);
+  if (!MAIL_OK()) { lastMailError = "BREVO_API_KEY ou LEAD_FROM manquante dans Vercel"; await journal(false, { to: dest.join(","), subject, erreur: lastMailError }); return false; }
   try {
     const r = await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST", signal: AbortSignal.timeout(8000),
-      headers: { "api-key": process.env.BREVO_API_KEY, "Content-Type": "application/json", Accept: "application/json" },
+      method: "POST", signal: AbortSignal.timeout(9000),
+      headers: { "api-key": process.env.BREVO_API_KEY.trim(), "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
-        sender: { name: "Groupe Solution", email: process.env.LEAD_FROM },
-        to: (Array.isArray(to) ? to : [to]).map(email => ({ email })),
+        sender: { name: "Groupe Solution", email: process.env.LEAD_FROM.trim() },
+        to: dest.map(email => ({ email })),
         ...(replyTo ? { replyTo: { email: replyTo } } : {}),
         subject: String(subject).slice(0, 180), htmlContent: html
       })
     });
-    if (!r.ok) console.error("mail: Brevo", r.status, (await r.text().catch(() => "")).slice(0, 200));
-    return r.ok;
-  } catch (e) { console.error("mail:", e?.message); return false; }
+    if (!r.ok) {
+      const txt = (await r.text().catch(() => "")).slice(0, 300);
+      lastMailError = `Brevo ${r.status} : ${txt}`;
+      console.error("mail:", lastMailError);
+      await journal(false, { to: dest.join(","), subject: String(subject).slice(0, 120), erreur: lastMailError });
+      return false;
+    }
+    lastMailError = null; await journal(true);
+    return true;
+  } catch (e) {
+    lastMailError = "Brevo injoignable : " + (e?.name || e?.message);
+    console.error("mail:", lastMailError);
+    await journal(false, { to: dest.join(","), subject: String(subject).slice(0, 120), erreur: lastMailError });
+    return false;
+  }
 }
 
 // Gabarit sobre, lisible sur téléphone.

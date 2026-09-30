@@ -17,10 +17,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { randomBytes, createHash, timingSafeEqual } from "node:crypto";
 import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
-import { sendMail, layout, esc, OWNER, MAIL_OK } from "./_mail.mjs";
+import { sendMail, layout, esc, OWNER, MAIL_OK, lastMailError } from "./_mail.mjs";
 import { tagConv, listConvs, getConv, SID_RE, setConvStatus } from "./_conv.mjs";
 import { runRadar, listRadar, setRadarStatus } from "./_radar.mjs";
-import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount } from "./_newsletter.mjs";
+import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount, nlResend, nlList } from "./_newsletter.mjs";
 
 const MODEL = process.env.CONCEPT_MODEL || process.env.ASSISTANT_MODEL || "claude-opus-5-5";
 const SITE = "https://www.groupsolution.fr";
@@ -88,6 +88,7 @@ async function grille() {
 // Passage du radar + e-mail récapitulatif à Titouan s'il y a de nouvelles entreprises à contacter.
 async function radarEtResume() {
   const r = await runRadar({ max: 5 });
+  try { await redis([["SET", "cron:last:radar", JSON.stringify({ date: new Date().toISOString(), annonces: r.annonces, analyses: r.analyses, retenues: r.retenues })]]); } catch {}
   if (r.retenues) await sendMail({ to: OWNER(), subject: `🎯 Radar : ${r.retenues} nouvelle(s) entreprise(s) à contacter`,
     html: layout("Nouvelles entreprises à fort potentiel", `<p>${r.retenues} fiche(s) prête(s), avec une idée sur-mesure et un e-mail rédigé :</p><ul>${r.nouvelles.map(n => `<li>${esc(n)}</li>`).join("")}</ul><p><a href="${SITE}/admin/#radar">Ouvrir le radar →</a></p><p style="font-size:12px;color:#77736A">${r.annonces} annonces BODACC lues, ${r.candidats} candidates, ${r.analyses} analysées.</p>`) });
   return r;
@@ -107,7 +108,8 @@ export default async function handler(req, res) {
       }
       if (q.get("cron") === "newsletter") {
         if (!admin && !(await cronOk(req, "newsletter"))) return send(res, 401, { error: "unauthorized" });
-        return send(res, 200, await nlSend());
+        const r = await nlSend(); await redis([["SET", "cron:last:newsletter", JSON.stringify({ date: new Date().toISOString(), ...r })]]);
+        return send(res, 200, r);
       }
       if (q.get("cron") === "radar") {
         if (!admin && !(await cronOk(req, "radar"))) return send(res, 401, { error: "unauthorized" });
@@ -126,8 +128,19 @@ export default async function handler(req, res) {
         const all = (ids || []).length ? await redis(ids.map(i => ["GET", "demande:" + i])) : [];
         const demandes = all.map(v => { try { return v ? JSON.parse(v) : null; } catch { return null; } }).filter(Boolean)
           .map(d => ({ id: d.id, sid: d.sid || null, date: d.date, titre: d.titre, resume: d.resume, contact: d.contact, budget: d.budget?.label, delai: d.delai, jours: d.estimation?.jours || 0, statut: d.statut || "nouveau", choisies: (d.choisies || []).map(x => x.titre) }));
-        const [convs, radar, abonnes] = await Promise.all([listConvs(150), listRadar(150), nlCount()]);
-        return send(res, 200, { demandes, convs, radar, abonnes, mail: MAIL_OK() });
+        const [convs, radar, abonnes, nl] = await Promise.all([listConvs(150), listRadar(150), nlCount(), nlList()]);
+        // Contacts laissés via les formulaires du site (rappel, contact), sauvegardés avant tout envoi.
+        const [lids] = await redis([["LRANGE", "leads:list", 0, 149]]);
+        const lraw = (lids || []).length ? await redis(lids.map(i => ["GET", "lead:" + i])) : [];
+        const leads = lraw.map(v => { try { return v ? JSON.parse(v) : null; } catch { return null; } }).filter(Boolean);
+        // Santé : e-mails des 7 derniers jours, derniers échecs, tâches automatiques.
+        const days = [...Array(7)].map((_, i) => new Date(Date.now() - i * 864e5).toISOString().slice(0, 10));
+        const mc = await redis([...days.map(d => ["GET", "mail:ok:" + d]), ...days.map(d => ["GET", "mail:ko:" + d]), ["LRANGE", "mail:errors", 0, 9], ["GET", "cron:last:radar"], ["GET", "cron:last:newsletter"]]);
+        const parse = v => { try { return v ? JSON.parse(v) : null; } catch { return null; } };
+        const sante = { mail: MAIL_OK(), ia: Boolean(process.env.ANTHROPIC_API_KEY), base: true,
+          mailsOk: mc.slice(0, 7).reduce((a, v) => a + (+v || 0), 0), mailsKo: mc.slice(7, 14).reduce((a, v) => a + (+v || 0), 0),
+          erreurs: (mc[14] || []).map(parse).filter(Boolean), radar: parse(mc[15]), newsletter: parse(mc[16]) };
+        return send(res, 200, { demandes, convs, radar, abonnes, nl, leads, sante, mail: MAIL_OK() });
       }
       if (A === "list") {
         const [ids] = await redis([["LRANGE", "demandes:list", 0, 149]]);
@@ -153,6 +166,19 @@ export default async function handler(req, res) {
       if (b.type === "conv") return send(res, (await setConvStatus(id, st)) ? 200 : 400, { ok: true });
       if (b.type === "demande" && ID_RE.test(id) && ["nouveau", "traite"].includes(st)) { const d = await get("demande:" + id); if (!d) return send(res, 404, {}); d.statut = st; await redis([["SET", "demande:" + id, JSON.stringify(d), "KEEPTTL"]]); return send(res, 200, { ok: true }); }
       return send(res, 400, { error: "statut" });
+    }
+    if (["mail_test", "nl_resend", "lead_status"].includes(action)) {
+      if (!admin) return send(res, 401, { error: "unauthorized" });
+      if (action === "mail_test") {
+        const ok = await sendMail({ to: OWNER(), subject: "✅ Test d'envoi — tableau de bord Groupe Solution", html: layout("Les e-mails du site fonctionnent", `<p>Si vous lisez ceci, Brevo envoie bien les e-mails du site (demandes, newsletter, radar) vers ${esc(OWNER())}.</p>`) });
+        return send(res, 200, { ok, destinataire: OWNER(), erreur: ok ? null : lastMailError });
+      }
+      if (action === "nl_resend") return send(res, 200, await nlResend(str(b.email, 190)));
+      const id = String(b.id || ""); if (!/^[a-f0-9]{24}$/.test(id)) return send(res, 400, {});
+      const [v] = await redis([["GET", "lead:" + id]]); if (!v) return send(res, 404, {});
+      const l = JSON.parse(v); l.statut = b.statut === "traite" ? "traite" : "nouveau";
+      await redis([["SET", "lead:" + id, JSON.stringify(l), "KEEPTTL"]]);
+      return send(res, 200, { ok: true });
     }
     if (action === "radar_run" || action === "radar_status") {
       if (!admin) return send(res, 401, { error: "unauthorized" });

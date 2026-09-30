@@ -12,15 +12,37 @@ const shell = (inner, stop) => `<div style="font-family:-apple-system,Segoe UI,R
 <p style="font-weight:800;font-size:18px;margin:0">Groupe Solution <span style="color:#E61E4D">·</span> L'essentiel du lundi</p>${inner}
 <p style="color:#77736A;font-size:12px;margin-top:28px;border-top:1px solid #eee;padding-top:12px">Vous recevez cet e-mail parce que vous vous êtes inscrit sur groupsolution.fr. ${stop ? `<a href="${stop}" style="color:#77736A">Se désinscrire en un clic</a>.` : ""}<br>Groupe Solution · Saint-Jean-de-Védas · 07 82 29 85 59</p></div>`;
 
+async function mailConfirmation(email, t) {
+  return sendMail({ to: email, subject: "Confirmez votre inscription à L'essentiel du lundi", html: shell(`<p>Bonjour,</p><p>Chaque lundi, les actualités IA, numériques et réglementaires de la semaine, vérifiées et traduites en actions concrètes pour votre entreprise. Une seule condition : confirmer votre adresse.</p><p><a href="${SITE}/api/devis?nl=confirm&t=${t}" style="display:inline-block;background:#E61E4D;color:#fff;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:700">Confirmer mon inscription</a></p><p style="font-size:13px;color:#77736A">Vous n'avez rien demandé ? Ignorez simplement cet e-mail.</p>`, null) });
+}
 export async function nlSubscribe(email, source) {
   email = String(email || "").trim().toLowerCase();
   if (!EMAIL.test(email)) return { ok: false, message: "Adresse e-mail invalide." };
   const h = hash(email), [cur] = await redis([["HGET", "nl:subs", h]]);
-  if (cur) { try { if (JSON.parse(cur).ok) return { ok: true, deja: true }; } catch {} }
-  const t = randomBytes(16).toString("hex");
-  await redis([["HSET", "nl:subs", h, JSON.stringify({ email, ok: false, t, source, date: new Date().toISOString() })], ["SET", "nl:tok:" + t, h, "EX", 30 * 86400]]);
-  await sendMail({ to: email, subject: "Confirmez votre inscription à L'essentiel du lundi", html: shell(`<p>Bonjour,</p><p>Chaque lundi, les actualités IA, numériques et réglementaires de la semaine, vérifiées et traduites en actions concrètes pour votre entreprise. Une seule condition : confirmer votre adresse.</p><p><a href="${SITE}/api/devis?nl=confirm&t=${t}" style="display:inline-block;background:#E61E4D;color:#fff;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:700">Confirmer mon inscription</a></p><p style="font-size:13px;color:#77736A">Vous n'avez rien demandé ? Ignorez simplement cet e-mail.</p>`, null) });
-  return { ok: true };
+  let prev = null; try { prev = cur ? JSON.parse(cur) : null; } catch {}
+  if (prev?.ok) return { ok: true, deja: true };
+  const t = prev?.t || randomBytes(16).toString("hex");
+  const sub = { email, ok: false, t, source, date: prev?.date || new Date().toISOString() };
+  // Enregistré AVANT l'envoi : même si l'e-mail ne part pas, l'inscription est visible dans le tableau de bord.
+  await redis([["HSET", "nl:subs", h, JSON.stringify(sub)], ["SET", "nl:tok:" + t, h, "EX", 60 * 86400]]);
+  const sent = await mailConfirmation(email, t);
+  sub.envoi = sent ? "envoye" : "echec"; sub.essai = new Date().toISOString();
+  await redis([["HSET", "nl:subs", h, JSON.stringify(sub)]]);
+  return sent ? { ok: true } : { ok: true, envoi: false, message: "Inscription enregistrée. L'e-mail de confirmation n'a pas pu partir tout de suite : nous vous le renvoyons au plus vite." };
+}
+export async function nlResend(email) {
+  const h = hash(String(email || "").trim()), [cur] = await redis([["HGET", "nl:subs", h]]);
+  if (!cur) return { ok: false };
+  const sub = JSON.parse(cur); if (sub.ok) return { ok: true, deja: true };
+  await redis([["SET", "nl:tok:" + sub.t, h, "EX", 60 * 86400]]);
+  const sent = await mailConfirmation(sub.email, sub.t);
+  sub.envoi = sent ? "envoye" : "echec"; sub.essai = new Date().toISOString();
+  await redis([["HSET", "nl:subs", h, JSON.stringify(sub)]]);
+  return { ok: sent };
+}
+export async function nlList() {
+  const [all] = await redis([["HVALS", "nl:subs"]]);
+  return (all || []).map(v => { try { const x = JSON.parse(v); return { email: x.email, ok: !!x.ok, date: x.date, confirme: x.confirme || null, envoi: x.envoi || null, source: x.source || "" }; } catch { return null; } }).filter(Boolean).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
 }
 async function byToken(t) {
   if (!/^[a-f0-9]{32}$/.test(t)) return null;
