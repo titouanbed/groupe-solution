@@ -35,8 +35,11 @@ Tu esquisses la page d'accueil du futur site internet de l'entreprise décrite d
 - nom : le nom de l'entreprise s'il est donné, sinon un nom générique descriptif (ex. « Votre restaurant »). N'invente pas de nom commercial.
 - accroche (≤ 60 caractères), sous_titre (≤ 130), bouton (≤ 28, ex. « Réserver une table »).
 - services : 3 services ou atouts réalistes pour ce métier (icone : le nom d'icône le plus parlant de la liste, titre ≤ 32, texte ≤ 90). Aucun avis client, aucune note, aucun chiffre.
-- couleur : une couleur de la liste fournie adaptée au métier ; style : chaleureux, premium, naturel ou tech.
-- argument_local : une phrase (≤ 110) qui ancre le site dans son territoire si connu, sinon dans sa clientèle.`;
+- couleur et couleur2 : codes hexadécimaux (#rrggbb). Si les couleurs de la marque du visiteur sont fournies, reprends-les (la plus identitaire en couleur, une autre en couleur2) : son futur site doit être reconnaissable au premier coup d'œil. Sinon, choisis dans la liste fournie. style : chaleureux, premium, naturel ou tech.
+- menu : 4 entrées de menu courtes (≤ 16 caractères) ; reprends celles de son site actuel si elles sont fournies et pertinentes.
+- fonction_phare : l'innovation la plus forte évoquée dans la conversation (idée choisie par le visiteur en priorité, sinon l'idée phare ou la meilleure rupture), montrée comme une fonctionnalité intégrée à son futur site, prête à l'emploi : icone, titre (≤ 40), texte (≤ 120, ce que le client final fait et obtient, en une phrase), bouton (≤ 28, l'action du client final, ex. « Envoyer ma photo de façade »).
+- argument_local : une phrase (≤ 110) qui ancre le site dans son territoire si connu, sinon dans sa clientèle.
+Le résultat doit faire rêver : c'est SON site, en mieux, avec ses innovations déjà dedans.`;
 
 const ICONES = ["recherche", "idee", "esquisse", "devis", "telephone", "check", "site", "lieu", "fleche", "fusee", "document", "calendrier", "message", "robot", "graphique", "engrenage", "camera", "carte", "panier", "facture", "cloche", "bouclier", "eclair", "cible", "utilisateurs", "camion", "outil", "etoile", "mail", "etincelle", "maison", "sante", "feuille"];
 const ICONE = { type: "string", enum: ICONES };
@@ -54,10 +57,25 @@ const PLAN_SCHEMA = S({
 const MAQ_SCHEMA = S({
   nom: str, accroche: str, sous_titre: str, bouton: str,
   services: { type: "array", items: S({ icone: ICONE, titre: str, texte: str }) },
-  couleur: { type: "string", enum: COULEURS },
+  couleur: str, couleur2: str,
   style: { type: "string", enum: ["chaleureux", "premium", "naturel", "tech"] },
+  menu: { type: "array", items: str },
+  fonction_phare: S({ icone: ICONE, titre: str, texte: str, bouton: str }),
   argument_local: str
 });
+const HEX = /^#[0-9a-f]{6}$/i;
+// Identité visuelle lue sur le site du visiteur (par l'assistant), renvoyée par le navigateur : strictement filtrée.
+function marqueSure(m) {
+  if (!m || typeof m !== "object") return null;
+  const url = u => typeof u === "string" && /^https:\/\/[^\s"'<>]{4,300}$/.test(u) ? u : "";
+  const out = {
+    couleurs: (Array.isArray(m.couleurs) ? m.couleurs : []).filter(c => HEX.test(c)).slice(0, 3),
+    logo: url(m.logo), image: url(m.image),
+    police: typeof m.police === "string" && /^[\p{L}\d ]{2,40}$/u.test(m.police) ? m.police : "",
+    menu: (Array.isArray(m.menu) ? m.menu : []).map(x => clip(String(x), 20)).filter(Boolean).slice(0, 5)
+  };
+  return out.couleurs.length || out.logo || out.image || out.menu.length ? out : null;
+}
 
 // Contenu publiable : aucun lien, e-mail, téléphone, code postal ni nom de domaine.
 const IDENTIFIANT = /https?:|www\.|\b[\w-]+\.(fr|com|net|org|io|eu|re|yt|gp|mq|gf|nc|pf|app|dev|shop)\b|@|(?:\+\d{2,3}|\b0)\s?[1-9](?:[\s.-]?\d{2}){4}|\b\d{5}\b|siren|siret/i;
@@ -82,6 +100,7 @@ export default async function handler(req, res) {
     .map(m => (m.role === "user" ? "Visiteur : " : "Assistant : ") + m.content.slice(0, 1200)).join("\n");
   if (!/Visiteur :/.test(conv)) return send(res, 400, { error: "conversation" });
   const zone = clip(b?.zone, 40).replace(/[^\p{L}\p{N}\s'’-]/gu, "") || "inconnue";
+  const mq = kind === "maquette" ? marqueSure(b?.marque) : null;
 
   const client = new Anthropic({ maxRetries: 1, timeout: 45_000 });
   try {
@@ -92,18 +111,28 @@ export default async function handler(req, res) {
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
       system: [{ type: "text", text: kind === "plan" ? PLAN_SYS : MAQ_SYS, cache_control: { type: "ephemeral" } }],
-      messages: [{ role: "user", content: `Zone du visiteur (approximative) : ${zone}\nSecteurs possibles : ${SECTEURS.join(", ")}\nCouleurs possibles : ${COULEURS.join(", ")}\n\nConversation :\n${conv}` }]
+      messages: [{ role: "user", content: `Zone du visiteur (approximative) : ${zone}\nSecteurs possibles : ${SECTEURS.join(", ")}\nCouleurs possibles : ${COULEURS.join(", ")}\n${mq ? `Marque du visiteur (lue sur son site) : couleurs ${mq.couleurs.join(" ") || "inconnues"} ; menu actuel : ${mq.menu.join(" · ") || "inconnu"}\n` : ""}\nConversation :\n${conv}` }]
     });
     if (response.stop_reason === "refusal") return send(res, 204, {});
     let out; try { out = JSON.parse(response.content.filter(x => x.type === "text").map(x => x.text).join("")); } catch { return send(res, 502, { error: "format" }); }
     if (!noPrice(out)) return send(res, 204, {});
 
     await tagConv(String(b.sid || ""), { evenement: kind === "maquette" ? `Esquisse de site : ${out.accroche || out.nom || ""}` : `Plan d'innovation : ${out.titre || ""}`, detail: out });
+    // Gardé 24 h : le visiteur peut recevoir son plan ou son esquisse par e-mail (le contenu vient du serveur, jamais du navigateur).
+    const cid = randomUUID().replace(/-/g, "");
     if (kind === "maquette") {
-      return send(res, 200, { kind, maquette: {
+      const fp = out.fonction_phare || {};
+      const maquette = {
         nom: clip(out.nom, 50), accroche: clip(out.accroche, 70), sous_titre: clip(out.sous_titre, 150), bouton: clip(out.bouton, 32),
         services: (out.services || []).slice(0, 3).map(s => ({ icone: ICONES.includes(s.icone) ? s.icone : "etincelle", titre: clip(s.titre, 40), texte: clip(s.texte, 110) })),
-        couleur: COULEURS.includes(out.couleur) ? out.couleur : COULEURS[0], style: out.style, argument_local: clip(out.argument_local, 130) } });
+        couleur: HEX.test(out.couleur) ? out.couleur : (mq?.couleurs[0] || COULEURS[0]), couleur2: HEX.test(out.couleur2) ? out.couleur2 : (mq?.couleurs[1] || ""),
+        style: out.style, argument_local: clip(out.argument_local, 130),
+        menu: (out.menu || []).map(x => clip(x, 18)).filter(Boolean).slice(0, 4),
+        fonction_phare: fp.titre ? { icone: ICONES.includes(fp.icone) ? fp.icone : "etincelle", titre: clip(fp.titre, 50), texte: clip(fp.texte, 140), bouton: clip(fp.bouton, 32) } : null,
+        logo: mq?.logo || "", image: mq?.image || "", police: mq?.police || ""
+      };
+      if (UPSTASH) { try { await redis([["SET", "concept:" + cid, JSON.stringify({ kind, maquette, date: new Date().toISOString(), sid: String(b.sid || "").slice(0, 40) }), "EX", 86400]]); } catch {} }
+      return send(res, 200, { kind, maquette, id: cid });
     }
     const plan = {
       titre: clip(out.titre, 80), accroche: clip(out.accroche, 180),
@@ -121,7 +150,8 @@ export default async function handler(req, res) {
         etapes: plan.etapes.map(e => e.titre).slice(0, 5), date: new Date().toISOString().slice(0, 10) };
       try { await redis([["SET", "idee:pending:" + publishId, JSON.stringify(pub), "EX", 3600]]); } catch { publishId = null; }
     }
-    return send(res, 200, { kind, plan, publishId });
+    if (UPSTASH) { try { await redis([["SET", "concept:" + cid, JSON.stringify({ kind, plan, date: new Date().toISOString(), sid: String(b.sid || "").slice(0, 40) }), "EX", 86400]]); } catch {} }
+    return send(res, 200, { kind, plan, publishId, id: cid });
   } catch (err) {
     if (err instanceof Anthropic.RateLimitError) return send(res, 429, { error: "upstream_rate_limited" });
     if (err instanceof Anthropic.AuthenticationError) return send(res, 503, { configured: false });

@@ -86,6 +86,52 @@ async function fetchImage(raw) {
   return null;
 }
 
+// Feuille de style publique (pour lire les couleurs de la marque), mêmes protections que les pages.
+async function fetchCss(raw) {
+  let u = checkURL(raw); if (!u) return "";
+  for (let hop = 0; hop < 3; hop++) {
+    const r = await get(u, /css|text\/plain/i, 400_000);
+    if (r.error) return "";
+    if ([301, 302, 303, 307, 308].includes(r.status)) { try { u = checkURL(new URL(String(r.location || ""), u).href); } catch { return ""; } if (!u) return ""; continue; }
+    return r.body ? r.body.toString("utf8") : "";
+  }
+  return "";
+}
+// Identité visuelle lue sur le site : couleurs dominantes (hors blancs, noirs et gris), logo, image principale, police, menu.
+function hexOf(c) {
+  c = c.trim().toLowerCase();
+  let m = c.match(/^#([0-9a-f]{3})$/); if (m) return "#" + m[1].split("").map(x => x + x).join("");
+  m = c.match(/^#([0-9a-f]{6})/); if (m) return "#" + m[1];
+  m = c.match(/^rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)/); if (m) return "#" + [m[1], m[2], m[3]].map(x => Math.min(255, +x).toString(16).padStart(2, "0")).join("");
+  return null;
+}
+function colorful(hex) {
+  const r = parseInt(hex.slice(1, 3), 16) / 255, g = parseInt(hex.slice(3, 5), 16) / 255, b = parseInt(hex.slice(5, 7), 16) / 255;
+  const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, sat = mx === mn ? 0 : (mx - mn) / (1 - Math.abs(2 * l - 1));
+  return sat > 0.28 && l > 0.12 && l < 0.88;
+}
+export async function marque(p) {
+  const h = p.html.slice(0, MAX_BYTES), abs = u => { try { return new URL(u.replace(/&amp;/g, "&"), p.url).href; } catch { return ""; } };
+  const score = new Map(), add = (hex, w) => { if (hex && colorful(hex)) score.set(hex, (score.get(hex) || 0) + w); };
+  const theme = (h.match(/<meta[^>]{0,200}name=["']theme-color["'][^>]{0,200}content=["']([^"']+)/i) || [])[1];
+  if (theme) add(hexOf(theme), 30);
+  const scan = (css, w) => {
+    for (const m of css.matchAll(/--[\w-]*(?:primary|accent|brand|main|secondary|theme|couleur|color-1|color-2)[\w-]*\s*:\s*(#[0-9a-f]{3,8}|rgba?\([^)]+\))/gi)) add(hexOf(m[1]), 12 * w);
+    for (const m of css.matchAll(/(?:background(?:-color)?|color|border-color|fill)\s*:\s*(#[0-9a-f]{3,8}|rgba?\([^)]+\))/gi)) add(hexOf(m[1]), w);
+  };
+  scan([...h.matchAll(/<style[^>]*>([\s\S]{0,60000}?)<\/style>/gi)].map(m => m[1]).join("\n") + " " + [...h.matchAll(/style=["']([^"']{0,400})["']/gi)].map(m => m[1]).join(";"), 2);
+  const sheet = (h.match(/<link[^>]{0,300}rel=["']stylesheet["'][^>]{0,300}href=["']([^"']+\.css[^"']*)["']/i) || h.match(/<link[^>]{0,300}href=["']([^"']+\.css[^"']*)["'][^>]{0,300}rel=["']stylesheet["']/i) || [])[1];
+  if (sheet && score.size < 3) { try { scan(await fetchCss(abs(sheet)), 1); } catch {} }
+  const couleurs = [...score.entries()].sort((a, b) => b[1] - a[1]).map(x => x[0]).slice(0, 3);
+  const imgTag = (h.match(/<img\b[^>]{0,600}(?:logo)[^>]{0,600}>/i) || [])[0] || "";
+  const logo = abs((imgTag.match(/\s(?:data-src|src)=["']([^"']+)["']/i) || [])[1] || "");
+  const og = abs((h.match(/<meta[^>]{0,200}property=["']og:image["'][^>]{0,200}content=["']([^"']+)/i) || h.match(/<meta[^>]{0,200}content=["']([^"']+)["'][^>]{0,200}property=["']og:image["']/i) || [])[1] || "");
+  const police = decodeURIComponent((h.match(/fonts\.googleapis\.com\/css2?\?family=([^&:"'@]+)/i) || [])[1] || "").replace(/\+/g, " ").slice(0, 40);
+  const navHtml = (h.match(/<nav\b[\s\S]{0,8000}?<\/nav>/i) || [])[0] || "";
+  const menu = [...new Set([...navHtml.matchAll(/<a\b[^>]*>([\s\S]{1,80}?)<\/a>/gi)].map(m => strip(m[1])).filter(t => t && t.length <= 24 && !/^(menu|fermer|close|×)$/i.test(t)))].slice(0, 5);
+  return { couleurs, logo: /^https:/.test(logo) ? logo : "", image: /^https:/.test(og) ? og : "", police, menu };
+}
+
 /* ── Lecture de la page (ce que voit un internaute) ── */
 const strip = s => String(s || "").replace(/<[^>]{0,2000}>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#39;|&rsquo;/g, "’").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
 const attr = (html, re) => { const m = html.match(re); return m ? strip(m[1]).slice(0, 300) : ""; };
@@ -164,4 +210,4 @@ export async function registreListe(q, { commune = "" } = {}) {
 }
 export async function registre(q) { return (await registreListe(q))[0] || null; }
 
-export { fetchPage, fetchImage, analyse, checkURL };
+export { fetchPage, fetchImage, analyse, checkURL, fetchCss };
