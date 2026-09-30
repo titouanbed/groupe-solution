@@ -36,6 +36,7 @@ const CSS = `<style>
 @keyframes idPulse{70%{box-shadow:0 0 0 10px rgba(40,200,64,0)}100%{box-shadow:0 0 0 0 rgba(40,200,64,0)}}
 .idLive select{min-height:42px;border:1px solid var(--line2);border-radius:12px;padding:0 12px;font:600 14px var(--sans);background:#fff}
 .idLive .empty{color:var(--secondary);font-size:15px}
+.idDemo{display:grid;gap:6px;margin:30px 0 0;padding:22px 24px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(135deg,#FFF5F7,#fff);color:var(--ink);transition:transform .2s,box-shadow .2s}.idDemo:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.08)}.idDemo .k{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}.idDemo b{font:600 clamp(20px,2.4vw,26px)/1.2 var(--serif)}.idDemo span{color:var(--secondary)}.idDemo em{font-style:normal;font-weight:800;color:var(--acc)}
 .idCta{margin:34px 0 0;padding:26px;border-radius:22px;background:var(--ink);color:#fff;text-align:center}.idCta h2{color:#fff;font-size:clamp(22px,3vw,30px)}.idCta p{opacity:.85;margin:8px auto 16px;max-width:520px}.idCta .btn{background:var(--acc)}
 </style>`;
 
@@ -67,6 +68,14 @@ const liveBlock = (secteur, label) => `
     </div>`;
 const ctaBlock = `
     <div class="idCta"><h2>Et pour votre entreprise ?</h2><p>Décrivez-la en une phrase : notre IA imagine avec vous un plan d’innovation sur-mesure, en direct.</p><a class="btn" href="../#heroAI">Imaginer mon plan →</a></div>`;
+// Démo en direct la plus parlante pour chaque secteur (page /demos/).
+const DEMO = { restaurant: 'resa', 'hebergement-gite': 'resa', 'coiffeur-esthetique': 'resa', 'coach-salle-de-sport': 'resa', 'professionnel-de-sante': 'resa', 'garage-automobile': 'resa', 'services-a-domicile': 'resa',
+  'expert-comptable': 'facture', artisan: 'facture', 'industrie-pme': 'facture', 'transport-logistique': 'facture', avocat: 'facture', 'organisme-de-formation': 'facture', 'association-collectivite': 'facture', 'agence-immobiliere': 'facture' };
+const DEMO_TXT = { resa: ['Un agent qui prend vos réservations', 'Écrivez comme un client : il comprend, propose des créneaux libres et confirme. Essayez-le, c’est gratuit.', 'Essayer l’agent de réservation'],
+  facture: ['L’IA qui lit vos factures et vos bons', 'Déposez une photo ou un PDF : fournisseur, lignes, TVA, totaux et contrôles en quelques secondes.', 'Essayer la lecture de facture'],
+  avis: ['Une réponse parfaite à chaque avis Google', 'Collez un avis : réponse personnalisée et action interne à mener, en cinq secondes.', 'Essayer la réponse aux avis'] };
+const demoBlock = slug => { const k = DEMO[slug] || 'avis', t = DEMO_TXT[k]; return `
+    <a class="idDemo" href="../demos/#${k}"><span class="k">Démo en direct</span><b>${t[0]}</b><span>${t[1]}</span><em>${t[2]} →</em></a>`; };
 const audace = n => `<span class="aud">Audace <b>${'●'.repeat(n)}${'○'.repeat(3 - n)}</b></span>`;
 
 function sectorPage(s) {
@@ -90,6 +99,7 @@ function sectorPage(s) {
 ${s.idees.map(x => `      <article class="idCard reveal">${audace(x.audace || 1)}<h3>${esc(x.titre)}</h3><p class="pb">Le problème : ${esc(x.probleme)}</p><p>${esc(x.idee)}</p><div class="tech">${(x.techno || []).map(t => `<i>${esc(t)}</i>`).join('')}</div>${x.local ? `<p class="loc"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:5px"><path d="M12 21s-6.5-6-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>${esc(x.local)}</p>` : ''}</article>`).join('\n')}
     </div>
     <p class="dayIntro" style="margin-top:18px;font-size:14px">Des pistes réalisables avec les technologies d’aujourd’hui, à adapter à chaque entreprise. ${mp ? `Voir aussi : <a href="${mp}" style="text-decoration:underline">site internet pour ${esc(s.label.toLowerCase())}</a> · ` : ''}<a href="../services/" style="text-decoration:underline">nos services</a>.</p>
+${demoBlock(s.slug)}
 ${liveBlock(s.slug, s.label)}
 ${ctaBlock}
     <div class="archive"><a href="./">Tous les secteurs<span>Laboratoire d’idées</span></a><a href="../lab/">Le Lab<span>veille & technologies</span></a></div>

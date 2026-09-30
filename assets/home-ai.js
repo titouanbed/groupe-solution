@@ -121,6 +121,7 @@
     log.appendChild(d); log.scrollTop = log.scrollHeight;
   }
   function builder(j) {
+    setTimeout(function () { if (!memOffered) offerMemory({ titre: j.titre, idees: [] }); }, 400);
     var c = el('div', 'aiPlan aiBuild'), LAB = { essentiel: 'Essentiel', recommande: 'Recommandé', option: 'Option' };
     c.appendChild(el('span', 'k', 'Votre projet · budget ' + j.budget)); c.appendChild(el('h3', null, j.titre)); c.appendChild(el('p', 'sub', j.resume));
     // Sélection de départ : l'essentiel, puis le recommandé tant que ça tient dans le budget.
@@ -193,6 +194,36 @@
     });
     log.appendChild(w); log.scrollTop = log.scrollHeight;
   }
+  /* ── Mémoire sur cet appareil, uniquement sur demande du visiteur (localStorage, jamais envoyée ailleurs) ── */
+  var MEM = 'gs-memo', memOffered = false, memData = {};
+  function offerMemory(info) {
+    memOffered = true; memData = info;
+    var d = el('div', 'aiMem');
+    d.innerHTML = '<span>' + I('etoile') + 'Revenir plus tard sans tout réexpliquer ?</span><button type="button">Se souvenir de notre échange sur cet appareil</button>';
+    d.querySelector('button').onclick = function () {
+      var last = hist.filter(function (m) { return m.role === 'assistant'; }).slice(-1)[0];
+      var memo = { d: Date.now(), titre: memData.titre || companyName() || '', idees: memData.idees || [], contexte: [company || '', last ? last.content.slice(0, 600) : ''].filter(Boolean).join('\n').slice(0, 1500) };
+      try { localStorage.setItem(MEM, JSON.stringify(memo)); } catch (e) {}
+      d.innerHTML = '<span>' + I('check') + 'C’est noté sur cet appareil : à votre prochaine visite, on reprend ici.</span><button type="button" class="lnk">Oublier</button>';
+      d.querySelector('button').onclick = function () { try { localStorage.removeItem(MEM); } catch (e) {} d.remove(); };
+      ga('home_ai_memory');
+    };
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+  }
+  (function welcomeBack() {
+    var m = null; try { m = JSON.parse(localStorage.getItem(MEM) || 'null'); } catch (e) {}
+    if (!m || !m.d || Date.now() - m.d > 90 * 864e5) return;
+    var b = el('div', 'aiBack');
+    b.innerHTML = '<button type="button" class="go">' + I('etincelle') + 'Bon retour ! Reprendre notre échange' + (m.titre ? ' sur « ' + esc(m.titre) + ' »' : '') + '</button><button type="button" class="x" aria-label="Oublier cet échange">×</button>';
+    form.parentNode.insertBefore(b, form.nextSibling);
+    b.querySelector('.x').onclick = function () { try { localStorage.removeItem(MEM); } catch (e) {} b.remove(); };
+    b.querySelector('.go').onclick = function () {
+      b.remove(); open(); stopType(); company = m.contexte;
+      hist.push({ role: 'user', content: 'Je reviens pour reprendre notre échange.' }, { role: 'assistant', content: 'Rappel de notre précédent échange (mémorisé à la demande du visiteur) :\n' + m.contexte + (m.idees && m.idees.length ? '\nIdées proposées : ' + m.idees.join(' ; ') : '') });
+      add('b', md('Bon retour ! La dernière fois, on parlait ' + (m.titre ? 'de **' + esc(m.titre) + '**' : 'de votre projet') + (m.idees && m.idees.length ? ', avec notamment l’idée « ' + esc(m.idees[0]) + ' »' : '') + '. On reprend là où on s’était arrêtés ? Dites-moi ce qui a changé, ou préparez directement votre devis.'));
+      acts(); ga('home_ai_welcome_back');
+    };
+  })();
   function companyName() { var m = (company || '').match(/Entreprise : ([^,.\n]+)/); return m ? m[1].trim() : ''; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function concept(kind, btn) {
@@ -326,6 +357,7 @@
       // Recherche faite par l'assistant : fiche visuelle, et mémo factuel gardé pour la suite de la conversation.
       if (r.fiche) { renderFiche(r.fiche, ''); ga('home_ai_fiche'); }
       if (r.ruptures) { renderRuptures(r.ruptures); ga('home_ai_ruptures'); }
+      if ((r.fiche || r.ruptures) && !memOffered) offerMemory({ titre: r.fiche && r.fiche.entreprise ? r.fiche.entreprise.nom : '', idees: (r.ruptures || []).map(function (x) { return x.nom; }) });
       if (r.memo) { company = r.memo; hist.push({ role: 'assistant', content: r.memo }); }
       // Sur l'accueil, pas de lien vers d'autres pages : la conversation se suffit à elle-même.
       add('b', md(r.answer.replace(/\[([^\]]+)\]\((?!tel:|mailto:)[^)]*\)/g, '$1')));

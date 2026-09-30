@@ -28,6 +28,11 @@ const GENERIC = [
   { q: 'Le site m’appartient-il ?', a: "Oui. Le site, les contenus et le nom de domaine sont à vous. Vous pouvez gérer vous-même le site ou nous confier le suivi, sans engagement de durée imposé." }
 ];
 
+// Démo en direct la plus parlante pour chaque métier (page /demos/).
+const DEMO = { restaurant: 'resa', 'hebergement-gite': 'resa', 'coiffeur-esthetique': 'resa', 'coach-salle-de-sport': 'resa', 'professionnel-de-sante': 'resa', 'garage-automobile': 'resa', 'services-a-domicile': 'resa', 'expert-comptable': 'facture', artisan: 'facture', avocat: 'facture', 'agence-immobiliere': 'facture', 'organisme-de-formation': 'facture' };
+const DT = { resa: ['Un agent qui prend vos réservations, jour et nuit', 'Écrivez comme un client : il comprend, propose des créneaux libres et confirme. Essayez-le, c’est gratuit.', 'Essayer l’agent de réservation'], facture: ['L’IA qui lit vos factures et vos bons', 'Déposez une photo ou un PDF : fournisseur, lignes, TVA et contrôles en quelques secondes.', 'Essayer la lecture de facture'], avis: ['Une réponse parfaite à chaque avis Google', 'Collez un avis : réponse personnalisée et action interne, en cinq secondes.', 'Essayer la réponse aux avis'] };
+function demoBand(slug) { const k = DEMO[slug] || 'avis', t = DT[k]; return `<a href="../demos/#${k}" style="display:grid;gap:6px;padding:24px 26px;border-radius:24px;border:1px solid #EBE8E1;background:linear-gradient(135deg,#FFF5F7,#fff);color:#171613;text-decoration:none"><span style="font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#E61E4D">Démo en direct · gratuite</span><b style="font-size:clamp(21px,2.6vw,28px);line-height:1.2">${t[0]}</b><span style="color:#57534B">${t[1]}</span><em style="font-style:normal;font-weight:800;color:#E61E4D">${t[2]} →</em></a>`; }
+
 function page(m) {
   const url = `${HOLDING}/${DIR}/${mFile(m)}`;
   const faq = [...m.faq, ...GENERIC];
@@ -168,6 +173,7 @@ ${adv.map(a => `        <div class="gs-auto-card reveal"><span class="gs-tech">$
 
 ${REA_SECTION()}
 
+  <section style="padding:10px 0 34px"><div class="container" style="max-width:1100px;margin:0 auto;padding:0 20px">${demoBand(m.slug)}</div></section>
   <section id="faq">
     <div class="container">
       <div class="section-header"><span class="section-tag">FAQ</span><h2>Questions de <span class="accent">${esc(m.plural)}</span></h2></div>

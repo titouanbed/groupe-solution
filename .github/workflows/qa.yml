@@ -1,0 +1,22 @@
+# Contrôle qualité du site : chaque lundi matin, à chaque pull request et à la demande.
+# Échec = e-mail automatique de GitHub au propriétaire du dépôt (liens cassés, données structurées, FAQ, balises).
+name: "Contrôle qualité du site"
+on:
+  schedule:
+    - cron: "23 5 * * 1"
+  pull_request:
+  workflow_dispatch:
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Contrôle des pages
+        run: node scripts/qa.mjs
+      - name: Contrôle du site en ligne
+        if: github.event_name != 'pull_request'
+        run: node scripts/health.mjs

@@ -1046,6 +1046,11 @@ ${others.map((s, i) => `      <article class="case reveal"><div class="n">${i + 
     </div>
   </div></section>`;
 
+  // Démo en direct la plus parlante pour ce service (page /demos/).
+  const dk = /vocal|chatbot|agent-ia/.test(p.slug) ? 'resa' : /referencement|site-internet/.test(p.slug) ? 'avis' : 'facture';
+  const DT = { resa: ['Un agent qui prend vos réservations, en direct', 'Écrivez comme un client : il comprend, propose des créneaux libres et confirme.', 'Essayer l’agent'], facture: ['L’IA qui lit vos factures, en direct', 'Déposez une photo ou un PDF : fournisseur, lignes, TVA et contrôles en quelques secondes.', 'Essayer la lecture de facture'], avis: ['Une réponse parfaite à chaque avis Google', 'Collez un avis : réponse personnalisée et action interne, en cinq secondes.', 'Essayer la réponse aux avis'] }[dk];
+  const demo = `
+  <section class="sec" style="padding-top:10px;padding-bottom:10px"><div class="wrap"><a class="reveal" href="../demos/#${dk}" style="display:grid;gap:6px;padding:24px 26px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(135deg,#FFF5F7,#fff);color:var(--ink)"><span style="font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)">Démo en direct · gratuite</span><b style="font-family:var(--serif);font-size:clamp(21px,2.6vw,28px);line-height:1.2">${DT[0]}</b><span style="color:var(--secondary)">${DT[1]}</span><em style="font-style:normal;font-weight:800;color:var(--acc)">${DT[2]} →</em></a></div></section>`;
   const li = (href, t) => `<li><a href="${href}">${t}</a></li>`;
   const resources = `
   <section class="sec"><div class="wrap">
@@ -1071,6 +1076,7 @@ ${body}
 ${ctaBox('Prêt à en parler ?', 'Appelez-nous, écrivez-nous en deux phrases ou réservez une visio de 10 minutes. Le devis est gratuit et personnalisé.')}
     </article>
   </div></section>
+${demo}
 ${related}
 ${resources}
 ${faqHtml(p.faq).replace('<section class="sec alt">', '<section class="sec alt" id="faq">')}
