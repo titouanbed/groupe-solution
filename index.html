@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Groupe Solution — Logiciels sur-mesure &amp; automatisation, Montpellier</title>
-  <meta name="description" content="Éditeur de logiciels et d'automatisations basé à Montpellier. Devis, commandes, relances, plannings, documents : on absorbe vos tâches répétitives. Diagnostic gratuit en 10 minutes, sans engagement." />
+  <title>Site internet, logiciel sur-mesure &amp; automatisation IA | Groupe Solution</title>
+  <meta name="description" content="Création de site internet, logiciel sur-mesure, automatisation et agents IA pour les entreprises, partout en France et en outre-mer. Décrivez votre besoin : notre IA vous répond, puis 10 min avec un expert." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://www.groupsolution.fr/" />
   <link rel="alternate" type="application/rss+xml" title="Actus IA & numérique — Groupe Solution" href="https://www.groupsolution.fr/lab/actus/rss.xml" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Groupe Solution" />
-  <meta property="og:title" content="Groupe Solution — On peut automatiser bien plus que ce que vous imaginez." />
-  <meta property="og:description" content="Logiciels sur-mesure et automatisations pour absorber vos tâches répétitives. En 10 minutes d'appel, des pistes concrètes pour gagner du temps et de l'argent." />
+  <meta property="og:title" content="Dites-nous ce qui vous freine. On vous montre la solution. — Groupe Solution" />
+  <meta property="og:description" content="Site internet, automatisation, logiciel, IA : décrivez votre besoin en une phrase, notre assistant vous répond en quelques secondes. Essayez-le." />
   <meta property="og:url" content="https://www.groupsolution.fr/" />
-  <meta property="og:image" content="https://www.groupsolution.fr/assets/visuel-solutions.jpg" />
+  <meta property="og:image" content="https://www.groupsolution.fr/assets/og-accueil.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -137,6 +137,86 @@
   .secHead p{font-size:17.5px;color:var(--secondary);line-height:1.7;margin-top:18px}
 
   /* ── HERO (gauche : positionnement · droite : bulle d'appel) ── */
+
+  /* ══ HERO IA ══ */
+  @property --gsa{syntax:'<angle>';initial-value:0deg;inherits:false}
+  .hero-ai{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - 74px);display:flex;align-items:center;padding:48px 0 56px}
+  .aiBg{position:absolute;inset:0;z-index:-1;background:radial-gradient(120% 90% at 50% -10%,#fff 0%,var(--paper) 62%)}
+  .orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.5;animation:gsaFloat 20s ease-in-out infinite alternate;will-change:transform}
+  .o1{width:52vmax;height:52vmax;left:-18vmax;top:-26vmax;background:radial-gradient(circle,rgba(255,56,92,.75),rgba(255,56,92,0) 62%)}
+  .o2{width:44vmax;height:44vmax;right:-18vmax;top:-10vmax;background:radial-gradient(circle,rgba(255,150,105,.7),rgba(255,150,105,0) 62%);animation-duration:24s;animation-delay:-6s}
+  .o3{width:40vmax;height:40vmax;left:28%;bottom:-28vmax;background:radial-gradient(circle,rgba(170,140,255,.5),rgba(170,140,255,0) 62%);animation-duration:28s;animation-delay:-12s}
+  .aiDots{position:absolute;inset:0;background-image:radial-gradient(rgba(23,22,19,.13) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:radial-gradient(58% 52% at 50% 46%,#000 10%,transparent 72%);mask-image:radial-gradient(58% 52% at 50% 46%,#000 10%,transparent 72%)}
+  @keyframes gsaFloat{to{transform:translate3d(7vmax,5vmax,0) scale(1.15)}}
+  .aiWrap{width:100%;max-width:880px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .aiKicker{font-size:12.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--secondary);background:rgba(255,255,255,.7);border:1px solid var(--line);padding:7px 14px;border-radius:999px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .aiTitle{font-size:clamp(40px,4.9vw,70px);line-height:1.04;letter-spacing:-.045em;margin:20px 0 0;max-width:1000px}
+  .aiTitle em{font-style:italic;background:linear-gradient(90deg,#E61E4D,#FF7A59 45%,#E61E4D 90%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gsaShine 7s linear infinite}
+  @keyframes gsaShine{to{background-position:-200% 0}}
+  .aiSub{font-size:clamp(16px,1.6vw,19px);color:var(--secondary);line-height:1.6;margin:20px auto 0;max-width:600px}
+  .aiBoxWrap{position:relative;width:100%;max-width:760px;margin-top:34px;border-radius:30px;padding:2px;background:linear-gradient(var(--line),var(--line))}
+  .aiBoxWrap::before{content:"";position:absolute;inset:0;border-radius:30px;padding:2px;background:conic-gradient(from var(--gsa),#E61E4D,#FF9A6B,#B69CFF,#E61E4D);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:gsaSpin 5s linear infinite}
+  .aiBoxWrap::after{content:"";position:absolute;inset:14px 30px -26px;border-radius:40px;background:linear-gradient(90deg,rgba(230,30,77,.35),rgba(255,122,89,.3),rgba(170,140,255,.3));filter:blur(28px);z-index:-1}
+  @keyframes gsaSpin{to{--gsa:360deg}}
+  .aiBoxIn{position:relative;display:flex;align-items:flex-end;gap:10px;background:#fff;border-radius:28px;padding:12px 12px 12px 22px}
+  .aiBoxIn textarea{flex:1;border:0;outline:0;resize:none;background:transparent;font-family:var(--sans);font-size:18px;line-height:1.5;color:var(--ink);padding:12px 0;min-height:52px;max-height:168px}
+  .aiBoxIn textarea::placeholder{color:#9A968C}
+  .aiSend{flex-shrink:0;width:52px;height:52px;border-radius:50%;border:0;display:grid;place-items:center;background:var(--ink);color:#fff;cursor:pointer;transition:transform .18s var(--ease),background .18s}
+  .aiSend:hover{transform:scale(1.06);background:var(--acc)}.aiSend:disabled{opacity:.45;cursor:default;transform:none}
+  .aiHint{position:absolute;left:0;right:0;bottom:-30px;font-size:12.5px;color:var(--muted);font-weight:600}
+  .aiChips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:52px;max-width:800px}
+  .aiChips button{background:rgba(255,255,255,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line2);border-radius:999px;padding:11px 16px;font:700 14px var(--sans);color:var(--ink);cursor:pointer;transition:border-color .16s,transform .16s var(--ease),color .16s;white-space:nowrap}
+  .aiChips button:hover{border-color:var(--acc);color:var(--acc);transform:translateY(-1px)}
+  .aiCall{margin-top:26px;font-size:14.5px;color:var(--secondary)}.aiCall a{font-weight:800;color:var(--ink);border-bottom:2px solid var(--acc)}
+  .aiTrust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin-top:18px;font-size:13px;font-weight:700;color:var(--muted)}.aiTrust span::before{content:"✓ ";color:var(--olive,#5F6B54)}
+  .aiDevise{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--olive-soft,#EEF0E8)}.aiDevise .wrap{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding-top:16px;padding-bottom:16px;text-align:center}
+  .aiDevise .lab{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--olive2,#4B5642)}.aiDevise b{font-family:var(--serif);font-weight:600;font-size:clamp(15px,1.8vw,18px);color:var(--olive2,#4B5642)}
+  .aiTop{display:none}
+  /* Conversation */
+  .aiLog{display:none;width:100%;max-width:760px;text-align:left;flex-direction:column;gap:14px}
+  .hero-ai.chatting{align-items:stretch}
+  .hero-ai.chatting .aiKicker,.hero-ai.chatting .aiSub,.hero-ai.chatting .aiChips,.hero-ai.chatting .aiTrust,.hero-ai.chatting .aiHint{display:none}
+  .hero-ai.chatting .aiTitle{font-size:clamp(26px,3.4vw,38px);margin:0 0 18px}
+  .hero-ai.chatting .aiLog{display:flex;max-height:min(58vh,560px);min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:6px 4px 18px;scroll-behavior:smooth}
+  html.gsHeroIn #gsA-btn,html.gsHeroIn .gsA-call,html.gsHeroIn #gsA-tip,html.gsChat #gsA-btn,html.gsChat .gsA-call,html.gsChat #gsP,html.gsChat .gs-sticky,html.gsChat #gsA-tip{display:none!important}
+  .hero-ai.chatting .aiBoxWrap{margin-top:8px}
+  .aiMsg{max-width:88%;padding:13px 17px;border-radius:20px;font-size:16px;line-height:1.6;animation:gsaIn .35s var(--ease) both}
+  .aiMsg.u{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:6px}
+  .aiMsg.b{align-self:flex-start;background:#fff;border:1px solid var(--line);box-shadow:var(--sh-s);border-bottom-left-radius:6px}
+  .aiMsg.b a{color:var(--acc);font-weight:700;text-decoration:underline}.aiMsg.b p{margin:0 0 8px}.aiMsg.b p:last-child{margin:0}.aiMsg.b ul{margin:6px 0 6px 1.1em}
+  @keyframes gsaIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .aiDotsT{display:inline-flex;gap:5px}.aiDotsT i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:gsaB 1s infinite}.aiDotsT i:nth-child(2){animation-delay:.15s}.aiDotsT i:nth-child(3){animation-delay:.3s}
+  @keyframes gsaB{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}
+  .aiCta{align-self:stretch;display:flex;flex-wrap:wrap;gap:10px;padding:14px;border-radius:18px;background:var(--acc-soft);border:1px solid rgba(230,30,77,.2);animation:gsaIn .35s var(--ease) both}
+  .aiCta b{flex-basis:100%;font-size:15px}.aiCta a,.aiCta button{flex:1 1 150px;display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:48px;border-radius:999px;font:800 15px var(--sans);cursor:pointer;border:0}
+  .aiCta a{background:var(--acc);color:#fff}.aiCta button{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+  .aiCta form{flex-basis:100%;display:flex;flex-wrap:wrap;gap:8px}.aiCta input{flex:1 1 150px;min-height:48px;border:1px solid var(--line2);border-radius:14px;padding:0 14px;font:16px var(--sans)}
+  .aiCta form button{flex:1 1 100%;background:var(--ink);color:#fff;border:0}
+  @media(prefers-reduced-motion:reduce){.orb,.aiTitle em,.aiBoxWrap::before{animation:none}}
+  /* Téléphone */
+  @media(max-width:760px){
+    .hero-ai{min-height:calc(100svh - 64px);padding:28px 0 36px}
+    .aiTitle{font-size:clamp(34px,10vw,46px);max-width:12ch;margin-top:16px}
+    .aiKicker,.aiHint{display:none}
+    .aiSub{font-size:15.5px}
+    .aiBoxWrap{margin-top:26px;border-radius:24px}.aiBoxWrap::before{border-radius:24px}
+    .aiBoxIn{border-radius:22px;padding:8px 8px 8px 16px}
+    .aiBoxIn textarea{font-size:16px;min-height:46px;padding:10px 0}
+    .aiSend{width:46px;height:46px}
+    .aiChips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;width:calc(100% + 32px);margin:22px -16px 0;padding:2px 16px 6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent)}
+    .aiChips::-webkit-scrollbar{display:none}.aiChips button{scroll-snap-align:start;font-size:14px;padding:12px 15px}
+    .aiCall{font-size:14px}.aiTrust{font-size:12px}
+    /* conversation plein écran */
+    .hero-ai.chatting{position:fixed;inset:0;z-index:9990;height:100dvh;min-height:0;padding:0;background:var(--paper);display:flex;flex-direction:column}
+    .hero-ai.chatting .aiTop{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));border-bottom:1px solid var(--line);background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .aiTop b{font-size:15px}.aiClose{width:40px;height:40px;border-radius:50%;border:0;background:var(--sand,#F4F2EC);font-size:22px;cursor:pointer}
+    .hero-ai.chatting .aiWrap{flex:1;min-height:0;padding:0 12px;justify-content:flex-end}
+    .hero-ai.chatting .aiTitle,.hero-ai.chatting .aiCall{display:none}
+    .hero-ai.chatting .aiLog{flex:1 1 0;max-height:none;min-height:0;padding:14px 2px}
+    .hero-ai.chatting .aiBoxWrap{margin:0 0 max(10px,env(safe-area-inset-bottom))}
+    .aiMsg{max-width:92%;font-size:15.5px}
+  }
+
   .hero{padding:70px 0 82px;overflow:hidden}
   .heroGrid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
   .heroText{max-width:560px}
@@ -346,25 +426,36 @@
     <a href="a-propos.html">À propos</a><a class="cta" href="#contact">Nous contacter</a></nav></div></header>
 <main id="top">
 
-  <!-- ══ HERO ══ -->
-  <section class="hero"><div class="wrap heroGrid">
-    <div class="heroText">
-      <h1 class="reveal">Éditeur de logiciels & d’automatisations.</h1>
-      <p class="lead reveal">Nous concevons des systèmes sur-mesure pour absorber vos tâches répétitives. Vos équipes gardent l’essentiel : la décision et la relation.</p>
-      <div class="heroDevise reveal"><span class="lab">Notre devise</span><b>Nous gagnons de l’argent uniquement si vous en gagnez.</b></div>
-      <div class="trust reveal"><span>Basé à Montpellier</span><span>3 plateformes en production</span><span>Réponse le jour même</span></div>
-    </div>
-    <div class="heroCall reveal">
-      <div class="callBlob"></div>
-      <div class="callCard">
-        <span class="callBadge">10 minutes suffisent</span>
-        <h2>En 10 minutes, on identifie ce que vous pouvez automatiser chez vous.</h2>
-        <p class="sub">Un appel direct, sans engagement. Vous repartez avec des pistes concrètes.</p>
-        <a class="btn big" href="#contact">Discutons-en 10 min →</a>
-        <span class="micro">Réponse le jour même.</span>
+  <!-- ══ HERO · IA ══ -->
+  <section class="hero-ai" id="heroAI" aria-label="Décrivez votre besoin">
+    <div class="aiBg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="aiDots"></span></div>
+    <div class="aiTop" aria-hidden="false"><b>Assistant Groupe Solution</b><button type="button" class="aiClose" aria-label="Fermer la conversation">×</button></div>
+    <div class="wrap aiWrap">
+      <p class="aiKicker">Groupe Solution · sites internet, logiciels &amp; automatisations IA</p>
+      <h1 class="aiTitle">Dites-nous ce qui vous freine.<br><em>On vous montre la solution.</em></h1>
+      <p class="aiSub">Site internet, automatisation, logiciel, intelligence artificielle : décrivez votre besoin en une phrase, notre assistant vous répond en quelques secondes.</p>
+      <div class="aiLog" id="aiLog" aria-live="polite"></div>
+      <form class="aiBoxWrap" id="aiBox" autocomplete="off">
+        <div class="aiBoxIn">
+          <textarea id="aiInput" rows="1" maxlength="600" aria-label="Décrivez votre besoin" placeholder="Décrivez votre besoin…"></textarea>
+          <button type="submit" class="aiSend" aria-label="Envoyer">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <p class="aiHint">✨ Gratuit · sans inscription · réponse en quelques secondes</p>
+      </form>
+      <div class="aiChips" id="aiChips">
+        <button type="button">Je veux un site pour mon activité</button>
+        <button type="button">Je perds trop de temps sur mes devis</button>
+        <button type="button">Un agent IA qui répond au téléphone ?</button>
+        <button type="button">Mon logiciel ne communique avec rien</button>
+        <button type="button">Je ne sais pas par où commencer</button>
       </div>
+      <p class="aiCall">Vous préférez parler à un humain ? <a href="tel:+33782298559">📞 07 82 29 85 59</a> · <a href="#contact">Réserver 10 min</a></p>
+      <p class="aiTrust"><span>Basé à Montpellier</span><span>3 plateformes en production</span><span>France entière &amp; DOM-TOM</span></p>
     </div>
-  </div></section>
+  </section>
+  <div class="aiDevise"><div class="wrap"><span class="lab">Notre devise</span><b>Nous gagnons de l’argent uniquement si vous en gagnez.</b></div></div>
 
   <!-- ══ LE CHOIX ══ -->
   <section class="sec alt"><div class="wrap">
@@ -734,6 +825,7 @@
 })();
 </script>
   <script src="assets/holding-local.js" defer></script>
+  <script src="assets/home-ai.js" defer></script>
   <script src="/analytics.js" defer></script>
 </body>
 </html>
