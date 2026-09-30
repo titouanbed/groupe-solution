@@ -47,7 +47,14 @@ export async function listConvs(limit = 80) {
   return all.map(v => { try { return v ? JSON.parse(v) : null; } catch { return null; } }).filter(Boolean).map(c => ({
     sid: c.sid, debut: c.debut, maj: c.maj, n: c.messages.filter(m => m.r === "u").length,
     premier: (c.messages.find(m => m.r === "u")?.t || "").slice(0, 140), entreprise: c.entreprise?.nom || null,
-    contact: c.contact || null, evenements: (c.evenements || []).map(e => e.t)
+    contact: c.contact || null, evenements: (c.evenements || []).map(e => e.t), statut: c.statut || "nouveau", page: c.page || "/"
   }));
 }
 export const getConv = load;
+
+export async function setConvStatus(sid, statut) {
+  if (!SID_RE.test(sid || "") || !["nouveau", "traite"].includes(statut)) return false;
+  const c = await load(sid); if (!c) return false;
+  c.statut = statut; await redis([["SET", key(sid), JSON.stringify(c), "KEEPTTL"]]);
+  return true;
+}

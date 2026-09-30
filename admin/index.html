@@ -5,146 +5,178 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="robots" content="noindex,nofollow" />
 <meta name="referrer" content="no-referrer" />
-<title>Espace Groupe Solution</title>
+<title>Tableau de bord | Groupe Solution</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <style>
-:root{--ink:#171613;--sec:#57534B;--muted:#8A857B;--line:#E7E4DC;--paper:#F7F6F3;--acc:#E61E4D;--ok:#2F7D4F}
+:root{--ink:#171613;--sec:#57534B;--muted:#8A857B;--line:#E7E4DC;--paper:#F7F6F3;--acc:#E61E4D;--ok:#2F7D4F;--warn:#B7791F}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:980px;margin:0 auto;padding:16px 14px 80px}
-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}header b{font-size:18px}
-nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px}nav button{flex-shrink:0;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;font-weight:700;cursor:pointer}nav button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
-.row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}.row small{color:var(--muted)}
-.tag{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:999px;background:#eee}.tag.nouveau,.tag.envoye{background:#FDECEF;color:var(--acc)}.tag.signe{background:#E7F3EC;color:var(--ok)}
-label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10px 0 4px}
-input,textarea,select{width:100%;font:15px inherit;font-family:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}textarea{min-height:70px;resize:vertical}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.g4{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:0 10px}
-.line{border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;background:#FCFBF8}
-.btn{text-decoration:none;display:inline-flex;align-items:center;border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;background:var(--ink);color:#fff;font-size:14.5px}.btn.acc{background:var(--acc)}.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn.sm{padding:7px 12px;font-size:13px}
-.bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.tot{text-align:right;font-weight:800;font-size:17px;margin-top:8px}
-.note{font-size:13px;color:var(--muted)}.err{color:var(--acc);font-weight:700}
-.brief ul,.brief ol{margin:4px 0 8px 1.1em;padding:0}
-.cv{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto}.cvL{padding:12px 14px;cursor:pointer;min-width:0}.cvL b{display:block;font-size:14.5px}.cvL span{display:block;color:var(--sec);font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cvR{padding:12px 14px;display:flex;gap:6px;align-items:center}.cvR small{color:var(--muted);font-size:12px;white-space:nowrap}.dot{width:9px;height:9px;border-radius:50%;display:inline-block}.dot.ok{background:var(--ok)}.dot.ev{background:var(--acc)}
-.cvD{grid-column:1/-1;padding:0 14px}.cvD:not(:empty){padding:4px 14px 14px;border-top:1px solid var(--line)}.cvC{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
-.tr{display:flex;flex-direction:column;gap:8px;margin:10px 0}.tr .m{max-width:88%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5}.tr .m.u{align-self:flex-end;background:var(--ink);color:#fff}.tr .m.a{align-self:flex-start;background:var(--paper);border:1px solid var(--line)}
-.mailtxt{white-space:pre-wrap;font:13.5px/1.55 inherit;font-family:inherit;background:var(--paper);border-radius:12px;padding:12px;margin:8px 0}
-a{color:var(--acc)}
-@media(max-width:640px){.g2,.g4{grid-template-columns:1fr}}
+a{color:inherit}.wrap{max-width:1040px;margin:0 auto;padding:14px 14px 90px}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 0 14px}header .b{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px}header img{height:26px}header small{color:var(--muted);font-weight:600}
+header .r{display:flex;gap:14px;font-size:14px}header .r a{color:var(--sec);text-decoration:none}
+nav{display:flex;gap:6px;overflow-x:auto;margin:0 -14px 16px;padding:0 14px;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
+nav button{flex-shrink:0;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 15px;font:700 14px inherit;font-family:inherit;cursor:pointer;color:var(--ink)}nav button.on{background:var(--ink);color:#fff;border-color:var(--ink)}nav button i{font-style:normal;background:var(--acc);color:#fff;border-radius:999px;padding:1px 7px;font-size:12px;margin-left:6px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}.kpi b{display:block;font:600 30px/1 Georgia,serif}.kpi span{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:600}
+h2{font:600 22px/1.2 Georgia,serif;margin:22px 0 10px}h2 small{font:600 13px -apple-system,sans-serif;color:var(--muted);margin-left:8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.row>div{min-width:0}
+.t{font-weight:800;font-size:15px}.s{color:var(--sec);font-size:13.5px;overflow:hidden;text-overflow:ellipsis}.m{color:var(--muted);font-size:12.5px}
+.tag{flex-shrink:0;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:#eee;color:var(--sec)}.tag.dem{background:#FDECEF;color:var(--acc)}.tag.conv{background:#EEF1FB;color:#3A4DB0}.tag.rad{background:#FFF4E0;color:var(--warn)}.tag.ok{background:#E7F3EC;color:var(--ok)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;border:1px solid var(--line);border-radius:999px;padding:0 14px;background:#fff;color:var(--ink);font:700 13.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer}.btn.p{background:var(--acc);border-color:var(--acc);color:#fff}.btn.d{background:var(--ink);border-color:var(--ink);color:#fff}.btn:disabled{opacity:.5}
+.btn svg{width:16px;height:16px}
+.feed .it{display:flex;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}.feed .it:last-child{border:0}.feed .it small{color:var(--muted);white-space:nowrap}
+.empty{color:var(--muted);text-align:center;padding:22px}
+.tr{display:flex;flex-direction:column;gap:8px;margin:12px 0}.tr .mu,.tr .ma{max-width:88%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap}.tr .mu{align-self:flex-end;background:var(--ink);color:#fff}.tr .ma{align-self:flex-start;background:var(--paper);border:1px solid var(--line)}
+.more{border-top:1px solid var(--line);margin-top:12px;padding-top:4px}
+details summary{cursor:pointer;font-weight:700;font-size:13.5px;color:var(--sec);padding:6px 0}
+pre.mail{white-space:pre-wrap;font:14px/1.55 inherit;font-family:inherit;background:var(--paper);border-radius:12px;padding:12px;margin:8px 0}
+label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10px 0 4px}input,textarea{width:100%;font:15px inherit;font-family:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.login{max-width:420px;margin:12vh auto 0}.login h1{font:600 26px Georgia,serif;margin:0 0 6px}.err{color:var(--acc);font-weight:700;font-size:14px}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 12px}.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:700 12.5px inherit;font-family:inherit;cursor:pointer}.filters button.on{background:var(--ink);color:#fff}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.kpis .kpi:first-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header><b>Espace Groupe Solution</b><span><a href="/">Site</a> · <a href="#" id="out">Déconnexion</a></span></header>
-  <div id="login" class="card" hidden>
-    <p><b>Connexion</b></p>
-    <p class="note">Saisissez le code d’accès défini dans Vercel (variable <code>ADMIN_TOKEN</code>, 16 caractères minimum). Il reste sur cet appareil.</p>
+  <div id="login" class="login" hidden>
+    <img src="/Logo.svg" alt="Groupe Solution" height="30" />
+    <h1>Tableau de bord</h1>
+    <p class="m">Saisissez votre code d’accès (variable <b>ADMIN_TOKEN</b> dans Vercel). Il reste enregistré sur cet appareil.</p>
     <input type="password" id="tok" autocomplete="current-password" placeholder="Code d’accès" />
-    <div class="bar"><button class="btn" id="in">Se connecter</button></div><p class="err" id="lerr"></p>
+    <div class="bar"><button class="btn d" id="in">Entrer</button></div>
+    <p class="err" id="lerr"></p>
   </div>
-  <div id="main" hidden>
-    <nav><button data-t="demandes" class="on">Demandes</button><button data-t="convs">Conversations</button><button data-t="radar">Radar</button><button data-t="settings">Ma grille privée</button></nav>
+  <div id="app" hidden>
+    <header><div class="b"><img src="/Logo.svg" alt="" /><span>Tableau de bord <small id="upd"></small></span></div><div class="r"><a href="/">Site</a><a href="#" id="out">Quitter</a></div></header>
+    <nav id="nav"></nav>
     <div id="view"></div>
   </div>
 </div>
 <script>
 (function () {
-  var TK = 'gs-admin-token', token = '';
+  var TK = 'gs-admin-token', token = '', D = null, TAB = 'home';
   try { token = localStorage.getItem(TK) || ''; } catch (e) {}
-  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $ = function (s) { return document.querySelector(s); };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function eur(n) { return Math.round(n || 0).toLocaleString('fr-FR') + ' €'; }
+  function ago(d) { var m = Math.round((Date.now() - new Date(d)) / 60000); return m < 1 ? 'à l’instant' : m < 60 ? m + ' min' : m < 1440 ? Math.round(m / 60) + ' h' : m < 10080 ? Math.round(m / 1440) + ' j' : new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }); }
+  var IC = { tel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>', mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg>', ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>' };
   function api(q, body) {
-    return fetch('/api/devis' + (q || ''), { method: body ? 'POST' : 'GET', headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
-      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (r.status === 401) { showLogin(j.adminConfigured === false ? 'ADMIN_TOKEN n’est pas encore défini dans Vercel (16 caractères minimum).' : 'Code incorrect.'); throw 0; } if (!r.ok) throw j; return j; }); });
+    return fetch('/api/devis' + (q || ''), { method: body ? 'POST' : 'GET', headers: { 'X-Admin': encodeURIComponent(token), 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) {
+        if (r.status === 401) { showLogin(j.adminConfigured === false ? 'L’espace n’est pas encore activé : la variable ADMIN_TOKEN est absente, ou Vercel n’a pas encore été redéployé depuis que vous l’avez ajoutée (Deployments → ⋯ → Redeploy).' : 'Code incorrect. Vérifiez les majuscules et les caractères spéciaux.'); throw 0; }
+        if (r.status === 503) { showLogin('La base de données (Upstash) n’est pas connectée au projet Vercel.'); throw 0; }
+        if (!r.ok) throw j; return j; }); });
   }
-  function showLogin(msg) { $('#main').hidden = true; $('#login').hidden = false; $('#lerr').textContent = msg || ''; }
-  $('#in').onclick = function () { token = $('#tok').value.trim(); try { localStorage.setItem(TK, token); } catch (e) {} boot(); };
+  function showLogin(msg) { $('#app').hidden = true; $('#login').hidden = false; $('#lerr').textContent = msg || ''; $('#tok').focus(); }
+  $('#in').onclick = function () { token = $('#tok').value.trim(); try { localStorage.setItem(TK, token); } catch (e) {} load(); };
+  $('#tok').onkeydown = function (e) { if (e.key === 'Enter') $('#in').click(); };
   $('#out').onclick = function (e) { e.preventDefault(); try { localStorage.removeItem(TK); } catch (e2) {} token = ''; showLogin(); };
-  [].forEach.call(document.querySelectorAll('nav button'), function (b) { b.onclick = function () { tab(b.getAttribute('data-t')); }; });
-  var G = {}, MAIL = false;
-  function tab(t) { [].forEach.call(document.querySelectorAll('nav button'), function (b) { b.classList.toggle('on', b.getAttribute('data-t') === t); }); t === 'settings' ? settings() : t === 'convs' ? convs() : t === 'radar' ? radar() : list(); }
-  function boot() {
+
+  function load() {
     if (!token) return showLogin();
-    api('?admin=settings').then(function (j) {
-      G = j.grille || {}; MAIL = j.mail; $('#login').hidden = true; $('#main').hidden = false;
-      var m = location.hash.match(/demande=([a-f0-9]{32})/); if (/radar/.test(location.hash)) tab('radar'); else list(m && m[1]);
-      if (!G.tjm) $('#view').insertAdjacentHTML('afterbegin', '<div class="card"><b>À régler une fois :</b> votre taux journalier dans « Ma grille privée ». Il sert à calculer, sans jamais l’afficher au visiteur, la jauge « ce qui tient dans votre budget ».</div>');
+    api('?admin=dashboard').then(function (d) { D = d; $('#login').hidden = true; $('#app').hidden = false; $('#upd').textContent = '· mis à jour ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); nav(); show(TAB); }).catch(function () {});
+  }
+  function todo() {
+    var dem = D.demandes.filter(function (x) { return x.statut !== 'traite'; });
+    var withDem = {}; dem.forEach(function (x) { if (x.sid) withDem[x.sid] = 1; });
+    var conv = D.convs.filter(function (c) { return c.statut !== 'traite' && !withDem[c.sid] && c.contact && (c.contact.telephone || c.contact.email); });
+    var rad = D.radar.filter(function (x) { return x.statut === 'nouveau'; });
+    return { dem: dem, conv: conv, rad: rad, n: dem.length + conv.length + rad.length };
+  }
+  function nav() {
+    var t = todo(), tabs = [['home', 'Aujourd’hui', t.n], ['convs', 'Conversations', 0], ['dem', 'Demandes', t.dem.length], ['radar', 'Radar', t.rad.length], ['set', 'Réglages', 0]];
+    $('#nav').innerHTML = tabs.map(function (x) { return '<button data-t="' + x[0] + '"' + (x[0] === TAB ? ' class="on"' : '') + '>' + x[1] + (x[2] ? '<i>' + x[2] + '</i>' : '') + '</button>'; }).join('');
+    [].forEach.call(document.querySelectorAll('#nav button'), function (b) { b.onclick = function () { show(b.getAttribute('data-t')); }; });
+  }
+  function show(t) { TAB = t; [].forEach.call(document.querySelectorAll('#nav button'), function (b) { b.classList.toggle('on', b.getAttribute('data-t') === t); }); ({ home: home, convs: convs, dem: dems, radar: radar, set: settings })[t](); scrollTo(0, 0); }
+  function statut(type, id, st) { return api('', { action: 'statut', type: type, id: id, statut: st }).then(load); }
+  function contactBtns(c, subject) {
+    c = c || {}; var h = '';
+    if (c.telephone) h += '<a class="btn p" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">' + IC.tel + 'Appeler ' + esc(c.telephone) + '</a>';
+    if (c.email) h += '<a class="btn" href="mailto:' + encodeURIComponent(c.email) + (subject ? '?subject=' + encodeURIComponent(subject) : '') + '">' + IC.mail + esc(c.email) + '</a>';
+    return h;
+  }
+  var week = function (d) { return Date.now() - new Date(d) < 7 * 86400e3; };
+
+  /* ── Aujourd'hui ── */
+  function home() {
+    var t = todo(), c7 = D.convs.filter(function (c) { return week(c.maj); });
+    var kp = [[c7.length, 'conversations · 7 j'], [c7.filter(function (c) { return c.contact; }).length, 'contacts laissés · 7 j'], [D.demandes.filter(function (x) { return week(x.date); }).length, 'demandes de devis · 7 j'], [D.radar.filter(function (x) { return x.statut === 'contacte' || x.statut === 'rdv'; }).length, 'entreprises contactées'], [D.abonnes, 'abonnés newsletter']];
+    var h = '<div class="kpis">' + kp.map(function (k) { return '<div class="kpi"><b>' + k[0] + '</b><span>' + k[1] + '</span></div>'; }).join('') + '</div>';
+    h += '<h2>À faire <small>' + (t.n ? t.n + ' action' + (t.n > 1 ? 's' : '') : 'rien en attente') + '</small></h2>';
+    if (!t.n) h += '<div class="card empty">Tout est à jour. Les nouvelles demandes, les visiteurs qui laissent leurs coordonnées et le radar du matin apparaîtront ici.</div>';
+    t.dem.forEach(function (x) { h += demCard(x); });
+    t.conv.forEach(function (c) { h += '<div class="card"><div class="row"><div><div class="t">' + esc(c.contact.nom || c.entreprise || 'Visiteur') + (c.entreprise && c.contact.nom ? ' · ' + esc(c.entreprise) : '') + '</div><div class="s">« ' + esc(c.premier) + ' »</div><div class="m">' + ago(c.maj) + ' · ' + c.n + ' message(s)' + (c.evenements.length ? ' · ' + esc(c.evenements[c.evenements.length - 1]) : '') + '</div></div><span class="tag conv">Contact</span></div><div class="bar">' + contactBtns(c.contact, 'Suite à votre échange sur groupsolution.fr') + '<button class="btn" data-open="' + c.sid + '">Lire la conversation</button><button class="btn" data-done-conv="' + c.sid + '">' + IC.ok + 'Traité</button></div><div class="cvd" id="cv' + c.sid + '"></div></div>'; });
+    t.rad.slice(0, 5).forEach(function (x) { h += radCard(x, true); });
+    if (t.rad.length > 5) h += '<p class="m">+ ' + (t.rad.length - 5) + ' autre(s) dans l’onglet Radar.</p>';
+    // Activité récente
+    var ev = [];
+    D.convs.forEach(function (c) { ev.push({ d: c.maj, t: (c.contact && c.contact.nom ? esc(c.contact.nom) : c.entreprise ? esc(c.entreprise) : 'Un visiteur') + ' a échangé avec l’assistant (' + c.n + ' msg)' + (c.evenements.length ? ' — ' + esc(c.evenements[c.evenements.length - 1]) : '') }); });
+    D.demandes.forEach(function (x) { ev.push({ d: x.date, t: 'Demande de devis : <b>' + esc(x.titre) + '</b> (' + esc(x.budget) + ')' }); });
+    D.radar.forEach(function (x) { ev.push({ d: x.maj || x.date, t: 'Radar : ' + esc(x.nom) + ' — ' + ({ nouveau: 'à contacter', contacte: 'contacté', rdv: 'rendez-vous obtenu', ecarte: 'écarté' }[x.statut] || '') }); });
+    ev.sort(function (a, b) { return new Date(b.d) - new Date(a.d); });
+    h += '<h2>Activité récente</h2><div class="card feed">' + (ev.length ? ev.slice(0, 20).map(function (e) { return '<div class="it"><small>' + ago(e.d) + '</small><span>' + e.t + '</span></div>'; }).join('') : '<div class="empty">Encore aucune activité.</div>') + '</div>';
+    $('#view').innerHTML = h; bind();
+  }
+  function demCard(x) {
+    return '<div class="card"><div class="row"><div><div class="t">' + esc(x.titre) + '</div><div class="s">' + esc([x.contact.nom, x.contact.entreprise].filter(Boolean).join(' · ')) + '</div><div class="m">' + ago(x.date) + ' · budget ' + esc(x.budget) + ' · ' + esc(x.delai) + ' · ≈ ' + x.jours + ' j de travail</div></div><span class="tag ' + (x.statut === 'traite' ? 'ok' : 'dem') + '">' + (x.statut === 'traite' ? 'Traité' : 'Devis à faire') + '</span></div>' +
+      '<details><summary>Ce qu’il a retenu</summary><p class="s" style="white-space:normal">' + esc(x.resume) + '</p><ul>' + x.choisies.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul></details>' +
+      '<div class="bar">' + contactBtns(x.contact, 'Votre devis — ' + x.titre) + (x.sid ? '<button class="btn" data-open="' + x.sid + '">Conversation</button>' : '') + (x.statut !== 'traite' ? '<button class="btn" data-done-dem="' + x.id + '">' + IC.ok + 'Devis envoyé</button>' : '') + '</div>' + (x.sid ? '<div class="cvd" id="cv' + x.sid + '"></div>' : '') + '</div>';
+  }
+  function radCard(x, compact) {
+    var c = x.contact || {}, mail = c.email ? 'mailto:' + encodeURIComponent(c.email) + '?subject=' + encodeURIComponent(x.objet) + '&body=' + encodeURIComponent(x.email) : '';
+    return '<div class="card"><div class="row"><div><div class="t">' + esc(x.nom) + '</div><div class="m">' + esc([x.ville, x.dep, x.forme, x.naf].filter(Boolean).join(' · ')) + '</div></div><span class="tag ' + (x.statut === 'nouveau' ? 'rad' : 'ok') + '">' + (x.statut === 'nouveau' ? 'Radar · ' + x.note + '/10' : { contacte: 'Contacté', rdv: 'RDV', ecarte: 'Écarté' }[x.statut]) + '</span></div>' +
+      '<p class="s" style="white-space:normal;margin:8px 0 4px">' + esc(x.interet) + '</p><p style="margin:0"><b>' + esc(x.idee_titre) + '</b> — ' + esc(x.idee_pitch) + '</p>' +
+      '<details><summary>E-mail prêt : ' + esc(x.objet) + '</summary><pre class="mail">' + esc(x.email) + '</pre></details>' +
+      '<div class="bar">' + (mail ? '<a class="btn p" data-sent="' + x.id + '" href="' + mail + '">' + IC.mail + 'Envoyer l’e-mail</a>' : '<button class="btn" data-copy="' + x.id + '">Copier l’e-mail</button>') + (c.telephone ? '<a class="btn" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">' + IC.tel + 'Appeler</a>' : '') + (c.site ? '<a class="btn" target="_blank" rel="noopener" href="' + esc(c.site) + '">Site</a>' : '') +
+      (x.statut !== 'rdv' ? '<button class="btn" data-rs="' + x.id + '" data-v="rdv">RDV obtenu</button>' : '') + (x.statut === 'nouveau' ? '<button class="btn" data-rs="' + x.id + '" data-v="ecarte">Pas pour nous</button>' : '') + '</div>' + (!mail ? '<p class="m">Pas d’e-mail professionnel public trouvé' + (c.source ? ' · source : ' + esc(c.source) : '') + '</p>' : '') + '</div>';
+  }
+  function bind() {
+    [].forEach.call(document.querySelectorAll('[data-open]'), function (b) { b.onclick = function () { openConv(b.getAttribute('data-open')); }; });
+    [].forEach.call(document.querySelectorAll('[data-done-conv]'), function (b) { b.onclick = function () { statut('conv', b.getAttribute('data-done-conv'), 'traite'); }; });
+    [].forEach.call(document.querySelectorAll('[data-done-dem]'), function (b) { b.onclick = function () { statut('demande', b.getAttribute('data-done-dem'), 'traite'); }; });
+    [].forEach.call(document.querySelectorAll('[data-rs]'), function (b) { b.onclick = function () { api('', { action: 'radar_status', id: b.getAttribute('data-rs'), statut: b.getAttribute('data-v') }).then(load); }; });
+    // L'e-mail part depuis votre messagerie : on marque l'entreprise « contactée ».
+    [].forEach.call(document.querySelectorAll('[data-sent]'), function (a) { a.addEventListener('click', function () { setTimeout(function () { api('', { action: 'radar_status', id: a.getAttribute('data-sent'), statut: 'contacte' }).then(load); }, 800); }); });
+    [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) { b.onclick = function () { var x = D.radar.find(function (y) { return y.id === b.getAttribute('data-copy'); }); navigator.clipboard && navigator.clipboard.writeText('Objet : ' + x.objet + '\n\n' + x.email); b.textContent = 'Copié ✓'; }; });
+  }
+  function openConv(sid) {
+    var box = document.getElementById('cv' + sid); if (!box) return;
+    if (box.innerHTML) { box.innerHTML = ''; return; }
+    box.innerHTML = '<p class="m">Chargement…</p>';
+    api('?admin=conv&sid=' + sid).then(function (r) {
+      var c = r.conv; if (!c) { box.innerHTML = '<p class="m">Conversation expirée (30 jours).</p>'; return; }
+      box.innerHTML = '<div class="more">' + (c.entreprise ? '<p class="m">Entreprise analysée : <b>' + esc(c.entreprise.nom) + '</b>' + (c.entreprise.commune ? ' · ' + esc(c.entreprise.commune) : '') + (c.site ? ' · <a target="_blank" rel="noopener" href="' + esc(c.site) + '">site</a>' : '') + '</p>' : '') + (c.idees && c.idees.length ? '<p class="m">Idées proposées : ' + esc(c.idees.join(' · ')) + '</p>' : '') +
+        '<div class="tr">' + c.messages.map(function (m) { return '<div class="' + (m.r === 'u' ? 'mu' : 'ma') + '">' + esc(m.t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>') + '</div>'; }).join('') + '</div><p class="m">Début ' + new Date(c.debut).toLocaleString('fr-FR') + ' · page ' + esc(c.page || '/') + '</p></div>';
     }).catch(function () {});
   }
-  function list(open) {
-    $('#view').innerHTML = '<p class="note">Chargement…</p>';
-    api('?admin=list').then(function (j) {
-      $('#view').innerHTML = j.demandes.length ? j.demandes.map(function (d) { return '<div class="card"><div class="row"><div><b>' + esc(d.titre) + '</b><br><small>' + esc([d.contact.nom, d.contact.entreprise, d.contact.telephone, d.contact.email].filter(Boolean).join(' · ')) + '<br>' + new Date(d.date).toLocaleString('fr-FR') + ' · budget ' + esc(d.budget) + ' · ' + esc(d.delai) + '</small></div><span class="tag nouveau">' + (d.total ? eur(d.total) : '—') + (d.part != null ? ' · ' + d.part + ' %' : '') + '</span></div><div class="bar"><button class="btn sm ghost" data-v="' + d.id + '">Détail</button>' + (d.contact.telephone ? '<a class="btn sm acc" href="tel:' + esc(d.contact.telephone.replace(/\s/g, '')) + '">Appeler</a>' : '') + (d.contact.email ? '<a class="btn sm ghost" href="mailto:' + esc(d.contact.email) + '">E-mail</a>' : '') + '</div><div class="brief" id="d' + d.id + '"></div></div>'; }).join('') : '<div class="card">Aucune demande pour l’instant. Elles arrivent ici (et par e-mail) quand un visiteur prépare son devis dans le chat de l’accueil.</div>';
-      [].forEach.call(document.querySelectorAll('[data-v]'), function (x) { x.onclick = function () { detail(x.getAttribute('data-v')); }; });
-      if (open) detail(open);
-    }).catch(function () {});
+  /* ── Conversations ── */
+  var CF = 'all';
+  function convs() {
+    var list = D.convs.filter(function (c) { return CF === 'all' || (CF === 'contact' ? c.contact : CF === 'ent' ? c.entreprise : c.evenements.length); });
+    $('#view').innerHTML = '<h2>Conversations <small>' + D.convs.length + ' · 30 derniers jours</small></h2><div class="filters">' + [['all', 'Toutes'], ['contact', 'Avec coordonnées'], ['ent', 'Entreprise analysée'], ['act', 'Avec action']].map(function (f) { return '<button data-f="' + f[0] + '"' + (f[0] === CF ? ' class="on"' : '') + '>' + f[1] + '</button>'; }).join('') + '</div>' +
+      (list.length ? list.map(function (c) { return '<div class="card"><div class="row" data-open-row="' + c.sid + '" style="cursor:pointer"><div><div class="t">' + esc((c.contact && c.contact.nom) || c.entreprise || 'Visiteur') + '</div><div class="s" style="white-space:nowrap">' + esc(c.premier) + '</div><div class="m">' + ago(c.maj) + ' · ' + c.n + ' msg' + (c.evenements.length ? ' · ' + esc(c.evenements.join(' · ')) : '') + '</div></div>' + (c.contact ? '<span class="tag conv">Contact</span>' : c.statut === 'traite' ? '<span class="tag ok">Traité</span>' : '') + '</div>' + (c.contact ? '<div class="bar">' + contactBtns(c.contact, 'Suite à votre échange sur groupsolution.fr') + '</div>' : '') + '<div id="cv' + c.sid + '"></div></div>'; }).join('') : '<div class="card empty">Aucune conversation.</div>');
+    [].forEach.call(document.querySelectorAll('[data-f]'), function (b) { b.onclick = function () { CF = b.getAttribute('data-f'); convs(); }; });
+    [].forEach.call(document.querySelectorAll('[data-open-row]'), function (r) { r.onclick = function () { openConv(r.getAttribute('data-open-row')); }; });
   }
-  function detail(id) {
-    api('?admin=demande&id=' + id).then(function (r) {
-      var d = r.demande, box = $('#d' + id); if (!d || !box) return;
-      function li(a) { return a.map(function (x) { return '<li><b>' + esc(x.titre) + '</b> <small>(' + esc(x.niveau) + (x.recurrent ? ', mensuel' : '') + ' · ' + x.jours + ' j' + (x.cout ? ' · ' + eur(x.cout) : '') + ')</small><br>' + esc(x.detail) + '</li>'; }).join(''); }
-      box.innerHTML = '<p>' + esc(d.resume) + '</p>' + (d.message ? '<p><b>Message :</b> ' + esc(d.message) + '</p>' : '') + '<p><b>Estimation interne :</b> ' + d.estimation.jours + ' j' + (d.estimation.choisi ? ' ≈ ' + eur(d.estimation.choisi) : '') + (d.estimation.part != null ? ' (' + d.estimation.part + ' % de son budget)' : '') + '</p><b>Retenu</b><ul>' + li(d.choisies) + '</ul>' + (d.ecartees.length ? '<b>Écarté</b><ul>' + li(d.ecartees) + '</ul>' : '') + '<b>À préciser</b><ul>' + d.questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul><details><summary>Conversation</summary><pre style="white-space:pre-wrap;font-size:12px">' + esc(d.conversation) + '\n' + esc(d.besoin) + '</pre></details>';
-      var tc = box.querySelector('.toConv'); if (tc) tc.onclick = function (e) { e.preventDefault(); tab('convs'); };
-      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }).catch(function () {});
+  function dems() { $('#view').innerHTML = '<h2>Demandes de devis <small>chiffrez dans Indy, puis cochez « Devis envoyé »</small></h2>' + (D.demandes.length ? D.demandes.map(demCard).join('') : '<div class="card empty">Aucune demande pour l’instant. Elles arrivent ici (et par e-mail) quand un visiteur prépare son devis dans le chat.</div>'); bind(); }
+  function radar() {
+    var act = D.radar.filter(function (x) { return x.statut !== 'ecarte'; });
+    $('#view').innerHTML = '<h2>Radar <small>nouvelles sociétés, France et outre-mer</small></h2><div class="card"><p class="m" style="margin:0">Chaque matin, les sociétés créées la veille (annonces officielles BODACC) sont triées ; les 5 plus prometteuses sont analysées et seules les meilleures restent ici, avec une idée et un e-mail prêts. « Envoyer l’e-mail » l’ouvre dans votre messagerie, prérempli.</p><div class="bar"><button class="btn d" id="rrun">Lancer le radar maintenant</button><span class="m" id="rmsg"></span></div></div>' +
+      (act.length ? act.map(function (x) { return radCard(x); }).join('') : '<div class="card empty">Aucune entreprise retenue pour l’instant.</div>');
+    $('#rrun').onclick = function () { var b = this; b.disabled = true; b.textContent = 'Analyse en cours (environ 1 min)…'; api('', { action: 'radar_run' }).then(function (r) { $('#rmsg').textContent = r.annonces + ' annonces lues · ' + r.analyses + ' analysées · ' + r.retenues + ' retenue(s)'; load(); }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; }); };
+    bind();
   }
   function settings() {
-    $('#view').innerHTML = '<div class="card"><b>Ma grille privée</b><p class="note">Jamais affichée aux visiteurs. L’IA estime les jours de travail de chaque brique (en tenant compte du fait que vous allez vite grâce à l’IA) ; votre taux journalier les transforme en une part de <i>leur</i> budget, affichée comme une jauge — sans aucun montant. E-mails : ' + (MAIL ? 'Brevo configuré ✅' : 'Brevo non configuré ⚠️') + '</p>' +
-      '<label>Taux journalier moyen (€ HT)</label><input id="g_tjm" type="number" value="' + esc(G.tjm || '') + '">' +
-      '<label>Montant minimum d’un projet (€ HT, facultatif)</label><input id="g_min" type="number" value="' + esc(G.minimum || '') + '">' +
-      '<label class="row" style="justify-content:flex-start;gap:8px"><input id="g_j" type="checkbox" style="width:auto"' + (G.jauge !== false ? ' checked' : '') + '> Afficher la jauge budget aux visiteurs</label>' +
-      '<label>Note pour vous</label><textarea id="g_note">' + esc(G.note || '') + '</textarea>' +
-      '<div class="bar"><button class="btn" id="gs">Enregistrer</button></div><p class="note" id="gm"></p></div>';
-    api('?admin=newsletter').then(function (r) { $('#view').insertAdjacentHTML('beforeend', '<div class="card"><b>Newsletter « L’essentiel du lundi »</b><p class="note">' + r.abonnes + ' abonné(s) confirmé(s). Envoi automatique chaque lundi matin avec les actus de la semaine.</p></div>'); }).catch(function () {});
-    $('#gs').onclick = function () { api('', { action: 'settings', grille: { tjm: $('#g_tjm').value, minimum: $('#g_min').value, jauge: $('#g_j').checked, note: $('#g_note').value } }).then(function (r) { G = r.grille; $('#gm').textContent = 'Enregistré ✅'; }).catch(function () { $('#gm').textContent = 'Erreur'; }); };
+    $('#view').innerHTML = '<h2>Réglages</h2><div class="card"><div class="t">Newsletter « L’essentiel du lundi »</div><p class="m">' + D.abonnes + ' abonné(s) confirmé(s). Chaque nouvel abonné reçoit un e-mail de bienvenue, puis les actus de la semaine chaque lundi matin, automatiquement.</p></div>' +
+      '<div class="card"><div class="t">E-mails</div><p class="m">' + (D.mail ? 'Brevo est configuré : vous recevez les demandes et le récapitulatif du radar.' : 'Brevo n’est pas configuré : les e-mails automatiques ne partent pas.') + '</p></div>' +
+      '<div class="card"><details><summary>Grille privée (facultatif)</summary><p class="m">Vous n’êtes pas obligé de la remplir. Sans grille, le visiteur voit l’envergure de chaque brique (légère, moyenne, conséquente) ; avec un taux journalier, il voit en plus une jauge « ce qui tient dans votre budget ». Aucun montant n’est jamais affiché.</p><label>Taux journalier moyen (€ HT)</label><input id="g_tjm" type="number"><div class="bar"><button class="btn d" id="gs">Enregistrer</button><span class="m" id="gm"></span></div></details></div>';
+    api('?admin=settings').then(function (r) { $('#g_tjm').value = (r.grille && r.grille.tjm) || ''; }).catch(function () {});
+    $('#gs').onclick = function () { api('', { action: 'settings', grille: { tjm: $('#g_tjm').value, jauge: true } }).then(function () { $('#gm').textContent = 'Enregistré ✓'; }).catch(function () { $('#gm').textContent = 'Erreur'; }); };
   }
-  function ago(d) { var m = Math.round((Date.now() - new Date(d)) / 60000); return m < 1 ? 'à l’instant' : m < 60 ? 'il y a ' + m + ' min' : m < 1440 ? 'il y a ' + Math.round(m / 60) + ' h' : new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }); }
-  function convs() {
-    $('#view').innerHTML = '<p class="note">Chargement…</p>';
-    api('?admin=convs').then(function (j) {
-      if (!j.convs.length) { $('#view').innerHTML = '<div class="card">Aucune conversation pour l’instant. Chaque échange avec l’assistant (accueil et bulle) apparaît ici, conservé 30 jours.</div>'; return; }
-      $('#view').innerHTML = '<p class="note">' + j.convs.length + ' conversation(s) · 30 derniers jours · touchez une ligne pour tout lire.</p>' + j.convs.map(function (c) {
-        var ct = c.contact || {}, has = ct.telephone || ct.email;
-        return '<div class="cv" data-s="' + c.sid + '"><div class="cvL"><b>' + esc(c.entreprise || (ct.nom || 'Visiteur')) + '</b><span>' + esc(c.premier) + '</span></div><div class="cvR"><small>' + ago(c.maj) + ' · ' + c.n + ' msg</small>' + (has ? '<span class="dot ok" title="Coordonnées disponibles"></span>' : '') + (c.evenements.length ? '<span class="dot ev" title="' + esc(c.evenements.join(' · ')) + '"></span>' : '') + '</div><div class="cvD"></div></div>';
-      }).join('');
-      [].forEach.call(document.querySelectorAll('.cv'), function (x) { x.querySelector('.cvL').onclick = function () { openConv(x); }; });
-    }).catch(function () {});
-  }
-  function openConv(x) {
-    var box = x.querySelector('.cvD'); if (box.innerHTML) { box.innerHTML = ''; return; }
-    api('?admin=conv&sid=' + x.getAttribute('data-s')).then(function (r) {
-      var c = r.conv; if (!c) return; var ct = c.contact || {};
-      box.innerHTML = (ct.telephone || ct.email || ct.nom ? '<div class="cvC"><b>' + esc(ct.nom || 'Contact') + '</b>' + (ct.telephone ? '<a class="btn sm acc" href="tel:' + esc(ct.telephone.replace(/\s/g, '')) + '">Appeler ' + esc(ct.telephone) + '</a>' : '') + (ct.email ? '<a class="btn sm ghost" href="mailto:' + esc(ct.email) + '">' + esc(ct.email) + '</a>' : '') + '</div>' : '') +
-        (c.entreprise ? '<p class="note">Entreprise analysée : <b>' + esc(c.entreprise.nom) + '</b>' + (c.entreprise.commune ? ' · ' + esc(c.entreprise.commune) : '') + (c.site ? ' · <a target="_blank" rel="noopener" href="' + esc(c.site) + '">site</a>' : '') + '</p>' : '') +
-        (c.idees && c.idees.length ? '<p class="note">Idées proposées : ' + esc(c.idees.join(' · ')) + '</p>' : '') +
-        (c.evenements && c.evenements.length ? '<p class="note">' + c.evenements.map(function (e) { return '• ' + esc(e.t) + ' <small>(' + ago(e.ts) + ')</small>'; }).join('<br>') + '</p>' : '') +
-        '<div class="tr">' + c.messages.map(function (m) { return '<div class="m ' + m.r + '">' + esc(m.t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>') + '</div>'; }).join('') + '</div><p class="note">Page : ' + esc(c.page || '/') + ' · début ' + new Date(c.debut).toLocaleString('fr-FR') + '</p>';
-    }).catch(function () {});
-  }
-  function radar() {
-    $('#view').innerHTML = '<p class="note">Chargement…</p>';
-    api('?admin=radar').then(function (j) {
-      var head = '<div class="card"><div class="row"><div><b>Radar des nouvelles entreprises</b><br><small>Sociétés créées en France et en outre-mer (annonces officielles BODACC), triées par potentiel. Chaque matin, 5 analysées au plus, seules les meilleures restent ici. Rien n’est envoyé sans vous.' + (j.cron ? '' : ' <b>Passage automatique inactif : ajoutez CRON_SECRET dans Vercel.</b>') + '</small></div><button class="btn sm" id="rrun">Lancer maintenant</button></div><p class="note" id="rmsg"></p></div>';
-      var items = j.radar.filter(function (x) { return x.statut !== 'ecarte'; });
-      $('#view').innerHTML = head + (items.length ? items.map(function (x) {
-        var c = x.contact || {}, mail = c.email ? 'mailto:' + encodeURIComponent(c.email) + '?subject=' + encodeURIComponent(x.objet) + '&body=' + encodeURIComponent(x.email) : '';
-        return '<div class="card rd" data-id="' + x.id + '"><div class="row"><div><b>' + esc(x.nom) + '</b> <span class="tag ' + (x.statut === 'contacte' ? 'signe' : 'nouveau') + '">' + (x.statut === 'contacte' ? 'contacté' : x.statut === 'rdv' ? 'rendez-vous' : x.note + '/10') + '</span><br><small>' + esc([x.ville, x.dep, x.forme, x.naf].filter(Boolean).join(' · ')) + '</small></div></div>' +
-          '<p class="note" style="margin:8px 0 4px">' + esc(x.interet) + '</p><p style="margin:0 0 10px"><b>' + esc(x.idee_titre) + '</b> — ' + esc(x.idee_pitch) + '</p>' +
-          '<details><summary><b>E-mail prêt :</b> ' + esc(x.objet) + '</summary><pre class="mailtxt">' + esc(x.email) + '</pre></details>' +
-          '<div class="bar">' + (mail ? '<a class="btn sm acc" href="' + mail + '">Envoyer depuis ma messagerie</a>' : '<span class="note">Pas d’e-mail pro public trouvé</span>') + '<button class="btn sm ghost" data-copy>Copier l’e-mail</button>' + (c.telephone ? '<a class="btn sm ghost" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">Appeler</a>' : '') + (c.site ? '<a class="btn sm ghost" target="_blank" rel="noopener" href="' + esc(c.site) + '">Site</a>' : '') + '<button class="btn sm ghost" data-st="contacte">Contacté</button><button class="btn sm ghost" data-st="rdv">RDV obtenu</button><button class="btn sm ghost" data-st="ecarte">Pas pour nous</button></div>' +
-          (c.source ? '<p class="note">Contact trouvé sur : ' + esc(c.source) + '</p>' : '') + '</div>';
-      }).join('') : '<div class="card">Aucune entreprise retenue pour l’instant.</div>');
-      $('#rrun').onclick = function () { var b = this; b.disabled = true; b.textContent = 'Analyse en cours (1 min)…'; api('', { action: 'radar_run' }).then(function (r) { $('#rmsg').textContent = r.annonces + ' annonces lues, ' + r.analyses + ' analysées, ' + r.retenues + ' retenue(s).'; setTimeout(radar, 1500); }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; }); };
-      [].forEach.call(document.querySelectorAll('.rd'), function (card) {
-        var x = j.radar.find(function (y) { return y.id === card.getAttribute('data-id'); });
-        card.querySelector('[data-copy]').onclick = function () { navigator.clipboard && navigator.clipboard.writeText('Objet : ' + x.objet + '\n\n' + x.email); this.textContent = 'Copié ✓'; };
-        [].forEach.call(card.querySelectorAll('[data-st]'), function (b) { b.onclick = function () { api('', { action: 'radar_status', id: x.id, statut: b.getAttribute('data-st') }).then(radar); }; });
-      });
-    }).catch(function () {});
-  }
-  boot();
+  if (/radar/.test(location.hash)) TAB = 'radar'; else if (/demande/.test(location.hash)) TAB = 'dem';
+  load();
+  setInterval(function () { if (!document.hidden && token && D) api('?admin=dashboard').then(function (d) { D = d; nav(); $('#upd').textContent = '· mis à jour ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); }).catch(function () {}); }, 120000);
 })();
 </script>
 </body>

@@ -27,6 +27,7 @@ function group(f) {
   if (/^montpellier\/site-internet-.*-montpellier\.html$/.test(f)) return ['3b', 'Site internet par métier'];
   if (/^montpellier\/site-internet-montpellier-/.test(f)) return ['3a', 'Site internet — quartiers de Montpellier'];
   if (f.startsWith('montpellier/')) return ['3', 'Création de site internet — Montpellier, Hérault et Gard'];
+  if (f.startsWith('demos/')) return ['0b', 'Démos en direct'];
   if (f.startsWith('lab/actus/')) return ['6b', 'Actus IA & numérique'];
   if (f.startsWith('idees/')) return ['6e', 'Laboratoire d’idées'];
   if (f.startsWith('lab/dossiers/')) return ['6c', 'Dossiers de la semaine'];

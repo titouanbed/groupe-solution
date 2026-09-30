@@ -87,7 +87,7 @@ function sectorPage(s) {
   </div></section>
   <section class="sec" style="padding-top:6px"><div class="wrap">
     <div class="idCards">
-${s.idees.map(x => `      <article class="idCard reveal">${audace(x.audace || 1)}<h3>${esc(x.titre)}</h3><p class="pb">Le problème : ${esc(x.probleme)}</p><p>${esc(x.idee)}</p><div class="tech">${(x.techno || []).map(t => `<i>${esc(t)}</i>`).join('')}</div>${x.local ? `<p class="loc">📍 ${esc(x.local)}</p>` : ''}</article>`).join('\n')}
+${s.idees.map(x => `      <article class="idCard reveal">${audace(x.audace || 1)}<h3>${esc(x.titre)}</h3><p class="pb">Le problème : ${esc(x.probleme)}</p><p>${esc(x.idee)}</p><div class="tech">${(x.techno || []).map(t => `<i>${esc(t)}</i>`).join('')}</div>${x.local ? `<p class="loc"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:5px"><path d="M12 21s-6.5-6-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>${esc(x.local)}</p>` : ''}</article>`).join('\n')}
     </div>
     <p class="dayIntro" style="margin-top:18px;font-size:14px">Des pistes réalisables avec les technologies d’aujourd’hui, à adapter à chaque entreprise. ${mp ? `Voir aussi : <a href="${mp}" style="text-decoration:underline">site internet pour ${esc(s.label.toLowerCase())}</a> · ` : ''}<a href="../services/" style="text-decoration:underline">nos services</a>.</p>
 ${liveBlock(s.slug, s.label)}

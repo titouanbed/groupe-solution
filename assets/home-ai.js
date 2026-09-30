@@ -134,12 +134,18 @@
       row.querySelector('b').textContent = b.titre; row.querySelector('small').textContent = b.detail + (b.recurrent ? ' · coût mensuel éventuel' : '');
       row.querySelector('.bLvl').textContent = LAB[b.niveau];
       if (j.jauge) { var m = el('i', 'bMini'); m.style.width = Math.min(100, b.part) + '%'; row.querySelector('.bTxt').appendChild(m); }
-      row.querySelector('input').addEventListener('change', function (e) { if (e.target.checked) sel[b.id] = 1; else delete sel[b.id]; row.classList.toggle('on', e.target.checked); gauge(); });
+      else { var ef = el('span', 'bEff e' + b.effort); ef.innerHTML = '<i></i><i></i><i></i>' + ['', 'Légère', 'Moyenne', 'Conséquente'][b.effort || 1]; row.querySelector('.bTxt').appendChild(ef); }
+      row.querySelector('input').addEventListener('change', function (e) { if (e.target.checked) sel[b.id] = 1; else delete sel[b.id]; row.classList.toggle('on', e.target.checked); gauge(); envergure(); });
       ul.appendChild(row);
     });
     c.appendChild(ul);
     var g = el('div', 'gauge'); g.innerHTML = '<div class="gBar"><i></i><span class="gMark"></span></div><p class="gLab"></p>';
-    if (j.jauge) c.appendChild(g); else c.appendChild(el('p', 'sub', 'Titouan vous donnera une estimation précise avec votre devis, gratuit et sans engagement.'));
+    var env = el('div', 'envTot');
+    if (j.jauge) c.appendChild(g); else c.appendChild(env);
+    function envergure() {
+      var sc = j.briques.reduce(function (a, b) { return a + (sel[b.id] ? (b.effort || 1) : 0); }, 0), lv = !sc ? 0 : sc <= 3 ? 1 : sc <= 7 ? 2 : 3;
+      env.innerHTML = '<div class="envBar"><i style="width:' + (lv * 33.4) + '%"></i></div><p><b>' + ['Cochez au moins une brique.', 'Projet léger', 'Projet de taille moyenne', 'Projet ambitieux'][lv] + '</b>' + (lv ? ' · Titouan vous envoie le chiffrage exact sous 24 h ouvrées' + (j.budget && !/sais pas/.test(j.budget) ? ', en respectant votre budget (' + esc(j.budget) + ') ou en vous proposant un lancement par étapes.' : '.') : '') + '</p>';
+    }
     function gauge() {
       if (!j.jauge) return;
       var t = j.briques.reduce(function (a, b) { return a + (sel[b.id] ? b.part : 0); }, 0), t2 = Math.max(t, j.minimumPart || 0);
@@ -147,7 +153,7 @@
       g.className = 'gauge ' + (t2 <= 85 ? 'ok' : t2 <= 110 ? 'mid' : 'over');
       g.querySelector('.gLab').textContent = !t ? 'Cochez au moins une brique.' : t2 <= 85 ? 'Tient dans votre budget' : t2 <= 110 ? '≈ Pile dans votre budget — Titouan ajustera au plus juste' : 'Au-delà de votre budget : retirez une option, ou gardez-la — Titouan vous proposera un lancement par étapes';
     }
-    gauge();
+    gauge(); envergure();
     var f = el('form', 'bForm');
     f.innerHTML = '<input name="nom" placeholder="Prénom et nom" autocomplete="name" required><input name="entreprise" placeholder="Entreprise" autocomplete="organization"><input name="email" type="email" placeholder="E-mail (pour recevoir le devis)" autocomplete="email"><input name="telephone" type="tel" placeholder="Téléphone" autocomplete="tel"><textarea name="message" rows="2" placeholder="Un détail à ajouter ? (facultatif)"></textarea><button type="submit">Envoyer à Titouan</button><small>Titouan reçoit votre projet et vous envoie votre devis détaillé sous 24 h ouvrées. Gratuit, sans engagement.</small><p class="err" role="alert"></p>';
     f.entreprise.value = companyName();

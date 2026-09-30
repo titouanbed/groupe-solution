@@ -82,9 +82,10 @@
       '#gsConsent .gsc-accept{background:#E61E4D;color:#fff;border:0;border-radius:999px;padding:11px 22px;font-size:13px;font-weight:800;cursor:pointer}' +
       '#gsConsent .gsc-accept:hover{background:#C81E47}' +
       '#gsConsent .gsc-ai{flex-basis:100%;display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.5;color:#EDEBE6;cursor:pointer}' +
-      '#gsConsent .gsc-ai input{margin-top:3px;width:17px;height:17px;accent-color:#E61E4D;flex-shrink:0}#gsConsent .gsc-ai b{color:#fff}#gsConsent .gsc-ai small{display:block;color:#B9B5AD;font-size:12px;margin-top:2px}' +
+      '#gsConsent .gsc-ai input{margin-top:3px;width:17px;height:17px;accent-color:#E61E4D;flex-shrink:0}#gsConsent .gsc-ai b{color:#fff}#gsConsent .gsc-ai small{display:none;color:#B9B5AD;font-size:12px;margin-top:4px}#gsConsent .gsc-ai.on small{display:block}' +
+      '#gsConsent .gsc-more{background:none;border:0;color:#fff;text-decoration:underline;font:inherit;font-size:12.5px;cursor:pointer;padding:0 0 0 6px}' +
       '#gsConsent a{color:#fff;text-decoration:underline}' +
-      '@media(max-width:560px){#gsConsent{left:10px;right:10px;bottom:10px}#gsConsent .gsc-card{padding:13px 14px;gap:10px;border-radius:14px}#gsConsent .gsc-txt{font-size:12.5px;line-height:1.45;min-width:0}#gsConsent .gsc-ai{padding:8px 10px;font-size:12.5px}#gsConsent .gsc-ai small{display:none}#gsConsent .gsc-ai.on small{display:block}#gsConsent .gsc-btns{width:100%}#gsConsent .gsc-refuse,#gsConsent .gsc-accept{flex:1;text-align:center;padding:10px 12px}}';
+      '@media(max-width:560px){#gsConsent{left:10px;right:10px;bottom:10px}#gsConsent .gsc-card{padding:13px 14px;gap:10px;border-radius:14px}#gsConsent .gsc-txt{font-size:12.5px;line-height:1.45;min-width:0}#gsConsent .gsc-ai{padding:8px 10px;font-size:12.5px}#gsConsent .gsc-btns{width:100%}#gsConsent .gsc-refuse,#gsConsent .gsc-accept{flex:1;text-align:center;padding:10px 12px}}';
     var st = document.createElement('style');
     st.textContent = css;
     document.head.appendChild(st);
@@ -100,8 +101,8 @@
         '<p class="gsc-txt">Nous mesurons l’audience du site (Google Analytics) pour l’améliorer. ' +
         'Aucun cookie de suivi n’est déposé sans votre accord. <a href="/confidentialite.html">En savoir plus</a></p>' +
         '<label class="gsc-ai"><input type="checkbox" id="gscAI" />' +
-          '<span><b>✨ Expérience sur-mesure par IA</b> (facultatif) : le site adapte ses titres et ses conseils à ce qui vous intéresse.' +
-          '<small>Analyse automatique par IA (Anthropic) des pages vues ici, de la page en cours, de votre commune approximative, du site d’où vous venez et du type d’appareil. Aucun humain de notre équipe ne consulte ces données, nous ne les stockons pas et ne les revendons jamais ; ni votre nom, ni votre e-mail, ni votre adresse IP ne sont transmis.</small></span>' +
+          '<span><b>Expérience sur-mesure par IA</b> (facultatif) <button type="button" class="gsc-more" aria-expanded="false">Voir plus</button>' +
+          '<small>Le site adapte ses titres et ses conseils à ce qui vous intéresse. Analyse automatique par IA (Anthropic) des pages vues ici, de la page en cours, de votre commune approximative, du site d’où vous venez et du type d’appareil. Aucun humain de notre équipe ne consulte ces données, nous ne les stockons pas et ne les revendons jamais ; ni votre nom, ni votre e-mail, ni votre adresse IP ne sont transmis.</small></span>' +
         '</label>' +
         '<div class="gsc-btns">' +
           '<button type="button" class="gsc-refuse" id="gscRefuse">Tout refuser</button>' +
@@ -109,9 +110,11 @@
         '</div>' +
       '</div>';
     document.body.appendChild(d);
-    // Sur téléphone, le détail de l'analyse IA s'affiche dès que la case est cochée (avant d'accepter).
+    // Détail de l'analyse IA : replié par défaut (« Voir plus »), affiché dès que la case est cochée, avant d'accepter.
     var ai = document.getElementById('gscAI');
-    ai.addEventListener('change', function () { ai.closest('.gsc-ai').classList.toggle('on', ai.checked); });
+    var box = ai.closest('.gsc-ai'), more = d.querySelector('.gsc-more');
+    ai.addEventListener('change', function () { if (ai.checked) box.classList.add('on'); });
+    more.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); var o = box.classList.toggle('on'); more.textContent = o ? 'Voir moins' : 'Voir plus'; more.setAttribute('aria-expanded', o); });
     document.getElementById('gscAccept').addEventListener('click', function () { decide('granted'); });
     document.getElementById('gscRefuse').addEventListener('click', function () { decide('denied'); });
   }

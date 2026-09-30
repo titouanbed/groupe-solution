@@ -1,0 +1,181 @@
+/* ═══════════════════════════════════════════════════════════
+   DÉMOS EN DIRECT — /demos/ : trois démonstrations qui fonctionnent vraiment (api/demo.mjs).
+   Lecture de facture · Agent de réservation · Réponse aux avis Google.
+   Lancer : node zones/generate-demos.mjs
+   ═══════════════════════════════════════════════════════════ */
+import { writeFileSync, mkdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+import { HOLDING } from './zones.mjs';
+import { head, foot } from './generate-actus.mjs';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const url = `${HOLDING}/demos/`;
+const title = 'Démos IA en direct : facture, réservation, avis Google';
+const desc = 'Testez gratuitement ce que l’IA fait pour votre entreprise : lecture de facture, agent de réservation, réponse aux avis Google. En direct, sans inscription.';
+const FAQ = [
+  ['Mes documents sont-ils conservés ?', 'Non. Le fichier est envoyé à notre fournisseur d’IA (Anthropic) pour être lu, puis oublié : rien n’est enregistré sur nos serveurs. Évitez tout de même les documents sensibles pour un simple essai.'],
+  ['Est-ce que ça marche avec mes propres logiciels ?', 'Oui : en production, les informations extraites sont envoyées directement dans votre logiciel de comptabilité, votre agenda ou votre outil métier, avec une validation humaine là où c’est nécessaire.'],
+  ['L’agent de réservation peut-il répondre au téléphone ?', 'Oui : la même intelligence peut répondre à l’écrit (site, WhatsApp, SMS) ou à la voix, au téléphone. Il s’annonce comme une IA, comme l’exige la réglementation européenne.'],
+  ['Combien coûte une solution comme celle-ci ?', 'Tout est sur devis, gratuit : décrivez votre besoin à notre assistant et indiquez votre budget, vous verrez ce qui tient dedans. Parce que nous construisons avec l’IA, c’est souvent bien plus accessible qu’on ne l’imagine.']
+];
+const jsonld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'WebPage', name: title, description: desc, url, inLanguage: 'fr-FR', isPartOf: { '@id': HOLDING + '/#website' }, publisher: { '@id': HOLDING + '/#org' } },
+  { '@type': 'FAQPage', mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+  { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Groupe Solution', item: HOLDING + '/' }, { '@type': 'ListItem', position: 2, name: 'Démos en direct', item: url }] }] };
+
+const svg = p => `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const I = {
+  facture: svg('<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 11.5h6M9 15h3"/>'),
+  resa: svg('<rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="m9 15 2 2 4-4"/>'),
+  avis: svg('<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/>')
+};
+const CSS = `<style>
+.dmHero{text-align:center;padding:clamp(40px,7vw,80px) 0 18px}.dmHero h1{font-size:clamp(34px,5vw,58px);margin:12px 0 10px;letter-spacing:-.04em}.dmHero p{color:var(--secondary);max-width:620px;margin:0 auto;font-size:17px}
+.dmTabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:26px 0 22px}.dmTabs button{display:inline-flex;align-items:center;gap:8px;min-height:48px;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:0 18px;font:800 15px var(--sans);color:var(--ink);cursor:pointer}.dmTabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dm{display:none;max-width:860px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:26px;box-shadow:var(--sh-m,0 18px 44px rgba(0,0,0,.07));padding:clamp(18px,3vw,32px)}.dm.on{display:block;animation:dmIn .35s var(--ease) both}@keyframes dmIn{from{opacity:0;transform:translateY(8px)}}
+.dm h2{font-size:clamp(22px,2.8vw,30px);margin:0 0 6px}.dm .lead2{color:var(--secondary);margin:0 0 18px}
+.drop{display:grid;place-items:center;gap:6px;text-align:center;border:2px dashed var(--line2);border-radius:20px;padding:34px 18px;cursor:pointer;background:var(--sand,#FBFAF7);transition:border-color .2s,background .2s}.drop:hover,.drop.over{border-color:var(--acc);background:#FFF7F9}.drop b{font-size:17px}.drop span{color:var(--muted);font-size:13.5px}.drop svg{color:var(--acc);width:34px;height:34px}
+.dmBtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border:0;border-radius:14px;background:var(--acc);color:#fff;font:800 15.5px var(--sans);padding:0 20px;cursor:pointer}.dmBtn:disabled{opacity:.55}.dmBtn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+.dmOut{margin-top:18px}.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}.kv div{background:var(--sand,#F4F2EC);border-radius:12px;padding:10px 12px}.kv small{display:block;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.kv b{font-size:15px;word-break:break-word}
+.lt{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}.lt th{text-align:left;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);padding:8px 6px}.lt td{border-bottom:1px solid var(--line);padding:9px 6px}.lt td.r,.lt th.r{text-align:right;white-space:nowrap}
+.tot3{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.tot3 div{background:var(--ink);color:#fff;border-radius:12px;padding:10px 14px;min-width:120px}.tot3 small{display:block;font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.06em}.tot3 b{font:600 20px var(--serif)}
+.ctl{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:6px}.ctl li{background:#EEF4EF;color:#2F5D3E;border-radius:10px;padding:8px 12px;font-size:14px;font-weight:600}
+.chat{border:1px solid var(--line);border-radius:18px;background:var(--sand,#FBFAF7);padding:14px;height:min(420px,60vh);overflow-y:auto;display:flex;flex-direction:column;gap:10px}.chat .u,.chat .a{max-width:84%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.5}.chat .u{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:5px}.chat .a{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:5px}
+.slots{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start}.slots button{border:1px solid var(--acc);color:var(--acc);background:#fff;border-radius:999px;padding:7px 12px;font:700 13.5px var(--sans);cursor:pointer}
+.confirm{align-self:stretch;background:#EEF4EF;border:1px solid #CFE3D5;border-radius:16px;padding:14px;color:#1F4D2F}.confirm b{display:block;font-size:16px;margin-bottom:4px}
+.ask{display:flex;gap:8px;margin-top:10px}.ask input{flex:1;min-height:50px;border:1px solid var(--line2);border-radius:14px;padding:0 14px;font:16px var(--sans)}
+.pick{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}.pick button{border:1px solid var(--line2);background:#fff;border-radius:999px;padding:8px 13px;font:700 13.5px var(--sans);cursor:pointer}.pick button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+textarea.av{width:100%;min-height:120px;border:1px solid var(--line2);border-radius:14px;padding:12px 14px;font:16px/1.5 var(--sans);resize:vertical}
+.stars{display:flex;gap:4px;margin:10px 0}.stars button{background:none;border:0;font-size:26px;cursor:pointer;color:#D9D5CB;padding:0}.stars button.on{color:#F5A623}
+.reply{background:var(--sand,#FBFAF7);border:1px solid var(--line);border-radius:16px;padding:16px;white-space:pre-wrap;font-size:15px;line-height:1.6}
+.dmNote{font-size:12.5px;color:var(--muted);margin-top:12px}.dmErr{color:var(--acc);font-weight:700;margin-top:10px}
+.dmCta{max-width:860px;margin:26px auto 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--ink);color:#fff;border-radius:22px;padding:20px 22px}.dmCta b{font-size:17px}.dmCta a{background:#fff;color:var(--ink);border-radius:999px;padding:12px 18px;font-weight:800}
+.dots{display:inline-flex;gap:4px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:dmB 1s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}@keyframes dmB{50%{opacity:.25}}
+@media(max-width:600px){.lt th:nth-child(2),.lt td:nth-child(2),.lt th:nth-child(3),.lt td:nth-child(3){display:none}.dmTabs button{flex:1 1 100%;justify-content:center}}
+</style>`;
+
+const body = `
+  <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <span>Démos en direct</span></div>
+  <section class="dmHero"><div class="wrap">
+    <div class="kicker">Démos en direct · gratuit, sans inscription</div>
+    <h1>L’IA au travail, <i>sous vos yeux</i>.</h1>
+    <p>Trois démonstrations réelles, pas des vidéos. Ce que vous voyez ici, nous le construisons pour votre entreprise, branché à vos outils.</p>
+  </div></section>
+  <section class="sec" style="padding-top:0"><div class="wrap">
+    <div class="dmTabs" role="tablist">
+      <button class="on" data-d="facture" role="tab">${I.facture}Lire une facture</button>
+      <button data-d="resa" role="tab">${I.resa}Agent de réservation</button>
+      <button data-d="avis" role="tab">${I.avis}Répondre à un avis</button>
+    </div>
+
+    <div class="dm on" id="d-facture">
+      <h2>Déposez une facture, l’IA la lit.</h2>
+      <p class="lead2">Photo prise au téléphone ou PDF : fournisseur, lignes, TVA, total, échéance, contrôles. En production, tout part directement dans votre logiciel de comptabilité.</p>
+      <label class="drop" id="drop"><input type="file" id="file" accept="image/*,application/pdf" hidden>${I.facture}<b>Choisir une facture, un devis ou un bon</b><span>ou glissez-le ici · JPG, PNG, PDF · 3 Mo max</span></label>
+      <div class="dmOut" id="fOut"></div>
+      <p class="dmNote">Le document est lu par IA puis oublié : rien n’est conservé. Pour un essai, évitez les documents sensibles.</p>
+    </div>
+
+    <div class="dm" id="d-resa">
+      <h2>Un agent qui prend vos réservations, jour et nuit.</h2>
+      <p class="lead2">Choisissez un métier, puis écrivez comme un client. Il comprend, propose des créneaux libres et confirme — sur votre site, par SMS ou au téléphone.</p>
+      <div class="pick" id="metiers"><button class="on" data-m="restaurant">Restaurant</button><button data-m="garage automobile">Garage</button><button data-m="salon de coiffure">Salon de coiffure</button><button data-m="cabinet de kinésithérapie">Cabinet de kiné</button></div>
+      <div class="chat" id="chat" aria-live="polite"></div>
+      <form class="ask" id="ask"><input id="q" autocomplete="off" placeholder="Ex. : Une table pour 4 samedi soir ?" maxlength="300" aria-label="Votre message"><button class="dmBtn" type="submit">Envoyer</button></form>
+      <p class="dmNote">Établissement fictif, créneaux simulés. L’agent s’annonce comme une IA.</p>
+    </div>
+
+    <div class="dm" id="d-avis">
+      <h2>Chaque avis mérite une réponse. En 5 secondes.</h2>
+      <p class="lead2">Collez un avis Google (le vôtre ou un exemple) : une réponse professionnelle et personnalisée, plus l’action à mener en interne.</p>
+      <div class="pick" id="metiers2"><button class="on" data-m="restaurant">Restaurant</button><button data-m="artisan du bâtiment">Artisan</button><button data-m="hôtel">Hôtel</button><button data-m="commerce">Commerce</button><button data-m="garage automobile">Garage</button></div>
+      <div class="stars" id="stars" aria-label="Note">${[1, 2, 3, 4, 5].map(n => `<button type="button" data-n="${n}"${n <= 2 ? ' class="on"' : ''} aria-label="${n} étoile${n > 1 ? 's' : ''}">★</button>`).join('')}</div>
+      <textarea class="av" id="avis" maxlength="2000">Attente beaucoup trop longue samedi midi, 40 minutes pour être servis. Les plats étaient bons mais personne ne s'est excusé. Dommage.</textarea>
+      <p style="margin:12px 0 0"><button class="dmBtn" id="goAvis" type="button">Rédiger la réponse</button></p>
+      <div class="dmOut" id="aOut"></div>
+    </div>
+
+    <div class="dmCta"><b>Imaginez la même chose, branchée à vos outils.</b><a href="../#heroAI">Décrire mon projet →</a></div>
+
+    <div class="faqH" style="max-width:860px;margin:40px auto 0">
+      <h2 style="text-align:center;margin-bottom:14px">Questions fréquentes</h2>
+${FAQ.map(([q, a]) => `      <details><summary>${q}</summary><p>${a}</p></details>`).join('\n')}
+    </div>
+  </div></section>
+  <script>
+  (function () {
+    var esc = function (t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var eur = function (n) { return (Math.round((+n || 0) * 100) / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; };
+    var ga = function (e, p) { if (window.gtag) gtag('event', e, p || {}); };
+    function post(body) { return fetch('/api/demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw j; return j; }); }); }
+    var errMsg = function (j) { return (j && j.message) || (j && j.configured === false ? 'La démonstration n’est pas encore activée.' : 'La démonstration n’a pas abouti. Réessayez dans un instant.'); };
+    [].forEach.call(document.querySelectorAll('.dmTabs button'), function (b) { b.onclick = function () { [].forEach.call(document.querySelectorAll('.dmTabs button'), function (x) { x.classList.toggle('on', x === b); }); [].forEach.call(document.querySelectorAll('.dm'), function (d) { d.classList.toggle('on', d.id === 'd-' + b.getAttribute('data-d')); }); ga('demo_tab', { demo: b.getAttribute('data-d') }); }; });
+    if (/#(resa|avis|facture)/.test(location.hash)) { var t = document.querySelector('.dmTabs [data-d=' + location.hash.slice(1) + ']'); if (t) t.click(); }
+    function pick(id, cb) { var g = document.getElementById(id), v = g.querySelector('.on').getAttribute('data-m'); g.onclick = function (e) { var b = e.target.closest('button'); if (!b) return; [].forEach.call(g.children, function (x) { x.classList.toggle('on', x === b); }); v = b.getAttribute('data-m'); if (cb) cb(v); }; return function () { return v; }; }
+
+    /* ── Facture ── */
+    var drop = document.getElementById('drop'), file = document.getElementById('file'), fOut = document.getElementById('fOut');
+    ['dragover', 'dragenter'].forEach(function (e) { drop.addEventListener(e, function (ev) { ev.preventDefault(); drop.classList.add('over'); }); });
+    ['dragleave', 'drop'].forEach(function (e) { drop.addEventListener(e, function (ev) { ev.preventDefault(); drop.classList.remove('over'); if (e === 'drop' && ev.dataTransfer.files[0]) read(ev.dataTransfer.files[0]); }); });
+    file.onchange = function () { if (file.files[0]) read(file.files[0]); };
+    function shrink(f) {
+      return new Promise(function (ok, ko) {
+        if (f.type === 'application/pdf') { if (f.size > 3e6) return ko({ message: 'PDF trop lourd (3 Mo maximum).' }); var r = new FileReader(); r.onload = function () { ok({ type: f.type, data: String(r.result).split(',')[1] }); }; r.onerror = ko; return r.readAsDataURL(f); }
+        var img = new Image(), u = URL.createObjectURL(f);
+        img.onload = function () { var s = Math.min(1, 1800 / Math.max(img.width, img.height)), c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u); ok({ type: 'image/jpeg', data: c.toDataURL('image/jpeg', 0.86).split(',')[1] }); };
+        img.onerror = function () { ko({ message: 'Image illisible.' }); }; img.src = u;
+      });
+    }
+    function read(f) {
+      fOut.innerHTML = '<p><span class="dots"><i></i><i></i><i></i></span> Lecture en cours : fournisseur, lignes, TVA, contrôles…</p>'; ga('demo_facture');
+      shrink(f).then(function (fl) { return post({ kind: 'facture', file: fl }); }).then(function (j) {
+        var x = j.facture; if (!x || !x.lisible) { fOut.innerHTML = '<p class="dmErr">Ce document ne ressemble pas à une facture lisible. Essayez une photo plus nette.</p>'; return; }
+        var kv = [['Type', x.type_document], ['Émetteur', x.emetteur], ['SIRET', x.siret_emetteur], ['Client', x.client], ['N°', x.numero], ['Date', x.date], ['Échéance', x.echeance], ['Paiement', x.mode_paiement]].filter(function (k) { return k[1]; });
+        fOut.innerHTML = '<div class="kv">' + kv.map(function (k) { return '<div><small>' + k[0] + '</small><b>' + esc(k[1]) + '</b></div>'; }).join('') + '</div>' +
+          (x.lignes.length ? '<table class="lt"><thead><tr><th>Désignation</th><th class="r">Qté</th><th class="r">P.U. HT</th><th class="r">Total HT</th></tr></thead><tbody>' + x.lignes.map(function (l) { return '<tr><td>' + esc(l.designation) + '</td><td class="r">' + (l.quantite || '') + '</td><td class="r">' + (l.prix_unitaire_ht ? eur(l.prix_unitaire_ht) : '') + '</td><td class="r">' + (l.total_ht ? eur(l.total_ht) : '') + '</td></tr>'; }).join('') + '</tbody></table>' : '') +
+          '<div class="tot3"><div><small>Total HT</small><b>' + eur(x.total_ht) + '</b></div><div><small>TVA</small><b>' + eur(x.total_tva) + '</b></div><div><small>Total TTC</small><b>' + eur(x.total_ttc) + '</b></div></div>' +
+          (x.controles.length ? '<ul class="ctl">' + x.controles.map(function (c) { return '<li>✓ ' + esc(c) + '</li>'; }).join('') + '</ul>' : '') +
+          '<p style="margin:16px 0 0;display:flex;gap:8px;flex-wrap:wrap"><button class="dmBtn ghost" id="csv" type="button">Télécharger en CSV</button><a class="dmBtn" href="../#heroAI">Automatiser mes factures →</a></p>';
+        document.getElementById('csv').onclick = function () { var rows = [['designation', 'quantite', 'prix_unitaire_ht', 'total_ht', 'tva']].concat(x.lignes.map(function (l) { return [l.designation, l.quantite, l.prix_unitaire_ht, l.total_ht, l.tva_taux]; })); var csv = rows.map(function (r) { return r.map(function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; }).join(';'); }).join('\\n'); var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['\\ufeff' + csv], { type: 'text/csv' })); a.download = 'facture.csv'; a.click(); };
+      }).catch(function (j) { fOut.innerHTML = '<p class="dmErr">' + esc(errMsg(j)) + '</p>'; });
+    }
+
+    /* ── Réservation ── */
+    var chat = document.getElementById('chat'), H = [], metier = pick('metiers', function () { H = []; start(); });
+    var OPEN = { restaurant: ['12:00', '12:30', '13:00', '19:30', '20:00', '21:00'], 'garage automobile': ['08:30', '10:00', '14:00', '16:30'], 'salon de coiffure': ['09:30', '11:00', '14:30', '16:00', '17:30'], 'cabinet de kinésithérapie': ['08:00', '09:30', '12:30', '17:00', '18:30'] };
+    function slots() { var out = [], d = new Date(); for (var i = 1; out.length < 18 && i < 9; i++) { var x = new Date(d.getTime() + i * 864e5); if (x.getDay() === 0) continue; var day = x.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }); OPEN[metier()].forEach(function (h, k) { if ((i + k) % 3 !== 0) out.push(day + ' à ' + h.replace(':', ' h ')); }); } return out.slice(0, 30); }
+    var SL = slots();
+    function bubble(cls, html) { var d = document.createElement('div'); d.className = cls; d.innerHTML = html; chat.appendChild(d); chat.scrollTop = chat.scrollHeight; return d; }
+    function start() { chat.innerHTML = ''; SL = slots(); var hello = { restaurant: 'Bonjour ! Ici l’assistant de réservation du restaurant. Pour combien de personnes et quel jour ?', 'garage automobile': 'Bonjour ! Assistant du garage : révision, pneus, diagnostic… que puis-je réserver pour vous ?', 'salon de coiffure': 'Bonjour ! Assistant du salon : coupe, couleur, brushing… quelle prestation souhaitez-vous ?', 'cabinet de kinésithérapie': 'Bonjour ! Assistant du cabinet : première séance ou suivi ? Je regarde les disponibilités.' }[metier()]; bubble('a', esc(hello)); H = [{ role: 'assistant', content: hello }]; }
+    function send(q) {
+      q = String(q || '').trim(); if (!q) return; bubble('u', esc(q)); H.push({ role: 'user', content: q }); document.getElementById('q').value = '';
+      var w = bubble('a', '<span class="dots"><i></i><i></i><i></i></span>'); ga('demo_resa');
+      post({ kind: 'resa', metier: metier(), messages: H, creneaux: SL }).then(function (j) {
+        var r = j.resa; w.innerHTML = esc(r.reponse); H.push({ role: 'assistant', content: r.reponse });
+        if (r.creneaux_proposes && r.creneaux_proposes.length && !(r.reservation && r.reservation.confirmee)) { var s = document.createElement('div'); s.className = 'slots'; r.creneaux_proposes.forEach(function (c) { var b = document.createElement('button'); b.type = 'button'; b.textContent = c; b.onclick = function () { s.remove(); send('Je prends ' + c + '.'); }; s.appendChild(b); }); chat.appendChild(s); }
+        if (r.reservation && r.reservation.confirmee) bubble('confirm', '<b>✓ Réservation confirmée</b>' + esc([r.reservation.prestation, r.reservation.creneau, r.reservation.personnes ? r.reservation.personnes + ' personne(s)' : '', r.reservation.nom].filter(Boolean).join(' · ')) + '<br><small>En production : ajoutée à votre agenda, SMS de confirmation au client, rappel la veille.</small>');
+        chat.scrollTop = chat.scrollHeight;
+      }).catch(function (j) { w.innerHTML = '<span style="color:var(--acc)">' + esc(errMsg(j)) + '</span>'; });
+    }
+    document.getElementById('ask').onsubmit = function (e) { e.preventDefault(); send(document.getElementById('q').value); };
+    start();
+
+    /* ── Avis ── */
+    var note = 2, metier2 = pick('metiers2'), aOut = document.getElementById('aOut');
+    document.getElementById('stars').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; note = +b.getAttribute('data-n'); [].forEach.call(this.children, function (x) { x.classList.toggle('on', +x.getAttribute('data-n') <= note); }); };
+    document.getElementById('goAvis').onclick = function () {
+      var b = this; b.disabled = true; aOut.innerHTML = '<p><span class="dots"><i></i><i></i><i></i></span> Rédaction…</p>'; ga('demo_avis');
+      post({ kind: 'avis', avis: document.getElementById('avis').value, metier: metier2(), note: note }).then(function (j) {
+        var x = j.avis; b.disabled = false;
+        aOut.innerHTML = '<p class="m" style="margin:0 0 8px;color:var(--muted);font-size:13px">Ton : ' + esc(x.ton) + ' · avis ' + esc(x.sentiment) + '</p><div class="reply">' + esc(x.reponse) + '</div><ul class="ctl"><li>À faire en interne : ' + esc(x.action_interne) + '</li></ul><p style="margin:14px 0 0;display:flex;gap:8px;flex-wrap:wrap"><button class="dmBtn ghost" id="cp" type="button">Copier la réponse</button><a class="dmBtn" href="../#heroAI">Répondre à tous mes avis automatiquement →</a></p>';
+        document.getElementById('cp').onclick = function () { navigator.clipboard && navigator.clipboard.writeText(x.reponse); this.textContent = 'Copié ✓'; };
+      }).catch(function (j) { b.disabled = false; aOut.innerHTML = '<p class="dmErr">' + esc(errMsg(j)) + '</p>'; });
+    };
+  })();
+  </script>`;
+
+mkdirSync(join(ROOT, 'demos'), { recursive: true });
+const html = head({ title, desc, url, jsonld, pre: '../', ogType: 'website' }).replace('</head>', CSS + '</head>') + body + foot('../', 'demos');
+writeFileSync(join(ROOT, 'demos', 'index.html'), html, 'utf8');
+console.log('✓ demos/index.html');
