@@ -52,6 +52,7 @@ function meta(url, f) {
   if (/^outils\//.test(f)) return { p: '0.8', c: 'monthly' };
   if (f === 'lab/index.html' || f === 'lab/api.html' || /^lab\/(dossiers|questions|actus|pouls)\/index\.html$/.test(f)) return { p: '0.8', c: 'daily' };
   if (/^lab\/(dossiers|questions)\//.test(f)) return { p: '0.8', c: 'monthly' };
+  if (/^idees\//.test(f)) return { p: '0.8', c: 'daily' };
   if (/^lab\//.test(f)) return { p: '0.7', c: 'monthly' };
   if (/^montpellier\/guides\//.test(f)) return { p: '0.7', c: 'monthly' };
   if (isAutoCity) return { p: '0.8', c: 'monthly' };

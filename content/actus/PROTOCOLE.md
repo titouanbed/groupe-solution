@@ -91,3 +91,9 @@ npm run publish        # actus + dossiers + questions + Lab + plan + index + sit
 ```
 Contrôle en échec et correction impossible sans affaiblir la vérification → supprimer le fichier, ne pas le publier.
 Rédaction signée « La rédaction de Groupe Solution » (générée automatiquement par le site) : ne jamais écrire à la première personne au nom de Titouan.
+
+## Laboratoire d'idées (mercredi et vendredi)
+
+- Ajouter **2 nouvelles idées** dans `content/idees/secteurs.json`, dans le secteur qui a le moins d'idées (à égalité : ordre du fichier), en s'inspirant des actualités vérifiées de la semaine (nouveau modèle, nouvel outil, nouvelle donnée ouverte, nouvelle réglementation).
+- Même format que les idées existantes (`titre`, `probleme`, `idee`, `techno`, `local`, `audace`), réalisables aujourd'hui, jamais de prix, de client, de chiffre inventé ; le champ `local` décline l'idée pour un territoire précis (littoral, rural, grande ville, outre-mer).
+- Contrôle : `node -e "JSON.parse(require('fs').readFileSync('content/idees/secteurs.json','utf8'))"` puis `npm run publish` (qui régénère aussi `/idees/`).

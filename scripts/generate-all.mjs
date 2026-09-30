@@ -12,6 +12,8 @@ const steps = [
   'node zones/generate-veille.mjs',
   'node zones/generate-actus.mjs',
   'node zones/generate-editorial.mjs',
+  'node zones/generate-idees.mjs',
+  'node zones/generate-coulisses.mjs',
   'node zones/generate-outils.mjs',
   'node zones/generate-lab.mjs',
   'node zones/generate-implantations.mjs',
