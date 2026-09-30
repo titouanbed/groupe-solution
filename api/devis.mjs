@@ -258,7 +258,7 @@ export default async function handler(req, res) {
       rec.sid = SID_RE.test(b.sid || "") ? b.sid : null;
       // Gardée 7 jours : le visiteur peut reprendre son projet, et Titouan voit les devis commencés non envoyés.
       await redis([["SET", "estimation:" + id, JSON.stringify(rec), "EX", 7 * 86400], ["LPUSH", "estimations:list", id], ["LTRIM", "estimations:list", 0, 199]]);
-      await tagConv(rec.sid, { evenement: `Estimation de devis : ${rec.titre} (budget ${budget.label})` });
+      await tagConv(rec.sid, { evenement: `Estimation de devis : ${rec.titre} (budget ${budget.label})`, detail: { resume: rec.resume, delai, besoin: extra, briques: briques.map(x => `${x.titre} (${x.niveau}, ${x.jours} j)`) } });
       // Seule la part de chaque brique dans le budget du visiteur est renvoyée (arrondie), jamais un montant.
       return send(res, 200, publicEst(rec));
     }
@@ -277,13 +277,13 @@ export default async function handler(req, res) {
       const total = choisies.reduce((a, x) => a + x.cout, 0), jours = choisies.reduce((a, x) => a + x.jours, 0);
       const part = est.budget.max && total ? Math.round(total / est.budget.max * 100) : null;
       const message = str(b.message, 1000);
-      await tagConv(est.sid, { evenement: `Demande de devis envoyée : ${est.titre}`, contact });
+      await tagConv(est.sid, { evenement: `Demande de devis envoyée : ${est.titre}`, contact, detail: { retenues: choisies.map(x => x.titre), ecartees: ecartees.map(x => x.titre), message: str(b.message, 1000) } });
       const dem = { id: newId(), sid: est.sid || null, date: new Date().toISOString(), titre: est.titre, resume: est.resume, questions: est.questions, contact, message, budget: est.budget, delai: est.delai,
         choisies, ecartees, estimation: { jours, choisi: total, part, tjm: est.grille.tjm }, conversation: est.conversation, besoin: est.besoin };
       await redis([["SET", "demande:" + dem.id, JSON.stringify(dem), "EX", 180 * 86400], ["LPUSH", "demandes:list", dem.id], ["LTRIM", "demandes:list", 0, 499], ["DEL", "estimation:" + id], ["LREM", "estimations:list", 0, id]]);
       const who = [contact.nom, contact.entreprise].filter(Boolean).join(" · ") || "Visiteur";
       const li = arr => arr.map(x => `<li><b>${esc(x.titre)}</b> <small>(${esc(x.niveau)}${x.recurrent ? ", coût mensuel" : ""} · ${x.jours} j${x.cout ? " · " + eur(x.cout) : ""})</small><br>${esc(x.detail)}</li>`).join("");
-      await sendMail({ to: OWNER(), replyTo: EMAIL.test(contact.email) ? contact.email : undefined, subject: `💶 Demande de devis — ${who} — budget ${est.budget.label}`,
+      await sendMail({ to: OWNER(), replyTo: EMAIL.test(contact.email) ? contact.email : undefined, subject: `Demande de devis — ${who} — budget ${est.budget.label}`,
         html: layout("Demande de devis prête à chiffrer", `<p><b>${esc(who)}</b><br>📞 ${esc(contact.telephone)} · ✉️ ${esc(contact.email)}</p>
 <p><b>Budget :</b> ${esc(est.budget.label)} · <b>Délai :</b> ${esc(est.delai)}</p>
 <p style="background:#FDECEF;padding:10px 12px;border-radius:10px"><b>Votre estimation interne</b> (TJM ${est.grille.tjm ? eur(est.grille.tjm) : "non réglé"}) : ${jours} j${total ? " ≈ <b>" + eur(total) + "</b>" : ""}${part != null ? " — " + part + " % de son budget" : ""}</p>

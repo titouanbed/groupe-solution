@@ -98,7 +98,7 @@ export default async function handler(req, res) {
     let out; try { out = JSON.parse(response.content.filter(x => x.type === "text").map(x => x.text).join("")); } catch { return send(res, 502, { error: "format" }); }
     if (!noPrice(out)) return send(res, 204, {});
 
-    await tagConv(String(b.sid || ""), { evenement: kind === "maquette" ? `Esquisse de site : ${out.accroche || out.nom || ""}` : `Plan d'innovation : ${out.titre || ""}` });
+    await tagConv(String(b.sid || ""), { evenement: kind === "maquette" ? `Esquisse de site : ${out.accroche || out.nom || ""}` : `Plan d'innovation : ${out.titre || ""}`, detail: out });
     if (kind === "maquette") {
       return send(res, 200, { kind, maquette: {
         nom: clip(out.nom, 50), accroche: clip(out.accroche, 70), sous_titre: clip(out.sous_titre, 150), bouton: clip(out.bouton, 32),

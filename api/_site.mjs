@@ -158,7 +158,41 @@ export async function runEntretien() {
   const nAge = nl ? (Date.now() - Date.parse(nl.date)) / 864e5 : 99;
   add("Automatismes", "Newsletter du lundi", !subs || nAge < 8, nl ? `dernier passage il y a ${Math.round(nAge)} j · ${nl.envoyes || 0} envoi(s)` : subs ? "pas encore passée" : "aucun abonné confirmé pour l'instant", "", !subs || nAge < 8 ? "ok" : "wa");
 
-  // 6. Nettoyage de la base.
+  // 6. Parcours visiteur : rien ne doit bloquer (accueil complet, fichiers présents, chaque fonction répond).
+  const home = res.find(x => x.p === "/")?.r || await fetchOk(SITE + "/");
+  const manque = [["zone de discussion", /id="aiBox"/], ["champ de saisie", /id="aiInput"/], ["téléphone cliquable", /href="tel:\+33782298559"/], ["section contact", /id="contact"/], ["assistant", /home-ai\.js/], ["formulaire newsletter", /id="nlForm"/]].filter(([, re]) => !re.test(home.text)).map(([n]) => n);
+  add("Parcours visiteur", "Accueil complet", !manque.length, manque.length ? "manque : " + manque.join(", ") : "discussion, téléphone, contact et newsletter présents", manque.length ? "Un élément essentiel a disparu de l'accueil : à rétablir (l'entretien du matin s'en charge ou ouvre une demande)." : "");
+  const fichiers = [...new Set([...home.text.matchAll(/(?:src|href)="(\/?(?:assets\/|site\.js|analytics\.js|Logo\.svg|photo-president\.jpg)[^"?#]*)"/g)].map(m => "/" + m[1].replace(/^\//, "")))].slice(0, 30);
+  const fr = await Promise.all(fichiers.map(async f => ({ f, ok: (await fetchOk(SITE + f, 8000)).ok })));
+  const fko = fr.filter(x => !x.ok).map(x => x.f);
+  add("Parcours visiteur", "Fichiers de l'accueil", !fko.length, fko.length ? "introuvables : " + fko.join(", ") : `${fr.length} scripts, styles et images chargés`);
+  const fonctions = ["assistant", "lead", "entreprise", "concept", "demo", "availability", "book", "vote", "perso", "idees", "geo"];
+  const fx = await Promise.all(fonctions.map(async n => { try { const r = await fetch(`${SITE}/api/${n}`, { signal: AbortSignal.timeout(8000), headers: { "User-Agent": "GroupeSolution-Entretien/1.0" } }); return { n, st: r.status }; } catch { return { n, st: 0 }; } }));
+  const fko2 = fx.filter(x => !x.st || x.st >= 500 && x.st !== 503);
+  add("Parcours visiteur", "Fonctions du site (formulaires, chat, démos)", !fko2.length, fko2.length ? "en panne : " + fko2.map(x => `${x.n} (${x.st || "délai"})`).join(", ") : `${fx.length} fonctions répondent`, fko2.length ? "Vercel → Deployments → dernier déploiement → Functions : l'erreur y est détaillée." : "");
+
+  // 7. Données : écriture/lecture, aucun contact oublié, liens de confirmation valides.
+  const jeton = String(Date.now());
+  const [, lu] = await redis([["SET", "entretien:ping", jeton, "EX", 3600], ["GET", "entretien:ping"]]);
+  add("Données", "Enregistrement des données", lu === jeton, lu === jeton ? "écriture et lecture vérifiées" : "la base ne répond pas correctement", lu === jeton ? "" : "Vercel → Storage : vérifiez la base Upstash.");
+  const [lids] = await redis([["LRANGE", "leads:list", 0, 149]]);
+  const leads = (lids || []).length ? (await redis(lids.map(i => ["GET", "lead:" + i]))).map(parse).filter(Boolean) : [];
+  const oublies = leads.filter(l => l.statut !== "traite" && Date.now() - Date.parse(l.date) > 24 * 36e5);
+  add("Données", "Contacts à rappeler", !oublies.length, oublies.length ? `${oublies.length} demande(s) de rappel de plus de 24 h pas encore marquée(s) « Traité » : ${oublies.slice(0, 3).map(l => l.nom || l.telephone || l.email).join(", ")}` : "aucun contact en attente depuis plus de 24 h", oublies.length ? "Tableau de bord → Contacts : rappelez puis cliquez « Traité »." : "", oublies.length ? "wa" : "ok");
+  const [dids] = await redis([["LRANGE", "demandes:list", 0, 149]]);
+  const dems = (dids || []).length ? (await redis(dids.map(i => ["GET", "demande:" + i]))).map(parse).filter(Boolean) : [];
+  const dAtt = dems.filter(d => (d.statut || "nouveau") !== "traite" && Date.now() - Date.parse(d.date) > 48 * 36e5);
+  add("Données", "Devis à envoyer", !dAtt.length, dAtt.length ? `${dAtt.length} demande(s) de devis de plus de 48 h sans « Devis envoyé »` : "aucune demande en retard", dAtt.length ? "Tableau de bord → Devis : envoyez le devis depuis Indy puis cliquez « Devis envoyé »." : "", dAtt.length ? "wa" : "ok");
+  const [nlh] = await redis([["HGETALL", "nl:subs"]]);
+  const attente = []; for (let i = 0; i + 1 < (nlh || []).length; i += 2) { const v = parse(nlh[i + 1]); if (v && !v.ok && v.t) attente.push([nlh[i], v.t]); }
+  if (attente.length) {
+    const ex = await redis(attente.map(([, t]) => ["EXISTS", "nl:tok:" + t]));
+    const perdus = attente.filter((_, k) => !ex[k]);
+    if (perdus.length) { await redis(perdus.map(([h, t]) => ["SET", "nl:tok:" + t, h, "EX", 60 * 86400])); corrige.push(`${perdus.length} lien(s) de confirmation newsletter réactivé(s)`); }
+  }
+  add("Données", "Liens de confirmation newsletter", true, attente.length ? `${attente.length} inscription(s) en attente, liens valides` : "aucune inscription en attente");
+
+  // 8. Nettoyage de la base.
   const n = (await purge("demandes:list", "demande:")) + (await purge("leads:list", "lead:")) + (await purge("estimations:list", "estimation:"));
   if (n) corrige.push(`${n} entrée(s) expirée(s) retirée(s) des listes`);
   add("Base", "Nettoyage", true, n ? `${n} entrée(s) expirée(s) retirée(s)` : "rien à nettoyer");
@@ -176,6 +210,6 @@ export async function etatPublic() {
   const { rapport } = await lastEntretien();
   if (!rapport) return { maj: null, groupes: [] };
   const g = {};
-  for (const c of rapport.checks) { if (c.groupe === "Base") continue; const x = g[c.groupe] ||= { nom: c.groupe, niveau: "ok" }; if (c.niveau === "ko") x.niveau = "ko"; else if (c.niveau === "wa" && x.niveau === "ok") x.niveau = "wa"; }
+  for (const c of rapport.checks) { if (c.groupe === "Base" || /Contacts à rappeler|Devis à envoyer/.test(c.nom)) continue; const x = g[c.groupe] ||= { nom: c.groupe, niveau: "ok" }; if (c.niveau === "ko") x.niveau = "ko"; else if (c.niveau === "wa" && x.niveau === "ok") x.niveau = "wa"; }
   return { maj: rapport.date, groupes: Object.values(g) };
 }

@@ -66,7 +66,7 @@ export async function diagMail() {
   const add = (nom, ok, detail, fix = "") => out.push({ nom, ok, detail, fix });
   add("Clé Brevo présente", !!key, key ? `${key.slice(0, 8)}… (${key.length} caractères)` : "absente", key ? "" : explique("manquante"));
   if (key && /^xsmtpsib-/.test(key)) add("Type de clé", false, "C'est une clé SMTP (xsmtpsib-), pas une clé API.", "Brevo → SMTP & API → onglet « Clés API » → Générer une nouvelle clé API (xkeysib-…), puis remplacez BREVO_API_KEY dans Vercel et redéployez.");
-  else if (key) add("Type de clé", /^xkeysib-/.test(key), /^xkeysib-/.test(key) ? "Clé API (xkeysib-)" : "Format inhabituel", /^xkeysib-/.test(key) ? "" : explique("401"));
+  else if (key) add("Type de clé", /^xkeysib-/.test(key), /^xkeysib-/.test(key) ? "Clé API (xkeysib-)" : "Ce n'est pas une clé API classique (elle devrait commencer par xkeysib-) : c'est peut-être une clé MCP.", /^xkeysib-/.test(key) ? "" : "Brevo → SMTP et API → Clés API et MCP → « Générer une nouvelle clé API » en laissant l'option MCP décochée, copiez-la (elle commence par xkeysib-), collez-la dans Vercel → Settings → Environment Variables → BREVO_API_KEY (Production), puis Deployments → ⋯ → Redeploy.");
   add("Expéditeur (LEAD_FROM)", !!from, from || "absent", from ? "" : explique("manquante"));
   if (!key) return out;
   const h = { "api-key": key, Accept: "application/json" };
