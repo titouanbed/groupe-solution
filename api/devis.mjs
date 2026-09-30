@@ -18,7 +18,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { randomBytes, createHash, timingSafeEqual } from "node:crypto";
 import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
 import { sendMail, layout, esc, OWNER, MAIL_OK } from "./_mail.mjs";
-import { tagConv, listConvs, getConv, SID_RE } from "./_conv.mjs";
+import { tagConv, listConvs, getConv, SID_RE, setConvStatus } from "./_conv.mjs";
 import { runRadar, listRadar, setRadarStatus } from "./_radar.mjs";
 import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount } from "./_newsletter.mjs";
 
@@ -37,10 +37,25 @@ const eur = n => Math.round(n).toLocaleString("fr-FR") + " €";
 export const BUDGETS = { "b1": ["Moins de 1 500 €", 1500], "b2": ["1 500 à 4 000 €", 4000], "b3": ["4 000 à 10 000 €", 10000], "b4": ["10 000 à 25 000 €", 25000], "b5": ["Plus de 25 000 €", 50000], "nsp": ["Je ne sais pas encore", 0] };
 const DELAIS = { vite: "Dès que possible", mois: "Dans le mois", trimestre: "Dans les 3 mois", libre: "Pas pressé" };
 
+// Code d'accès : comparé sans tenir compte des espaces autour (copier-coller depuis Vercel), accents et
+// caractères spéciaux acceptés (envoyé encodé dans l'en-tête X-Admin).
+const ADMIN = () => String(process.env.ADMIN_TOKEN || "").trim();
 function isAdmin(req) {
-  const t = process.env.ADMIN_TOKEN || "", h = String(req.headers.authorization || "").replace(/^Bearer\s+/i, "");
-  if (t.length < 16 || !h) return false;
+  const t = ADMIN();
+  let h = String(req.headers["x-admin"] || "");
+  try { h = decodeURIComponent(h); } catch {}
+  if (!h) h = String(req.headers.authorization || "").replace(/^Bearer\s+/i, "");
+  h = h.trim();
+  if (t.length < 8 || !h) return false;
   return timingSafeEqual(createHash("sha256").update(t).digest(), createHash("sha256").update(h).digest());
+}
+// Tâches planifiées Vercel : CRON_SECRET si défini, sinon appel de Vercel Cron, limité à une exécution par jour.
+async function cronOk(req, name) {
+  const cs = String(process.env.CRON_SECRET || "").trim(), h = String(req.headers.authorization || "");
+  if (cs.length >= 16 && h === "Bearer " + cs) return true;
+  if (!/vercel-cron/i.test(String(req.headers["user-agent"] || ""))) return false;
+  const [ok] = await redis([["SET", `cron:lock:${name}:${new Date().toISOString().slice(0, 10)}`, "1", "NX", "EX", 86400]]);
+  return ok === "OK";
 }
 
 /* ── IA : découpage du besoin en briques chiffrables en jours ── */
@@ -91,23 +106,29 @@ export default async function handler(req, res) {
         res.statusCode = 302; res.setHeader("Location", `/newsletter.html?${q.get("nl") === "confirm" ? "ok" : "stop"}=${ok ? 1 : 0}`); return res.end();
       }
       if (q.get("cron") === "newsletter") {
-        const cs = process.env.CRON_SECRET || "", h = String(req.headers.authorization || "");
-        if (!(cs.length >= 16 && h === "Bearer " + cs) && !admin) return send(res, 401, { error: "unauthorized" });
+        if (!admin && !(await cronOk(req, "newsletter"))) return send(res, 401, { error: "unauthorized" });
         return send(res, 200, await nlSend());
       }
       if (q.get("cron") === "radar") {
-        const cs = process.env.CRON_SECRET || "", h = String(req.headers.authorization || "");
-        if (!(cs.length >= 16 && h === "Bearer " + cs) && !admin) return send(res, 401, { error: "unauthorized" });
+        if (!admin && !(await cronOk(req, "radar"))) return send(res, 401, { error: "unauthorized" });
         return send(res, 200, await radarEtResume());
       }
       if (!A) return send(res, 400, { error: "id" });
-      if (!admin) return send(res, 401, { error: "unauthorized", adminConfigured: (process.env.ADMIN_TOKEN || "").length >= 16 });
+      if (!admin) return send(res, 401, { error: "unauthorized", adminConfigured: ADMIN().length >= 8 });
       if (A === "settings") return send(res, 200, { grille: await get("settings:grille") || {}, mail: MAIL_OK() });
       if (A === "demande" && ID_RE.test(id)) return send(res, 200, { demande: await get("demande:" + id) });
-      if (A === "radar") return send(res, 200, { radar: await listRadar(150), cron: (process.env.CRON_SECRET || "").length >= 16 });
+      if (A === "radar") return send(res, 200, { radar: await listRadar(150), cron: true });
       if (A === "newsletter") return send(res, 200, { abonnes: await nlCount() });
       if (A === "convs") return send(res, 200, { convs: await listConvs(120) });
       if (A === "conv") { const sid = q.get("sid") || ""; return send(res, 200, { conv: SID_RE.test(sid) ? await getConv(sid) : null }); }
+      if (A === "dashboard") {
+        const [ids] = await redis([["LRANGE", "demandes:list", 0, 149]]);
+        const all = (ids || []).length ? await redis(ids.map(i => ["GET", "demande:" + i])) : [];
+        const demandes = all.map(v => { try { return v ? JSON.parse(v) : null; } catch { return null; } }).filter(Boolean)
+          .map(d => ({ id: d.id, sid: d.sid || null, date: d.date, titre: d.titre, resume: d.resume, contact: d.contact, budget: d.budget?.label, delai: d.delai, jours: d.estimation?.jours || 0, statut: d.statut || "nouveau", choisies: (d.choisies || []).map(x => x.titre) }));
+        const [convs, radar, abonnes] = await Promise.all([listConvs(150), listRadar(150), nlCount()]);
+        return send(res, 200, { demandes, convs, radar, abonnes, mail: MAIL_OK() });
+      }
       if (A === "list") {
         const [ids] = await redis([["LRANGE", "demandes:list", 0, 149]]);
         const all = (ids || []).length ? await redis(ids.map(i => ["GET", "demande:" + i])) : [];
@@ -125,6 +146,13 @@ export default async function handler(req, res) {
       if (!(await allow("newsletter", req, 3, 3600, 300))) return send(res, 429, { error: "rate_limited" });
       const r = await nlSubscribe(str(b.email, 190), str(b.source, 60));
       return send(res, r.ok ? 200 : 400, r);
+    }
+    if (action === "statut") {
+      if (!admin) return send(res, 401, { error: "unauthorized" });
+      const st = String(b.statut || ""), id = String(b.id || "");
+      if (b.type === "conv") return send(res, (await setConvStatus(id, st)) ? 200 : 400, { ok: true });
+      if (b.type === "demande" && ID_RE.test(id) && ["nouveau", "traite"].includes(st)) { const d = await get("demande:" + id); if (!d) return send(res, 404, {}); d.statut = st; await redis([["SET", "demande:" + id, JSON.stringify(d), "KEEPTTL"]]); return send(res, 200, { ok: true }); }
+      return send(res, 400, { error: "statut" });
     }
     if (action === "radar_run" || action === "radar_status") {
       if (!admin) return send(res, 401, { error: "unauthorized" });
@@ -169,7 +197,8 @@ export default async function handler(req, res) {
       // Seule la part de chaque brique dans le budget du visiteur est renvoyée (arrondie), jamais un montant.
       const gauge = G.jauge && budgetMax > 0;
       return send(res, 200, { id, titre: rec.titre, resume: rec.resume, questions: rec.questions, budget: budget.label, jauge: gauge, minimumPart: gauge && G.minimum ? Math.round(G.minimum / budgetMax * 100) : 0,
-        briques: briques.map(x => ({ id: x.id, titre: x.titre, detail: x.detail, niveau: x.niveau, recurrent: x.recurrent, part: gauge ? Math.max(1, Math.round(x.cout / budgetMax * 100)) : null })) });
+        // Envergure (sans aucun montant) : légère ≤ 2 j, moyenne ≤ 6 j, conséquente au-delà.
+        briques: briques.map(x => ({ id: x.id, titre: x.titre, detail: x.detail, niveau: x.niveau, recurrent: x.recurrent, effort: x.jours <= 2 ? 1 : x.jours <= 6 ? 2 : 3, part: gauge ? Math.max(1, Math.round(x.cout / budgetMax * 100)) : null })) });
     }
 
     if (action === "envoyer") {

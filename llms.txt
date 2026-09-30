@@ -32,6 +32,9 @@
 - « Préparer mon devis » : le visiteur indique son budget, compose son projet brique par brique avec une jauge « ce qui tient dans votre budget » (aucun prix affiché), et reçoit son devis détaillé sous 24 h ouvrées.
 - [Comment ce site fonctionne](https://www.groupsolution.fr/lab/coulisses.html)
 
+## Démos en direct
+- [Démos IA en direct](https://www.groupsolution.fr/demos/): lecture de facture (photo ou PDF), agent de réservation, réponse aux avis Google — gratuites, sans inscription.
+
 ## Laboratoire d'idées
 - [Idées d'innovation par secteur](https://www.groupsolution.fr/idees/): 18 secteurs, idées concrètes et plans publiés anonymement en direct.
 

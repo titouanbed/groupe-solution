@@ -140,7 +140,7 @@
     // c) Le bon moment pour échanger (après quelques pages)
     if (P.sp >= 3 && !P.seen.call) {
       cards.push(openNow()
-        ? { id: 'call', kicker: 'Vous avez vu ' + P.sp + ' pages', title: 'Et si on en parlait 10 minutes ?', text: 'Vous décrivez votre besoin, on vous dit franchement ce qui est faisable. Sans engagement.', cta: '📞 07 82 29 85 59', href: 'tel:+33782298559', alt: ['Être rappelé', function () { if (window.GSAssistant) window.GSAssistant.callback(); }], why: WHY_PAGES }
+        ? { id: 'call', kicker: 'Vous avez vu ' + P.sp + ' pages', title: 'Et si on en parlait 10 minutes ?', text: 'Vous décrivez votre besoin, on vous dit franchement ce qui est faisable. Sans engagement.', cta: 'Appeler le 07 82 29 85 59', href: 'tel:+33782298559', alt: ['Être rappelé', function () { if (window.GSAssistant) window.GSAssistant.callback(); }], why: WHY_PAGES }
         : { id: 'call', kicker: 'Vous avez vu ' + P.sp + ' pages', title: 'Laissez votre numéro, on vous rappelle', text: 'Nous sommes en dehors des heures d’appel : on vous rappelle au moment qui vous arrange.', cta: 'Être rappelé', action: function () { if (window.GSAssistant) window.GSAssistant.callback(); else location.href = '/echanger.html#rendez-vous'; }, why: WHY_PAGES });
     }
     // d) Prochaine étape la plus utile selon l'intérêt

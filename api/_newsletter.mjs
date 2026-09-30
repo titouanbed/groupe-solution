@@ -30,8 +30,14 @@ async function byToken(t) {
 }
 export async function nlConfirm(t) {
   const r = await byToken(t); if (!r) return false;
-  r.sub.ok = true; r.sub.confirme = new Date().toISOString();
+  const nouveau = !r.sub.ok;
+  r.sub.ok = true; r.sub.confirme = r.sub.confirme || new Date().toISOString();
   await redis([["HSET", "nl:subs", r.h, JSON.stringify(r.sub)], ["PERSIST", "nl:tok:" + t]]);
+  // Bienvenue immédiate, avec les dernières actus, pour ne pas attendre lundi.
+  if (nouveau) {
+    const items = (await semaine().catch(() => [])).slice(0, 3);
+    await sendMail({ to: r.sub.email, subject: "Bienvenue — voici L'essentiel de la semaine", html: shell(`<p>Bonjour,</p><p>Merci pour votre confiance. Chaque lundi, vous recevrez les actualités IA, numériques et réglementaires qui comptent pour votre entreprise, vérifiées par au moins deux sources, avec l'action à mener.</p>${items.length ? `<p><b>Pour commencer, les dernières :</b></p>${items.map(x => `<p style="margin:10px 0"><a href="${esc(x.lien)}" style="color:#171613;font-weight:700">${esc(x.titre)}</a></p>`).join("")}` : ""}<p>Un projet, une question ? Décrivez votre entreprise à notre assistant : il vous propose des idées concrètes en une minute. <a href="${SITE}/#heroAI" style="color:#E61E4D;font-weight:700">Essayer →</a></p><p>Titouan Bedos — Groupe Solution</p>`, `${SITE}/api/devis?nl=stop&t=${t}`) });
+  }
   return true;
 }
 export async function nlStop(t) {

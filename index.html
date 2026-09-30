@@ -358,6 +358,9 @@
   .bForm{display:grid;gap:8px;margin-top:16px;border-top:1px solid var(--line);padding-top:16px}.bForm input,.bForm textarea{min-height:48px;border:1px solid var(--line2);border-radius:14px;padding:10px 14px;font:16px var(--sans);background:var(--sand,#F9F8F5)}.bForm small{font-size:12px;color:var(--muted)}.bForm .err{color:var(--acc);font-weight:700;font-size:13.5px;margin:0}
   .bForm .ok{font-weight:800;color:#2F7D4F;margin:0}.bForm .call{display:inline-flex;justify-content:center;min-height:46px;align-items:center;border-radius:14px;border:1px solid var(--line2);font-weight:800;color:var(--ink)}
   .aiBuild .gauge{margin-top:30px}
+  .bEff{display:inline-flex;align-items:center;gap:3px;margin-top:7px;font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.bEff i{width:14px;height:5px;border-radius:3px;background:#E7E4DC}.bEff i:last-of-type{margin-right:6px}
+  .bEff.e1 i:nth-child(1),.bEff.e2 i:nth-child(-n+2),.bEff.e3 i{background:linear-gradient(90deg,#E61E4D,#FF9A6B)}
+  .envTot{margin:16px 0 4px}.envBar{height:10px;border-radius:999px;background:#EFEDE7;overflow:hidden}.envBar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#E61E4D,#FF9A6B);transition:width .35s var(--ease)}.envTot p{margin:10px 0 0;font-size:14px;color:var(--secondary)}.envTot b{color:var(--ink)}
   .aiBriefDoc .ok{margin:12px 0 0;font-weight:700;color:#2F7D4F;font-size:14px}.aiBriefDoc ul{margin:4px 0 8px 1.1em;padding:0;font-size:14.5px}.aiBriefDoc .lab{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 2px}
   .aiEnt button{min-height:48px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:800 15px var(--sans);cursor:pointer}.aiEnt button:disabled{opacity:.6}
   .aiFiche .k{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}.aiFiche h3{font-size:clamp(20px,2.4vw,24px);margin:6px 0 10px;line-height:1.2}
@@ -640,7 +643,7 @@
       <li><b>Composez</b><span>Votre projet, face à votre budget.</span></li>
       <li><b>On livre</b><span>Vite : nous construisons avec l’IA.</span></li>
     </ol>
-    <p class="hxGo reveal"><a class="btn" href="#heroAI">Décrire mon projet →</a><a class="hxAll" href="services/">Tous nos services</a></p>
+    <p class="hxGo reveal"><a class="btn" href="#heroAI">Décrire mon projet →</a><a class="hxAll" href="demos/">Tester les démos en direct</a><a class="hxAll" href="services/">Tous nos services</a></p>
   </div></section>
 
 <!-- ACTUS:START (généré par zones/generate-actus.mjs) -->
@@ -668,7 +671,7 @@
       <img src="photo-president.jpg" alt="Titouan Bedos, fondateur de Groupe Solution" width="84" height="84" loading="lazy" decoding="async" />
       <div><p>« Je construis des systèmes qui absorbent le volume répétitif, pour que vous gardiez la main sur l’essentiel : la décision et la relation. »</p><small>Titouan Bedos · fondateur · agence à Saint-Jean-de-Védas, présent à Mayotte</small></div>
     </div>
-    <div class="hxNear reveal" id="montpellier"><span>Près de chez vous :</span><a href="automatisation/saint-jean-de-vedas.html">Saint-Jean-de-Védas</a><a href="montpellier/site-internet-montpellier.html">Montpellier</a><a href="automatisation/lattes.html">Lattes</a><a href="automatisation/castelnau-le-lez.html">Castelnau-le-Lez</a><a href="automatisation/sete.html">Sète</a><a href="mayotte/site-internet-mayotte.html">Mayotte</a><a href="implantations.html">Partout en France →</a></div>
+    <div class="hxNear reveal" id="montpellier"><span id="nearLab">Près de chez vous :</span><a href="automatisation/saint-jean-de-vedas.html">Saint-Jean-de-Védas</a><a href="montpellier/site-internet-montpellier.html">Montpellier</a><a href="automatisation/lattes.html">Lattes</a><a href="automatisation/castelnau-le-lez.html">Castelnau-le-Lez</a><a href="automatisation/sete.html">Sète</a><a href="mayotte/site-internet-mayotte.html">Mayotte</a><a href="implantations.html">Partout en France →</a></div>
   </div></section>
 
   <!-- ══ FAQ ══ -->
@@ -750,7 +753,7 @@
     <a href="plan-du-site.html">Plan du site</a>
     <a href="idees/">Laboratoire d’idées</a>
     <a href="lab/coulisses.html">Comment ce site fonctionne</a>
-    <a href="confidentialite.html">Confidentialité</a>
+    <a href="demos/">Démos en direct</a><a href="admin/" rel="nofollow">Espace pro</a><a href="confidentialite.html">Confidentialité</a>
   </nav>
 </div></footer>
 <script>
@@ -912,6 +915,28 @@
     }, { rootMargin: '400px 0px' });
     io.observe(section);
   } else { init(); }
+})();
+</script>
+  <script>
+/* « Près de chez vous » : liens adaptés à la zone approximative du visiteur (déduite par l'hébergeur, jamais enregistrée).
+   Hérault → communes les plus proches · outre-mer → pages du territoire · ailleurs → pages nationales. */
+(function(){
+  var box=document.getElementById('montpellier'); if(!box||!window.fetch) return;
+  try{ if(localStorage.getItem('gs-perso-off')||sessionStorage.getItem('gs-perso-off')) return; }catch(e){}
+  var DOM={RE:['reunion','La Réunion'],YT:['mayotte','Mayotte'],GP:['guadeloupe','Guadeloupe'],MQ:['martinique','Martinique'],GF:['guyane','Guyane'],NC:['nouvelle-caledonie','Nouvelle-Calédonie'],PF:['polynesie-francaise','Polynésie française']};
+  var esc=function(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  function paint(label,links){ box.innerHTML='<span>'+esc(label)+'</span>'+links.map(function(l){return '<a href="'+l[1]+'">'+esc(l[0])+'</a>';}).join(''); }
+  fetch('/api/geo').then(function(r){return r.ok?r.json():null;}).then(function(g){
+    if(!g) return;
+    var d=DOM[g.country];
+    if(d){ paint('Pour votre entreprise '+(d[0]==='reunion'?'à La Réunion':/^[AEIOU]/.test(d[1])?'en '+d[1]:'à '+d[1])+' :',[['Site internet',d[0]+'/site-internet-'+d[0]+'.html'],['Automatisation & logiciel',d[0]+'/automatisation-'+d[0]+'.html'],['Agents IA par métier','services/agent-ia-entreprise-exemples.html'],['Idées par secteur','idees/']]); return; }
+    if(g.lat==null) return;
+    return fetch('/assets/perso-places.json').then(function(r){return r.json();}).then(function(pl){
+      var k=Math.cos(g.lat*Math.PI/180), near=pl.map(function(p){var dx=(p.lo-g.lng)*k,dy=p.la-g.lat;return {p:p,d:Math.sqrt(dx*dx+dy*dy)*111};}).sort(function(a,b){return a.d-b.d;});
+      if(near[0]&&near[0].d<40){ paint('Près de chez vous'+(g.city?' ('+g.city+')':'')+' :',near.slice(0,5).map(function(x){return [x.p.n,x.p.auto||x.p.site];}).concat([['Toutes les communes →','automatisation/']])); }
+      else paint((g.city&&g.country==='FR'?'À '+g.city+' comme partout en France':'Partout en France')+' :',[['Logiciel sur-mesure','services/logiciel-sur-mesure-pme.html'],['Automatisation d’entreprise','services/automatisation-entreprise.html'],['Agents IA par métier','services/agent-ia-entreprise-exemples.html'],['Création de site internet','services/creation-site-internet.html'],['Visio de 10 min','echanger.html#rendez-vous']]);
+    });
+  }).catch(function(){});
 })();
 </script>
   <script src="assets/holding-local.js" defer></script>
