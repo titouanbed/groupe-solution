@@ -97,7 +97,8 @@
     var t = $('pvWhyTx'), parts = [];
     if (st.src === 'choix') parts.push('le métier que vous avez choisi (gardé sur cet appareil)'); else if (st.src === 'chat') parts.push('ce que vous avez dit dans le chat');
     if (st.lieu) parts.push('votre zone approximative, déduite par notre hébergeur et jamais enregistrée');
-    t.innerHTML = 'Adapté selon ' + esc(parts.join(' et ')) + '. <button type="button" id="pvOff">Ne plus adapter</button>';
+    t.innerHTML = 'Adapté selon ' + esc(parts.join(' et ')) + '. <label style="display:inline-flex;gap:6px;align-items:center;margin:0 10px 0 0">Vous êtes ailleurs ? <select id="pvLieu" style="font:inherit;border:1px solid var(--line2);border-radius:8px;padding:3px 6px;background:#fff"><option value="">Choisir…</option><option value="MTP">Montpellier et Hérault</option><option value="YT">Mayotte</option><option value="RE">La Réunion</option><option value="GP">Guadeloupe</option><option value="MQ">Martinique</option><option value="GF">Guyane</option><option value="NC">Nouvelle-Calédonie</option><option value="PF">Polynésie française</option><option value="FR">Ailleurs en France</option></select></label><button type="button" id="pvOff">Ne plus adapter</button>';
+    $('pvLieu').onchange = function () { if (!this.value) return; ls('gs-lieu', this.value); location.reload(); };
     t.hidden = !t.hidden;
     $('pvOff').onclick = function () { try { localStorage.setItem('gs-perso-off', '1'); sessionStorage.setItem('gs-perso-off', '1'); } catch (e) {} ls('gs-metier', null); st = { m: null, src: '', lieu: null, dom: null }; paint(true); };
   };
@@ -111,7 +112,7 @@
     if (st.src === 'choix' || off()) return;
     var k = detect(e.detail && e.detail.texte); if (k && k !== st.m) { st.m = k; st.src = 'chat'; paint(true); }
   });
-  (window.gsGeo = window.gsGeo || fetch('/api/geo').then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })).then(function (g) {
+  (window.gsGeo = window.gsGeo || fetch('/api/geo').then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(window.gsGeoFix || function (g) { return g; })).then(function (g) {
     if (!g || off()) return;
     var d = DOM[g.country];
     if (d) { st.lieu = d[1]; st.lieuDe = d[2]; st.dom = d[0]; }

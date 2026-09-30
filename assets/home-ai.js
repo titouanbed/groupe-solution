@@ -33,7 +33,18 @@
     if (tc <= 0) { tdir = 1; ti = (ti + 1) % EX.length; }
     ttm = setTimeout(tick, tdir > 0 ? 42 : 18);
   }
-  function stopType() { typing = false; input.placeholder = 'Parlez-nous de votre entreprise…'; }
+  var PH = 'Parlez-nous de votre entreprise…';
+  function stopType() { typing = false; input.placeholder = PH; }
+  /* Visiteur venu d'un post LinkedIn : accueil personnel de Titouan et test immédiat sur son entreprise. */
+  var LI = false;
+  try { LI = sessionStorage.getItem('gsSrc') === 'linkedin' || /[?&](?:src|utm_source)=linkedin/i.test(location.search) || /linkedin\.|lnkd\.in/i.test(document.referrer) || /LinkedInApp/i.test(navigator.userAgent); if (LI) sessionStorage.setItem('gsSrc', 'linkedin'); } catch (e) {}
+  if (LI) {
+    PH = 'Votre entreprise et sa ville…'; stopType();
+    var li = document.createElement('div'); li.className = 'aiLi';
+    li.innerHTML = '<img src="/photo-president.jpg" alt="" width="52" height="52"><p><b>Vous venez de LinkedIn ?</b> Écrivez le nom de votre entreprise et sa ville : en 30 secondes, je vous montre ce que l’IA peut changer pour elle. <span>— Titouan</span></p>';
+    var ttl = sec.querySelector('.aiTitle'); ttl.parentNode.insertBefore(li, ttl);
+    ga('linkedin_visit');
+  }
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) ttm = setTimeout(tick, 900);
 
   /* Messages */
@@ -62,8 +73,10 @@
   function cta(force) {
     if (ctaShown && !force) return; ctaShown = true;
     var d = document.createElement('div'); d.className = 'aiCta';
-    d.innerHTML = '<b>Le plus rapide : en parler 10 minutes avec Titouan.</b><a href="' + TEL_HREF + '">' + I('telephone') + TEL + '</a><button type="button">' + I('rappel') + 'Être rappelé</button>';
-    d.querySelector('a').addEventListener('click', function () { ga('home_ai_call'); });
+    d.innerHTML = LI
+      ? '<div class="liMe"><img src="/photo-president.jpg" alt="" width="46" height="46"><b>C’est Titouan, l’auteur du post. Ça vous parle ? Appelons-nous 10 minutes : je vous dis exactement comment on le met en place chez vous.</b></div><a href="' + TEL_HREF + '">' + I('telephone') + 'Appeler ' + TEL + '</a><button type="button">' + I('rappel') + 'Être rappelé</button><a class="alt" href="/echanger.html#rendez-vous">' + I('calendrier') + 'Réserver 10 min</a>'
+      : '<b>Le plus rapide : en parler 10 minutes avec Titouan.</b><a href="' + TEL_HREF + '">' + I('telephone') + TEL + '</a><button type="button">' + I('rappel') + 'Être rappelé</button>';
+    d.querySelector('a').addEventListener('click', function () { ga('home_ai_call', { source: LI ? 'linkedin' : 'site' }); });
     d.querySelector('button').addEventListener('click', function () {
       var f = document.createElement('form');
       f.innerHTML = '<input name="nom" placeholder="Votre prénom" autocomplete="given-name" required><input name="telephone" type="tel" placeholder="Votre téléphone" autocomplete="tel" required><button type="submit">Être rappelé</button><small>La conversation est jointe à votre demande, pour ne rien vous faire répéter.</small>';
@@ -73,7 +86,7 @@
         var fd = new FormData(f); fd.append('page', '/'); fd.append('source', 'accueil-ia'); fd.append('sid', sid());
         fd.append('conversation', hist.map(function (m) { return (m.role === 'user' ? 'Visiteur : ' : 'Assistant : ') + m.content; }).join('\n').slice(-3500));
         f.querySelector('button').textContent = 'Envoi…';
-        fetch('https://formspree.io/f/mzebrvjg', { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+        postLead('https://formspree.io/f/mzebrvjg', fd)
           .then(function (r) { if (!r.ok) throw 0; d.innerHTML = '<b>' + I('check', 'ok') + 'C’est noté, merci ! Titouan vous rappelle au plus vite.</b>'; ga('generate_lead', { method: 'accueil_ia' }); })
           .catch(function () { d.innerHTML = '<b>Petit souci d’envoi.</b><a href="' + TEL_HREF + '">' + I('telephone') + 'Appeler le ' + TEL + '</a>'; });
       });
@@ -82,6 +95,14 @@
   }
 
 
+  // Demande enregistrée d'abord dans le tableau de bord (/api/lead), Formspree seulement en secours : rien ne se perd.
+  function postLead(action, fd) {
+    var o = {}; fd.forEach(function (v, k) { if (typeof v === 'string') o[k] = v; }); if (!o.page) o.page = location.pathname;
+    try { var s = sessionStorage.getItem('gsSid'); if (s && !o.sid) o.sid = s; var sr = sessionStorage.getItem('gsSrc'); if (sr && !o.provenance) o.provenance = sr; } catch (e) {}
+    var backup = function () { return fetch(action, { method: 'POST', body: fd, headers: { Accept: 'application/json' }, gsDirect: true }); };
+    return fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o) })
+      .then(function (r) { return r.ok || r.status === 429 || r.status === 403 ? r : backup(); }).catch(backup);
+  }
   /* ── Démonstrations en direct : plan d'innovation (schéma) et esquisse du futur site ── */
   function acts() {
     if (actsShown) return; actsShown = true;
@@ -389,7 +410,7 @@
       var userTurns = hist.filter(function (m) { return m.role === 'user'; }).length;
       if (userTurns === 1) { var nt = el('p', 'aiNote'); nt.innerHTML = 'Assistant automatique · échanges conservés 30 jours pour mieux vous répondre, jamais revendus · <a href="/confidentialite.html">confidentialité</a>'; log.appendChild(nt); }
       if (userTurns >= 1) acts();
-      if (userTurns >= 2 || /appel|rappel|devis|10 minutes|07 82/i.test(r.answer)) cta();
+      if (userTurns >= 2 || (LI && (r.fiche || r.ruptures)) || /appel|rappel|devis|10 minutes|07 82/i.test(r.answer)) cta();
     }).catch(function () {
       wait.remove(); add('b', md('Je rencontre un petit souci technique. Appelez Titouan au [' + TEL + '](' + TEL_HREF + ').'));
     }).then(function () { busy = false; send.disabled = false; if (!mobile()) input.focus(); });

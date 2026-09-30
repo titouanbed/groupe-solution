@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/in",
+      "destination": "/?src=linkedin",
+      "permanent": false
+    },
+    {
       "source": "/site-internet-mayotte.html",
       "destination": "/mayotte/site-internet-mayotte.html",
       "permanent": true

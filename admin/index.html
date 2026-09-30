@@ -45,6 +45,9 @@ h2{font:600 22px/1.2 var(--serif);margin:0 0 12px;letter-spacing:-.01em;display:
 .btn.p{background:var(--ink);border-color:var(--ink);color:#fff}.btn.a{background:linear-gradient(135deg,var(--acc),var(--acc2));border-color:transparent;color:#fff}.btn svg{width:15px;height:15px}.btn:disabled{opacity:.5}
 details.more{margin:10px 0 0 56px}details.more summary{cursor:pointer;font-weight:700;font-size:13px;color:var(--sec)}
 .tr{display:flex;flex-direction:column;gap:8px;margin:12px 0 0 56px}.tr .mu,.tr .ma{max-width:90%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap}.tr .mu{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:5px}.tr .ma{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:5px}
+.tr .ev{align-self:center;max-width:94%;background:#FFF8E8;border:1px solid #F1E2BD;border-radius:12px;padding:8px 12px;font-size:13.5px}.tr .ev small{color:var(--muted)}.tr .ev details summary{cursor:pointer;font-weight:700;font-size:12.5px;margin-top:4px}
+.tr .fi,.tr .rup{align-self:flex-start;max-width:90%;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:14px}.tr .fi small,.tr .rup small{display:block;font:800 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.tr .fi p,.tr .rup p{margin:4px 0 0}
+.tr .rups{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;align-self:stretch;max-width:90%}.tr .rups .rup{max-width:none}
 pre.mail{white-space:pre-wrap;font:14px/1.55 var(--sans);background:var(--bg);border-radius:12px;padding:12px;margin:8px 0}
 .empty{text-align:center;color:var(--muted);padding:26px 16px}.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
 /* Graphique */
@@ -140,6 +143,8 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     var att = (D.attente || []).filter(function (e) { return !e.relance && convOf(e.sid) && convOf(e.sid).contact && !seen[e.sid]; });
     return { dem: dem, leads: leads, conv: conv, rad: rad, nlp: nlp, att: att, n: dem.length + leads.length + conv.length + rad.length + nlp.length + att.length };
   }
+  var SRCN = { linkedin: 'LinkedIn', google: 'Google', meta: 'Facebook/Instagram', recherche: 'moteur de recherche', lien: 'un autre site', direct: 'accès direct' };
+  function via(src) { return src && SRCN[src] !== undefined ? ' · <b style="color:' + (src === 'linkedin' ? '#0A66C2' : 'var(--sec)') + '">via ' + SRCN[src] + '</b>' : src ? ' · via ' + esc(src) : ''; }
   function convOf(sid) { if (!sid) return null; for (var i = 0; i < D.convs.length; i++) if (D.convs[i].sid === sid) return D.convs[i]; return null; }
   function rap() { return (D.entretien && D.entretien.rapport) || null; }
   function cats() {
@@ -160,12 +165,12 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
   }
   function leadCard(l) {
     var ch = l.champs || {}, msg = ch.message || ch.besoin || ch.topic || ch.conversation || '';
-    return '<div class="card"><div class="item">' + avatar(l.nom) + '<div><div class="t">' + esc(l.nom || 'Visiteur') + '</div><div class="s">' + esc(msg ? msg.slice(0, 180) : 'Demande de rappel') + '</div><div class="m">' + ago(l.date) + ' · ' + esc(ch.source || ch.page || 'formulaire') + (l.mail === 'echec' ? ' · <b style="color:var(--acc)">e-mail non parti, gardé ici</b>' : '') + '</div></div><span class="pill ' + (l.statut === 'traite' ? 'p-ok' : 'p-lead') + '">' + (l.statut === 'traite' ? 'Traité' : 'À rappeler') + '</span></div>' +
+    return '<div class="card"><div class="item">' + avatar(l.nom) + '<div><div class="t">' + esc(l.nom || 'Visiteur') + '</div><div class="s">' + esc(msg ? msg.slice(0, 180) : 'Demande de rappel') + '</div><div class="m">' + ago(l.date) + ' · ' + esc(ch.source || ch.page || 'formulaire') + via(ch.provenance) + (l.mail === 'echec' ? ' · <b style="color:var(--acc)">e-mail non parti, gardé ici</b>' : '') + '</div></div><span class="pill ' + (l.statut === 'traite' ? 'p-ok' : 'p-lead') + '">' + (l.statut === 'traite' ? 'Traité' : 'À rappeler') + '</span></div>' +
       '<div class="acts">' + contactBtns({ telephone: l.telephone, email: l.email }, 'Suite à votre demande sur groupsolution.fr') + (l.sid ? '<button class="btn" data-open="' + l.sid + '">' + IC.eye + 'Conversation</button>' : '') + (l.statut !== 'traite' ? '<button class="btn p" data-done="lead:' + l.id + '">' + IC.ok + 'Traité</button>' : '') + '</div>' + (l.sid ? '<div id="cv' + l.sid + '"></div>' : '') + '</div>';
   }
   function convCard(c) {
     var who = (c.contact && c.contact.nom) || c.entreprise || 'Visiteur';
-    return '<div class="card"><div class="item">' + avatar(who) + '<div data-open="' + c.sid + '" style="cursor:pointer"><div class="t">' + esc(who) + (c.entreprise && c.contact && c.contact.nom ? ' · ' + esc(c.entreprise) : '') + '</div><div class="s">« ' + esc(c.premier) + ' »</div><div class="m">' + ago(c.maj) + ' · ' + c.n + ' message' + (c.n > 1 ? 's' : '') + (c.evenements.length ? ' · ' + esc(c.evenements[c.evenements.length - 1]) : '') + '</div></div>' + (c.contact ? '<span class="pill p-con">Contact</span>' : c.statut === 'traite' ? '<span class="pill p-ok">Traité</span>' : '<span class="pill" style="background:#F1EFEA;color:var(--muted)">Anonyme</span>') + '</div>' +
+    return '<div class="card"><div class="item">' + avatar(who) + '<div data-open="' + c.sid + '" style="cursor:pointer"><div class="t">' + esc(who) + (c.entreprise && c.contact && c.contact.nom ? ' · ' + esc(c.entreprise) : '') + '</div><div class="s">« ' + esc(c.premier) + ' »</div><div class="m">' + ago(c.maj) + ' · ' + c.n + ' message' + (c.n > 1 ? 's' : '') + via(c.src) + (c.evenements.length ? ' · ' + esc(c.evenements[c.evenements.length - 1]) : '') + '</div></div>' + (c.contact ? '<span class="pill p-con">Contact</span>' : c.statut === 'traite' ? '<span class="pill p-ok">Traité</span>' : '<span class="pill" style="background:#F1EFEA;color:var(--muted)">Anonyme</span>') + '</div>' +
       '<div class="acts">' + contactBtns(c.contact, 'Suite à votre échange sur groupsolution.fr') + '<button class="btn" data-open="' + c.sid + '">' + IC.eye + 'Lire</button>' + (c.contact && c.statut !== 'traite' ? '<button class="btn p" data-done="conv:' + c.sid + '">' + IC.ok + 'Traité</button>' : '') + '</div><div id="cv' + c.sid + '"></div></div>';
   }
   function radCard(x) {
@@ -199,9 +204,32 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     box.innerHTML = '<p class="m" style="margin-left:56px">Chargement…</p>';
     api('?admin=conv&sid=' + sid).then(function (r) {
       var c = r.conv; if (!c) { box.innerHTML = '<p class="m" style="margin-left:56px">Conversation expirée (30 jours).</p>'; return; }
-      box.innerHTML = (c.entreprise ? '<p class="m" style="margin:12px 0 0 56px">Entreprise analysée : <b>' + esc(c.entreprise.nom) + '</b>' + (c.entreprise.commune ? ' · ' + esc(c.entreprise.commune) : '') + (c.site ? ' · <a target="_blank" rel="noopener" href="' + esc(c.site) + '">site</a>' : '') + (c.idees && c.idees.length ? '<br>Idées proposées : ' + esc(c.idees.join(' · ')) : '') + '</p>' : '') +
-        '<div class="tr">' + c.messages.map(function (m) { return '<div class="' + (m.r === 'u' ? 'mu' : 'ma') + '">' + esc(m.t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>') + '</div>'; }).join('') + '</div>';
+      // Tout ce que le visiteur a vu, dans l'ordre : messages, fiche d'analyse, idées, plans, devis.
+      var items = c.messages.map(function (m, i) { return { ts: m.ts || c.debut, k: i, m: m }; }).concat((c.evenements || []).map(function (e, i) { return { ts: e.ts || c.maj, k: 1000 + i, e: e }; }));
+      items.sort(function (x, y) { return x.ts < y.ts ? -1 : x.ts > y.ts ? 1 : x.k - y.k; });
+      box.innerHTML = '<div class="tr">' + items.map(function (it) {
+        if (it.e) return '<div class="ev"><b>' + esc(it.e.t) + '</b> <small>' + ago(it.e.ts) + '</small>' + (it.e.detail ? '<details><summary>Voir le détail</summary>' + detail(it.e.detail) + '</details>' : '') + '</div>';
+        var m = it.m; if (m.r === 'u') return '<div class="mu">' + esc(m.t) + '</div>';
+        return (m.fiche ? ficheHtml(m.fiche) : '') + (m.ruptures ? '<div class="rups">' + m.ruptures.map(function (x) { return '<div class="rup"><small>' + (x.type === 'accelerateur' ? 'Accélérateur rapide' : 'Rupture') + '</small><b>' + esc(x.nom) + '</b><p>' + esc(x.promesse) + '</p><p class="m">' + esc(x.comment) + '</p><p class="m"><b>Effet :</b> ' + esc(x.effet) + '</p></div>'; }).join('') + '</div>' : '') +
+          '<div class="ma">' + esc(m.t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>') + '</div>';
+      }).join('') + '</div>' + (!c.messages.some(function (m) { return m.fiche; }) && c.entreprise ? '<p class="m" style="margin:10px 0 0 56px">Entreprise analysée : <b>' + esc(c.entreprise.nom) + '</b>' + (c.site ? ' · <a target="_blank" rel="noopener" href="' + esc(c.site) + '">site</a>' : '') + (c.idees ? '<br>Idées proposées : ' + esc(c.idees.join(' · ')) : '') + '</p>' : '');
     }).catch(function () {});
+  }
+  function ficheHtml(f) {
+    var e = f.entreprise, s = f.site, h = '<div class="fi"><small>Fiche montrée au visiteur</small>';
+    if (e) h += '<b>' + esc(e.nom) + '</b><p class="m">' + esc([e.secteur, e.activite_code && 'NAF ' + e.activite_code, e.creation && 'créée en ' + String(e.creation).slice(0, 4), e.effectif, e.commune, e.siren && 'SIREN ' + e.siren].filter(Boolean).join(' · ')) + '</p>';
+    if (s) {
+      var ok = [], ko = [];
+      [[s.https, 'HTTPS'], [s.mobile, 'mobile'], [s.description, 'description Google'], [s.telephone_cliquable, 'téléphone cliquable'], [s.reservation_ou_devis, 'contact/réservation en ligne'], [s.donnees_structurees, 'données structurées'], [s.apercu_partage, 'aperçu de partage'], [(s.reseaux || []).length, 'réseaux : ' + (s.reseaux || []).join(', ')]].forEach(function (x) { (x[0] ? ok : ko).push(x[0] ? x[1] : x[1].replace(/ :.*/, '')); });
+      h += '<p class="m"><a target="_blank" rel="noopener" href="' + esc(s.url) + '">' + esc(s.url.replace(/^https?:\/\/(www\.)?/, '')) + '</a>' + (s.cms ? ' · ' + esc(s.cms) : '') + (s.temps_ms ? ' · ' + Math.round(s.temps_ms) + ' ms' : '') + '</p><p class="m">✓ ' + esc(ok.join(' · ') || '—') + '</p>' + (ko.length ? '<p class="m" style="color:var(--acc)">À régler : ' + esc(ko.join(' · ')) + (s.images_sans_alt ? ' · ' + s.images_sans_alt + ' image(s) sans description' : '') + '</p>' : '');
+    }
+    return h + '</div>';
+  }
+  function detail(d) {
+    if (d == null) return '';
+    if (typeof d !== 'object') return '<p class="m">' + esc(d) + '</p>';
+    if (Array.isArray(d)) return '<ul>' + d.map(function (x) { return '<li>' + (typeof x === 'object' ? Object.keys(x).map(function (k) { return typeof x[k] === 'object' ? '' : esc(x[k]); }).filter(Boolean).join(' — ') : esc(x)) + '</li>'; }).join('') + '</ul>';
+    return Object.keys(d).map(function (k) { var v = d[k]; if (v === '' || v == null || (Array.isArray(v) && !v.length)) return ''; return '<div style="margin:6px 0"><b style="font-size:12.5px;color:var(--sec)">' + esc(k.replace(/_/g, ' ')) + '</b>' + (typeof v === 'object' ? detail(v) : '<p class="m" style="margin:2px 0 0;color:var(--ink)">' + esc(v) + '</p>') + '</div>'; }).join('');
   }
   function section(title, sub, html) { return '<h2>' + title + (sub ? ' <small>' + sub + '</small>' : '') + '</h2>' + html; }
   function empty(t, s) { return '<div class="card empty"><b>' + t + '</b>' + s + '</div>'; }
@@ -212,7 +240,7 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     var contacts7 = c7.filter(function (c) { return c.contact; }).length + (D.leads || []).filter(function (l) { return week(l.date); }).length;
     var h = new Date().getHours(), hello = h < 12 ? 'Bonjour Titouan' : h < 18 ? 'Bon après-midi Titouan' : 'Bonsoir Titouan';
     var html = '<div class="hello"><div><h1>' + hello + '</h1><p>' + (t.n ? '<b>' + t.n + ' action' + (t.n > 1 ? 's' : '') + '</b> vous attend' + (t.n > 1 ? 'ent' : '') + ' aujourd’hui.' : 'Tout est à jour. Profitez-en pour lancer le radar.') + '</p></div><small>Actualisé ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }) + '</small></div>';
-    var kp = [['c1', 'convs', c7.length, 'conversations · 7 j'], ['c2', 'contacts', contacts7, 'contacts laissés · 7 j'], ['c3', 'dem', D.demandes.filter(function (x) { return week(x.date); }).length, 'demandes de devis · 7 j'], ['c4', 'radar', D.radar.filter(function (x) { return x.statut === 'contacte' || x.statut === 'rdv'; }).length + ' / ' + D.radar.length, 'radar contactées / repérées'], ['c5', 'nl', D.abonnes, 'abonnés newsletter']];
+    var kp = [['c1', 'convs', c7.length, 'conversations · 7 j' + (c7.filter(function (c) { return c.src === 'linkedin'; }).length ? ' · ' + c7.filter(function (c) { return c.src === 'linkedin'; }).length + ' via LinkedIn' : '')], ['c2', 'contacts', contacts7, 'contacts laissés · 7 j'], ['c3', 'dem', D.demandes.filter(function (x) { return week(x.date); }).length, 'demandes de devis · 7 j'], ['c4', 'radar', D.radar.filter(function (x) { return x.statut === 'contacte' || x.statut === 'rdv'; }).length + ' / ' + D.radar.length, 'radar contactées / repérées'], ['c5', 'nl', D.abonnes, 'abonnés newsletter']];
     html += '<div class="kpis">' + kp.map(function (k) { return '<button class="kpi ' + k[0] + '" data-go="' + k[1] + '"><span class="ic">' + IC[k[1]] + '</span><b>' + k[2] + '</b><span>' + k[3] + '</span></button>'; }).join('') + '</div>';
     var left = section('À faire', t.n ? t.n + ' en attente' : 'rien en attente', t.n ? t.dem.map(demCard).join('') + t.leads.map(leadCard).join('') + t.conv.map(convCard).join('') + t.rad.slice(0, 4).map(radCard).join('') + t.nlp.map(nlCard).join('') + t.att.map(attCard).join('') + (t.rad.length > 4 ? '<p class="m">+ ' + (t.rad.length - 4) + ' entreprise(s) dans Radar.</p>' : '') : empty('Rien en attente', 'Les demandes de devis, les visiteurs qui laissent leurs coordonnées et le radar du matin arrivent ici.'));
     var right = section('Activité · 14 jours', '', '<div class="card">' + chart() + '</div>') + section('Fil d’activité', '', '<div class="card feed">' + feed() + '</div>') + section('Santé', '', '<div class="card health">' + healthRows(true) + '</div>');

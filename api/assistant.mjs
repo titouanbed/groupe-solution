@@ -115,7 +115,7 @@ export default async function handler(req, res) {
   for (const m of history) { if (msgs.length && msgs[msgs.length - 1].role === m.role) msgs[msgs.length - 1].content += "\n\n" + m.content; else msgs.push({ ...m }); }
   if (msgs.length && msgs[msgs.length - 1].role === "user") msgs.pop();
   const mode = accueil
-    ? "Mode : page d'accueil. N'insère AUCUN lien markdown ni adresse de page : tout se passe dans cette conversation. Quand le besoin est clair, propose au visiteur de cliquer sur « 💶 Préparer mon devis » juste sous la conversation : il indique son budget, voit ce qui tient dedans, compose son projet, et Titouan lui envoie le devis détaillé. Tu peux lui demander son budget indicatif, mais n'annonce jamais toi-même de prix."
+    ? "Mode : page d'accueil. N'insère AUCUN lien markdown ni adresse de page : tout se passe dans cette conversation. Quand le besoin est clair, propose au visiteur de cliquer sur « Préparer mon devis » juste sous la conversation : il indique son budget, voit ce qui tient dedans, compose son projet, et Titouan lui envoie le devis détaillé. Tu peux lui demander son budget indicatif, mais n'annonce jamais toi-même de prix."
     : "Mode : assistant flottant. Quand un extrait est pertinent, tu peux citer 1 ou 2 pages en lien markdown avec leur chemin exact, par exemple [la page Automatisation](/automatisation/).";
   msgs.push({ role: "user", content: `${mode}\nPage consultée : ${page || "inconnue"}\n\nExtraits du site pertinents :\n${ctx || "(aucun)"}\n\nMessage du visiteur : ${q}` });
 
@@ -148,6 +148,8 @@ export default async function handler(req, res) {
     if (response.stop_reason === "refusal") return send(res, 200, { answer: "Je préfère ne pas répondre à cette question ici. Pour toute demande liée à votre projet, appelez le 07 82 29 85 59 ou réservez 10 minutes en visio.", refused: true });
     let answer = response.content.filter(b => b.type === "text").map(b => b.text).join("").trim();
     if (accueil) answer = answer.replace(/\[([^\]]+)\]\((?!tel:|mailto:)[^)]*\)/g, "$1");
+    // Pas d'emoji dans les réponses : le site affiche ses propres icônes.
+    answer = answer.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}]\uFE0F?\s?/gu, "");
     if (!answer) answer = "Je n'ai pas réussi à formuler une réponse. Le plus simple : appelez Titouan au 07 82 29 85 59.";
     // Mémo factuel à garder dans la conversation (le navigateur le renverra dans l'historique).
     const e = found.entreprise, st = found.site;
@@ -157,7 +159,7 @@ export default async function handler(req, res) {
     const ruptures = found.ruptures?.length ? found.ruptures : null;
     const memo2 = [memo, ruptures ? "Idées proposées au visiteur : " + ruptures.map(x => x.nom + " (" + x.promesse + ")").join(" ; ") : ""].filter(Boolean).join("\n") || null;
     const fiche = e || st ? { entreprise: e || null, site: st || null } : null;
-    await logTurn(str(body?.sid, 40), { q, answer, page, mode: accueil ? "accueil" : "widget", fiche, ruptures });
+    await logTurn(str(body?.sid, 40), { q, answer, page, mode: accueil ? "accueil" : "widget", fiche, ruptures, src: str(body?.src, 30).replace(/[^a-z0-9_-]/gi, "") });
     return send(res, 200, { answer, fiche, ruptures, memo: memo2 });
   } catch (err) {
     if (err instanceof Anthropic.RateLimitError) return send(res, 429, { error: "upstream_rate_limited" });
