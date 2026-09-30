@@ -233,13 +233,26 @@
   }
   function close() { panel.classList.remove('open'); btn.style.display = ''; }
   btn.addEventListener('click', open);
-  window.GSAssistant = { open: open, callback: function () { open(); callback(); }, ask: function (q) { open(); ask(q); } };
+  // reply(q, history) : même cerveau que le widget (index du site + Claude, repli local gratuit), utilisé par le chat de l'accueil.
+  function reply(q, history) {
+    return loadIndex().then(function () {
+      var res = search(q, 8);
+      var ctx = res.slice(0, 6).map(function (r) { return { u: r.c.u, t: r.c.t, h: r.c.h, x: r.c.x }; });
+      if (mode === 'local') return { answer: localAnswer(q, res), local: true };
+      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, history: (history || []).slice(-8) }) })
+        .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
+        .then(function (d) { return { answer: d.answer || localAnswer(q, res) }; })
+        .catch(function () { return { answer: localAnswer(q, res), local: true }; });
+    });
+  }
+  window.GSAssistant = { open: open, callback: function () { open(); callback(); }, ask: function (q) { open(); ask(q); }, reply: reply, md: md };
+  document.dispatchEvent(new Event('gs-assistant-ready'));
   panel.querySelector('.x').addEventListener('click', close);
   panel.querySelector('.cbk').addEventListener('click', callback);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('open')) close(); });
   form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value); });
   /* Bulle d'accueil proactive (une fois par session, après 25 s) */
-  if (!store.get('gsA-tip')) setTimeout(function () {
+  if (!store.get('gsA-tip') && !document.getElementById('aiBox')) setTimeout(function () {
     if (panel.classList.contains('open')) return;
     var t = document.createElement('div'); t.id = 'gsA-tip'; t.setAttribute('role', 'button');
     t.innerHTML = (pn() ? 'Un projet <b>' + esc(aN(pn())) + '</b> ? ' : 'Un projet ? ') + 'Posez votre question, je réponds tout de suite — ou appelez Titouan.<button class="c" type="button" aria-label="Fermer">×</button>';
