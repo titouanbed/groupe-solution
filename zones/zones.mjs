@@ -1,3 +1,4 @@
+import { MAYOTTE_CITIES } from './mayotte-communes.mjs';
 /* ═══════════════════════════════════════════════════════════
    REGISTRE CENTRAL DES ZONES — source de vérité unique.
    Consommé par : generate-cities.mjs (pages villes) et
@@ -110,9 +111,19 @@ export const ZONES = [
     slug: 'mayotte', name: 'Mayotte', code: '976', status: 'online',
     regionPage: 'site-internet-mayotte.html',
     implantTagline: "Le guichet unique du numérique à Mayotte : sites internet, community management, publicité locale et transition numérique pour les TPE et PME mahoraises.",
-    cities: [],
+    cities: MAYOTTE_CITIES,
+    guides: [
+      { href: 'blog/prix-site-internet-mayotte.html', label: 'Budget', title: 'Combien coûte un site internet à Mayotte ?' },
+      { href: 'blog/transition-numerique-ia-mayotte.html', label: 'IA', title: 'Transition numérique et IA à Mayotte' },
+      { href: 'blog/trouver-clients-reseaux-sociaux-mayotte.html', label: 'Réseaux sociaux', title: 'Trouver des clients sur les réseaux sociaux à Mayotte' }
+    ],
     implantChips: [
-      { label: 'Mamoudzou', href: 'mayotte/site-internet-mayotte.html' },
+      { label: 'Mamoudzou', href: 'mayotte/site-internet-mamoudzou.html' },
+      { label: 'Koungou · Longoni', href: 'mayotte/site-internet-koungou.html' },
+      { label: 'Petite-Terre', href: 'mayotte/site-internet-petite-terre.html' },
+      { label: 'Dembéni', href: 'mayotte/site-internet-dembeni.html' },
+      { label: 'Centre et Ouest', href: 'mayotte/site-internet-centre-ouest-mayotte.html' },
+      { label: 'Sud', href: 'mayotte/site-internet-sud-mayotte.html' },
       { label: 'Catalogue de démos', href: 'mayotte/catalogue-demos.html' }
     ]
   },

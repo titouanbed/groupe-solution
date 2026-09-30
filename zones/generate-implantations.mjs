@@ -35,7 +35,7 @@ function card(zone) {
     : `<span class="terrState soon">En préparation</span>`;
   const hasBlog = online && ((zone.cities && zone.cities.some(c => c.faq)) || zone.region);
   const go = online
-    ? `<div class="terrGo"><a class="go" href="${zone.slug}/${zone.regionPage}">${zone.slug === 'mayotte' ? 'Titouan à Mayotte' : 'Nos solutions ' + (/^[AEIOUÉ]/.test(zone.name) ? 'en ' : 'à ') + esc(zone.name)} →</a>${hasBlog ? `<a class="go2" href="${zone.slug}/blog/">Guides &amp; conseils ${esc(zone.name)} →</a>` : ''}</div>`
+    ? `<div class="terrGo"><a class="go" href="${zone.slug}/${zone.regionPage}">${zone.slug === 'mayotte' ? 'Titouan à Mayotte' : 'Nos solutions ' + (/^[AEIOUÉ]/.test(zone.name) ? 'en ' : 'à ') + esc(zone.name)} →</a>${hasBlog ? `<a class="go2" href="${zone.slug}/${zone.guides ? zone.guides[0].href : 'blog/'}">Guides &amp; conseils ${esc(zone.name)} →</a>` : ''}</div>`
     : `<div class="terrGo"><span class="soonNote">Bientôt disponible</span></div>`;
   return `      <div class="terrCard reveal">
         <div class="terrTop"><span class="terrCode">${esc(zone.name)} · ${esc(zone.code)}</span>${state}</div>
