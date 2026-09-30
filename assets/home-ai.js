@@ -22,16 +22,16 @@
   input.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit ? form.requestSubmit() : submit(); } });
 
   /* Exemples qui s'écrivent tout seuls dans la zone vide */
-  var EX = ['Je veux un site internet pour mon restaurant…', 'Je passe mes soirées à faire des devis…', 'Mon standard sonne dans le vide quand je suis sur un chantier…', 'Mes factures fournisseurs arrivent en PDF, je ressaisis tout…', 'J’ai un logiciel métier mais il ne parle à rien…', 'Je veux plus de clients qui me trouvent sur Google…'];
+  var EX = ['Je suis artisan, je passe mes soirées sur les devis…', 'On a un logiciel de gestion, mais il ne parle à rien…', 'Je lance mon entreprise, par où commencer ?', 'Notre standard sonne dans le vide pendant les chantiers…', 'Je veux que plus de clients me trouvent sur Google…', 'On ressaisit toutes nos factures fournisseurs à la main…'];
   var ti = 0, tc = 0, tdir = 1, ttm = null, typing = true;
   function tick() {
-    if (!typing || input.value || document.activeElement === input) { input.placeholder = 'Décrivez votre besoin…'; ttm = setTimeout(tick, 1200); return; }
+    if (!typing || input.value || document.activeElement === input) { input.placeholder = 'Parlez-nous de votre entreprise…'; ttm = setTimeout(tick, 1200); return; }
     var w = EX[ti]; tc += tdir; input.placeholder = w.slice(0, tc);
     if (tc >= w.length) { tdir = -1; ttm = setTimeout(tick, 1800); return; }
     if (tc <= 0) { tdir = 1; ti = (ti + 1) % EX.length; }
     ttm = setTimeout(tick, tdir > 0 ? 42 : 18);
   }
-  function stopType() { typing = false; input.placeholder = 'Décrivez votre besoin…'; }
+  function stopType() { typing = false; input.placeholder = 'Parlez-nous de votre entreprise…'; }
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) ttm = setTimeout(tick, 900);
 
   /* Messages */
@@ -94,6 +94,9 @@
     }).then(function (r) {
       wait.remove();
       add('b', md(r.answer));
+      // Interface générative : les pages citées par l'IA deviennent des cartes d'action sous sa réponse.
+      var seen = {}, refs = []; (r.answer.match(/\[[^\]]{2,70}\]\((\/[^)\s]*)\)/g) || []).forEach(function (m) { var x = m.match(/\[([^\]]+)\]\(([^)]+)\)/); if (x && !seen[x[2]] && refs.length < 3) { seen[x[2]] = 1; refs.push(x); } });
+      if (refs.length) { var rf = document.createElement('div'); rf.className = 'aiRefs'; refs.forEach(function (x) { var a = document.createElement('a'); a.href = x[2]; a.textContent = x[1]; a.addEventListener('click', function () { ga('home_ai_ref', { url: x[2] }); }); rf.appendChild(a); }); log.appendChild(rf); log.scrollTop = log.scrollHeight; }
       hist.push({ role: 'user', content: q }, { role: 'assistant', content: r.answer }); hist = hist.slice(-16);
       var userTurns = hist.filter(function (m) { return m.role === 'user'; }).length;
       if (userTurns >= 2 || /appel|rappel|devis|10 minutes|07 82/i.test(r.answer)) cta();
@@ -107,5 +110,5 @@
 
   function submit(e) { if (e) e.preventDefault(); ask(input.value); }
   form.addEventListener('submit', submit);
-  [].forEach.call(chips.querySelectorAll('button'), function (b) { b.addEventListener('click', function () { ga('home_ai_chip'); ask(b.textContent); }); });
+  if (chips) [].forEach.call(chips.querySelectorAll('button'), function (b) { b.addEventListener('click', function () { ga('home_ai_chip'); ask(b.textContent); }); });
 })();

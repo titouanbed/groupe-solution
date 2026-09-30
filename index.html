@@ -11,8 +11,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Groupe Solution" />
-  <meta property="og:title" content="Dites-nous ce qui vous freine. On vous montre la solution. — Groupe Solution" />
-  <meta property="og:description" content="Site internet, automatisation, logiciel, IA : décrivez votre besoin en une phrase, notre assistant vous répond en quelques secondes. Essayez-le." />
+  <meta property="og:title" content="Trouvons la solution qui va révolutionner votre entreprise — Groupe Solution" />
+  <meta property="og:description" content="Parlez-nous de votre entreprise : notre IA imagine avec vous la solution sur-mesure — site, automatisation, logiciel, IA. Essayez-la." />
   <meta property="og:url" content="https://www.groupsolution.fr/" />
   <meta property="og:image" content="https://www.groupsolution.fr/assets/og-accueil.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -150,11 +150,16 @@
   @keyframes gsaFloat{to{transform:translate3d(7vmax,5vmax,0) scale(1.15)}}
   .aiWrap{width:100%;max-width:880px;display:flex;flex-direction:column;align-items:center;text-align:center}
   .aiKicker{font-size:12.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--secondary);background:rgba(255,255,255,.7);border:1px solid var(--line);padding:7px 14px;border-radius:999px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-  .aiTitle{font-size:clamp(40px,4.9vw,70px);line-height:1.04;letter-spacing:-.045em;margin:20px 0 0;max-width:1000px}
+  .aiTitle{font-size:clamp(42px,5.2vw,78px);line-height:1.02;letter-spacing:-.05em;margin:0;max-width:1100px}
+  .aiFoot{margin-top:22px;font-size:14px;color:var(--muted);max-width:560px;line-height:1.55}.aiFoot a{color:var(--ink);font-weight:800;border-bottom:2px solid var(--acc);white-space:nowrap}
+  .hero-ai.chatting .aiFoot{display:none}
+  .aiRefs{display:flex;flex-wrap:wrap;gap:8px;margin-top:-4px;align-self:flex-start;max-width:88%;animation:gsaIn .35s var(--ease) both}
+  .aiRefs a{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.85);border:1px solid var(--line2);border-radius:14px;padding:9px 13px;font-size:13.5px;font-weight:700;color:var(--ink);transition:border-color .16s,color .16s}
+  .aiRefs a::after{content:'→';color:var(--acc)}.aiRefs a:hover{border-color:var(--acc);color:var(--acc)}
   .aiTitle em{font-style:italic;background:linear-gradient(90deg,#E61E4D,#FF7A59 45%,#E61E4D 90%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gsaShine 7s linear infinite}
   @keyframes gsaShine{to{background-position:-200% 0}}
   .aiSub{font-size:clamp(16px,1.6vw,19px);color:var(--secondary);line-height:1.6;margin:20px auto 0;max-width:600px}
-  .aiBoxWrap{position:relative;width:100%;max-width:760px;margin-top:34px;border-radius:30px;padding:2px;background:linear-gradient(var(--line),var(--line))}
+  .aiBoxWrap{position:relative;width:100%;max-width:760px;margin-top:44px;border-radius:30px;padding:2px;background:linear-gradient(var(--line),var(--line))}
   .aiBoxWrap::before{content:"";position:absolute;inset:0;border-radius:30px;padding:2px;background:conic-gradient(from var(--gsa),#E61E4D,#FF9A6B,#B69CFF,#E61E4D);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:gsaSpin 5s linear infinite}
   .aiBoxWrap::after{content:"";position:absolute;inset:14px 30px -26px;border-radius:40px;background:linear-gradient(90deg,rgba(230,30,77,.35),rgba(255,122,89,.3),rgba(170,140,255,.3));filter:blur(28px);z-index:-1}
   @keyframes gsaSpin{to{--gsa:360deg}}
@@ -196,7 +201,8 @@
   /* Téléphone */
   @media(max-width:760px){
     .hero-ai{min-height:calc(100svh - 64px);padding:28px 0 36px}
-    .aiTitle{font-size:clamp(34px,10vw,46px);max-width:12ch;margin-top:16px}
+    .aiTitle{font-size:clamp(34px,9.6vw,44px);max-width:12ch}
+    .aiFoot{font-size:13px}
     .aiKicker,.aiHint{display:none}
     .aiSub{font-size:15.5px}
     .aiBoxWrap{margin-top:26px;border-radius:24px}.aiBoxWrap::before{border-radius:24px}
@@ -211,7 +217,7 @@
     .hero-ai.chatting .aiTop{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));border-bottom:1px solid var(--line);background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
     .aiTop b{font-size:15px}.aiClose{width:40px;height:40px;border-radius:50%;border:0;background:var(--sand,#F4F2EC);font-size:22px;cursor:pointer}
     .hero-ai.chatting .aiWrap{flex:1;min-height:0;padding:0 12px;justify-content:flex-end}
-    .hero-ai.chatting .aiTitle,.hero-ai.chatting .aiCall{display:none}
+    .hero-ai.chatting .aiTitle{display:none}
     .hero-ai.chatting .aiLog{flex:1 1 0;max-height:none;min-height:0;padding:14px 2px}
     .hero-ai.chatting .aiBoxWrap{margin:0 0 max(10px,env(safe-area-inset-bottom))}
     .aiMsg{max-width:92%;font-size:15.5px}
@@ -431,28 +437,17 @@
     <div class="aiBg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="aiDots"></span></div>
     <div class="aiTop" aria-hidden="false"><b>Assistant Groupe Solution</b><button type="button" class="aiClose" aria-label="Fermer la conversation">×</button></div>
     <div class="wrap aiWrap">
-      <p class="aiKicker">Groupe Solution · sites internet, logiciels &amp; automatisations IA</p>
-      <h1 class="aiTitle">Dites-nous ce qui vous freine.<br><em>On vous montre la solution.</em></h1>
-      <p class="aiSub">Site internet, automatisation, logiciel, intelligence artificielle : décrivez votre besoin en une phrase, notre assistant vous répond en quelques secondes.</p>
+      <h1 class="aiTitle">Trouvons la solution qui va <em>révolutionner votre entreprise.</em></h1>
       <div class="aiLog" id="aiLog" aria-live="polite"></div>
       <form class="aiBoxWrap" id="aiBox" autocomplete="off">
         <div class="aiBoxIn">
-          <textarea id="aiInput" rows="1" maxlength="600" aria-label="Décrivez votre besoin" placeholder="Décrivez votre besoin…"></textarea>
+          <textarea id="aiInput" rows="1" maxlength="600" aria-label="Parlez-nous de votre entreprise ou de votre projet" placeholder="Parlez-nous de votre entreprise…"></textarea>
           <button type="submit" class="aiSend" aria-label="Envoyer">
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
-        <p class="aiHint">✨ Gratuit · sans inscription · réponse en quelques secondes</p>
       </form>
-      <div class="aiChips" id="aiChips">
-        <button type="button">Je veux un site pour mon activité</button>
-        <button type="button">Je perds trop de temps sur mes devis</button>
-        <button type="button">Un agent IA qui répond au téléphone ?</button>
-        <button type="button">Mon logiciel ne communique avec rien</button>
-        <button type="button">Je ne sais pas par où commencer</button>
-      </div>
-      <p class="aiCall">Vous préférez parler à un humain ? <a href="tel:+33782298559">📞 07 82 29 85 59</a> · <a href="#contact">Réserver 10 min</a></p>
-      <p class="aiTrust"><span>Basé à Montpellier</span><span>3 plateformes en production</span><span>France entière &amp; DOM-TOM</span></p>
+      <p class="aiFoot">Solutions sur-mesure, inventées pour vous — souvent bien plus accessibles que vous ne l’imaginez. <a href="tel:+33782298559">07 82 29 85 59</a></p>
     </div>
   </section>
   <div class="aiDevise"><div class="wrap"><span class="lab">Notre devise</span><b>Nous gagnons de l’argent uniquement si vous en gagnez.</b></div></div>
