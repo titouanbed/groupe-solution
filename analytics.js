@@ -27,6 +27,20 @@
     }
   } catch (e) {}
 
+  /* Lieu du visiteur, le même partout sur le site : choix du visiteur > fuseau horaire de l'appareil
+     (Mayotte et La Réunion n'ont pas le même) > adresse IP estimée par l'hébergeur. */
+  window.gsGeoFix = window.gsGeoFix || function (g) {
+    var L = { MTP: { country: 'FR', city: 'Montpellier', lat: 43.61, lng: 3.88 }, FR: { country: 'FR', city: '' }, YT: { country: 'YT' }, RE: { country: 'RE' }, GP: { country: 'GP' }, MQ: { country: 'MQ' }, GF: { country: 'GF' }, NC: { country: 'NC' }, PF: { country: 'PF' } };
+    try { var c = localStorage.getItem('gs-lieu'); if (c && L[c]) return L[c]; } catch (e) {}
+    var TZ = { 'Indian/Mayotte': 'YT', 'Indian/Reunion': 'RE', 'America/Guadeloupe': 'GP', 'America/Martinique': 'MQ', 'America/Cayenne': 'GF', 'Pacific/Noumea': 'NC', 'Pacific/Tahiti': 'PF', 'Pacific/Marquesas': 'PF', 'Pacific/Gambier': 'PF' }, tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    if (TZ[tz] && (!g || g.country !== TZ[tz])) return { country: TZ[tz] };
+    // Appareil réglé sur l'heure de Paris mais adresse IP d'outre-mer (fournisseur, VPN) : on ne devine pas.
+    if (g && tz === 'Europe/Paris' && /^(YT|RE|GP|MQ|GF|NC|PF)$/.test(g.country)) return { country: 'FR', city: '' };
+    return g;
+  };
+  window.gsGeoGet = function () { return window.gsGeo || (window.gsGeo = fetch('/api/geo').then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(window.gsGeoFix)); };
+
   /* Aucune demande perdue : tout envoi de formulaire vers Formspree passe d'abord par /api/lead
      (enregistré dans le tableau de bord, e-mail via Brevo) ; Formspree ne sert qu'en secours. */
   if (window.fetch && window.FormData && !window.__gsLeadWrap) {

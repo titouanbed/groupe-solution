@@ -176,8 +176,10 @@
   var DOM = { RE: 'reunion', YT: 'mayotte', GF: 'guyane', MQ: 'martinique', GP: 'guadeloupe', NC: 'nouvelle-caledonie', PF: 'polynesie-francaise' };
   var DOMN = { RE: ['La Réunion', 'à La Réunion'], YT: ['Mayotte', 'à Mayotte'], GF: ['Guyane', 'en Guyane'], MQ: ['Martinique', 'en Martinique'], GP: ['Guadeloupe', 'en Guadeloupe'], NC: ['Nouvelle-Calédonie', 'en Nouvelle-Calédonie'], PF: ['Polynésie française', 'en Polynésie française'] };
   function locate() {
-    if (P.geo !== null && P.geo !== undefined && !newSession) { done(); return; }
-    fetch('/api/geo').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (g) {
+    if (P.geo !== null && P.geo !== undefined && !newSession && P.geoV === 2) { done(); return; }
+    P.geoV = 2; // version 2 : lieu corrigé (choix du visiteur, fuseau horaire) — les anciens lieux en cache sont recalculés
+    (window.gsGeoGet ? window.gsGeoGet() : fetch('/api/geo').then(function (r) { if (!r.ok) throw 0; return r.json(); })).then(function (g) {
+      if (!g) throw 0;
       if (DOM[g.country]) { var u = '/' + DOM[g.country] + '/site-internet-' + DOM[g.country] + '.html'; P.geo = { n: DOMN[g.country][0], a: DOMN[g.country][1], site: u, auto: u }; save(); return done(); }
       if (g.country !== 'FR') { P.geo = false; save(); return done(); }
       return fetch('/assets/perso-places.json').then(function (r) { return r.json(); }).then(function (list) {

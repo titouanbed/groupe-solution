@@ -6,6 +6,11 @@
       "permanent": false
     },
     {
+      "source": "/in/:t",
+      "destination": "/?src=linkedin&t=:t",
+      "permanent": false
+    },
+    {
       "source": "/site-internet-mayotte.html",
       "destination": "/mayotte/site-internet-mayotte.html",
       "permanent": true

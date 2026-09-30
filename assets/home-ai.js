@@ -37,11 +37,17 @@
   function stopType() { typing = false; input.placeholder = PH; }
   /* Visiteur venu d'un post LinkedIn : accueil personnel de Titouan et test immédiat sur son entreprise. */
   var LI = false;
-  try { LI = sessionStorage.getItem('gsSrc') === 'linkedin' || /[?&](?:src|utm_source)=linkedin/i.test(location.search) || /linkedin\.|lnkd\.in/i.test(document.referrer) || /LinkedInApp/i.test(navigator.userAgent); if (LI) sessionStorage.setItem('gsSrc', 'linkedin'); } catch (e) {}
+  // Uniquement via le lien des posts (groupsolution.fr/in → ?src=linkedin), puis le temps de l'onglet.
+  try { LI = /[?&]src=linkedin/i.test(location.search) || sessionStorage.getItem('gsLI') === '1'; if (LI) { sessionStorage.setItem('gsLI', '1'); sessionStorage.setItem('gsSrc', 'linkedin'); var t0 = (location.search.match(/[?&]t=([a-z-]{2,20})/i) || [])[1]; if (t0) sessionStorage.setItem('gsLIt', t0.toLowerCase()); if (/[?&]src=linkedin/i.test(location.search) && history.replaceState) history.replaceState(null, '', location.pathname + location.hash); } } catch (e) {}
   if (LI) {
     PH = 'Votre entreprise et sa ville…'; stopType();
+    // Un lien par post : groupsolution.fr/in/<sujet> → le message et la démo suivent ce que la personne vient de lire.
+    var SUJ = { vocal: ['l’agent vocal', '/demos/#resa', 'Essayer l’agent de réservation'], factures: ['les factures qui se saisissent seules', '/demos/#facture', 'Tester avec une vraie facture'], avis: ['les réponses aux avis', '/demos/#avis', 'Faire répondre un avis'], devis: ['le devis en quelques minutes', '#devis', 'Préparer mon devis'], site: ['les sites qui font appeler', '/demos/', 'Voir les démos en direct'] };
+    var tq = ''; try { tq = sessionStorage.getItem('gsLIt') || ''; } catch (e) {}
+    var sj = SUJ[tq];
     var li = document.createElement('div'); li.className = 'aiLi';
-    li.innerHTML = '<img src="/photo-president.jpg" alt="" width="52" height="52"><p><b>Vous venez de LinkedIn ?</b> Écrivez le nom de votre entreprise et sa ville : en 30 secondes, je vous montre ce que l’IA peut changer pour elle. <span>— Titouan</span></p>';
+    li.innerHTML = '<img src="/assets/titouan-160.webp" alt="" width="52" height="52"><p><b>Vous venez de LinkedIn' + (sj ? ', pour ' + sj[0] : '') + ' ?</b> Écrivez le nom de votre entreprise et sa ville : en 30 secondes, je vous montre ce que l’IA peut changer pour elle. <span>— Titouan</span>' + (sj ? '<a class="liDemo" href="' + sj[1] + '">' + sj[2] + ' →</a>' : '') + '</p>';
+    if (sj && sj[1] === '#devis') li.querySelector('.liDemo').addEventListener('click', function (e) { e.preventDefault(); open(); devisForm(); });
     var ttl = sec.querySelector('.aiTitle'); ttl.parentNode.insertBefore(li, ttl);
     ga('linkedin_visit');
   }
@@ -74,7 +80,7 @@
     if (ctaShown && !force) return; ctaShown = true;
     var d = document.createElement('div'); d.className = 'aiCta';
     d.innerHTML = LI
-      ? '<div class="liMe"><img src="/photo-president.jpg" alt="" width="46" height="46"><b>C’est Titouan, l’auteur du post. Ça vous parle ? Appelons-nous 10 minutes : je vous dis exactement comment on le met en place chez vous.</b></div><a href="' + TEL_HREF + '">' + I('telephone') + 'Appeler ' + TEL + '</a><button type="button">' + I('rappel') + 'Être rappelé</button><a class="alt" href="/echanger.html#rendez-vous">' + I('calendrier') + 'Réserver 10 min</a>'
+      ? '<div class="liMe"><img src="/assets/titouan-160.webp" alt="" width="46" height="46"><b>C’est Titouan, l’auteur du post. Ça vous parle ? Appelons-nous 10 minutes : je vous dis exactement comment on le met en place chez vous.</b></div><a href="' + TEL_HREF + '">' + I('telephone') + 'Appeler ' + TEL + '</a><button type="button">' + I('rappel') + 'Être rappelé</button><a class="alt" href="/echanger.html#rendez-vous">' + I('calendrier') + 'Réserver 10 min</a>'
       : '<b>Le plus rapide : en parler 10 minutes avec Titouan.</b><a href="' + TEL_HREF + '">' + I('telephone') + TEL + '</a><button type="button">' + I('rappel') + 'Être rappelé</button>';
     d.querySelector('a').addEventListener('click', function () { ga('home_ai_call', { source: LI ? 'linkedin' : 'site' }); });
     d.querySelector('button').addEventListener('click', function () {

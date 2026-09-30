@@ -899,7 +899,7 @@ function renderGuide(g) {
         inLanguage: 'fr-FR',
         wordCount: g.words,
         image: `${SITE}/rea1.jpg`,
-        author: { '@type': 'Person', name: 'Titouan Bedos', url: `${SITE}/a-propos.html` },
+        author: { '@type': 'Person', name: 'Titouan Bedos', sameAs: ['https://www.linkedin.com/in/titouan-bedos/'], url: `${SITE}/a-propos.html` },
         publisher: ORG,
         mainEntityOfPage: { '@type': 'WebPage', '@id': url },
       },
