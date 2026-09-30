@@ -189,6 +189,34 @@ export default async function handler(req, res) {
       const r = await nlSubscribe(str(b.email, 190), str(b.source, 60));
       return send(res, r.ok ? 200 : 400, r);
     }
+    // Plan ou esquisse envoyé au visiteur par e-mail : contenu relu depuis le serveur (généré par /api/concept), contact enregistré AVANT l'envoi.
+    if (action === "recap") {
+      if (!sameSite(req)) return send(res, 403, { error: "forbidden" });
+      if (!(await allow("recap", req, 3, 3600, 200))) return send(res, 429, { error: "rate_limited", message: "Trop d'envois pour le moment : réessayez plus tard ou appelez le 07 82 29 85 59." });
+      const email = str(b.email, 190), cid = String(b.id || "");
+      if (!EMAIL.test(email)) return send(res, 400, { error: "email", message: "Adresse e-mail invalide." });
+      const c = /^[a-f0-9]{32}$/.test(cid) ? await get("concept:" + cid) : null;
+      if (!c) return send(res, 404, { error: "expired", message: "Ce contenu a expiré : relancez-le en un clic." });
+      const entreprise = str(b.entreprise, 120), provenance = str(b.provenance, 30).replace(/[^a-z0-9_-]/gi, "");
+      const sidv = SID_RE.test(b.sid || "") ? b.sid : c.sid && SID_RE.test(c.sid) ? c.sid : null;
+      const titre = c.kind === "plan" ? c.plan.titre : `Esquisse de votre futur site : ${c.maquette.accroche}`;
+      const lid = randomBytes(12).toString("hex");
+      const lead = { id: lid, date: new Date().toISOString(), nom: entreprise || email, telephone: "", email, sid: sidv, statut: "nouveau", champs: { source: c.kind === "plan" ? "plan-par-email" : "esquisse-par-email", message: titre, entreprise, provenance } };
+      await redis([["SET", "lead:" + lid, JSON.stringify(lead), "EX", 365 * 86400], ["LPUSH", "leads:list", lid], ["LTRIM", "leads:list", 0, 999]]);
+      await tagConv(sidv, { evenement: c.kind === "plan" ? "Plan reçu par e-mail" : "Esquisse reçue par e-mail", contact: { email } });
+      let corps;
+      if (c.kind === "plan") {
+        const p = c.plan;
+        corps = `<p>Bonjour,</p><p>Voici le plan d'innovation imaginé pour ${entreprise ? "<b>" + esc(entreprise) + "</b>" : "votre entreprise"} sur groupsolution.fr.</p><h3 style="margin:18px 0 4px">${esc(p.titre)}</h3><p style="color:#57534B">${esc(p.accroche)}</p><ol>${p.etapes.map(e => `<li style="margin:8px 0"><b>${esc(e.titre)}</b><br>${esc(e.detail)} <i style="color:#8C887E">(${esc(e.techno)})</i></li>`).join("")}</ol><div style="background:#FFF5F7;border-radius:14px;padding:14px 16px;margin:16px 0"><b>L'idée phare : ${esc(p.idee_phare.titre)}</b><br>${esc(p.idee_phare.description)}</div><ul>${p.benefices.map(x => `<li>${esc(x)}</li>`).join("")}</ul><p><b>Premier pas :</b> ${esc(p.premier_pas)}</p>`;
+      } else {
+        const m = c.maquette;
+        corps = `<p>Bonjour,</p><p>Voici l'esquisse du futur site imaginée pour ${entreprise ? "<b>" + esc(entreprise) + "</b>" : "votre entreprise"} sur groupsolution.fr.</p><div style="border-radius:14px;overflow:hidden;border:1px solid #eee;margin:16px 0"><div style="background:${m.couleur};color:#fff;padding:24px 20px"><div style="font-size:22px;font-weight:700">${esc(m.accroche)}</div><div style="opacity:.9;margin-top:6px">${esc(m.sous_titre)}</div></div>${m.fonction_phare ? `<div style="padding:14px 20px;background:#FAFAF7"><b>Nouveau : ${esc(m.fonction_phare.titre)}</b><br>${esc(m.fonction_phare.texte)}</div>` : ""}<ul style="padding:10px 20px 14px 36px;margin:0">${m.services.map(x => `<li style="margin:6px 0"><b>${esc(x.titre)}</b> — ${esc(x.texte)}</li>`).join("")}</ul></div>`;
+      }
+      const ok = await sendMail({ to: email, replyTo: OWNER(), subject: titre.slice(0, 150), html: layout(c.kind === "plan" ? "Votre plan d'innovation" : "L'esquisse de votre futur site", corps + `<p>Pour aller plus loin, le plus simple est d'en parler 10 minutes : <a href="tel:+33782298559">07 82 29 85 59</a>, ou répondez simplement à cet e-mail. Devis gratuit et sans engagement.</p><p>Titouan Bedos — Groupe Solution</p>`) });
+      await sendMail({ to: OWNER(), replyTo: email, subject: `Nouveau contact : ${c.kind === "plan" ? "plan" : "esquisse"} envoyé à ${email}${entreprise ? " (" + entreprise + ")" : ""}${provenance ? " · via " + provenance : ""}`.slice(0, 180), html: layout("Un visiteur a demandé son " + (c.kind === "plan" ? "plan" : "esquisse") + " par e-mail", `<p><b>${esc(email)}</b>${entreprise ? " · " + esc(entreprise) : ""}${provenance ? " · via " + esc(provenance) : ""}</p><p>${esc(titre)}</p><p><a href="${SITE}/admin/">Voir la conversation dans votre espace →</a></p>`) });
+      lead.mail = ok ? "envoye" : "echec"; await redis([["SET", "lead:" + lid, JSON.stringify(lead), "KEEPTTL"]]);
+      return ok ? send(res, 200, { ok: true }) : send(res, 502, { error: "mail", message: "L'e-mail n'a pas pu partir, mais Titouan a bien votre demande et vous recontacte." });
+    }
     if (action === "statut") {
       if (!admin) return send(res, 401, { error: "unauthorized" });
       const st = String(b.statut || ""), id = String(b.id || "");

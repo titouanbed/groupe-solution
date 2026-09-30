@@ -11,7 +11,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { SITE_KNOWLEDGE, COMMUNE_COUNT } from "./_knowledge.mjs";
 import { allow, sameSite, readBody } from "./_guard.mjs";
-import { registreListe, fetchPage, analyse } from "./_entreprise-lib.mjs";
+import { registreListe, fetchPage, analyse, marque } from "./_entreprise-lib.mjs";
 import { RUPTURE } from "./_innovation.mjs";
 import { logTurn } from "./_conv.mjs";
 
@@ -87,6 +87,8 @@ async function runTool(name, input, req, found) {
     const page = await fetchPage(str(input?.url, 300));
     if (page.error) return { erreur: page.error };
     let site; try { site = analyse(page); } catch { return { erreur: "page illisible" }; }
+    // Identité visuelle (couleurs, logo, image, menu) : l'esquisse du futur site reprendra la marque du visiteur.
+    try { site.marque = await Promise.race([marque(page), new Promise(r => setTimeout(() => r(null), 4000))]); } catch { site.marque = null; }
     found.site = site;
     return { ...site, extrait: site.extrait.slice(0, 1200) };
   }
@@ -155,7 +157,7 @@ export default async function handler(req, res) {
     const e = found.entreprise, st = found.site;
     const memo = e || st ? ["Analyse publique effectuée par l'assistant.",
       e ? `Entreprise : ${e.nom}${e.secteur ? ", " + e.secteur : ""}${e.activite_code ? " (NAF " + e.activite_code + ")" : ""}${e.creation ? ", créée en " + e.creation.slice(0, 4) : ""}${e.effectif ? ", " + e.effectif : ""}${e.commune ? ", " + e.commune : ""}.` : "",
-      st ? `Site ${st.url} : « ${st.titre} », ${st.https ? "HTTPS" : "sans HTTPS"}, ${st.mobile ? "adapté mobile" : "non adapté mobile"}, ${st.reservation_ou_devis ? "contact/réservation en ligne" : "pas de réservation ni devis en ligne"}${st.reseaux.length ? ", réseaux : " + st.reseaux.join(", ") : ""}${st.cms ? ", " + st.cms : ""}.` : ""].filter(Boolean).join("\n") : null;
+      st ? `Site ${st.url} : « ${st.titre} », ${st.https ? "HTTPS" : "sans HTTPS"}, ${st.mobile ? "adapté mobile" : "non adapté mobile"}, ${st.reservation_ou_devis ? "contact/réservation en ligne" : "pas de réservation ni devis en ligne"}${st.reseaux.length ? ", réseaux : " + st.reseaux.join(", ") : ""}${st.cms ? ", " + st.cms : ""}${st.marque?.couleurs?.length ? ", couleurs de la marque : " + st.marque.couleurs.join(" ") : ""}${st.marque?.menu?.length ? ", menu du site : " + st.marque.menu.join(" · ") : ""}.` : ""].filter(Boolean).join("\n") : null;
     const ruptures = found.ruptures?.length ? found.ruptures : null;
     const memo2 = [memo, ruptures ? "Idées proposées au visiteur : " + ruptures.map(x => x.nom + " (" + x.promesse + ")").join(" ; ") : ""].filter(Boolean).join("\n") || null;
     const fiche = e || st ? { entreprise: e || null, site: st || null } : null;
