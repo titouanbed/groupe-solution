@@ -102,7 +102,7 @@
     el.innerHTML = '<button class="x" type="button" aria-label="Fermer">×</button><span class="k"></span><b></b><p></p>' +
       (c.href ? '<a class="go"></a>' : '<button class="go" type="button"></button>') + (c.alt ? '<button class="go2" type="button"></button>' : '') +
       '<button class="why" type="button">Pourquoi cette suggestion ?</button><div class="whyT">' + c.why +
-      ' Rien n’est transmis à des tiers. <a href="/confidentialite.html" style="color:inherit">En savoir plus</a><br><button type="button" class="off">Désactiver les suggestions</button></div>';
+      (c.ai ? '' : ' Rien n’est transmis à des tiers.') + ' <a href="/confidentialite.html" style="color:inherit">En savoir plus</a><br><button type="button" class="off">Désactiver les suggestions</button></div>';
     el.querySelector('.k').textContent = c.kicker; el.querySelector('b').textContent = c.title; el.querySelector('p').textContent = c.text;
     var go = el.querySelector('.go'); go.textContent = c.cta;
     if (c.href) go.href = c.href; else go.addEventListener('click', c.action);
@@ -117,6 +117,7 @@
   }
 
   var WHY_PAGES = 'D’après les pages consultées sur ce site (mémorisées uniquement dans votre navigateur).';
+  var WHY_AI = 'Choisi par IA (Anthropic) d’après les pages consultées ici et votre commune approximative, avec votre accord. Aucun humain de notre équipe ne voit ces données ; nous ne les stockons pas et ne les revendons jamais.';
   var WHY_GEO = 'D’après votre ville approximative, estimée à partir de votre connexion et non conservée.';
   var onContact = /echanger|contact|recherche|mentions|confidentialite/.test(path);
 
@@ -143,6 +144,11 @@
         : { id: 'call', kicker: 'Vous avez vu ' + P.sp + ' pages', title: 'Laissez votre numéro, on vous rappelle', text: 'Nous sommes en dehors des heures d’appel : on vous rappelle au moment qui vous arrange.', cta: 'Être rappelé', action: function () { if (window.GSAssistant) window.GSAssistant.callback(); else location.href = '/echanger.html#rendez-vous'; }, why: WHY_PAGES });
     }
     // d) Prochaine étape la plus utile selon l'intérêt
+    if (P.aiReco && !visited(P.aiReco.u) && !P.seen['reco-' + path])
+      cards.push({ id: 'reco-' + path, kicker: '✨ Choisi pour vous', title: P.aiReco.t, text: P.aiReco.why || '', cta: 'Voir →', href: P.aiReco.u, why: WHY_AI, ai: 1 });
+    // e) Invitation à l'expérience sur-mesure (une seule fois, si le visiteur n'a encore rien choisi)
+    if (aiState() === null && P.sp >= 2 && !P.seen.aiInvite && !P.aiAsked)
+      cards.push({ id: 'aiInvite', kicker: '✨ Nouveau', title: 'Un site qui s’adapte à vous', text: 'Activez l’expérience sur-mesure : titres, conseils et pages recommandées choisis par IA selon ce qui vous intéresse. Aucun humain de notre équipe ne voit vos données, nous ne les stockons pas et ne les revendons jamais.', cta: 'Activer', action: function () { P.aiAsked = 1; save(); setAI('granted'); var el = document.getElementById('gsP'); if (el) el.remove(); applyAI(true); }, alt: ['Non merci', function () { P.aiAsked = 1; save(); setAI('denied'); var el = document.getElementById('gsP'); if (el) el.remove(); }], why: 'Cette invitation n’apparaît qu’une fois. Si vous activez l’option, des signaux anonymes (pages vues ici, commune approximative) sont envoyés à notre fournisseur d’IA, Anthropic ; ni nom, ni e-mail, ni adresse IP.', ai: 1 });
     if (interest && !P.seen['reco-' + path]) {
       var r = (RECO[interest] || []).filter(function (x) { return !visited(x[0]); })[0];
       if (r) cards.push({ id: 'reco-' + path, kicker: 'Pour aller plus loin', title: r[1], text: r[2], cta: 'Voir →', href: r[0], why: WHY_PAGES });
@@ -185,8 +191,68 @@
       });
     }).catch(function () { P.geo = false; save(); done(); });
   }
+
+  /* ── 6. Expérience sur-mesure par IA (uniquement avec l'accord explicite : gs-perso-ai = granted) ── */
+  var AI_KEY = 'gs-perso-ai';
+  function aiState() { return get(LS, AI_KEY) || get(SS, AI_KEY); }
+  function setAI(v) { set(LS, AI_KEY, v); set(SS, AI_KEY, v); ga(v === 'granted' ? 'perso_ai_on' : 'perso_ai_off'); }
+  api.setAI = setAI;
+  var AI_PAGES = /^\/(index\.html)?$|^\/services\/$|^\/automatisation\/$|^\/montpellier\/site-internet-montpellier\.html$|^\/lab\/$|^\/solutions\.html$|^\/realisations\.html$/;
+  var EXTRA = [['/services/', 'Tous nos services'], ['/services/logiciel-sur-mesure.html', 'Logiciel sur-mesure'], ['/services/integration-api-connecteurs.html', 'Connecter vos outils (API)'], ['/services/agence-ia-entreprise.html', 'Intégrer l’IA dans votre entreprise'], ['/lab/dossiers/', 'Le dossier de la semaine'], ['/lab/questions/', 'Les questions des dirigeants']];
+  function candidates() {
+    var seen = {}, out = [];
+    Object.keys(RECO).forEach(function (k) { RECO[k].forEach(function (x) { if (!seen[x[0]]) { seen[x[0]] = 1; out.push({ u: x[0], t: x[1] }); } }); });
+    EXTRA.forEach(function (x) { if (!seen[x[0]]) { seen[x[0]] = 1; out.push({ u: x[0], t: x[1] }); } });
+    if (P.geo && P.geo.site && P.geo.site.charAt(0) === '/') { out.unshift({ u: P.geo.auto, t: 'Automatisation ' + (P.geo.a || aN(P.geo.n)) }, { u: P.geo.site, t: 'Site internet ' + (P.geo.a || aN(P.geo.n)) }); }
+    return out.filter(function (c) { return c.u !== path; }).slice(0, 12);
+  }
+  function heroEls() {
+    var h1 = document.querySelector('main h1') || document.querySelector('h1');
+    if (!h1) return null;
+    var lead = null, n = h1.nextElementSibling;
+    while (n && !lead) { if (n.tagName === 'P') lead = n; n = n.nextElementSibling; }
+    var sec = h1.closest('section') || h1.parentNode;
+    var cta = sec.querySelector('a.btn, button.btn, .btn');
+    return { h1: h1, lead: lead, cta: cta };
+  }
+  var aiCss = false;
+  function applyAI(force) {
+    if (aiState() !== 'granted' || !AI_PAGES.test(path)) return;
+    var els = heroEls(); if (!els) return;
+    var ck = 'gs-ai:' + path, cached = null;
+    try { cached = JSON.parse(get(SS, ck) || 'null'); } catch (e) {}
+    function paint(r) {
+      if (!r || !r.headline) return;
+      if (!aiCss) { aiCss = true; var st = document.createElement('style'); st.textContent = '.gsAIbadge{display:inline-flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;font:600 12.5px/1.4 "Plus Jakarta Sans",system-ui,sans-serif;color:#565349;background:rgba(230,30,77,.08);border:1px solid rgba(230,30,77,.22);padding:6px 12px;border-radius:999px}.gsAIbadge button{border:0;background:none;padding:0;font:inherit;color:#E61E4D;text-decoration:underline;cursor:pointer}.gsAIfade{animation:gsAIf .6s ease}@keyframes gsAIf{from{opacity:.2;transform:translateY(4px)}to{opacity:1;transform:none}}'; document.head.appendChild(st); }
+      var orig = { h1: els.h1.innerHTML, lead: els.lead ? els.lead.innerHTML : null, cta: els.cta ? els.cta.innerHTML : null };
+      els.h1.textContent = r.headline; els.h1.classList.add('gsAIfade');
+      if (els.lead && r.sub) { els.lead.textContent = r.sub; els.lead.classList.add('gsAIfade'); }
+      if (els.cta && r.cta && els.cta.children.length === 0) els.cta.textContent = r.cta + ' →';
+      var badge = document.createElement('div'); badge.className = 'gsAIbadge';
+      badge.innerHTML = '<span>✨ Adapté pour vous par IA</span><button type="button">Version standard</button>';
+      badge.querySelector('button').addEventListener('click', function () {
+        els.h1.innerHTML = orig.h1; if (orig.lead !== null) els.lead.innerHTML = orig.lead; if (orig.cta !== null) els.cta.innerHTML = orig.cta;
+        badge.remove(); set(SS, ck, 'null'); ga('perso_ai_revert');
+      });
+      (els.lead || els.h1).insertAdjacentElement('afterend', badge);
+      if (r.reco) { P.aiReco = r.reco; save(); }
+      ga('perso_ai_applied');
+    }
+    if (cached && !force) return paint(cached);
+    var pages = P.pages.map(function (x) { return x.t; }).filter(Boolean);
+    var ref = ''; try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; if (ref === location.hostname.replace(/^www\./, '')) ref = ''; } catch (e) {}
+    fetch('/api/perso', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+      page: { path: path, h1: els.h1.textContent.trim(), lead: els.lead ? els.lead.textContent.trim() : '' },
+      profile: { place: P.geo && P.geo.n || '', interest: interest || '', pages: pages, visits: P.v, sp: P.sp, open: openNow(), mobile: innerWidth < 760, ref: ref },
+      candidates: candidates()
+    }) }).then(function (r) { if (r.status !== 200) throw 0; return r.json(); })
+      .then(function (r) { set(SS, ck, JSON.stringify(r)); paint(r); })
+      .catch(function () { /* version standard conservée */ });
+  }
+  document.addEventListener('gs-consent', function (e) { if (e.detail && e.detail.ai) applyAI(true); });
   function done() {
     if (P.geo && P.geo.n) api.placeName = P.geo.n;
+    applyAI(false);
     arm();
   }
 
