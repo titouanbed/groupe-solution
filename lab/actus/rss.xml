@@ -6,7 +6,31 @@
     <atom:link href="https://www.groupsolution.fr/lab/actus/rss.xml" rel="self" type="application/rss+xml" />
     <description>Les actualités de l'IA, du numérique et de la réglementation qui comptent pour les entreprises, sourcées et expliquées.</description>
     <language>fr-fr</language>
-    <lastBuildDate>Tue, 29 Sep 2026 08:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 08:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Citrix NetScaler : deux failles critiques activement exploitées, le CERT-FR appelle à corriger</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-09-30.html#citrix-netscaler-deux-failles-critiques-activement-exploitee</link>
+      <guid isPermaLink="false">2026-09-30-citrix-netscaler-deux-failles-critiques-activement-exploitee</guid>
+      <pubDate>Wed, 30 Sep 2026 08:00:00 GMT</pubDate>
+      <category>Cybersécurité</category>
+      <description>Le 27 septembre 2026, Citrix a publié des correctifs pour plusieurs vulnérabilités de NetScaler ADC et NetScaler Gateway, dont deux failles critiques (CVE-2026-88771 et CVE-2026-88772) qui permettent à un attaquant non authentifié d'exécuter du code à distance. L'éditeur a confirmé qu'elles étaient exploitées. Le 28 septembre, le CERT-FR a publié l'alerte CERTFR-2026-ALE-011 ; l'agence américaine CISA a aussi signalé une exploitation active. — Ce que ça change : Si votre accès à distance (VPN, portail d'applications) repose sur un boîtier NetScaler, chez vous ou chez votre prestataire informatique, faites vérifier sans attendre que les correctifs sont appliqués et que l'équipement ne montre pas de trace de compromission.</description>
+    </item>
+    <item>
+      <title>OpenAI lance Dots, des agents IA qui travaillent en continu dans le cloud</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-09-30.html#openai-lance-dots-des-agents-ia-qui-travaillent-en-continu-d</link>
+      <guid isPermaLink="false">2026-09-30-openai-lance-dots-des-agents-ia-qui-travaillent-en-continu-d</guid>
+      <pubDate>Wed, 30 Sep 2026 08:00:00 GMT</pubDate>
+      <category>IA</category>
+      <description>Lors de sa conférence DevDay du 29 septembre 2026 à San Francisco, OpenAI a présenté Dots, des agents « toujours actifs » qui disposent chacun de leur propre ordinateur dans le cloud pour mener en arrière-plan les tâches qu'on leur confie. Ils se pilotent depuis ChatGPT, Slack ou Teams. Le déploiement commence pour les abonnés Pro et Business Premium dans les marchés éligibles. — Ce que ça change : Les agents passent de l'assistant qui répond à l'assistant qui exécute des tâches longues. Avant d'en confier une, définissez précisément les accès donnés (messagerie, logiciels, comptes) et gardez une validation humaine sur les actions sensibles.</description>
+    </item>
+    <item>
+      <title>Anthropic lance Claude Sonnet 5.5, plus rapide et moins coûteux par tâche</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-09-30.html#anthropic-lance-claude-sonnet-5-5-plus-rapide-et-moins-coute</link>
+      <guid isPermaLink="false">2026-09-30-anthropic-lance-claude-sonnet-5-5-plus-rapide-et-moins-coute</guid>
+      <pubDate>Wed, 30 Sep 2026 08:00:00 GMT</pubDate>
+      <category>IA</category>
+      <description>Anthropic a lancé Claude Sonnet 5.5 le 28 septembre 2026. Selon l'éditeur, le modèle produit ses réponses plus de 30 % plus vite que Sonnet 5 et réduit le coût par tâche jusqu'à 30 %, sans baisse des tarifs de l'API : l'économie vient d'un moindre nombre de tokens et d'appels d'outils. Il vise les tâches courantes : correction de code, rédaction de documents, tableurs et présentations. — Ce que ça change : Pour les usages quotidiens (synthèses, documents, automatisations), un modèle plus rapide et plus économe réduit le temps d'attente et la facture d'usage. Mesurez-le sur vos propres cas avant de changer de modèle dans un outil en production.</description>
+    </item>
     <item>
       <title>La facturation électronique est entrée en vigueur le 1er septembre 2026</title>
       <link>https://www.groupsolution.fr/lab/actus/2026-09-29.html#la-facturation-electronique-est-entree-en-vigueur-le-1er-sep</link>
