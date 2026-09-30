@@ -8,85 +8,105 @@
 // Rien n'est stocké. Le contenu du site est traité comme une donnée, jamais comme une instruction.
 import dns from "node:dns/promises";
 import net from "node:net";
+import http from "node:http";
+import https from "node:https";
+import { allow, sameSite, readBody } from "./_guard.mjs";
 
 const UA = "Mozilla/5.0 (compatible; GroupeSolutionBot/1.0; +https://www.groupsolution.fr/lab/coulisses.html)";
-const MAX_BYTES = 900_000, TIMEOUT = 7000;
+const MAX_BYTES = 300_000, TIMEOUT = 6000, DEADLINE = 12000;
 const send = (res, status, body) => { res.statusCode = status; res.setHeader("Content-Type", "application/json; charset=utf-8"); res.setHeader("Cache-Control", "private, no-store"); res.end(JSON.stringify(body)); };
-const hits = new Map();
-const limited = ip => { const now = Date.now(), a = (hits.get(ip) || []).filter(t => now - t < 3600e3); a.push(now); hits.set(ip, a); return a.length > 15; };
 
 /* ── Adresses autorisées : uniquement des serveurs publics ── */
-function isPublicIP(ip) {
-  if (net.isIPv4(ip)) {
-    const p = ip.split(".").map(Number);
-    if (p[0] === 10 || p[0] === 127 || p[0] === 0 || p[0] >= 224) return false;
-    if (p[0] === 169 && p[1] === 254) return false;
-    if (p[0] === 172 && p[1] >= 16 && p[1] <= 31) return false;
-    if (p[0] === 192 && p[1] === 168) return false;
-    if (p[0] === 100 && p[1] >= 64 && p[1] <= 127) return false;
-    if (p[0] === 198 && (p[1] === 18 || p[1] === 19)) return false;
-    return true;
-  }
-  if (net.isIPv6(ip)) {
-    const x = ip.toLowerCase();
-    if (x === "::" || x === "::1" || x.startsWith("fc") || x.startsWith("fd") || x.startsWith("fe8") || x.startsWith("fe9") || x.startsWith("fea") || x.startsWith("feb") || x.startsWith("ff")) return false;
-    if (x.startsWith("::ffff:")) return isPublicIP(x.slice(7));
-    return true;
-  }
-  return false;
+const BL = new net.BlockList();
+[["0.0.0.0", 8], ["10.0.0.0", 8], ["100.64.0.0", 10], ["127.0.0.0", 8], ["169.254.0.0", 16], ["172.16.0.0", 12], ["192.0.0.0", 24], ["192.0.2.0", 24], ["192.168.0.0", 16], ["198.18.0.0", 15], ["198.51.100.0", 24], ["203.0.113.0", 24], ["224.0.0.0", 3]].forEach(([a, p]) => BL.addSubnet(a, p, "ipv4"));
+[["::", 96], ["64:ff9b::", 96], ["64:ff9b:1::", 48], ["100::", 64], ["2001:db8::", 32], ["2002::", 16], ["fc00::", 7], ["fe80::", 10], ["fec0::", 10], ["ff00::", 8]].forEach(([a, p]) => BL.addSubnet(a, p, "ipv6"));
+BL.addAddress("::1", "ipv6"); // les adresses ::ffff:a.b.c.d sont comparées aux règles IPv4 par BlockList
+const isPublicIP = ip => net.isIP(ip) === 4 ? !BL.check(ip, "ipv4") : net.isIP(ip) === 6 ? !BL.check(ip, "ipv6") : false;
+
+// Résolution DNS vérifiée AU MOMENT de la connexion (pas de « DNS rebinding » entre contrôle et requête).
+function safeLookup(host, opts, cb) {
+  const t = setTimeout(() => cb(new Error("dns timeout")), 3000);
+  dns.lookup(host, { all: true, verbatim: true }).then(as => {
+    clearTimeout(t);
+    if (!as.length || !as.every(a => isPublicIP(a.address))) return cb(new Error("adresse non publique"));
+    if (opts && opts.all) return cb(null, as);
+    cb(null, as[0].address, as[0].family);
+  }, e => { clearTimeout(t); cb(e); });
 }
-async function checkURL(raw) {
+
+function checkURL(raw) {
   let u;
   try { u = new URL(/^https?:\/\//i.test(raw) ? raw : "https://" + raw); } catch { return null; }
   if (!["http:", "https:"].includes(u.protocol) || u.username || u.password) return null;
   if (u.port && !["80", "443"].includes(u.port)) return null;
   const host = u.hostname.toLowerCase();
-  if (net.isIP(host) || !/^[a-z0-9.-]+\.[a-z]{2,}$/.test(host) || /(^|\.)(localhost|internal|local|lan|home|corp)$/.test(host)) return null;
-  try {
-    const addrs = await dns.lookup(host, { all: true, verbatim: true });
-    if (!addrs.length || !addrs.every(a => isPublicIP(a.address))) return null;
-  } catch { return null; }
+  if (net.isIP(host.replace(/^\[|\]$/g, "")) || !/^[a-z0-9.-]+\.(?:[a-z]{2,}|xn--[a-z0-9-]{2,})$/.test(host) || /(^|\.)(localhost|internal|local|lan|home|corp)$/.test(host)) return null;
   return u;
 }
+
+function get(u) {
+  return new Promise(resolve => {
+    const lib = u.protocol === "https:" ? https : http;
+    const req = lib.get(u, { lookup: safeLookup, timeout: TIMEOUT, headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml", "Accept-Encoding": "identity" } }, r => {
+      const status = r.statusCode || 0, type = String(r.headers["content-type"] || "");
+      if ([301, 302, 303, 307, 308].includes(status) || status < 200 || status >= 300 || !/html/i.test(type)) { r.resume(); req.destroy(); return resolve({ status, location: r.headers.location, type }); }
+      const chunks = []; let size = 0;
+      r.on("data", c => { size += c.length; if (size > MAX_BYTES) { req.destroy(); resolve({ status, type, body: Buffer.concat(chunks), size }); } else chunks.push(c); });
+      r.on("end", () => resolve({ status, type, body: Buffer.concat(chunks), size }));
+      r.on("error", () => resolve({ status, type, body: Buffer.concat(chunks), size }));
+    });
+    req.on("timeout", () => { req.destroy(); resolve({ error: "site trop lent" }); });
+    req.on("error", e => resolve({ error: /non publique/.test(e.message) ? "adresse non publique" : "site injoignable" }));
+  });
+}
+
 async function fetchPage(raw) {
-  let u = await checkURL(raw); if (!u) return { error: "adresse non valide ou non publique" };
+  let u = checkURL(raw); if (!u) return { error: "adresse non valide ou non publique" };
   const t0 = Date.now();
   for (let hop = 0; hop < 4; hop++) {
-    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), TIMEOUT);
-    let r;
-    try { r = await fetch(u, { redirect: "manual", signal: ctl.signal, headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml" } }); }
-    catch { clearTimeout(timer); return { error: "site injoignable" }; }
+    if (Date.now() - t0 > DEADLINE) return { error: "site trop lent" };
+    const r = await get(u);
+    if (r.error) return r;
     if ([301, 302, 303, 307, 308].includes(r.status)) {
-      clearTimeout(timer);
-      const loc = r.headers.get("location"); if (!loc) return { error: "redirection invalide" };
-      u = await checkURL(new URL(loc, u).href); if (!u) return { error: "redirection vers une adresse non publique" };
+      let next; try { next = new URL(String(r.location || ""), u).href; } catch { return { error: "redirection invalide" }; }
+      u = checkURL(next); if (!u) return { error: "redirection vers une adresse non valide" };
       continue;
     }
-    const type = r.headers.get("content-type") || "";
-    if (!r.ok || !/html/i.test(type)) { clearTimeout(timer); return { error: `réponse ${r.status}` }; }
-    const reader = r.body.getReader(), chunks = []; let size = 0;
-    try { for (;;) { const { done, value } = await reader.read(); if (done) break; size += value.length; if (size > MAX_BYTES) { ctl.abort(); break; } chunks.push(value); } } catch { /* coupé volontairement */ }
-    clearTimeout(timer);
-    return { url: u.href, https: u.protocol === "https:", ms: Date.now() - t0, bytes: size, html: Buffer.concat(chunks.map(c => Buffer.from(c))).toString("utf8") };
+    if (!r.body) return { error: `réponse ${r.status}` };
+    const cs = (r.type.match(/charset=([\w-]+)/i) || [])[1] || (r.body.subarray(0, 2048).toString("latin1").match(/<meta[^>]{0,200}charset=["']?([\w-]+)/i) || [])[1] || "utf-8";
+    let html; try { html = new TextDecoder(cs.toLowerCase()).decode(r.body); } catch { html = r.body.toString("utf8"); }
+    return { url: u.href, https: u.protocol === "https:", ms: Date.now() - t0, bytes: r.size, html };
   }
   return { error: "trop de redirections" };
 }
 
 /* ── Lecture de la page (ce que voit un internaute) ── */
-const strip = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#39;|&rsquo;/g, "’").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+const strip = s => String(s || "").replace(/<[^>]{0,2000}>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#39;|&rsquo;/g, "’").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
 const attr = (html, re) => { const m = html.match(re); return m ? strip(m[1]).slice(0, 300) : ""; };
+// Retire <script>, <style>, <noscript> sans expression régulière (aucun risque de lenteur sur du HTML piégé).
+function dropBlocks(h) {
+  const low = h.toLowerCase(); let out = "", i = 0;
+  for (;;) {
+    let j = -1, tag = "";
+    for (const t of ["script", "style", "noscript"]) { const k = low.indexOf("<" + t, i); if (k >= 0 && (j < 0 || k < j)) { j = k; tag = t; } }
+    if (j < 0) return out + h.slice(i);
+    out += h.slice(i, j) + " ";
+    const e = low.indexOf("</" + tag, j); if (e < 0) return out;
+    const g = low.indexOf(">", e); i = g < 0 ? low.length : g + 1;
+  }
+}
 function analyse(p) {
-  const h = p.html, body = h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<noscript[\s\S]*?<\/noscript>/gi, " ");
-  const imgs = h.match(/<img\b[^>]*>/gi) || [];
+  const h = p.html.slice(0, MAX_BYTES), body = dropBlocks(h);
+  const imgs = h.match(/<img\b[^>]{0,1000}>/gi) || [];
   const socials = [...h.matchAll(/https?:\/\/(?:www\.|[a-z]{2}\.)?(facebook|instagram|linkedin|tiktok|youtube|x|twitter|pinterest)\.(?:com|fr)\//gi)].map(m => m[1].toLowerCase());
   const text = strip(body).slice(0, 1600);
   return {
     url: p.url, https: p.https, temps_ms: p.ms, poids_ko: Math.round(p.bytes / 1024),
-    titre: attr(h, /<title[^>]*>([\s\S]*?)<\/title>/i),
-    description: attr(h, /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)/i) || attr(h, /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["']/i),
-    h1: attr(h, /<h1[^>]*>([\s\S]*?)<\/h1>/i),
-    langue: attr(h, /<html[^>]+lang=["']([^"']+)/i),
-    mobile: /<meta[^>]+name=["']viewport["']/i.test(h),
+    titre: attr(h, /<title[^>]{0,200}>([^<]{0,300})/i),
+    description: attr(h, /<meta[^>]{0,500}?name=["']description["'][^>]{0,500}?content=["']([^"']{0,500})/i) || attr(h, /<meta[^>]{0,500}?content=["']([^"']{0,500})["'][^>]{0,500}?name=["']description["']/i),
+    h1: attr(h, /<h1[^>]{0,300}>([\s\S]{0,400}?)<\/h1>/i),
+    langue: attr(h, /<html[^>]{0,500}?lang=["']([^"']{1,20})/i),
+    mobile: /<meta[^>]{0,300}?name=["']viewport["']/i.test(h),
     donnees_structurees: /application\/ld\+json/i.test(h),
     apercu_partage: /property=["']og:(title|image)["']/i.test(h),
     telephone_cliquable: /href=["']tel:/i.test(h),
@@ -124,13 +144,20 @@ async function registre(q) {
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return send(res, 405, { error: "method_not_allowed" });
-  const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown";
-  if (limited(ip)) return send(res, 429, { error: "rate_limited" });
-  let b = req.body; if (typeof b === "string") { try { b = JSON.parse(b); } catch { b = {}; } }
-  const q = String(b?.q || "").replace(/[\u0000-\u001f<>]/g, " ").trim().slice(0, 120);
-  const url = String(b?.url || "").trim().slice(0, 300);
+  if (!sameSite(req)) return send(res, 403, { error: "forbidden" });
+  // 15 analyses / heure par visiteur, 500 / jour au total.
+  if (!(await allow("entreprise", req, 15, 3600, 500))) return send(res, 429, { error: "rate_limited" });
+  const b = readBody(req);
+  const q = String(b.q || "").replace(/[\u0000-\u001f<>]/g, " ").trim().slice(0, 120);
+  const url = String(b.url || "").trim().slice(0, 300);
   if (q.length < 2 && !url) return send(res, 400, { error: "empty" });
-  const [ent, page] = await Promise.all([q.length >= 2 ? registre(q) : null, url ? fetchPage(url) : null]);
-  const site = page && !page.error ? analyse(page) : null;
-  return send(res, 200, { entreprise: ent, site, site_erreur: page && page.error ? page.error : null });
+  try {
+    const [ent, page] = await Promise.all([q.length >= 2 ? registre(q) : null, url ? fetchPage(url) : null]);
+    let site = null; try { site = page && !page.error ? analyse(page) : null; } catch { site = null; }
+    return send(res, 200, { entreprise: ent, site, site_erreur: page && page.error ? page.error : site ? null : page ? "page illisible" : null });
+  } catch (e) {
+    console.error("entreprise:", e?.message);
+    return send(res, 502, { error: "lecture_impossible" });
+  }
 }
+export { analyse as _analyse, isPublicIP as _isPublicIP }; // pour les tests

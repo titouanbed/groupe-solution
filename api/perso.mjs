@@ -5,6 +5,7 @@
 // recommandation adaptés. Rien n'est stocké ni journalisé ici.
 // Sans ANTHROPIC_API_KEY → 503 et la page garde sa version standard.
 import Anthropic from "@anthropic-ai/sdk";
+import { allow, sameSite, readBody } from "./_guard.mjs";
 
 const MODEL = process.env.PERSO_MODEL || process.env.ASSISTANT_MODEL || "claude-opus-5-5";
 
@@ -29,12 +30,6 @@ const SCHEMA = {
   additionalProperties: false
 };
 
-const hits = new Map();
-function limited(ip) {
-  const now = Date.now(), arr = (hits.get(ip) || []).filter(t => now - t < 600e3);
-  arr.push(now); hits.set(ip, arr);
-  return arr.length > 30;
-}
 const send = (res, status, body) => { res.statusCode = status; res.setHeader("Content-Type", "application/json; charset=utf-8"); res.setHeader("Cache-Control", "private, no-store"); res.end(JSON.stringify(body)); };
 const s = (v, n) => (typeof v === "string" ? v : "").replace(/[\u0000-\u001f]/g, " ").slice(0, n).trim();
 const clip = (v, n) => { const t = s(v, 400); return t.length > n ? t.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : t; };
@@ -42,14 +37,13 @@ const clip = (v, n) => { const t = s(v, 400); return t.length > n ? t.slice(0, n
 export default async function handler(req, res) {
   if (req.method !== "POST") return send(res, 405, { error: "method_not_allowed" });
   if (!process.env.ANTHROPIC_API_KEY) return send(res, 503, { configured: false });
-  const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown";
-  if (limited(ip)) return send(res, 429, { error: "rate_limited" });
-
-  let b = req.body;
-  if (typeof b === "string") { try { b = JSON.parse(b); } catch { b = {}; } }
+  if (!sameSite(req)) return send(res, 403, { error: "forbidden" });
+  // 20 pages personnalisées / 10 min par visiteur, 3 000 / jour au total.
+  if (!(await allow("perso", req, 20, 600, 3000))) return send(res, 429, { error: "rate_limited" });
+  const b = readBody(req);
   const page = b?.page || {}, p = b?.profile || {};
   const candidates = (Array.isArray(b?.candidates) ? b.candidates : []).slice(0, 12)
-    .map(c => ({ u: s(c?.u, 160), t: s(c?.t, 100) })).filter(c => /^\/[a-z0-9/_.-]*$/i.test(c.u));
+    .map(c => ({ u: s(c?.u, 160), t: s(c?.t, 100) })).filter(c => /^\/(?![\/\\])[a-z0-9/_.-]*$/i.test(c.u));
   if (!candidates.length) return send(res, 400, { error: "candidates" });
 
   const signals = {
@@ -64,11 +58,11 @@ export default async function handler(req, res) {
     candidates
   };
 
-  const client = new Anthropic();
+  const client = new Anthropic({ maxRetries: 1, timeout: 20_000 });
   try {
     const response = await client.beta.messages.create({
       model: MODEL,
-      max_tokens: 4000,
+      max_tokens: 800,
       output_config: { effort: "low", format: { type: "json_schema", schema: SCHEMA } },
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",

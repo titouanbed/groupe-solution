@@ -9,7 +9,7 @@
   var form = document.getElementById('aiBox'), input = document.getElementById('aiInput'), log = document.getElementById('aiLog');
   var send = form.querySelector('.aiSend'), chips = document.getElementById('aiChips');
   var TEL = '07 82 29 85 59', TEL_HREF = 'tel:+33782298559', MAX_Q = 10;
-  var hist = [], busy = false, ctaShown = false, actsShown = false, made = { plan: 0, maquette: 0 };
+  var hist = [], busy = false, ctaShown = false, ctaMax = false, actsShown = false, made = { plan: 0, maquette: 0 };
   var asked = 0; try { asked = +sessionStorage.getItem('gsHomeQ') || 0; } catch (e) {}
   function ga(e, p) { if (window.gtag) window.gtag('event', e, p || {}); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -64,7 +64,7 @@
     d.querySelector('a').addEventListener('click', function () { ga('home_ai_call'); });
     d.querySelector('button').addEventListener('click', function () {
       var f = document.createElement('form');
-      f.innerHTML = '<input name="nom" placeholder="Votre prénom" autocomplete="given-name" required><input name="telephone" type="tel" placeholder="Votre téléphone" autocomplete="tel" required><button type="submit">Être rappelé aujourd’hui</button>';
+      f.innerHTML = '<input name="nom" placeholder="Votre prénom" autocomplete="given-name" required><input name="telephone" type="tel" placeholder="Votre téléphone" autocomplete="tel" required><button type="submit">Être rappelé</button><small>La conversation est jointe à votre demande, pour ne rien vous faire répéter.</small>';
       this.replaceWith(f); f.querySelector('input').focus();
       f.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -91,14 +91,14 @@
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function concept(kind, btn) {
     if (busy || made[kind] >= 2) return;
-    busy = true; made[kind]++; if (btn) btn.disabled = true;
+    busy = true; send.disabled = true; made[kind]++; if (btn) btn.disabled = true;
     ga('home_ai_concept', { kind: kind });
     var wait = add('b', '<span class="aiGen">' + (kind === 'plan' ? 'Notre IA imagine votre plan d’innovation' : 'Notre IA esquisse votre futur site') + '<span class="aiDotsT"><i></i><i></i><i></i></span></span>');
     fetch('/api/concept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: kind, conversation: hist.slice(-8), zone: (window.GSPerso && window.GSPerso.placeName) || '' }) })
       .then(function (r) { if (r.status !== 200) throw r.status; return r.json(); })
       .then(function (d) { wait.remove(); if (kind === 'plan') renderPlan(d.plan, d.publishId); else renderMaq(d.maquette); cta(); })
       .catch(function () { wait.remove(); add('b', md('Je n’arrive pas à le générer pour l’instant. Le plus simple : en parler 10 minutes avec Titouan au [' + TEL + '](' + TEL_HREF + ').')); made[kind]--; if (btn) btn.disabled = false; })
-      .then(function () { busy = false; });
+      .then(function () { busy = false; send.disabled = false; });
   }
   function renderPlan(p, publishId) {
     var c = el('div', 'aiPlan');
@@ -203,9 +203,10 @@
   }
 
   function ask(q) {
-    q = String(q || '').trim(); if (!q || busy) return;
+    q = String(q || '').trim(); if (!q) return;
+    if (busy) { setTimeout(function () { ask(q); }, 700); return; } // réessaie quand la réponse en cours est affichée
     open(); stopType();
-    if (asked >= MAX_Q) { add('b', md('On a déjà bien avancé ! Pour la suite, le plus efficace est d’en parler de vive voix : Titouan vous dit en 10 minutes ce qui est faisable et comment.')); cta(true); input.disabled = true; send.disabled = true; return; }
+    if (asked >= MAX_Q) { add('b', md('On a déjà bien avancé ! Pour la suite, le plus efficace est d’en parler de vive voix : Titouan vous dit en 10 minutes ce qui est faisable et comment.')); if (!ctaMax) { ctaMax = true; cta(true); } input.disabled = true; send.disabled = true; return; }
     busy = true; send.disabled = true;
     add('u', esc(q)); input.value = ''; grow();
     var wait = add('b', '<span class="aiDotsT" aria-label="L’assistant écrit"><i></i><i></i><i></i></span>');
@@ -218,7 +219,7 @@
       wait.remove();
       add('b', md(r.answer));
       // Interface générative : les pages citées par l'IA deviennent des cartes d'action sous sa réponse.
-      var seen = {}, refs = []; (r.answer.match(/\[[^\]]{2,70}\]\((\/[^)\s]*)\)/g) || []).forEach(function (m) { var x = m.match(/\[([^\]]+)\]\(([^)]+)\)/); if (x && !seen[x[2]] && refs.length < 3) { seen[x[2]] = 1; refs.push(x); } });
+      var seen = {}, refs = []; (r.answer.match(/\[[^\]]{2,70}\]\((\/(?![\/\\])[^)\s\\]*)\)/g) || []).forEach(function (m) { var x = m.match(/\[([^\]]+)\]\(([^)]+)\)/); if (x && !seen[x[2]] && refs.length < 3) { seen[x[2]] = 1; refs.push(x); } });
       if (refs.length) { var rf = document.createElement('div'); rf.className = 'aiRefs'; refs.forEach(function (x) { var a = document.createElement('a'); a.href = x[2]; a.textContent = x[1]; a.addEventListener('click', function () { ga('home_ai_ref', { url: x[2] }); }); rf.appendChild(a); }); log.appendChild(rf); log.scrollTop = log.scrollHeight; }
       hist.push({ role: 'user', content: q }, { role: 'assistant', content: r.answer }); hist = hist.slice(-16);
       var userTurns = hist.filter(function (m) { return m.role === 'user'; }).length;

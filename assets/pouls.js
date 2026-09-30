@@ -23,22 +23,32 @@
     el.hidden = false;
     [].forEach.call(el.querySelectorAll('button[data-v]'), function (b) {
       b.addEventListener('click', function () {
-        var v = b.getAttribute('data-v');
+        var v = b.getAttribute('data-v'), before = {};
+        for (var k in c) before[k] = c[k];
         mine[id] = v; save();
         c[v] = (c[v] || 0) + 1; render(el, c);
+        // Vote non enregistré (limite, panne) : on l'annule à l'écran plutôt que d'afficher un faux « voté ».
+        var undo = function () { delete mine[id]; save(); render(el, before); };
         fetch('/api/vote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: id, choice: v }) })
-          .then(function (r) { return r.json(); }).then(function (d) { if (d.counts) render(el, d.counts); }).catch(function () {});
+          .then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) { if (d.counts) render(el, d.counts); else undo(); }).catch(undo);
         if (window.gtag) window.gtag('event', 'poll_vote', { poll_id: id, choice: v });
       });
     });
   }
 
   var ids = polls.map(function (el) { el.hidden = true; return el.getAttribute('data-poll'); });
-  fetch('/api/vote?ids=' + encodeURIComponent(ids.join(',')).replace(/%2C/g, ','))
-    .then(function (r) { if (!r.ok) throw 0; return r.json(); })
-    .then(function (d) {
-      polls.forEach(function (el) { render(el, d.counts[el.getAttribute('data-poll')]); });
-      document.dispatchEvent(new CustomEvent('gs-poll-counts', { detail: d.counts }));
+  // Le serveur accepte 20 sujets par requête : on regroupe par paquets.
+  var packs = [];
+  for (var i = 0; i < ids.length; i += 20) packs.push(ids.slice(i, i + 20));
+  Promise.all(packs.map(function (p) {
+    return fetch('/api/vote?ids=' + encodeURIComponent(p.join(',')).replace(/%2C/g, ','))
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); });
+  }))
+    .then(function (all) {
+      var counts = {};
+      all.forEach(function (d) { for (var k in d.counts) counts[k] = d.counts[k]; });
+      polls.forEach(function (el) { render(el, counts[el.getAttribute('data-poll')]); });
+      document.dispatchEvent(new CustomEvent('gs-poll-counts', { detail: counts }));
     })
     .catch(function () { /* non configuré : widget masqué */ });
 })();

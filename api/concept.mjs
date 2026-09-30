@@ -5,6 +5,7 @@
 // en attente 1 h dans Upstash : elle n'est publiée dans le Laboratoire d'idées que si le visiteur clique
 // « Publier anonymement » (/api/idees). Aucun texte saisi par le visiteur n'est publié tel quel.
 import Anthropic from "@anthropic-ai/sdk";
+import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
 import { randomUUID } from "node:crypto";
 
 const MODEL = process.env.CONCEPT_MODEL || process.env.ASSISTANT_MODEL || "claude-opus-5-5";
@@ -22,7 +23,7 @@ Tu conçois, pour l'entreprise décrite dans la conversation, un PLAN D'INNOVATI
 - benefices : 3 bénéfices qualitatifs (≤ 90 caractères chacun, sans chiffre).
 - premier_pas : ce qu'on ferait ensemble lors d'un appel de 10 minutes (≤ 160 caractères).
 - secteur : le slug le plus proche dans la liste fournie.
-- publique : version ANONYME et générique de l'idée, publiable pour inspirer d'autres entreprises : titre (≤ 70), idee (≤ 300, aucun nom, aucune donnée personnelle, aucun détail identifiant), zone (la commune ou région fournie, sinon « France »).`;
+- publique : version ANONYME et générique de l'idée, publiable pour inspirer d'autres entreprises : titre (≤ 70), idee (≤ 300, aucun nom, aucune donnée personnelle, aucun détail identifiant), zone (la région ou le territoire, jamais une petite commune ; sinon « France »).`;
 
 const MAQ_SYS = `${RULES}
 
@@ -52,16 +53,12 @@ const MAQ_SCHEMA = S({
   argument_local: str
 });
 
-const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || process.env[Object.keys(process.env).filter(k => /_REST_(API_)?URL$/.test(k)).sort()[0]];
-const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || process.env[Object.keys(process.env).filter(k => /_REST_(API_)?TOKEN$/.test(k) && !/READ_ONLY/.test(k)).sort()[0]];
-async function redis(cmds) {
-  const r = await fetch(URL_ + "/pipeline", { method: "POST", headers: { Authorization: "Bearer " + TOKEN, "Content-Type": "application/json" }, body: JSON.stringify(cmds) });
-  if (!r.ok) throw new Error("redis " + r.status);
-  return (await r.json()).map(x => x.result);
-}
+// Contenu publiable : aucun lien, e-mail, téléphone, code postal ni nom de domaine.
+const IDENTIFIANT = /https?:|www\.|\b[\w-]+\.(fr|com|net|org|io|eu|re|yt|gp|mq|gf|nc|pf|app|dev|shop)\b|@|(?:\+\d{2,3}|\b0)\s?[1-9](?:[\s.-]?\d{2}){4}|\b\d{5}\b|siren|siret/i;
+// Zone publiée volontairement grossière (un secteur + une petite commune pourraient identifier quelqu'un).
+const DOM = [["La Réunion", /r[ée]union|saint-denis|saint-pierre|saint-paul/i], ["Mayotte", /mayotte|mamoudzou/i], ["Guadeloupe", /guadeloupe|pointe-[àa]-pitre/i], ["Martinique", /martinique|fort-de-france/i], ["Guyane", /guyane|cayenne/i], ["Nouvelle-Calédonie", /cal[ée]donie|noum[ée]a/i], ["Polynésie française", /polyn[ée]sie|papeete|tahiti/i]];
+const publicZone = z => { if (!z || z === "inconnue") return "France"; const d = DOM.find(([, re]) => re.test(z)); return d ? d[0] : "Occitanie"; };
 
-const hits = new Map();
-const limited = ip => { const now = Date.now(), a = (hits.get(ip) || []).filter(t => now - t < 3600e3); a.push(now); hits.set(ip, a); return a.length > 12; };
 const send = (res, status, body) => { res.statusCode = status; res.setHeader("Content-Type", "application/json; charset=utf-8"); res.setHeader("Cache-Control", "private, no-store"); res.end(JSON.stringify(body)); };
 const clip = (v, n) => { const t = (typeof v === "string" ? v : "").replace(/\s+/g, " ").trim(); return t.length > n ? t.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : t; };
 const noPrice = o => !/\d\s?(€|euros?)|\d+\s?%/i.test(JSON.stringify(o));
@@ -69,9 +66,10 @@ const noPrice = o => !/\d\s?(€|euros?)|\d+\s?%/i.test(JSON.stringify(o));
 export default async function handler(req, res) {
   if (req.method !== "POST") return send(res, 405, { error: "method_not_allowed" });
   if (!process.env.ANTHROPIC_API_KEY) return send(res, 503, { configured: false });
-  const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown";
-  if (limited(ip)) return send(res, 429, { error: "rate_limited" });
-  let b = req.body; if (typeof b === "string") { try { b = JSON.parse(b); } catch { b = {}; } }
+  if (!sameSite(req)) return send(res, 403, { error: "forbidden" });
+  // 12 plans ou esquisses / heure par visiteur, 300 / jour au total.
+  if (!(await allow("concept", req, 12, 3600, 300))) return send(res, 429, { error: "rate_limited" });
+  const b = readBody(req);
   const kind = b?.kind === "maquette" ? "maquette" : "plan";
   const conv = (Array.isArray(b?.conversation) ? b.conversation : []).slice(-8)
     .filter(m => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
@@ -79,11 +77,11 @@ export default async function handler(req, res) {
   if (!/Visiteur :/.test(conv)) return send(res, 400, { error: "conversation" });
   const zone = clip(b?.zone, 40).replace(/[^\p{L}\p{N}\s'’-]/gu, "") || "inconnue";
 
-  const client = new Anthropic();
+  const client = new Anthropic({ maxRetries: 1, timeout: 45_000 });
   try {
     const response = await client.beta.messages.create({
       model: MODEL,
-      max_tokens: 6000,
+      max_tokens: 3000,
       output_config: { effort: "low", format: { type: "json_schema", schema: kind === "plan" ? PLAN_SCHEMA : MAQ_SCHEMA } },
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
@@ -108,9 +106,11 @@ export default async function handler(req, res) {
       secteur: SECTEURS.includes(out.secteur) ? out.secteur : "autre"
     };
     let publishId = null;
-    if (URL_ && TOKEN && out.publique?.idee) {
+    const pubTxt = out.publique ? `${out.publique.titre} ${out.publique.idee}` : "";
+    // Rien n'est proposé à la publication si la conversation ou le texte public contient un identifiant.
+    if (UPSTASH && out.publique?.idee && !IDENTIFIANT.test(pubTxt) && !IDENTIFIANT.test(conv.replace(/^Assistant : .*$/gm, ""))) {
       publishId = randomUUID();
-      const pub = { titre: clip(out.publique.titre, 80), idee: clip(out.publique.idee, 320), zone: clip(out.publique.zone, 40) || "France", secteur: plan.secteur,
+      const pub = { titre: clip(out.publique.titre, 80), idee: clip(out.publique.idee, 320), zone: publicZone(zone), secteur: plan.secteur,
         etapes: plan.etapes.map(e => e.titre).slice(0, 5), date: new Date().toISOString().slice(0, 10) };
       try { await redis([["SET", "idee:pending:" + publishId, JSON.stringify(pub), "EX", 3600]]); } catch { publishId = null; }
     }

@@ -10,7 +10,8 @@
   if (window.__gsAssistant) return; window.__gsAssistant = 1;
 
   /* Toutes les demandes des formulaires (Formspree) passent d'abord par /api/lead (e-mail via Brevo,
-     sans le plafond de 50/mois) ; si l'API n'est pas configurée ou échoue → Formspree, comme avant. */
+     sans le plafond de 50/mois) ; si l'API n'est pas configurée ou échoue → Formspree, comme avant.
+     Une limite atteinte (429) n'est PAS contournée par Formspree. */
   if (window.fetch && window.FormData) {
     var _fetch = window.fetch.bind(window);
     window.fetch = function (input, init) {
@@ -20,7 +21,7 @@
           var o = {}; init.body.forEach(function (v, k) { if (typeof v === 'string') o[k] = v; });
           if (!o.page) o.page = location.pathname;
           return _fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o) })
-            .then(function (r) { return r.ok ? r : _fetch(input, init); })
+            .then(function (r) { return r.ok || r.status === 429 || r.status === 403 ? r : _fetch(input, init); })
             .catch(function () { return _fetch(input, init); });
         }
       } catch (e) {}
@@ -48,7 +49,7 @@
       IDX = d.c; KB = { places: d.places || [], metiers: d.metiers || [], services: d.services || [] };
       KB.places.forEach(function (p) { p._n = norm(p.n); });
       return IDX;
-    });
+    }).catch(function (e) { loading = null; throw e; }); // un échec réseau ne bloque pas la suite de la visite
     return loading;
   }
   function search(q, n) {
@@ -70,7 +71,8 @@
   /* ── Rendu texte (liens internes, gras, listes) ── */
   function md(t) {
     var h = esc(t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/\*([^*\n]+)\*/g, '<i>$1</i>');
-    h = h.replace(/\[([^\]]+)\]\(((?:\/|https:\/\/www\.groupsolution\.fr\/|tel:)[^)\s]*)\)/g, '<a href="$2">$1</a>');
+    // Liens autorisés : pages du site (jamais « //autre-site » ni « /\autre-site »), téléphone, e-mail du site.
+    h = h.replace(/\[([^\]]+)\]\((\/(?![\/\\])[^)\s\\]*|https:\/\/www\.groupsolution\.fr\/[^)\s\\]*|tel:\+?[0-9]+|mailto:[\w.+-]+@groupsolution\.fr)\)/g, '<a href="$2">$1</a>');
     return h.split(/\n{2,}/).map(function (p) {
       if (/^\s*[-•] /m.test(p)) return '<ul>' + p.split('\n').filter(Boolean).map(function (l) { return '<li>' + l.replace(/^\s*[-•] /, '') + '</li>'; }).join('') + '</ul>';
       return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
@@ -137,7 +139,7 @@
     '#gsA .chips{display:flex;flex-wrap:wrap;gap:6px}#gsA .chips button{border:1px solid #DFDCD2;background:#fff;border-radius:999px;padding:7px 11px;font:700 12.5px inherit;font-family:inherit;cursor:pointer;color:#171613}#gsA .chips button:hover{border-color:#E61E4D;color:#C81E47}' +
     '#gsA form.ask{display:flex;gap:8px;padding:12px;border-top:1px solid #ECEAE3;background:#fff}#gsA form.ask input{flex:1;min-width:0;border:1px solid #DFDCD2;border-radius:12px;padding:11px 12px;font:15px inherit;font-family:inherit}#gsA form.ask input:focus{outline:none;border-color:#E61E4D}#gsA form.ask button{border:0;border-radius:12px;background:#E61E4D;color:#fff;font-weight:800;padding:0 14px;cursor:pointer}' +
     '#gsA .cta{display:flex;gap:8px;padding:0 12px 12px;background:#fff}#gsA .cta a,#gsA .cta button{flex:1;text-align:center;border-radius:12px;padding:10px;font:800 13px inherit;font-family:inherit;text-decoration:none;cursor:pointer;border:1px solid #DFDCD2;background:#fff;color:#171613}#gsA .cta a.tel{background:#171613;color:#fff;border-color:#171613}' +
-    '#gsA .cb{display:grid;gap:8px}#gsA .cb input{border:1px solid #DFDCD2;border-radius:10px;padding:9px 11px;font:14px inherit;font-family:inherit}#gsA .cb button{border:0;border-radius:10px;background:#E61E4D;color:#fff;font-weight:800;padding:10px;cursor:pointer}' +
+    '#gsA .cb{display:grid;gap:8px}#gsA .cb input{border:1px solid #DFDCD2;border-radius:10px;padding:9px 11px;font:14px inherit;font-family:inherit}#gsA .cb button{border:0;border-radius:10px;background:#E61E4D;color:#fff;font-weight:800;padding:10px;cursor:pointer}#gsA .cb .cbn{font-size:11.5px;color:#77736A;line-height:1.4}' +
     '#gsA .nb,#gsA .nb2{display:inline-block;border-radius:999px;padding:8px 12px;font:800 12.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer}#gsA .nb{background:#E61E4D;color:#fff!important;border:0}#gsA .nb2{background:#fff;border:1px solid #DFDCD2;color:#171613}' +
     '#gsA-tip{position:fixed;right:18px;bottom:78px;z-index:9998;max-width:280px;background:#fff;border:1px solid #ECEAE3;border-radius:16px 16px 4px 16px;box-shadow:0 14px 40px rgba(0,0,0,.18);padding:12px 34px 12px 14px;font:600 13.5px/1.45 "Plus Jakarta Sans",Inter,system-ui,sans-serif;color:#171613;cursor:pointer;animation:gsAi .4s ease}#gsA-tip b{color:#C81E47}#gsA-tip .c{position:absolute;right:8px;top:6px;border:0;background:none;font-size:16px;color:#8C887E;cursor:pointer}@keyframes gsAi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@media(max-width:760px){body.gsA-sticky #gsA-tip{bottom:146px}#gsA-tip{bottom:72px;right:12px}}' +
     '#gsA .typing span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:#8C887E;animation:gsAt 1s infinite}#gsA .typing span:nth-child(2){animation-delay:.15s}#gsA .typing span:nth-child(3){animation-delay:.3s}@keyframes gsAt{0%,80%,100%{opacity:.3}40%{opacity:1}}' +
@@ -167,7 +169,7 @@
     '<div class="msgs" aria-live="polite"></div>' +
     '<form class="ask"><input name="q" placeholder="Votre question…" autocomplete="off" maxlength="600" aria-label="Votre question" /><button type="submit" aria-label="Envoyer">➤</button></form>' +
     '<div class="cta"><a class="tel" href="' + TEL_HREF + '">📞 Appeler</a><button type="button" class="cbk">Être rappelé</button><a href="' + RDV + '">Visio 10 min</a></div>' +
-    '<div class="note">Réponses automatiques, à vérifier avec nous. Aucune donnée conservée sans votre accord.</div>';
+    '<div class="note">Réponses automatiques, à vérifier avec nous. Vos questions ne sont pas conservées ; si vous demandez un rappel, la conversation est jointe à votre demande.</div>';
   document.body.appendChild(panel);
   var msgs = panel.querySelector('.msgs'), form = panel.querySelector('form.ask'), input = form.q;
   var hist = store.get('gsA-h') || [], mode = store.get('gsA-mode') || 'api';
@@ -206,7 +208,7 @@
   }
 
   function callback() {
-    var d = add('bot', '<form class="cb"><b>Titouan vous rappelle, souvent le jour même.</b><input name="nom" placeholder="Votre prénom" required autocomplete="given-name" /><input name="telephone" type="tel" placeholder="Votre téléphone" required autocomplete="tel" /><button type="submit">Être rappelé</button></form>');
+    var d = add('bot', '<form class="cb"><b>Titouan vous rappelle au plus vite.</b><input name="nom" placeholder="Votre prénom" required autocomplete="given-name" /><input name="telephone" type="tel" placeholder="Votre téléphone" required autocomplete="tel" /><button type="submit">Être rappelé</button><small class="cbn">La conversation ci-dessus est jointe à votre demande, pour vous rappeler sans vous faire tout répéter.</small></form>');
     var f = d.querySelector('form');
     f.addEventListener('submit', function (e) {
       e.preventDefault();
