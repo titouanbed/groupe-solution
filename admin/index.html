@@ -5,178 +5,277 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="robots" content="noindex,nofollow" />
 <meta name="referrer" content="no-referrer" />
+<meta name="theme-color" content="#ffffff" />
 <title>Tableau de bord | Groupe Solution</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
 <style>
-:root{--ink:#171613;--sec:#57534B;--muted:#8A857B;--line:#E7E4DC;--paper:#F7F6F3;--acc:#E61E4D;--ok:#2F7D4F;--warn:#B7791F}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:inherit}.wrap{max-width:1040px;margin:0 auto;padding:14px 14px 90px}
-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 0 14px}header .b{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px}header img{height:26px}header small{color:var(--muted);font-weight:600}
-header .r{display:flex;gap:14px;font-size:14px}header .r a{color:var(--sec);text-decoration:none}
-nav{display:flex;gap:6px;overflow-x:auto;margin:0 -14px 16px;padding:0 14px;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
-nav button{flex-shrink:0;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 15px;font:700 14px inherit;font-family:inherit;cursor:pointer;color:var(--ink)}nav button.on{background:var(--ink);color:#fff;border-color:var(--ink)}nav button i{font-style:normal;background:var(--acc);color:#fff;border-radius:999px;padding:1px 7px;font-size:12px;margin-left:6px}
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}.kpi b{display:block;font:600 30px/1 Georgia,serif}.kpi span{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:600}
-h2{font:600 22px/1.2 Georgia,serif;margin:22px 0 10px}h2 small{font:600 13px -apple-system,sans-serif;color:var(--muted);margin-left:8px}
-.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px}
-.row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.row>div{min-width:0}
-.t{font-weight:800;font-size:15px}.s{color:var(--sec);font-size:13.5px;overflow:hidden;text-overflow:ellipsis}.m{color:var(--muted);font-size:12.5px}
-.tag{flex-shrink:0;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:#eee;color:var(--sec)}.tag.dem{background:#FDECEF;color:var(--acc)}.tag.conv{background:#EEF1FB;color:#3A4DB0}.tag.rad{background:#FFF4E0;color:var(--warn)}.tag.ok{background:#E7F3EC;color:var(--ok)}
-.bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;border:1px solid var(--line);border-radius:999px;padding:0 14px;background:#fff;color:var(--ink);font:700 13.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer}.btn.p{background:var(--acc);border-color:var(--acc);color:#fff}.btn.d{background:var(--ink);border-color:var(--ink);color:#fff}.btn:disabled{opacity:.5}
-.btn svg{width:16px;height:16px}
-.feed .it{display:flex;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}.feed .it:last-child{border:0}.feed .it small{color:var(--muted);white-space:nowrap}
-.empty{color:var(--muted);text-align:center;padding:22px}
-.tr{display:flex;flex-direction:column;gap:8px;margin:12px 0}.tr .mu,.tr .ma{max-width:88%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap}.tr .mu{align-self:flex-end;background:var(--ink);color:#fff}.tr .ma{align-self:flex-start;background:var(--paper);border:1px solid var(--line)}
-.more{border-top:1px solid var(--line);margin-top:12px;padding-top:4px}
-details summary{cursor:pointer;font-weight:700;font-size:13.5px;color:var(--sec);padding:6px 0}
-pre.mail{white-space:pre-wrap;font:14px/1.55 inherit;font-family:inherit;background:var(--paper);border-radius:12px;padding:12px;margin:8px 0}
-label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10px 0 4px}input,textarea{width:100%;font:15px inherit;font-family:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
-.login{max-width:420px;margin:12vh auto 0}.login h1{font:600 26px Georgia,serif;margin:0 0 6px}.err{color:var(--acc);font-weight:700;font-size:14px}
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 12px}.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:700 12.5px inherit;font-family:inherit;cursor:pointer}.filters button.on{background:var(--ink);color:#fff}
-@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.kpis .kpi:first-child{grid-column:1/-1}}
+:root{--ink:#171613;--sec:#57534B;--muted:#8A857B;--line:#EBE8E1;--bg:#FAF9F6;--acc:#E61E4D;--acc2:#FF6B5B;--ok:#1F7A4C;--warn:#B7791F;--blue:#3A4DB0;--sh:0 1px 2px rgba(0,0,0,.04),0 6px 20px rgba(0,0,0,.06);--sh2:0 2px 4px rgba(0,0,0,.05),0 14px 34px rgba(0,0,0,.10);--sans:"Plus Jakarta Sans",-apple-system,"Segoe UI",Roboto,sans-serif;--serif:"Source Serif 4",Georgia,serif}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+a{color:inherit}button{font-family:inherit}
+/* En-tête façon « barre de recherche » */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.topIn{max-width:1180px;margin:0 auto;padding:14px 18px 0;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none}.logo img{height:28px}
+.search{justify-self:center;width:min(640px,100%);display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;background:#fff;box-shadow:var(--sh);padding:6px 6px 6px 20px;transition:box-shadow .2s}
+.search:focus-within{box-shadow:var(--sh2)}.search input{flex:1;border:0;outline:0;font:500 15px var(--sans);background:transparent;min-width:0;padding:8px 0}.search .go{width:40px;height:40px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;display:grid;place-items:center;cursor:pointer;flex-shrink:0}
+.me{display:flex;align-items:center;gap:8px}.me a,.me button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:700 13.5px var(--sans);cursor:pointer;text-decoration:none;color:var(--ink)}
+.cats{max-width:1180px;margin:0 auto;padding:10px 18px 0;display:flex;gap:30px;overflow-x:auto;scrollbar-width:none}.cats::-webkit-scrollbar{display:none}
+.cat{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 2px 12px;border:0;background:none;cursor:pointer;color:var(--muted);font:600 12.5px var(--sans);border-bottom:2px solid transparent;position:relative;transition:color .15s}
+.cat svg{width:24px;height:24px}.cat:hover{color:var(--ink)}.cat.on{color:var(--ink);border-bottom-color:var(--ink)}.cat i{position:absolute;top:2px;right:-10px;background:var(--acc);color:#fff;font:800 11px var(--sans);font-style:normal;border-radius:999px;padding:1px 6px}
+main{max-width:1180px;margin:0 auto;padding:22px 18px 90px}
+.hello{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:18px}.hello h1{font:600 clamp(26px,3.4vw,36px)/1.15 var(--serif);margin:0;letter-spacing:-.02em}.hello p{margin:4px 0 0;color:var(--sec)}.hello small{color:var(--muted);font-weight:600}
+/* Chiffres clés */
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--sh);cursor:pointer;transition:transform .15s,box-shadow .15s;text-align:left}.kpi:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.kpi .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;margin-bottom:12px}.kpi .ic svg{width:18px;height:18px}
+.kpi b{display:block;font:600 32px/1 var(--serif);letter-spacing:-.02em}.kpi span{display:block;margin-top:6px;font-size:12.5px;color:var(--muted);font-weight:600}
+.c1 .ic{background:#EEF1FB;color:var(--blue)}.c2 .ic{background:#E8F5EE;color:var(--ok)}.c3 .ic{background:#FDECEF;color:var(--acc)}.c4 .ic{background:#FFF4E0;color:var(--warn)}.c5 .ic{background:#F2EEFB;color:#6B4FB8}
+/* Grille principale */
+.grid{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:start}
+h2{font:600 22px/1.2 var(--serif);margin:0 0 12px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:10px}h2 small{font:600 13px var(--sans);color:var(--muted)}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--sh);margin-bottom:12px}
+.item{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:start}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 15px var(--sans);color:#fff;flex-shrink:0}
+.t{font-weight:800;font-size:15px;line-height:1.3}.s{color:var(--sec);font-size:13.5px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.m{color:var(--muted);font-size:12.5px;margin-top:4px}
+.pill{font:800 10.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:999px;white-space:nowrap}.p-dem{background:#FDECEF;color:var(--acc)}.p-con{background:#EEF1FB;color:var(--blue)}.p-rad{background:#FFF4E0;color:var(--warn)}.p-ok{background:#E8F5EE;color:var(--ok)}.p-nl{background:#F2EEFB;color:#6B4FB8}.p-lead{background:#E8F5EE;color:var(--ok)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0 56px}
+.btn{display:inline-flex;align-items:center;gap:6px;min-height:38px;border:1px solid var(--line);border-radius:999px;padding:0 14px;background:#fff;color:var(--ink);font:700 13px var(--sans);text-decoration:none;cursor:pointer;transition:border-color .15s,background .15s}.btn:hover{border-color:var(--ink)}
+.btn.p{background:var(--ink);border-color:var(--ink);color:#fff}.btn.a{background:linear-gradient(135deg,var(--acc),var(--acc2));border-color:transparent;color:#fff}.btn svg{width:15px;height:15px}.btn:disabled{opacity:.5}
+details.more{margin:10px 0 0 56px}details.more summary{cursor:pointer;font-weight:700;font-size:13px;color:var(--sec)}
+.tr{display:flex;flex-direction:column;gap:8px;margin:12px 0 0 56px}.tr .mu,.tr .ma{max-width:90%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap}.tr .mu{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:5px}.tr .ma{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:5px}
+pre.mail{white-space:pre-wrap;font:14px/1.55 var(--sans);background:var(--bg);border-radius:12px;padding:12px;margin:8px 0}
+.empty{text-align:center;color:var(--muted);padding:26px 16px}.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+/* Graphique */
+.chart{position:relative;height:150px;display:flex;align-items:flex-end;gap:2px;padding:6px 0 22px;border-bottom:1px solid var(--line)}
+.bar{flex:1;display:flex;align-items:flex-end;height:100%;position:relative;cursor:default}.bar i{display:block;width:100%;background:var(--acc);border-radius:4px 4px 0 0;min-height:2px;opacity:.9;transition:opacity .15s}.bar:hover i{opacity:1}.bar.zero i{background:#E9E6DF}
+.bar em{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font:600 10.5px var(--sans);color:var(--muted);font-style:normal;white-space:nowrap}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font:600 12.5px var(--sans);padding:6px 9px;border-radius:8px;transform:translate(-50%,-110%);white-space:nowrap;display:none;z-index:3}
+.feed .it{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}.feed .it:last-child{border:0}.feed .dot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex-shrink:0}.feed small{display:block;color:var(--muted);font-size:12px}
+.health .row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}.health .row:last-child{border:0}
+.st{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13px}.st::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}.st.ko::before{background:var(--acc)}.st.wa::before{background:var(--warn)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:700 13px var(--sans);cursor:pointer}.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10px 0 4px}input.f{width:100%;font:15px var(--sans);padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.login{max-width:420px;margin:14vh auto 0;padding:0 18px;text-align:center}.login h1{font:600 30px var(--serif);margin:16px 0 6px}.login p{color:var(--sec)}.login input{width:100%;font:16px var(--sans);padding:14px 16px;border:1px solid var(--line);border-radius:14px;margin-top:10px}.login .btn{width:100%;justify-content:center;min-height:50px;margin-top:10px;font-size:15px}.err{color:var(--acc);font-weight:700;font-size:14px;margin-top:10px}
+@media(max-width:980px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.topIn{grid-template-columns:1fr auto;padding-top:10px}.logo span{display:none}.search{grid-column:1/-1;grid-row:2;justify-self:stretch}.kpis{grid-template-columns:repeat(2,1fr)}.kpis .kpi:first-child{grid-column:1/-1}.cats{gap:22px}.acts,.tr,details.more{margin-left:0}.item{grid-template-columns:38px 1fr}.item .pill{grid-column:2;justify-self:start;margin-top:4px}.av{width:38px;height:38px;font-size:13.5px}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div id="login" class="login" hidden>
-    <img src="/Logo.svg" alt="Groupe Solution" height="30" />
-    <h1>Tableau de bord</h1>
-    <p class="m">Saisissez votre code d’accès (variable <b>ADMIN_TOKEN</b> dans Vercel). Il reste enregistré sur cet appareil.</p>
-    <input type="password" id="tok" autocomplete="current-password" placeholder="Code d’accès" />
-    <div class="bar"><button class="btn d" id="in">Entrer</button></div>
-    <p class="err" id="lerr"></p>
+<div id="login" class="login" hidden>
+  <img src="/Logo.svg" alt="Groupe Solution" height="34" />
+  <h1>Tableau de bord</h1>
+  <p>Votre code d’accès (variable ADMIN_TOKEN dans Vercel). Mémorisé 30 jours sur cet appareil.</p>
+  <input type="password" id="tok" autocomplete="current-password" placeholder="Code d’accès" />
+  <button class="btn a" id="in">Entrer</button>
+  <p class="err" id="lerr"></p>
+</div>
+<div id="app" hidden>
+  <div class="top">
+    <div class="topIn">
+      <a class="logo" href="/"><img src="/Logo.svg" alt="Groupe Solution" /></a>
+      <label class="search"><input id="q" type="search" placeholder="Rechercher un contact, une entreprise, un e-mail, un mot…" autocomplete="off" /><span class="go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span></label>
+      <div class="me"><button id="refresh" title="Actualiser">Actualiser</button><button id="out">Quitter</button></div>
+    </div>
+    <nav class="cats" id="cats"></nav>
   </div>
-  <div id="app" hidden>
-    <header><div class="b"><img src="/Logo.svg" alt="" /><span>Tableau de bord <small id="upd"></small></span></div><div class="r"><a href="/">Site</a><a href="#" id="out">Quitter</a></div></header>
-    <nav id="nav"></nav>
-    <div id="view"></div>
-  </div>
+  <main id="view"></main>
 </div>
 <script>
 (function () {
-  var TK = 'gs-admin-token', token = '', D = null, TAB = 'home';
-  try { token = localStorage.getItem(TK) || ''; } catch (e) {}
+  var TK = 'gs-admin-token', token = '', D = null, TAB = 'home', Q = '';
+  // Code mémorisé 30 jours sur l'appareil, puis redemandé.
+  try { var saved = JSON.parse(localStorage.getItem(TK) || 'null'); if (saved && saved.t && Date.now() - saved.d < 30 * 864e5) token = saved.t; else if (typeof saved === 'string') token = saved; } catch (e) { try { token = localStorage.getItem(TK) || ''; } catch (e2) {} }
   var $ = function (s) { return document.querySelector(s); };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function ago(d) { var m = Math.round((Date.now() - new Date(d)) / 60000); return m < 1 ? 'à l’instant' : m < 60 ? m + ' min' : m < 1440 ? Math.round(m / 60) + ' h' : m < 10080 ? Math.round(m / 1440) + ' j' : new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }); }
-  var IC = { tel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>', mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg>', ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>' };
+  function ago(d) { if (!d) return ''; var m = Math.round((Date.now() - new Date(d)) / 60000); return m < 1 ? 'à l’instant' : m < 60 ? 'il y a ' + m + ' min' : m < 1440 ? 'il y a ' + Math.round(m / 60) + ' h' : m < 10080 ? 'il y a ' + Math.round(m / 1440) + ' j' : new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }); }
+  var P = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + d + '</svg>'; };
+  var IC = {
+    home: P('<path d="M4 11 12 4l8 7v9h-5.5v-5.5h-5V20H4z"/>'), contacts: P('<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M15.5 5.5a3.2 3.2 0 0 1 0 6.2M17.5 14.2A5.5 5.5 0 0 1 20.5 19"/>'),
+    convs: P('<path d="M4 5.5h16v11H9l-4 3.5v-3.5H4z"/><path d="M8 10h8M8 13h5"/>'), dem: P('<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 15.5h5"/>'),
+    radar: P('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'), nl: P('<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>'),
+    sante: P('<path d="M12 20s-7.5-4.5-7.5-10A4.3 4.3 0 0 1 12 7.3 4.3 4.3 0 0 1 19.5 10c0 5.5-7.5 10-7.5 10z"/><path d="M8.5 12h2l1-2 1.5 4 1-2h1.5"/>'),
+    tel: P('<path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/>'), mail: P('<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>'),
+    ok: P('<path d="m5 12.5 4.5 4.5L19 7.5"/>'), eye: P('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/>')
+  };
+  var COLORS = ['#E61E4D', '#3A4DB0', '#1F7A4C', '#B7791F', '#6B4FB8', '#0E7490', '#9D174D', '#57534B'];
+  function avatar(name) { var n = String(name || '?').trim(), h = 0; for (var i = 0; i < n.length; i++) h = (h * 31 + n.charCodeAt(i)) >>> 0; var ini = n.replace(/[^A-Za-zÀ-ÿ0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase() || '·'; return '<span class="av" style="background:' + COLORS[h % COLORS.length] + '">' + esc(ini) + '</span>'; }
   function api(q, body) {
     return fetch('/api/devis' + (q || ''), { method: body ? 'POST' : 'GET', headers: { 'X-Admin': encodeURIComponent(token), 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) {
-        if (r.status === 401) { showLogin(j.adminConfigured === false ? 'L’espace n’est pas encore activé : la variable ADMIN_TOKEN est absente, ou Vercel n’a pas encore été redéployé depuis que vous l’avez ajoutée (Deployments → ⋯ → Redeploy).' : 'Code incorrect. Vérifiez les majuscules et les caractères spéciaux.'); throw 0; }
+        if (r.status === 401) { showLogin(j.adminConfigured === false ? 'L’espace n’est pas encore activé : ajoutez ADMIN_TOKEN dans Vercel puis redéployez (Deployments → ⋯ → Redeploy).' : token ? 'Code incorrect. Vérifiez les majuscules et les caractères spéciaux.' : ''); throw 0; }
         if (r.status === 503) { showLogin('La base de données (Upstash) n’est pas connectée au projet Vercel.'); throw 0; }
         if (!r.ok) throw j; return j; }); });
   }
-  function showLogin(msg) { $('#app').hidden = true; $('#login').hidden = false; $('#lerr').textContent = msg || ''; $('#tok').focus(); }
-  $('#in').onclick = function () { token = $('#tok').value.trim(); try { localStorage.setItem(TK, token); } catch (e) {} load(); };
+  function showLogin(msg) { $('#app').hidden = true; $('#login').hidden = false; $('#lerr').textContent = msg || ''; setTimeout(function () { $('#tok').focus(); }, 50); }
+  $('#in').onclick = function () { token = $('#tok').value.trim(); try { localStorage.setItem(TK, JSON.stringify({ t: token, d: Date.now() })); } catch (e) {} load(); };
   $('#tok').onkeydown = function (e) { if (e.key === 'Enter') $('#in').click(); };
-  $('#out').onclick = function (e) { e.preventDefault(); try { localStorage.removeItem(TK); } catch (e2) {} token = ''; showLogin(); };
+  $('#out').onclick = function () { try { localStorage.removeItem(TK); } catch (e) {} token = ''; D = null; showLogin(); };
+  $('#refresh').onclick = function () { load(); };
+  $('#q').oninput = function () { Q = this.value.trim().toLowerCase(); if (Q) search(); else show(TAB); };
 
   function load() {
     if (!token) return showLogin();
-    api('?admin=dashboard').then(function (d) { D = d; $('#login').hidden = true; $('#app').hidden = false; $('#upd').textContent = '· mis à jour ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); nav(); show(TAB); }).catch(function () {});
+    api('?admin=dashboard').then(function (d) { D = d; $('#login').hidden = true; $('#app').hidden = false; cats(); Q ? search() : show(TAB); }).catch(function () {});
   }
+  /* ── Données dérivées ── */
+  function leadsOpen() { return (D.leads || []).filter(function (l) { return l.statut !== 'traite'; }); }
   function todo() {
-    var dem = D.demandes.filter(function (x) { return x.statut !== 'traite'; });
-    var withDem = {}; dem.forEach(function (x) { if (x.sid) withDem[x.sid] = 1; });
-    var conv = D.convs.filter(function (c) { return c.statut !== 'traite' && !withDem[c.sid] && c.contact && (c.contact.telephone || c.contact.email); });
+    var dem = D.demandes.filter(function (x) { return x.statut !== 'traite'; }), seen = {};
+    dem.forEach(function (x) { if (x.sid) seen[x.sid] = 1; });
+    var leads = leadsOpen().filter(function (l) { if (l.sid && seen[l.sid]) return false; if (l.sid) seen[l.sid] = 1; return true; });
+    var conv = D.convs.filter(function (c) { return c.statut !== 'traite' && !seen[c.sid] && c.contact && (c.contact.telephone || c.contact.email); });
     var rad = D.radar.filter(function (x) { return x.statut === 'nouveau'; });
-    return { dem: dem, conv: conv, rad: rad, n: dem.length + conv.length + rad.length };
+    var nlp = (D.nl || []).filter(function (x) { return !x.ok && x.envoi === 'echec'; });
+    return { dem: dem, leads: leads, conv: conv, rad: rad, nlp: nlp, n: dem.length + leads.length + conv.length + rad.length + nlp.length };
   }
-  function nav() {
-    var t = todo(), tabs = [['home', 'Aujourd’hui', t.n], ['convs', 'Conversations', 0], ['dem', 'Demandes', t.dem.length], ['radar', 'Radar', t.rad.length], ['set', 'Réglages', 0]];
-    $('#nav').innerHTML = tabs.map(function (x) { return '<button data-t="' + x[0] + '"' + (x[0] === TAB ? ' class="on"' : '') + '>' + x[1] + (x[2] ? '<i>' + x[2] + '</i>' : '') + '</button>'; }).join('');
-    [].forEach.call(document.querySelectorAll('#nav button'), function (b) { b.onclick = function () { show(b.getAttribute('data-t')); }; });
+  function cats() {
+    var t = todo(), sante = D.sante || {}, sk = (!sante.mail || !sante.ia || (sante.erreurs && sante.erreurs.length && new Date() - new Date(sante.erreurs[0].date) < 2 * 864e5)) ? 1 : 0;
+    var list = [['home', 'Aujourd’hui', t.n], ['contacts', 'Contacts', t.leads.length + t.conv.length], ['convs', 'Conversations', 0], ['dem', 'Devis', t.dem.length], ['radar', 'Radar', t.rad.length], ['nl', 'Newsletter', t.nlp.length], ['sante', 'Santé', sk]];
+    $('#cats').innerHTML = list.map(function (c) { return '<button class="cat' + (c[0] === TAB && !Q ? ' on' : '') + '" data-t="' + c[0] + '">' + IC[c[0]] + c[1] + (c[2] ? '<i>' + c[2] + '</i>' : '') + '</button>'; }).join('');
+    [].forEach.call(document.querySelectorAll('.cat'), function (b) { b.onclick = function () { $('#q').value = ''; Q = ''; show(b.getAttribute('data-t')); }; });
   }
-  function show(t) { TAB = t; [].forEach.call(document.querySelectorAll('#nav button'), function (b) { b.classList.toggle('on', b.getAttribute('data-t') === t); }); ({ home: home, convs: convs, dem: dems, radar: radar, set: settings })[t](); scrollTo(0, 0); }
-  function statut(type, id, st) { return api('', { action: 'statut', type: type, id: id, statut: st }).then(load); }
-  function contactBtns(c, subject) {
-    c = c || {}; var h = '';
-    if (c.telephone) h += '<a class="btn p" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">' + IC.tel + 'Appeler ' + esc(c.telephone) + '</a>';
-    if (c.email) h += '<a class="btn" href="mailto:' + encodeURIComponent(c.email) + (subject ? '?subject=' + encodeURIComponent(subject) : '') + '">' + IC.mail + esc(c.email) + '</a>';
-    return h;
-  }
-  var week = function (d) { return Date.now() - new Date(d) < 7 * 86400e3; };
+  function show(t) { TAB = t; cats(); ({ home: home, contacts: contacts, convs: convs, dem: dems, radar: radar, nl: nl, sante: sante })[t](); scrollTo(0, 0); }
+  var week = function (d) { return d && Date.now() - new Date(d) < 7 * 864e5; };
+  function contactBtns(c, subject) { c = c || {}; var h = ''; if (c.telephone) h += '<a class="btn a" href="tel:' + esc(String(c.telephone).replace(/\s/g, '')) + '">' + IC.tel + esc(c.telephone) + '</a>'; if (c.email) h += '<a class="btn" href="mailto:' + encodeURIComponent(c.email) + (subject ? '?subject=' + encodeURIComponent(subject) : '') + '">' + IC.mail + esc(c.email) + '</a>'; return h; }
 
-  /* ── Aujourd'hui ── */
-  function home() {
-    var t = todo(), c7 = D.convs.filter(function (c) { return week(c.maj); });
-    var kp = [[c7.length, 'conversations · 7 j'], [c7.filter(function (c) { return c.contact; }).length, 'contacts laissés · 7 j'], [D.demandes.filter(function (x) { return week(x.date); }).length, 'demandes de devis · 7 j'], [D.radar.filter(function (x) { return x.statut === 'contacte' || x.statut === 'rdv'; }).length, 'entreprises contactées'], [D.abonnes, 'abonnés newsletter']];
-    var h = '<div class="kpis">' + kp.map(function (k) { return '<div class="kpi"><b>' + k[0] + '</b><span>' + k[1] + '</span></div>'; }).join('') + '</div>';
-    h += '<h2>À faire <small>' + (t.n ? t.n + ' action' + (t.n > 1 ? 's' : '') : 'rien en attente') + '</small></h2>';
-    if (!t.n) h += '<div class="card empty">Tout est à jour. Les nouvelles demandes, les visiteurs qui laissent leurs coordonnées et le radar du matin apparaîtront ici.</div>';
-    t.dem.forEach(function (x) { h += demCard(x); });
-    t.conv.forEach(function (c) { h += '<div class="card"><div class="row"><div><div class="t">' + esc(c.contact.nom || c.entreprise || 'Visiteur') + (c.entreprise && c.contact.nom ? ' · ' + esc(c.entreprise) : '') + '</div><div class="s">« ' + esc(c.premier) + ' »</div><div class="m">' + ago(c.maj) + ' · ' + c.n + ' message(s)' + (c.evenements.length ? ' · ' + esc(c.evenements[c.evenements.length - 1]) : '') + '</div></div><span class="tag conv">Contact</span></div><div class="bar">' + contactBtns(c.contact, 'Suite à votre échange sur groupsolution.fr') + '<button class="btn" data-open="' + c.sid + '">Lire la conversation</button><button class="btn" data-done-conv="' + c.sid + '">' + IC.ok + 'Traité</button></div><div class="cvd" id="cv' + c.sid + '"></div></div>'; });
-    t.rad.slice(0, 5).forEach(function (x) { h += radCard(x, true); });
-    if (t.rad.length > 5) h += '<p class="m">+ ' + (t.rad.length - 5) + ' autre(s) dans l’onglet Radar.</p>';
-    // Activité récente
-    var ev = [];
-    D.convs.forEach(function (c) { ev.push({ d: c.maj, t: (c.contact && c.contact.nom ? esc(c.contact.nom) : c.entreprise ? esc(c.entreprise) : 'Un visiteur') + ' a échangé avec l’assistant (' + c.n + ' msg)' + (c.evenements.length ? ' — ' + esc(c.evenements[c.evenements.length - 1]) : '') }); });
-    D.demandes.forEach(function (x) { ev.push({ d: x.date, t: 'Demande de devis : <b>' + esc(x.titre) + '</b> (' + esc(x.budget) + ')' }); });
-    D.radar.forEach(function (x) { ev.push({ d: x.maj || x.date, t: 'Radar : ' + esc(x.nom) + ' — ' + ({ nouveau: 'à contacter', contacte: 'contacté', rdv: 'rendez-vous obtenu', ecarte: 'écarté' }[x.statut] || '') }); });
-    ev.sort(function (a, b) { return new Date(b.d) - new Date(a.d); });
-    h += '<h2>Activité récente</h2><div class="card feed">' + (ev.length ? ev.slice(0, 20).map(function (e) { return '<div class="it"><small>' + ago(e.d) + '</small><span>' + e.t + '</span></div>'; }).join('') : '<div class="empty">Encore aucune activité.</div>') + '</div>';
-    $('#view').innerHTML = h; bind();
-  }
+  /* ── Cartes ── */
   function demCard(x) {
-    return '<div class="card"><div class="row"><div><div class="t">' + esc(x.titre) + '</div><div class="s">' + esc([x.contact.nom, x.contact.entreprise].filter(Boolean).join(' · ')) + '</div><div class="m">' + ago(x.date) + ' · budget ' + esc(x.budget) + ' · ' + esc(x.delai) + ' · ≈ ' + x.jours + ' j de travail</div></div><span class="tag ' + (x.statut === 'traite' ? 'ok' : 'dem') + '">' + (x.statut === 'traite' ? 'Traité' : 'Devis à faire') + '</span></div>' +
-      '<details><summary>Ce qu’il a retenu</summary><p class="s" style="white-space:normal">' + esc(x.resume) + '</p><ul>' + x.choisies.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul></details>' +
-      '<div class="bar">' + contactBtns(x.contact, 'Votre devis — ' + x.titre) + (x.sid ? '<button class="btn" data-open="' + x.sid + '">Conversation</button>' : '') + (x.statut !== 'traite' ? '<button class="btn" data-done-dem="' + x.id + '">' + IC.ok + 'Devis envoyé</button>' : '') + '</div>' + (x.sid ? '<div class="cvd" id="cv' + x.sid + '"></div>' : '') + '</div>';
+    return '<div class="card"><div class="item">' + avatar(x.contact.nom || x.contact.entreprise) + '<div><div class="t">' + esc(x.contact.nom || 'Visiteur') + (x.contact.entreprise ? ' · ' + esc(x.contact.entreprise) : '') + '</div><div class="s">' + esc(x.titre) + '</div><div class="m">' + ago(x.date) + ' · budget ' + esc(x.budget) + ' · ' + esc(x.delai) + ' · ≈ ' + x.jours + ' j de travail</div></div><span class="pill ' + (x.statut === 'traite' ? 'p-ok' : 'p-dem') + '">' + (x.statut === 'traite' ? 'Devis envoyé' : 'Devis à faire') + '</span></div>' +
+      '<details class="more"><summary>Ce qu’il a retenu</summary><p class="s" style="-webkit-line-clamp:unset">' + esc(x.resume) + '</p><ul>' + x.choisies.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul></details>' +
+      '<div class="acts">' + contactBtns(x.contact, 'Votre devis — ' + x.titre) + (x.sid ? '<button class="btn" data-open="' + x.sid + '">' + IC.eye + 'Conversation</button>' : '') + (x.statut !== 'traite' ? '<button class="btn p" data-done="demande:' + x.id + '">' + IC.ok + 'Devis envoyé</button>' : '') + '</div>' + (x.sid ? '<div id="cv' + x.sid + '"></div>' : '') + '</div>';
   }
-  function radCard(x, compact) {
+  function leadCard(l) {
+    var ch = l.champs || {}, msg = ch.message || ch.besoin || ch.topic || ch.conversation || '';
+    return '<div class="card"><div class="item">' + avatar(l.nom) + '<div><div class="t">' + esc(l.nom || 'Visiteur') + '</div><div class="s">' + esc(msg ? msg.slice(0, 180) : 'Demande de rappel') + '</div><div class="m">' + ago(l.date) + ' · ' + esc(ch.source || ch.page || 'formulaire') + (l.mail === 'echec' ? ' · <b style="color:var(--acc)">e-mail non parti, gardé ici</b>' : '') + '</div></div><span class="pill ' + (l.statut === 'traite' ? 'p-ok' : 'p-lead') + '">' + (l.statut === 'traite' ? 'Traité' : 'À rappeler') + '</span></div>' +
+      '<div class="acts">' + contactBtns({ telephone: l.telephone, email: l.email }, 'Suite à votre demande sur groupsolution.fr') + (l.sid ? '<button class="btn" data-open="' + l.sid + '">' + IC.eye + 'Conversation</button>' : '') + (l.statut !== 'traite' ? '<button class="btn p" data-done="lead:' + l.id + '">' + IC.ok + 'Traité</button>' : '') + '</div>' + (l.sid ? '<div id="cv' + l.sid + '"></div>' : '') + '</div>';
+  }
+  function convCard(c) {
+    var who = (c.contact && c.contact.nom) || c.entreprise || 'Visiteur';
+    return '<div class="card"><div class="item">' + avatar(who) + '<div data-open="' + c.sid + '" style="cursor:pointer"><div class="t">' + esc(who) + (c.entreprise && c.contact && c.contact.nom ? ' · ' + esc(c.entreprise) : '') + '</div><div class="s">« ' + esc(c.premier) + ' »</div><div class="m">' + ago(c.maj) + ' · ' + c.n + ' message' + (c.n > 1 ? 's' : '') + (c.evenements.length ? ' · ' + esc(c.evenements[c.evenements.length - 1]) : '') + '</div></div>' + (c.contact ? '<span class="pill p-con">Contact</span>' : c.statut === 'traite' ? '<span class="pill p-ok">Traité</span>' : '<span class="pill" style="background:#F1EFEA;color:var(--muted)">Anonyme</span>') + '</div>' +
+      '<div class="acts">' + contactBtns(c.contact, 'Suite à votre échange sur groupsolution.fr') + '<button class="btn" data-open="' + c.sid + '">' + IC.eye + 'Lire</button>' + (c.contact && c.statut !== 'traite' ? '<button class="btn p" data-done="conv:' + c.sid + '">' + IC.ok + 'Traité</button>' : '') + '</div><div id="cv' + c.sid + '"></div></div>';
+  }
+  function radCard(x) {
     var c = x.contact || {}, mail = c.email ? 'mailto:' + encodeURIComponent(c.email) + '?subject=' + encodeURIComponent(x.objet) + '&body=' + encodeURIComponent(x.email) : '';
-    return '<div class="card"><div class="row"><div><div class="t">' + esc(x.nom) + '</div><div class="m">' + esc([x.ville, x.dep, x.forme, x.naf].filter(Boolean).join(' · ')) + '</div></div><span class="tag ' + (x.statut === 'nouveau' ? 'rad' : 'ok') + '">' + (x.statut === 'nouveau' ? 'Radar · ' + x.note + '/10' : { contacte: 'Contacté', rdv: 'RDV', ecarte: 'Écarté' }[x.statut]) + '</span></div>' +
-      '<p class="s" style="white-space:normal;margin:8px 0 4px">' + esc(x.interet) + '</p><p style="margin:0"><b>' + esc(x.idee_titre) + '</b> — ' + esc(x.idee_pitch) + '</p>' +
-      '<details><summary>E-mail prêt : ' + esc(x.objet) + '</summary><pre class="mail">' + esc(x.email) + '</pre></details>' +
-      '<div class="bar">' + (mail ? '<a class="btn p" data-sent="' + x.id + '" href="' + mail + '">' + IC.mail + 'Envoyer l’e-mail</a>' : '<button class="btn" data-copy="' + x.id + '">Copier l’e-mail</button>') + (c.telephone ? '<a class="btn" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">' + IC.tel + 'Appeler</a>' : '') + (c.site ? '<a class="btn" target="_blank" rel="noopener" href="' + esc(c.site) + '">Site</a>' : '') +
-      (x.statut !== 'rdv' ? '<button class="btn" data-rs="' + x.id + '" data-v="rdv">RDV obtenu</button>' : '') + (x.statut === 'nouveau' ? '<button class="btn" data-rs="' + x.id + '" data-v="ecarte">Pas pour nous</button>' : '') + '</div>' + (!mail ? '<p class="m">Pas d’e-mail professionnel public trouvé' + (c.source ? ' · source : ' + esc(c.source) : '') + '</p>' : '') + '</div>';
+    return '<div class="card"><div class="item">' + avatar(x.nom) + '<div><div class="t">' + esc(x.nom) + '</div><div class="s">' + esc(x.interet) + '</div><div class="m">' + esc([x.ville, x.dep, x.forme, x.naf].filter(Boolean).join(' · ')) + '</div></div><span class="pill ' + (x.statut === 'nouveau' ? 'p-rad' : 'p-ok') + '">' + (x.statut === 'nouveau' ? x.note + '/10' : { contacte: 'Contacté', rdv: 'RDV', ecarte: 'Écarté' }[x.statut]) + '</span></div>' +
+      '<p style="margin:10px 0 0 56px;font-size:14px"><b>' + esc(x.idee_titre) + '</b> — ' + esc(x.idee_pitch) + '</p>' +
+      '<details class="more"><summary>E-mail prêt : ' + esc(x.objet) + '</summary><pre class="mail">' + esc(x.email) + '</pre></details>' +
+      '<div class="acts">' + (mail ? '<a class="btn a" data-sent="' + x.id + '" href="' + mail + '">' + IC.mail + 'Envoyer l’e-mail</a>' : '<button class="btn" data-copy="' + x.id + '">Copier l’e-mail</button>') + (c.telephone ? '<a class="btn" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">' + IC.tel + 'Appeler</a>' : '') + (c.site ? '<a class="btn" target="_blank" rel="noopener" href="' + esc(c.site) + '">Site</a>' : '') + (x.statut !== 'rdv' ? '<button class="btn" data-rs="' + x.id + ':rdv">RDV obtenu</button>' : '') + (x.statut === 'nouveau' ? '<button class="btn" data-rs="' + x.id + ':ecarte">Pas pour nous</button>' : '') + '</div></div>';
   }
+  function nlCard(x) { return '<div class="card"><div class="item">' + avatar(x.email) + '<div><div class="t">' + esc(x.email) + '</div><div class="m">inscrit ' + ago(x.date) + (x.confirme ? ' · confirmé ' + ago(x.confirme) : x.envoi === 'echec' ? ' · <b style="color:var(--acc)">e-mail de confirmation non parti</b>' : ' · en attente de confirmation') + '</div></div><span class="pill ' + (x.ok ? 'p-ok' : 'p-nl') + '">' + (x.ok ? 'Abonné' : 'En attente') + '</span></div>' + (!x.ok ? '<div class="acts"><button class="btn" data-resend="' + esc(x.email) + '">' + IC.mail + 'Renvoyer la confirmation</button><a class="btn" href="mailto:' + encodeURIComponent(x.email) + '">Écrire</a></div>' : '') + '</div>'; }
+
   function bind() {
     [].forEach.call(document.querySelectorAll('[data-open]'), function (b) { b.onclick = function () { openConv(b.getAttribute('data-open')); }; });
-    [].forEach.call(document.querySelectorAll('[data-done-conv]'), function (b) { b.onclick = function () { statut('conv', b.getAttribute('data-done-conv'), 'traite'); }; });
-    [].forEach.call(document.querySelectorAll('[data-done-dem]'), function (b) { b.onclick = function () { statut('demande', b.getAttribute('data-done-dem'), 'traite'); }; });
-    [].forEach.call(document.querySelectorAll('[data-rs]'), function (b) { b.onclick = function () { api('', { action: 'radar_status', id: b.getAttribute('data-rs'), statut: b.getAttribute('data-v') }).then(load); }; });
-    // L'e-mail part depuis votre messagerie : on marque l'entreprise « contactée ».
-    [].forEach.call(document.querySelectorAll('[data-sent]'), function (a) { a.addEventListener('click', function () { setTimeout(function () { api('', { action: 'radar_status', id: a.getAttribute('data-sent'), statut: 'contacte' }).then(load); }, 800); }); });
+    [].forEach.call(document.querySelectorAll('[data-done]'), function (b) { b.onclick = function () { var p = b.getAttribute('data-done').split(':'); b.disabled = true; (p[0] === 'lead' ? api('', { action: 'lead_status', id: p[1], statut: 'traite' }) : api('', { action: 'statut', type: p[0], id: p[1], statut: 'traite' })).then(load); }; });
+    [].forEach.call(document.querySelectorAll('[data-rs]'), function (b) { b.onclick = function () { var p = b.getAttribute('data-rs').split(':'); api('', { action: 'radar_status', id: p[0], statut: p[1] }).then(load); }; });
+    [].forEach.call(document.querySelectorAll('[data-sent]'), function (a) { a.addEventListener('click', function () { setTimeout(function () { api('', { action: 'radar_status', id: a.getAttribute('data-sent'), statut: 'contacte' }).then(load); }, 900); }); });
     [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) { b.onclick = function () { var x = D.radar.find(function (y) { return y.id === b.getAttribute('data-copy'); }); navigator.clipboard && navigator.clipboard.writeText('Objet : ' + x.objet + '\n\n' + x.email); b.textContent = 'Copié ✓'; }; });
+    [].forEach.call(document.querySelectorAll('[data-resend]'), function (b) { b.onclick = function () { b.disabled = true; api('', { action: 'nl_resend', email: b.getAttribute('data-resend') }).then(function (r) { b.textContent = r.ok ? 'Renvoyé ✓' : 'Échec : voir Santé'; setTimeout(load, 1200); }); }; });
   }
   function openConv(sid) {
     var box = document.getElementById('cv' + sid); if (!box) return;
     if (box.innerHTML) { box.innerHTML = ''; return; }
-    box.innerHTML = '<p class="m">Chargement…</p>';
+    box.innerHTML = '<p class="m" style="margin-left:56px">Chargement…</p>';
     api('?admin=conv&sid=' + sid).then(function (r) {
-      var c = r.conv; if (!c) { box.innerHTML = '<p class="m">Conversation expirée (30 jours).</p>'; return; }
-      box.innerHTML = '<div class="more">' + (c.entreprise ? '<p class="m">Entreprise analysée : <b>' + esc(c.entreprise.nom) + '</b>' + (c.entreprise.commune ? ' · ' + esc(c.entreprise.commune) : '') + (c.site ? ' · <a target="_blank" rel="noopener" href="' + esc(c.site) + '">site</a>' : '') + '</p>' : '') + (c.idees && c.idees.length ? '<p class="m">Idées proposées : ' + esc(c.idees.join(' · ')) + '</p>' : '') +
-        '<div class="tr">' + c.messages.map(function (m) { return '<div class="' + (m.r === 'u' ? 'mu' : 'ma') + '">' + esc(m.t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>') + '</div>'; }).join('') + '</div><p class="m">Début ' + new Date(c.debut).toLocaleString('fr-FR') + ' · page ' + esc(c.page || '/') + '</p></div>';
+      var c = r.conv; if (!c) { box.innerHTML = '<p class="m" style="margin-left:56px">Conversation expirée (30 jours).</p>'; return; }
+      box.innerHTML = (c.entreprise ? '<p class="m" style="margin:12px 0 0 56px">Entreprise analysée : <b>' + esc(c.entreprise.nom) + '</b>' + (c.entreprise.commune ? ' · ' + esc(c.entreprise.commune) : '') + (c.site ? ' · <a target="_blank" rel="noopener" href="' + esc(c.site) + '">site</a>' : '') + (c.idees && c.idees.length ? '<br>Idées proposées : ' + esc(c.idees.join(' · ')) : '') + '</p>' : '') +
+        '<div class="tr">' + c.messages.map(function (m) { return '<div class="' + (m.r === 'u' ? 'mu' : 'ma') + '">' + esc(m.t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>') + '</div>'; }).join('') + '</div>';
     }).catch(function () {});
   }
-  /* ── Conversations ── */
+  function section(title, sub, html) { return '<h2>' + title + (sub ? ' <small>' + sub + '</small>' : '') + '</h2>' + html; }
+  function empty(t, s) { return '<div class="card empty"><b>' + t + '</b>' + s + '</div>'; }
+
+  /* ── Aujourd'hui ── */
+  function home() {
+    var t = todo(), c7 = D.convs.filter(function (c) { return week(c.maj); });
+    var contacts7 = c7.filter(function (c) { return c.contact; }).length + (D.leads || []).filter(function (l) { return week(l.date); }).length;
+    var h = new Date().getHours(), hello = h < 12 ? 'Bonjour Titouan' : h < 18 ? 'Bon après-midi Titouan' : 'Bonsoir Titouan';
+    var html = '<div class="hello"><div><h1>' + hello + '</h1><p>' + (t.n ? '<b>' + t.n + ' action' + (t.n > 1 ? 's' : '') + '</b> vous attend' + (t.n > 1 ? 'ent' : '') + ' aujourd’hui.' : 'Tout est à jour. Profitez-en pour lancer le radar.') + '</p></div><small>Actualisé ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }) + '</small></div>';
+    var kp = [['c1', 'convs', c7.length, 'conversations · 7 j'], ['c2', 'contacts', contacts7, 'contacts laissés · 7 j'], ['c3', 'dem', D.demandes.filter(function (x) { return week(x.date); }).length, 'demandes de devis · 7 j'], ['c4', 'radar', D.radar.filter(function (x) { return x.statut === 'contacte' || x.statut === 'rdv'; }).length + ' / ' + D.radar.length, 'radar contactées / repérées'], ['c5', 'nl', D.abonnes, 'abonnés newsletter']];
+    html += '<div class="kpis">' + kp.map(function (k) { return '<button class="kpi ' + k[0] + '" data-go="' + k[1] + '"><span class="ic">' + IC[k[1]] + '</span><b>' + k[2] + '</b><span>' + k[3] + '</span></button>'; }).join('') + '</div>';
+    var left = section('À faire', t.n ? t.n + ' en attente' : 'rien en attente', t.n ? t.dem.map(demCard).join('') + t.leads.map(leadCard).join('') + t.conv.map(convCard).join('') + t.rad.slice(0, 4).map(radCard).join('') + t.nlp.map(nlCard).join('') + (t.rad.length > 4 ? '<p class="m">+ ' + (t.rad.length - 4) + ' entreprise(s) dans Radar.</p>' : '') : empty('Rien en attente', 'Les demandes de devis, les visiteurs qui laissent leurs coordonnées et le radar du matin arrivent ici.'));
+    var right = section('Activité · 14 jours', '', '<div class="card">' + chart() + '</div>') + section('Fil d’activité', '', '<div class="card feed">' + feed() + '</div>') + section('Santé', '', '<div class="card health">' + healthRows(true) + '</div>');
+    html += '<div class="grid"><div>' + left + '</div><div>' + right + '</div></div>';
+    $('#view').innerHTML = html; bind(); chartHover();
+    [].forEach.call(document.querySelectorAll('[data-go]'), function (b) { b.onclick = function () { show(b.getAttribute('data-go')); }; });
+  }
+  function chart() {
+    var days = [], max = 0;
+    for (var i = 13; i >= 0; i--) { var d = new Date(Date.now() - i * 864e5), k = d.toISOString().slice(0, 10); days.push({ k: k, d: d, n: 0, c: 0 }); }
+    var idx = {}; days.forEach(function (x) { idx[x.k] = x; });
+    D.convs.forEach(function (c) { var k = String(c.debut || c.maj).slice(0, 10); if (idx[k]) { idx[k].n++; if (c.contact) idx[k].c++; } });
+    days.forEach(function (x) { if (x.n > max) max = x.n; });
+    var total = days.reduce(function (a, x) { return a + x.n; }, 0);
+    return '<div class="m" style="margin:0 0 6px">Conversations par jour · <b style="color:var(--ink)">' + total + '</b> sur 14 jours</div><div class="chart" id="chart">' + days.map(function (x, i) { var h = max ? Math.max(2, Math.round(x.n / max * 100)) : 2; return '<div class="bar' + (x.n ? '' : ' zero') + '" data-tip="' + esc(x.d.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' }) + ' · ' + x.n + ' conversation' + (x.n > 1 ? 's' : '') + (x.c ? ' · ' + x.c + ' contact' + (x.c > 1 ? 's' : '') : '')) + '"><i style="height:' + h + '%"></i>' + (i % 3 === 1 || i === 13 ? '<em>' + (i === 13 ? 'auj.' : x.d.getDate() + '/' + (x.d.getMonth() + 1)) + '</em>' : '') + '</div>'; }).join('') + '<div class="tip" id="tip"></div></div>';
+  }
+  function chartHover() {
+    var c = document.getElementById('chart'), tip = document.getElementById('tip'); if (!c) return;
+    [].forEach.call(c.querySelectorAll('.bar'), function (b) {
+      b.onmouseenter = function () { tip.textContent = b.getAttribute('data-tip'); tip.style.display = 'block'; var r = b.getBoundingClientRect(), cr = c.getBoundingClientRect(), bh = b.querySelector('i').getBoundingClientRect(); tip.style.left = (r.left - cr.left + r.width / 2) + 'px'; tip.style.top = (bh.top - cr.top) + 'px'; };
+      b.onmouseleave = function () { tip.style.display = 'none'; };
+      b.onclick = b.onmouseenter;
+    });
+  }
+  function feed() {
+    var ev = [];
+    D.convs.forEach(function (c) { ev.push({ d: c.maj, col: '#3A4DB0', t: '<b>' + esc((c.contact && c.contact.nom) || c.entreprise || 'Un visiteur') + '</b> a échangé avec l’assistant', s: c.evenements.length ? c.evenements[c.evenements.length - 1] : c.n + ' message(s)' }); });
+    D.demandes.forEach(function (x) { ev.push({ d: x.date, col: '#E61E4D', t: 'Demande de devis de <b>' + esc(x.contact.nom || 'Visiteur') + '</b>', s: x.titre + ' · ' + x.budget }); });
+    (D.leads || []).forEach(function (l) { ev.push({ d: l.date, col: '#1F7A4C', t: '<b>' + esc(l.nom) + '</b> demande à être rappelé', s: l.telephone || l.email }); });
+    (D.nl || []).forEach(function (x) { ev.push({ d: x.confirme || x.date, col: '#6B4FB8', t: 'Newsletter : ' + esc(x.email), s: x.ok ? 'abonnement confirmé' : 'inscription en attente' }); });
+    D.radar.forEach(function (x) { ev.push({ d: x.maj || x.date, col: '#B7791F', t: 'Radar : <b>' + esc(x.nom) + '</b>', s: { nouveau: 'à contacter', contacte: 'contacté', rdv: 'rendez-vous obtenu', ecarte: 'écarté' }[x.statut] }); });
+    ev.sort(function (a, b) { return new Date(b.d) - new Date(a.d); });
+    return ev.length ? ev.slice(0, 12).map(function (e) { return '<div class="it"><span class="dot" style="background:' + e.col + '"></span><div>' + e.t + '<small>' + esc(e.s || '') + ' · ' + ago(e.d) + '</small></div></div>'; }).join('') : '<div class="empty" style="padding:10px">Encore aucune activité : elle apparaîtra dès les premières conversations.</div>';
+  }
+  function healthRows(short) {
+    var s = D.sante || {}, err = (s.erreurs || [])[0], recent = err && Date.now() - new Date(err.date) < 2 * 864e5;
+    var rows = [
+      ['E-mails (Brevo)', !s.mail ? '<span class="st ko">Non configuré</span>' : recent ? '<span class="st ko">Erreur récente</span>' : '<span class="st">' + s.mailsOk + ' envoyé' + (s.mailsOk > 1 ? 's' : '') + ' · 7 j</span>'],
+      ['Assistant IA', s.ia ? '<span class="st">Actif</span>' : '<span class="st ko">Clé absente</span>'],
+      ['Base de données', '<span class="st">Connectée</span>'],
+      ['Radar du matin', s.radar ? '<span class="st">' + ago(s.radar.date) + ' · ' + s.radar.retenues + ' retenue(s)</span>' : '<span class="st wa">Pas encore passé</span>'],
+      ['Newsletter du lundi', s.newsletter ? '<span class="st">' + ago(s.newsletter.date) + ' · ' + (s.newsletter.envoyes || 0) + ' envoi(s)</span>' : '<span class="st wa">Pas encore passée</span>']
+    ];
+    return rows.map(function (r) { return '<div class="row"><span>' + r[0] + '</span>' + r[1] + '</div>'; }).join('') + (short && recent ? '<p class="m" style="margin:8px 0 0">Dernière erreur : ' + esc(err.erreur).slice(0, 140) + ' — <a href="#" data-go="sante">détails</a></p>' : '');
+  }
+  /* ── Onglets ── */
+  function contacts() { var l = (D.leads || []), c = D.convs.filter(function (x) { return x.contact; }); $('#view').innerHTML = section('Contacts', (l.length + c.length) + ' personnes ont laissé leurs coordonnées', (l.length || c.length) ? l.map(leadCard).join('') + c.map(convCard).join('') : empty('Aucun contact pour l’instant', 'Chaque demande de rappel, formulaire ou devis apparaît ici, même si l’e-mail n’a pas pu partir.')); bind(); }
   var CF = 'all';
   function convs() {
     var list = D.convs.filter(function (c) { return CF === 'all' || (CF === 'contact' ? c.contact : CF === 'ent' ? c.entreprise : c.evenements.length); });
-    $('#view').innerHTML = '<h2>Conversations <small>' + D.convs.length + ' · 30 derniers jours</small></h2><div class="filters">' + [['all', 'Toutes'], ['contact', 'Avec coordonnées'], ['ent', 'Entreprise analysée'], ['act', 'Avec action']].map(function (f) { return '<button data-f="' + f[0] + '"' + (f[0] === CF ? ' class="on"' : '') + '>' + f[1] + '</button>'; }).join('') + '</div>' +
-      (list.length ? list.map(function (c) { return '<div class="card"><div class="row" data-open-row="' + c.sid + '" style="cursor:pointer"><div><div class="t">' + esc((c.contact && c.contact.nom) || c.entreprise || 'Visiteur') + '</div><div class="s" style="white-space:nowrap">' + esc(c.premier) + '</div><div class="m">' + ago(c.maj) + ' · ' + c.n + ' msg' + (c.evenements.length ? ' · ' + esc(c.evenements.join(' · ')) : '') + '</div></div>' + (c.contact ? '<span class="tag conv">Contact</span>' : c.statut === 'traite' ? '<span class="tag ok">Traité</span>' : '') + '</div>' + (c.contact ? '<div class="bar">' + contactBtns(c.contact, 'Suite à votre échange sur groupsolution.fr') + '</div>' : '') + '<div id="cv' + c.sid + '"></div></div>'; }).join('') : '<div class="card empty">Aucune conversation.</div>');
-    [].forEach.call(document.querySelectorAll('[data-f]'), function (b) { b.onclick = function () { CF = b.getAttribute('data-f'); convs(); }; });
-    [].forEach.call(document.querySelectorAll('[data-open-row]'), function (r) { r.onclick = function () { openConv(r.getAttribute('data-open-row')); }; });
+    $('#view').innerHTML = section('Conversations', D.convs.length + ' sur 30 jours', '<div class="filters">' + [['all', 'Toutes'], ['contact', 'Avec coordonnées'], ['ent', 'Entreprise analysée'], ['act', 'Avec action']].map(function (f) { return '<button data-f="' + f[0] + '"' + (f[0] === CF ? ' class="on"' : '') + '>' + f[1] + '</button>'; }).join('') + '</div>' + (list.length ? list.map(convCard).join('') : empty('Aucune conversation', 'Chaque échange avec l’assistant (accueil et bulle) apparaît ici, conservé 30 jours.')));
+    [].forEach.call(document.querySelectorAll('[data-f]'), function (b) { b.onclick = function () { CF = b.getAttribute('data-f'); convs(); }; }); bind();
   }
-  function dems() { $('#view').innerHTML = '<h2>Demandes de devis <small>chiffrez dans Indy, puis cochez « Devis envoyé »</small></h2>' + (D.demandes.length ? D.demandes.map(demCard).join('') : '<div class="card empty">Aucune demande pour l’instant. Elles arrivent ici (et par e-mail) quand un visiteur prépare son devis dans le chat.</div>'); bind(); }
+  function dems() { $('#view').innerHTML = section('Demandes de devis', 'chiffrez dans Indy, puis « Devis envoyé »', D.demandes.length ? D.demandes.map(demCard).join('') : empty('Aucune demande pour l’instant', 'Elles arrivent ici (et par e-mail) quand un visiteur prépare son devis dans le chat.')); bind(); }
   function radar() {
     var act = D.radar.filter(function (x) { return x.statut !== 'ecarte'; });
-    $('#view').innerHTML = '<h2>Radar <small>nouvelles sociétés, France et outre-mer</small></h2><div class="card"><p class="m" style="margin:0">Chaque matin, les sociétés créées la veille (annonces officielles BODACC) sont triées ; les 5 plus prometteuses sont analysées et seules les meilleures restent ici, avec une idée et un e-mail prêts. « Envoyer l’e-mail » l’ouvre dans votre messagerie, prérempli.</p><div class="bar"><button class="btn d" id="rrun">Lancer le radar maintenant</button><span class="m" id="rmsg"></span></div></div>' +
-      (act.length ? act.map(function (x) { return radCard(x); }).join('') : '<div class="card empty">Aucune entreprise retenue pour l’instant.</div>');
-    $('#rrun').onclick = function () { var b = this; b.disabled = true; b.textContent = 'Analyse en cours (environ 1 min)…'; api('', { action: 'radar_run' }).then(function (r) { $('#rmsg').textContent = r.annonces + ' annonces lues · ' + r.analyses + ' analysées · ' + r.retenues + ' retenue(s)'; load(); }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; }); };
+    $('#view').innerHTML = section('Radar', 'nouvelles sociétés, France et outre-mer', '<div class="card"><p class="m" style="margin:0">Chaque matin, les sociétés créées la veille (annonces officielles) sont triées ; les plus prometteuses sont analysées avec une idée et un e-mail prêts. « Envoyer l’e-mail » l’ouvre dans votre messagerie.</p><div class="acts" style="margin-left:0"><button class="btn p" id="rrun">Lancer le radar maintenant</button><span class="m" id="rmsg"></span></div></div>' + (act.length ? act.map(radCard).join('') : empty('Aucune entreprise retenue pour l’instant', 'Lancez le radar : il analyse les créations des deux derniers jours.')));
+    $('#rrun').onclick = function () { var b = this; b.disabled = true; b.textContent = 'Analyse en cours (environ 1 min)…'; api('', { action: 'radar_run' }).then(function (r) { $('#rmsg').textContent = r.annonces + ' annonces lues · ' + r.analyses + ' analysées · ' + r.retenues + ' retenue(s)'; setTimeout(load, 800); }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; }); };
     bind();
   }
-  function settings() {
-    $('#view').innerHTML = '<h2>Réglages</h2><div class="card"><div class="t">Newsletter « L’essentiel du lundi »</div><p class="m">' + D.abonnes + ' abonné(s) confirmé(s). Chaque nouvel abonné reçoit un e-mail de bienvenue, puis les actus de la semaine chaque lundi matin, automatiquement.</p></div>' +
-      '<div class="card"><div class="t">E-mails</div><p class="m">' + (D.mail ? 'Brevo est configuré : vous recevez les demandes et le récapitulatif du radar.' : 'Brevo n’est pas configuré : les e-mails automatiques ne partent pas.') + '</p></div>' +
-      '<div class="card"><details><summary>Grille privée (facultatif)</summary><p class="m">Vous n’êtes pas obligé de la remplir. Sans grille, le visiteur voit l’envergure de chaque brique (légère, moyenne, conséquente) ; avec un taux journalier, il voit en plus une jauge « ce qui tient dans votre budget ». Aucun montant n’est jamais affiché.</p><label>Taux journalier moyen (€ HT)</label><input id="g_tjm" type="number"><div class="bar"><button class="btn d" id="gs">Enregistrer</button><span class="m" id="gm"></span></div></details></div>';
-    api('?admin=settings').then(function (r) { $('#g_tjm').value = (r.grille && r.grille.tjm) || ''; }).catch(function () {});
+  function nl() { var l = D.nl || []; $('#view').innerHTML = section('Newsletter', D.abonnes + ' abonné(s) · envoi automatique chaque lundi', l.length ? l.map(nlCard).join('') : empty('Aucun inscrit pour l’instant', 'Le formulaire est sous les actus de l’accueil.')); bind(); }
+  function sante() {
+    var s = D.sante || {};
+    $('#view').innerHTML = section('Santé du site', 'tout ce qui doit fonctionner, vérifié en direct', '<div class="card health">' + healthRows(false) + '</div>' +
+      '<div class="card"><div class="t">Tester les e-mails</div><p class="m">Envoie un e-mail de test à votre adresse et affiche la réponse exacte de Brevo en cas de problème.</p><div class="acts" style="margin-left:0"><button class="btn a" id="mt">Envoyer un e-mail de test</button></div><p class="m" id="mtr"></p></div>' +
+      '<div class="card"><div class="t">Derniers échecs d’envoi</div>' + ((s.erreurs || []).length ? s.erreurs.map(function (e) { return '<div class="row" style="display:block;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px"><b>' + ago(e.date) + '</b> · ' + esc(e.subject || '') + ' → ' + esc(e.to || '') + '<br><span style="color:var(--acc)">' + esc(e.erreur) + '</span></div>'; }).join('') + '<p class="m">Causes fréquentes : expéditeur (LEAD_FROM) non validé dans Brevo, ou restriction d’adresses IP activée dans Brevo (Paramètres → Sécurité → IP autorisées : désactivez-la, Vercel change d’adresse).</p>' : '<p class="m">Aucun échec enregistré.</p>') + '</div>' +
+      '<div class="card"><details><summary>Grille privée (facultatif)</summary><p class="m">Sans grille, le visiteur voit l’envergure de chaque brique. Avec un taux journalier, il voit en plus une jauge « ce qui tient dans votre budget ». Aucun montant n’est jamais affiché.</p><label>Taux journalier moyen (€ HT)</label><input class="f" id="g_tjm" type="number"><div class="acts" style="margin-left:0"><button class="btn p" id="gs">Enregistrer</button><span class="m" id="gm"></span></div></details></div>');
+    $('#mt').onclick = function () { var b = this; b.disabled = true; $('#mtr').textContent = 'Envoi…'; api('', { action: 'mail_test' }).then(function (r) { b.disabled = false; $('#mtr').innerHTML = r.ok ? '✅ Accepté par Brevo : vérifiez ' + esc(r.destinataire) + ' (et les courriers indésirables).' : '<b style="color:var(--acc)">Échec :</b> ' + esc(r.erreur); setTimeout(load, 1500); }).catch(function () { b.disabled = false; }); };
+    api('?admin=settings').then(function (r) { var i = document.getElementById('g_tjm'); if (i) i.value = (r.grille && r.grille.tjm) || ''; }).catch(function () {});
     $('#gs').onclick = function () { api('', { action: 'settings', grille: { tjm: $('#g_tjm').value, jauge: true } }).then(function () { $('#gm').textContent = 'Enregistré ✓'; }).catch(function () { $('#gm').textContent = 'Erreur'; }); };
+  }
+  /* ── Recherche globale ── */
+  function search() {
+    cats();
+    var q = Q, hit = function (o) { return JSON.stringify(o).toLowerCase().indexOf(q) >= 0; };
+    var d = D.demandes.filter(hit), l = (D.leads || []).filter(hit), c = D.convs.filter(hit), r = D.radar.filter(hit), n = (D.nl || []).filter(hit);
+    var tot = d.length + l.length + c.length + r.length + n.length;
+    $('#view').innerHTML = section('Résultats pour « ' + esc(Q) + ' »', tot + ' résultat' + (tot > 1 ? 's' : ''), tot ? d.map(demCard).join('') + l.map(leadCard).join('') + c.map(convCard).join('') + r.map(radCard).join('') + n.map(nlCard).join('') : empty('Aucun résultat', 'Essayez un nom, une entreprise, un e-mail, une ville ou un mot de la conversation.'));
+    bind();
   }
   if (/radar/.test(location.hash)) TAB = 'radar'; else if (/demande/.test(location.hash)) TAB = 'dem';
   load();
-  setInterval(function () { if (!document.hidden && token && D) api('?admin=dashboard').then(function (d) { D = d; nav(); $('#upd').textContent = '· mis à jour ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); }).catch(function () {}); }, 120000);
+  setInterval(function () { if (!document.hidden && token && D && !Q) api('?admin=dashboard').then(function (d) { D = d; cats(); }).catch(function () {}); }, 120000);
 })();
 </script>
 </body>

@@ -207,6 +207,34 @@
 
   /* ── HERO (gauche : positionnement · droite : bulle d'appel) ── */
 
+  /* ══ Bento ══ */
+  .hxHead h2 i{font-style:italic;color:var(--acc)}
+  .bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:minmax(250px,auto);gap:16px}
+  .bx{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:16px;background:var(--white);border:1px solid var(--line);border-radius:26px;padding:24px;color:var(--ink);transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+  .bx:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(23,22,19,.10);border-color:transparent}
+  .bxK{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}.bx h3{font:600 clamp(22px,2.2vw,28px)/1.15 var(--serif);letter-spacing:-.02em;margin:6px 0 6px}.bx p{margin:0;color:var(--secondary);font-size:14.5px;line-height:1.55}
+  .bxCall{grid-column:span 2;grid-row:span 2;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:26px;background:linear-gradient(135deg,#FFF5F7,#fff 60%)}
+  .bxSeo{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:22px}
+  .bxDemo{background:var(--ink);color:#fff;justify-content:flex-end;border-color:var(--ink)}.bxDemo h3{color:#fff}.bxDemo p{color:#CFCBC2}.bxDemo .bxK{color:#FF8FA3}.bxGo{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:800}.bxDemo:hover .bxGo svg{transform:translateX(4px)}.bxGo svg{transition:transform .2s}
+  .ui{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(23,22,19,.07);padding:14px}
+  .uiCall{display:flex;flex-direction:column;gap:9px}.ring{display:flex;gap:10px;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--line)}.ring b{display:block;font-size:14px}.ring small{color:var(--muted);font-size:12px}
+  .pulse{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#2F7D4F;color:#fff;box-shadow:0 0 0 0 rgba(47,125,79,.45);animation:bxP 2s infinite}@keyframes bxP{70%{box-shadow:0 0 0 12px rgba(47,125,79,0)}100%{box-shadow:0 0 0 0 rgba(47,125,79,0)}}
+  .bb{max-width:85%;margin:0;padding:8px 12px;border-radius:14px;font-size:13.5px;line-height:1.4;opacity:0;animation:bxIn .5s var(--ease) forwards}.bb.c{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:4px}.bb.a{align-self:flex-start;background:#F4F2EC;border-bottom-left-radius:4px}
+  .uiCall .bb:nth-of-type(1){animation-delay:.4s}.uiCall .bb:nth-of-type(2){animation-delay:1.3s}.uiCall .bb:nth-of-type(3){animation-delay:2.2s}
+  .done{display:flex;align-items:center;gap:6px;margin:4px 0 0;padding:8px 10px;border-radius:12px;background:#EEF4EF;color:#2F5D3E;font-size:12.5px;font-weight:700;opacity:0;animation:bxIn .5s var(--ease) 3s forwards}
+  @keyframes bxIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .uiDoc{display:flex;flex-direction:column;gap:10px;margin-top:auto}.doc{position:relative;display:grid;gap:7px;padding:12px;border-radius:12px;background:#FBFAF7;border:1px solid var(--line);overflow:hidden}.doc i{display:block;height:7px;border-radius:4px;background:#E6E2D9}
+  .scan{position:absolute;left:0;right:0;height:26px;background:linear-gradient(180deg,rgba(230,30,77,0),rgba(230,30,77,.18),rgba(230,30,77,0));animation:bxScan 2.6s ease-in-out infinite}@keyframes bxScan{0%{top:-26px}100%{top:100%}}
+  .fields{display:flex;flex-wrap:wrap;gap:6px}.fields span{font-size:12px;font-weight:700;background:#EEF4EF;color:#2F5D3E;border-radius:999px;padding:5px 9px}.fields b{color:#2F7D4F}
+  .uiApp{margin-top:auto;padding:0;overflow:hidden}.appTop{display:flex;gap:5px;padding:9px 12px;border-bottom:1px solid var(--line);background:#FBFAF7}.appTop i{width:8px;height:8px;border-radius:50%;background:#E0DCD2}
+  .kan{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}.kan div{display:grid;gap:6px;align-content:start}.kan small{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.kan span{height:22px;border-radius:7px;background:#F1EEE7}.kan span.hot{background:linear-gradient(90deg,#FDE2E8,#FFF);border:1px solid #F7C1CD;animation:bxHot 2.4s ease-in-out infinite}@keyframes bxHot{50%{transform:translateX(6px)}}
+  .uiSeo{display:grid;gap:10px}.gbar{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:13px;color:var(--secondary)}.gbar span{width:12px;height:12px;border-radius:50%;border:2px solid #4285F4;flex-shrink:0}
+  .gres{border:1px solid var(--line);border-radius:14px;padding:12px}.gres b{display:block;color:#1A0DAB;font-size:15px}.gres small{display:block;color:#B06000;font-size:12.5px;margin:2px 0 10px}.gbtn{display:flex;gap:6px;flex-wrap:wrap}.gbtn span{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700;color:#1A73E8}.gbtn span:first-child{background:#1A73E8;color:#fff;border-color:#1A73E8}
+  .flow{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}.flow::before{content:"";position:absolute;top:19px;left:16%;right:16%;height:2px;background:repeating-linear-gradient(90deg,var(--line2) 0 8px,transparent 8px 14px)}
+  .flow li{position:relative;text-align:center;padding:0 12px}.flow span{position:relative;display:grid;place-items:center;width:40px;height:40px;margin:0 auto 10px;border-radius:50%;background:var(--ink);color:#fff;font:600 17px var(--serif)}.flow li:last-child span{background:var(--acc)}.flow b{display:block;font-size:16px}.flow small{color:var(--secondary);font-size:14px}
+  @media(prefers-reduced-motion:reduce){.bb,.done{opacity:1;animation:none}.scan,.pulse,.kan span.hot{animation:none}}
+  @media(max-width:960px){.bento{grid-template-columns:1fr 1fr}.bxCall{grid-column:span 2;grid-row:auto}.bxSeo{grid-column:span 2}}
+  @media(max-width:640px){.bento{grid-template-columns:1fr}.bxCall,.bxSeo{grid-column:auto;grid-template-columns:1fr}.bx{padding:20px;border-radius:22px}.flow{grid-template-columns:1fr;gap:16px}.flow::before{display:none}.flow li{display:grid;grid-template-columns:40px 1fr;text-align:left;gap:0 12px;align-items:center}.flow span{margin:0;grid-row:span 2}}
   /* ══ Accueil épuré ══ */
   .hx{padding:clamp(44px,6vw,76px) 0}.hxHead{max-width:760px;margin:0 0 30px}.hxHead.center{margin:0 auto 26px;text-align:center}.hxHead h2{font-size:clamp(28px,3.6vw,44px);margin:10px 0 0;letter-spacing:-.03em}
   .hxTiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.hxTile{display:flex;flex-direction:column;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:22px 20px;color:var(--ink);transition:transform .2s var(--ease),border-color .2s,box-shadow .2s}
@@ -358,6 +386,10 @@
   .bForm{display:grid;gap:8px;margin-top:16px;border-top:1px solid var(--line);padding-top:16px}.bForm input,.bForm textarea{min-height:48px;border:1px solid var(--line2);border-radius:14px;padding:10px 14px;font:16px var(--sans);background:var(--sand,#F9F8F5)}.bForm small{font-size:12px;color:var(--muted)}.bForm .err{color:var(--acc);font-weight:700;font-size:13.5px;margin:0}
   .bForm .ok{font-weight:800;color:#2F7D4F;margin:0}.bForm .call{display:inline-flex;justify-content:center;min-height:46px;align-items:center;border-radius:14px;border:1px solid var(--line2);font-weight:800;color:var(--ink)}
   .aiBuild .gauge{margin-top:30px}
+  .aiMem{align-self:stretch;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border:1px dashed var(--line2);border-radius:16px;padding:10px 14px;font-size:13.5px;color:var(--secondary);animation:gsaIn .35s var(--ease) both}.aiMem span{display:inline-flex;align-items:center;gap:6px}.aiMem .gsi{width:16px;height:16px;margin:0;color:var(--acc)}
+  .aiMem button{border:1px solid var(--line2);background:#fff;border-radius:999px;padding:8px 13px;font:700 13px var(--sans);cursor:pointer;color:var(--ink)}.aiMem button.lnk{border:0;background:none;text-decoration:underline;color:var(--muted);padding:0}
+  .aiBack{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px}.aiBack .go{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:rgba(255,255,255,.9);border-radius:999px;padding:10px 16px;font:700 14px var(--sans);color:var(--ink);cursor:pointer;box-shadow:var(--sh-s)}.aiBack .go .gsi{margin:0;width:17px;height:17px;color:var(--acc)}.aiBack .x{border:0;background:none;font-size:20px;color:var(--muted);cursor:pointer;width:32px;height:32px}
+  .hero-ai.chatting .aiBack{display:none}
   .bEff{display:inline-flex;align-items:center;gap:3px;margin-top:7px;font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.bEff i{width:14px;height:5px;border-radius:3px;background:#E7E4DC}.bEff i:last-of-type{margin-right:6px}
   .bEff.e1 i:nth-child(1),.bEff.e2 i:nth-child(-n+2),.bEff.e3 i{background:linear-gradient(90deg,#E61E4D,#FF9A6B)}
   .envTot{margin:16px 0 4px}.envBar{height:10px;border-radius:999px;background:#EFEDE7;overflow:hidden}.envBar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#E61E4D,#FF9A6B);transition:width .35s var(--ease)}.envTot p{margin:10px 0 0;font-size:14px;color:var(--secondary)}.envTot b{color:var(--ink)}
@@ -624,26 +656,56 @@
           </button>
         </div>
       </form>
-      <p class="aiFoot">Sites internet, logiciels sur-mesure, automatisations et agents IA, inventés pour vous, partout en France — souvent bien plus accessibles que vous ne l’imaginez. <a href="tel:+33782298559">07 82 29 85 59</a></p>
+      <p class="aiFoot">Sites internet, logiciels sur-mesure, automatisations et agents IA, inventés pour vous, partout en France — <a href="pourquoi-accessible.html" style="border:0;font-weight:600;color:inherit;text-decoration:underline">souvent bien plus accessibles</a> que vous ne l’imaginez. <a href="tel:+33782298559">07 82 29 85 59</a></p>
     </div>
   </section>
   <div class="aiDevise"><div class="wrap"><span class="lab">Notre devise</span><b>Nous gagnons de l’argent uniquement si vous en gagnez.</b></div></div>
 
-  <!-- ══ CE QU'ON CONSTRUIT (épuré) ══ -->
+  <!-- ══ CE QU'ON CONSTRUIT : bento de mini-interfaces ══ -->
   <section class="sec hx" id="exemples"><div class="wrap">
-    <div class="hxHead reveal"><div class="kicker">Ce qu’on construit</div><h2>Des solutions qui travaillent pour vous.</h2></div>
-    <div class="hxTiles">
-      <a class="hxTile reveal" href="services/agent-vocal-ia.html"><span class="hxIc"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg></span><b>Un agent qui décroche</b><span>Il répond, prend le rendez-vous et vous résume l’appel.</span></a>
-      <a class="hxTile reveal" href="services/automatisation-processus.html"><span class="hxIc"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span><b>L’IA qui lit vos documents</b><span>Factures, bons, formulaires : saisis et vérifiés tout seuls.</span></a>
-      <a class="hxTile reveal" href="services/logiciel-sur-mesure.html"><span class="hxIc"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 13h3M8 16h6M15 13h1"/></svg></span><b>Un logiciel taillé pour vous</b><span>Vos règles, votre métier, vos outils enfin branchés.</span></a>
-      <a class="hxTile reveal" href="services/creation-site-internet.html"><span class="hxIc"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.4 3.6 5.3 3.6 8.5s-1.1 6.1-3.6 8.5c-2.5-2.4-3.6-5.3-3.6-8.5S9.5 5.9 12 3.5z"/></svg></span><b>Un site qui fait venir des clients</b><span>Rapide, trouvé sur Google, pensé pour convertir.</span></a>
+    <div class="hxHead reveal"><div class="kicker">Ce qu’on construit</div><h2>Des solutions qui travaillent <i>pendant que vous travaillez</i>.</h2></div>
+    <div class="bento">
+      <a class="bx bxCall reveal" href="services/agent-vocal-ia.html" aria-label="Agent vocal IA">
+        <div class="bxTxt"><span class="bxK">Agent vocal IA</span><h3>Plus aucun appel perdu.</h3><p>Il décroche, comprend, prend le rendez-vous et vous envoie le résumé.</p></div>
+        <div class="ui uiCall" aria-hidden="true">
+          <div class="ring"><span class="pulse"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg></span><div><b>Appel entrant</b><small>06 •• •• •• 42 · 12:47</small></div></div>
+          <p class="bb c">Bonjour, je voudrais un rendez-vous jeudi.</p>
+          <p class="bb a">Bien sûr ! Jeudi, j’ai 10 h ou 14 h 30.</p>
+          <p class="bb c">14 h 30, parfait.</p>
+          <p class="done"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Ajouté à l’agenda · SMS de confirmation envoyé</p>
+        </div>
+      </a>
+      <a class="bx bxDoc reveal" href="demos/#facture" aria-label="Lecture de documents par IA">
+        <div class="bxTxt"><span class="bxK">Documents</span><h3>Vos factures se saisissent seules.</h3></div>
+        <div class="ui uiDoc" aria-hidden="true">
+          <div class="doc"><span class="scan"></span><i style="width:62%"></i><i style="width:40%"></i><i style="width:78%"></i><i style="width:55%"></i><i style="width:70%"></i></div>
+          <div class="fields"><span>Fournisseur <b>✓</b></span><span>TVA 20 % <b>✓</b></span><span>Total 348,00 € <b>✓</b></span></div>
+        </div>
+      </a>
+      <a class="bx bxApp reveal" href="services/logiciel-sur-mesure.html" aria-label="Logiciel sur-mesure">
+        <div class="bxTxt"><span class="bxK">Logiciel sur-mesure</span><h3>Votre métier, vos règles.</h3></div>
+        <div class="ui uiApp" aria-hidden="true">
+          <div class="appTop"><i></i><i></i><i></i></div>
+          <div class="kan"><div><small>Demandes</small><span></span><span></span></div><div><small>Devis</small><span class="hot"></span></div><div><small>Signés</small><span></span><span></span><span></span></div></div>
+        </div>
+      </a>
+      <a class="bx bxSeo reveal" href="services/creation-site-internet.html" aria-label="Site internet et référencement">
+        <div class="bxTxt"><span class="bxK">Site & Google</span><h3>Trouvé. Choisi. Appelé.</h3><p>Un site rapide et une fiche Google qui transforment les recherches en appels.</p></div>
+        <div class="ui uiSeo" aria-hidden="true">
+          <div class="gbar"><span></span>votre métier près de moi</div>
+          <div class="gres"><b>Votre entreprise</b><small>★★★★★ · Ouvert · 5 min</small><div class="gbtn"><span><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg> Appeler</span><span>Itinéraire</span><span>Site</span></div></div>
+        </div>
+      </a>
+      <a class="bx bxDemo reveal" href="demos/">
+        <span class="bxK">En direct</span><h3>Testez maintenant.</h3><p>Lecture de facture, agent de réservation, réponse aux avis : de vraies démos, sans inscription.</p><span class="bxGo">Ouvrir les démos <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
     </div>
-    <ol class="hxSteps reveal">
-      <li><b>Décrivez</b><span>Votre besoin, en vrac, dans le chat.</span></li>
-      <li><b>Composez</b><span>Votre projet, face à votre budget.</span></li>
-      <li><b>On livre</b><span>Vite : nous construisons avec l’IA.</span></li>
+    <ol class="flow reveal">
+      <li><span>1</span><b>Décrivez</b><small>Votre besoin, en vrac, dans le chat.</small></li>
+      <li><span>2</span><b>Composez</b><small>Votre projet, face à votre budget.</small></li>
+      <li><span>3</span><b>On livre</b><small>Vite : nous construisons avec l’IA.</small></li>
     </ol>
-    <p class="hxGo reveal"><a class="btn" href="#heroAI">Décrire mon projet →</a><a class="hxAll" href="demos/">Tester les démos en direct</a><a class="hxAll" href="services/">Tous nos services</a></p>
+    <p class="hxGo reveal" style="justify-content:center"><a class="btn" href="#heroAI">Décrire mon projet →</a><a class="hxAll" href="services/">Tous nos services</a></p>
   </div></section>
 
 <!-- ACTUS:START (généré par zones/generate-actus.mjs) -->
@@ -655,7 +717,7 @@
       <a class="reveal" href="lab/actus/2026-09-30.html#anthropic-lance-claude-sonnet-5-5-plus-rapide-et-moins-coute"><small>IA</small><b>Anthropic lance Claude Sonnet 5.5, plus rapide et moins coûteux par tâche</b></a>
     </div>
     <div class="hxNl reveal"><form id="nlForm"><div><b>L’essentiel du lundi</b><span>Les actus de la semaine et l’action à mener, dans votre boîte mail. Désinscription en un clic.</span></div><input type="email" name="email" required placeholder="Votre e-mail professionnel" autocomplete="email" aria-label="Votre e-mail"><button type="submit">Je m’inscris</button><p class="nlMsg" role="status"></p></form><a class="hxAll" href="lab/actus/">Toutes les actus →</a></div>
-    <script>(function(){var f=document.getElementById('nlForm');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.nlMsg');b.disabled=true;fetch('/api/devis',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'newsletter',email:f.email.value,source:'accueil'})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j;});}).then(function(j){m.textContent=j.deja?'Vous êtes déjà inscrit, merci !':'Presque fini : confirmez votre inscription dans l’e-mail que nous venons d’envoyer.';f.email.value='';if(window.gtag)gtag('event','newsletter_signup');}).catch(function(j){b.disabled=false;m.textContent=(j&&j.message)||'L’inscription n’a pas abouti, réessayez.';});});})();</script>
+    <script>(function(){var f=document.getElementById('nlForm');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.nlMsg');b.disabled=true;fetch('/api/devis',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'newsletter',email:f.email.value,source:'accueil'})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j;});}).then(function(j){m.textContent=j.deja?'Vous êtes déjà inscrit, merci !':j.envoi===false?j.message:'Presque fini : confirmez votre inscription dans l’e-mail que nous venons d’envoyer (pensez à vérifier les courriers indésirables).';f.email.value='';if(window.gtag)gtag('event','newsletter_signup');}).catch(function(j){b.disabled=false;m.textContent=(j&&j.message)||'L’inscription n’a pas abouti, réessayez.';});});})();</script>
   </div></section>
   <!-- ACTUS:END -->
 
@@ -679,7 +741,7 @@
     <div class="hxHead center reveal"><h2>Les questions qu’on nous pose.</h2></div>
     <div class="faqH">
       <details class="reveal"><summary>Qu’est-ce qu’on peut automatiser dans une petite entreprise ?</summary><p>Tout ce qui se répète chaque semaine : devis, saisie des commandes, relances de factures et de devis, prises de rendez-vous, tri et classement de documents, reporting — et bien au-delà, avec des agents IA qui répondent, lisent et agissent pour vous.</p></details>
-      <details class="reveal"><summary>Combien ça coûte ?</summary><p>Tout est sur devis, gratuit et sans engagement. Indiquez votre budget dans le chat : vous voyez tout de suite ce qui tient dedans. Parce que nous construisons avec l’IA, c’est souvent bien plus accessible qu’on ne l’imagine.</p></details>
+      <details class="reveal"><summary>Combien ça coûte ?</summary><p>Tout est sur devis, gratuit et sans engagement. Indiquez votre budget dans le chat : vous voyez tout de suite ce qui tient dedans. Parce que nous construisons avec l’IA, c’est souvent bien plus accessible qu’on ne l’imagine. <a href="pourquoi-accessible.html">Voici pourquoi →</a></p></details>
       <details class="reveal"><summary>Faut-il changer mes logiciels actuels ?</summary><p>Rarement. On se branche sur ce que vous utilisez déjà (agenda, logiciel métier, tableur, messagerie, ERP) et on automatise les échanges entre eux. Le but est de retirer des tâches, pas d’ajouter un outil à apprendre.</p></details>
       <details class="reveal"><summary>Où êtes-vous basés ?</summary><p>Notre agence est à Saint-Jean-de-Védas, aux portes de Montpellier, et Titouan est à Mayotte. Nous travaillons avec les entreprises de toute la France et de l’outre-mer, en visio ou sur place quand c’est utile.</p></details>
     </div>
@@ -753,7 +815,7 @@
     <a href="plan-du-site.html">Plan du site</a>
     <a href="idees/">Laboratoire d’idées</a>
     <a href="lab/coulisses.html">Comment ce site fonctionne</a>
-    <a href="demos/">Démos en direct</a><a href="admin/" rel="nofollow">Espace pro</a><a href="confidentialite.html">Confidentialité</a>
+    <a href="demos/">Démos en direct</a><a href="pourquoi-accessible.html">Pourquoi c’est accessible</a><a href="admin/" rel="nofollow">Espace pro</a><a href="confidentialite.html">Confidentialité</a>
   </nav>
 </div></footer>
 <script>

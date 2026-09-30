@@ -64,6 +64,11 @@
       "source": "/outils/prix-site-internet.html",
       "destination": "/outils/configurateur-site-internet.html",
       "permanent": true
+    },
+    {
+      "source": "/mayotte/offre-site-web.html",
+      "destination": "/mayotte/site-internet-mayotte.html",
+      "permanent": true
     }
   ],
   "headers": [

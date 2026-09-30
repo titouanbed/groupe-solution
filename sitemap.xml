@@ -1658,19 +1658,19 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/outils/calculateur-automatisation.html</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.groupsolution.fr/outils/configurateur-site-internet.html</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.groupsolution.fr/outils/test-visibilite-google.html</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -2054,6 +2054,12 @@
   </url>
   <url>
     <loc>https://www.groupsolution.fr/polynesie-francaise/secteurs/tourisme-hebergement.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/pourquoi-accessible.html</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

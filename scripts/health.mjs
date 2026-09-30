@@ -26,7 +26,7 @@ const a = await post('/api/assistant', { q: 'Bonjour, que faites-vous ?' });
 console.log(a.s === 200 ? '✓ Assistant IA actif (ANTHROPIC_API_KEY OK)' : a.s === 503 ? 'ℹ️ Assistant IA : ANTHROPIC_API_KEY absente ou invalide → mode recherche gratuit' : `⚠️ Assistant IA : HTTP ${a.s} ${JSON.stringify(a.j)}`);
 // Formulaire : le pot de miel répond 200 sans envoyer d'e-mail si Brevo est configuré ; 503 sinon.
 const l = await post('/api/lead', { _gotcha: 'controle-automatique' });
-console.log(l.s === 200 ? '✓ Formulaires via Brevo configurés (BREVO_API_KEY + LEAD_FROM)' : l.s === 503 ? 'ℹ️ Formulaires : BREVO_API_KEY ou LEAD_FROM manquante → repli Formspree (50 demandes/mois)' : `⚠️ Formulaires : HTTP ${l.s}`);
+console.log(l.s === 200 ? '✓ Formulaires : API joignable (les envois sont suivis dans le tableau de bord → Santé)' : `⚠️ Formulaires : HTTP ${l.s}`);
 // Votes « Le pouls » : 200 = base Upstash connectée, 503 = pas encore connectée (widget masqué).
 const v = await fetch(SITE + '/api/vote?ids=actu-controle-auto').then(r => r.status).catch(() => 0);
 console.log(v === 200 ? '✓ Votes « Le pouls » actifs (base Upstash connectée)' : v === 503 ? 'ℹ️ Votes : base Upstash non connectée → widget masqué' : `⚠️ Votes : HTTP ${v}`);
