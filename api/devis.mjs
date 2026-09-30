@@ -18,6 +18,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import { randomBytes, createHash, timingSafeEqual } from "node:crypto";
 import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
 import { sendMail, layout, esc, OWNER, MAIL_OK } from "./_mail.mjs";
+import { tagConv, listConvs, getConv, SID_RE } from "./_conv.mjs";
+import { runRadar, listRadar, setRadarStatus } from "./_radar.mjs";
 
 const MODEL = process.env.CONCEPT_MODEL || process.env.ASSISTANT_MODEL || "claude-opus-5-5";
 const SITE = "https://www.groupsolution.fr";
@@ -67,16 +69,33 @@ async function grille() {
   return { tjm: num(g.tjm, 0, 5000), minimum: num(g.minimum, 0, 100000), jauge: g.jauge !== false && num(g.tjm, 0, 5000) > 0, note: str(g.note, 500) };
 }
 
+// Passage du radar + e-mail récapitulatif à Titouan s'il y a de nouvelles entreprises à contacter.
+async function radarEtResume() {
+  const r = await runRadar({ max: 5 });
+  if (r.retenues) await sendMail({ to: OWNER(), subject: `🎯 Radar : ${r.retenues} nouvelle(s) entreprise(s) à contacter`,
+    html: layout("Nouvelles entreprises à fort potentiel", `<p>${r.retenues} fiche(s) prête(s), avec une idée sur-mesure et un e-mail rédigé :</p><ul>${r.nouvelles.map(n => `<li>${esc(n)}</li>`).join("")}</ul><p><a href="${SITE}/admin/#radar">Ouvrir le radar →</a></p><p style="font-size:12px;color:#77736A">${r.annonces} annonces BODACC lues, ${r.candidats} candidates, ${r.analyses} analysées.</p>`) });
+  return r;
+}
+
 export default async function handler(req, res) {
   if (!UPSTASH) return send(res, 503, { configured: false });
   const admin = isAdmin(req);
   try {
     if (req.method === "GET") {
       const q = new URL(req.url, "http://x").searchParams, A = q.get("admin"), id = q.get("id") || "";
+      // Tâche planifiée Vercel (chaque matin) : en-tête Authorization: Bearer CRON_SECRET.
+      if (q.get("cron") === "radar") {
+        const cs = process.env.CRON_SECRET || "", h = String(req.headers.authorization || "");
+        if (!(cs.length >= 16 && h === "Bearer " + cs) && !admin) return send(res, 401, { error: "unauthorized" });
+        return send(res, 200, await radarEtResume());
+      }
       if (!A) return send(res, 400, { error: "id" });
       if (!admin) return send(res, 401, { error: "unauthorized", adminConfigured: (process.env.ADMIN_TOKEN || "").length >= 16 });
       if (A === "settings") return send(res, 200, { grille: await get("settings:grille") || {}, mail: MAIL_OK() });
       if (A === "demande" && ID_RE.test(id)) return send(res, 200, { demande: await get("demande:" + id) });
+      if (A === "radar") return send(res, 200, { radar: await listRadar(150), cron: (process.env.CRON_SECRET || "").length >= 16 });
+      if (A === "convs") return send(res, 200, { convs: await listConvs(120) });
+      if (A === "conv") { const sid = q.get("sid") || ""; return send(res, 200, { conv: SID_RE.test(sid) ? await getConv(sid) : null }); }
       if (A === "list") {
         const [ids] = await redis([["LRANGE", "demandes:list", 0, 149]]);
         const all = (ids || []).length ? await redis(ids.map(i => ["GET", "demande:" + i])) : [];
@@ -89,6 +108,11 @@ export default async function handler(req, res) {
     if (req.method !== "POST") return send(res, 405, { error: "method_not_allowed" });
     const b = readBody(req), action = String(b.action || "");
 
+    if (action === "radar_run" || action === "radar_status") {
+      if (!admin) return send(res, 401, { error: "unauthorized" });
+      if (action === "radar_status") return send(res, (await setRadarStatus(String(b.id || ""), String(b.statut || ""))) ? 200 : 400, { ok: true });
+      return send(res, 200, await radarEtResume());
+    }
     if (action === "settings") {
       if (!admin) return send(res, 401, { error: "unauthorized" });
       const g = b.grille || {};
@@ -121,7 +145,9 @@ export default async function handler(req, res) {
       if (!briques.length) return send(res, 204, {});
       const id = newId();
       const rec = { id, date: new Date().toISOString(), titre: str(out.titre, 120), resume: str(out.resume, 600), questions: (out.questions || []).slice(0, 3).map(x => str(x, 200)), briques, budget, delai, conversation: conv, besoin: extra, grille: G };
+      rec.sid = SID_RE.test(b.sid || "") ? b.sid : null;
       await redis([["SET", "estimation:" + id, JSON.stringify(rec), "EX", 86400]]);
+      await tagConv(rec.sid, { evenement: `Estimation de devis : ${rec.titre} (budget ${budget.label})` });
       // Seule la part de chaque brique dans le budget du visiteur est renvoyée (arrondie), jamais un montant.
       const gauge = G.jauge && budgetMax > 0;
       return send(res, 200, { id, titre: rec.titre, resume: rec.resume, questions: rec.questions, budget: budget.label, jauge: gauge, minimumPart: gauge && G.minimum ? Math.round(G.minimum / budgetMax * 100) : 0,
@@ -142,7 +168,8 @@ export default async function handler(req, res) {
       const total = choisies.reduce((a, x) => a + x.cout, 0), jours = choisies.reduce((a, x) => a + x.jours, 0);
       const part = est.budget.max && total ? Math.round(total / est.budget.max * 100) : null;
       const message = str(b.message, 1000);
-      const dem = { id: newId(), date: new Date().toISOString(), titre: est.titre, resume: est.resume, questions: est.questions, contact, message, budget: est.budget, delai: est.delai,
+      await tagConv(est.sid, { evenement: `Demande de devis envoyée : ${est.titre}`, contact });
+      const dem = { id: newId(), sid: est.sid || null, date: new Date().toISOString(), titre: est.titre, resume: est.resume, questions: est.questions, contact, message, budget: est.budget, delai: est.delai,
         choisies, ecartees, estimation: { jours, choisi: total, part, tjm: est.grille.tjm }, conversation: est.conversation, besoin: est.besoin };
       await redis([["SET", "demande:" + dem.id, JSON.stringify(dem), "EX", 180 * 86400], ["LPUSH", "demandes:list", dem.id], ["LTRIM", "demandes:list", 0, 499], ["DEL", "estimation:" + id]]);
       const who = [contact.nom, contact.entreprise].filter(Boolean).join(" · ") || "Visiteur";

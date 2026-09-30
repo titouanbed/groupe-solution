@@ -13,6 +13,7 @@ import { SITE_KNOWLEDGE, COMMUNE_COUNT } from "./_knowledge.mjs";
 import { allow, sameSite, readBody } from "./_guard.mjs";
 import { registreListe, fetchPage, analyse } from "./_entreprise-lib.mjs";
 import { RUPTURE } from "./_innovation.mjs";
+import { logTurn } from "./_conv.mjs";
 
 const MODEL = process.env.ASSISTANT_MODEL || "claude-opus-5-5";
 const MAX_Q = 800, MAX_CTX = 8, MAX_HISTORY = 8;
@@ -155,7 +156,9 @@ export default async function handler(req, res) {
       st ? `Site ${st.url} : « ${st.titre} », ${st.https ? "HTTPS" : "sans HTTPS"}, ${st.mobile ? "adapté mobile" : "non adapté mobile"}, ${st.reservation_ou_devis ? "contact/réservation en ligne" : "pas de réservation ni devis en ligne"}${st.reseaux.length ? ", réseaux : " + st.reseaux.join(", ") : ""}${st.cms ? ", " + st.cms : ""}.` : ""].filter(Boolean).join("\n") : null;
     const ruptures = found.ruptures?.length ? found.ruptures : null;
     const memo2 = [memo, ruptures ? "Idées proposées au visiteur : " + ruptures.map(x => x.nom + " (" + x.promesse + ")").join(" ; ") : ""].filter(Boolean).join("\n") || null;
-    return send(res, 200, { answer, fiche: e || st ? { entreprise: e || null, site: st || null } : null, ruptures, memo: memo2 });
+    const fiche = e || st ? { entreprise: e || null, site: st || null } : null;
+    await logTurn(str(body?.sid, 40), { q, answer, page, mode: accueil ? "accueil" : "widget", fiche, ruptures });
+    return send(res, 200, { answer, fiche, ruptures, memo: memo2 });
   } catch (err) {
     if (err instanceof Anthropic.RateLimitError) return send(res, 429, { error: "upstream_rate_limited" });
     if (err instanceof Anthropic.AuthenticationError) { console.error("assistant: clé API invalide"); return send(res, 503, { configured: false }); }

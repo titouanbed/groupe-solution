@@ -12,6 +12,7 @@
   var hist = [], busy = false, ctaShown = false, ctaMax = false, actsShown = false, made = { plan: 0, maquette: 0 };
   var asked = 0; try { asked = +sessionStorage.getItem('gsHomeQ') || 0; } catch (e) {}
   function ga(e, p) { if (window.gtag) window.gtag('event', e, p || {}); }
+  var sid = function () { try { return sessionStorage.getItem('gsSid') || ''; } catch (e) { return ''; } };
   var I = function (n, c) { return window.GSIcon ? window.GSIcon(n, c) : ''; };
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function md(t) { return window.GSAssistant && window.GSAssistant.md ? window.GSAssistant.md(t) : esc(t).replace(/\n/g, '<br>'); }
@@ -69,7 +70,7 @@
       this.replaceWith(f); f.querySelector('input').focus();
       f.addEventListener('submit', function (e) {
         e.preventDefault();
-        var fd = new FormData(f); fd.append('page', '/'); fd.append('source', 'accueil-ia');
+        var fd = new FormData(f); fd.append('page', '/'); fd.append('source', 'accueil-ia'); fd.append('sid', sid());
         fd.append('conversation', hist.map(function (m) { return (m.role === 'user' ? 'Visiteur : ' : 'Assistant : ') + m.content; }).join('\n').slice(-3500));
         f.querySelector('button').textContent = 'Envoi…';
         fetch('https://formspree.io/f/mzebrvjg', { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
@@ -112,7 +113,7 @@
       if (!pick.budget && !montant) { err.textContent = 'Choisissez une fourchette de budget (ou « Je ne sais pas encore »).'; return; }
       btn.disabled = true; btn.textContent = 'Je compose votre projet…';
       ga('home_ai_devis_start', { budget: pick.budget || 'perso' });
-      fetch('/api/devis', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'estimer', conversation: hist.slice(-12), besoin: d.querySelector('[name=besoin]').value, budget: pick.budget, budget_montant: montant, delai: pick.delai }) })
+      fetch('/api/devis', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'estimer', sid: sid(), conversation: hist.slice(-12), besoin: d.querySelector('[name=besoin]').value, budget: pick.budget, budget_montant: montant, delai: pick.delai }) })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.briques) throw j; return j; }); })
         .then(function (j) { d.remove(); builder(j); })
         .catch(function (j) { btn.disabled = false; btn.textContent = 'Réessayer'; err.textContent = (j && j.message) || 'Je n’ai pas réussi à composer le projet. Appelez Titouan au ' + TEL + '.'; });
@@ -193,7 +194,7 @@
     busy = true; send.disabled = true; made[kind]++; if (btn) btn.disabled = true;
     ga('home_ai_concept', { kind: kind });
     var wait = add('b', '<span class="aiGen">' + (kind === 'plan' ? 'Notre IA imagine votre plan d’innovation' : 'Notre IA esquisse votre futur site') + '<span class="aiDotsT"><i></i><i></i><i></i></span></span>');
-    fetch('/api/concept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: kind, conversation: hist.slice(-8), zone: (window.GSPerso && window.GSPerso.placeName) || '' }) })
+    fetch('/api/concept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: kind, sid: sid(), conversation: hist.slice(-8), zone: (window.GSPerso && window.GSPerso.placeName) || '' }) })
       .then(function (r) { if (r.status !== 200) throw r.status; return r.json(); })
       .then(function (d) { wait.remove(); if (kind === 'plan') renderPlan(d.plan, d.publishId); else renderMaq(d.maquette); cta(); })
       .catch(function () { wait.remove(); add('b', md('Je n’arrive pas à le générer pour l’instant. Le plus simple : en parler 10 minutes avec Titouan au [' + TEL + '](' + TEL_HREF + ').')); made[kind]--; if (btn) btn.disabled = false; })
@@ -321,6 +322,7 @@
       add('b', md(r.answer.replace(/\[([^\]]+)\]\((?!tel:|mailto:)[^)]*\)/g, '$1')));
       hist.push({ role: 'assistant', content: r.answer }); hist = hist.slice(-16);
       var userTurns = hist.filter(function (m) { return m.role === 'user'; }).length;
+      if (userTurns === 1) { var nt = el('p', 'aiNote'); nt.innerHTML = 'Assistant automatique · échanges conservés 30 jours pour mieux vous répondre, jamais revendus · <a href="/confidentialite.html">confidentialité</a>'; log.appendChild(nt); }
       if (userTurns >= 1) acts();
       if (userTurns >= 2 || /appel|rappel|devis|10 minutes|07 82/i.test(r.answer)) cta();
     }).catch(function () {

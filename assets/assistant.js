@@ -29,6 +29,8 @@
     };
   }
   var TEL = '07 82 29 85 59', TEL_HREF = 'tel:+33782298559', RDV = '/echanger.html#rendez-vous', FORM = 'https://formspree.io/f/mzebrvjg';
+  // Identifiant de conversation tiré au hasard (onglet en cours) : relie les échanges d'une même visite dans /admin/.
+  var SID = (function () { try { var v = sessionStorage.getItem('gsSid'); if (!v) { var a = new Uint8Array(16); crypto.getRandomValues(a); v = Array.prototype.map.call(a, function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); sessionStorage.setItem('gsSid', v); } return v; } catch (e) { return ''; } })();
   var store = { get: function (k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } }, set: function (k, v) { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
   // Icônes (trait, currentColor) — même famille que /assets/icons.js.
   var IC = { telephone: '<path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/>', envoyer: '<path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/>', etincelle: '<path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7z"/>', check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>' };
@@ -172,7 +174,7 @@
     '<div class="msgs" aria-live="polite"></div>' +
     '<form class="ask"><input name="q" placeholder="Votre question…" autocomplete="off" maxlength="600" aria-label="Votre question" /><button type="submit" aria-label="Envoyer">' + ico('envoyer').replace('margin-right:6px', 'margin:0') + '</button></form>' +
     '<div class="cta"><a class="tel" href="' + TEL_HREF + '">' + ico('telephone') + 'Appeler</a><button type="button" class="cbk">Être rappelé</button><a href="' + RDV + '">Visio 10 min</a></div>' +
-    '<div class="note">Réponses automatiques, à vérifier avec nous. Vos questions ne sont pas conservées ; si vous demandez un rappel, la conversation est jointe à votre demande.</div>';
+    '<div class="note">Réponses automatiques, à vérifier avec nous. Les échanges sont conservés 30 jours pour mieux vous répondre, jamais revendus. <a href="/confidentialite.html">En savoir plus</a></div>';
   document.body.appendChild(panel);
   var msgs = panel.querySelector('.msgs'), form = panel.querySelector('form.ask'), input = form.q;
   var hist = store.get('gsA-h') || [], mode = store.get('gsA-mode') || 'api';
@@ -203,7 +205,7 @@
       var ctx = res.slice(0, 6).map(function (r) { return { u: r.c.u, t: r.c.t, h: r.c.h, x: r.c.x }; });
       var done = function (answer) { typing.remove(); add('bot', md(answer)); asked++; if (asked === 2) nudge(); else if (asked === 4) callback(); hist.push({ role: 'user', content: q }, { role: 'assistant', content: answer }); hist = hist.slice(-16); store.set('gsA-h', hist); };
       if (mode === 'local') return done(localAnswer(q, res));
-      fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, history: hist.slice(-8) }) })
+      fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, sid: SID, history: hist.slice(-8) }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
         .then(function (d) { done(d.answer || localAnswer(q, res)); })
         .catch(function () { done(localAnswer(q, res)); });
@@ -215,7 +217,7 @@
     var f = d.querySelector('form');
     f.addEventListener('submit', function (e) {
       e.preventDefault();
-      var fd = new FormData(f); fd.append('page', location.pathname); fd.append('source', 'assistant');
+      var fd = new FormData(f); fd.append('page', location.pathname); fd.append('source', 'assistant'); fd.append('sid', SID);
       fd.append('conversation', hist.map(function (m) { return (m.role === 'user' ? 'Visiteur : ' : 'Assistant : ') + m.content; }).join('\n').slice(-3000));
       f.querySelector('button').textContent = 'Envoi…';
       fetch(FORM, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }).then(function (r) {
@@ -243,7 +245,7 @@
     // Accueil + IA active : pas besoin de l'index du site (1,3 Mo) — l'IA connaît le plan du site.
     // L'index n'est chargé qu'en mode secours (sans IA ou en cas d'erreur).
     if (opts && opts.mode === 'accueil' && mode !== 'local') {
-      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: [], history: (history || []).slice(-10), mode: 'accueil' }) })
+      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: [], sid: SID, history: (history || []).slice(-10), mode: 'accueil' }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
         .then(function (d) { if (!d.answer) throw 0; return { answer: d.answer, fiche: d.fiche || null, ruptures: d.ruptures || null, memo: d.memo || null }; })
         .catch(function () { return loadIndex().then(function () { return { answer: localAnswer(q, search(q, 8)), local: true }; }); });
@@ -252,13 +254,13 @@
       var res = search(q, 8);
       var ctx = res.slice(0, 6).map(function (r) { return { u: r.c.u, t: r.c.t, h: r.c.h, x: r.c.x }; });
       if (mode === 'local') return { answer: localAnswer(q, res), local: true };
-      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, history: (history || []).slice(-10), mode: (opts && opts.mode) || 'widget' }) })
+      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, sid: SID, history: (history || []).slice(-10), mode: (opts && opts.mode) || 'widget' }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
         .then(function (d) { return { answer: d.answer || localAnswer(q, res), fiche: d.fiche || null, memo: d.memo || null }; })
         .catch(function () { return { answer: localAnswer(q, res), local: true }; });
     });
   }
-  window.GSAssistant = { open: open, callback: function () { open(); callback(); }, ask: function (q) { open(); ask(q); }, reply: reply, md: md };
+  window.GSAssistant = { sid: SID, open: open, callback: function () { open(); callback(); }, ask: function (q) { open(); ask(q); }, reply: reply, md: md };
   document.dispatchEvent(new Event('gs-assistant-ready'));
   panel.querySelector('.x').addEventListener('click', close);
   panel.querySelector('.cbk').addEventListener('click', callback);

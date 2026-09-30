@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="robots" content="noindex,nofollow" />
 <meta name="referrer" content="no-referrer" />
-<title>Demandes de devis | Groupe Solution</title>
+<title>Espace Groupe Solution</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <style>
 :root{--ink:#171613;--sec:#57534B;--muted:#8A857B;--line:#E7E4DC;--paper:#F7F6F3;--acc:#E61E4D;--ok:#2F7D4F}
@@ -20,18 +20,23 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
 input,textarea,select{width:100%;font:15px inherit;font-family:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}textarea{min-height:70px;resize:vertical}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.g4{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:0 10px}
 .line{border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;background:#FCFBF8}
-.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;background:var(--ink);color:#fff;font-size:14.5px}.btn.acc{background:var(--acc)}.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn.sm{padding:7px 12px;font-size:13px}
+.btn{text-decoration:none;display:inline-flex;align-items:center;border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;background:var(--ink);color:#fff;font-size:14.5px}.btn.acc{background:var(--acc)}.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn.sm{padding:7px 12px;font-size:13px}
 .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .tot{text-align:right;font-weight:800;font-size:17px;margin-top:8px}
 .note{font-size:13px;color:var(--muted)}.err{color:var(--acc);font-weight:700}
 .brief ul,.brief ol{margin:4px 0 8px 1.1em;padding:0}
+.cv{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto}.cvL{padding:12px 14px;cursor:pointer;min-width:0}.cvL b{display:block;font-size:14.5px}.cvL span{display:block;color:var(--sec);font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cvR{padding:12px 14px;display:flex;gap:6px;align-items:center}.cvR small{color:var(--muted);font-size:12px;white-space:nowrap}.dot{width:9px;height:9px;border-radius:50%;display:inline-block}.dot.ok{background:var(--ok)}.dot.ev{background:var(--acc)}
+.cvD{grid-column:1/-1;padding:0 14px}.cvD:not(:empty){padding:4px 14px 14px;border-top:1px solid var(--line)}.cvC{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.tr{display:flex;flex-direction:column;gap:8px;margin:10px 0}.tr .m{max-width:88%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5}.tr .m.u{align-self:flex-end;background:var(--ink);color:#fff}.tr .m.a{align-self:flex-start;background:var(--paper);border:1px solid var(--line)}
+.mailtxt{white-space:pre-wrap;font:13.5px/1.55 inherit;font-family:inherit;background:var(--paper);border-radius:12px;padding:12px;margin:8px 0}
 a{color:var(--acc)}
 @media(max-width:640px){.g2,.g4{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header><b>Demandes de devis</b><span><a href="/">Site</a> · <a href="#" id="out">Déconnexion</a></span></header>
+  <header><b>Espace Groupe Solution</b><span><a href="/">Site</a> · <a href="#" id="out">Déconnexion</a></span></header>
   <div id="login" class="card" hidden>
     <p><b>Connexion</b></p>
     <p class="note">Saisissez le code d’accès défini dans Vercel (variable <code>ADMIN_TOKEN</code>, 16 caractères minimum). Il reste sur cet appareil.</p>
@@ -39,7 +44,7 @@ a{color:var(--acc)}
     <div class="bar"><button class="btn" id="in">Se connecter</button></div><p class="err" id="lerr"></p>
   </div>
   <div id="main" hidden>
-    <nav><button data-t="demandes" class="on">Demandes</button><button data-t="settings">Ma grille privée</button></nav>
+    <nav><button data-t="demandes" class="on">Demandes</button><button data-t="convs">Conversations</button><button data-t="radar">Radar</button><button data-t="settings">Ma grille privée</button></nav>
     <div id="view"></div>
   </div>
 </div>
@@ -59,12 +64,12 @@ a{color:var(--acc)}
   $('#out').onclick = function (e) { e.preventDefault(); try { localStorage.removeItem(TK); } catch (e2) {} token = ''; showLogin(); };
   [].forEach.call(document.querySelectorAll('nav button'), function (b) { b.onclick = function () { tab(b.getAttribute('data-t')); }; });
   var G = {}, MAIL = false;
-  function tab(t) { [].forEach.call(document.querySelectorAll('nav button'), function (b) { b.classList.toggle('on', b.getAttribute('data-t') === t); }); t === 'settings' ? settings() : list(); }
+  function tab(t) { [].forEach.call(document.querySelectorAll('nav button'), function (b) { b.classList.toggle('on', b.getAttribute('data-t') === t); }); t === 'settings' ? settings() : t === 'convs' ? convs() : t === 'radar' ? radar() : list(); }
   function boot() {
     if (!token) return showLogin();
     api('?admin=settings').then(function (j) {
       G = j.grille || {}; MAIL = j.mail; $('#login').hidden = true; $('#main').hidden = false;
-      var m = location.hash.match(/demande=([a-f0-9]{32})/); list(m && m[1]);
+      var m = location.hash.match(/demande=([a-f0-9]{32})/); if (/radar/.test(location.hash)) tab('radar'); else list(m && m[1]);
       if (!G.tjm) $('#view').insertAdjacentHTML('afterbegin', '<div class="card"><b>À régler une fois :</b> votre taux journalier dans « Ma grille privée ». Il sert à calculer, sans jamais l’afficher au visiteur, la jauge « ce qui tient dans votre budget ».</div>');
     }).catch(function () {});
   }
@@ -81,6 +86,7 @@ a{color:var(--acc)}
       var d = r.demande, box = $('#d' + id); if (!d || !box) return;
       function li(a) { return a.map(function (x) { return '<li><b>' + esc(x.titre) + '</b> <small>(' + esc(x.niveau) + (x.recurrent ? ', mensuel' : '') + ' · ' + x.jours + ' j' + (x.cout ? ' · ' + eur(x.cout) : '') + ')</small><br>' + esc(x.detail) + '</li>'; }).join(''); }
       box.innerHTML = '<p>' + esc(d.resume) + '</p>' + (d.message ? '<p><b>Message :</b> ' + esc(d.message) + '</p>' : '') + '<p><b>Estimation interne :</b> ' + d.estimation.jours + ' j' + (d.estimation.choisi ? ' ≈ ' + eur(d.estimation.choisi) : '') + (d.estimation.part != null ? ' (' + d.estimation.part + ' % de son budget)' : '') + '</p><b>Retenu</b><ul>' + li(d.choisies) + '</ul>' + (d.ecartees.length ? '<b>Écarté</b><ul>' + li(d.ecartees) + '</ul>' : '') + '<b>À préciser</b><ul>' + d.questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul><details><summary>Conversation</summary><pre style="white-space:pre-wrap;font-size:12px">' + esc(d.conversation) + '\n' + esc(d.besoin) + '</pre></details>';
+      var tc = box.querySelector('.toConv'); if (tc) tc.onclick = function (e) { e.preventDefault(); tab('convs'); };
       box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }).catch(function () {});
   }
@@ -92,6 +98,50 @@ a{color:var(--acc)}
       '<label>Note pour vous</label><textarea id="g_note">' + esc(G.note || '') + '</textarea>' +
       '<div class="bar"><button class="btn" id="gs">Enregistrer</button></div><p class="note" id="gm"></p></div>';
     $('#gs').onclick = function () { api('', { action: 'settings', grille: { tjm: $('#g_tjm').value, minimum: $('#g_min').value, jauge: $('#g_j').checked, note: $('#g_note').value } }).then(function (r) { G = r.grille; $('#gm').textContent = 'Enregistré ✅'; }).catch(function () { $('#gm').textContent = 'Erreur'; }); };
+  }
+  function ago(d) { var m = Math.round((Date.now() - new Date(d)) / 60000); return m < 1 ? 'à l’instant' : m < 60 ? 'il y a ' + m + ' min' : m < 1440 ? 'il y a ' + Math.round(m / 60) + ' h' : new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }); }
+  function convs() {
+    $('#view').innerHTML = '<p class="note">Chargement…</p>';
+    api('?admin=convs').then(function (j) {
+      if (!j.convs.length) { $('#view').innerHTML = '<div class="card">Aucune conversation pour l’instant. Chaque échange avec l’assistant (accueil et bulle) apparaît ici, conservé 30 jours.</div>'; return; }
+      $('#view').innerHTML = '<p class="note">' + j.convs.length + ' conversation(s) · 30 derniers jours · touchez une ligne pour tout lire.</p>' + j.convs.map(function (c) {
+        var ct = c.contact || {}, has = ct.telephone || ct.email;
+        return '<div class="cv" data-s="' + c.sid + '"><div class="cvL"><b>' + esc(c.entreprise || (ct.nom || 'Visiteur')) + '</b><span>' + esc(c.premier) + '</span></div><div class="cvR"><small>' + ago(c.maj) + ' · ' + c.n + ' msg</small>' + (has ? '<span class="dot ok" title="Coordonnées disponibles"></span>' : '') + (c.evenements.length ? '<span class="dot ev" title="' + esc(c.evenements.join(' · ')) + '"></span>' : '') + '</div><div class="cvD"></div></div>';
+      }).join('');
+      [].forEach.call(document.querySelectorAll('.cv'), function (x) { x.querySelector('.cvL').onclick = function () { openConv(x); }; });
+    }).catch(function () {});
+  }
+  function openConv(x) {
+    var box = x.querySelector('.cvD'); if (box.innerHTML) { box.innerHTML = ''; return; }
+    api('?admin=conv&sid=' + x.getAttribute('data-s')).then(function (r) {
+      var c = r.conv; if (!c) return; var ct = c.contact || {};
+      box.innerHTML = (ct.telephone || ct.email || ct.nom ? '<div class="cvC"><b>' + esc(ct.nom || 'Contact') + '</b>' + (ct.telephone ? '<a class="btn sm acc" href="tel:' + esc(ct.telephone.replace(/\s/g, '')) + '">Appeler ' + esc(ct.telephone) + '</a>' : '') + (ct.email ? '<a class="btn sm ghost" href="mailto:' + esc(ct.email) + '">' + esc(ct.email) + '</a>' : '') + '</div>' : '') +
+        (c.entreprise ? '<p class="note">Entreprise analysée : <b>' + esc(c.entreprise.nom) + '</b>' + (c.entreprise.commune ? ' · ' + esc(c.entreprise.commune) : '') + (c.site ? ' · <a target="_blank" rel="noopener" href="' + esc(c.site) + '">site</a>' : '') + '</p>' : '') +
+        (c.idees && c.idees.length ? '<p class="note">Idées proposées : ' + esc(c.idees.join(' · ')) + '</p>' : '') +
+        (c.evenements && c.evenements.length ? '<p class="note">' + c.evenements.map(function (e) { return '• ' + esc(e.t) + ' <small>(' + ago(e.ts) + ')</small>'; }).join('<br>') + '</p>' : '') +
+        '<div class="tr">' + c.messages.map(function (m) { return '<div class="m ' + m.r + '">' + esc(m.t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>') + '</div>'; }).join('') + '</div><p class="note">Page : ' + esc(c.page || '/') + ' · début ' + new Date(c.debut).toLocaleString('fr-FR') + '</p>';
+    }).catch(function () {});
+  }
+  function radar() {
+    $('#view').innerHTML = '<p class="note">Chargement…</p>';
+    api('?admin=radar').then(function (j) {
+      var head = '<div class="card"><div class="row"><div><b>Radar des nouvelles entreprises</b><br><small>Sociétés créées en France et en outre-mer (annonces officielles BODACC), triées par potentiel. Chaque matin, 5 analysées au plus, seules les meilleures restent ici. Rien n’est envoyé sans vous.' + (j.cron ? '' : ' <b>Passage automatique inactif : ajoutez CRON_SECRET dans Vercel.</b>') + '</small></div><button class="btn sm" id="rrun">Lancer maintenant</button></div><p class="note" id="rmsg"></p></div>';
+      var items = j.radar.filter(function (x) { return x.statut !== 'ecarte'; });
+      $('#view').innerHTML = head + (items.length ? items.map(function (x) {
+        var c = x.contact || {}, mail = c.email ? 'mailto:' + encodeURIComponent(c.email) + '?subject=' + encodeURIComponent(x.objet) + '&body=' + encodeURIComponent(x.email) : '';
+        return '<div class="card rd" data-id="' + x.id + '"><div class="row"><div><b>' + esc(x.nom) + '</b> <span class="tag ' + (x.statut === 'contacte' ? 'signe' : 'nouveau') + '">' + (x.statut === 'contacte' ? 'contacté' : x.statut === 'rdv' ? 'rendez-vous' : x.note + '/10') + '</span><br><small>' + esc([x.ville, x.dep, x.forme, x.naf].filter(Boolean).join(' · ')) + '</small></div></div>' +
+          '<p class="note" style="margin:8px 0 4px">' + esc(x.interet) + '</p><p style="margin:0 0 10px"><b>' + esc(x.idee_titre) + '</b> — ' + esc(x.idee_pitch) + '</p>' +
+          '<details><summary><b>E-mail prêt :</b> ' + esc(x.objet) + '</summary><pre class="mailtxt">' + esc(x.email) + '</pre></details>' +
+          '<div class="bar">' + (mail ? '<a class="btn sm acc" href="' + mail + '">Envoyer depuis ma messagerie</a>' : '<span class="note">Pas d’e-mail pro public trouvé</span>') + '<button class="btn sm ghost" data-copy>Copier l’e-mail</button>' + (c.telephone ? '<a class="btn sm ghost" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">Appeler</a>' : '') + (c.site ? '<a class="btn sm ghost" target="_blank" rel="noopener" href="' + esc(c.site) + '">Site</a>' : '') + '<button class="btn sm ghost" data-st="contacte">Contacté</button><button class="btn sm ghost" data-st="rdv">RDV obtenu</button><button class="btn sm ghost" data-st="ecarte">Pas pour nous</button></div>' +
+          (c.source ? '<p class="note">Contact trouvé sur : ' + esc(c.source) + '</p>' : '') + '</div>';
+      }).join('') : '<div class="card">Aucune entreprise retenue pour l’instant.</div>');
+      $('#rrun').onclick = function () { var b = this; b.disabled = true; b.textContent = 'Analyse en cours (1 min)…'; api('', { action: 'radar_run' }).then(function (r) { $('#rmsg').textContent = r.annonces + ' annonces lues, ' + r.analyses + ' analysées, ' + r.retenues + ' retenue(s).'; setTimeout(radar, 1500); }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; }); };
+      [].forEach.call(document.querySelectorAll('.rd'), function (card) {
+        var x = j.radar.find(function (y) { return y.id === card.getAttribute('data-id'); });
+        card.querySelector('[data-copy]').onclick = function () { navigator.clipboard && navigator.clipboard.writeText('Objet : ' + x.objet + '\n\n' + x.email); this.textContent = 'Copié ✓'; };
+        [].forEach.call(card.querySelectorAll('[data-st]'), function (b) { b.onclick = function () { api('', { action: 'radar_status', id: x.id, statut: b.getAttribute('data-st') }).then(radar); }; });
+      });
+    }).catch(function () {});
   }
   boot();
 })();
