@@ -96,7 +96,7 @@
     if (/\b(appel|appeler|telephone|numero|joindre|contact|contacter|rappel|rappeler|rdv|rendez vous|visio|parler)\b/.test(nq) && !place)
       return 'Avec plaisir ! Trois façons de joindre Titouan :\n- 📞 [' + TEL + '](' + TEL_HREF + ') — réponse rapide\n- 🗓️ [Réserver 10 minutes en visio](' + RDV + ')\n- ✉️ [contact@groupsolution.fr](mailto:contact@groupsolution.fr)\n\nOu cliquez sur « Être rappelé » : il vous rappelle.';
     if (/\b(qui|fondateur|titouan|equipe|entreprise|groupe solution|vous etes)\b/.test(nq) && /\b(qui|fondateur|titouan|equipe|vous etes)\b/.test(nq))
-      return 'Groupe Solution est un **éditeur de logiciels et d’automatisations**, basé à Montpellier et fondé par **Titouan Bedos**. Nous concevons des sites internet, des agents IA et des automatisations sur-mesure, et nous opérons nos propres plateformes (Solution Recrutement, Solution Alternance, Aides Particuliers). Notre devise : *nous gagnons de l’argent uniquement si vous en gagnez.* [En savoir plus](/a-propos.html)' + CALLME;
+      return 'Groupe Solution est un **éditeur de logiciels et d’automatisations**, basé dans la métropole de Montpellier et fondé par **Titouan Bedos**. Nous concevons des sites internet, des agents IA et des automatisations sur-mesure, et nous opérons nos propres plateformes (Solution Recrutement, Solution Alternance, Aides Particuliers). Notre devise : *nous gagnons de l’argent uniquement si vous en gagnez.* [En savoir plus](/a-propos.html)' + CALLME;
     if (/\b(delai|combien de temps|quand|rapide|vite)\b/.test(nq))
       return 'Le délai dépend du projet : une première automatisation simple peut être livrée en quelques jours, un site ou un outil plus complet se construit par étapes. **Le délai est fixé noir sur blanc dans le devis**, gratuit.' + CALLME;
     if (place) {
@@ -236,14 +236,22 @@
   function close() { panel.classList.remove('open'); btn.style.display = ''; }
   btn.addEventListener('click', open);
   // reply(q, history) : même cerveau que le widget (index du site + Claude, repli local gratuit), utilisé par le chat de l'accueil.
-  function reply(q, history) {
+  function reply(q, history, opts) {
+    // Accueil + IA active : pas besoin de l'index du site (1,3 Mo) — l'IA connaît le plan du site.
+    // L'index n'est chargé qu'en mode secours (sans IA ou en cas d'erreur).
+    if (opts && opts.mode === 'accueil' && mode !== 'local') {
+      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: [], history: (history || []).slice(-10), mode: 'accueil' }) })
+        .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
+        .then(function (d) { if (!d.answer) throw 0; return { answer: d.answer, fiche: d.fiche || null, memo: d.memo || null }; })
+        .catch(function () { return loadIndex().then(function () { return { answer: localAnswer(q, search(q, 8)), local: true }; }); });
+    }
     return loadIndex().then(function () {
       var res = search(q, 8);
       var ctx = res.slice(0, 6).map(function (r) { return { u: r.c.u, t: r.c.t, h: r.c.h, x: r.c.x }; });
       if (mode === 'local') return { answer: localAnswer(q, res), local: true };
-      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, history: (history || []).slice(-8) }) })
+      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, history: (history || []).slice(-10), mode: (opts && opts.mode) || 'widget' }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
-        .then(function (d) { return { answer: d.answer || localAnswer(q, res) }; })
+        .then(function (d) { return { answer: d.answer || localAnswer(q, res), fiche: d.fiche || null, memo: d.memo || null }; })
         .catch(function () { return { answer: localAnswer(q, res), local: true }; });
     });
   }

@@ -781,7 +781,7 @@ const BASE = [
         ['Commandes de caves et domaines', "Commandes particuliers et professionnels, étiquettes d'expédition et factures gérées sans ressaisie."],
         ['Relances clients fidèles', "Offres saisonnières, nouveautés, invitations : les bons clients sont relancés au bon moment."]
       ],
-      faq: { q: "Intervenez-vous à Lunel alors que vous êtes basés à Montpellier ?", a: "Oui, Lunel est à une vingtaine de minutes. Le premier échange se fait par téléphone ou visio, et on se déplace quand le projet le justifie." }
+      faq: { q: "Intervenez-vous à Lunel alors que vous êtes basés dans la métropole de Montpellier ?", a: "Oui, Lunel est à une vingtaine de minutes. Le premier échange se fait par téléphone ou visio, et on se déplace quand le projet le justifie." }
     }
   },
 

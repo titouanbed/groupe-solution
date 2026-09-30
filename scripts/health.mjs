@@ -30,4 +30,10 @@ console.log(l.s === 200 ? '✓ Formulaires via Brevo configurés (BREVO_API_KEY 
 // Votes « Le pouls » : 200 = base Upstash connectée, 503 = pas encore connectée (widget masqué).
 const v = await fetch(SITE + '/api/vote?ids=actu-controle-auto').then(r => r.status).catch(() => 0);
 console.log(v === 200 ? '✓ Votes « Le pouls » actifs (base Upstash connectée)' : v === 503 ? 'ℹ️ Votes : base Upstash non connectée → widget masqué' : `⚠️ Votes : HTTP ${v}`);
+// Recherche d'entreprise : l'annuaire officiel doit répondre depuis Vercel (EDF, SIREN 552081317).
+const e = await post('/api/entreprise', { q: '552081317' });
+console.log(e.s === 200 && e.j.entreprise ? `✓ Annuaire des entreprises joignable (${e.j.entreprise.nom})` : `⚠️ Annuaire des entreprises : HTTP ${e.s} ${JSON.stringify(e.j).slice(0, 160)} — voir les logs Vercel « registre: »`);
+// Devis en ligne : 503 = base non connectée ; 400 = API active (identifiant invalide attendu).
+const dv = await fetch(SITE + '/api/devis?id=controle').then(r => r.status).catch(() => 0);
+console.log(dv === 400 ? '✓ Devis en ligne actifs' : dv === 503 ? 'ℹ️ Devis en ligne : base Upstash non connectée' : `⚠️ Devis en ligne : HTTP ${dv}`);
 if (fail) { console.log(`✗ ${fail} contrôle(s) en échec`); process.exit(1); }

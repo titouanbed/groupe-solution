@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /devis/
+Disallow: /api/
 
 Sitemap: https://www.groupsolution.fr/sitemap.xml

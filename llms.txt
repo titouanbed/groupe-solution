@@ -1,10 +1,10 @@
-# Groupe Solution (GroupSolution)
+# Groupe Solution
 
-> Éditeur de logiciels et d'automatisations sur-mesure, et agence de création de sites internet, basé à Montpellier (Hérault, France). Nous concevons des systèmes qui absorbent les tâches répétitives des entreprises : agents IA (vocaux, conversationnels, qui pilotent des logiciels), lecture automatique de documents, assistants branchés sur les documents internes (RAG), connexions d'outils (API, MCP), prévisions, facturation électronique et des sites internet qui génèrent des demandes. Toutes les prestations sont sur devis, gratuit et personnalisé. Devise : « Nous gagnons de l'argent uniquement si vous en gagnez. »
+> Éditeur de logiciels et d'automatisations sur-mesure, et agence de création de sites internet. Agence à Saint-Jean-de-Védas (métropole de Montpellier, Hérault, France) ; fondateur présent à Mayotte. Nous concevons des systèmes qui absorbent les tâches répétitives des entreprises : agents IA (vocaux, conversationnels, qui pilotent des logiciels), lecture automatique de documents, assistants branchés sur les documents internes (RAG), connexions d'outils (API, MCP), prévisions, facturation électronique et des sites internet qui génèrent des demandes. Toutes les prestations sont sur devis, gratuit et personnalisé. Devise : « Nous gagnons de l'argent uniquement si vous en gagnez. »
 
 - Fondateur : Titouan Bedos
 - Contact : 07 82 29 85 59 · contact@groupsolution.fr
-- Zone : Montpellier, Montpellier Méditerranée Métropole (30 communes), Hérault et Gard proche (89 communes ont leur page), partout en France à distance, DOM-TOM via agences locales.
+- Implantations : agence à Saint-Jean-de-Védas (Montpellier Méditerranée Métropole, 31 communes ; Hérault et Gard proche, 89 communes ont leur page) ; Titouan Bedos à Mayotte, qui couvre toute l'île. Entreprises accompagnées dans toute la France et en outre-mer (La Réunion, Guadeloupe, Martinique, Guyane, Nouvelle-Calédonie, Polynésie française).
 - Plateformes en production : Solution Alternance (matching IA, 200 000+ offres), Solution Recrutement (565 000+ offres), Aides Particuliers.
 
 ## Pages principales
@@ -27,11 +27,23 @@
 - [Intégration API et connexion d’outils](https://www.groupsolution.fr/services/integration-api-connecteurs.html)
 - [Référencement local et Google Business Profile](https://www.groupsolution.fr/services/referencement-local.html)
 
+## Assistant, devis et signature en ligne
+- L'assistant de l'accueil (https://www.groupsolution.fr/#heroAI) analyse l'entreprise du visiteur à sa demande (annuaire officiel, site, présence en ligne), propose un plan d'innovation ou une esquisse de site, puis rédige un cahier des charges express.
+- Le devis est ensuite envoyé et signé en ligne (signature électronique simple, « Bon pour accord », horodatage et empreinte SHA-256).
+- [Comment ce site fonctionne](https://www.groupsolution.fr/lab/coulisses.html)
+
+## Laboratoire d'idées
+- [Idées d'innovation par secteur](https://www.groupsolution.fr/idees/): 18 secteurs, idées concrètes et plans publiés anonymement en direct.
+
+## Outre-mer
+- [La Réunion](https://www.groupsolution.fr/reunion/site-internet-reunion.html) · [Mayotte](https://www.groupsolution.fr/mayotte/site-internet-mayotte.html) · [Guadeloupe](https://www.groupsolution.fr/guadeloupe/site-internet-guadeloupe.html) · [Martinique](https://www.groupsolution.fr/martinique/site-internet-martinique.html) · [Guyane](https://www.groupsolution.fr/guyane/site-internet-guyane.html) · [Nouvelle-Calédonie](https://www.groupsolution.fr/nouvelle-caledonie/site-internet-nouvelle-caledonie.html) · [Polynésie française](https://www.groupsolution.fr/polynesie-francaise/site-internet-polynesie-francaise.html)
+
 ## Lab : innovation, API et veille
 - [Lab](https://www.groupsolution.fr/lab/): technologies suivies, API gratuites avec démonstrations en direct.
 - [API & données](https://www.groupsolution.fr/lab/api.html)
 - [Veille](https://www.groupsolution.fr/lab/veille/)
 - [Actus IA & numérique (quotidiennes, sourcées)](https://www.groupsolution.fr/lab/actus/) — flux RSS : https://www.groupsolution.fr/lab/actus/rss.xml
+- [Dossiers de fond](https://www.groupsolution.fr/lab/dossiers/) · [Questions de dirigeants](https://www.groupsolution.fr/lab/questions/) · [Le pouls des dirigeants](https://www.groupsolution.fr/lab/pouls/)
 - [Plan du site](https://www.groupsolution.fr/plan-du-site.html)
 
 ## Outils gratuits

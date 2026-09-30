@@ -35,7 +35,7 @@ function card(zone) {
     : `<span class="terrState soon">En préparation</span>`;
   const hasBlog = online && ((zone.cities && zone.cities.some(c => c.faq)) || zone.region);
   const go = online
-    ? `<div class="terrGo"><a class="go" href="${zone.slug}/${zone.regionPage}">Voir l’agence ${esc(zone.name)} →</a>${hasBlog ? `<a class="go2" href="${zone.slug}/blog/">Guides &amp; conseils ${esc(zone.name)} →</a>` : ''}</div>`
+    ? `<div class="terrGo"><a class="go" href="${zone.slug}/${zone.regionPage}">${zone.slug === 'mayotte' ? 'Titouan à Mayotte' : 'Nos solutions ' + (/^[AEIOUÉ]/.test(zone.name) ? 'en ' : 'à ') + esc(zone.name)} →</a>${hasBlog ? `<a class="go2" href="${zone.slug}/blog/">Guides &amp; conseils ${esc(zone.name)} →</a>` : ''}</div>`
     : `<div class="terrGo"><span class="soonNote">Bientôt disponible</span></div>`;
   return `      <div class="terrCard reveal">
         <div class="terrTop"><span class="terrCode">${esc(zone.name)} · ${esc(zone.code)}</span>${state}</div>
@@ -54,11 +54,11 @@ const TOP = ['castelnau-le-lez', 'lattes', 'perols', 'vendargues', 'clapiers', '
 const montpellierCard = `      <div class="terrCard reveal">
         <div class="terrTop"><span class="terrCode">Hérault · 34</span><span class="terrState">En ligne</span></div>
         <h3>Montpellier &amp; Hérault</h3>
-        <p>Notre base : création de sites, référencement local et automatisation sur-mesure pour les entreprises de Montpellier et de ${COMMUNES.length} communes alentour — de la Métropole au bassin de Thau.</p>
+        <p>Notre agence est à Saint-Jean-de-Védas, aux portes de Montpellier : création de sites, référencement local et automatisation sur-mesure pour les entreprises de Montpellier et de ${COMMUNES.length} communes alentour — de la Métropole au bassin de Thau.</p>
         <div class="terrChips">
           ${TOP.map(sl => COMMUNES.find(c => c.slug === sl)).map(c => `<a href="montpellier/site-internet-${c.slug}.html">${esc(c.name)}</a>`).join('\n          ')}
         </div>
-        <div class="terrGo"><a class="go" href="montpellier/site-internet-montpellier.html">Voir l’agence Montpellier →</a><a class="go2" href="automatisation/">Automatisation &amp; logiciel sur-mesure →</a></div>
+        <div class="terrGo"><a class="go" href="montpellier/site-internet-montpellier.html">Notre agence de Saint-Jean-de-Védas →</a><a class="go2" href="automatisation/">Automatisation &amp; logiciel sur-mesure →</a></div>
       </div>`;
 
 const cards = [ZONES[0], null, ...ZONES.slice(1)].map(z => z ? card(z) : montpellierCard).join('\n\n');
@@ -138,19 +138,19 @@ const html = `<!DOCTYPE html>
   <section class="phead"><div class="wrap">
     <div class="kicker reveal">Implantations</div>
     <h1 class="reveal">Présents là où <i>vous êtes</i>.</h1>
-    <p class="lead reveal">Groupe Solution déploie ses agences digitales au plus près des entreprises — dans les territoires d’outre-mer comme, demain, en métropole. Une présence locale, une exigence de groupe : mêmes moteurs, même technologie, ancrés dans chaque bassin économique.</p>
+    <p class="lead reveal">Notre agence est à Saint-Jean-de-Védas, dans la métropole de Montpellier, et Titouan Bedos, notre fondateur, est à Mayotte. De là, Groupe Solution accompagne les entreprises de l’Hérault, de Mayotte, de toute la France et de l’outre-mer : mêmes moteurs, même technologie, adaptés à chaque territoire.</p>
   </div></section>
 
   <section class="impSection"><div class="wrap">
-    <div class="impHead reveal"><div class="kicker">Nos territoires</div><h2>Des agences ancrées dans chaque bassin.</h2><p>Chaque territoire a son agence locale, avec ses réalités, ses secteurs et sa relation de proximité — reliée à la puissance technologique du groupe.</p></div>
+    <div class="impHead reveal"><div class="kicker">Nos territoires</div><h2>Chaque territoire a ses réalités.</h2><p>Ses secteurs, ses contraintes, ses clients : nos pages et nos solutions sont pensées pour chacun d’eux, avec la même exigence.</p></div>
 
     <div class="terr">
 ${cards}
     </div>
 
     <div class="impCta reveal">
-      <p>Un territoire, un secteur à couvrir&nbsp;? Le socle s’y déploie vite.</p>
-      <a class="btn" href="echanger.html">Ouvrir une implantation →</a>
+      <p>Votre entreprise est ailleurs&nbsp;? Nous travaillons avec les entreprises de toute la France.</p>
+      <a class="btn" href="echanger.html">Parlons de votre projet →</a>
     </div>
   </div></section>
 </main>
