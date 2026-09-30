@@ -41,6 +41,7 @@ const CSS = `${STICKY_CSS}
 .news h3{font-size:22px;font-weight:600;margin-top:8px;line-height:1.25}
 .news p{font-size:15.5px;color:var(--secondary);line-height:1.7;margin-top:10px}
 .news .why{background:var(--olive-soft);border-radius:14px;padding:14px 16px;color:var(--olive2);font-weight:600;font-size:14.5px}
+.news .why.act{background:#FDECEF;color:#9E1239;margin-top:8px}
 .news .why b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 .news .src{font-size:13px;color:var(--muted);margin-top:12px}.news .src a{color:var(--ink);font-weight:700;text-decoration:underline}
 .news .more{display:inline-block;margin-top:12px;font-weight:800;font-size:14px;border-bottom:2px solid var(--acc)}
@@ -113,7 +114,8 @@ const newsHTML = (d, it, i, linkBase = '') => `
       <span class="cat">${esc(it.cat)}</span>
       <h3>${esc(it.titre)}</h3>
       <p>${esc(it.resume)}</p>
-      <p class="why"><b>Ce que ça change pour vous</b>${esc(it.pourquoi)}</p>
+      <p class="why"><b>Ce que ça change pour vous</b>${esc(it.pourquoi)}</p>${it.action ? `
+      <p class="why act"><b>À faire cette semaine</b>${esc(it.action)}</p>` : ''}
       <p class="src">Sources : ${it.sources.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow">${esc(s.nom)}</a>`).join(' · ')}</p>
       ${it.lien ? `<a class="more" href="${linkBase}${esc(it.lien.url)}">${esc(it.lien.label)} →</a>` : ''}
       <div class="poll" data-poll="actu-${d.date}-${slugify(it.titre).slice(0, 80)}" hidden></div>

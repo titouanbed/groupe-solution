@@ -29,7 +29,7 @@ On choisit des offres professionnelles où vos données ne servent pas à entra�
 Non. Notre agence est à Saint-Jean-de-Védas, dans la métropole de Montpellier, et couvre toute la région ; Titouan Bedos, le fondateur, est à Mayotte et couvre toute l'île. Nous travaillons aussi avec des entreprises de toute la France et de l'outre-mer : les échanges se font par téléphone ou en visio, et nous nous déplaçons quand c'est utile.
 
 ## Comment se passe un devis ?
-Après un échange (dans le chat ou au téléphone), vous recevez un cahier des charges clair, puis un devis détaillé que vous pouvez lire et signer en ligne, depuis votre téléphone, en un geste. Le devis est gratuit et sans engagement.
+Dans le chat de l'accueil, « Préparer mon devis » : vous indiquez votre budget, vous voyez ce qui tient dedans et vous composez votre projet brique par brique. Titouan reçoit tout et vous envoie votre devis détaillé sous 24 h ouvrées, gratuit et sans engagement. Parce qu'il travaille avec l'IA, il construit vite : c'est souvent bien plus accessible qu'on ne l'imagine.
 
 ## Qui êtes-vous ?
 Groupe Solution, fondé par Titouan Bedos : éditeur de logiciels et d'automatisations sur-mesure et agence de création de sites internet. Nous faisons tourner nos propres plateformes (Solution Recrutement, Solution Alternance, Aides Particuliers). Notre devise : nous gagnons de l'argent uniquement si vous en gagnez.

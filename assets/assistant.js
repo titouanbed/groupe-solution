@@ -30,6 +30,9 @@
   }
   var TEL = '07 82 29 85 59', TEL_HREF = 'tel:+33782298559', RDV = '/echanger.html#rendez-vous', FORM = 'https://formspree.io/f/mzebrvjg';
   var store = { get: function (k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } }, set: function (k, v) { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+  // Icônes (trait, currentColor) — même famille que /assets/icons.js.
+  var IC = { telephone: '<path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/>', envoyer: '<path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/>', etincelle: '<path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7z"/>', check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>' };
+  var ico = function (n) { return '<svg class="gsi" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:6px">' + IC[n] + '</svg>'; };
   var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var ga = function (e, p) { if (window.gtag) gtag('event', e, p || {}); };
 
@@ -80,7 +83,7 @@
   }
 
   /* ── Intentions reconnues (connaissance structurée du site) ── */
-  var CALLME = '\n\n👉 Le plus simple : [appelez Titouan au ' + TEL + '](' + TEL_HREF + '), ou cliquez sur « Être rappelé ».';
+  var CALLME = '\n\nLe plus simple : [appelez Titouan au ' + TEL + '](' + TEL_HREF + '), ou cliquez sur « Être rappelé ».';
   function findPlace(nq) {
     var best = null;
     KB.places.forEach(function (p) { if (p._n.length > 2 && (' ' + nq + ' ').indexOf(' ' + p._n + ' ') !== -1 && (!best || p._n.length > best._n.length)) best = p; });
@@ -94,7 +97,7 @@
   function intent(q) {
     var nq = norm(q), place = findPlace(nq);
     if (/\b(appel|appeler|telephone|numero|joindre|contact|contacter|rappel|rappeler|rdv|rendez vous|visio|parler)\b/.test(nq) && !place)
-      return 'Avec plaisir ! Trois façons de joindre Titouan :\n- 📞 [' + TEL + '](' + TEL_HREF + ') — réponse rapide\n- 🗓️ [Réserver 10 minutes en visio](' + RDV + ')\n- ✉️ [contact@groupsolution.fr](mailto:contact@groupsolution.fr)\n\nOu cliquez sur « Être rappelé » : il vous rappelle.';
+      return 'Avec plaisir ! Trois façons de joindre Titouan :\n- [' + TEL + '](' + TEL_HREF + ') — réponse rapide\n- [Réserver 10 minutes en visio](' + RDV + ')\n- [contact@groupsolution.fr](mailto:contact@groupsolution.fr)\n\nOu cliquez sur « Être rappelé » : il vous rappelle.';
     if (/\b(qui|fondateur|titouan|equipe|entreprise|groupe solution|vous etes)\b/.test(nq) && /\b(qui|fondateur|titouan|equipe|vous etes)\b/.test(nq))
       return 'Groupe Solution est un **éditeur de logiciels et d’automatisations**, basé dans la métropole de Montpellier et fondé par **Titouan Bedos**. Nous concevons des sites internet, des agents IA et des automatisations sur-mesure, et nous opérons nos propres plateformes (Solution Recrutement, Solution Alternance, Aides Particuliers). Notre devise : *nous gagnons de l’argent uniquement si vous en gagnez.* [En savoir plus](/a-propos.html)' + CALLME;
     if (/\b(delai|combien de temps|quand|rapide|vite)\b/.test(nq))
@@ -151,11 +154,11 @@
 
   var hasSticky = !!document.querySelector('.gs-sticky');
   if (hasSticky) document.body.classList.add('gsA-sticky');
-  else { var call = document.createElement('a'); call.className = 'gsA-call'; call.href = TEL_HREF; call.textContent = '📞 ' + TEL; document.body.appendChild(call); }
+  else { var call = document.createElement('a'); call.className = 'gsA-call'; call.href = TEL_HREF; call.innerHTML = ico('telephone') + TEL; document.body.appendChild(call); }
 
   var btn = document.createElement('button');
   btn.id = 'gsA-btn'; btn.type = 'button'; btn.setAttribute('aria-label', 'Ouvrir l’assistant');
-  btn.innerHTML = '<i>✦</i><span>Une question ?</span>';
+  btn.innerHTML = '<i>' + ico('etincelle').replace('margin-right:6px', 'margin:0') + '</i><span>Une question ?</span>';
   document.body.appendChild(btn);
 
   var place = document.querySelector('[data-live-place]');
@@ -167,8 +170,8 @@
   panel.id = 'gsA'; panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Assistant Groupe Solution');
   panel.innerHTML = '<header><span class="dot"></span><div><b>Assistant Groupe Solution</b><small>Assistant automatique · répond à partir du site</small></div><button class="x" type="button" aria-label="Fermer">×</button></header>' +
     '<div class="msgs" aria-live="polite"></div>' +
-    '<form class="ask"><input name="q" placeholder="Votre question…" autocomplete="off" maxlength="600" aria-label="Votre question" /><button type="submit" aria-label="Envoyer">➤</button></form>' +
-    '<div class="cta"><a class="tel" href="' + TEL_HREF + '">📞 Appeler</a><button type="button" class="cbk">Être rappelé</button><a href="' + RDV + '">Visio 10 min</a></div>' +
+    '<form class="ask"><input name="q" placeholder="Votre question…" autocomplete="off" maxlength="600" aria-label="Votre question" /><button type="submit" aria-label="Envoyer">' + ico('envoyer').replace('margin-right:6px', 'margin:0') + '</button></form>' +
+    '<div class="cta"><a class="tel" href="' + TEL_HREF + '">' + ico('telephone') + 'Appeler</a><button type="button" class="cbk">Être rappelé</button><a href="' + RDV + '">Visio 10 min</a></div>' +
     '<div class="note">Réponses automatiques, à vérifier avec nous. Vos questions ne sont pas conservées ; si vous demandez un rappel, la conversation est jointe à votre demande.</div>';
   document.body.appendChild(panel);
   var msgs = panel.querySelector('.msgs'), form = panel.querySelector('form.ask'), input = form.q;
@@ -185,7 +188,7 @@
     d.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { ask(b.textContent); }); });
   }
   function greet() {
-    add('bot', md('Bonjour 👋 Je réponds à vos questions sur nos sites internet, nos automatisations et l’IA' + (pn() ? ', y compris pour **' + pn() + '**' : '') + '. Vous pouvez aussi appeler directement le [' + TEL + '](' + TEL_HREF + ').'));
+    add('bot', md('Bonjour ! Je réponds à vos questions sur nos sites internet, nos automatisations et l’IA' + (pn() ? ', y compris pour **' + pn() + '**' : '') + '. Vous pouvez aussi appeler directement le [' + TEL + '](' + TEL_HREF + ').'));
     chips();
   }
   function restore() { hist.forEach(function (m) { add(m.role, m.role === 'user' ? esc(m.content) : md(m.content)); }); }
@@ -216,7 +219,7 @@
       fd.append('conversation', hist.map(function (m) { return (m.role === 'user' ? 'Visiteur : ' : 'Assistant : ') + m.content; }).join('\n').slice(-3000));
       f.querySelector('button').textContent = 'Envoi…';
       fetch(FORM, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }).then(function (r) {
-        if (!r.ok) throw 0; d.innerHTML = md('✅ C’est noté, merci ! Titouan vous rappelle au plus vite. Pour une urgence : [' + TEL + '](' + TEL_HREF + ').'); ga('generate_lead', { method: 'assistant_callback' });
+        if (!r.ok) throw 0; d.innerHTML = ico('check') + md('C’est noté, merci ! Titouan vous rappelle au plus vite. Pour une urgence : [' + TEL + '](' + TEL_HREF + ').'); ga('generate_lead', { method: 'assistant_callback' });
       }).catch(function () { d.innerHTML = md('L’envoi n’a pas abouti. Appelez directement le [' + TEL + '](' + TEL_HREF + ').'); });
     });
     d.querySelector('input').focus();
@@ -224,7 +227,7 @@
 
   var asked = 0;
   function nudge() {
-    var d = add('bot', md('Vous avez un projet précis ? **Dix minutes avec Titouan** suffisent souvent pour trouver des pistes concrètes — gratuit, sans engagement.') + '<div class="chips" style="margin-top:8px"><a class="nb" href="' + TEL_HREF + '">📞 Appeler maintenant</a><button type="button" class="nb2">Être rappelé</button></div>');
+    var d = add('bot', md('Vous avez un projet précis ? **Dix minutes avec Titouan** suffisent souvent pour trouver des pistes concrètes — gratuit, sans engagement.') + '<div class="chips" style="margin-top:8px"><a class="nb" href="' + TEL_HREF + '">' + ico('telephone') + 'Appeler maintenant</a><button type="button" class="nb2">Être rappelé</button></div>');
     d.querySelector('.nb2').addEventListener('click', callback); ga('assistant_nudge');
   }
   var started = false;
@@ -242,7 +245,7 @@
     if (opts && opts.mode === 'accueil' && mode !== 'local') {
       return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: [], history: (history || []).slice(-10), mode: 'accueil' }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
-        .then(function (d) { if (!d.answer) throw 0; return { answer: d.answer, fiche: d.fiche || null, memo: d.memo || null }; })
+        .then(function (d) { if (!d.answer) throw 0; return { answer: d.answer, fiche: d.fiche || null, ruptures: d.ruptures || null, memo: d.memo || null }; })
         .catch(function () { return loadIndex().then(function () { return { answer: localAnswer(q, search(q, 8)), local: true }; }); });
     }
     return loadIndex().then(function () {

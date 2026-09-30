@@ -12,6 +12,7 @@
   var hist = [], busy = false, ctaShown = false, ctaMax = false, actsShown = false, made = { plan: 0, maquette: 0 };
   var asked = 0; try { asked = +sessionStorage.getItem('gsHomeQ') || 0; } catch (e) {}
   function ga(e, p) { if (window.gtag) window.gtag('event', e, p || {}); }
+  var I = function (n, c) { return window.GSIcon ? window.GSIcon(n, c) : ''; };
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function md(t) { return window.GSAssistant && window.GSAssistant.md ? window.GSAssistant.md(t) : esc(t).replace(/\n/g, '<br>'); }
   var mobile = function () { return matchMedia('(max-width:760px)').matches; };
@@ -60,7 +61,7 @@
   function cta(force) {
     if (ctaShown && !force) return; ctaShown = true;
     var d = document.createElement('div'); d.className = 'aiCta';
-    d.innerHTML = '<b>Le plus rapide : en parler 10 minutes avec Titouan.</b><a href="' + TEL_HREF + '">📞 ' + TEL + '</a><button type="button">Être rappelé</button>';
+    d.innerHTML = '<b>Le plus rapide : en parler 10 minutes avec Titouan.</b><a href="' + TEL_HREF + '">' + I('telephone') + TEL + '</a><button type="button">' + I('rappel') + 'Être rappelé</button>';
     d.querySelector('a').addEventListener('click', function () { ga('home_ai_call'); });
     d.querySelector('button').addEventListener('click', function () {
       var f = document.createElement('form');
@@ -72,8 +73,8 @@
         fd.append('conversation', hist.map(function (m) { return (m.role === 'user' ? 'Visiteur : ' : 'Assistant : ') + m.content; }).join('\n').slice(-3500));
         f.querySelector('button').textContent = 'Envoi…';
         fetch('https://formspree.io/f/mzebrvjg', { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
-          .then(function (r) { if (!r.ok) throw 0; d.innerHTML = '<b>✅ C’est noté, merci ! Titouan vous rappelle au plus vite.</b>'; ga('generate_lead', { method: 'accueil_ia' }); })
-          .catch(function () { d.innerHTML = '<b>Petit souci d’envoi.</b><a href="' + TEL_HREF + '">📞 Appeler le ' + TEL + '</a>'; });
+          .then(function (r) { if (!r.ok) throw 0; d.innerHTML = '<b>' + I('check', 'ok') + 'C’est noté, merci ! Titouan vous rappelle au plus vite.</b>'; ga('generate_lead', { method: 'accueil_ia' }); })
+          .catch(function () { d.innerHTML = '<b>Petit souci d’envoi.</b><a href="' + TEL_HREF + '">' + I('telephone') + 'Appeler le ' + TEL + '</a>'; });
       });
     });
     log.appendChild(d); log.scrollTop = log.scrollHeight;
@@ -84,42 +85,108 @@
   function acts() {
     if (actsShown) return; actsShown = true;
     var d = document.createElement('div'); d.className = 'aiActs';
-    d.innerHTML = '<span>Aller plus loin, en direct :</span><button type="button" data-k="entreprise">🔎 Analyser mon entreprise</button><button type="button" data-k="plan">✨ Mon plan d’innovation</button><button type="button" data-k="maquette">🎨 Esquisser mon site</button><button type="button" data-k="brief" class="pri">📝 Recevoir ma proposition</button>';
-    [].forEach.call(d.querySelectorAll('button'), function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-k'); if (k === 'entreprise') entrepriseForm(); else if (k === 'brief') briefForm(); else concept(k, b); }); });
+    d.innerHTML = '<span>Aller plus loin, en direct :</span><button type="button" data-k="entreprise">' + I('recherche') + 'Analyser mon entreprise</button><button type="button" data-k="plan">' + I('fusee') + 'Mon plan d’innovation</button><button type="button" data-k="maquette">' + I('esquisse') + 'Esquisser mon site</button><button type="button" data-k="devis" class="pri">' + I('devis') + 'Préparer mon devis</button>';
+    [].forEach.call(d.querySelectorAll('button'), function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-k'); if (k === 'entreprise') entrepriseForm(); else if (k === 'devis') devisForm(); else concept(k, b); }); });
     log.appendChild(d); log.scrollTop = log.scrollHeight;
   }
-  /* ── Du besoin au devis signé : cahier des charges express rédigé par l'IA, envoyé à Titouan et au visiteur.
-     Titouan en fait un devis dans son espace (/admin/), que le client signe en ligne (/devis/). ── */
-  var briefDone = false;
-  function briefForm() {
-    if (briefDone || document.querySelector('.aiBrief form')) return;
-    var d = el('div', 'aiEnt aiBrief');
-    d.innerHTML = '<b>📝 Votre proposition, rédigée à partir de notre échange</b><p>Je prépare le cahier des charges de votre projet. Titouan le relit et vous envoie votre devis sous 24 h ouvrées, à signer en ligne en un geste.</p>' +
-      '<form><input name="nom" placeholder="Votre prénom et nom" autocomplete="name" required><input name="entreprise" placeholder="Votre entreprise" autocomplete="organization" value="' + esc(companyName()) + '"><input name="email" type="email" placeholder="Votre e-mail (pour recevoir le devis)" autocomplete="email"><input name="telephone" type="tel" placeholder="Votre téléphone" autocomplete="tel"><button type="submit">Recevoir ma proposition</button><small>Votre conversation sert à rédiger la proposition ; elle est envoyée à Titouan avec vos coordonnées. Rien d’autre.</small></form>';
-    var f = d.querySelector('form');
+  /* ── « Préparer mon devis » : le visiteur donne son budget et compose son projet brique par brique.
+     Aucun montant n'est affiché : une jauge montre ce qui tient dans SON budget (calculée côté serveur avec la
+     grille privée de Titouan). Titouan reçoit une demande prête à chiffrer. ── */
+  var BUD = [['b1', 'Moins de 1 500 €'], ['b2', '1 500 – 4 000 €'], ['b3', '4 000 – 10 000 €'], ['b4', '10 000 – 25 000 €'], ['b5', 'Plus de 25 000 €'], ['nsp', 'Je ne sais pas encore']];
+  var DEL = [['vite', 'Dès que possible'], ['mois', 'Dans le mois'], ['trimestre', 'Dans les 3 mois'], ['libre', 'Pas pressé']];
+  var devisOpen = false;
+  function chipsHtml(list, name) { return '<div class="dvChips" data-n="' + name + '">' + list.map(function (x) { return '<button type="button" data-v="' + x[0] + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
+  function devisForm() {
+    if (devisOpen) return; devisOpen = true;
+    var d = el('div', 'aiEnt aiDevis');
+    d.innerHTML = '<b>' + I('devis') + 'Préparer mon devis</b><p>Indiquez votre budget : je vous montre ce qui tient dedans, et vous composez votre projet. Avec l’IA, on construit vite — c’est souvent bien plus accessible qu’on ne l’imagine.</p>' +
+      '<label>Tout ce qui vous passe par la tête (facultatif, en vrac)</label><textarea rows="2" name="besoin" placeholder="Ex. : prise de RDV en ligne, relances clients, lien avec mon logiciel de facturation…"></textarea>' +
+      '<label>Votre budget</label>' + chipsHtml(BUD, 'budget') + '<input name="montant" inputmode="numeric" placeholder="…ou un montant précis (€)">' +
+      '<label>Pour quand ?</label>' + chipsHtml(DEL, 'delai') +
+      '<button type="button" class="go">Voir ce qui tient dans mon budget</button><p class="err" role="alert"></p>';
+    var pick = { budget: '', delai: '' };
+    [].forEach.call(d.querySelectorAll('.dvChips'), function (g) { g.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; [].forEach.call(g.children, function (c) { c.classList.toggle('on', c === b); }); pick[g.getAttribute('data-n')] = b.getAttribute('data-v'); if (g.getAttribute('data-n') === 'budget') d.querySelector('[name=montant]').value = ''; }); });
+    d.querySelector('.go').addEventListener('click', function () {
+      var btn = this, err = d.querySelector('.err'), montant = (d.querySelector('[name=montant]').value || '').replace(/[^\d]/g, '');
+      err.textContent = '';
+      if (!pick.budget && !montant) { err.textContent = 'Choisissez une fourchette de budget (ou « Je ne sais pas encore »).'; return; }
+      btn.disabled = true; btn.textContent = 'Je compose votre projet…';
+      ga('home_ai_devis_start', { budget: pick.budget || 'perso' });
+      fetch('/api/devis', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'estimer', conversation: hist.slice(-12), besoin: d.querySelector('[name=besoin]').value, budget: pick.budget, budget_montant: montant, delai: pick.delai }) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.briques) throw j; return j; }); })
+        .then(function (j) { d.remove(); builder(j); })
+        .catch(function (j) { btn.disabled = false; btn.textContent = 'Réessayer'; err.textContent = (j && j.message) || 'Je n’ai pas réussi à composer le projet. Appelez Titouan au ' + TEL + '.'; });
+    });
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+  }
+  function builder(j) {
+    var c = el('div', 'aiPlan aiBuild'), LAB = { essentiel: 'Essentiel', recommande: 'Recommandé', option: 'Option' };
+    c.appendChild(el('span', 'k', 'Votre projet · budget ' + j.budget)); c.appendChild(el('h3', null, j.titre)); c.appendChild(el('p', 'sub', j.resume));
+    // Sélection de départ : l'essentiel, puis le recommandé tant que ça tient dans le budget.
+    var sum = 0, sel = {};
+    j.briques.forEach(function (b) { if (b.niveau === 'essentiel') { sel[b.id] = 1; sum += b.part || 0; } });
+    j.briques.forEach(function (b) { if (b.niveau === 'recommande' && (!j.jauge || sum + b.part <= 100)) { sel[b.id] = 1; sum += b.part || 0; } });
+    var ul = el('div', 'bList');
+    j.briques.forEach(function (b) {
+      var row = el('label', 'bRow' + (sel[b.id] ? ' on' : ''));
+      row.innerHTML = '<input type="checkbox"' + (sel[b.id] ? ' checked' : '') + '><span class="bTxt"><b></b><small></small></span><span class="bLvl"></span>';
+      row.querySelector('b').textContent = b.titre; row.querySelector('small').textContent = b.detail + (b.recurrent ? ' · coût mensuel éventuel' : '');
+      row.querySelector('.bLvl').textContent = LAB[b.niveau];
+      if (j.jauge) { var m = el('i', 'bMini'); m.style.width = Math.min(100, b.part) + '%'; row.querySelector('.bTxt').appendChild(m); }
+      row.querySelector('input').addEventListener('change', function (e) { if (e.target.checked) sel[b.id] = 1; else delete sel[b.id]; row.classList.toggle('on', e.target.checked); gauge(); });
+      ul.appendChild(row);
+    });
+    c.appendChild(ul);
+    var g = el('div', 'gauge'); g.innerHTML = '<div class="gBar"><i></i><span class="gMark"></span></div><p class="gLab"></p>';
+    if (j.jauge) c.appendChild(g); else c.appendChild(el('p', 'sub', 'Titouan vous donnera une estimation précise avec votre devis, gratuit et sans engagement.'));
+    function gauge() {
+      if (!j.jauge) return;
+      var t = j.briques.reduce(function (a, b) { return a + (sel[b.id] ? b.part : 0); }, 0), t2 = Math.max(t, j.minimumPart || 0);
+      g.querySelector('i').style.width = Math.min(100, t2 / 1.3) + '%'; g.querySelector('.gMark').style.left = (100 / 1.3) + '%';
+      g.className = 'gauge ' + (t2 <= 85 ? 'ok' : t2 <= 110 ? 'mid' : 'over');
+      g.querySelector('.gLab').textContent = !t ? 'Cochez au moins une brique.' : t2 <= 85 ? 'Tient dans votre budget' : t2 <= 110 ? '≈ Pile dans votre budget — Titouan ajustera au plus juste' : 'Au-delà de votre budget : retirez une option, ou gardez-la — Titouan vous proposera un lancement par étapes';
+    }
+    gauge();
+    var f = el('form', 'bForm');
+    f.innerHTML = '<input name="nom" placeholder="Prénom et nom" autocomplete="name" required><input name="entreprise" placeholder="Entreprise" autocomplete="organization"><input name="email" type="email" placeholder="E-mail (pour recevoir le devis)" autocomplete="email"><input name="telephone" type="tel" placeholder="Téléphone" autocomplete="tel"><textarea name="message" rows="2" placeholder="Un détail à ajouter ? (facultatif)"></textarea><button type="submit">Envoyer à Titouan</button><small>Titouan reçoit votre projet et vous envoie votre devis détaillé sous 24 h ouvrées. Gratuit, sans engagement.</small><p class="err" role="alert"></p>';
+    f.entreprise.value = companyName();
     f.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!/\S+@\S+\.\S+/.test(f.email.value) && f.telephone.value.replace(/\D/g, '').length < 9) { f.email.focus(); f.email.placeholder = 'Un e-mail ou un téléphone, s’il vous plaît'; return; }
-      var b = f.querySelector('button'); b.disabled = true; b.textContent = 'Rédaction de votre proposition…';
-      ga('home_ai_brief');
-      fetch('/api/devis', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'brief', conversation: hist.slice(-12), contact: { nom: f.nom.value, entreprise: f.entreprise.value, email: f.email.value, telephone: f.telephone.value } }) })
-        .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.brief) throw j; return j; }); })
-        .then(function (j) { d.remove(); briefDone = true; renderBrief(j.brief, f.email.value); ga('generate_lead', { method: 'accueil_brief' }); })
-        .catch(function (j) { b.disabled = false; b.textContent = 'Réessayer'; var m = d.querySelector('.err') || d.appendChild(el('p', 'err')); m.textContent = (j && j.message) || 'L’envoi n’a pas abouti. Appelez directement le ' + TEL + '.'; });
+      var err = f.querySelector('.err'); err.textContent = '';
+      if (!/\S+@\S+\.\S+/.test(f.email.value) && f.telephone.value.replace(/\D/g, '').length < 9) { err.textContent = 'Un e-mail ou un téléphone, pour vous répondre.'; return; }
+      var ids = Object.keys(sel); if (!ids.length) { err.textContent = 'Gardez au moins une brique.'; return; }
+      var b = f.querySelector('button'); b.disabled = true; b.textContent = 'Envoi…';
+      fetch('/api/devis', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'envoyer', id: j.id, selection: ids, message: f.message.value, contact: { nom: f.nom.value, entreprise: f.entreprise.value, email: f.email.value, telephone: f.telephone.value } }) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (x) { if (!r.ok) throw x; return x; }); })
+        .then(function () {
+          f.innerHTML = '<p class="ok">' + I('check') + 'C’est parti ! Titouan a votre projet' + (f.email.value ? ' et une copie vous attend par e-mail' : '') + '. Votre devis détaillé arrive sous 24 h ouvrées.</p><a class="call" href="' + TEL_HREF + '">' + I('telephone') + 'Pressé ? Appeler Titouan</a>';
+          [].forEach.call(c.querySelectorAll('input[type=checkbox]'), function (x) { x.disabled = true; });
+          ga('generate_lead', { method: 'accueil_devis' });
+          hist.push({ role: 'assistant', content: 'Demande de devis envoyée à Titouan : ' + j.titre + ' (budget ' + j.budget + ').' });
+        })
+        .catch(function (x) { b.disabled = false; b.textContent = 'Réessayer'; err.textContent = (x && x.message) || 'L’envoi n’a pas abouti. Appelez directement le ' + TEL + '.'; });
     });
-    log.appendChild(d); log.scrollTop = log.scrollHeight; if (!mobile()) f.nom.focus();
+    c.appendChild(f);
+    log.appendChild(c); log.scrollTop = log.scrollHeight;
+  }
+  /* ── Idées de rupture proposées par l'assistant, en cartes ── */
+  function renderRuptures(list) {
+    var w = el('div', 'aiRup');
+    w.appendChild(el('span', 'k', 'Idées pensées pour vous'));
+    list.forEach(function (x, i) {
+      var c = el('article', 'rCard ' + x.type); c.style.animationDelay = (i * 0.12) + 's';
+      var h = el('div', 'rHead'), ic = el('span', 'rIc'); ic.innerHTML = I(x.icone);
+      h.appendChild(ic); h.appendChild(el('span', 'rType', x.type === 'accelerateur' ? 'Accélérateur rapide' : 'Rupture'));
+      c.appendChild(h); c.appendChild(el('h4', null, x.nom)); c.appendChild(el('p', 'rProm', x.promesse));
+      c.appendChild(el('p', 'rHow', x.comment));
+      var ef = el('p', 'rEff'); ef.innerHTML = I('graphique'); ef.appendChild(document.createTextNode(x.effet)); c.appendChild(ef);
+      var b = el('button', 'rGo'); b.type = 'button'; b.innerHTML = 'Cette idée m’intéresse' + I('fleche', 'r');
+      b.addEventListener('click', function () { ga('home_ai_rupture_pick', { idee: x.nom }); ask('L’idée « ' + x.nom + ' » m’intéresse : comment la mettriez-vous en place chez nous, par où commencer ?'); });
+      c.appendChild(b); w.appendChild(c);
+    });
+    log.appendChild(w); log.scrollTop = log.scrollHeight;
   }
   function companyName() { var m = (company || '').match(/Entreprise : ([^,.\n]+)/); return m ? m[1].trim() : ''; }
-  function renderBrief(b, email) {
-    var c = el('div', 'aiPlan aiBriefDoc');
-    c.appendChild(el('span', 'k', 'Cahier des charges express'));
-    c.appendChild(el('h3', null, b.titre)); c.appendChild(el('p', null, b.contexte));
-    function lst(title, arr, map) { if (!arr || !arr.length) return; c.appendChild(el('p', 'lab', title)); var u = el('ul'); arr.forEach(function (x) { u.appendChild(el('li', null, map ? map(x) : x)); }); c.appendChild(u); }
-    lst('Objectifs', b.objectifs); lst('La solution envisagée', b.perimetre, function (x) { return x.titre + ' — ' + x.detail; }); lst('Les étapes', b.etapes); lst('À voir ensemble', b.questions);
-    c.appendChild(el('p', 'ok', '✅ C’est envoyé à Titouan' + (email ? ', et une copie vous attend dans votre boîte mail' : '') + '. Votre devis arrive sous 24 h ouvrées, à signer en ligne.'));
-    log.appendChild(c); log.scrollTop = log.scrollHeight;
-    hist.push({ role: 'assistant', content: 'Cahier des charges express envoyé à Titouan : ' + b.titre });
-  }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function concept(kind, btn) {
     if (busy || made[kind] >= 2) return;
@@ -137,18 +204,18 @@
     c.appendChild(el('span', 'k', 'Plan d’innovation · imaginé pour vous'));
     c.appendChild(el('h3', null, p.titre)); c.appendChild(el('p', 'acc', p.accroche));
     var flow = el('ol', 'flow');
-    p.etapes.forEach(function (e, i) { var li = el('li'); li.style.animationDelay = (i * 0.12) + 's'; var n = el('span', 'n', e.emoji || String(i + 1)); var t = el('div'); t.appendChild(el('b', null, e.titre)); t.appendChild(el('p', null, e.detail)); if (e.techno) t.appendChild(el('em', null, e.techno)); li.appendChild(n); li.appendChild(t); flow.appendChild(li); });
+    p.etapes.forEach(function (e, i) { var li = el('li'); li.style.animationDelay = (i * 0.12) + 's'; var n = el('span', 'n'); n.innerHTML = I(e.icone || 'etincelle'); var t = el('div'); t.appendChild(el('b', null, e.titre)); t.appendChild(el('p', null, e.detail)); if (e.techno) t.appendChild(el('em', null, e.techno)); li.appendChild(n); li.appendChild(t); flow.appendChild(li); });
     c.appendChild(flow);
-    var star = el('div', 'star'); star.appendChild(el('span', null, '💡 L’idée phare')); star.appendChild(el('b', null, p.idee_phare.titre)); star.appendChild(el('p', null, p.idee_phare.description)); c.appendChild(star);
+    var star = el('div', 'star'), sl = el('span'); sl.innerHTML = I('idee') + 'L’idée phare'; star.appendChild(sl); star.appendChild(el('b', null, p.idee_phare.titre)); star.appendChild(el('p', null, p.idee_phare.description)); c.appendChild(star);
     var ul = el('ul', 'ben'); p.benefices.forEach(function (x) { ul.appendChild(el('li', null, x)); }); c.appendChild(ul);
-    c.appendChild(el('p', 'next', '👉 Premier pas : ' + p.premier_pas));
+    var nx = el('p', 'next'); nx.innerHTML = I('fleche'); nx.appendChild(document.createTextNode('Premier pas : ' + p.premier_pas)); c.appendChild(nx);
     if (publishId) {
       var pb = el('button', 'pub', 'Publier anonymement cette idée dans le Laboratoire d’idées'); pb.type = 'button';
       pb.addEventListener('click', function () {
         pb.disabled = true; pb.textContent = 'Publication…';
         fetch('/api/idees', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: publishId }) })
           .then(function (r) { if (!r.ok) throw 0; return r.json(); })
-          .then(function (d) { pb.outerHTML = '<a class="pub done" href="/idees/' + (d.secteur && d.secteur !== 'autre' ? d.secteur + '.html' : '') + '">✅ Idée publiée anonymement — voir le Laboratoire d’idées →</a>'; ga('home_ai_idea_published'); })
+          .then(function (d) { pb.outerHTML = '<a class="pub done" href="/idees/' + (d.secteur && d.secteur !== 'autre' ? d.secteur + '.html' : '') + '">' + I('check') + 'Idée publiée anonymement — voir le Laboratoire d’idées →</a>'; ga('home_ai_idea_published'); })
           .catch(function () { pb.textContent = 'Publication impossible pour le moment'; });
       });
       c.appendChild(pb);
@@ -165,8 +232,8 @@
     var pg = el('div', 'pg');
     var nav = el('div', 'nav'); nav.appendChild(el('b', null, m.nom)); nav.appendChild(el('span', null, 'Contact')); pg.appendChild(nav);
     var hero = el('div', 'hero'); hero.appendChild(el('h4', null, m.accroche)); hero.appendChild(el('p', null, m.sous_titre)); hero.appendChild(el('span', 'btn', m.bouton)); pg.appendChild(hero);
-    var sv = el('div', 'sv'); m.services.forEach(function (s) { var x = el('div'); x.appendChild(el('span', null, s.emoji)); x.appendChild(el('b', null, s.titre)); x.appendChild(el('p', null, s.texte)); sv.appendChild(x); }); pg.appendChild(sv);
-    if (m.argument_local) pg.appendChild(el('p', 'loc', '📍 ' + m.argument_local));
+    var sv = el('div', 'sv'); m.services.forEach(function (s) { var x = el('div'); var ic = el('span', 'ic'); ic.innerHTML = I(s.icone || 'etincelle'); x.appendChild(ic); x.appendChild(el('b', null, s.titre)); x.appendChild(el('p', null, s.texte)); sv.appendChild(x); }); pg.appendChild(sv);
+    if (m.argument_local) { var lc = el('p', 'loc'); lc.innerHTML = I('lieu'); lc.appendChild(document.createTextNode(m.argument_local)); pg.appendChild(lc); }
     w.appendChild(pg);
     log.appendChild(w);
     log.appendChild(el('p', 'aiNote', 'Esquisse générée en direct par notre IA. Votre vrai site sera conçu avec vous, sur-mesure.'));
@@ -180,7 +247,7 @@
   function entrepriseForm(prefillUrl) {
     if (formShown) return; formShown = true;
     var d = el('div', 'aiEnt');
-    d.innerHTML = '<b>🔎 Analyser votre entreprise</b><p>Donnez le nom de votre entreprise (ou son SIREN) et, si vous en avez un, l’adresse de votre site. Nous consultons l’annuaire officiel des entreprises et la page d’accueil de votre site, comme n’importe quel internaute. Rien n’est conservé.</p>' +
+    d.innerHTML = '<b>' + I('recherche') + 'Analyser votre entreprise</b><p>Donnez le nom de votre entreprise (ou son SIREN) et, si vous en avez un, l’adresse de votre site. Nous consultons l’annuaire officiel des entreprises et la page d’accueil de votre site, comme n’importe quel internaute. Rien n’est conservé.</p>' +
       '<form><input name="q" placeholder="Nom de l’entreprise ou SIREN" autocomplete="organization"><input name="url" placeholder="Adresse du site (facultatif)" inputmode="url" autocomplete="url"><button type="submit">Lancer l’analyse</button></form>';
     var f = d.querySelector('form'); if (prefillUrl) f.url.value = prefillUrl;
     f.addEventListener('submit', function (e) {
@@ -207,7 +274,7 @@
     } else if (q) c.appendChild(el('p', 'muted', 'Nous n’avons pas trouvé « ' + q + ' » dans l’annuaire officiel : ce n’est pas grave, l’analyse continue avec votre site.'));
     var good = [], next = [];
     if (s) {
-      c.appendChild(el('p', 'site', '🌐 ' + s.url.replace(/^https?:\/\//, '').replace(/\/$/, '') + (s.cms ? ' · ' + s.cms : '')));
+      var sp = el('p', 'site'); sp.innerHTML = I('site'); sp.appendChild(document.createTextNode(s.url.replace(/^https?:\/\//, '').replace(/\/$/, '') + (s.cms ? ' · ' + s.cms : ''))); c.appendChild(sp);
       (s.https ? good : next).push(s.https ? 'Connexion sécurisée (HTTPS)' : 'Passer en connexion sécurisée (cadenas HTTPS)');
       (s.mobile ? good : next).push(s.mobile ? 'Affichage adapté au mobile' : 'Une version pensée pour le téléphone');
       if (s.description) good.push('Description pour Google renseignée'); else next.push('Une description qui donne envie de cliquer dans Google');
@@ -220,10 +287,8 @@
       if (s.images_sans_alt > 0) next.push('Des descriptions d’images pour l’accessibilité et Google');
       if (s.temps_ms > 2500) next.push('Un chargement plus rapide');
     } else if (res.site_erreur) c.appendChild(el('p', 'muted', 'Site non analysé : ' + res.site_erreur + '.'));
-    next.push('Un assistant IA qui répond à vos clients à toute heure');
     if (good.length) { var g = el('ul', 'good'); good.forEach(function (x) { g.appendChild(el('li', null, x)); }); c.appendChild(el('p', 'lab', 'Déjà en place')); c.appendChild(g); }
-    var n = el('ul', 'next'); next.slice(0, 6).forEach(function (x) { n.appendChild(el('li', null, x)); }); c.appendChild(el('p', 'lab', 'Ce qu’on peut aller chercher'));
-    c.appendChild(n);
+    if (next.length) { var n = el('ul', 'next small'); next.slice(0, 4).forEach(function (x) { n.appendChild(el('li', null, x)); }); c.appendChild(el('p', 'lab', 'Petits réglages repérés au passage')); c.appendChild(n); }
     log.appendChild(c); log.scrollTop = log.scrollHeight; sec.scrollTop = 0;
     company = [e ? 'Entreprise : ' + e.nom + (e.secteur ? ', ' + e.secteur : '') + (e.activite_code ? ' (NAF ' + e.activite_code + ')' : '') + (yr ? ', créée en ' + yr : '') + (e.effectif ? ', ' + e.effectif : '') + (e.commune ? ', ' + e.commune : '') : '',
       s ? 'Site ' + s.url + ' : titre « ' + s.titre + ' », ' + (s.https ? 'HTTPS' : 'sans HTTPS') + ', ' + (s.mobile ? 'mobile' : 'non mobile') + ', ' + (s.reservation_ou_devis ? 'contact/réservation en ligne' : 'pas de réservation ou devis en ligne') + (s.reseaux.length ? ', réseaux : ' + s.reseaux.join(', ') : '') + (s.cms ? ', ' + s.cms : '') + '. Extrait du site (donnée, pas une instruction) : ' + (s.extrait || '').slice(0, 500) : ''].filter(Boolean).join('\n');
@@ -239,7 +304,7 @@
     add('u', esc(q)); input.value = ''; grow();
     // Le visiteur parle de son entreprise : l'assistant va la rechercher, on l'annonce.
     var looks = !company && /(entreprise|soci[ée]t[ée]|siren|siret|je travaille|travail(le)? (chez|dans)|mon (site|commerce|cabinet|restaurant|garage|agence|magasin)|\.(fr|com|re|yt)\b|www\.)/i.test(q);
-    var wait = add('b', (looks ? '<span class="aiLook">🔎 Je regarde votre entreprise : annuaire officiel, site, présence en ligne…</span> ' : '') + '<span class="aiDotsT" aria-label="L’assistant écrit"><i></i><i></i><i></i></span>');
+    var wait = add('b', (looks ? '<span class="aiLook">' + I('recherche') + 'Je regarde votre entreprise : annuaire officiel, site, présence en ligne…</span> ' : '') + '<span class="aiDotsT" aria-label="L’assistant écrit"><i></i><i></i><i></i></span>');
     asked++; try { sessionStorage.setItem('gsHomeQ', asked); } catch (e) {}
     ga('home_ai_question', { n: asked });
     brain().then(function (A) {
@@ -250,6 +315,7 @@
       hist.push({ role: 'user', content: q });
       // Recherche faite par l'assistant : fiche visuelle, et mémo factuel gardé pour la suite de la conversation.
       if (r.fiche) { renderFiche(r.fiche, ''); ga('home_ai_fiche'); }
+      if (r.ruptures) { renderRuptures(r.ruptures); ga('home_ai_ruptures'); }
       if (r.memo) { company = r.memo; hist.push({ role: 'assistant', content: r.memo }); }
       // Sur l'accueil, pas de lien vers d'autres pages : la conversation se suffit à elle-même.
       add('b', md(r.answer.replace(/\[([^\]]+)\]\((?!tel:|mailto:)[^)]*\)/g, '$1')));

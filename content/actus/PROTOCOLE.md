@@ -39,6 +39,7 @@ Fichier `content/actus/AAAA-MM-JJ.json` (date du jour, heure de Paris) :
       "titre": "Titre factuel (≤ 120 caractères)",
       "resume": "Les faits vérifiés, datés, sourcés (120 à 900 caractères).",
       "pourquoi": "Ce que ça change concrètement pour une entreprise, sans exagération.",
+      "action": "À faire cette semaine : une action concrète et réaliste pour une TPE/PME (30 à 280 caractères, facultatif mais recommandé).",
       "sources": [ { "nom": "Nom du site", "url": "https://…" }, { "nom": "…", "url": "https://…" } ],
       "lien": { "label": "Page liée du site (optionnel)", "url": "../veille/… ou ../../automatisation/" }
     }
@@ -47,6 +48,8 @@ Fichier `content/actus/AAAA-MM-JJ.json` (date du jour, heure de Paris) :
 ```
 
 - 3 à 6 actualités. Moins de 3 actualités vérifiées → **ne rien publier ce jour-là.**
+- Chaque actu doit être **utile à un dirigeant** : `pourquoi` explique l'impact réel, `action` donne le geste concret de la semaine (vérifier un paramètre, poser une question à son expert-comptable, tester un outil gratuit…). Jamais de conseil juridique ou fiscal péremptoire : on renvoie vers le professionnel compétent.
+- Privilégier ce que les autres ne font pas : l'angle PME française et outre-mer, la date qui compte, l'action à mener.
 - Français, vouvoiement, ton sobre et factuel.
 - Jamais de prix de nos prestations (tout est sur devis), jamais de client cité, jamais de chiffre non sourcé.
 - `lien` : seulement vers une page qui existe (`lab/veille/*.html`, `lab/api.html`, `automatisation/`, `outils/…`).
@@ -62,6 +65,15 @@ git add -A && git commit -m "Actus du AAAA-MM-JJ" && git push origin main
 Si le contrôle échoue et qu'une correction n'est pas possible sans affaiblir la vérification : supprimer le fichier et ne rien publier.
 
 ---
+
+# Passage flash de mi-journée (lundi au vendredi)
+
+Objectif : que le site suive l'actualité en temps réel sans jamais baisser l'exigence.
+- Chercher les actualités **des 12 dernières heures** sur les mêmes thèmes (au moins 3 requêtes WebSearch).
+- Ne retenir que ce qui est **majeur pour une TPE/PME** (réglementation publiée, alerte cyber officielle, sortie d'un outil IA de premier plan) et **confirmé par 2 sources indépendantes**.
+- S'il existe déjà un fichier du jour : **ajouter** l'actu à ses `items` (6 au maximum). Sinon, ne publier que si l'on atteint 3 actus vérifiées.
+- Rien de majeur ou de vérifié → **ne rien publier, ne rien commiter**. C'est le cas normal.
+- Contrôle, `npm run actus`, commit « Actus flash du AAAA-MM-JJ », push : comme le matin.
 
 # Publications complémentaires (même exigence de vérité)
 
@@ -95,5 +107,6 @@ Rédaction signée « La rédaction de Groupe Solution » (générée automatiqu
 ## Laboratoire d'idées (mercredi et vendredi)
 
 - Ajouter **2 nouvelles idées** dans `content/idees/secteurs.json`, dans le secteur qui a le moins d'idées (à égalité : ordre du fichier), en s'inspirant des actualités vérifiées de la semaine (nouveau modèle, nouvel outil, nouvelle donnée ouverte, nouvelle réglementation).
+- Niveau exigé : une **rupture** qui change l'expérience du client final ou le modèle économique (voir la doctrine dans `api/_innovation.mjs`), jamais un simple réglage ; au moins une des deux idées avec `audace` 3.
 - Même format que les idées existantes (`titre`, `probleme`, `idee`, `techno`, `local`, `audace`), réalisables aujourd'hui, jamais de prix, de client, de chiffre inventé ; le champ `local` décline l'idée pour un territoire précis (littoral, rural, grande ville, outre-mer).
 - Contrôle : `node -e "JSON.parse(require('fs').readFileSync('content/idees/secteurs.json','utf8'))"` puis `npm run publish` (qui régénère aussi `/idees/`).

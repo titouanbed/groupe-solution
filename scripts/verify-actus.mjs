@@ -43,7 +43,8 @@ const sim = (a, b) => { const A = words(a), B = words(b); const i = [...A].filte
   if (it.resume && (it.resume.length < 120 || it.resume.length > 900)) fail(`${tag} : résumé entre 120 et 900 caractères`);
   if (it.pourquoi && it.pourquoi.length < 60) fail(`${tag} : « ce que ça change » trop court`);
   if (it.cat && !CATS.includes(it.cat)) warn.push(`${tag} : catégorie inhabituelle « ${it.cat} »`);
-  const text = [it.titre, it.resume, it.pourquoi].join(' ');
+  if (it.action != null && (typeof it.action !== 'string' || it.action.length < 30 || it.action.length > 280)) fail(`${tag} : « à faire cette semaine » entre 30 et 280 caractères`);
+  const text = [it.titre, it.resume, it.pourquoi, it.action || ''].join(' ');
   FORBIDDEN.forEach(([re, why]) => { if (re.test(text)) fail(`${tag} : contenu interdit (${why})`); });
   // Sources : au moins 2, https, domaines distincts, pas de réseaux sociaux / agrégateurs vidéo comme seule base
   const src = Array.isArray(it.sources) ? it.sources : [];

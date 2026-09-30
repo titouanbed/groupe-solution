@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="robots" content="noindex,nofollow" />
 <meta name="referrer" content="no-referrer" />
-<title>Espace devis | Groupe Solution</title>
+<title>Demandes de devis | Groupe Solution</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <style>
 :root{--ink:#171613;--sec:#57534B;--muted:#8A857B;--line:#E7E4DC;--paper:#F7F6F3;--acc:#E61E4D;--ok:#2F7D4F}
@@ -31,7 +31,7 @@ a{color:var(--acc)}
 </head>
 <body>
 <div class="wrap">
-  <header><b>Espace devis</b><span><a href="/">Site</a> · <a href="#" id="out">Déconnexion</a></span></header>
+  <header><b>Demandes de devis</b><span><a href="/">Site</a> · <a href="#" id="out">Déconnexion</a></span></header>
   <div id="login" class="card" hidden>
     <p><b>Connexion</b></p>
     <p class="note">Saisissez le code d’accès défini dans Vercel (variable <code>ADMIN_TOKEN</code>, 16 caractères minimum). Il reste sur cet appareil.</p>
@@ -39,7 +39,7 @@ a{color:var(--acc)}
     <div class="bar"><button class="btn" id="in">Se connecter</button></div><p class="err" id="lerr"></p>
   </div>
   <div id="main" hidden>
-    <nav><button data-t="briefs" class="on">Demandes</button><button data-t="devis">Devis</button><button data-t="new">+ Nouveau devis</button><button data-t="settings">Réglages</button></nav>
+    <nav><button data-t="demandes" class="on">Demandes</button><button data-t="settings">Ma grille privée</button></nav>
     <div id="view"></div>
   </div>
 </div>
@@ -49,7 +49,7 @@ a{color:var(--acc)}
   try { token = localStorage.getItem(TK) || ''; } catch (e) {}
   var $ = function (s, r) { return (r || document).querySelector(s); };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function eur(n) { return (Math.round((n || 0) * 100) / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+  function eur(n) { return Math.round(n || 0).toLocaleString('fr-FR') + ' €'; }
   function api(q, body) {
     return fetch('/api/devis' + (q || ''), { method: body ? 'POST' : 'GET', headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (r.status === 401) { showLogin(j.adminConfigured === false ? 'ADMIN_TOKEN n’est pas encore défini dans Vercel (16 caractères minimum).' : 'Code incorrect.'); throw 0; } if (!r.ok) throw j; return j; }); });
@@ -58,83 +58,40 @@ a{color:var(--acc)}
   $('#in').onclick = function () { token = $('#tok').value.trim(); try { localStorage.setItem(TK, token); } catch (e) {} boot(); };
   $('#out').onclick = function (e) { e.preventDefault(); try { localStorage.removeItem(TK); } catch (e2) {} token = ''; showLogin(); };
   [].forEach.call(document.querySelectorAll('nav button'), function (b) { b.onclick = function () { tab(b.getAttribute('data-t')); }; });
-  var S = { emetteur: {} };
-  function tab(t, arg) {
-    [].forEach.call(document.querySelectorAll('nav button'), function (b) { b.classList.toggle('on', b.getAttribute('data-t') === t); });
-    if (t === 'briefs' || t === 'devis') list(t); else if (t === 'new') editor(arg || null); else if (t === 'settings') settings();
-  }
+  var G = {}, MAIL = false;
+  function tab(t) { [].forEach.call(document.querySelectorAll('nav button'), function (b) { b.classList.toggle('on', b.getAttribute('data-t') === t); }); t === 'settings' ? settings() : list(); }
   function boot() {
     if (!token) return showLogin();
     api('?admin=settings').then(function (j) {
-      S.emetteur = j.emetteur || {}; S.mail = j.mail;
-      $('#login').hidden = true; $('#main').hidden = false;
-      var m = location.hash.match(/brief=([a-f0-9]{32})/); if (m) { history.replaceState(null, '', location.pathname); fromBrief(m[1]); } else tab('briefs');
-      if (!S.emetteur.raison_sociale) $('#view').insertAdjacentHTML('afterbegin', '<div class="card"><b>À faire une fois :</b> renseignez vos informations légales dans <a href="#" onclick="return false" id="gos">Réglages</a> (raison sociale, adresse, SIRET, TVA) : elles apparaissent sur chaque devis.</div>');
-      var g = $('#gos'); if (g) g.onclick = function () { tab('settings'); };
+      G = j.grille || {}; MAIL = j.mail; $('#login').hidden = true; $('#main').hidden = false;
+      var m = location.hash.match(/demande=([a-f0-9]{32})/); list(m && m[1]);
+      if (!G.tjm) $('#view').insertAdjacentHTML('afterbegin', '<div class="card"><b>À régler une fois :</b> votre taux journalier dans « Ma grille privée ». Il sert à calculer, sans jamais l’afficher au visiteur, la jauge « ce qui tient dans votre budget ».</div>');
     }).catch(function () {});
   }
-  function list(t) {
+  function list(open) {
     $('#view').innerHTML = '<p class="note">Chargement…</p>';
     api('?admin=list').then(function (j) {
-      if (t === 'briefs') {
-        $('#view').innerHTML = j.briefs.length ? j.briefs.map(function (b) { return '<div class="card"><div class="row"><div><b>' + esc(b.titre || 'Demande') + '</b><br><small>' + esc([b.contact && b.contact.nom, b.contact && b.contact.entreprise, b.contact && b.contact.telephone, b.contact && b.contact.email].filter(Boolean).join(' · ')) + ' — ' + new Date(b.date).toLocaleString('fr-FR') + '</small></div><span class="tag ' + esc(b.statut) + '">' + (b.statut === 'devis' ? 'devis créé' : 'nouveau') + '</span></div><div class="bar"><button class="btn sm ghost" data-v="' + b.id + '">Lire</button><button class="btn sm acc" data-d="' + b.id + '">Créer le devis</button></div><div class="brief" id="b' + b.id + '"></div></div>'; }).join('') : '<div class="card">Aucune demande pour l’instant. Elles arrivent ici quand un visiteur demande sa proposition dans le chat de l’accueil.</div>';
-        [].forEach.call(document.querySelectorAll('[data-v]'), function (x) { x.onclick = function () { var id = x.getAttribute('data-v'); api('?admin=brief&id=' + id).then(function (r) { var b = r.brief.brief; $('#b' + id).innerHTML = '<p>' + esc(b.contexte) + '</p><b>Objectifs</b><ul>' + b.objectifs.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ul><b>Solution</b><ul>' + b.perimetre.map(function (o) { return '<li><b>' + esc(o.titre) + '</b> — ' + esc(o.detail) + '</li>'; }).join('') + '</ul><b>Questions</b><ul>' + b.questions.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ul><details><summary>Conversation</summary><pre style="white-space:pre-wrap;font-size:12px">' + esc(r.brief.conversation) + '</pre></details>'; }); }; });
-        [].forEach.call(document.querySelectorAll('[data-d]'), function (x) { x.onclick = function () { fromBrief(x.getAttribute('data-d')); }; });
-      } else {
-        $('#view').innerHTML = j.devis.length ? j.devis.map(function (d) { return '<div class="card"><div class="row"><div><b>' + esc(d.numero) + ' — ' + esc(d.objet || 'Sans objet') + '</b><br><small>' + esc(d.client.entreprise || d.client.nom) + ' · ' + eur(d.ttc) + ' · ' + esc(d.date) + (d.signeLe ? ' · signé le ' + new Date(d.signeLe).toLocaleDateString('fr-FR') : '') + '</small></div><span class="tag ' + esc(d.statut) + '">' + esc({ brouillon: 'brouillon', envoye: 'envoyé', signe: 'signé', expire: 'expiré' }[d.statut] || d.statut) + '</span></div><div class="bar">' + (d.statut !== 'signe' ? '<button class="btn sm ghost" data-e="' + d.id + '">Modifier</button>' : '') + (d.statut !== 'brouillon' ? '<a class="btn sm ghost" target="_blank" rel="noopener" href="/devis/?d=' + d.id + '">Voir</a>' : '') + '</div></div>'; }).join('') : '<div class="card">Aucun devis pour l’instant.</div>';
-        [].forEach.call(document.querySelectorAll('[data-e]'), function (x) { x.onclick = function () { api('?admin=devis&id=' + x.getAttribute('data-e')).then(function (r) { tab('new', r.devis); }); }; });
-      }
+      $('#view').innerHTML = j.demandes.length ? j.demandes.map(function (d) { return '<div class="card"><div class="row"><div><b>' + esc(d.titre) + '</b><br><small>' + esc([d.contact.nom, d.contact.entreprise, d.contact.telephone, d.contact.email].filter(Boolean).join(' · ')) + '<br>' + new Date(d.date).toLocaleString('fr-FR') + ' · budget ' + esc(d.budget) + ' · ' + esc(d.delai) + '</small></div><span class="tag nouveau">' + (d.total ? eur(d.total) : '—') + (d.part != null ? ' · ' + d.part + ' %' : '') + '</span></div><div class="bar"><button class="btn sm ghost" data-v="' + d.id + '">Détail</button>' + (d.contact.telephone ? '<a class="btn sm acc" href="tel:' + esc(d.contact.telephone.replace(/\s/g, '')) + '">Appeler</a>' : '') + (d.contact.email ? '<a class="btn sm ghost" href="mailto:' + esc(d.contact.email) + '">E-mail</a>' : '') + '</div><div class="brief" id="d' + d.id + '"></div></div>'; }).join('') : '<div class="card">Aucune demande pour l’instant. Elles arrivent ici (et par e-mail) quand un visiteur prépare son devis dans le chat de l’accueil.</div>';
+      [].forEach.call(document.querySelectorAll('[data-v]'), function (x) { x.onclick = function () { detail(x.getAttribute('data-v')); }; });
+      if (open) detail(open);
     }).catch(function () {});
   }
-  function fromBrief(id) {
-    api('?admin=brief&id=' + id).then(function (r) {
-      var b = r.brief, c = b.contact || {};
-      var d = { briefId: id, client: { nom: c.nom, entreprise: c.entreprise, email: c.email, telephone: c.telephone }, objet: b.brief.titre, intro: '', lignes: b.brief.perimetre.map(function (p) { return { designation: p.titre, detail: p.detail, quantite: 1, unite: 'forfait', prix_ht: 0 }; }) };
-      tab('new', d);
+  function detail(id) {
+    api('?admin=demande&id=' + id).then(function (r) {
+      var d = r.demande, box = $('#d' + id); if (!d || !box) return;
+      function li(a) { return a.map(function (x) { return '<li><b>' + esc(x.titre) + '</b> <small>(' + esc(x.niveau) + (x.recurrent ? ', mensuel' : '') + ' · ' + x.jours + ' j' + (x.cout ? ' · ' + eur(x.cout) : '') + ')</small><br>' + esc(x.detail) + '</li>'; }).join(''); }
+      box.innerHTML = '<p>' + esc(d.resume) + '</p>' + (d.message ? '<p><b>Message :</b> ' + esc(d.message) + '</p>' : '') + '<p><b>Estimation interne :</b> ' + d.estimation.jours + ' j' + (d.estimation.choisi ? ' ≈ ' + eur(d.estimation.choisi) : '') + (d.estimation.part != null ? ' (' + d.estimation.part + ' % de son budget)' : '') + '</p><b>Retenu</b><ul>' + li(d.choisies) + '</ul>' + (d.ecartees.length ? '<b>Écarté</b><ul>' + li(d.ecartees) + '</ul>' : '') + '<b>À préciser</b><ul>' + d.questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul><details><summary>Conversation</summary><pre style="white-space:pre-wrap;font-size:12px">' + esc(d.conversation) + '\n' + esc(d.besoin) + '</pre></details>';
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }).catch(function () {});
-  }
-  function editor(d) {
-    var e = S.emetteur;
-    d = d || {};
-    d.client = d.client || {}; d.lignes = d.lignes && d.lignes.length ? d.lignes : [{ designation: '', detail: '', quantite: 1, unite: 'forfait', prix_ht: 0 }];
-    var tva = d.tva_taux != null ? d.tva_taux : (e.tva_defaut != null ? e.tva_defaut : 20);
-    var v = $('#view');
-    v.innerHTML = '<div class="card"><div class="row"><b>' + (d.numero ? 'Devis ' + esc(d.numero) : 'Nouveau devis') + '</b>' + (d.briefId ? '<button class="btn sm ghost" id="ai">✨ Pré-remplir les lignes avec l’IA</button>' : '') + '</div>' +
-      '<div class="g2"><div><label>Client — nom</label><input id="cn" value="' + esc(d.client.nom) + '"></div><div><label>Entreprise</label><input id="ce" value="' + esc(d.client.entreprise) + '"></div><div><label>E-mail (envoi du lien)</label><input id="cm" type="email" value="' + esc(d.client.email) + '"></div><div><label>Téléphone</label><input id="ct" value="' + esc(d.client.telephone) + '"></div></div>' +
-      '<label>Adresse du client</label><textarea id="ca">' + esc(d.client.adresse) + '</textarea>' +
-      '<label>Objet</label><input id="ob" value="' + esc(d.objet) + '"><label>Introduction (facultatif)</label><textarea id="in2">' + esc(d.intro) + '</textarea>' +
-      '<label>Lignes</label><div id="ls"></div><button class="btn sm ghost" id="add">+ Ajouter une ligne</button>' +
-      '<div class="g4"><div><label>Date</label><input id="dt" type="date" value="' + esc(d.date || new Date().toISOString().slice(0, 10)) + '"></div><div><label>Validité (jours)</label><input id="va" type="number" value="' + esc(d.validite_jours || 30) + '"></div><div><label>TVA %</label><input id="tv" type="number" step="0.1" value="' + esc(tva) + '"></div><div><label>Acompte %</label><input id="ac" type="number" value="' + esc(d.acompte_pct || 0) + '"></div></div>' +
-      '<label>Mention TVA (ex. « TVA non applicable, art. 293 B du CGI »)</label><input id="mt" value="' + esc(d.mention_tva != null ? d.mention_tva : (e.mention_tva_defaut || '')) + '">' +
-      '<label>Conditions (paiement, délais, propriété…)</label><textarea id="co">' + esc(d.conditions != null ? d.conditions : (e.conditions_defaut || '')) + '</textarea>' +
-      '<label>Notes internes (jamais visibles du client)</label><textarea id="no">' + esc(d.notes) + '</textarea>' +
-      '<div class="tot" id="tt"></div><div class="bar"><button class="btn" id="sv">Enregistrer</button><button class="btn acc" id="se">Enregistrer et envoyer au client</button>' + (d.id ? '<button class="btn ghost" id="dl">Supprimer</button>' : '') + '</div><p class="note" id="msg"></p></div>';
-    function lines() {
-      $('#ls').innerHTML = d.lignes.map(function (l, i) { return '<div class="line"><div class="row"><small>Ligne ' + (i + 1) + '</small><button class="btn sm ghost" data-x="' + i + '">Retirer</button></div><label>Désignation</label><input data-f="designation" data-i="' + i + '" value="' + esc(l.designation) + '"><label>Détail</label><textarea data-f="detail" data-i="' + i + '">' + esc(l.detail) + '</textarea><div class="g4"><div><label>Unité</label><select data-f="unite" data-i="' + i + '">' + ['forfait', 'jour', 'heure', 'mois', 'unité'].map(function (u) { return '<option' + (u === l.unite ? ' selected' : '') + '>' + u + '</option>'; }).join('') + '</select></div><div><label>Qté</label><input type="number" step="0.5" data-f="quantite" data-i="' + i + '" value="' + esc(l.quantite) + '"></div><div><label>P.U. HT (€)</label><input type="number" step="0.01" data-f="prix_ht" data-i="' + i + '" value="' + esc(l.prix_ht) + '"></div></div></div>'; }).join('');
-      [].forEach.call(document.querySelectorAll('[data-f]'), function (x) { x.oninput = function () { var l = d.lignes[+x.getAttribute('data-i')], f = x.getAttribute('data-f'); l[f] = (f === 'quantite' || f === 'prix_ht') ? parseFloat(x.value.replace(',', '.')) || 0 : x.value; tot(); }; });
-      [].forEach.call(document.querySelectorAll('[data-x]'), function (x) { x.onclick = function () { d.lignes.splice(+x.getAttribute('data-x'), 1); lines(); tot(); }; });
-    }
-    function tot() { var ht = d.lignes.reduce(function (a, l) { return a + (l.quantite || 0) * (l.prix_ht || 0); }, 0), t = parseFloat($('#tv').value) || 0; $('#tt').textContent = 'Total HT ' + eur(ht) + (t ? ' · TTC ' + eur(ht * (1 + t / 100)) : ''); }
-    lines(); tot(); $('#tv').oninput = tot;
-    $('#add').onclick = function () { d.lignes.push({ designation: '', detail: '', quantite: 1, unite: 'forfait', prix_ht: 0 }); lines(); };
-    if ($('#ai')) $('#ai').onclick = function () { var b = this; b.disabled = true; b.textContent = 'L’IA prépare les lignes…'; api('', { action: 'draft', briefId: d.briefId }).then(function (r) { if (r.lignes) { d.lignes = r.lignes; lines(); tot(); } if (r.objet && !$('#ob').value) $('#ob').value = r.objet; if (r.intro) $('#in2').value = r.intro; b.textContent = '✨ Lignes proposées — ajoutez vos prix'; }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; }); };
-    function collect() { return { id: d.id, briefId: d.briefId, client: { nom: $('#cn').value, entreprise: $('#ce').value, email: $('#cm').value, telephone: $('#ct').value, adresse: $('#ca').value }, objet: $('#ob').value, intro: $('#in2').value, lignes: d.lignes, date: $('#dt').value, validite_jours: $('#va').value, tva_taux: $('#tv').value, acompte_pct: $('#ac').value, mention_tva: $('#mt').value, conditions: $('#co').value, notes: $('#no').value }; }
-    function save(andSend) {
-      $('#msg').textContent = 'Enregistrement…';
-      return api('', { action: 'save', devis: collect() }).then(function (r) {
-        d.id = r.id; d.numero = r.numero;
-        if (!andSend) { $('#msg').innerHTML = 'Enregistré : devis ' + esc(r.numero) + '.'; return; }
-        return api('', { action: 'send', id: r.id }).then(function (s) { $('#msg').innerHTML = (s.mailed ? '✅ Envoyé par e-mail au client. ' : '⚠️ E-mail non envoyé (adresse manquante ou Brevo non configuré) : transmettez le lien vous-même. ') + '<br>Lien de signature : <a target="_blank" rel="noopener" href="' + esc(s.lien) + '">' + esc(s.lien) + '</a> <button class="btn sm ghost" id="cp">Copier</button>'; var cp = $('#cp'); if (cp) cp.onclick = function () { navigator.clipboard && navigator.clipboard.writeText(s.lien); cp.textContent = 'Copié'; }; });
-      }).catch(function (j) { $('#msg').innerHTML = '<span class="err">' + esc((j && j.message) || 'Erreur, réessayez.') + '</span>'; });
-    }
-    $('#sv').onclick = function () { save(false); };
-    $('#se').onclick = function () { if (!$('#cm').value && !confirm('Pas d’e-mail client : le lien sera à transmettre vous-même. Continuer ?')) return; save(true); };
-    if ($('#dl')) $('#dl').onclick = function () { if (confirm('Supprimer ce devis ?')) api('', { action: 'delete', id: d.id }).then(function () { tab('devis'); }).catch(function (j) { $('#msg').textContent = (j && j.error) || 'Erreur'; }); };
   }
   function settings() {
-    var e = S.emetteur, F = [['raison_sociale', 'Raison sociale / nom commercial'], ['adresse', 'Adresse', 1], ['siret', 'SIRET'], ['tva_intra', 'N° TVA intracommunautaire'], ['rcs', 'RCS / RM (ex. RCS Montpellier 000 000 000)'], ['telephone', 'Téléphone'], ['email', 'E-mail'], ['site', 'Site'], ['iban', 'IBAN (facultatif)'], ['tva_defaut', 'TVA par défaut (%)'], ['mention_tva_defaut', 'Mention TVA par défaut'], ['conditions_defaut', 'Conditions par défaut', 1], ['mentions', 'Mentions légales en pied de devis (assurance, pénalités de retard, indemnité forfaitaire de recouvrement…)', 1]];
-    $('#view').innerHTML = '<div class="card"><b>Vos informations sur chaque devis</b><p class="note">Seules ces informations saisies par vous apparaissent sur les devis. E-mails : ' + (S.mail ? 'Brevo configuré ✅' : 'Brevo non configuré ⚠️') + '</p>' + F.map(function (f) { return '<label>' + f[1] + '</label>' + (f[2] ? '<textarea id="s_' + f[0] + '">' + esc(e[f[0]]) + '</textarea>' : '<input id="s_' + f[0] + '" value="' + esc(e[f[0]] != null ? e[f[0]] : '') + '">'); }).join('') + '<div class="bar"><button class="btn" id="ss">Enregistrer</button></div><p class="note" id="sm"></p></div>';
-    $('#ss').onclick = function () { var o = {}; F.forEach(function (f) { o[f[0]] = $('#s_' + f[0]).value; }); api('', { action: 'settings', emetteur: o }).then(function (r) { S.emetteur = r.emetteur; $('#sm').textContent = 'Enregistré ✅'; }).catch(function () { $('#sm').textContent = 'Erreur'; }); };
+    $('#view').innerHTML = '<div class="card"><b>Ma grille privée</b><p class="note">Jamais affichée aux visiteurs. L’IA estime les jours de travail de chaque brique (en tenant compte du fait que vous allez vite grâce à l’IA) ; votre taux journalier les transforme en une part de <i>leur</i> budget, affichée comme une jauge — sans aucun montant. E-mails : ' + (MAIL ? 'Brevo configuré ✅' : 'Brevo non configuré ⚠️') + '</p>' +
+      '<label>Taux journalier moyen (€ HT)</label><input id="g_tjm" type="number" value="' + esc(G.tjm || '') + '">' +
+      '<label>Montant minimum d’un projet (€ HT, facultatif)</label><input id="g_min" type="number" value="' + esc(G.minimum || '') + '">' +
+      '<label class="row" style="justify-content:flex-start;gap:8px"><input id="g_j" type="checkbox" style="width:auto"' + (G.jauge !== false ? ' checked' : '') + '> Afficher la jauge budget aux visiteurs</label>' +
+      '<label>Note pour vous</label><textarea id="g_note">' + esc(G.note || '') + '</textarea>' +
+      '<div class="bar"><button class="btn" id="gs">Enregistrer</button></div><p class="note" id="gm"></p></div>';
+    $('#gs').onclick = function () { api('', { action: 'settings', grille: { tjm: $('#g_tjm').value, minimum: $('#g_min').value, jauge: $('#g_j').checked, note: $('#g_note').value } }).then(function (r) { G = r.grille; $('#gm').textContent = 'Enregistré ✅'; }).catch(function () { $('#gm').textContent = 'Erreur'; }); };
   }
   boot();
 })();
