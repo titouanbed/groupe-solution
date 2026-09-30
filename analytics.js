@@ -11,6 +11,43 @@
 (function () {
   var GA_ID = 'G-G8RWE633G4'; // ID GA4 Groupe Solution (holding + zones géo)
 
+  /* Provenance de la visite (LinkedIn, Google…), gardée le temps de l'onglet : le chat s'adapte
+     et Titouan sait d'où viennent ses contacts. Aucune donnée personnelle. */
+  try {
+    if (!sessionStorage.getItem('gsSrc')) {
+      var qs = (location.search.match(/[?&](?:src|utm_source)=([a-z0-9_-]{2,30})/i) || [])[1], rf = document.referrer || '', src = '';
+      if (qs) src = qs.toLowerCase();
+      else if (/linkedin\.|lnkd\.in/i.test(rf) || /LinkedInApp/i.test(navigator.userAgent)) src = 'linkedin';
+      else if (/google\./i.test(rf)) src = 'google';
+      else if (/facebook\.|fb\.|instagram\./i.test(rf)) src = 'meta';
+      else if (/bing\.|duckduckgo\.|qwant\.|ecosia\./i.test(rf)) src = 'recherche';
+      else if (rf && rf.indexOf(location.host) < 0) src = 'lien';
+      else if (!rf) src = 'direct';
+      if (src) sessionStorage.setItem('gsSrc', src);
+    }
+  } catch (e) {}
+
+  /* Aucune demande perdue : tout envoi de formulaire vers Formspree passe d'abord par /api/lead
+     (enregistré dans le tableau de bord, e-mail via Brevo) ; Formspree ne sert qu'en secours. */
+  if (window.fetch && window.FormData && !window.__gsLeadWrap) {
+    window.__gsLeadWrap = 1;
+    var _f = window.fetch.bind(window);
+    window.fetch = function (input, init) {
+      try {
+        var url = typeof input === 'string' ? input : (input && input.url) || '';
+        if (/^https:\/\/formspree\.io\//.test(url) && init && !init.gsDirect && String(init.method || '').toUpperCase() === 'POST' && init.body instanceof FormData) {
+          var o = {}; init.body.forEach(function (v, k) { if (typeof v === 'string') o[k] = v; });
+          if (!o.page) o.page = location.pathname;
+          try { var sd = sessionStorage.getItem('gsSid'); if (sd && !o.sid) o.sid = sd; var sr = sessionStorage.getItem('gsSrc'); if (sr && !o.provenance) o.provenance = sr; } catch (e) {}
+          var backup = function () { return _f(input, init); };
+          return _f('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o) })
+            .then(function (r) { return r.ok || r.status === 429 || r.status === 403 ? r : backup(); }).catch(backup);
+        }
+      } catch (e) {}
+      return _f(input, init);
+    };
+  }
+
   /* Assistant du site + barre d'appel mobile : chargés sur toutes les pages publiques
      depuis ce point unique (voir /assets/assistant.js). */
   if (!/\/ecole-mayotte\//.test(location.pathname) && !/\/vitrine-gbp\.html$/.test(location.pathname)) {

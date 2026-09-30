@@ -38,13 +38,21 @@
     });
   });
 
+  // Demande enregistrée d'abord dans le tableau de bord (/api/lead), Formspree seulement en secours : rien ne se perd.
+  function postLead(action, fd) {
+    var o = {}; fd.forEach(function (v, k) { if (typeof v === 'string') o[k] = v; }); if (!o.page) o.page = location.pathname;
+    try { var s = sessionStorage.getItem('gsSid'); if (s && !o.sid) o.sid = s; var sr = sessionStorage.getItem('gsSrc'); if (sr && !o.provenance) o.provenance = sr; } catch (e) {}
+    var backup = function () { return fetch(action, { method: 'POST', body: fd, headers: { Accept: 'application/json' }, gsDirect: true }); };
+    return fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o) })
+      .then(function (r) { return r.ok || r.status === 429 || r.status === 403 ? r : backup(); }).catch(backup);
+  }
   /* ── Formulaire express ── */
   var f = document.getElementById('expressForm');
   if (f) f.addEventListener('submit', function (e) {
     e.preventDefault();
     var b = f.querySelector('button[type=submit]'), label = b.textContent;
     b.textContent = 'Envoi…'; b.disabled = true;
-    fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
+    postLead(f.action, new FormData(f))
       .then(function (res) {
         if (res.ok) {
           f.outerHTML = '<div class="ok"><b>C’est reçu, merci.</b><p>Je reviens vers vous sous 24 h ouvrées avec une première idée concrète. Pressé ? <a href="tel:+33782298559"><strong>07 82 29 85 59</strong></a></p></div>';

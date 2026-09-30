@@ -12,12 +12,13 @@
   /* Toutes les demandes des formulaires (Formspree) passent d'abord par /api/lead (e-mail via Brevo,
      sans le plafond de 50/mois) ; si l'API n'est pas configurée ou échoue → Formspree, comme avant.
      Une limite atteinte (429) n'est PAS contournée par Formspree. */
-  if (window.fetch && window.FormData) {
+  if (window.fetch && window.FormData && !window.__gsLeadWrap) {
+    window.__gsLeadWrap = 1;
     var _fetch = window.fetch.bind(window);
     window.fetch = function (input, init) {
       try {
         var url = typeof input === 'string' ? input : (input && input.url) || '';
-        if (/^https:\/\/formspree\.io\//.test(url) && init && String(init.method || '').toUpperCase() === 'POST' && init.body instanceof FormData) {
+        if (/^https:\/\/formspree\.io\//.test(url) && init && !init.gsDirect && String(init.method || '').toUpperCase() === 'POST' && init.body instanceof FormData) {
           var o = {}; init.body.forEach(function (v, k) { if (typeof v === 'string') o[k] = v; });
           if (!o.page) o.page = location.pathname;
           return _fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o) })
@@ -205,7 +206,7 @@
       var ctx = res.slice(0, 6).map(function (r) { return { u: r.c.u, t: r.c.t, h: r.c.h, x: r.c.x }; });
       var done = function (answer) { typing.remove(); add('bot', md(answer)); asked++; if (asked === 2) nudge(); else if (asked === 4) callback(); hist.push({ role: 'user', content: q }, { role: 'assistant', content: answer }); hist = hist.slice(-16); store.set('gsA-h', hist); };
       if (mode === 'local') return done(localAnswer(q, res));
-      fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, sid: SID, history: hist.slice(-8) }) })
+      fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, sid: SID, src: (function () { try { return sessionStorage.getItem('gsSrc') || ''; } catch (e) { return ''; } })(), history: hist.slice(-8) }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
         .then(function (d) { done(d.answer || localAnswer(q, res)); })
         .catch(function () { done(localAnswer(q, res)); });
@@ -245,7 +246,7 @@
     // Accueil + IA active : pas besoin de l'index du site (1,3 Mo) — l'IA connaît le plan du site.
     // L'index n'est chargé qu'en mode secours (sans IA ou en cas d'erreur).
     if (opts && opts.mode === 'accueil' && mode !== 'local') {
-      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: [], sid: SID, history: (history || []).slice(-10), mode: 'accueil' }) })
+      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: [], sid: SID, src: (function () { try { return sessionStorage.getItem('gsSrc') || ''; } catch (e) { return ''; } })(), history: (history || []).slice(-10), mode: 'accueil' }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
         .then(function (d) { if (!d.answer) throw 0; return { answer: d.answer, fiche: d.fiche || null, ruptures: d.ruptures || null, memo: d.memo || null }; })
         .catch(function () { return loadIndex().then(function () { return { answer: localAnswer(q, search(q, 8)), local: true }; }); });
@@ -254,7 +255,7 @@
       var res = search(q, 8);
       var ctx = res.slice(0, 6).map(function (r) { return { u: r.c.u, t: r.c.t, h: r.c.h, x: r.c.x }; });
       if (mode === 'local') return { answer: localAnswer(q, res), local: true };
-      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, sid: SID, history: (history || []).slice(-10), mode: (opts && opts.mode) || 'widget' }) })
+      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: ctx, sid: SID, src: (function () { try { return sessionStorage.getItem('gsSrc') || ''; } catch (e) { return ''; } })(), history: (history || []).slice(-10), mode: (opts && opts.mode) || 'widget' }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
         .then(function (d) { return { answer: d.answer || localAnswer(q, res), fiche: d.fiche || null, memo: d.memo || null }; })
         .catch(function () { return { answer: localAnswer(q, res), local: true }; });

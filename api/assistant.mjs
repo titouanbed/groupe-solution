@@ -159,7 +159,7 @@ export default async function handler(req, res) {
     const ruptures = found.ruptures?.length ? found.ruptures : null;
     const memo2 = [memo, ruptures ? "Idées proposées au visiteur : " + ruptures.map(x => x.nom + " (" + x.promesse + ")").join(" ; ") : ""].filter(Boolean).join("\n") || null;
     const fiche = e || st ? { entreprise: e || null, site: st || null } : null;
-    await logTurn(str(body?.sid, 40), { q, answer, page, mode: accueil ? "accueil" : "widget", fiche, ruptures });
+    await logTurn(str(body?.sid, 40), { q, answer, page, mode: accueil ? "accueil" : "widget", fiche, ruptures, src: str(body?.src, 30).replace(/[^a-z0-9_-]/gi, "") });
     return send(res, 200, { answer, fiche, ruptures, memo: memo2 });
   } catch (err) {
     if (err instanceof Anthropic.RateLimitError) return send(res, 429, { error: "upstream_rate_limited" });

@@ -22,10 +22,11 @@ function compactFiche(f) {
   return o;
 }
 // Un échange question / réponse de l'assistant.
-export async function logTurn(sid, { q, answer, page, mode, fiche, ruptures }) {
+export async function logTurn(sid, { q, answer, page, mode, fiche, ruptures, src }) {
   if (!UPSTASH || !SID_RE.test(sid || "")) return;
   try {
     const c = await load(sid) || fresh(sid, { page, mode });
+    if (src && !c.src) c.src = src;
     const ts = new Date().toISOString();
     // Tout ce que le visiteur a vu est gardé : texte, fiche d'analyse et idées proposées.
     const a = { r: "a", t: String(answer).slice(0, 3000), ts };
@@ -58,7 +59,7 @@ export async function listConvs(limit = 80) {
   return all.map(v => { try { return v ? JSON.parse(v) : null; } catch { return null; } }).filter(Boolean).map(c => ({
     sid: c.sid, debut: c.debut, maj: c.maj, n: c.messages.filter(m => m.r === "u").length,
     premier: (c.messages.find(m => m.r === "u")?.t || "").slice(0, 140), entreprise: c.entreprise?.nom || null,
-    contact: c.contact || null, evenements: (c.evenements || []).map(e => e.t), statut: c.statut || "nouveau", page: c.page || "/"
+    contact: c.contact || null, evenements: (c.evenements || []).map(e => e.t), statut: c.statut || "nouveau", page: c.page || "/", src: c.src || null
   }));
 }
 export const getConv = load;
