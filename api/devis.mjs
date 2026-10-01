@@ -19,7 +19,8 @@ import { randomBytes, createHash, timingSafeEqual } from "node:crypto";
 import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
 import { sendMail, layout, esc, OWNER, MAIL_OK, lastMailError, explique, diagMail } from "./_mail.mjs";
 import { tagConv, listConvs, getConv, SID_RE, setConvStatus } from "./_conv.mjs";
-import { runRadar, listRadar, setRadarStatus } from "./_radar.mjs";
+import { runRadar, listRadar, setRadarStatus, reverifierRadar } from "./_radar.mjs";
+import { runCible, getCible, listCibles, setCibleStatut } from "./_cible.mjs";
 import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount, nlResend, nlList } from "./_newsletter.mjs";
 import { listReal, previewReal, saveReal, deleteReal, moveReal, realImage, devisEnAttente, marquerRelance, runEntretien, lastEntretien, etatPublic } from "./_site.mjs";
 
@@ -89,9 +90,9 @@ async function grille() {
 // Passage du radar + e-mail récapitulatif à Titouan s'il y a de nouvelles entreprises à contacter.
 async function radarEtResume() {
   const r = await runRadar({ max: 5 });
-  try { await redis([["SET", "cron:last:radar", JSON.stringify({ date: new Date().toISOString(), annonces: r.annonces, analyses: r.analyses, retenues: r.retenues })]]); } catch {}
+  try { await redis([["SET", "cron:last:radar", JSON.stringify({ date: new Date().toISOString(), annonces: r.annonces, analyses: r.analyses, retenues: r.retenues, exclus: r.exclus, attente: r.attente, retirees: r.retirees })]]); } catch {}
   if (r.retenues) await sendMail({ to: OWNER(), subject: `🎯 Radar : ${r.retenues} nouvelle(s) entreprise(s) à contacter`,
-    html: layout("Nouvelles entreprises à fort potentiel", `<p>${r.retenues} fiche(s) prête(s), avec une idée sur-mesure et un e-mail rédigé :</p><ul>${r.nouvelles.map(n => `<li>${esc(n)}</li>`).join("")}</ul><p><a href="${SITE}/admin/#radar">Ouvrir le radar →</a></p><p style="font-size:12px;color:#77736A">${r.annonces} annonces BODACC lues, ${r.candidats} candidates, ${r.analyses} analysées.</p>`) });
+    html: layout("Nouvelles entreprises à fort potentiel", `<p>${r.retenues} fiche(s) prête(s), avec une idée sur-mesure et un e-mail rédigé :</p><ul>${r.nouvelles.map(n => `<li>${esc(n)}</li>`).join("")}</ul><p><a href="${SITE}/admin/#radar">Ouvrir le radar →</a></p><p>Chaque fiche a passé les contrôles : société active à l'annuaire officiel, créée récemment, aucune procédure collective au BODACC, activité réelle et contact public.</p><p style="font-size:12px;color:#77736A">${r.annonces} annonces BODACC lues, ${r.candidats} candidates contrôlées, ${Object.values(r.exclus || {}).reduce((x, y) => x + y, 0)} écartées, ${r.attente} en attente de vérification${r.retirees ? `, ${r.retirees} ancienne(s) fiche(s) retirée(s)` : ""}.</p>`) });
   return r;
 }
 
@@ -273,6 +274,18 @@ export default async function handler(req, res) {
       if (action === "real_move") return send(res, (await moveReal(String(b.id || ""), +b.dir || 1)) ? 200 : 400, { ok: true });
       if (action === "relance_ok") return send(res, (await marquerRelance(String(b.id || ""))) ? 200 : 400, { ok: true });
       return send(res, 200, await runEntretien());
+    }
+    if (/^cible_/.test(action)) {
+      if (!admin) return send(res, 401, { error: "unauthorized" });
+      if (action === "cible_run") return send(res, 200, await runCible({ activite: b.activite, zone: b.zone, pages: +b.pages || 2, force: !!b.force }));
+      if (action === "cible_get") { const r = await getCible(String(b.id || "")); return send(res, r ? 200 : 404, r || { error: "introuvable" }); }
+      if (action === "cible_list") return send(res, 200, { cibles: await listCibles() });
+      if (action === "cible_statut") return send(res, (await setCibleStatut(String(b.pid || ""), String(b.statut || ""), b.note)) ? 200 : 400, { ok: true });
+      return send(res, 400, { error: "action" });
+    }
+    if (action === "radar_reverif") {
+      if (!admin) return send(res, 401, { error: "unauthorized" });
+      return send(res, 200, await reverifierRadar());
     }
     if (action === "radar_run" || action === "radar_status") {
       if (!admin) return send(res, 401, { error: "unauthorized" });
