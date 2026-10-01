@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="referrer" content="no-referrer" />
+<title>Votre plan · Groupe Solution</title>
+<meta name="description" content="Plan d'innovation et esquisse préparés pour votre entreprise par Groupe Solution." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#171613;--sec:#57534B;--muted:#8A857B;--line:#EBE8E1;--paper:#F7F6F3;--acc:#E61E4D;--mc:#E61E4D;--sans:"Plus Jakarta Sans",system-ui,sans-serif;--serif:"Source Serif 4",Georgia,serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans)}
+.wrap{width:min(920px,calc(100% - 32px));margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0}header img{height:30px}.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font:700 14px var(--sans);text-decoration:none;cursor:pointer}.btn.p{background:var(--ink);border-color:var(--ink);color:#fff}.btn.a{background:var(--acc);border-color:var(--acc);color:#fff}
+.hero{padding:26px 0 8px}.k{font:800 11.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}h1{font:600 clamp(30px,5vw,48px)/1.08 var(--serif);letter-spacing:-.03em;margin:10px 0 10px}.hero p{color:var(--sec);font-size:17px;margin:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(18px,4vw,30px);margin:22px 0}
+h2{font:600 clamp(22px,3vw,28px)/1.2 var(--serif);margin:6px 0 6px}.acc{color:var(--sec);margin:0 0 18px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}.steps li::before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800}
+.steps b{display:block}.steps p{margin:2px 0 0;color:var(--sec);font-size:15px}.steps em{display:inline-block;margin-top:6px;font-style:normal;font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.phare{background:#FFF4F6;border-radius:16px;padding:16px 18px;margin:18px 0}.phare b{display:block;font-size:17px;margin-bottom:4px}.ben{margin:10px 0 0;padding-left:20px}.ben li{margin:4px 0}.pas{margin:14px 0 0;font-size:15px}
+.gal{display:grid;gap:8px;border-radius:14px;overflow:hidden;height:clamp(180px,32vw,320px);margin:14px 0}.gal img{width:100%;height:100%;object-fit:cover;display:block}.gal.n1{grid-template-columns:1fr}.gal.n2{grid-template-columns:2fr 1fr}.gal.n3,.gal.n4,.gal.n5{grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr}.gal.n3 img:first-child,.gal.n4 img:first-child,.gal.n5 img:first-child{grid-row:span 2}.gal img:nth-child(n+4){display:none}
+.gal.none{display:grid;place-items:center;background:linear-gradient(135deg,var(--mc),#111);color:#fff;font:700 30px var(--sans)}
+.maq h3{font:600 24px/1.2 var(--sans);margin:0}.maq .sub{color:var(--sec)}.sv{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}.sv div{border:1px solid var(--line);border-radius:14px;padding:12px}.sv b{display:block;font-size:14.5px}.sv p{margin:3px 0 0;font-size:13.5px;color:var(--sec)}
+.fp{border:1.5px dashed var(--mc);border-radius:14px;padding:14px 16px;margin-top:14px}.fp small{font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mc)}.fp b{display:block;font-size:16px}
+.cta{text-align:center}.cta p{color:var(--sec)}.cta .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.note{font-size:12.5px;color:var(--muted);text-align:center;margin:10px 0 40px}.err{text-align:center;padding:60px 0}
+@media(max-width:640px){.sv{grid-template-columns:1fr}header img{height:26px}.tools{flex-wrap:nowrap;gap:6px}.tools .btn{min-height:40px;padding:0 13px;font-size:13px}}
+@media print{body{background:#fff;font-size:12.5px}header .tools,.cta .row,.note{display:none}.card{border:1px solid #ddd;break-inside:avoid;margin:12px 0}.wrap{width:100%}.gal{height:220px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="/"><img src="/Logo.svg" alt="Groupe Solution" /></a><div class="tools"><button class="btn" id="pdf" type="button">PDF</button><a class="btn a" href="tel:+33782298559">Appeler</a></div></header>
+  <main id="doc"><p class="err">Chargement…</p></main>
+  <p class="note">Document préparé automatiquement par l'IA de Groupe Solution à partir d'informations publiques et de l'échange avec le visiteur. Lien privé, valable 30 jours.</p>
+</div>
+<script>
+(function () {
+  var esc = function (t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var tok = (location.search.match(/[?&]p=([a-f0-9]{24})/) || [])[1], doc = document.getElementById('doc');
+  document.getElementById('pdf').onclick = function () { window.print(); };
+  if (!tok) { doc.innerHTML = '<p class="err">Lien incomplet.</p>'; return; }
+  fetch('/api/devis?partage=' + tok).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+    var ent = d.entreprise || 'votre entreprise', h = '';
+    if (d.maquette && /^#[0-9a-f]{6}$/i.test(d.maquette.couleur || '')) document.documentElement.style.setProperty('--mc', d.maquette.couleur);
+    document.title = 'Plan pour ' + ent + ' · Groupe Solution';
+    h += '<section class="hero"><div class="k">Préparé pour ' + esc(ent) + '</div><h1>Ce que l’IA peut changer pour ' + esc(ent) + '.</h1><p>Un plan concret, pensé pour cette entreprise' + (d.maquette ? ', et l’esquisse de ce que ses clients pourraient voir' : '') + '.</p></section>';
+    var p = d.plan;
+    if (p) {
+      h += '<section class="card"><div class="k">Plan d’innovation</div><h2>' + esc(p.titre) + '</h2><p class="acc">' + esc(p.accroche) + '</p><ol class="steps">' + (p.etapes || []).map(function (e) { return '<li><div><b>' + esc(e.titre) + '</b><p>' + esc(e.detail) + '</p>' + (e.techno ? '<em>' + esc(e.techno) + '</em>' : '') + '</div></li>'; }).join('') + '</ol>';
+      if (p.idee_phare && p.idee_phare.titre) h += '<div class="phare"><b>L’idée phare : ' + esc(p.idee_phare.titre) + '</b>' + esc(p.idee_phare.description) + '</div>';
+      if ((p.benefices || []).length) h += '<ul class="ben">' + p.benefices.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+      if (p.premier_pas) h += '<p class="pas"><b>Premier pas :</b> ' + esc(p.premier_pas) + '</p>';
+      h += '</section>';
+    }
+    var m = d.maquette;
+    if (m) {
+      var ph = (m.photos || []).filter(function (x) { return x && /^https:/.test(x.src); }).slice(0, 5);
+      h += '<section class="card maq"><div class="k">Esquisse · ce que ses clients pourraient voir</div><h3>' + esc(m.accroche) + '</h3><p class="sub">' + esc(m.sous_titre) + '</p>';
+      h += ph.length ? '<div class="gal n' + ph.length + '">' + ph.map(function (x) { return '<img src="' + esc(x.src) + '" alt="" referrerpolicy="no-referrer" onerror="this.remove()">'; }).join('') + '</div>' : '<div class="gal none">' + esc(m.nom) + '</div>';
+      if (m.fonction_phare) h += '<div class="fp"><small>Nouveau · propulsé par l’IA</small><b>' + esc(m.fonction_phare.titre) + '</b>' + esc(m.fonction_phare.texte) + '</div>';
+      h += '<div class="sv">' + (m.services || []).map(function (x) { return '<div><b>' + esc(x.titre) + '</b><p>' + esc(x.texte) + '</p></div>'; }).join('') + '</div></section>';
+    }
+    h += '<section class="card cta"><h2>On en parle 10 minutes ?</h2><p>Titouan Bedos vous explique comment le mettre en place, étape par étape. Devis gratuit et sans engagement.</p><div class="row"><a class="btn a" href="tel:+33782298559">07 82 29 85 59</a><a class="btn p" href="/echanger.html#rendez-vous">Réserver 10 minutes</a><a class="btn" href="mailto:contact@groupsolution.fr?subject=' + encodeURIComponent('Plan pour ' + ent) + '">Écrire</a></div></section>';
+    doc.innerHTML = h;
+    if (/[?&]print=1/.test(location.search)) setTimeout(function () { window.print(); }, 900);
+  }).catch(function () { doc.innerHTML = '<p class="err">Ce lien a expiré ou n’existe pas. <a href="/">Refaire le test en 30 secondes →</a></p>'; });
+})();
+</script>
+</body>
+</html>
