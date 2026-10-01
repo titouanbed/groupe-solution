@@ -5,6 +5,7 @@
 import { randomBytes } from "node:crypto";
 import { redis } from "./_guard.mjs";
 import { diagMail } from "./_mail.mjs";
+import { placesUsage } from "./_places.mjs";
 import { nlRetry, nlCount } from "./_newsletter.mjs";
 import { fetchPage, fetchImage } from "./_entreprise-lib.mjs";
 
@@ -146,6 +147,9 @@ export async function runEntretien() {
   const ia = Boolean(process.env.ANTHROPIC_API_KEY);
   add("Services", "Assistant IA", ia, ia ? "clé présente" : "clé ANTHROPIC_API_KEY absente", ia ? "" : "Ajoutez ANTHROPIC_API_KEY dans Vercel puis redéployez.");
   const reg = await fetchOk("https://recherche-entreprises.api.gouv.fr/search?q=552081317&per_page=1", 8000);
+  const pu = await placesUsage();
+  if (pu.actif) add("Services", "Google (photos et concurrents)", pu.mois < pu.plafond_mois, `${pu.mois}/${pu.plafond_mois} appels ce mois-ci · ${pu.jour}/${pu.plafond_jour} aujourd'hui · plafond = part gratuite de Google, au-delà tout s'arrête seul`, pu.mois < pu.plafond_mois ? "" : "Plafond du mois atteint : la comparaison et les photos Google reprennent le 1er du mois, sans aucun frais.", pu.mois < pu.plafond_mois * 0.8 ? "ok" : "wa");
+  else add("Services", "Google (photos et concurrents)", true, "clé GOOGLE_PLACES_KEY absente : la comparaison avec les concurrents est masquée", "", "ok");
   add("Services", "Registre des entreprises", reg.ok, reg.ok ? "joignable" : `indisponible (${reg.status || "délai"})`, reg.ok ? "" : "Service public externe : l'assistant bascule sur la recherche web en attendant.", reg.ok ? "ok" : "wa");
   const bod = await fetchOk("https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?limit=1", 8000);
   add("Services", "Annonces officielles (radar)", bod.ok, bod.ok ? "joignables" : `indisponibles (${bod.status || "délai"})`, "", bod.ok ? "ok" : "wa");
@@ -166,7 +170,7 @@ export async function runEntretien() {
   const fr = await Promise.all(fichiers.map(async f => ({ f, ok: (await fetchOk(SITE + f, 8000)).ok })));
   const fko = fr.filter(x => !x.ok).map(x => x.f);
   add("Parcours visiteur", "Fichiers de l'accueil", !fko.length, fko.length ? "introuvables : " + fko.join(", ") : `${fr.length} scripts, styles et images chargés`);
-  const fonctions = ["assistant", "lead", "entreprise", "concept", "demo", "availability", "book", "vote", "perso", "idees", "geo"];
+  const fonctions = ["assistant", "lead", "entreprise", "concept", "demo", "availability", "book", "vote", "perso", "idees", "geo", "concurrents"];
   const fx = await Promise.all(fonctions.map(async n => { try { const r = await fetch(`${SITE}/api/${n}`, { signal: AbortSignal.timeout(8000), headers: { "User-Agent": "GroupeSolution-Entretien/1.0" } }); return { n, st: r.status }; } catch { return { n, st: 0 }; } }));
   const fko2 = fx.filter(x => !x.st || x.st >= 500 && x.st !== 503);
   add("Parcours visiteur", "Fonctions du site (formulaires, chat, démos)", !fko2.length, fko2.length ? "en panne : " + fko2.map(x => `${x.n} (${x.st || "délai"})`).join(", ") : `${fx.length} fonctions répondent`, fko2.length ? "Vercel → Deployments → dernier déploiement → Functions : l'erreur y est détaillée." : "");

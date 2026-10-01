@@ -8,6 +8,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { RUPTURE } from "./_innovation.mjs";
 import { tagConv } from "./_conv.mjs";
 import { fetchImage } from "./_entreprise-lib.mjs";
+import { searchText, photoMedia } from "./_places.mjs";
 import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
 import { randomUUID } from "node:crypto";
 
@@ -82,25 +83,12 @@ function marqueSure(m) {
 }
 // Sans site (ou sans photo exploitable) : les photos de sa fiche Google, si une clé Google Places est configurée (facultatif).
 async function photosGoogle(nom, commune) {
-  const key = String(process.env.GOOGLE_PLACES_KEY || "").trim();
-  if (!key || !nom) return [];
-  try {
-    const r = await fetch("https://places.googleapis.com/v1/places:searchText", { method: "POST", signal: AbortSignal.timeout(5000),
-      headers: { "Content-Type": "application/json", "X-Goog-Api-Key": key, "X-Goog-FieldMask": "places.displayName,places.photos" },
-      body: JSON.stringify({ textQuery: `${nom} ${commune || ""}`.trim(), languageCode: "fr", maxResultCount: 1 }) });
-    if (!r.ok) return [];
-    const ph = ((await r.json()).places?.[0]?.photos || []).slice(0, 4);
-    const out = await Promise.all(ph.map(async p => {
-      try {
-        const m = await fetch(`https://places.googleapis.com/v1/${p.name}/media?maxWidthPx=900&key=${encodeURIComponent(key)}`, { signal: AbortSignal.timeout(5000) });
-        const type = String(m.headers.get("content-type") || "");
-        if (!m.ok || !/^image\/(jpeg|png|webp)/.test(type)) return null;
-        const buf = Buffer.from(await m.arrayBuffer()); if (buf.length > 400000) return null;
-        return { src: `data:${type.split(";")[0]};base64,${buf.toString("base64")}`, credit: p.authorAttributions?.[0]?.displayName || "" };
-      } catch { return null; }
-    }));
-    return out.filter(Boolean);
-  } catch { return []; }
+  if (!nom) return [];
+  // Recherche + photos : chaque appel est compté et plafonné (part gratuite de Google), voir _places.mjs.
+  const places = await searchText({ textQuery: `${nom} ${commune || ""}`.trim(), maxResultCount: 1 }, "places.displayName,places.photos");
+  const ph = (places?.[0]?.photos || []).slice(0, 3);
+  const out = await Promise.all(ph.map(async p => { const src = await photoMedia(p.name); return src ? { src, credit: p.authorAttributions?.[0]?.displayName || "" } : null; }));
+  return out.filter(Boolean);
 }
 
 // Contenu publiable : aucun lien, e-mail, téléphone, code postal ni nom de domaine.

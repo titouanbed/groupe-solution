@@ -1,5 +1,5 @@
 // Contrôle qualité du site (lancé chaque lundi par GitHub Actions, et à chaque pull request).
-// Bloquant : lien interne cassé, JSON-LD invalide, FAQ visible ≠ FAQ déclarée à Google, page indexable sans
+// Bloquant : lien interne cassé, image locale introuvable, JSON-LD invalide, FAQ visible ≠ FAQ déclarée à Google, page indexable sans
 // titre / description / canonical / h1, prix affiché sur une page publique. Avertissements : titres > 65,
 // descriptions > 160, images sans texte alternatif.   Lancer : node scripts/qa.mjs
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
@@ -25,6 +25,12 @@ for (const f of files) {
     let p = h.startsWith('/') ? h.slice(1) : normalize(join(dirname(f), h));
     if (!p || p.endsWith('/') || (existsSync(join(ROOT, p)) && statSync(join(ROOT, p)).isDirectory())) p = join(p, 'index.html');
     if (!existsSync(join(ROOT, p)) && !existsSync(join(ROOT, p + '.html'))) errs.push(`${f} : lien cassé → ${h}`);
+  }
+  // Images locales introuvables (src, srcset, fonds CSS en ligne) : une carte vide passe inaperçue sans ce contrôle.
+  for (const [, u] of [...s.matchAll(/<img\b[^>]*?\ssrc="([^"]+)"/g), ...s.matchAll(/url\(['"]?([^'")]+)['"]?\)/g)]) {
+    if (/^(https?:|data:|\/\/|#)/.test(u) || u.includes('${') || u.includes("'+") || !/\.(jpe?g|png|webp|avif|gif|svg)$/i.test(u)) continue;
+    const p = u.startsWith('/') ? u.slice(1) : normalize(join(dirname(f), u));
+    if (!existsSync(join(ROOT, p))) errs.push(`${f} : image introuvable → ${u}`);
   }
   if (noindex || /http-equiv=["']refresh/i.test(s) || /^(404|admin\/|newsletter)/.test(f)) continue;
   const t = (s.match(/<title>([^<]*)<\/title>/) || [])[1], d = (s.match(/<meta name="description" content="([^"]*)"/) || [])[1];

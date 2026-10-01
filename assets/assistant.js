@@ -156,7 +156,15 @@
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   var hasSticky = !!document.querySelector('.gs-sticky');
-  if (hasSticky) document.body.classList.add('gsA-sticky');
+  if (hasSticky) {
+    document.body.classList.add('gsA-sticky');
+    /* Téléphone : la barre Appeler / Discutons n'apparaît qu'après le haut de page (le bouton du menu suffit au début). */
+    var sst = document.createElement('style');
+    sst.textContent = '@media(max-width:760px){.gs-sticky{transition:transform .3s ease,opacity .3s ease}body.gsTop .gs-sticky{transform:translateY(130%);opacity:0;pointer-events:none}body.gsTop.gsA-sticky #gsA-btn{bottom:18px}body.gsTop.gsA-sticky #gsA-tip{bottom:72px}body.gsTop.gsA-sticky #gsP{bottom:calc(14px + env(safe-area-inset-bottom))}}@media(max-width:760px) and (prefers-reduced-motion:reduce){.gs-sticky{transition:none}}';
+    document.head.appendChild(sst);
+    var topChk = function () { document.body.classList.toggle('gsTop', scrollY < innerHeight * 0.6); };
+    topChk(); addEventListener('scroll', topChk, { passive: true });
+  }
   else { var call = document.createElement('a'); call.className = 'gsA-call'; call.href = TEL_HREF; call.innerHTML = ico('telephone') + TEL; document.body.appendChild(call); }
 
   var btn = document.createElement('button');

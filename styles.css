@@ -109,3 +109,6 @@ footer{padding:44px 0 52px;border-top:1px solid var(--line);background:var(--pap
   *,*:before,*:after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* Téléphone : visuels moins hauts, titres équilibrés (l'ordinateur ne change pas) */
+@media(max-width:640px){h1,h2,h3{text-wrap:balance}p,li{text-wrap:pretty}.pheadViz{max-width:none}.pheadViz .frame{aspect-ratio:16/10}}

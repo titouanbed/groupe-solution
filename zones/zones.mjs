@@ -110,6 +110,7 @@ export const ZONES = [
   {
     slug: 'mayotte', name: 'Mayotte', code: '976', status: 'online',
     regionPage: 'site-internet-mayotte.html',
+    fauna: ['hero-lagon.jpg', 'hero-cote.jpg', 'hero-plage.jpg'],
     implantTagline: "Le guichet unique du numérique à Mayotte : sites internet, community management, publicité locale et transition numérique pour les TPE et PME mahoraises.",
     cities: MAYOTTE_CITIES,
     guides: [

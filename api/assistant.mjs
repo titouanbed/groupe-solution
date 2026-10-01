@@ -8,6 +8,7 @@
 // Les faits trouvés sont renvoyés au navigateur (fiche affichée + mémo gardé dans la conversation).
 // Sans ANTHROPIC_API_KEY → 503 { configured:false } et le widget bascule en mode
 // local (recherche dans le contenu du site, gratuit, sans IA générative).
+import { obsAnalyse } from "./_observatoire.mjs";
 import Anthropic from "@anthropic-ai/sdk";
 import { SITE_KNOWLEDGE, COMMUNE_COUNT } from "./_knowledge.mjs";
 import { allow, sameSite, readBody } from "./_guard.mjs";
@@ -106,7 +107,7 @@ export default async function handler(req, res) {
   if (q.length < 2) return send(res, 400, { error: "empty_question" });
   const page = str(body?.page, 200);
   const accueil = body?.mode === "accueil";
-  const ETAPES = ["analyser", "demo-facture", "demo-resa", "demo-avis", "plan", "site", "devis", "appel"];
+  const ETAPES = ["analyser", "concurrents", "demo-facture", "demo-resa", "demo-avis", "plan", "site", "devis", "appel"];
   const faites = (Array.isArray(body?.etapes) ? body.etapes : []).filter(e => ETAPES.includes(e));
   const ctx = (Array.isArray(body?.context) ? body.context : []).slice(0, MAX_CTX)
     .map(c => `- [${str(c.t, 140)}${c.h ? " — " + str(c.h, 140) : ""}](${str(c.u, 200)}) : ${str(c.x, 500)}`).join("\n");
@@ -123,6 +124,7 @@ export default async function handler(req, res) {
 Le visiteur peut être un dirigeant, un salarié ou un futur créateur : réponds à SA situation. S'il dit clairement ce qu'il veut, va droit au but. Si c'est flou, pose UNE question simple pour comprendre (ou demande le nom de son entreprise et sa ville).
 ÉTAPE SUIVANTE — UNE SEULE, jamais de liste d'options : termine TOUJOURS ta réponse par une balise invisible [[suivant:CODE]] qui choisit la prochaine étape la plus utile pour CE visiteur, et annonce-la dans ton texte en une phrase naturelle (ex. « Le plus parlant maintenant : voir votre plan d'innovation, étape par étape. »), sans parler de bouton ni proposer d'alternative. Codes :
 - analyser : on ne connaît pas encore son entreprise. Jamais si une analyse vient d'être faite ou est déjà faite.
+- concurrents : juste après l'analyse de son entreprise (on connaît son nom et sa commune) : le comparer, d'après les fiches Google Maps, aux 3 concurrents les plus proches (note, avis, site). Très parlant pour un commerce ou un artisan.
 - demo-facture : son besoin touche les factures, bons de livraison, saisie de documents.
 - demo-resa : rendez-vous, réservations, appels manqués, accueil téléphonique.
 - demo-avis : avis clients, réputation en ligne.
@@ -130,7 +132,7 @@ Le visiteur peut être un dirigeant, un salarié ou un futur créateur : répond
 - site : voir son futur site. UNIQUEMENT s'il n'a pas de site, ou s'il demande lui-même un nouveau site ou une refonte. Une entreprise qui a déjà un site n'en veut pas un nouveau, même s'il est imparfait : ne le lui propose jamais de toi-même (au plus une remarque d'une ligne sur un défaut repéré).
 - devis : le besoin est clair, il peut composer son projet face à son budget.
 - appel : il veut parler à quelqu'un, ou le projet est complexe.
-Ne propose jamais une étape de la liste « déjà montré au visiteur ». Ordre logique habituel : analyser → plan (ou la démo qui correspond à son besoin) → devis → appel.`
+Ne propose jamais une étape de la liste « déjà montré au visiteur ». Ordre logique habituel : analyser → concurrents → plan (ou la démo qui correspond à son besoin) → devis → appel.`
     : "Mode : assistant flottant. Quand un extrait est pertinent, tu peux citer 1 ou 2 pages en lien markdown avec leur chemin exact, par exemple [la page Automatisation](/automatisation/).";
   msgs.push({ role: "user", content: `${mode}${accueil ? `\nDéjà montré au visiteur : ${faites.join(", ") || "rien"}` : ""}\nPage consultée : ${page || "inconnue"}\n\nExtraits du site pertinents :\n${ctx || "(aucun)"}\n\nMessage du visiteur : ${q}` });
 
@@ -178,6 +180,8 @@ Ne propose jamais une étape de la liste « déjà montré au visiteur ». Ordre
     const ruptures = found.ruptures?.length ? found.ruptures : null;
     const memo2 = [memo, ruptures ? "Idées proposées au visiteur : " + ruptures.map(x => x.nom + " (" + x.promesse + ")").join(" ; ") : ""].filter(Boolean).join("\n") || null;
     const fiche = e || st ? { entreprise: e || null, site: st || null } : null;
+    // Observatoire : compteurs anonymes (l'entreprise n'est comptée qu'une fois, aucun nom gardé).
+    if (e) await obsAnalyse(e, st || null);
     await logTurn(str(body?.sid, 40), { q, answer, page, mode: accueil ? "accueil" : "widget", fiche, ruptures, src: str(body?.src, 30).replace(/[^a-z0-9_-]/gi, "") });
     return send(res, 200, { answer, fiche, ruptures, memo: memo2, suivant });
   } catch (err) {
