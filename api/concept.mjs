@@ -169,7 +169,7 @@ export default async function handler(req, res) {
         if (maquette.photos.length) maquette.source_photos = "google";
       }
       maquette.lieu = clip(b?.entreprise?.commune, 60);
-      if (UPSTASH) { try { await redis([["SET", "concept:" + cid, JSON.stringify({ kind, maquette: { ...maquette, photos: [] }, date: new Date().toISOString(), sid: String(b.sid || "").slice(0, 40) }), "EX", 86400]]); } catch {} }
+      if (UPSTASH) { try { await redis([["SET", "concept:" + cid, JSON.stringify({ kind, maquette: { ...maquette, photos: (maquette.photos || []).filter(p => !/^data:/.test(p.src)) }, date: new Date().toISOString(), sid: String(b.sid || "").slice(0, 40) }), "EX", 86400]]); } catch {} }
       return send(res, 200, { kind, maquette: { ...maquette, logoData }, id: cid });
     }
     const plan = {

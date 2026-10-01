@@ -130,6 +130,21 @@ export default async function handler(req, res) {
       }
       if (q.get("etat") === "1") return pub(res, await etatPublic(), 600);
       // Reprise d'un devis commencé (lien gardé sur l'appareil du visiteur, 7 jours).
+      // Page privée partagée (plan + esquisse) : « Montrer à mon patron / mon associé », imprimable en PDF.
+      if (q.has("partage")) {
+        const tok = String(q.get("partage") || "");
+        const d = /^[a-f0-9]{24}$/.test(tok) ? await get("partage:" + tok) : null;
+        if (!d) return send(res, 404, { error: "expired" });
+        // Titouan est prévenu des premières ouvertures (hors la toute première minute, souvent le créateur lui-même).
+        d.vues = (d.vues || 0) + 1;
+        await redis([["SET", "partage:" + tok, JSON.stringify(d), "KEEPTTL"]]);
+        if (Date.now() - Date.parse(d.date) > 60e3 && d.vues <= 3) {
+          await tagConv(d.sid, { evenement: `Plan partagé ouvert (${d.vues}e ouverture)` });
+          await sendMail({ to: OWNER(), subject: `Le plan de ${d.entreprise || "un visiteur"} vient d'être ouvert${d.vues > 1 ? ` (${d.vues}e fois)` : ""}`, html: layout("Un plan partagé vient d'être ouvert", `<p>Le plan préparé pour <b>${esc(d.entreprise || "un visiteur")}</b> a été transmis à ${esc(d.pour || "un décideur")} et vient d'être ouvert. C'est le bon moment pour appeler.</p><p><a href="${SITE}/plan.html?p=${tok}">Voir le plan</a> · <a href="${SITE}/admin/">Votre espace</a></p>`) });
+        }
+        const { sid, ...pub } = d;
+        return send(res, 200, pub);
+      }
       if (q.has("estimation")) {
         const e = ID_RE.test(q.get("estimation") || "") ? await get("estimation:" + q.get("estimation")) : null;
         return e ? send(res, 200, publicEst(e)) : send(res, 404, { error: "expired" });
@@ -190,6 +205,19 @@ export default async function handler(req, res) {
       return send(res, r.ok ? 200 : 400, r);
     }
     // Plan ou esquisse envoyé au visiteur par e-mail : contenu relu depuis le serveur (généré par /api/concept), contact enregistré AVANT l'envoi.
+    if (action === "partage") {
+      if (!sameSite(req)) return send(res, 403, { error: "forbidden" });
+      if (!(await allow("partage", req, 6, 3600, 400))) return send(res, 429, { error: "rate_limited" });
+      const ids = [b.plan, b.maquette].map(x => String(x || "")).filter(x => /^[a-f0-9]{32}$/.test(x));
+      const items = ids.length ? (await redis(ids.map(i => ["GET", "concept:" + i]))).map(v => { try { return v ? JSON.parse(v) : null; } catch { return null; } }).filter(Boolean) : [];
+      const plan = items.find(x => x.kind === "plan")?.plan || null, maquette = items.find(x => x.kind === "maquette")?.maquette || null;
+      if (!plan && !maquette) return send(res, 404, { error: "expired", message: "Ce contenu a expiré : relancez-le en un clic." });
+      const tok = randomBytes(12).toString("hex"), sidv = SID_RE.test(b.sid || "") ? b.sid : null;
+      const d = { date: new Date().toISOString(), entreprise: str(b.entreprise, 120), pour: ["patron", "associe"].includes(b.pour) ? (b.pour === "patron" ? "son responsable" : "un associé") : "", plan, maquette, sid: sidv, vues: 0 };
+      await redis([["SET", "partage:" + tok, JSON.stringify(d), "EX", 30 * 86400]]);
+      await tagConv(sidv, { evenement: `Plan partagé${d.pour ? " avec " + d.pour : ""}` });
+      return send(res, 200, { ok: true, url: `${SITE}/plan.html?p=${tok}` });
+    }
     if (action === "recap") {
       if (!sameSite(req)) return send(res, 403, { error: "forbidden" });
       if (!(await allow("recap", req, 3, 3600, 200))) return send(res, 429, { error: "rate_limited", message: "Trop d'envois pour le moment : réessayez plus tard ou appelez le 07 82 29 85 59." });

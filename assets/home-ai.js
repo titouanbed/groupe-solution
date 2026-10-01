@@ -326,7 +326,7 @@
     var wait = add('b', '<span class="aiGen">' + (kind === 'plan' ? 'Notre IA imagine votre plan d’innovation' : 'Notre IA esquisse votre futur site') + '<span class="aiDotsT"><i></i><i></i><i></i></span></span>');
     fetch('/api/concept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: kind, sid: sid(), conversation: hist.slice(-8), zone: (window.GSPerso && window.GSPerso.placeName) || '', marque: brand, entreprise: ficheEnt }) })
       .then(function (r) { if (r.status !== 200) throw r.status; return r.json(); })
-      .then(function (d) { wait.remove(); if (kind === 'plan') { done.plan = 1; renderPlan(d.plan, d.publishId); } else { done.site = 1; renderMaq(d.maquette); } if (d.id) recap(d.id, kind); cta(); nextStep(null); })
+      .then(function (d) { wait.remove(); if (kind === 'plan') { done.plan = 1; renderPlan(d.plan, d.publishId); } else { done.site = 1; renderMaq(d.maquette); } if (d.id) { conceptIds[kind] = d.id; recap(d.id, kind); shareBox(); } cta(); nextStep(null); })
       .catch(function () { wait.remove(); add('b', md('Je n’arrive pas à le générer pour l’instant. Le plus simple : en parler 10 minutes avec Titouan au [' + TEL + '](' + TEL_HREF + ').')); made[kind]--; if (btn) btn.disabled = false; })
       .then(function () { busy = false; send.disabled = false; });
   }
@@ -422,6 +422,33 @@
         cb('#' + [best.r, best.g, best.b].map(function (v) { return ('0' + Math.round(v / bn).toString(16)).slice(-2); }).join(''));
       } catch (e) { cb(null); }
     }; im.onerror = function () { cb(null); }; im.src = src;
+  }
+  /* « Montrer à mon patron ou à un associé » : un lien privé vers le plan et l'esquisse, à transférer ou à imprimer en PDF. */
+  var conceptIds = {}, shareEl = null;
+  function shareBox() {
+    if (shareEl) { log.appendChild(shareEl); return; }
+    var d = shareEl = el('div', 'aiShare');
+    d.innerHTML = '<div class="sh"><span class="sIc">' + I('utilisateurs') + '</span><div><b>Montrer à mon patron ou à un associé</b><span>Un lien privé vers ce plan' + '' + ', à transférer en un clic ou à imprimer en PDF.</span></div></div><button type="button" class="go">Créer le lien</button>';
+    d.querySelector('.go').addEventListener('click', function () {
+      var b = this; b.disabled = true; b.textContent = 'Création…';
+      fetch('/api/devis', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'partage', plan: conceptIds.plan || '', maquette: conceptIds.maquette || '', entreprise: companyName() || (ficheEnt && ficheEnt.nom) || '', sid: sid() }) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw j; return j; }); })
+        .then(function (j) {
+          var ent = companyName() || (ficheEnt && ficheEnt.nom) || 'notre entreprise';
+          var msg = 'Bonjour,\n\nJ’ai testé un outil qui analyse notre entreprise et propose ce que l’IA pourrait changer chez nous. Voici le plan préparé pour ' + ent + ' :\n' + j.url + '\n\nÇa vaut 2 minutes de lecture.';
+          b.remove(); ga('home_ai_share');
+          var o = el('div', 'sOut');
+          o.innerHTML = '<input readonly aria-label="Lien privé"><div class="sBtns"><button type="button" data-a="copy">' + I('document') + 'Copier</button><a data-a="mail">' + I('mail') + 'E-mail</a><a data-a="wa" target="_blank" rel="noopener">' + I('message') + 'WhatsApp</a><a data-a="pdf" target="_blank" rel="noopener">' + I('facture') + 'PDF</a></div><small>Titouan est prévenu quand le lien est ouvert, pour vous rappeler au bon moment. Lien valable 30 jours.</small>';
+          o.querySelector('input').value = j.url;
+          o.querySelector('[data-a=mail]').href = 'mailto:?subject=' + encodeURIComponent('Ce que l’IA pourrait changer pour ' + ent) + '&body=' + encodeURIComponent(msg);
+          o.querySelector('[data-a=wa]').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+          o.querySelector('[data-a=pdf]').href = j.url + '&print=1';
+          o.querySelector('[data-a=copy]').addEventListener('click', function () { var t = this; try { navigator.clipboard.writeText(j.url).then(function () { t.lastChild.textContent = 'Copié'; }); } catch (x) { o.querySelector('input').select(); } });
+          d.appendChild(o);
+        })
+        .catch(function (j) { b.disabled = false; b.textContent = 'Réessayer'; });
+    });
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
   }
   /* Recevoir son plan ou son esquisse par e-mail : le contenu est renvoyé par le serveur (jamais par le navigateur). */
   var recapDone = false;
