@@ -943,6 +943,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.groupsolution.fr/lab/questions/declarer-utilisation-ia-clients.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.groupsolution.fr/martinique/site-internet-fort-de-france.html</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
@@ -1863,6 +1869,12 @@
   <url>
     <loc>https://www.groupsolution.fr/lab/actus/2026-09-30.html</loc>
     <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.groupsolution.fr/lab/actus/2026-10-01.html</loc>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

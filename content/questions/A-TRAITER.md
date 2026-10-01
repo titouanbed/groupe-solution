@@ -3,7 +3,7 @@
 - [x] Un agent vocal IA peut-il répondre au téléphone de mon entreprise légalement ?
 - [x] Peut-on utiliser ChatGPT ou une IA générative avec les données de ses clients ?
 - [x] Par où commencer pour automatiser les tâches de mon entreprise ?
-- [ ] Faut-il déclarer l'utilisation de l'IA à ses clients ?
+- [x] Faut-il déclarer l’utilisation de l’IA à ses clients ?
 - [ ] Combien de temps faut-il pour créer un site internet professionnel ?
 - [ ] Un chatbot sur mon site peut-il vraiment prendre des rendez-vous ?
 - [ ] Qu'est-ce qu'une plateforme agréée pour la facture électronique et comment la choisir ?

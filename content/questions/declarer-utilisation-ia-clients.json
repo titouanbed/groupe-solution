@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-01",
+  "slug": "declarer-utilisation-ia-clients",
+  "cat": "Réglementation",
+  "question": "Faut-il dire à ses clients qu'on utilise l'IA ?",
+  "description": "Chatbot, agent vocal, images générées, textes rédigés avec l'IA : ce que l'AI Act impose depuis le 2 août 2026, et ce qui reste libre pour une entreprise.",
+  "reponseCourte": "Pas pour tout. Vous devez prévenir vos clients quand ils parlent à une IA (chatbot, agent vocal) et signaler les images, vidéos ou sons truqués de façon réaliste. Utiliser l'IA pour vous aider à rédiger un e-mail ou un devis, que vous relisez, n'impose pas de mention.",
+  "sections": [
+    {
+      "h2": "Ce que dit la loi depuis le 2 août 2026",
+      "paragraphes": [
+        "Le règlement européen sur l'intelligence artificielle (AI Act) fixe, à son article 50, des obligations de transparence qui s'appliquent depuis le 2 août 2026. Le règlement dit « omnibus IA », entré en vigueur le 27 juillet 2026, a reporté les obligations des systèmes « à haut risque », mais pas ces règles de transparence.",
+        "Elles visent des situations précises : quand une personne échange directement avec une IA, quand un contenu réaliste est généré ou modifié par une IA, et quand un texte produit par une IA est publié pour informer le public sur des sujets d'intérêt général. En dehors de ces cas, le règlement ne crée pas d'obligation générale de signaler chaque usage de l'IA dans votre travail."
+      ]
+    },
+    {
+      "h2": "Chatbot et agent vocal : l'annonce est obligatoire",
+      "paragraphes": [
+        "Si un client échange avec un assistant sur votre site, sur WhatsApp ou au téléphone, il doit savoir qu'il parle à une IA, sauf si c'est évident compte tenu du contexte. Cette exception s'interprète strictement : en pratique, mieux vaut toujours l'annoncer dès le premier message ou les premières secondes de l'appel.",
+        "L'obligation de concevoir le système pour qu'il s'annonce pèse d'abord sur son fournisseur, mais c'est vous qui le mettez face à vos clients : vérifiez la formulation avant la mise en ligne."
+      ],
+      "liste": [
+        "Exemple : « Bonjour, je suis l'assistant automatique de l'entreprise. Je peux prendre votre demande ou vous passer un conseiller. »",
+        "À éviter : un prénom humain sans autre précision, ou une voix qui laisse croire à un salarié.",
+        "Prévoyez toujours une façon simple de joindre un humain."
+      ]
+    },
+    {
+      "h2": "Images, vidéos et sons générés : quand faut-il le signaler ?",
+      "paragraphes": [
+        "Si vous diffusez une image, une vidéo ou un son généré ou modifié par une IA qui ressemble de façon réaliste à des personnes, des lieux ou des événements existants et pourrait passer pour authentique (ce que le règlement appelle un « hypertrucage »), vous devez indiquer qu'il a été créé ou modifié artificiellement.",
+        "Une illustration manifestement stylisée pour votre site ou vos réseaux n'entre pas dans ce cas. En revanche, une fausse photo de chantier, un faux témoignage vidéo ou la voix clonée d'une personne doivent être signalés, et posent de toute façon d'autres problèmes de loyauté envers vos clients.",
+        "De leur côté, les fournisseurs d'outils de génération doivent marquer techniquement les contenus produits, pour qu'ils puissent être détectés automatiquement."
+      ]
+    },
+    {
+      "h2": "Textes, devis, e-mails : ce qui reste libre",
+      "paragraphes": [
+        "Rédiger un e-mail, un devis, une fiche produit ou une publication avec l'aide de l'IA, puis le relire et l'assumer, ne vous oblige pas à le mentionner. Le règlement vise les textes publiés pour informer le public sur des questions d'intérêt général, et prévoit une exception lorsqu'ils ont fait l'objet d'une relecture humaine sous la responsabilité éditoriale de quelqu'un.",
+        "Restent deux points de vigilance : vos engagements contractuels (certains clients interdisent de transmettre leurs documents à un service externe) et les règles propres à certaines professions, notamment en matière de secret professionnel."
+      ]
+    },
+    {
+      "h2": "Et le RGPD ?",
+      "paragraphes": [
+        "Si l'outil d'IA traite des données personnelles de vos clients (nom, conversation, enregistrement d'appel), le RGPD s'applique : vos clients doivent en être informés dans votre politique de confidentialité, avec la finalité du traitement, la durée de conservation et les éventuels prestataires. Si une décision produisant des effets importants sur une personne est prise de façon entièrement automatisée, des règles supplémentaires s'appliquent, dont le droit d'obtenir une intervention humaine.",
+        "Les manquements à l'article 50 de l'AI Act peuvent être sanctionnés par des amendes allant jusqu'à 15 millions d'euros ou 3 % du chiffre d'affaires annuel mondial. Pour un cas particulier, faites valider vos pratiques par un professionnel du droit."
+      ]
+    }
+  ],
+  "sources": [
+    { "nom": "EUR-Lex – Règlement (UE) 2024/1689 sur l'intelligence artificielle", "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32024R1689" },
+    { "nom": "IT Social – AI Act, les obligations de transparence de l'article 50 sont entrées en application", "url": "https://itsocial.fr/contenus/actualites/intelligence-artificielle-actualites-contenus/ai-act-les-obligations-de-transparence-de-larticle-50-sont-entrees-en-application/" },
+    { "nom": "Données personnelles – Transparence IA : l'article 50 de l'AI Act", "url": "https://www.donneespersonnelles.fr/transparence-ia-article-50-ai-act" },
+    { "nom": "CNIL – Les questions-réponses sur l'utilisation d'un système d'IA générative", "url": "https://www.cnil.fr/fr/les-questions-reponses-de-la-cnil-sur-lutilisation-dun-systeme-dia-generative" }
+  ],
+  "liens": [
+    { "label": "Un agent vocal IA peut-il répondre au téléphone légalement ?", "url": "agent-vocal-ia-legal-france.html" },
+    { "label": "Veille : l'AI Act expliqué aux PME", "url": "../veille/ai-act-pme.html" },
+    { "label": "Agent IA et chatbot pour votre entreprise", "url": "../../services/agent-ia-chatbot.html" }
+  ]
+}

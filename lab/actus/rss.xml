@@ -6,7 +6,31 @@
     <atom:link href="https://www.groupsolution.fr/lab/actus/rss.xml" rel="self" type="application/rss+xml" />
     <description>Les actualités de l'IA, du numérique et de la réglementation qui comptent pour les entreprises, sourcées et expliquées.</description>
     <language>fr-fr</language>
-    <lastBuildDate>Wed, 30 Sep 2026 08:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 08:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Cybermois 2026 : 45 % des Français ont déjà été informés d'une fuite de leurs données personnelles</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-01.html#cybermois-2026-45-des-francais-ont-deja-ete-informes-d-une-f</link>
+      <guid isPermaLink="false">2026-10-01-cybermois-2026-45-des-francais-ont-deja-ete-informes-d-une-f</guid>
+      <pubDate>Thu, 01 Oct 2026 08:00:00 GMT</pubDate>
+      <category>Cybersécurité</category>
+      <description>Le Cybermois, campagne nationale de sensibilisation pilotée par Cybermalveillance.gouv.fr, démarre le 1er octobre 2026 avec pour thème les violations de données personnelles. Selon le baromètre réalisé avec Ipsos, 45 % des Français déclarent avoir été notifiés d'une fuite de leurs données, contre 30 % un an plus tôt. Le dispositif publie à cette occasion une liste de réflexes à adopter, du premier au trentième jour après l'annonce d'une fuite. — Ce que ça change : Les données volées servent ensuite à des hameçonnages très personnalisés : faux fournisseurs, faux RIB, faux conseillers bancaires. Une TPE est d'autant plus exposée que ses clients et ses salariés ont eux-mêmes vu leurs données fuiter.</description>
+    </item>
+    <item>
+      <title>Google dévoile Gemini 4 Argon, son modèle le plus puissant, d'abord réservé à des spécialistes de la cyberdéfense</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-01.html#google-devoile-gemini-4-argon-son-modele-le-plus-puissant-d-</link>
+      <guid isPermaLink="false">2026-10-01-google-devoile-gemini-4-argon-son-modele-le-plus-puissant-d-</guid>
+      <pubDate>Thu, 01 Oct 2026 08:00:00 GMT</pubDate>
+      <category>IA</category>
+      <description>Le 30 septembre 2026, Google a présenté Gemini 4 Argon, le nouveau modèle phare de sa gamme Gemini 4, conçu pour des tâches longues et complexes : développement logiciel, travail documentaire en entreprise (juridique, finance) et cyberdéfense. Il peut produire jusqu'à un million de jetons en sortie. Le déploiement commence par un groupe restreint d'acteurs de la cyberdéfense ; une ouverture plus large est annoncée ensuite, en commençant par les clients payants de l'API. — Ce que ça change : La concurrence entre Google, OpenAI et Anthropic fait progresser très vite ce que l'IA sait faire sur des dossiers entiers, pas seulement des questions isolées. Pour une PME, cela ouvre des automatisations plus ambitieuses, mais ce modèle n'est pas encore accessible à tous.</description>
+    </item>
+    <item>
+      <title>Green IT : l'empreinte environnementale des infrastructures d'IA pourrait être multipliée par sept d'ici 2030</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-01.html#green-it-l-empreinte-environnementale-des-infrastructures-d-</link>
+      <guid isPermaLink="false">2026-10-01-green-it-l-empreinte-environnementale-des-infrastructures-d-</guid>
+      <pubDate>Thu, 01 Oct 2026 08:00:00 GMT</pubDate>
+      <category>Numérique</category>
+      <description>Le collectif français Green IT a publié le 30 septembre 2026 une étude sur l'impact environnemental des data centers qui font tourner l'IA générative. Selon ses projections, les émissions liées à ces infrastructures seraient multipliées par près de sept entre 2025 et 2030, sous l'effet de la hausse du nombre de puces graphiques et de leur consommation. L'association appelle à placer la sobriété et la question des usages au cœur du développement de l'IA. — Ce que ça change : L'impact d'un projet d'IA dépend beaucoup de la façon dont il est conçu : un modèle léger bien choisi, des appels limités au nécessaire et des traitements regroupés consomment bien moins qu'un usage systématique du modèle le plus gros.</description>
+    </item>
     <item>
       <title>Citrix NetScaler : deux failles critiques activement exploitées, le CERT-FR appelle à corriger</title>
       <link>https://www.groupsolution.fr/lab/actus/2026-09-30.html#citrix-netscaler-deux-failles-critiques-activement-exploitee</link>
