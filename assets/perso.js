@@ -89,6 +89,7 @@
     '#gsP.in{transform:none;opacity:1}#gsP .k{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#E61E4D}#gsP b{display:block;font-size:16.5px;line-height:1.35;margin:6px 26px 4px 0}#gsP p{margin:0;color:#565349;font-size:14px}' +
     '#gsP .go{display:inline-block;margin-top:12px;background:#171613;color:#fff;padding:9px 15px;border-radius:999px;font-weight:800;font-size:14px;text-decoration:none;border:0;cursor:pointer}#gsP .go2{margin-left:12px;font-weight:700;font-size:13.5px;color:#171613;text-decoration:underline;background:none;border:0;cursor:pointer}' +
     '#gsP .x{position:absolute;top:10px;right:10px;width:28px;height:28px;border:0;border-radius:50%;background:#F4F2EC;cursor:pointer;font-size:16px;line-height:1}#gsP .why{display:block;margin-top:10px;font-size:12px;color:#8C887E;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}' +
+    '@media(max-width:760px){#gsP{left:12px;right:12px;width:auto;bottom:calc(14px + env(safe-area-inset-bottom));padding:13px 15px 12px;font-size:14px;border-radius:16px}body.gsA-sticky #gsP{bottom:calc(84px + env(safe-area-inset-bottom))}#gsP b{font-size:15.5px;margin-top:4px}#gsP p{font-size:13.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}#gsP .go{margin-top:9px;padding:8px 14px;font-size:13.5px}#gsP .why{display:none}}' +
     '#gsP .whyT{display:none;margin-top:8px;font-size:12.5px;color:#565349;background:#F7F6F2;border-radius:12px;padding:10px 12px}#gsP .whyT.on{display:block}#gsP .whyT button{margin-top:6px;border:0;background:none;color:#E61E4D;font-weight:800;cursor:pointer;padding:0}' +
     '@media(max-width:900px){#gsP{bottom:84px;left:10px;width:calc(100vw - 92px);padding:14px 14px 12px}#gsP b{font-size:15.5px}}@media(prefers-reduced-motion:reduce){#gsP{transition:none}}';
   document.head.appendChild(css);
@@ -167,7 +168,8 @@
       if (cb && cb.getBoundingClientRect().height > 0 && getComputedStyle(cb).display !== 'none') { setTimeout(fire, 3000); return; }
       fired = true; var c = pickCard(); if (c) show(c);
     }
-    setTimeout(fire, 12000);
+    // Sur téléphone, rien ne s'ouvre tout seul pendant la lecture du haut de page : seulement après un vrai défilement.
+    if (innerWidth > 760) setTimeout(fire, 12000);
     window.addEventListener('scroll', function () { if ((scrollY + innerHeight) / document.documentElement.scrollHeight > 0.55) fire(); }, { passive: true });
   }
 

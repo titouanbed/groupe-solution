@@ -63,3 +63,14 @@
       .finally(function () { if (document.body.contains(b)) { b.textContent = label; b.disabled = false; } });
   });
 })();
+(function () {
+  /* Tableaux : sur téléphone, chaque ligne devient une fiche ; chaque cellule reprend le titre de sa colonne. */
+  [].forEach.call(document.querySelectorAll('.tbl table'), function (t) {
+    var heads = [].map.call(t.querySelectorAll('thead th'), function (h) { return h.textContent.trim(); });
+    if (heads.length < 2) return;
+    [].forEach.call(t.querySelectorAll('tbody tr'), function (tr) {
+      [].forEach.call(tr.children, function (c, i) { if (c.tagName === 'TD' && heads[i]) c.setAttribute('data-l', heads[i]); });
+    });
+    t.classList.add('stk');
+  });
+})();

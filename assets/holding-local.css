@@ -216,3 +216,30 @@ footer{padding:56px 0;border-top:1px solid var(--line);background:var(--sand)}
 .edList a:hover{border-color:var(--acc)}.edList .cat{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
 .edList b{font-size:21px;line-height:1.3}.edList p{color:var(--secondary);line-height:1.6;margin:0}.edList time{font-size:13px;color:var(--muted);text-transform:capitalize}
 @media(max-width:640px){.edRel a{flex-direction:column}.edCta div{flex-direction:column;align-items:flex-start}}
+
+/* ===== Téléphone : lecture confortable, moins de vide, tableaux lisibles (l'ordinateur ne change pas) ===== */
+@media(max-width:640px){
+  h1,h2,h3{text-wrap:balance}p,li{text-wrap:pretty}
+  .wrap{width:calc(100% - 36px)}
+  .hero{padding:20px 0 40px}
+  .hero h1{font-size:clamp(30px,8.4vw,36px);line-height:1.08}
+  .hero .lead,.lead{font-size:16.5px;line-height:1.6;margin-top:16px}
+  .heroDevise{padding:13px 16px;margin-top:18px}
+  .art p,.art li{font-size:16px;line-height:1.68}
+  .art h2{font-size:24px;line-height:1.18;margin-top:36px}
+  .artSec{padding-bottom:56px}
+  .sec{padding:48px 0}
+  .secHead h2{font-size:27px;line-height:1.12}
+  .secHead p{font-size:16px;line-height:1.6}
+  .callCard{padding:24px 20px}
+  .callCard .btn{white-space:nowrap;padding-left:16px;padding-right:16px;font-size:15px}
+  .ctaBox .ctaT{font-size:22px}
+  /* Tableaux : chaque ligne devient une fiche, plus rien n'est caché sur la droite */
+  .tbl table.stk{min-width:0}
+  .tbl table.stk thead{display:none}
+  .tbl table.stk tr{display:block;padding:12px 16px;border-top:1px solid var(--line)}
+  .tbl table.stk tbody th,.tbl table.stk td{display:block;padding:0;border:0;min-width:0}
+  .tbl table.stk tbody th{font-size:16px;margin-bottom:6px}
+  .tbl table.stk td{font-size:14.5px;margin-top:6px}
+  .tbl table.stk td[data-l]::before{content:attr(data-l);display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
+}

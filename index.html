@@ -424,7 +424,21 @@
   .aiMaq.v3.dark .mHead h4,.aiMaq.v3.dark .mSub,.aiMaq.v3.dark .mSv .ic,.aiMaq.v3.dark .mCta{color:#fff}.aiMaq.v3.dark .mCta{border-color:#333}.aiMaq.v3.dark .mCard{border-color:#2a2a2a;background:#151515;box-shadow:none}.aiMaq.v3.dark .fz{background:#1b1b1b;color:#eee}.aiMaq.v3.dark .mBtn,.aiMaq.v3.dark .pfp{color:#111}
   .aiMaq.v3.dark .phone .pm{background:#0e0e0e;color:#eee}.aiMaq.v3.dark .burger{border-color:#ddd}
   @media(max-width:760px){.aiMaq.v3 .pg{margin-right:0;border-radius:0 0 18px 18px;padding:0 14px 16px}.aiMaq.v3 .phone,.aiMaq.v3 .mn{display:none}.aiMaq.v3 .mBody{grid-template-columns:1fr}.aiMaq.v3 .mGal{height:200px}.aiMaq.v3 .mGal.n4,.aiMaq.v3 .mGal.n5{grid-template-columns:2fr 1fr}.aiMaq.v3 .mGal.n4 img:nth-child(n+4),.aiMaq.v3 .mGal.n5 img:nth-child(n+4){display:none}.aiMaq.v3 .mGal.n4 img:first-child,.aiMaq.v3 .mGal.n5 img:first-child{grid-row:span 2}}
-  .aiShare{align-self:stretch;display:flex;flex-direction:column;gap:12px;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--line)}.aiShare .sh{display:flex;gap:12px;align-items:center}.aiShare .sIc{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--olive-soft,#EEF0E8);color:var(--olive2,#3F493D);flex-shrink:0}.aiShare .sIc .gsi{margin:0}.aiShare b{display:block;font-size:15px}.aiShare .sh span{font-size:13px;color:var(--secondary)}
+  .aiComp{align-self:stretch;padding:16px;border-radius:18px;background:#fff;border:1px solid var(--line);text-align:left}
+.aiComp .k{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.aiComp .k .gsi{margin:0}
+.aiComp .cH{margin:6px 0 10px;font:600 17px/1.3 var(--serif,Georgia,serif);color:var(--ink)}
+.aiComp .cTab{display:grid;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.aiComp .cRow{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:12px;align-items:center;padding:11px 14px;font-size:14px;border-top:1px solid var(--line)}
+.aiComp .cRow:first-child{border-top:0}.aiComp .cRow.me{background:var(--olive-soft,#EEF0E8);font-weight:700}
+.aiComp .cN{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.aiComp .cS b{font-weight:800}.aiComp .st{color:#E8A317;margin-left:2px}.aiComp .nn{font-size:12px;color:var(--muted)}
+.aiComp .cA{color:var(--secondary);font-size:13px;min-width:56px;text-align:right}.aiComp .cW{font-size:12px;color:var(--secondary);display:flex;align-items:center;gap:3px;min-width:44px}.aiComp .cW .gsi{margin:0;color:#0F9D58}.aiComp .cW s{color:var(--muted)}
+.aiComp .cMiss{grid-column:2/-1;justify-self:end;font-size:12.5px;font-weight:800;color:#C81E47}
+.aiComp .cC{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--ink)}.aiComp .cC .gsi{margin:3px 0 0;flex-shrink:0;color:#C81E47}.aiComp .cC.bon .gsi{color:#0F9D58}.aiComp .cC.info .gsi{color:var(--muted)}
+.aiComp .cSrc{display:block;margin-top:10px;font-size:11.5px;color:var(--muted)}
+.aiComp .cLoad{display:flex;gap:6px;padding:14px 2px}.aiComp .cLoad i{width:8px;height:8px;border-radius:50%;background:var(--muted);animation:gsAt 1s infinite}.aiComp .cLoad i:nth-child(2){animation-delay:.15s}.aiComp .cLoad i:nth-child(3){animation-delay:.3s}
+@keyframes gsAt{0%,80%,100%{opacity:.3}40%{opacity:1}}
+@media(max-width:640px){.aiComp .cRow{grid-template-columns:minmax(0,1fr) auto auto;padding:10px 12px;gap:10px}.aiComp .cW{display:none}}
+.aiShare{align-self:stretch;display:flex;flex-direction:column;gap:12px;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--line)}.aiShare .sh{display:flex;gap:12px;align-items:center}.aiShare .sIc{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--olive-soft,#EEF0E8);color:var(--olive2,#3F493D);flex-shrink:0}.aiShare .sIc .gsi{margin:0}.aiShare b{display:block;font-size:15px}.aiShare .sh span{font-size:13px;color:var(--secondary)}
   .aiShare .go{min-height:44px;border:0;border-radius:12px;background:var(--ink);color:#fff;font:800 14px var(--sans);cursor:pointer}.aiShare input{width:100%;min-height:42px;border:1px solid var(--line2);border-radius:10px;padding:0 10px;font:13px var(--sans);color:var(--secondary)}
   .aiShare .sBtns{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}.aiShare .sBtns a,.aiShare .sBtns button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:12px;border:1px solid var(--line);background:#FAFAF7;font:700 12.5px var(--sans);color:var(--ink);cursor:pointer;text-decoration:none}.aiShare .sBtns .gsi{margin:0;width:20px;height:20px}.aiShare small{display:block;margin-top:8px;font-size:12px;color:var(--muted)}
   .aiRecap{align-self:stretch;display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--line)}.aiRecap span{font-weight:700;font-size:14.5px;display:flex;gap:8px;align-items:center}.aiRecap div{display:flex;gap:8px}.aiRecap input{flex:1;min-width:0;min-height:44px;border:1px solid var(--line2);border-radius:12px;padding:0 12px;font:15px var(--sans)}.aiRecap button{min-height:44px;border:0;border-radius:12px;background:var(--ink);color:#fff;font:800 14px var(--sans);padding:0 16px;cursor:pointer}.aiRecap small{color:var(--muted);font-size:12px}
@@ -727,6 +741,23 @@
     .secHead p{font-size:15.5px}
     .contactGrid{gap:10px}.ccard{flex-direction:row;flex-wrap:wrap;align-items:center;text-align:left;padding:16px 18px;gap:2px 14px;border-radius:18px}.ccard .cIcon{width:46px;height:46px;border-radius:14px;margin:0;grid-row:span 2}.ccard .cIcon svg{width:22px;height:22px}
     .ccard b{font-size:16px;flex:1}.ccard .cGo{flex-basis:100%;padding-left:60px;font-size:13.5px}.ccard span:not(.cGo){flex-basis:100%;padding-left:60px;margin-top:-4px}
+    .hero-ai:not(.chatting){min-height:calc(80svh - 64px);padding:28px 0 36px}
+    /* Contact : une ligne par canal, icône · libellé · flèche */
+    .ccard{display:grid;grid-template-columns:46px 1fr 20px;column-gap:14px;row-gap:0;align-items:center;padding:14px 16px}
+    .ccard .cIcon{grid-row:1/3;grid-column:1}.ccard b{grid-column:2;grid-row:1;font-size:15.5px}
+    .ccard span:not(.cGo){grid-column:2;grid-row:2;padding-left:0;margin-top:1px;font-size:13.5px;overflow-wrap:anywhere}
+    .ccard .cGo{grid-column:3;grid-row:1/3;padding:0;font-size:0;text-align:right}.ccard .cGo::after{content:"→";font-size:18px;color:var(--rose,#E61E4D)}
+    /* Rangées de pastilles : une seule ligne qui défile au doigt, au lieu de cinq lignes empilées */
+    .edMet{flex-wrap:nowrap;flex-direction:column;align-items:stretch;gap:8px}
+    #pvChips,.hxNear{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-left:-18px;margin-right:-18px;padding:2px 18px 4px;scroll-padding:0 18px}
+    #pvChips::-webkit-scrollbar,.hxNear::-webkit-scrollbar{display:none}
+    #pvChips button,.hxNear a{flex:0 0 auto;white-space:nowrap}
+    .edGrid>*,.edMet,#pvChips,.hxNear{min-width:0}#pvChips,.hxNear{max-width:calc(100% + 36px)}
+    .hxNear{-webkit-mask:linear-gradient(90deg,#000 88%,transparent);mask:linear-gradient(90deg,#000 88%,transparent)}
+    .hxNear span{flex:0 0 auto}
+    .edProof{align-items:start}
+    #faq,#contact{padding:48px 0}
+    footer{padding:36px 0 96px}.foot{gap:20px}.foot nav{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;width:100%}.foot nav a{font-size:13.5px}
   }
   </style>
 </head>
@@ -899,7 +930,7 @@
     <a href="plan-du-site.html">Plan du site</a>
     <a href="idees/">Laboratoire d’idées</a>
     <a href="lab/coulisses.html">Comment ce site fonctionne</a>
-    <a href="demos/">Démos en direct</a><a href="pourquoi-accessible.html">Pourquoi c’est accessible</a><a href="https://www.linkedin.com/in/titouan-bedos/" target="_blank" rel="noopener me">LinkedIn</a><a href="etat.html">État du site</a><a href="admin/" rel="nofollow">Espace pro</a><a href="confidentialite.html">Confidentialité</a>
+    <a href="observatoire.html">Observatoire du numérique</a><a href="demos/">Démos en direct</a><a href="pourquoi-accessible.html">Pourquoi c’est accessible</a><a href="https://www.linkedin.com/in/titouan-bedos/" target="_blank" rel="noopener me">LinkedIn</a><a href="etat.html">État du site</a><a href="admin/" rel="nofollow">Espace pro</a><a href="confidentialite.html">Confidentialité</a>
   </nav>
 </div></footer>
 <script>

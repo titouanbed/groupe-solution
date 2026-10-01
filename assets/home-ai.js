@@ -28,10 +28,23 @@
   var ti = 0, tc = 0, tdir = 1, ttm = null, typing = true;
   function tick() {
     if (!typing || input.value || document.activeElement === input) { input.placeholder = 'Parlez-nous de votre entreprise…'; ttm = setTimeout(tick, 1200); return; }
-    var w = EX[ti]; tc += tdir; input.placeholder = w.slice(0, tc);
+    var w = EX[ti]; tc += tdir; input.placeholder = fitTail(w.slice(0, tc));
     if (tc >= w.length) { tdir = -1; ttm = setTimeout(tick, 1800); return; }
     if (tc <= 0) { tdir = 1; ti = (ti + 1) % EX.length; }
     ttm = setTimeout(tick, tdir > 0 ? 42 : 18);
+  }
+  /* Sur petit écran, l'exemple reste sur une ligne : le début s'efface à gauche au fil de l'écriture. */
+  var mctx = null;
+  function fitTail(t) {
+    try {
+      var cs = getComputedStyle(input), avail = input.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 4;
+      if (!(avail > 40)) return t;
+      mctx = mctx || document.createElement('canvas').getContext('2d');
+      mctx.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      while (t.length > 1 && mctx.measureText(t).width > avail) t = t.slice(1);
+      if (t.length < input.placeholder.length || t !== input.placeholder) t = t.replace(/^\s+/, '');
+      return t;
+    } catch (e) { return t; }
   }
   var PH = 'Parlez-nous de votre entreprise…';
   function stopType() { typing = false; input.placeholder = PH; }
@@ -113,6 +126,7 @@
   var done = {}, lastUser = '', siteState = '';
   var STEP = {
     analyser: ['recherche', 'Analyser mon entreprise', 'Annuaire officiel et site internet, en 30 secondes'],
+    concurrents: ['graphique', 'Me comparer à mes concurrents', 'Note Google, avis, site : vous face aux 3 plus proches'],
     plan: ['fusee', 'Voir mon plan d’innovation', 'Les idées pensées pour votre entreprise, étape par étape'],
     site: ['site', 'Voir mon futur site', 'Une esquisse aux couleurs de votre entreprise, ordinateur et téléphone'],
     'demo-facture': ['facture', 'Essayer en direct : une facture lue par l’IA', 'Prenez une facture en photo, ici même, sans inscription'],
@@ -124,8 +138,10 @@
   function pickStep(code) {
     var talksSite = /\bsite\b|vitrine|refaire|refonte|google/i.test(lastUser);
     if (code === 'site' && siteState && siteState !== 'aucun' && !talksSite) code = null; // qui a déjà un site n'en veut pas un nouveau : on ne le propose que s'il en parle
+    if (code === 'concurrents' && (window.GS_CONC === false || !ficheEnt || !ficheEnt.commune)) code = null;
     if (code && STEP[code] && !done[code]) return code;
     if (!done.analyser && !company) return 'analyser';
+    if (!done.concurrents && ficheEnt && ficheEnt.commune && window.GS_CONC !== false) return 'concurrents';
     if (!done.plan) return 'plan';
     if (!done.site && siteState === 'aucun') return 'site';
     if (!done.devis) return 'devis';
@@ -140,9 +156,41 @@
     b.querySelector('b').textContent = x[1]; b.querySelector('em').textContent = x[2];
     b.addEventListener('click', function () {
       b.remove(); ga('home_ai_next', { etape: k });
-      if (k === 'analyser') entrepriseForm(); else if (k === 'devis') devisForm(); else if (k.indexOf('demo-') === 0) demo(k.slice(5)); else concept(k === 'site' ? 'maquette' : 'plan');
+      if (k === 'analyser') entrepriseForm(); else if (k === 'concurrents') concurrents(); else if (k === 'devis') devisForm(); else if (k.indexOf('demo-') === 0) demo(k.slice(5)); else concept(k === 'site' ? 'maquette' : 'plan');
     });
     log.appendChild(b); log.scrollTop = log.scrollHeight;
+  }
+  /* « Vous face à vos concurrents » : fiches publiques Google Maps des 3 établissements du même métier les plus proches. */
+  try { fetch('/api/concurrents').then(function (r) { return r.ok ? r.json() : { on: false }; }).then(function (d) { if (!d.on) window.GS_CONC = false; }).catch(function () { window.GS_CONC = false; }); } catch (x) {}
+  function concurrents() {
+    done.concurrents = 1;
+    if (!ficheEnt || !ficheEnt.commune) { nextStep(null); return; }
+    var c = el('div', 'aiComp'); c.innerHTML = '<span class="k">' + I('graphique') + 'Vous face à vos concurrents</span><div class="cLoad"><i></i><i></i><i></i></div>';
+    log.appendChild(c); log.scrollTop = log.scrollHeight;
+    fetch('/api/concurrents', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nom: ficheEnt.nom, commune: ficheEnt.commune, secteur: ficheEnt.secteur || '', sid: sid() }) })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.ok) { c.remove(); if (d === null) window.GS_CONC = false; nextStep(null); return; }
+        ga('home_ai_concurrents', { trouve: d.moi ? 1 : 0 });
+        var st = function (n) { return n == null ? '<span class="nn">pas de note</span>' : '<b>' + String(n.toFixed(1)).replace('.', ',') + '</b><span class="st">★</span>'; };
+        var row = function (x, moi) {
+          var r = el('div', 'cRow' + (moi ? ' me' : ''));
+          r.innerHTML = '<span class="cN"></span><span class="cS">' + st(x.note) + '</span><span class="cA">' + x.avis + ' avis</span><span class="cW">' + (x.site ? I('check') + 'site' : '<s>site</s>') + '</span>';
+          r.querySelector('.cN').textContent = moi ? 'Vous' : x.nom; return r;
+        };
+        c.innerHTML = '<span class="k">' + I('graphique') + 'Vous face à vos concurrents</span>';
+        var h = el('p', 'cH'); h.textContent = d.metier.charAt(0).toUpperCase() + d.metier.slice(1) + ' · ' + d.commune; c.appendChild(h);
+        var t = el('div', 'cTab');
+        if (d.moi) t.appendChild(row(d.moi, true)); else { var no = el('div', 'cRow me'); no.innerHTML = '<span class="cN">Vous</span><span class="cMiss">Absent de Google Maps</span>'; t.appendChild(no); }
+        d.autres.forEach(function (x) { t.appendChild(row(x)); }); c.appendChild(t);
+        (d.constats || []).forEach(function (x) { var p = el('p', 'cC ' + x.ton); p.innerHTML = I(x.ton === 'bon' ? 'check' : 'eclair'); p.appendChild(document.createTextNode(x.texte)); c.appendChild(p); });
+        c.appendChild(el('small', 'cSrc', d.source + ' · ' + d.date.split('-').reverse().join('/')));
+        log.scrollTop = log.scrollHeight;
+        hist.push({ role: 'assistant', content: 'Comparaison affichée au visiteur (fiches Google Maps, donnée factuelle) : ' + (d.moi ? 'vous ' + (d.moi.note == null ? 'sans note' : d.moi.note + '★') + ', ' + d.moi.avis + ' avis, ' + (d.moi.site ? 'site relié' : 'pas de site relié') : 'absent de Google Maps') + ' ; concurrents : ' + d.autres.map(function (a) { return a.nom + ' ' + (a.note == null ? '–' : a.note + '★') + ' ' + a.avis + ' avis' + (a.site ? ' avec site' : ''); }).join(' ; ') + '. Constats : ' + (d.constats || []).map(function (x) { return x.texte; }).join(' ') });
+        var weak = !d.moi || (d.constats || []).some(function (x) { return x.ton === 'alerte' && /avis|note/.test(x.texte); });
+        setTimeout(function () { nextStep(weak && !done['demo-avis'] ? 'demo-avis' : null); }, 500);
+      })
+      .catch(function () { c.remove(); nextStep(null); });
   }
   // Démos réelles intégrées dans la conversation (la page /demos/ en mode intégré).
   function demo(kind) {
@@ -485,11 +533,13 @@
     });
     log.appendChild(d); log.scrollTop = log.scrollHeight; if (!mobile()) f.q.focus();
   }
+  // « SAINT-JEAN-DE-VEDAS » → « Saint-Jean-de-Vedas »
+  function jolieCommune(c) { return String(c).toLowerCase().replace(/(^|[\s'-])([a-zà-ÿ]+)/g, function (m, sep, w, i) { return sep + (i > 0 && /^(de|du|des|la|le|les|sur|sous|en|et|lès|d|l)$/.test(w) ? w : w.charAt(0).toUpperCase() + w.slice(1)); }); }
   function renderFiche(res, q) {
     if (!res.entreprise && !res.site) return;
     var e = res.entreprise, s = res.site, c = el('div', 'aiFiche'); done.analyser = 1;
     if (s) { brand = s.marque || null; brandUrl = s.url || ''; }
-    if (e) ficheEnt = { nom: e.nom, commune: e.commune ? e.commune.charAt(0) + e.commune.slice(1).toLowerCase() : '' };
+    if (e) ficheEnt = { nom: e.nom, commune: e.commune ? jolieCommune(e.commune) : '', secteur: e.secteur || '' };
     // La page s'adapte à l'entreprise analysée (bloc « Pour vous » sous le chat).
     try { document.dispatchEvent(new CustomEvent('gs:ctx', { detail: { texte: [res.entreprise && res.entreprise.secteur, res.entreprise && res.entreprise.nom, res.site && res.site.titre, q].filter(Boolean).join(' '), commune: res.entreprise && res.entreprise.commune } })); } catch (x) {}
     // En-tête : monogramme, nom, ligne d'identité.
