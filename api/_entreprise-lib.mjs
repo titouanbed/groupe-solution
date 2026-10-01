@@ -77,7 +77,7 @@ async function fetchPage(raw) {
 async function fetchImage(raw) {
   let u = checkURL(raw); if (!u) return null;
   for (let hop = 0; hop < 4; hop++) {
-    const r = await get(u, /^image\/(jpeg|png|webp)/i, 3_000_000);
+    const r = await get(u, /^image\/(jpeg|png|webp|svg\+xml)/i, 3_000_000);
     if (r.error) return null;
     if ([301, 302, 303, 307, 308].includes(r.status)) { try { u = checkURL(new URL(String(r.location || ""), u).href); } catch { return null; } if (!u) return null; continue; }
     if (!r.body || r.cut) return null;
@@ -111,17 +111,23 @@ function colorful(hex) {
   return sat > 0.28 && l > 0.12 && l < 0.88;
 }
 export async function marque(p) {
-  const h = p.html.slice(0, MAX_BYTES), abs = u => { try { return new URL(u.replace(/&amp;/g, "&"), p.url).href; } catch { return ""; } };
+  const h = p.html.slice(0, MAX_BYTES), abs = u => { if (!u) return ""; try { return new URL(u.replace(/&amp;/g, "&"), p.url).href; } catch { return ""; } };
   const score = new Map(), add = (hex, w) => { if (hex && colorful(hex)) score.set(hex, (score.get(hex) || 0) + w); };
+  // Fond du site : sombre ou clair (un site noir doit rester noir dans l'esquisse).
+  let sombre = 0, clair = 0;
+  const lum = hex => { const v = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255); return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]; };
+  const fond = (hex, w) => { if (!hex) return; const l = lum(hex); if (l < 0.18) sombre += w; else if (l > 0.82) clair += w; };
   const theme = (h.match(/<meta[^>]{0,200}name=["']theme-color["'][^>]{0,200}content=["']([^"']+)/i) || [])[1];
-  if (theme) add(hexOf(theme), 30);
+  if (theme) { add(hexOf(theme), 30); fond(hexOf(theme), 6); }
   const scan = (css, w) => {
     for (const m of css.matchAll(/--[\w-]*(?:primary|accent|brand|main|secondary|theme|couleur|color-1|color-2)[\w-]*\s*:\s*(#[0-9a-f]{3,8}|rgba?\([^)]+\))/gi)) add(hexOf(m[1]), 12 * w);
     for (const m of css.matchAll(/(?:background(?:-color)?|color|border-color|fill)\s*:\s*(#[0-9a-f]{3,8}|rgba?\([^)]+\))/gi)) add(hexOf(m[1]), w);
+    for (const m of css.matchAll(/(?:^|[}\s,])(body|html|header|\.site-header|#header|main|\.elementor-section|section)[^{]{0,60}\{[^}]{0,400}?background(?:-color)?\s*:\s*(#[0-9a-f]{3,8}|rgba?\([^)]+\))/gi)) fond(hexOf(m[2]), /body|html/i.test(m[1]) ? 4 * w : w);
+    for (const m of css.matchAll(/--[\w-]*(?:background|bg|body)[\w-]*\s*:\s*(#[0-9a-f]{3,8}|rgba?\([^)]+\))/gi)) fond(hexOf(m[1]), 2 * w);
   };
   scan([...h.matchAll(/<style[^>]*>([\s\S]{0,60000}?)<\/style>/gi)].map(m => m[1]).join("\n") + " " + [...h.matchAll(/style=["']([^"']{0,400})["']/gi)].map(m => m[1]).join(";"), 2);
   const sheet = (h.match(/<link[^>]{0,300}rel=["']stylesheet["'][^>]{0,300}href=["']([^"']+\.css[^"']*)["']/i) || h.match(/<link[^>]{0,300}href=["']([^"']+\.css[^"']*)["'][^>]{0,300}rel=["']stylesheet["']/i) || [])[1];
-  if (sheet && score.size < 3) { try { scan(await fetchCss(abs(sheet)), 1); } catch {} }
+  if (sheet && (score.size < 3 || sombre + clair === 0)) { try { scan(await fetchCss(abs(sheet)), 1); } catch {} }
   const couleurs = [...score.entries()].sort((a, b) => b[1] - a[1]).map(x => x[0]).slice(0, 3);
   const imgTag = (h.match(/<img\b[^>]{0,600}(?:logo)[^>]{0,600}>/i) || [])[0] || "";
   const logo = abs((imgTag.match(/\s(?:data-src|src)=["']([^"']+)["']/i) || [])[1] || "");
@@ -129,7 +135,7 @@ export async function marque(p) {
   const police = decodeURIComponent((h.match(/fonts\.googleapis\.com\/css2?\?family=([^&:"'@]+)/i) || [])[1] || "").replace(/\+/g, " ").slice(0, 40);
   const navHtml = (h.match(/<nav\b[\s\S]{0,8000}?<\/nav>/i) || [])[0] || "";
   const menu = [...new Set([...navHtml.matchAll(/<a\b[^>]*>([\s\S]{1,80}?)<\/a>/gi)].map(m => strip(m[1])).filter(t => t && t.length <= 24 && !/^(menu|fermer|close|×)$/i.test(t)))].slice(0, 5);
-  return { couleurs, logo: /^https:/.test(logo) ? logo : "", image: /^https:/.test(og) ? og : "", police, menu };
+  return { couleurs, logo: /^https:/.test(logo) ? logo : "", image: /^https:/.test(og) ? og : "", police, menu, fond: sombre > clair * 1.2 && sombre >= 4 ? "sombre" : "clair" };
 }
 
 /* ── Lecture de la page (ce que voit un internaute) ── */

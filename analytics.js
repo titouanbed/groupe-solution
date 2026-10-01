@@ -10,6 +10,9 @@
    ═══════════════════════════════════════════════════════════ */
 (function () {
   var GA_ID = 'G-G8RWE633G4'; // ID GA4 Groupe Solution (holding + zones géo)
+  // Démo intégrée dans le chat de l'accueil : pas de bandeau ni d'assistant en double, liens ouverts dans la page principale.
+  var EMBED = window.self !== window.top && /[?&]embed=1/.test(location.search);
+  if (EMBED) document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href]'); if (a && !/^(#|javascript:)/.test(a.getAttribute('href'))) a.target = '_top'; }, true);
 
   /* Provenance de la visite (LinkedIn, Google…), gardée le temps de l'onglet : le chat s'adapte
      et Titouan sait d'où viennent ses contacts. Aucune donnée personnelle. */
@@ -64,7 +67,7 @@
 
   /* Assistant du site + barre d'appel mobile : chargés sur toutes les pages publiques
      depuis ce point unique (voir /assets/assistant.js). */
-  if (!/\/ecole-mayotte\//.test(location.pathname) && !/\/vitrine-gbp\.html$/.test(location.pathname)) {
+  if (!EMBED && !/\/ecole-mayotte\//.test(location.pathname) && !/\/vitrine-gbp\.html$/.test(location.pathname)) {
     var sa = document.createElement('script'); sa.src = '/assets/assistant.js'; sa.defer = true;
     (document.body || document.head).appendChild(sa);
     // Parcours sur-mesure (commune du visiteur, prochaine étape utile) — voir /assets/perso.js
@@ -143,6 +146,7 @@
   }
 
   function showBanner() {
+    if (EMBED) return;
     var d = document.createElement('div');
     d.id = 'gsConsent';
     d.setAttribute('role', 'dialog');
