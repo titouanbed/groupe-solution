@@ -386,6 +386,17 @@
   .aiMaq.v2 .mHero.sm{min-height:0;flex:1;overflow:hidden;padding:12px 9px;margin:0 5px;border-radius:10px}.aiMaq.v2 .mHero.sm h4{font-size:12.5px;line-height:1.15}.aiMaq.v2 .mHero.sm p{font-size:8px;margin:4px 0 7px;line-height:1.35}.aiMaq.v2 .mHero.sm .mBtn,.aiMaq.v2 .mHero.sm .mBtn2{font-size:7.5px;padding:4px 7px}
   .aiMaq.v2 .pfp{display:flex;align-items:center;gap:5px;margin:6px 5px 8px;padding:7px;border-radius:9px;background:var(--mc);color:#fff;font:800 8px/1.2 var(--sans)}.aiMaq.v2 .pfp .gsi{margin:0;width:11px;height:11px}
   @media(max-width:760px){.aiMaq.v2 .pg{margin-right:0;border-radius:0 0 18px 18px}.aiMaq.v2 .phone{display:none}.aiMaq.v2 .mn{display:none}.aiMaq.v2 .fp{grid-template-columns:auto 1fr}.aiMaq.v2 .fz{grid-column:1/-1;justify-content:center}}
+  .aiNext{align-self:stretch;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;text-align:left;width:100%;border:0;border-radius:18px;padding:14px 16px;background:var(--ink);color:#fff;cursor:pointer;box-shadow:0 14px 34px rgba(23,22,19,.22);animation:gsaIn .45s var(--ease) both;transition:transform .2s var(--ease)}.aiNext:hover{transform:translateY(-2px)}
+  .aiNext .nIc{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--acc),#FF8A5B)}.aiNext .nIc .gsi{margin:0;width:22px;height:22px}.aiNext small{display:block;font:800 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.65}.aiNext b{display:block;font:800 16.5px/1.25 var(--sans);margin-top:2px}.aiNext em{display:block;font-style:normal;font-size:13px;opacity:.75;margin-top:2px}.aiNext .nGo{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12)}.aiNext .nGo .gsi{margin:0}
+  .aiDemo{align-self:stretch;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#fff;animation:gsaIn .45s var(--ease) both}.aiDemo .k{display:flex;align-items:center;gap:6px;padding:10px 14px;font:800 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}.aiDemo .k .gsi{margin:0}.aiDemo iframe{display:block;width:100%;height:min(640px,72vh);border:0}
+  .aiGuide{margin:12px auto 0;font-size:14px;color:var(--secondary);text-align:center}.aiGuide b{color:var(--ink)}.hero-ai.chatting .aiGuide{display:none}
+  /* Esquisse d'un site sombre : on garde son identité (fond noir, logo clair, accent de la marque) */
+  .aiMaq.v2.dark .pg{background:#0e0e0e;color:#f2f2f2}.aiMaq.v2.dark .mn span{color:#cfcfcf}.aiMaq.v2.dark .br b{color:var(--mc)}.aiMaq.v2.dark .mCta{background:var(--mc);color:#111}
+  .aiMaq.v2.dark .mHero{background:linear-gradient(120deg,#151515,#050505)}.aiMaq.v2.dark .mHero h4{color:#fff}.aiMaq.v2.dark .mHero p{color:#bdbdbd}.aiMaq.v2.dark .mHero .mBtn{background:var(--mc);color:#111}.aiMaq.v2.dark .mHero.ph .mBtn{background:var(--mc);color:#111}.aiMaq.v2.dark .mBtn2{color:#fff}
+  .aiMaq.v2.dark .fp{background:#161616;border-color:color-mix(in srgb,var(--mc) 55%,#000)}.aiMaq.v2.dark .fic{background:var(--mc);color:#111}.aiMaq.v2.dark .ftx small{color:var(--mc)}.aiMaq.v2.dark .ftx b{color:#fff}.aiMaq.v2.dark .ftx p{color:#bdbdbd}.aiMaq.v2.dark .fz{background:var(--mc);color:#111}
+  .aiMaq.v2.dark .sv div{background:#141414;border-color:#262626}.aiMaq.v2.dark .sv b{color:#fff}.aiMaq.v2.dark .sv p,.aiMaq.v2.dark .loc{color:#bdbdbd}.aiMaq.v2.dark .sv .ic{background:#222;color:var(--mc)}
+  .aiMaq.v2.dark .phone .pm{background:#0e0e0e}.aiMaq.v2.dark .burger{border-color:#ddd}.aiMaq.v2.dark .pfp{color:#111}
+  .aiMaq.v2.dark{background:linear-gradient(150deg,#1a1a1a,color-mix(in srgb,var(--mc) 30%,#111))}
   .aiRecap{align-self:stretch;display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--line)}.aiRecap span{font-weight:700;font-size:14.5px;display:flex;gap:8px;align-items:center}.aiRecap div{display:flex;gap:8px}.aiRecap input{flex:1;min-width:0;min-height:44px;border:1px solid var(--line2);border-radius:12px;padding:0 12px;font:15px var(--sans)}.aiRecap button{min-height:44px;border:0;border-radius:12px;background:var(--ink);color:#fff;font:800 14px var(--sans);padding:0 16px;cursor:pointer}.aiRecap small{color:var(--muted);font-size:12px}
 
   .aiEnt,.aiFiche{align-self:stretch;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-s);padding:18px;animation:gsaIn .35s var(--ease) both}
@@ -690,6 +701,7 @@
           </button>
         </div>
       </form>
+      <p class="aiGuide">Le plus simple : écrivez <b>le nom de votre entreprise et sa ville</b>, ou ce qui vous fait perdre du temps. On s’occupe du reste.</p>
       <p class="aiFoot">Sites internet, logiciels sur-mesure, automatisations et agents IA, inventés pour vous, partout en France — <a href="pourquoi-accessible.html" style="border:0;font-weight:600;color:inherit;text-decoration:underline">souvent bien plus accessibles</a> que vous ne l’imaginez. <a href="tel:+33782298559">07 82 29 85 59</a></p>
     </div>
   </section>

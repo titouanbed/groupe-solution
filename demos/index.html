@@ -145,10 +145,12 @@ textarea.av{width:100%;min-height:120px;border:1px solid var(--line2);border-rad
 .dmCta{max-width:860px;margin:26px auto 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--ink);color:#fff;border-radius:22px;padding:20px 22px}.dmCta b{font-size:17px}.dmCta a{background:#fff;color:var(--ink);border-radius:999px;padding:12px 18px;font-weight:800}
 .dots{display:inline-flex;gap:4px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:dmB 1s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}@keyframes dmB{50%{opacity:.25}}
 @media(max-width:600px){.lt th:nth-child(2),.lt td:nth-child(2),.lt th:nth-child(3),.lt td:nth-child(3){display:none}.dmTabs button{flex:1 1 100%;justify-content:center}}
+html.embed header.nav,html.embed footer,html.embed .crumbs,html.embed .dmHero,html.embed .dmTabs,html.embed .dmMore,html.embed #gsConsent{display:none!important}html.embed body{background:#fff;padding-top:0!important;margin:0}html.embed main{padding-top:0!important;margin-top:0!important}html.embed .sec{padding:12px 0!important}html.embed .wrap{width:calc(100% - 24px)}
 </style></head>
 <body>
 <header class="nav"><div class="wrap navin"><a class="brand" href="../index.html" aria-label="Groupe Solution — accueil"><img src="../Logo.svg" alt="Groupe Solution" /></a><nav class="links"><a href="../lab/actus/">Actus</a><a href="../lab/dossiers/">Dossiers</a><a href="../lab/questions/">Questions</a><a href="../lab/veille/">Veille</a><a href="../lab/">Lab</a><a href="../automatisation/">Automatisation</a><a class="cta" href="tel:+33782298559">07 82 29 85 59</a></nav></div></header>
 <main>
+  <script>if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('embed');</script>
   <div class="wrap crumbs"><a href="../index.html">Groupe Solution</a> › <span>Démos en direct</span></div>
   <section class="dmHero"><div class="wrap">
     <div class="kicker">Démos en direct · gratuit, sans inscription</div>

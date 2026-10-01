@@ -246,9 +246,9 @@
     // Accueil + IA active : pas besoin de l'index du site (1,3 Mo) — l'IA connaît le plan du site.
     // L'index n'est chargé qu'en mode secours (sans IA ou en cas d'erreur).
     if (opts && opts.mode === 'accueil' && mode !== 'local') {
-      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: [], sid: SID, src: (function () { try { return sessionStorage.getItem('gsSrc') || ''; } catch (e) { return ''; } })(), history: (history || []).slice(-10), mode: 'accueil' }) })
+      return fetch('/api/assistant', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, page: location.pathname, context: [], sid: SID, src: (function () { try { return sessionStorage.getItem('gsSrc') || ''; } catch (e) { return ''; } })(), history: (history || []).slice(-10), mode: 'accueil', etapes: (opts && opts.etapes) || [] }) })
         .then(function (r) { if (r.status === 503 || r.status === 404) { mode = 'local'; store.set('gsA-mode', 'local'); throw 0; } if (!r.ok) throw 0; return r.json(); })
-        .then(function (d) { if (!d.answer) throw 0; return { answer: d.answer, fiche: d.fiche || null, ruptures: d.ruptures || null, memo: d.memo || null }; })
+        .then(function (d) { if (!d.answer) throw 0; return { answer: d.answer, fiche: d.fiche || null, ruptures: d.ruptures || null, memo: d.memo || null, suivant: d.suivant || null }; })
         .catch(function () { return loadIndex().then(function () { return { answer: localAnswer(q, search(q, 8)), local: true }; }); });
     }
     return loadIndex().then(function () {

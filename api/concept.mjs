@@ -7,6 +7,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { RUPTURE } from "./_innovation.mjs";
 import { tagConv } from "./_conv.mjs";
+import { fetchImage } from "./_entreprise-lib.mjs";
 import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
 import { randomUUID } from "node:crypto";
 
@@ -72,7 +73,8 @@ function marqueSure(m) {
     couleurs: (Array.isArray(m.couleurs) ? m.couleurs : []).filter(c => HEX.test(c)).slice(0, 3),
     logo: url(m.logo), image: url(m.image),
     police: typeof m.police === "string" && /^[\p{L}\d ]{2,40}$/u.test(m.police) ? m.police : "",
-    menu: (Array.isArray(m.menu) ? m.menu : []).map(x => clip(String(x), 20)).filter(Boolean).slice(0, 5)
+    menu: (Array.isArray(m.menu) ? m.menu : []).map(x => clip(String(x), 20)).filter(Boolean).slice(0, 5),
+    fond: m.fond === "sombre" ? "sombre" : "clair"
   };
   return out.couleurs.length || out.logo || out.image || out.menu.length ? out : null;
 }
@@ -111,7 +113,7 @@ export default async function handler(req, res) {
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
       system: [{ type: "text", text: kind === "plan" ? PLAN_SYS : MAQ_SYS, cache_control: { type: "ephemeral" } }],
-      messages: [{ role: "user", content: `Zone du visiteur (approximative) : ${zone}\nSecteurs possibles : ${SECTEURS.join(", ")}\nCouleurs possibles : ${COULEURS.join(", ")}\n${mq ? `Marque du visiteur (lue sur son site) : couleurs ${mq.couleurs.join(" ") || "inconnues"} ; menu actuel : ${mq.menu.join(" · ") || "inconnu"}\n` : ""}\nConversation :\n${conv}` }]
+      messages: [{ role: "user", content: `Zone du visiteur (approximative) : ${zone}\nSecteurs possibles : ${SECTEURS.join(", ")}\nCouleurs possibles : ${COULEURS.join(", ")}\n${mq ? `Marque du visiteur (lue sur son site) : fond ${mq.fond}, couleurs ${mq.couleurs.join(" ") || "inconnues"} ; menu actuel : ${mq.menu.join(" · ") || "inconnu"}\n` : ""}\nConversation :\n${conv}` }]
     });
     if (response.stop_reason === "refusal") return send(res, 204, {});
     let out; try { out = JSON.parse(response.content.filter(x => x.type === "text").map(x => x.text).join("")); } catch { return send(res, 502, { error: "format" }); }
@@ -131,8 +133,12 @@ export default async function handler(req, res) {
         fonction_phare: fp.titre ? { icone: ICONES.includes(fp.icone) ? fp.icone : "etincelle", titre: clip(fp.titre, 50), texte: clip(fp.texte, 140), bouton: clip(fp.bouton, 32) } : null,
         logo: mq?.logo || "", image: mq?.image || "", police: mq?.police || ""
       };
+      // Logo récupéré par le serveur (affichage fiable, et ses vraies couleurs lues dans le navigateur).
+      let logoData = "";
+      if (mq?.logo) { try { const d = await Promise.race([fetchImage(mq.logo), new Promise(r => setTimeout(() => r(null), 4000))]); if (d && d.length < 700000) logoData = d; } catch {} }
+      maquette.fond = mq?.fond || "clair";
       if (UPSTASH) { try { await redis([["SET", "concept:" + cid, JSON.stringify({ kind, maquette, date: new Date().toISOString(), sid: String(b.sid || "").slice(0, 40) }), "EX", 86400]]); } catch {} }
-      return send(res, 200, { kind, maquette, id: cid });
+      return send(res, 200, { kind, maquette: { ...maquette, logoData }, id: cid });
     }
     const plan = {
       titre: clip(out.titre, 80), accroche: clip(out.accroche, 180),

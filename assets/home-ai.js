@@ -109,6 +109,51 @@
     return fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(o) })
       .then(function (r) { return r.ok || r.status === 429 || r.status === 403 ? r : backup(); }).catch(backup);
   }
+  /* ── UNE seule étape suivante à la fois, choisie par l'IA selon la conversation (repli logique si besoin) ── */
+  var done = {}, lastUser = '', siteState = '';
+  var STEP = {
+    analyser: ['recherche', 'Analyser mon entreprise', 'Annuaire officiel et site internet, en 30 secondes'],
+    plan: ['fusee', 'Voir mon plan d’innovation', 'Les idées pensées pour votre entreprise, étape par étape'],
+    site: ['site', 'Voir mon futur site', 'Une esquisse aux couleurs de votre entreprise, ordinateur et téléphone'],
+    'demo-facture': ['facture', 'Essayer en direct : une facture lue par l’IA', 'Prenez une facture en photo, ici même, sans inscription'],
+    'demo-resa': ['calendrier', 'Essayer en direct : l’agent qui prend les rendez-vous', 'Parlez-lui comme un client, ici même, sans inscription'],
+    'demo-avis': ['etoile', 'Essayer en direct : répondre à un avis client', 'Collez un avis, la réponse se rédige dans votre ton'],
+    devis: ['devis', 'Préparer mon devis', 'Indiquez votre budget, vous voyez ce qui tient dedans'],
+    appel: ['telephone', 'En parler 10 minutes avec Titouan', 'Le plus rapide pour un projet sur-mesure']
+  };
+  function pickStep(code) {
+    var talksSite = /\bsite\b|vitrine|refaire|refonte|google/i.test(lastUser);
+    if (code === 'site' && siteState === 'bon' && !talksSite) code = null; // on ne vend pas un site à qui en a déjà un bon
+    if (code && STEP[code] && !done[code]) return code;
+    if (!done.analyser && !company) return 'analyser';
+    if (!done.plan) return 'plan';
+    if (!done.site && (siteState === 'aucun' || siteState === 'faible') ) return 'site';
+    if (!done.devis) return 'devis';
+    return 'appel';
+  }
+  function nextStep(code) {
+    var k = pickStep(code), x = STEP[k];
+    [].forEach.call(log.querySelectorAll('.aiNext'), function (n) { n.remove(); });
+    if (k === 'appel') { cta(true); return; }
+    var b = el('button', 'aiNext'); b.type = 'button';
+    b.innerHTML = '<span class="nIc">' + I(x[0]) + '</span><span class="nTx"><small>Étape suivante</small><b></b><em></em></span><span class="nGo">' + I('fleche') + '</span>';
+    b.querySelector('b').textContent = x[1]; b.querySelector('em').textContent = x[2];
+    b.addEventListener('click', function () {
+      b.remove(); ga('home_ai_next', { etape: k });
+      if (k === 'analyser') entrepriseForm(); else if (k === 'devis') devisForm(); else if (k.indexOf('demo-') === 0) demo(k.slice(5)); else concept(k === 'site' ? 'maquette' : 'plan');
+    });
+    log.appendChild(b); log.scrollTop = log.scrollHeight;
+  }
+  // Démos réelles intégrées dans la conversation (la page /demos/ en mode intégré).
+  function demo(kind) {
+    done['demo-' + kind] = 1;
+    var c = el('div', 'aiDemo');
+    c.innerHTML = '<span class="k">' + I('eclair') + 'Démo en direct · rien n’est conservé</span><iframe loading="lazy" title="Démonstration" src="/demos/?embed=1#' + kind + '"></iframe>';
+    log.appendChild(c); log.scrollTop = log.scrollHeight;
+    hist.push({ role: 'assistant', content: 'Démo proposée au visiteur : ' + STEP['demo-' + kind][1] });
+    setTimeout(function () { nextStep(null); }, 400);
+  }
+
   /* ── Démonstrations en direct : plan d'innovation (schéma) et esquisse du futur site ── */
   function acts() {
     if (actsShown) return; actsShown = true;
@@ -125,7 +170,7 @@
   var devisOpen = false;
   function chipsHtml(list, name) { return '<div class="dvChips" data-n="' + name + '">' + list.map(function (x) { return '<button type="button" data-v="' + x[0] + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
   function devisForm() {
-    if (devisOpen) return; devisOpen = true;
+    if (devisOpen) return; devisOpen = true; done.devis = 1;
     var d = el('div', 'aiEnt aiDevis');
     d.innerHTML = '<b>' + I('devis') + 'Préparer mon devis</b><p>Indiquez votre budget : je vous montre ce qui tient dedans, et vous composez votre projet. Avec l’IA, on construit vite — c’est souvent bien plus accessible qu’on ne l’imagine.</p>' +
       '<label>Tout ce qui vous passe par la tête (facultatif, en vrac)</label><textarea rows="2" name="besoin" placeholder="Ex. : prise de RDV en ligne, relances clients, lien avec mon logiciel de facturation…"></textarea>' +
@@ -269,7 +314,7 @@
       b.remove(); open(); stopType(); company = m.contexte;
       hist.push({ role: 'user', content: 'Je reviens pour reprendre notre échange.' }, { role: 'assistant', content: 'Rappel de notre précédent échange (mémorisé à la demande du visiteur) :\n' + m.contexte + (m.idees && m.idees.length ? '\nIdées proposées : ' + m.idees.join(' ; ') : '') });
       add('b', md('Bon retour ! La dernière fois, on parlait ' + (m.titre ? 'de **' + esc(m.titre) + '**' : 'de votre projet') + (m.idees && m.idees.length ? ', avec notamment l’idée « ' + esc(m.idees[0]) + ' »' : '') + '. On reprend là où on s’était arrêtés ? Dites-moi ce qui a changé, ou préparez directement votre devis.'));
-      acts(); ga('home_ai_welcome_back');
+      nextStep(null); ga('home_ai_welcome_back');
     };
   })();
   function companyName() { var m = (company || '').match(/Entreprise : ([^,.\n]+)/); return m ? m[1].trim() : ''; }
@@ -281,7 +326,7 @@
     var wait = add('b', '<span class="aiGen">' + (kind === 'plan' ? 'Notre IA imagine votre plan d’innovation' : 'Notre IA esquisse votre futur site') + '<span class="aiDotsT"><i></i><i></i><i></i></span></span>');
     fetch('/api/concept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: kind, sid: sid(), conversation: hist.slice(-8), zone: (window.GSPerso && window.GSPerso.placeName) || '', marque: brand }) })
       .then(function (r) { if (r.status !== 200) throw r.status; return r.json(); })
-      .then(function (d) { wait.remove(); if (kind === 'plan') renderPlan(d.plan, d.publishId); else renderMaq(d.maquette); if (d.id) recap(d.id, kind); cta(); })
+      .then(function (d) { wait.remove(); if (kind === 'plan') { done.plan = 1; renderPlan(d.plan, d.publishId); } else { done.site = 1; renderMaq(d.maquette); } if (d.id) recap(d.id, kind); cta(); nextStep(null); })
       .catch(function () { wait.remove(); add('b', md('Je n’arrive pas à le générer pour l’instant. Le plus simple : en parler 10 minutes avec Titouan au [' + TEL + '](' + TEL_HREF + ').')); made[kind]--; if (btn) btn.disabled = false; })
       .then(function () { busy = false; send.disabled = false; });
   }
@@ -312,14 +357,15 @@
   }
   /* Esquisse du futur site : SA marque (couleurs, logo, photo, menu lus sur son site) + son innovation déjà intégrée. */
   function renderMaq(m) {
-    var w = el('div', 'aiMaq v2'); w.style.setProperty('--mc', m.couleur); w.style.setProperty('--mc2', m.couleur2 || m.couleur);
+    var w = el('div', 'aiMaq v2' + (m.fond === 'sombre' ? ' dark' : '')); w.style.setProperty('--mc', m.couleur); w.style.setProperty('--mc2', m.couleur2 || m.couleur);
+    if (m.logoData) logoColor(m.logoData, function (hex) { if (hex) { w.style.setProperty('--mc', hex); w.style.setProperty('--mc2', hex); } });
     w.setAttribute('data-style', m.style || 'chaleureux');
     if (m.police && /^[\w ]+$/.test(m.police)) { var lk = document.createElement('link'); lk.rel = 'stylesheet'; lk.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(m.police).replace(/%20/g, '+') + ':wght@500;700;800&display=swap'; document.head.appendChild(lk); w.style.setProperty('--mf', '"' + m.police + '",' + 'var(--sans)'); }
     var dom = (brandUrl || '').replace(/^https?:\/\/(www\.)?/, '').split('/')[0] || (m.nom || 'votre-entreprise').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 28) + '.fr';
     var bar = el('div', 'bar'); bar.innerHTML = '<i></i><i></i><i></i>'; bar.appendChild(el('span', null, dom)); w.appendChild(bar);
     var pg = el('div', 'pg');
     var nav = el('div', 'mNav'), brandEl = el('div', 'br');
-    if (m.logo) { var lg = document.createElement('img'); lg.src = m.logo; lg.alt = m.nom; lg.referrerPolicy = 'no-referrer'; lg.onerror = function () { lg.replaceWith(el('b', null, m.nom)); }; brandEl.appendChild(lg); } else brandEl.appendChild(el('b', null, m.nom));
+    if (m.logoData || m.logo) { var lg = document.createElement('img'); lg.src = m.logoData || m.logo; lg.alt = m.nom; lg.referrerPolicy = 'no-referrer'; lg.onerror = function () { lg.replaceWith(el('b', null, m.nom)); }; brandEl.appendChild(lg); } else brandEl.appendChild(el('b', null, m.nom));
     nav.appendChild(brandEl);
     var mn = el('div', 'mn'); (m.menu || []).forEach(function (x) { mn.appendChild(el('span', null, x)); }); nav.appendChild(mn);
     nav.appendChild(el('span', 'mCta', 'Contact')); pg.appendChild(nav);
@@ -348,6 +394,25 @@
     log.appendChild(el('p', 'aiNote', 'Esquisse générée en direct par notre IA' + (m.logo || m.image || brand ? ', à partir de l’identité visuelle de votre site' : '') + '. Votre vrai site sera conçu avec vous, sur-mesure.'));
     log.scrollTop = log.scrollHeight; sec.scrollTop = 0;
     hist.push({ role: 'assistant', content: 'Esquisse de site proposée : « ' + m.accroche + ' » — ' + (m.fonction_phare ? 'fonction phare : ' + m.fonction_phare.titre + ' ; ' : '') + m.services.map(function (x) { return x.titre; }).join(', ') });
+  }
+  // Couleur dominante du logo (lu par le serveur) : la teinte la plus présente parmi les pixels vraiment colorés.
+  function logoColor(src, cb) {
+    var im = new Image(); im.onload = function () {
+      try {
+        var c = document.createElement('canvas'); c.width = c.height = 48; var g = c.getContext('2d'); g.drawImage(im, 0, 0, 48, 48);
+        var d = g.getImageData(0, 0, 48, 48).data, bins = {}, best = null, bn = 0;
+        for (var i = 0; i < d.length; i += 4) {
+          if (d[i + 3] < 200) continue;
+          var r = d[i] / 255, gg = d[i + 1] / 255, b = d[i + 2] / 255, mx = Math.max(r, gg, b), mn = Math.min(r, gg, b), l = (mx + mn) / 2, sat = mx === mn ? 0 : (mx - mn) / (1 - Math.abs(2 * l - 1));
+          if (sat < 0.35 || l < 0.2 || l > 0.85) continue;
+          var h = mx === r ? ((gg - b) / (mx - mn) + 6) % 6 : mx === gg ? (b - r) / (mx - mn) + 2 : (r - gg) / (mx - mn) + 4, k = Math.round(h * 4);
+          bins[k] = bins[k] || { n: 0, r: 0, g: 0, b: 0 }; bins[k].n++; bins[k].r += d[i]; bins[k].g += d[i + 1]; bins[k].b += d[i + 2];
+        }
+        for (var key in bins) if (bins[key].n > bn) { bn = bins[key].n; best = bins[key]; }
+        if (!best || bn < 20) return cb(null);
+        cb('#' + [best.r, best.g, best.b].map(function (v) { return ('0' + Math.round(v / bn).toString(16)).slice(-2); }).join(''));
+      } catch (e) { cb(null); }
+    }; im.onerror = function () { cb(null); }; im.src = src;
   }
   /* Recevoir son plan ou son esquisse par e-mail : le contenu est renvoyé par le serveur (jamais par le navigateur). */
   var recapDone = false;
@@ -386,7 +451,7 @@
   }
   function renderFiche(res, q) {
     if (!res.entreprise && !res.site) return;
-    var e = res.entreprise, s = res.site, c = el('div', 'aiFiche');
+    var e = res.entreprise, s = res.site, c = el('div', 'aiFiche'); done.analyser = 1;
     if (s) { brand = s.marque || null; brandUrl = s.url || ''; }
     // La page s'adapte à l'entreprise analysée (bloc « Pour vous » sous le chat).
     try { document.dispatchEvent(new CustomEvent('gs:ctx', { detail: { texte: [res.entreprise && res.entreprise.secteur, res.entreprise && res.entreprise.nom, res.site && res.site.titre, q].filter(Boolean).join(' '), commune: res.entreprise && res.entreprise.commune } })); } catch (x) {}
@@ -416,6 +481,7 @@
       if (s.images_sans_alt > 0) next.push('Des descriptions d’images pour l’accessibilité et Google');
       if (s.temps_ms > 2500) next.push('Un chargement plus rapide');
     } else if (res.site_erreur) c.appendChild(el('p', 'muted', 'Site non analysé : ' + res.site_erreur + '.'));
+    siteState = !s ? 'aucun' : (s.mobile && s.https && (s.reservation_ou_devis || s.formulaire) && next.length <= 3 ? 'bon' : 'faible');
     if (good.length) { c.appendChild(el('p', 'lab', 'Déjà en place')); var g = el('div', 'fGood'); good.forEach(function (x) { var t = el('span'); t.innerHTML = I('check'); t.appendChild(document.createTextNode(x)); g.appendChild(t); }); c.appendChild(g); }
     if (next.length) { var dt = el('details', 'fTune'); dt.appendChild(el('summary', null, next.length + ' petit' + (next.length > 1 ? 's' : '') + ' réglage' + (next.length > 1 ? 's' : '') + ' repéré' + (next.length > 1 ? 's' : '') + ' au passage')); var n = el('ul', 'next small'); next.slice(0, 5).forEach(function (x) { n.appendChild(el('li', null, x)); }); dt.appendChild(n); c.appendChild(dt); }
     log.appendChild(c); log.scrollTop = log.scrollHeight; sec.scrollTop = 0;
@@ -439,7 +505,7 @@
     ga('home_ai_question', { n: asked });
     brain().then(function (A) {
       if (!A) return { answer: 'Je rencontre un petit souci technique. Le plus simple : appelez Titouan au [' + TEL + '](' + TEL_HREF + '), il vous répond directement.' };
-      return A.reply(q, hist, { mode: 'accueil' });
+      return A.reply(q, hist, { mode: 'accueil', etapes: Object.keys(done) });
     }).then(function (r) {
       wait.remove();
       hist.push({ role: 'user', content: q });
@@ -453,7 +519,7 @@
       hist.push({ role: 'assistant', content: r.answer }); hist = hist.slice(-16);
       var userTurns = hist.filter(function (m) { return m.role === 'user'; }).length;
       if (userTurns === 1) { var nt = el('p', 'aiNote'); nt.innerHTML = 'Assistant automatique · échanges conservés 30 jours pour mieux vous répondre, jamais revendus · <a href="/confidentialite.html">confidentialité</a>'; log.appendChild(nt); }
-      if (userTurns >= 1) acts();
+      lastUser = q; nextStep(r.suivant || null);
       if (userTurns >= 2 || (LI && (r.fiche || r.ruptures)) || /appel|rappel|devis|10 minutes|07 82/i.test(r.answer)) cta();
     }).catch(function () {
       wait.remove(); add('b', md('Je rencontre un petit souci technique. Appelez Titouan au [' + TEL + '](' + TEL_HREF + ').'));
