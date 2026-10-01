@@ -14,17 +14,25 @@ const EFF = { "00": [0, "0 salarié"], "01": [1, "1 ou 2 salariés"], "02": [2, 
 // Activités qui ne sont pas de vrais prospects : holdings, sièges, location de biens, marchands de biens, domiciliation.
 export const NAF_EXCLU = /^(64\.20|70\.10|68\.20|68\.10|68\.32|82\.11|66\.30|64\.30|94\.|84\.|99\.)/;
 export const norm = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
-const MOTS_VIDES = new Set(["sarl", "sas", "sasu", "eurl", "sa", "sci", "snc", "societe", "ste", "ets", "etablissements", "entreprise", "the", "les", "des", "and", "chez", "club", "centre"]);
-const mots = s => norm(s).split(" ").filter(w => w.length > 2 && !MOTS_VIDES.has(w));
+const FORMES = new Set(["sarl", "sas", "sasu", "eurl", "sa", "sci", "snc", "selarl", "scop", "societe", "ste", "ets", "etablissements", "et", "de", "du", "des", "la", "le", "les", "l", "d"]);
+const toks = s => norm(s).split(" ").filter(w => w.length > 1 && !FORMES.has(w));
+const mots = s => toks(s).filter(w => w.length > 2);
 
-// Deux noms désignent-ils la même entreprise ? (raison sociale vs enseigne Google)
-export function memeNom(a, b) {
-  const x = norm(a), y = norm(b); if (!x || !y) return false;
-  if (x === y || (x.length > 4 && y.includes(x)) || (y.length > 4 && x.includes(y))) return true;
-  const mx = mots(a), my = new Set(mots(b)); if (!mx.length || !my.size) return false;
-  const com = mx.filter(w => my.has(w)).length;
-  return com >= Math.min(2, mx.length, my.size);
+// Ressemblance entre un nom Google (enseigne) et un nom de l'annuaire, de 0 à 1.
+// « Nyamba Club » ↔ « NYAMBA PLONGEE (NYAMBA CLUB) » = 0,9 ; « Nyamba Club » ↔ « NYAMBA AUTO » = 0,4 (rejeté).
+export function scoreNom(a, b) {
+  const an = toks(a).join(" "), bn = toks(b).join(" "); if (!an || !bn) return 0;
+  const ac = an.replace(/ /g, ""), bc = bn.replace(/ /g, ""), ra = norm(a).replace(/ /g, ""), rb = norm(b).replace(/ /g, "");
+  if (ac === bc || ra === rb) return 1;
+  if (ra.length >= 4 && rb.includes(ra)) return norm(a).includes(" ") || ra.length >= 8 ? 0.9 : 0.7;   // « O' TGR » → « otgr » dans « OTGR (O'TGR) »
+  if (ac.length >= 4 && bc.includes(ac)) return an.includes(" ") || ac.length >= 8 ? 0.9 : 0.7;   // un seul mot court (« Lagon ») : prudence
+  if (bc.length >= 4 && ac.includes(bc)) return 0.8;
+  const ta = new Set(an.split(" ")), tb = new Set(bn.split(" ")), com = [...ta].filter(w => tb.has(w)).length;
+  return 0.85 * Math.min(com / ta.size, com / tb.size);
 }
+export const memeNom = (a, b) => scoreNom(a, b) >= 0.6;
+const nomsDe = e => [e.nom_complet, e.nom_raison_sociale, e.sigle, ...(e.siege?.liste_enseignes || []), ...(e.matching_etablissements || []).flatMap(m => m.liste_enseignes || [])].filter(Boolean);
+const meilleurScore = (nom, e) => Math.max(0, ...nomsDe(e).map(n => scoreNom(nom, n)));
 
 async function getJson(url, tries = 2) {
   for (let i = 0; i < tries; i++) {
@@ -63,14 +71,24 @@ export async function registreSiren(siren) {
   return e ? lireRegistre(e) : null;
 }
 
-// Recherche par nom (enseigne Google) autour d'un code postal ou d'un département.
+// Recherche par nom (enseigne Google) : code postal puis département, nom en mots puis nom compact (« O' TGR » → « otgr »).
+// On garde le résultat le plus ressemblant (score ≥ 0,6), à égalité la société active.
 export async function registreNom(nom, { cp = "", dep = "" } = {}) {
-  const q = mots(nom).slice(0, 5).join(" "); if (q.length < 3) return null;
-  const f = cp ? `&code_postal=${encodeURIComponent(cp)}` : dep ? `&departement=${encodeURIComponent(dep)}` : "";
-  const d = await getJson(`${RE_API}?q=${encodeURIComponent(q)}${f}&per_page=5&page=1`);
-  if (d.erreur || !d.results?.length) return d.erreur ? { erreur: d.erreur } : null;
-  const hit = d.results.find(e => memeNom(nom, e.nom_complet) || memeNom(nom, e.nom_raison_sociale) || (e.siege?.liste_enseignes || []).some(x => memeNom(nom, x)) || (e.matching_etablissements || []).some(m => (m.liste_enseignes || []).some(x => memeNom(nom, x))));
-  return hit ? lireRegistre(hit) : null;
+  const m = mots(nom), q1 = m.slice(0, 5).join(" "), q2 = norm(nom).replace(/ /g, "");
+  const qs = [...new Set([q1, q2].filter(q => q.length >= 3))]; if (!qs.length) return null;
+  const filtres = [cp ? `&code_postal=${encodeURIComponent(cp)}` : "", dep ? `&departement=${encodeURIComponent(dep)}` : ""].filter(Boolean);
+  let erreur = null;
+  for (const f of filtres.length ? filtres : [""]) {
+    let best = null, bs = 0;
+    for (const q of qs) {
+      const d = await getJson(`${RE_API}?q=${encodeURIComponent(q)}${f}&per_page=10&page=1`);
+      if (d.erreur) { erreur = d.erreur; continue; }
+      for (const e of d.results || []) { const sc = meilleurScore(nom, e) + (e.etat_administratif === "A" ? 0.01 : 0); if (sc > bs) { bs = sc; best = e; } }
+      if (bs >= 0.9) break;
+    }
+    if (best && bs >= 0.6) return { ...lireRegistre(best), score: Math.min(1, Math.round(bs * 100) / 100) };
+  }
+  return erreur ? { erreur } : null;
 }
 
 // Annonces BODACC défavorables publiées pour ce SIREN (procédure collective, radiation).
