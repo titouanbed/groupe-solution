@@ -123,11 +123,11 @@
   };
   function pickStep(code) {
     var talksSite = /\bsite\b|vitrine|refaire|refonte|google/i.test(lastUser);
-    if (code === 'site' && siteState === 'bon' && !talksSite) code = null; // on ne vend pas un site à qui en a déjà un bon
+    if (code === 'site' && siteState && siteState !== 'aucun' && !talksSite) code = null; // qui a déjà un site n'en veut pas un nouveau : on ne le propose que s'il en parle
     if (code && STEP[code] && !done[code]) return code;
     if (!done.analyser && !company) return 'analyser';
     if (!done.plan) return 'plan';
-    if (!done.site && (siteState === 'aucun' || siteState === 'faible') ) return 'site';
+    if (!done.site && siteState === 'aucun') return 'site';
     if (!done.devis) return 'devis';
     return 'appel';
   }
@@ -324,7 +324,7 @@
     busy = true; send.disabled = true; made[kind]++; if (btn) btn.disabled = true;
     ga('home_ai_concept', { kind: kind });
     var wait = add('b', '<span class="aiGen">' + (kind === 'plan' ? 'Notre IA imagine votre plan d’innovation' : 'Notre IA esquisse votre futur site') + '<span class="aiDotsT"><i></i><i></i><i></i></span></span>');
-    fetch('/api/concept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: kind, sid: sid(), conversation: hist.slice(-8), zone: (window.GSPerso && window.GSPerso.placeName) || '', marque: brand }) })
+    fetch('/api/concept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: kind, sid: sid(), conversation: hist.slice(-8), zone: (window.GSPerso && window.GSPerso.placeName) || '', marque: brand, entreprise: ficheEnt }) })
       .then(function (r) { if (r.status !== 200) throw r.status; return r.json(); })
       .then(function (d) { wait.remove(); if (kind === 'plan') { done.plan = 1; renderPlan(d.plan, d.publishId); } else { done.site = 1; renderMaq(d.maquette); } if (d.id) recap(d.id, kind); cta(); nextStep(null); })
       .catch(function () { wait.remove(); add('b', md('Je n’arrive pas à le générer pour l’instant. Le plus simple : en parler 10 minutes avec Titouan au [' + TEL + '](' + TEL_HREF + ').')); made[kind]--; if (btn) btn.disabled = false; })
@@ -355,43 +355,52 @@
     log.appendChild(c); log.scrollTop = log.scrollHeight; sec.scrollTop = 0;
     hist.push({ role: 'assistant', content: 'Plan d’innovation proposé : ' + p.titre + ' — ' + p.etapes.map(function (e) { return e.titre; }).join(' → ') + '. Idée phare : ' + p.idee_phare.titre });
   }
-  /* Esquisse du futur site : SA marque (couleurs, logo, photo, menu lus sur son site) + son innovation déjà intégrée. */
+  /* Esquisse du futur site, minimaliste et incroyable : SES photos (site ou fiche Google), SES mots, SA marque, son innovation intégrée. */
   function renderMaq(m) {
-    var w = el('div', 'aiMaq v2' + (m.fond === 'sombre' ? ' dark' : '')); w.style.setProperty('--mc', m.couleur); w.style.setProperty('--mc2', m.couleur2 || m.couleur);
-    if (m.logoData) logoColor(m.logoData, function (hex) { if (hex) { w.style.setProperty('--mc', hex); w.style.setProperty('--mc2', hex); } });
-    w.setAttribute('data-style', m.style || 'chaleureux');
-    if (m.police && /^[\w ]+$/.test(m.police)) { var lk = document.createElement('link'); lk.rel = 'stylesheet'; lk.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(m.police).replace(/%20/g, '+') + ':wght@500;700;800&display=swap'; document.head.appendChild(lk); w.style.setProperty('--mf', '"' + m.police + '",' + 'var(--sans)'); }
+    var w = el('div', 'aiMaq v3' + (m.fond === 'sombre' ? ' dark' : '')); w.style.setProperty('--mc', m.couleur);
+    if (m.logoData) logoColor(m.logoData, function (hex) { if (hex) w.style.setProperty('--mc', hex); });
+    if (m.police && /^[\w ]+$/.test(m.police)) { var lk = document.createElement('link'); lk.rel = 'stylesheet'; lk.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(m.police).replace(/%20/g, '+') + ':wght@500;600;700&display=swap'; document.head.appendChild(lk); w.style.setProperty('--mf', '"' + m.police + '",var(--sans)'); }
     var dom = (brandUrl || '').replace(/^https?:\/\/(www\.)?/, '').split('/')[0] || (m.nom || 'votre-entreprise').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 28) + '.fr';
     var bar = el('div', 'bar'); bar.innerHTML = '<i></i><i></i><i></i>'; bar.appendChild(el('span', null, dom)); w.appendChild(bar);
     var pg = el('div', 'pg');
+    // En-tête : logo, menu, contact
     var nav = el('div', 'mNav'), brandEl = el('div', 'br');
     if (m.logoData || m.logo) { var lg = document.createElement('img'); lg.src = m.logoData || m.logo; lg.alt = m.nom; lg.referrerPolicy = 'no-referrer'; lg.onerror = function () { lg.replaceWith(el('b', null, m.nom)); }; brandEl.appendChild(lg); } else brandEl.appendChild(el('b', null, m.nom));
-    nav.appendChild(brandEl);
-    var mn = el('div', 'mn'); (m.menu || []).forEach(function (x) { mn.appendChild(el('span', null, x)); }); nav.appendChild(mn);
-    nav.appendChild(el('span', 'mCta', 'Contact')); pg.appendChild(nav);
-    var hero = el('div', 'mHero' + (m.image ? ' ph' : ''));
-    if (m.image) { var bg = new Image(); bg.referrerPolicy = 'no-referrer'; bg.onload = function () { hero.style.backgroundImage = 'linear-gradient(100deg,color-mix(in srgb,var(--mc) 88%,#000) 0%,color-mix(in srgb,var(--mc) 55%,transparent) 55%,rgba(0,0,0,.15)),url("' + m.image.replace(/"/g, '') + '")'; }; bg.onerror = function () { hero.classList.remove('ph'); }; bg.src = m.image; }
-    hero.appendChild(el('h4', null, m.accroche)); hero.appendChild(el('p', null, m.sous_titre));
-    var hb = el('div', 'hb'); hb.appendChild(el('span', 'mBtn', m.bouton)); hb.appendChild(el('span', 'mBtn2', 'Nous appeler')); hero.appendChild(hb); pg.appendChild(hero);
+    nav.appendChild(brandEl); var mn = el('div', 'mn'); (m.menu || []).forEach(function (x) { mn.appendChild(el('span', null, x)); }); nav.appendChild(mn); nav.appendChild(el('span', 'mCta', 'Contact')); pg.appendChild(nav);
+    // Titre et lieu
+    var hd = el('div', 'mHead'); hd.appendChild(el('h4', null, m.accroche));
+    var loc = el('p', 'mLoc'); loc.innerHTML = I('lieu'); loc.appendChild(document.createTextNode([m.lieu, m.nom].filter(Boolean).join(' · ') || m.argument_local || '')); hd.appendChild(loc); pg.appendChild(hd);
+    // Galerie de ses vraies photos (façon annonce : une grande, quatre petites)
+    var photos = (m.photos || []).slice(0, 5), gal = el('div', 'mGal n' + Math.max(1, photos.length));
+    if (photos.length) photos.forEach(function (p, i) { var im = document.createElement('img'); im.src = p.src; im.alt = ''; im.loading = 'lazy'; im.referrerPolicy = 'no-referrer'; im.onerror = function () { im.remove(); gal.className = 'mGal n' + Math.max(1, gal.querySelectorAll('img').length); if (!gal.querySelector('img')) gal.classList.add('none'); }; gal.appendChild(im); });
+    else { gal.classList.add('none'); gal.appendChild(el('b', null, m.nom)); }
+    pg.appendChild(gal);
+    // Corps : texte et services à gauche, carte d'action à droite (l'innovation intégrée)
+    var bd = el('div', 'mBody'), main = el('div', 'mMain');
+    main.appendChild(el('p', 'mSub', m.sous_titre));
+    var sv = el('div', 'mSv'); m.services.forEach(function (x) { var r = el('div'); var ic = el('span', 'ic'); ic.innerHTML = I(x.icone || 'etincelle'); r.appendChild(ic); var t = el('div'); t.appendChild(el('b', null, x.titre)); t.appendChild(el('p', null, x.texte)); r.appendChild(t); sv.appendChild(r); }); main.appendChild(sv);
+    if (m.argument_local) main.appendChild(el('p', 'mArg', m.argument_local));
+    bd.appendChild(main);
+    var card = el('aside', 'mCard');
     if (m.fonction_phare) {
-      var f = m.fonction_phare, fp = el('div', 'fp'), fi = el('span', 'fic'); fi.innerHTML = I(f.icone || 'etincelle');
-      var ft = el('div', 'ftx'); ft.appendChild(el('small', null, 'Nouveau · propulsé par l’IA')); ft.appendChild(el('b', null, f.titre)); ft.appendChild(el('p', null, f.texte));
-      var fz = el('button', 'fz'); fz.type = 'button'; fz.innerHTML = I('camera') + '<span></span>'; fz.querySelector('span').textContent = f.bouton;
-      fz.addEventListener('click', function () { ga('home_ai_maq_feature'); ask('Sur mon futur site, comment fonctionnerait « ' + f.titre + ' » concrètement, et en combien de temps peut-on le mettre en ligne ?'); });
-      fp.appendChild(fi); fp.appendChild(ft); fp.appendChild(fz); pg.appendChild(fp);
+      var f = m.fonction_phare; card.appendChild(el('small', null, 'Nouveau · propulsé par l’IA'));
+      var ft = el('b', null, f.titre); card.appendChild(ft); card.appendChild(el('p', null, f.texte));
+      var fz = el('button', 'fz'); fz.type = 'button'; fz.innerHTML = I(f.icone || 'etincelle') + '<span></span>'; fz.querySelector('span').textContent = f.bouton; card.appendChild(fz);
+      fz.addEventListener('click', function () { ga('home_ai_maq_feature'); ask('Sur mon site, comment fonctionnerait « ' + f.titre + ' » concrètement, et en combien de temps peut-on le mettre en ligne ?'); });
     }
-    var sv = el('div', 'sv'); m.services.forEach(function (x) { var d = el('div'); var ic = el('span', 'ic'); ic.innerHTML = I(x.icone || 'etincelle'); d.appendChild(ic); d.appendChild(el('b', null, x.titre)); d.appendChild(el('p', null, x.texte)); sv.appendChild(d); }); pg.appendChild(sv);
-    if (m.argument_local) { var lc = el('p', 'loc'); lc.innerHTML = I('lieu'); lc.appendChild(document.createTextNode(m.argument_local)); pg.appendChild(lc); }
+    var cb = el('span', 'mBtn', m.bouton); card.appendChild(cb); card.appendChild(el('em', null, 'Sans engagement'));
+    bd.appendChild(card); pg.appendChild(bd);
+    if (m.source_photos === 'google') { var cr = (m.photos || []).map(function (p) { return p.credit; }).filter(Boolean); pg.appendChild(el('p', 'mCred', 'Photos : fiche Google de l’entreprise' + (cr.length ? ' (' + cr.slice(0, 2).join(', ') + ')' : ''))); }
     w.appendChild(pg);
-    // Aperçu téléphone : le même site, version mobile.
+    // Aperçu téléphone
     var ph = el('div', 'phone'); ph.innerHTML = '<i class="notch"></i>';
-    var pm = el('div', 'pm'); var pn = el('div', 'pnav'); pn.appendChild(brandEl.cloneNode(true)); pn.appendChild(el('span', 'burger')); pm.appendChild(pn);
-    var ph2 = hero.cloneNode(true); ph2.className = 'mHero sm' + (m.image ? ' ph' : ''); pm.appendChild(ph2);
-    if (m.image) setTimeout(function () { ph2.style.backgroundImage = hero.style.backgroundImage; }, 900);
+    var pm = el('div', 'pm'), pn = el('div', 'pnav'); pn.appendChild(brandEl.cloneNode(true)); pn.appendChild(el('span', 'burger')); pm.appendChild(pn);
+    if (photos[0]) { var pi = document.createElement('img'); pi.className = 'pimg'; pi.src = photos[0].src; pi.referrerPolicy = 'no-referrer'; pi.onerror = function () { pi.remove(); }; pm.appendChild(pi); }
+    pm.appendChild(el('b', 'ptit', m.accroche));
     if (m.fonction_phare) { var pf = el('div', 'pfp'); pf.innerHTML = I(m.fonction_phare.icone || 'etincelle'); pf.appendChild(document.createTextNode(m.fonction_phare.bouton)); pm.appendChild(pf); }
     ph.appendChild(pm); w.appendChild(ph);
     log.appendChild(w);
-    log.appendChild(el('p', 'aiNote', 'Esquisse générée en direct par notre IA' + (m.logo || m.image || brand ? ', à partir de l’identité visuelle de votre site' : '') + '. Votre vrai site sera conçu avec vous, sur-mesure.'));
+    log.appendChild(el('p', 'aiNote', 'Esquisse générée en direct par notre IA' + (photos.length ? ', avec vos vraies photos' : '') + (m.logo || m.logoData ? ' et votre logo' : '') + '. Votre vrai site sera conçu avec vous, sur-mesure.'));
     log.scrollTop = log.scrollHeight; sec.scrollTop = 0;
     hist.push({ role: 'assistant', content: 'Esquisse de site proposée : « ' + m.accroche + ' » — ' + (m.fonction_phare ? 'fonction phare : ' + m.fonction_phare.titre + ' ; ' : '') + m.services.map(function (x) { return x.titre; }).join(', ') });
   }
@@ -431,7 +440,7 @@
   }
 
   /* ── Analyse de l'entreprise (données publiques, à la demande du visiteur) ── */
-  var company = null, formShown = false, brand = null, brandUrl = '';
+  var company = null, formShown = false, brand = null, brandUrl = '', ficheEnt = null;
   function entrepriseForm(prefillUrl) {
     if (formShown) return; formShown = true;
     var d = el('div', 'aiEnt');
@@ -453,6 +462,7 @@
     if (!res.entreprise && !res.site) return;
     var e = res.entreprise, s = res.site, c = el('div', 'aiFiche'); done.analyser = 1;
     if (s) { brand = s.marque || null; brandUrl = s.url || ''; }
+    if (e) ficheEnt = { nom: e.nom, commune: e.commune ? e.commune.charAt(0) + e.commune.slice(1).toLowerCase() : '' };
     // La page s'adapte à l'entreprise analysée (bloc « Pour vous » sous le chat).
     try { document.dispatchEvent(new CustomEvent('gs:ctx', { detail: { texte: [res.entreprise && res.entreprise.secteur, res.entreprise && res.entreprise.nom, res.site && res.site.titre, q].filter(Boolean).join(' '), commune: res.entreprise && res.entreprise.commune } })); } catch (x) {}
     // En-tête : monogramme, nom, ligne d'identité.

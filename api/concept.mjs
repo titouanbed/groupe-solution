@@ -35,7 +35,7 @@ const MAQ_SYS = `${RULES}
 Tu esquisses la page d'accueil du futur site internet de l'entreprise décrite dans la conversation.
 - nom : le nom de l'entreprise s'il est donné, sinon un nom générique descriptif (ex. « Votre restaurant »). N'invente pas de nom commercial.
 - accroche (≤ 60 caractères), sous_titre (≤ 130), bouton (≤ 28, ex. « Réserver une table »).
-- services : 3 services ou atouts réalistes pour ce métier (icone : le nom d'icône le plus parlant de la liste, titre ≤ 32, texte ≤ 90). Aucun avis client, aucune note, aucun chiffre.
+- services : 3 services ou atouts de CETTE entreprise : reprends en priorité les rubriques de son site si elles sont fournies (ses vrais mots), sinon ce que dit la conversation (icone : le nom d'icône le plus parlant de la liste, titre ≤ 32, texte ≤ 90). Aucun avis client, aucune note, aucun chiffre.
 - couleur et couleur2 : codes hexadécimaux (#rrggbb). Si les couleurs de la marque du visiteur sont fournies, reprends-les (la plus identitaire en couleur, une autre en couleur2) : son futur site doit être reconnaissable au premier coup d'œil. Sinon, choisis dans la liste fournie. style : chaleureux, premium, naturel ou tech.
 - menu : 4 entrées de menu courtes (≤ 16 caractères) ; reprends celles de son site actuel si elles sont fournies et pertinentes.
 - fonction_phare : l'innovation la plus forte évoquée dans la conversation (idée choisie par le visiteur en priorité, sinon l'idée phare ou la meilleure rupture), montrée comme une fonctionnalité intégrée à son futur site, prête à l'emploi : icone, titre (≤ 40), texte (≤ 120, ce que le client final fait et obtient, en une phrase), bouton (≤ 28, l'action du client final, ex. « Envoyer ma photo de façade »).
@@ -74,9 +74,33 @@ function marqueSure(m) {
     logo: url(m.logo), image: url(m.image),
     police: typeof m.police === "string" && /^[\p{L}\d ]{2,40}$/u.test(m.police) ? m.police : "",
     menu: (Array.isArray(m.menu) ? m.menu : []).map(x => clip(String(x), 20)).filter(Boolean).slice(0, 5),
-    fond: m.fond === "sombre" ? "sombre" : "clair"
+    fond: m.fond === "sombre" ? "sombre" : "clair",
+    photos: (Array.isArray(m.photos) ? m.photos : []).map(url).filter(Boolean).slice(0, 6),
+    titres: (Array.isArray(m.titres) ? m.titres : []).map(x => clip(String(x), 70)).filter(Boolean).slice(0, 8)
   };
-  return out.couleurs.length || out.logo || out.image || out.menu.length ? out : null;
+  return out.couleurs.length || out.logo || out.image || out.menu.length || out.photos.length ? out : null;
+}
+// Sans site (ou sans photo exploitable) : les photos de sa fiche Google, si une clé Google Places est configurée (facultatif).
+async function photosGoogle(nom, commune) {
+  const key = String(process.env.GOOGLE_PLACES_KEY || "").trim();
+  if (!key || !nom) return [];
+  try {
+    const r = await fetch("https://places.googleapis.com/v1/places:searchText", { method: "POST", signal: AbortSignal.timeout(5000),
+      headers: { "Content-Type": "application/json", "X-Goog-Api-Key": key, "X-Goog-FieldMask": "places.displayName,places.photos" },
+      body: JSON.stringify({ textQuery: `${nom} ${commune || ""}`.trim(), languageCode: "fr", maxResultCount: 1 }) });
+    if (!r.ok) return [];
+    const ph = ((await r.json()).places?.[0]?.photos || []).slice(0, 4);
+    const out = await Promise.all(ph.map(async p => {
+      try {
+        const m = await fetch(`https://places.googleapis.com/v1/${p.name}/media?maxWidthPx=900&key=${encodeURIComponent(key)}`, { signal: AbortSignal.timeout(5000) });
+        const type = String(m.headers.get("content-type") || "");
+        if (!m.ok || !/^image\/(jpeg|png|webp)/.test(type)) return null;
+        const buf = Buffer.from(await m.arrayBuffer()); if (buf.length > 400000) return null;
+        return { src: `data:${type.split(";")[0]};base64,${buf.toString("base64")}`, credit: p.authorAttributions?.[0]?.displayName || "" };
+      } catch { return null; }
+    }));
+    return out.filter(Boolean);
+  } catch { return []; }
 }
 
 // Contenu publiable : aucun lien, e-mail, téléphone, code postal ni nom de domaine.
@@ -113,7 +137,7 @@ export default async function handler(req, res) {
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
       system: [{ type: "text", text: kind === "plan" ? PLAN_SYS : MAQ_SYS, cache_control: { type: "ephemeral" } }],
-      messages: [{ role: "user", content: `Zone du visiteur (approximative) : ${zone}\nSecteurs possibles : ${SECTEURS.join(", ")}\nCouleurs possibles : ${COULEURS.join(", ")}\n${mq ? `Marque du visiteur (lue sur son site) : fond ${mq.fond}, couleurs ${mq.couleurs.join(" ") || "inconnues"} ; menu actuel : ${mq.menu.join(" · ") || "inconnu"}\n` : ""}\nConversation :\n${conv}` }]
+      messages: [{ role: "user", content: `Zone du visiteur (approximative) : ${zone}\nSecteurs possibles : ${SECTEURS.join(", ")}\nCouleurs possibles : ${COULEURS.join(", ")}\n${mq ? `Marque du visiteur (lue sur son site) : fond ${mq.fond}, couleurs ${mq.couleurs.join(" ") || "inconnues"} ; menu actuel : ${mq.menu.join(" · ") || "inconnu"} ; rubriques de son site : ${mq.titres.join(" · ") || "inconnues"}\n` : ""}\nConversation :\n${conv}` }]
     });
     if (response.stop_reason === "refusal") return send(res, 204, {});
     let out; try { out = JSON.parse(response.content.filter(x => x.type === "text").map(x => x.text).join("")); } catch { return send(res, 502, { error: "format" }); }
@@ -137,7 +161,15 @@ export default async function handler(req, res) {
       let logoData = "";
       if (mq?.logo) { try { const d = await Promise.race([fetchImage(mq.logo), new Promise(r => setTimeout(() => r(null), 4000))]); if (d && d.length < 700000) logoData = d; } catch {} }
       maquette.fond = mq?.fond || "clair";
-      if (UPSTASH) { try { await redis([["SET", "concept:" + cid, JSON.stringify({ kind, maquette, date: new Date().toISOString(), sid: String(b.sid || "").slice(0, 40) }), "EX", 86400]]); } catch {} }
+      // Ses vraies photos : celles de son site, sinon celles de sa fiche Google (crédit affiché).
+      maquette.photos = (mq?.photos || []).map(src => ({ src, credit: "" }));
+      if (!maquette.photos.length) {
+        const ent = b?.entreprise || {};
+        maquette.photos = await photosGoogle(clip(ent.nom, 80), clip(ent.commune, 60));
+        if (maquette.photos.length) maquette.source_photos = "google";
+      }
+      maquette.lieu = clip(b?.entreprise?.commune, 60);
+      if (UPSTASH) { try { await redis([["SET", "concept:" + cid, JSON.stringify({ kind, maquette: { ...maquette, photos: [] }, date: new Date().toISOString(), sid: String(b.sid || "").slice(0, 40) }), "EX", 86400]]); } catch {} }
       return send(res, 200, { kind, maquette: { ...maquette, logoData }, id: cid });
     }
     const plan = {

@@ -127,7 +127,7 @@ Le visiteur peut être un dirigeant, un salarié ou un futur créateur : répond
 - demo-resa : rendez-vous, réservations, appels manqués, accueil téléphonique.
 - demo-avis : avis clients, réputation en ligne.
 - plan : on connaît son entreprise ou son besoin ; lui montrer son plan d'innovation sur-mesure.
-- site : voir son futur site. UNIQUEMENT s'il n'a pas de site, si son site a de vrais manques (pas mobile, pas de contact ni devis en ligne, contenu d'exemple…) ou s'il parle lui-même de site. JAMAIS s'il a un bon site et cherche un logiciel ou une automatisation : on ne vend pas un site à quelqu'un qui n'en a pas besoin.
+- site : voir son futur site. UNIQUEMENT s'il n'a pas de site, ou s'il demande lui-même un nouveau site ou une refonte. Une entreprise qui a déjà un site n'en veut pas un nouveau, même s'il est imparfait : ne le lui propose jamais de toi-même (au plus une remarque d'une ligne sur un défaut repéré).
 - devis : le besoin est clair, il peut composer son projet face à son budget.
 - appel : il veut parler à quelqu'un, ou le projet est complexe.
 Ne propose jamais une étape de la liste « déjà montré au visiteur ». Ordre logique habituel : analyser → plan (ou la démo qui correspond à son besoin) → devis → appel.`
