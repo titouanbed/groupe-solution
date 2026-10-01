@@ -61,6 +61,18 @@ pre.mail{white-space:pre-wrap;font:14px/1.55 var(--sans);background:var(--bg);bo
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:700 13px var(--sans);cursor:pointer}.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10px 0 4px}input.f{width:100%;font:15px var(--sans);padding:10px 12px;border:1px solid var(--line);border-radius:12px}
 .login{max-width:420px;margin:14vh auto 0;padding:0 18px;text-align:center}.login h1{font:600 30px var(--serif);margin:16px 0 6px}.login p{color:var(--sec)}.login input{width:100%;font:16px var(--sans);padding:14px 16px;border:1px solid var(--line);border-radius:14px;margin-top:10px}.login .btn{width:100%;justify-content:center;min-height:50px;margin-top:10px;font-size:15px}.err{color:var(--acc);font-weight:700;font-size:14px;margin-top:10px}
+/* Radar : vérifications + prospection ciblée */
+.vf{list-style:none;margin:10px 0 0 56px;padding:10px 12px;display:grid;gap:5px;font-size:13px;background:#FBFAF7;border:1px solid var(--line);border-radius:12px}.vf li{display:flex;gap:8px;align-items:flex-start}.vf i{font-style:normal;font-weight:800;width:14px;flex-shrink:0;text-align:center}.vf .y i{color:var(--ok)}.vf .w i{color:var(--warn)}.vf .n i{color:var(--blue)}.vf small{color:var(--muted)}.vf .fi{font-weight:800;color:var(--ok);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.cf{display:grid;grid-template-columns:1.2fr 1fr auto;gap:10px;align-items:end}.cf .btn{min-height:44px}
+.cstat{display:flex;flex-wrap:wrap;gap:8px 18px;margin:6px 0 0;font-size:13px;color:var(--sec)}.cstat b{color:var(--ink)}
+.syn{background:#F4F6FD;border:1px solid #DDE2F5;border-radius:14px;padding:12px 14px;font-size:14px;margin:12px 0}
+.ck .rk{width:40px;height:40px;border-radius:12px;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 15px var(--sans);flex-shrink:0}.ck.top .rk{background:linear-gradient(135deg,var(--acc),var(--acc2))}
+.ck .tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0 56px}.ck .tags span{font-size:12px;font-weight:700;border-radius:999px;padding:4px 9px;background:#F4F2EC;color:var(--sec)}.ck .tags .lead{background:#E8F5EE;color:var(--ok)}.ck .tags .call{background:#FDECEF;color:var(--acc)}
+.sc{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;margin:10px 0 0 56px;font-size:12px;color:var(--muted);max-width:420px}.sc i{display:block;height:6px;border-radius:9px;background:#EEECE6;overflow:hidden}.sc i b{display:block;height:100%;border-radius:9px;background:var(--acc)}.sc i.po b{background:var(--ok)}
+.mq{margin:10px 0 0 56px;display:flex;flex-wrap:wrap;gap:6px}.mq span{font-size:12.5px;border:1px solid #F3D6DC;background:#FFF7F8;color:#9E1B3C;border-radius:10px;padding:4px 9px}
+.acc{margin:10px 0 0 56px;font-size:14px;border-left:3px solid var(--acc);padding:4px 0 4px 12px;color:var(--ink)}.acc small{display:block;color:var(--muted);font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.hist{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.hist button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font:600 12.5px var(--sans);cursor:pointer}.hist button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media(max-width:640px){.cf{grid-template-columns:1fr}.vf,.ck .tags,.sc,.mq,.acc{margin-left:0}}
 /* Réalisations */
 .rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
 .rcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--sh)}.rcard .ph{aspect-ratio:4/3;background:#F1EFEA center/cover no-repeat;display:grid;place-items:center;color:var(--muted);font-size:13px}.rcard .bd{padding:12px 14px}.rcard .acts{margin:10px 0 0}.rcard.off{opacity:.55}
@@ -175,10 +187,15 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
   }
   function radCard(x) {
     var c = x.contact || {}, mail = c.email ? 'mailto:' + encodeURIComponent(c.email) + '?subject=' + encodeURIComponent(x.objet) + '&body=' + encodeURIComponent(x.email) : '';
-    return '<div class="card"><div class="item">' + avatar(x.nom) + '<div><div class="t">' + esc(x.nom) + '</div><div class="s">' + esc(x.interet) + '</div><div class="m">' + esc([x.ville, x.dep, x.forme, x.naf].filter(Boolean).join(' · ')) + '</div></div><span class="pill ' + (x.statut === 'nouveau' ? 'p-rad' : 'p-ok') + '">' + (x.statut === 'nouveau' ? x.note + '/10' : { contacte: 'Contacté', rdv: 'RDV', ecarte: 'Écarté' }[x.statut]) + '</span></div>' +
+    return '<div class="card"><div class="item">' + avatar(x.nom) + '<div><div class="t">' + esc(x.nom) + '</div><div class="s">' + esc(x.interet) + '</div><div class="m">' + esc([x.ville, x.dep, x.forme, x.origine, x.creation ? 'créée le ' + new Date(x.creation).toLocaleDateString('fr-FR') : ''].filter(Boolean).join(' · ')) + '</div>' + (x.motif ? '<div class="m" style="color:var(--acc);font-weight:700">Retirée automatiquement : ' + esc(x.motif) + '</div>' : '') + '</div><span class="pill ' + (x.statut === 'nouveau' ? 'p-rad' : 'p-ok') + '">' + (x.statut === 'nouveau' ? x.note + '/10' : { contacte: 'Contacté', rdv: 'RDV', ecarte: 'Écarté' }[x.statut]) + '</span></div>' +
+      vfList(x) +
       '<p style="margin:10px 0 0 56px;font-size:14px"><b>' + esc(x.idee_titre) + '</b> — ' + esc(x.idee_pitch) + '</p>' +
       '<details class="more"><summary>E-mail prêt : ' + esc(x.objet) + '</summary><pre class="mail">' + esc(x.email) + '</pre></details>' +
       '<div class="acts">' + (mail ? '<a class="btn a" data-sent="' + x.id + '" href="' + mail + '">' + IC.mail + 'Envoyer l’e-mail</a>' : '<button class="btn" data-copy="' + x.id + '">Copier l’e-mail</button>') + (c.telephone ? '<a class="btn" href="tel:' + esc(c.telephone.replace(/\s/g, '')) + '">' + IC.tel + 'Appeler</a>' : '') + (c.site ? '<a class="btn" target="_blank" rel="noopener" href="' + esc(c.site) + '">Site</a>' : '') + (x.statut !== 'rdv' ? '<button class="btn" data-rs="' + x.id + ':rdv">RDV obtenu</button>' : '') + (x.statut === 'nouveau' ? '<button class="btn" data-rs="' + x.id + ':ecarte">Pas pour nous</button>' : '') + '</div></div>';
+  }
+  function vfList(x) {
+    if (!x.verifs) return '<ul class="vf"><li class="w"><i>!</i><span>Fiche de l’ancien radar, sans contrôles : elle sera revérifiée au prochain passage.</span></li></ul>';
+    return '<ul class="vf"><li><span class="fi">Fiabilité ' + esc(x.fiabilite || '') + '</span></li>' + x.verifs.map(function (v) { var k = v.ok === true ? 'y' : v.ok === 'info' ? 'n' : 'w'; return '<li class="' + k + '"><i>' + (k === 'y' ? '✓' : k === 'n' ? 'i' : '!') + '</i><span>' + esc(v.t) + (v.d ? ' <small>· ' + (/^https?:/.test(v.d) ? '<a target="_blank" rel="noopener" href="' + esc(v.d) + '">source</a>' : esc(v.d)) + '</small>' : '') + '</span></li>'; }).join('') + '</ul>';
   }
   function attCard(e) {
     var c = convOf(e.sid), ct = (c && c.contact) || {}, who = ct.nom || (c && c.entreprise) || 'Visiteur anonyme';
@@ -296,11 +313,80 @@ label{display:block;font-size:12.5px;font-weight:700;color:var(--sec);margin:10p
     [].forEach.call(document.querySelectorAll('[data-f]'), function (b) { b.onclick = function () { CF = b.getAttribute('data-f'); convs(); }; }); bind();
   }
   function dems() { var a = D.attente || []; $('#view').innerHTML = section('Demandes de devis', 'chiffrez dans Indy, puis « Devis envoyé »', D.demandes.length ? D.demandes.map(demCard).join('') : empty('Aucune demande pour l’instant', 'Elles arrivent ici (et par e-mail) quand un visiteur prépare son devis dans le chat.')) + (a.length ? '<div style="margin-top:26px">' + section('Commencés, pas envoyés', a.length + ' sur 7 jours · relance douce en un clic', a.map(attCard).join('')) + '</div>' : ''); bind(); }
+  var RTAB = 'new', CIB = null, CIBL = [];
   function radar() {
-    var act = D.radar.filter(function (x) { return x.statut !== 'ecarte'; });
-    $('#view').innerHTML = section('Radar', 'nouvelles sociétés, France et outre-mer', '<div class="card"><p class="m" style="margin:0">Chaque matin, les sociétés créées la veille (annonces officielles) sont triées ; les plus prometteuses sont analysées avec une idée et un e-mail prêts. « Envoyer l’e-mail » l’ouvre dans votre messagerie.</p><div class="acts" style="margin-left:0"><button class="btn p" id="rrun">Lancer le radar maintenant</button><span class="m" id="rmsg"></span></div></div>' + (act.length ? act.map(radCard).join('') : empty('Aucune entreprise retenue pour l’instant', 'Lancez le radar : il analyse les créations des deux derniers jours.')));
-    $('#rrun').onclick = function () { var b = this; b.disabled = true; b.textContent = 'Analyse en cours (environ 1 min)…'; api('', { action: 'radar_run' }).then(function (r) { $('#rmsg').textContent = r.annonces + ' annonces lues · ' + r.analyses + ' analysées · ' + r.retenues + ' retenue(s)'; setTimeout(load, 800); }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; }); };
-    bind();
+    var seg = '<div class="filters"><button data-rt="new"' + (RTAB === 'new' ? ' class="on"' : '') + '>Nouvelles sociétés</button><button data-rt="cib"' + (RTAB === 'cib' ? ' class="on"' : '') + '>Prospection ciblée</button></div>';
+    if (RTAB === 'cib') return cible(seg);
+    var act = D.radar.filter(function (x) { return x.statut !== 'ecarte'; }), auto = D.radar.filter(function (x) { return x.statut === 'ecarte' && x.auto; });
+    $('#view').innerHTML = section('Radar', 'sociétés créées ces derniers jours, vérifiées', seg + '<div class="card"><p class="m" style="margin:0">Chaque matin, les créations publiées au BODACC passent des contrôles stricts : société <b>active à l’annuaire officiel</b> et <b>créée il y a moins de 6 mois</b> (transferts de siège et établissements secondaires écartés), <b>aucune procédure collective ni radiation</b>, fiche Google <b>non fermée</b>, <b>activité réelle</b> constatée en ligne et <b>contact professionnel public</b>. Sans contact, la société attend quelques jours puis est revérifiée (14 jours au plus). Les fiches déjà proposées sont revérifiées chaque matin.</p><div class="acts" style="margin-left:0"><button class="btn p" id="rrun">Lancer le radar maintenant</button><button class="btn" id="rrev">Revérifier la liste</button><span class="m" id="rmsg"></span></div></div>' + (act.length ? act.map(radCard).join('') : empty('Aucune entreprise retenue pour l’instant', 'Lancez le radar : il contrôle les créations des trois derniers jours.')) +
+      (auto.length ? '<details class="card"><summary style="cursor:pointer;font-weight:700">' + auto.length + ' fiche(s) retirée(s) automatiquement</summary>' + auto.map(function (x) { return '<div class="m" style="margin-top:8px"><b>' + esc(x.nom) + '</b> — ' + esc(x.motif) + '</div>'; }).join('') + '</details>' : ''));
+    $('#rrun').onclick = function () {
+      var b = this; b.disabled = true; b.textContent = 'Contrôles en cours (1 à 3 min)…';
+      api('', { action: 'radar_run' }).then(function (r) {
+        var ex = r.exclus || {}, nex = Object.keys(ex).reduce(function (t, k) { return t + ex[k]; }, 0);
+        $('#rmsg').innerHTML = r.annonces + ' annonces · ' + r.candidats + ' contrôlées · <b>' + r.retenues + ' retenue(s)</b> · ' + nex + ' écartée(s) · ' + (r.attente || 0) + ' en attente' + (nex ? '<br>' + Object.keys(ex).map(function (k) { return esc(k) + ' : ' + ex[k]; }).join(' · ') : '');
+        setTimeout(load, 2500);
+      }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; });
+    };
+    $('#rrev').onclick = function () { var b = this; b.disabled = true; b.textContent = 'Revérification…'; api('', { action: 'radar_reverif' }).then(function (r) { $('#rmsg').textContent = r.verifiees + ' fiche(s) revérifiée(s) · ' + r.ecartees + ' retirée(s)'; setTimeout(load, 1500); }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; }); };
+    segBind(); bind();
+  }
+  function segBind() { [].forEach.call(document.querySelectorAll('[data-rt]'), function (b) { b.onclick = function () { RTAB = b.getAttribute('data-rt'); radar(); }; }); }
+
+  /* ── Prospection ciblée : une activité + une zone → tous les établissements comparés, classés, prêts à appeler ── */
+  var CST = { a_appeler: 'À appeler', appele: 'Appelé', rdv: 'RDV obtenu', client: 'Client', ecarte: 'Écarté' };
+  var OFF = { site: 'site internet', refonte: 'refonte du site', reservation: 'réservation en ligne', avis: 'avis Google', automatisation: 'automatisation' };
+  function cible(seg) {
+    $('#view').innerHTML = section('Radar', 'prospection ciblée', seg + '<div class="card"><form id="cform" class="cf"><div><label>Activité</label><input class="f" name="activite" required placeholder="ex. plongée, plombier, restaurant, gîte…" maxlength="60"></div><div><label>Zone</label><input class="f" name="zone" required placeholder="ex. Mayotte, Lattes, Hérault…" maxlength="60"></div><button class="btn p" type="submit">Trouver et comparer</button></form>' +
+      '<p class="m" style="margin:10px 0 0">Tous les établissements Google Maps de cette activité et de cette zone : fermés écartés, entreprise contrôlée à l’annuaire officiel, site lu, puis classement de qui a le plus besoin de vous et vaut le plus le coup. Compter 1 à 2 minutes. Une même recherche est gardée 7 jours (sans nouvel appel Google).</p><div class="hist" id="chist"></div><p class="m" id="cmsg"></p></div><div id="cres"></div>');
+    var f = $('#cform');
+    f.onsubmit = function (e) { e.preventDefault(); lancer(f.activite.value, f.zone.value, false); };
+    api('', { action: 'cible_list' }).then(function (r) { CIBL = r.cibles || []; histo(); if (!CIB && CIBL[0]) ouvrir(CIBL[0].id); else if (CIB) rendu(); }).catch(function () {});
+    segBind();
+  }
+  function histo() {
+    var h = $('#chist'); if (!h) return;
+    h.innerHTML = CIBL.map(function (c) { return '<button data-cid="' + c.id + '"' + (CIB && CIB.id === c.id ? ' class="on"' : '') + '>' + esc(c.activite) + ' · ' + esc(c.zone) + ' <span style="opacity:.6">' + c.retenus + '</span></button>'; }).join('');
+    [].forEach.call(h.querySelectorAll('[data-cid]'), function (b) { b.onclick = function () { ouvrir(b.getAttribute('data-cid')); }; });
+  }
+  function ouvrir(id) { api('', { action: 'cible_get', id: id }).then(function (r) { CIB = r; histo(); rendu(); }).catch(function () {}); }
+  function lancer(act, zone, force) {
+    var m = $('#cmsg'), b = document.querySelector('#cform button'); b.disabled = true; b.textContent = 'Analyse en cours…'; m.textContent = 'Recherche Google, contrôle à l’annuaire officiel, lecture des sites… (1 à 2 min)';
+    api('', { action: 'cible_run', activite: act, zone: zone, force: force }).then(function (r) {
+      b.disabled = false; b.textContent = 'Trouver et comparer';
+      if (r.erreur) { m.innerHTML = '<b style="color:var(--acc)">' + esc(r.erreur) + '</b>'; return; }
+      m.textContent = r.cache ? 'Résultat de moins de 7 jours (sans nouvel appel Google).' : '';
+      api('', { action: 'cible_list' }).then(function (x) { CIBL = x.cibles || []; histo(); }); ouvrir(r.id);
+    }).catch(function () { b.disabled = false; b.textContent = 'Réessayer'; m.textContent = 'La recherche n’a pas abouti, réessayez.'; });
+  }
+  function siteTxt(w) {
+    if (!w || w.type === 'aucun') return 'Pas de site'; if (w.type === 'reseau') return 'Page ' + esc(w.hote); if (w.type === 'erreur') return 'Site inaccessible'; if (w.type === 'protege') return '<a target="_blank" rel="noopener" href="' + esc(w.url) + '">' + esc(w.hote) + '</a> (non lu)';
+    return '<a target="_blank" rel="noopener" href="' + esc(w.url) + '">' + esc(w.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '').slice(0, 34)) + '</a>' + (w.cms ? ' · ' + esc(w.cms) : '');
+  }
+  function rendu() {
+    var r = CIB, box = $('#cres'); if (!box || !r) return;
+    var st = r.stats, dt = new Date(r.date).toLocaleDateString('fr-FR');
+    var head = '<div class="card"><div class="t" style="font-size:18px">' + esc(r.activite) + ' · ' + esc(r.zone) + '</div><div class="cstat"><span><b>' + st.retenus + '</b> établissements retenus</span><span><b>' + st.fermes + '</b> fermés écartés</span>' + (st.hors ? '<span><b>' + st.hors + '</b> hors sujet</span>' : '') + '<span><b>' + st.avec_site + '</b> ont un site</span><span><b>' + st.avec_resa + '</b> réservent en ligne</span><span>médiane <b>' + st.mediane_avis + '</b> avis</span></div>' +
+      (r.synthese ? '<div class="syn">' + esc(r.synthese) + '</div>' : '') + '<div class="acts" style="margin-left:0"><button class="btn" id="cagain">Actualiser (nouvelle recherche)</button><span class="m">Données du ' + dt + ' · Google Maps, annuaire officiel, sites des établissements</span></div></div>';
+    var cards = r.fiches.map(function (x) {
+      var t = x.telephone ? x.telephone.replace(/\s/g, '') : '', sv = x.statut || '';
+      return '<div class="card ck' + (x.appeler ? ' top' : '') + '"><div class="item"><span class="rk">' + x.rang + '</span><div><div class="t">' + esc(x.nom) + '</div><div class="s">' + (x.note != null ? String(x.note).replace('.', ',') + ' ★ · ' : '') + x.avis + ' avis · ' + siteTxt(x.site) + '</div><div class="m">' + esc(x.adresse) + (x.registre ? ' · active depuis ' + esc((x.registre.depuis || '').slice(0, 4)) + (x.registre.effectif ? ' · ' + esc(x.registre.effectif) : '') : ' · non trouvée à l’annuaire (nom commercial différent ?)') + '</div></div><span class="pill ' + (sv ? 'p-ok' : 'p-rad') + '">' + (sv ? CST[sv] : 'Priorité ' + x.priorite) + '</span></div>' +
+        '<div class="tags">' + (x.appeler ? '<span class="call">À appeler en premier</span>' : '') + (x.leader ? '<span class="lead">Leader local</span>' : '') + (x.offre && x.offre !== 'rien' ? '<span>Offre : ' + esc(OFF[x.offre] || x.offre) + '</span>' : '') + '</div>' +
+        '<div class="sc"><span>Besoin</span><i><b style="width:' + x.besoin + '%"></b></i><span>' + x.besoin + '</span><span>Potentiel</span><i class="po"><b style="width:' + x.potentiel + '%"></b></i><span>' + x.potentiel + '</span></div>' +
+        (x.manques.length ? '<div class="mq">' + x.manques.map(function (q) { return '<span>' + esc(q) + '</span>'; }).join('') + '</div>' : '') +
+        (x.accroche ? '<div class="acc"><small>Pour ouvrir l’appel</small>' + esc(x.accroche) + '</div>' : (x.resume ? '<div class="acc"><small>Ce qui lui manque</small>' + esc(x.resume) + '</div>' : '')) +
+        '<div class="acts">' + (t ? '<a class="btn a" href="tel:' + esc(t) + '" data-cst="' + esc(x.id) + ':appele">' + IC.tel + 'Appeler ' + esc(x.telephone) + '</a>' : '<span class="m">Pas de téléphone sur la fiche Google</span>') + (x.maps ? '<a class="btn" target="_blank" rel="noopener" href="' + esc(x.maps) + '">Fiche Google</a>' : '') +
+        ['rdv', 'client', 'ecarte'].filter(function (k) { return k !== sv; }).map(function (k) { return '<button class="btn" data-cst="' + esc(x.id) + ':' + k + '">' + CST[k] + '</button>'; }).join('') + '</div></div>';
+    }).join('');
+    var ex = r.ecartes.length ? '<details class="card"><summary style="cursor:pointer;font-weight:700">' + r.ecartes.length + ' établissement(s) écarté(s)</summary>' + r.ecartes.map(function (e) { return '<div class="m" style="margin-top:6px"><b>' + esc(e.nom) + '</b> — ' + esc(e.motif) + '</div>'; }).join('') + '</details>' : '';
+    box.innerHTML = head + (cards || empty('Aucun établissement retenu', 'Essayez une activité plus large ou une autre zone.')) + ex;
+    $('#cagain').onclick = function () { lancer(r.activite, r.zone, true); };
+    [].forEach.call(box.querySelectorAll('[data-cst]'), function (b) {
+      b.addEventListener('click', function () {
+        var p = b.getAttribute('data-cst'), k = p.slice(p.lastIndexOf(':') + 1), id = p.slice(0, p.lastIndexOf(':'));
+        setTimeout(function () { api('', { action: 'cible_statut', pid: id, statut: k }).then(function () { var f = CIB.fiches.find(function (y) { return y.id === id; }); if (f) f.statut = k; rendu(); }); }, b.tagName === 'A' ? 800 : 0);
+      });
+    });
   }
   function nl() { var l = D.nl || []; $('#view').innerHTML = section('Newsletter', D.abonnes + ' abonné(s) · envoi automatique chaque lundi', l.length ? l.map(nlCard).join('') : empty('Aucun inscrit pour l’instant', 'Le formulaire est sous les actus de l’accueil.')); bind(); }
   /* ── Réalisations : ajoutées ici, publiées aussitôt sur le site ── */

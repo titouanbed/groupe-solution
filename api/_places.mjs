@@ -39,7 +39,9 @@ export async function searchText(body, mask) {
       headers: { "Content-Type": "application/json", "X-Goog-Api-Key": KEY(), "X-Goog-FieldMask": mask },
       body: JSON.stringify({ languageCode: "fr", regionCode: "FR", ...body }) });
     if (!r.ok) return null;
-    return (await r.json()).places || [];
+    const j = await r.json(), l = j.places || [];
+    l.nextPageToken = j.nextPageToken || "";   // page suivante (recherches de plus de 20 résultats)
+    return l;
   } catch { return null; }
 }
 
