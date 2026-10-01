@@ -72,23 +72,42 @@ export async function registreSiren(siren) {
 }
 
 // Recherche par nom (enseigne Google) : code postal puis département, nom en mots puis nom compact (« O' TGR » → « otgr »).
-// On garde le résultat le plus ressemblant (score ≥ 0,6), à égalité la société active.
+// Une société ACTIVE ressemblante (score ≥ 0,6) passe toujours avant une société fermée, même au nom identique :
+// un club repris garde souvent son nom, l'ancienne société est dissoute et la nouvelle est active (cas Nyamba).
 export async function registreNom(nom, { cp = "", dep = "" } = {}) {
   const m = mots(nom), q1 = m.slice(0, 5).join(" "), q2 = norm(nom).replace(/ /g, "");
   const qs = [...new Set([q1, q2].filter(q => q.length >= 3))]; if (!qs.length) return null;
   const filtres = [cp ? `&code_postal=${encodeURIComponent(cp)}` : "", dep ? `&departement=${encodeURIComponent(dep)}` : ""].filter(Boolean);
-  let erreur = null;
+  let erreur = null, actif = null, sa = 0, ferme = null, sf = 0;
   for (const f of filtres.length ? filtres : [""]) {
-    let best = null, bs = 0;
     for (const q of qs) {
       const d = await getJson(`${RE_API}?q=${encodeURIComponent(q)}${f}&per_page=10&page=1`);
       if (d.erreur) { erreur = d.erreur; continue; }
-      for (const e of d.results || []) { const sc = meilleurScore(nom, e) + (e.etat_administratif === "A" ? 0.01 : 0); if (sc > bs) { bs = sc; best = e; } }
-      if (bs >= 0.9) break;
+      for (const e of d.results || []) {
+        const sc = meilleurScore(nom, e), ok = e.etat_administratif === "A";
+        if (ok && sc > sa) { sa = sc; actif = e; } else if (!ok && sc > sf) { sf = sc; ferme = e; }
+      }
     }
-    if (best && bs >= 0.6) return { ...lireRegistre(best), score: Math.min(1, Math.round(bs * 100) / 100) };
+    if (actif && sa >= 0.9) break;
   }
+  if (actif && sa >= 0.6) return { ...lireRegistre(actif), score: Math.min(1, Math.round(sa * 100) / 100) };
+  if (ferme && sf >= 0.6) return { ...lireRegistre(ferme), score: Math.min(1, Math.round(sf * 100) / 100) };
   return erreur ? { erreur } : null;
+}
+
+// SIREN valide ? (clé de Luhn) — évite de prendre un numéro de téléphone pour un SIREN.
+export function sirenValide(n) {
+  if (!/^\d{9}$/.test(n)) return false;
+  let t = 0; for (let i = 0; i < 9; i++) { let d = +n[8 - i]; if (i % 2) { d *= 2; if (d > 9) d -= 9; } t += d; }
+  return t % 10 === 0;
+}
+// SIREN publié sur une page (mentions légales) : « SIRET 123 456 789 00012 », « RCS Mamoudzou 123 456 789 »…
+export function sirenDansPage(html) {
+  const txt = String(html || "").replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/g, " ");
+  for (const m of txt.matchAll(/(?:siret|siren|rcs|n°\s*d'immatriculation)[^0-9]{0,60}((?:\d[\s. ]?){9,14})/gi)) {
+    const d = m[1].replace(/\D/g, "").slice(0, 9); if (sirenValide(d)) return d;
+  }
+  return "";
 }
 
 // Annonces BODACC défavorables publiées pour ce SIREN (procédure collective, radiation).
