@@ -1,12 +1,12 @@
 // Google Places (New) — appels comptés et plafonnés pour rester dans la part GRATUITE de Google.
 // Chaque appel (recherche ou photo) passe par budget() : compteur mensuel + compteur du jour dans Upstash.
-// Plafonds par défaut : 800 appels / mois (Google offre 1 000 / mois par type d'appel), 60 / jour.
+// Plafonds par défaut : 800 appels / mois (Google offre 1 000 / mois par type d'appel), 100 / jour.
 // Réglables sans toucher au code : PLACES_MONTHLY_CAP, PLACES_DAILY_CAP. Sans Upstash : aucun appel (prudence).
 import { redis, UPSTASH } from "./_guard.mjs";
 
 const KEY = () => String(process.env.GOOGLE_PLACES_KEY || "").trim();
 const CAP_M = () => Math.max(0, +process.env.PLACES_MONTHLY_CAP || 800);
-const CAP_D = () => Math.max(0, +process.env.PLACES_DAILY_CAP || 60);
+const CAP_D = () => Math.max(0, +process.env.PLACES_DAILY_CAP || 100);
 const mois = () => new Date().toISOString().slice(0, 7);
 const jour = () => new Date().toISOString().slice(0, 10);
 
