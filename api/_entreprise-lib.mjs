@@ -135,7 +135,22 @@ export async function marque(p) {
   const police = decodeURIComponent((h.match(/fonts\.googleapis\.com\/css2?\?family=([^&:"'@]+)/i) || [])[1] || "").replace(/\+/g, " ").slice(0, 40);
   const navHtml = (h.match(/<nav\b[\s\S]{0,8000}?<\/nav>/i) || [])[0] || "";
   const menu = [...new Set([...navHtml.matchAll(/<a\b[^>]*>([\s\S]{1,80}?)<\/a>/gi)].map(m => strip(m[1])).filter(t => t && t.length <= 24 && !/^(menu|fermer|close|×)$/i.test(t)))].slice(0, 5);
-  return { couleurs, logo: /^https:/.test(logo) ? logo : "", image: /^https:/.test(og) ? og : "", police, menu, fond: sombre > clair * 1.2 && sombre >= 4 ? "sombre" : "clair" };
+  // Vraies photos du site (réalisations, locaux, produits) : grandes images, hors logos, icônes et pictos.
+  const vues = new Set(), photos = [];
+  const pousse = u => { u = abs(u); if (!/^https:\/\//.test(u) || /\.svg(\?|$)|logo|icon|favicon|sprite|avatar|pixel|placeholder|blank|loader|gravatar|emoji|badge|flag|payment|paypal|visa|mastercard/i.test(u) || u === logo) return; const k = u.split("?")[0].replace(/-\d+x\d+(?=\.\w+$)/, ""); if (vues.has(k)) return; vues.add(k); photos.push(u); };
+  if (og) pousse(og);
+  for (const t of (h.match(/<img\b[^>]{0,1500}>/gi) || [])) {
+    if (photos.length >= 8) break;
+    const w = +((t.match(/\swidth=["']?(\d+)/i) || [])[1] || 0), hh = +((t.match(/\sheight=["']?(\d+)/i) || [])[1] || 0);
+    if ((w && w < 280) || (hh && hh < 180) || /logo|icon|avatar/i.test(t.match(/\s(?:class|alt|id)=["'][^"']*["']/gi)?.join(" ") || "")) continue;
+    const set = (t.match(/\s(?:data-)?srcset=["']([^"']+)["']/i) || [])[1];
+    const best = set ? set.split(",").map(x => x.trim().split(/\s+/)).sort((a, b) => (parseInt(b[1]) || 0) - (parseInt(a[1]) || 0))[0][0] : "";
+    pousse(best || (t.match(/\s(?:data-src|data-lazy-src|src)=["']([^"']+)["']/i) || [])[1] || "");
+  }
+  for (const m of h.matchAll(/background(?:-image)?\s*:\s*url\(\s*["']?([^"')]+\.(?:jpe?g|png|webp)[^"')]*)/gi)) { if (photos.length >= 8) break; pousse(m[1]); }
+  // Titres de sections : ses vrais services, ses vrais mots.
+  const titres = [...new Set([...h.matchAll(/<h[23][^>]{0,300}>([\s\S]{2,160}?)<\/h[23]>/gi)].map(m => strip(m[1])).filter(t => t.length >= 3 && t.length <= 70))].slice(0, 8);
+  return { couleurs, logo: /^https:/.test(logo) ? logo : "", image: /^https:/.test(og) ? og : "", photos: photos.slice(0, 6), titres, police, menu, fond: sombre > clair * 1.2 && sombre >= 4 ? "sombre" : "clair" };
 }
 
 /* ── Lecture de la page (ce que voit un internaute) ── */
