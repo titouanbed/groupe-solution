@@ -1,4 +1,4 @@
-// Radar des nouvelles entreprises (fichier « _ » : pas une route) — France entière et outre-mer.
+// Radar des nouvelles entreprises (fichier « _ » : pas une route) — zones prioritaires : Mayotte, Hérault, Gard (RADAR_DEPS).
 // 1. Annonces de création et d'immatriculation publiées au BODACC (open data officiel, DILA).
 // 2. Uniquement des sociétés (personnes morales) : pas d'entrepreneurs individuels, pas de SCI ni de holdings.
 // 3. Tri par potentiel (secteur, capital), enrichissement par l'annuaire officiel (sans les dirigeants).
@@ -11,8 +11,10 @@ import Anthropic from "@anthropic-ai/sdk";
 import { redis } from "./_guard.mjs";
 import { registreSiren, bodaccAlertes, googleFiche, NAF_EXCLU, joursDepuis } from "./_verif.mjs";
 import { RUPTURE } from "./_innovation.mjs";
+import { lireSite } from "./_cible.mjs";
 
 const MODEL = process.env.RADAR_MODEL || process.env.ASSISTANT_MODEL || "claude-opus-5-5";
+const DEPS_PRIO = () => String(process.env.RADAR_DEPS || "976,34,30").split(",").map(x => x.trim()).filter(x => /^\d{2,3}$/.test(x));
 const BODACC = "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records";
 const EXCLU = /holding|gestion de (titres|participations|portefeuille)|prise de participations?|location de (biens|terrains|logements)|soci[ée]t[ée] civile|\bsci\b|marchand de biens|acquisition,? (la )?gestion|administration d'immeubles|activit[ée]s? des soci[ée]t[ée]s holding/i;
 const CIBLES = [
@@ -47,7 +49,8 @@ function lireAnnonce(r) {
     ville: r.ville || "", cp: r.cp || "", dep: r.numerodepartement || "", region: r.region_nom_officiel || "",
     date: r.dateparution || "", famille: r.familleavis || "", url: r.url_complete || "",
     origine: etablissement.origineFonds || pick(etab + acte, /origineFonds"?\s*:\s*"([^"]+)/), qualite: etablissement.qualiteEtablissement || pick(etab, /qualiteEtablissement"?\s*:\s*"([^"]+)/),
-    acteTxt: acte.slice(0, 600)
+    acteTxt: acte.slice(0, 600),
+    dirigeantSociete: /(pr[ée]sident|g[ée]rant|directeur g[ée]n[ée]ral|administrateur)[^:]{0,20}:\s*(la soci[ée]t[ée]|soci[ée]t[ée]|sas|sasu|sarl|eurl|sa|snc|sca|selarl)\b/i.test(txt(personne.administration || pick(personnes, /administration"?\s*:\s*"([^"]{0,400})/)))
   };
 }
 function score(a) {
@@ -56,19 +59,22 @@ function score(a) {
   if (/soci[ée]t[ée] civile|\bsci\b/i.test(a.forme) || EXCLU.test(a.activite)) return -1;
   // Pas une vraie création : transfert de siège, établissement secondaire d'une société existante.
   if (/transfert/i.test(a.origine + " " + a.acteTxt) || /secondaire/i.test(a.qualite)) return -1;
+  // Filiale d'un groupe (dirigeant = une société) : décision prise ailleurs, difficile à signer pour nous.
+  if (a.dirigeantSociete) return -1;
   let s = 0;
   for (const [re, w] of CIBLES) if (re.test(a.activite)) { s += w; break; }
   if (!s) s = 0.5;
   if (a.capital >= 5000) s += 1; if (a.capital >= 20000) s += 1; if (a.capital >= 100000) s += 1;
-  if (/^97/.test(a.dep)) s += 0.5;                              // outre-mer : peu de concurrence locale
+  if (a.dep === "976" || a.dep === "34") s += 2; else if (a.dep === "30") s += 1;   // Mayotte et Montpellier d'abord
   return s;
 }
 
-async function bodacc(jours = 2) {
-  const d = new Date(Date.now() - jours * 86400e3).toISOString().slice(0, 10);
-  const where = `(familleavis="creation" or familleavis="immatriculation") and dateparution>="${d}"`;
+// Annonces des zones prioritaires seulement (avant : 300 annonces de toute la France, où Mayotte et Montpellier se perdaient).
+async function bodacc(jours = 7) {
+  const d = new Date(Date.now() - jours * 86400e3).toISOString().slice(0, 10), deps = DEPS_PRIO();
+  const where = `(familleavis="creation" or familleavis="immatriculation") and dateparution>="${d}"` + (deps.length ? ` and (${deps.map(x => `numerodepartement="${x}"`).join(" or ")})` : "");
   const out = [];
-  for (let offset = 0; offset < 300; offset += 100) {
+  for (let offset = 0; offset < 600; offset += 100) {
     const u = `${BODACC}?where=${encodeURIComponent(where)}&order_by=${encodeURIComponent("dateparution desc")}&limit=100&offset=${offset}`;
     const r = await fetch(u, { signal: AbortSignal.timeout(10000), headers: { Accept: "application/json", "User-Agent": "groupsolution.fr (contact@groupsolution.fr)" } });
     if (!r.ok) { console.error("radar: BODACC", r.status, (await r.text().catch(() => "")).slice(0, 200)); break; }
@@ -120,6 +126,24 @@ const s = (v, n) => String(v ?? "").trim().slice(0, n);
 const PRO_MAIL = /^[^\s@<>"]{1,64}@[^\s@<>"]{1,190}\.[a-z]{2,}$/i;
 
 const frDate = d => { const t = Date.parse(d); return isNaN(t) ? "" : new Date(t).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }); };
+export const ZONES = { "976": "Mayotte", "34": "Hérault (Montpellier)", "30": "Gard" };
+// Type de numéro (fait objectif) : un portable est souvent celui du gérant, un fixe celui d'un standard.
+export function typeTel(t) {
+  const d = String(t || "").replace(/[^\d+]/g, "").replace(/^\+33|^0033/, "0").replace(/^\+262|^00262/, "0");
+  if (/^0639/.test(d)) return "portable"; if (/^0269/.test(d)) return "fixe";
+  if (/^0[67]/.test(d)) return "portable"; if (/^0[1-5]/.test(d)) return "fixe"; if (/^0[89]/.test(d)) return "standard";
+  return "";
+}
+// État du site d'une nouvelle société, du plus favorable pour nous (aucun site) au moins favorable (site récent et complet).
+export function etatSite(w) {
+  const an = new Date().getFullYear();
+  if (!w || w.type === "aucun") return { cle: "aucun", rang: 3, txt: "Pas de site internet" };
+  if (w.type === "reseau") return { cle: "reseau", rang: 3, txt: `Seulement une page ${w.hote.split(".")[0]}, pas de vrai site` };
+  if (w.type === "erreur") return { cle: "erreur", rang: 2, txt: "Site indiqué mais inaccessible lors du contrôle" };
+  if (w.type === "protege") return { cle: "inconnu", rang: 1, txt: "Site présent (non lisible par notre robot)" };
+  const defauts = [!w.mobile && "non adapté au téléphone", w.annee && w.annee <= an - 3 && `« © ${w.annee} » en bas de page`, !w.https && "pas de HTTPS", !w.contact && !w.resa && "ni formulaire ni réservation"].filter(Boolean);
+  return defauts.length ? { cle: "ancien", rang: 2, txt: "Site à refaire : " + defauts.join(", ") } : { cle: "recent", rang: 0, txt: "Site récent et complet : proposer plutôt une automatisation" };
+}
 const lot = async (arr, n, fn) => { const out = []; for (let i = 0; i < arr.length; i += n) out.push(...await Promise.all(arr.slice(i, i + n).map(fn))); return out; };
 
 // Contrôles officiels d'une société candidate. statut : ok | exclu (définitif) | attente (réessayer plus tard).
@@ -132,7 +156,7 @@ async function verifierOfficiel(a) {
   if (age != null && age > 180) return { statut: "exclu", motif: "société ancienne : transfert ou modification, pas une création" };
   if (NAF_EXCLU.test(reg.naf)) return { statut: "exclu", motif: "activité hors cible (holding, location, domiciliation)" };
   if (reg.association) return { statut: "exclu", motif: "association" };
-  if (["GE", "ETI"].includes(reg.categorie) || (reg.etablissements || 0) > 5) return { statut: "exclu", motif: "filiale ou réseau déjà structuré" };
+  if (reg.groupe || ["GE", "ETI"].includes(reg.categorie) || (reg.etablissements || 0) > 3) return { statut: "exclu", motif: "filiale d'un groupe ou réseau déjà structuré (décision prise ailleurs)" };
   const b = await bodaccAlertes(a.siren);
   if (b.ok && b.alertes.length) return { statut: "exclu", motif: "BODACC : " + b.alertes.map(x => x.famille).join(", ") };
   const verifs = [{ ok: true, t: "Société active à l'annuaire officiel", d: `créée le ${frDate(reg.creation)}${reg.effectif ? " · " + reg.effectif : ""}` },
@@ -143,7 +167,7 @@ async function verifierOfficiel(a) {
 // Lance un passage du radar : au plus `max` fiches complètes par jour, toutes vérifiées.
 export async function runRadar({ max = 5 } = {}) {
   const rev = await reverifierRadar().catch(e => { console.error("radar: revérification", e?.message); return { verifiees: 0, ecartees: 0 }; });
-  const annonces = await bodacc(3);
+  const annonces = await bodacc(7);
   const [seen, attRaw] = await redis([["SMEMBERS", "radar:seen"], ["HGETALL", "radar:attente"]]);
   const vus = new Set(seen || []), attente = {};
   for (let i = 0; i + 1 < (attRaw || []).length; i += 2) { try { attente[attRaw[i]] = JSON.parse(attRaw[i + 1]); } catch {} }
@@ -179,6 +203,8 @@ export async function runRadar({ max = 5 } = {}) {
   // 3) Recherche web, idée et e-mail ; on ne garde que les sociétés qui exercent vraiment ET qu'on peut joindre.
   const lotIA = prets.slice(0, max);
   const res = await Promise.all(lotIA.map(a => fiche(a).catch(e => { console.error("radar: fiche", e?.message); return null; })));
+  // Lecture du site (aucun site ou site ancien = prospect idéal pour un premier appel).
+  const sites = await lot(lotIA.map((a, i) => s(a.google?.site || res[i]?.site, 200)), 4, u => lireSite(u).catch(() => ({ type: "erreur" })));
   const gardes = [];
   lotIA.forEach((a, i) => {
     const f = res[i];
@@ -186,19 +212,26 @@ export async function runRadar({ max = 5 } = {}) {
     if (f.existence === "fermee") return ecarter(a, "fermeture trouvée sur le web");
     if (f.existence === "autre_entreprise") return mettreEnAttente(a, "résultats web ambigus (homonyme)");
     const email = s(f.email_contact, 190), tel = s(a.google?.telephone || f.telephone, 30), site = s(a.google?.site || f.site, 200);
-    if (!tel && !PRO_MAIL.test(email)) return mettreEnAttente(a, "pas encore de contact public");
+    if (!tel) return mettreEnAttente(a, PRO_MAIL.test(email) ? "seulement un e-mail : pas encore de numéro à appeler" : "pas encore de contact public");
     if (Number(f.note) < 6) return ecarter(a, "potentiel jugé faible");
+    const et = etatSite(sites[i]), tt = typeTel(tel);
+    a.verifs.push({ ok: "info", t: et.txt, d: site || "" });
     a.verifs.push(f.existence === "active" ? { ok: true, t: "Activité réelle constatée en ligne", d: (f.preuves || []).slice(0, 1).join("") } : { ok: "info", t: "Activité en préparation", d: "ouverture récente ou annoncée : le bon moment pour se présenter" });
     a.verifs.push({ ok: true, t: "Contact professionnel public", d: [tel, PRO_MAIL.test(email) ? email : ""].filter(Boolean).join(" · ") });
     const fiab = a.verifs.filter(v => v.ok === true).length, tot = a.verifs.filter(v => v.ok !== "info").length;
     const item = { id: a.siren, date: new Date().toISOString(), nom: s(a.nom, 160), activite: s(a.activite, 300), forme: s(a.forme, 60), capital: a.capital, ville: s(a.ville, 80), cp: s(a.cp, 10), dep: s(a.dep, 4), region: s(a.region, 80), naf: s(a.naf, 10), bodacc: s(a.url, 300),
       creation: s(a.reg?.creation, 10), origine: /achat|acquisition/i.test(a.origine) ? "Reprise d'un fonds existant" : /g[ée]rance/i.test(a.origine) ? "Reprise en location-gérance" : "Création",
       interet: s(f.interet, 240), note: Math.round(Number(f.note) || 0), idee_titre: s(f.idee_titre, 120), idee_pitch: s(f.idee_pitch, 400), objet: s(f.objet, 90), email: s(f.email, 2200),
-      contact: { site, email: PRO_MAIL.test(email) ? email : "", telephone: tel, source: s(f.source, 300), maps: s(a.google?.maps, 300) },
+      contact: { site, email: PRO_MAIL.test(email) ? email : "", telephone: tel, tel_type: tt, tel_source: a.google?.telephone ? "fiche Google Maps" : "recherche web", source: s(f.source, 300), maps: s(a.google?.maps, 300) },
+      zone: ZONES[a.dep] || s(a.region, 60), site_etat: et.cle, site_txt: s(et.txt, 160),
+      priorite: et.rang * 10 + (tt === "portable" ? 3 : 0) + (a.google?.telephone ? 2 : 0) + (a.dep === "976" || a.dep === "34" ? 2 : 0) + Math.round(Number(f.note) || 0) / 2,
       verifs: a.verifs.map(v => ({ ok: v.ok, t: s(v.t, 90), d: s(v.d, 200) })), fiabilite: `${fiab}/${tot}`, statut: "nouveau" };
     gardes.push(item);
-    cmds.push(["SADD", "radar:seen", a.siren], ["HDEL", "radar:attente", a.siren], ["SET", "radar:" + item.id, JSON.stringify(item), "EX", 45 * 86400], ["LPUSH", "radar:list", item.id], ["LTRIM", "radar:list", 0, 499]);
   });
+  // Les meilleurs prospects en dernier dans la pile : ils apparaissent en tête de liste.
+  gardes.sort((x, y) => x.priorite - y.priorite);
+  for (const item of gardes) cmds.push(["SADD", "radar:seen", item.id], ["HDEL", "radar:attente", item.id], ["SET", "radar:" + item.id, JSON.stringify(item), "EX", 45 * 86400], ["LPUSH", "radar:list", item.id], ["LTRIM", "radar:list", 0, 499]);
+  gardes.reverse();
   if (cmds.length) await redis(cmds);
   const [nAtt] = await redis([["HLEN", "radar:attente"]]);
   return { annonces: annonces.length, candidats: cand.length, analyses: lotIA.length, retenues: gardes.length, nouvelles: gardes.map(g => g.nom), exclus, attente: nAtt || 0, reverifiees: rev.verifiees, retirees: rev.ecartees };

@@ -26,7 +26,7 @@ const lot = async (arr, n, fn) => { const out = []; for (let i = 0; i < arr.leng
 const cpDe = adr => (String(adr || "").match(/\b(97[1-8]\d{2}|98[6-8]\d{2}|\d{5})\b/) || [])[1] || "";
 
 // Lecture du site : signaux qui disent ce dont l'établissement a besoin.
-async function lireSite(url) {
+export async function lireSite(url) {
   if (!url) return { type: "aucun" };
   let host = ""; try { host = new URL(url).hostname; } catch { return { type: "aucun" }; }
   if (RESEAUX.test(host)) return { type: "reseau", url, hote: host.replace(/^www\./, "") };
@@ -151,7 +151,7 @@ async function analyseIA(activite, zone, rows) {
   return iaJson(SYS_IA, `Activité cherchée : ${activite}\nZone : ${zone}\n\nÉtablissements relevés (index. nom — faits) :\n${lignes}\n\nRends le JSON : « synthese » = 2 phrases sur ce marché local d'après ces faits ; pour CHAQUE index, « pertinence » : « oui » si c'est son activité principale, « partiel » s'il la propose parmi d'autres (club nautique, hôtel avec centre de plongée…), « non » seulement s'il ne la propose pas du tout ; en cas de doute, « partiel » ; « raison » en une courte phrase factuelle, « manque » (ce qui lui manque le plus, 1 phrase), « offre » (la plus utile), « accroche » (première phrase à dire au téléphone, vouvoiement, appuyée sur un fait relevé, sans prix ni promesse chiffrée, 220 caractères au plus, et qui amène l'offre choisie : pour un établissement déjà bien équipé, parle de temps gagné sur les demandes, relances ou avis, jamais d'un détail technique du site).`, SCHEMA);
 }
 
-export async function runCible({ activite, zone, pages = 2, force = false }) {
+export async function runCible({ activite, zone, pages = 2, force = false, leger = false }) {
   activite = s(activite, 60); zone = s(zone, 60);
   if (activite.length < 2 || zone.length < 2) return { erreur: "Indiquez une activité et une zone." };
   if (!placesOn()) return { erreur: "La recherche Google n'est pas active : ajoutez GOOGLE_PLACES_KEY dans Vercel (et la base Upstash)." };
@@ -159,7 +159,8 @@ export async function runCible({ activite, zone, pages = 2, force = false }) {
   if (!force) { const [id] = await redis([["GET", cle]]); if (id) { const r = await getCible(id); if (r) return { ...r, cache: true }; } }
 
   // 1) Google Maps : plusieurs formulations (aucun établissement oublié), 20 résultats chacune.
-  const reqs = await variantes(activite, zone), brut = [];
+  // Mode léger : 2 formulations (le métier tel quel + la meilleure variante IA), 2 appels Google au lieu de 7.
+  const tout = await variantes(activite, zone), reqs = leger ? [tout[0], tout[3] || tout[1]].filter(Boolean) : tout, brut = [];
   let token = "", echec = 0;
   for (let k = 0; k < reqs.length; k++) {
     const l = await searchTextPage({ textQuery: `${reqs[k]} ${zone}`, pageSize: 20 });
@@ -169,7 +170,8 @@ export async function runCible({ activite, zone, pages = 2, force = false }) {
   if (token && pages > 1) { const l = await searchTextPage({ textQuery: `${reqs[0]} ${zone}`, pageSize: 20, pageToken: token }); if (l) brut.push(...l.places); }
   const vus = new Set(), tous = brut.filter(p => p.id && !vus.has(p.id) && vus.add(p.id)).map(lireGoogle);
   // 1 bis) Recensement web : établissements cités par les annuaires mais absents des résultats Google ci-dessus.
-  const web = await recensementWeb(activite, zone, tous.map(x => x.nom)).catch(() => []);
+  // Mode léger (appels du jour automatiques) : pas de recensement web, pour limiter le coût.
+  const web = leger ? [] : await recensementWeb(activite, zone, tous.map(x => x.nom)).catch(() => []);
   const manquants = web.filter(w => !tous.some(x => memeNom(x.nom, w.nom) || memeNom(w.nom, x.nom)));
   const webSans = [], webFermes = [];
   let gl = 0;
@@ -225,12 +227,12 @@ export async function runCible({ activite, zone, pages = 2, force = false }) {
   const retenus = actifs.filter(x => x.pertinent !== false); actifs.filter(x => x.pertinent === false).forEach(x => hors.push({ nom: x.nom, raison: x.raisonPert }));
   // Leader local : la notoriété la plus forte (avis × note), pas seulement la taille déclarée.
   const leader = [...retenus].sort((a, b) => (b.avis * (b.note || 3)) - (a.avis * (a.note || 3)))[0];
-  const appelerIds = retenus.filter(x => x.telephone && !x.equipe).slice(0, 3).map(x => x.id);
+  const appelerIds = retenus.filter(x => x.telephone && !x.equipe && !x.reg?.groupe).slice(0, 3).map(x => x.id);
 
   const fiches = retenus.map((x, i) => ({ id: x.id, rang: i + 1, nom: s(x.nom, 120), adresse: s(x.adresse, 160), telephone: s(x.telephone, 30), maps: s(x.maps, 300), type: s(x.type, 60),
     note: x.note, avis: x.avis, site: x.site, besoin: x.besoin, potentiel: x.potentiel, priorite: x.priorite, manques: x.manques.slice(0, 6),
     resume: x.resume || "", offre: x.offre || "", accroche: x.accroche || "", leader: leader && x.id === leader.id, appeler: appelerIds.includes(x.id), source: s(x.source, 300), equipe: !!x.equipe, partiel: !!x.partiel, raison_pertinence: x.partiel ? x.raisonPert || "" : "", exploitant: s(x.exploitant, 120),
-    registre: x.reg ? { actif: true, depuis: s(x.reg.creation, 10), effectif: s(x.reg.effectif, 40), individuelle: x.reg.individuelle, siren: x.reg.siren, score: x.reg.score, via: x.reg.via || "rapprochement par le nom", nom: s(x.reg.nom, 120) } : null }));
+    registre: x.reg ? { actif: true, depuis: s(x.reg.creation, 10), effectif: s(x.reg.effectif, 40), individuelle: x.reg.individuelle, siren: x.reg.siren, score: x.reg.score, via: x.reg.via || "rapprochement par le nom", nom: s(x.reg.nom, 120), groupe: !!x.reg.groupe, taille: x.reg.taille ?? null, etablissements: x.reg.etablissements ?? null } : null }));
   const avecSite = retenus.filter(x => x.site.type === "site").length;
   const out = { id: randomBytes(6).toString("hex"), activite, zone, date: new Date().toISOString(),
     requetes: reqs, sans_fiche: sansFiche,
@@ -266,7 +268,7 @@ async function searchTextPage(body) {
 // établissements « à vérifier », « sans fiche », écartés ou ajoutés à la main. Clé = nom normalisé.
 export const SUIVI_STATUTS = ["a_appeler", "a_rappeler", "rdv", "client", "pas_interesse", "a_surveiller", "a_verifier", "ferme", "ecarte"];
 const cleSuivi = (activite, zone) => "cible:suivi:" + createHash("sha1").update(norm(activite) + "|" + norm(zone)).digest("hex").slice(0, 16);
-const cleNom = nom => norm(nom).replace(/\b(sarl|sas|sasu|eurl|club|plongee|centre|le|la|les|l)\b/g, " ").replace(/\s+/g, " ").trim() || norm(nom);
+export const cleNom = nom => norm(nom).replace(/\b(sarl|sas|sasu|eurl|club|plongee|centre|le|la|les|l)\b/g, " ").replace(/\s+/g, " ").trim() || norm(nom);
 
 export async function getCible(id) {
   if (!/^[a-f0-9]{12}$/.test(id)) return null;
