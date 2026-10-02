@@ -20,7 +20,7 @@ import { allow, sameSite, readBody, redis, UPSTASH } from "./_guard.mjs";
 import { sendMail, layout, esc, OWNER, MAIL_OK, lastMailError, explique, diagMail } from "./_mail.mjs";
 import { tagConv, listConvs, getConv, SID_RE, setConvStatus } from "./_conv.mjs";
 import { runRadar, listRadar, setRadarStatus, reverifierRadar } from "./_radar.mjs";
-import { runCible, getCible, listCibles, setCibleStatut } from "./_cible.mjs";
+import { runCible, getCible, listCibles, setCibleStatut, setSuivi, importSuivi } from "./_cible.mjs";
 import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount, nlResend, nlList } from "./_newsletter.mjs";
 import { listReal, previewReal, saveReal, deleteReal, moveReal, realImage, devisEnAttente, marquerRelance, runEntretien, lastEntretien, etatPublic } from "./_site.mjs";
 
@@ -281,6 +281,8 @@ export default async function handler(req, res) {
       if (action === "cible_get") { const r = await getCible(String(b.id || "")); return send(res, r ? 200 : 404, r || { error: "introuvable" }); }
       if (action === "cible_list") return send(res, 200, { cibles: await listCibles() });
       if (action === "cible_statut") return send(res, (await setCibleStatut(String(b.pid || ""), String(b.statut || ""), b.note)) ? 200 : 400, { ok: true });
+      if (action === "cible_suivi") { const o = await setSuivi(String(b.id || ""), { nom: String(b.nom || ""), statut: String(b.statut || ""), note: b.note, telephone: String(b.telephone || ""), essai: !!b.essai }); return send(res, o ? 200 : 400, o || { error: "introuvable" }); }
+      if (action === "cible_import") return send(res, 200, await importSuivi(String(b.id || ""), String(b.texte || "").slice(0, 20000)));
       return send(res, 400, { error: "action" });
     }
     if (action === "radar_reverif") {
