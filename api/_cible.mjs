@@ -261,14 +261,66 @@ async function searchTextPage(body) {
   return l === null ? null : { places: l, next: l.nextPageToken || "" };
 }
 
+// ── Suivi des appels ─────────────────────────────────────────────────────────────────────────────
+// Rangé par activité + zone (et non par recherche) : il survit aux nouvelles recherches et couvre aussi les
+// établissements « à vérifier », « sans fiche », écartés ou ajoutés à la main. Clé = nom normalisé.
+export const SUIVI_STATUTS = ["a_appeler", "a_rappeler", "rdv", "client", "pas_interesse", "a_surveiller", "a_verifier", "ferme", "ecarte"];
+const cleSuivi = (activite, zone) => "cible:suivi:" + createHash("sha1").update(norm(activite) + "|" + norm(zone)).digest("hex").slice(0, 16);
+const cleNom = nom => norm(nom).replace(/\b(sarl|sas|sasu|eurl|club|plongee|centre|le|la|les|l)\b/g, " ").replace(/\s+/g, " ").trim() || norm(nom);
+
 export async function getCible(id) {
   if (!/^[a-f0-9]{12}$/.test(id)) return null;
   const [v] = await redis([["GET", "cible:" + id]]); if (!v) return null;
   const r = JSON.parse(v);
-  const st = await redis(r.fiches.map(f => ["GET", "cible:st:" + f.id]));
+  const [st, h] = await Promise.all([redis(r.fiches.map(f => ["GET", "cible:st:" + f.id]).concat([["PING"]])), redis([["HGETALL", cleSuivi(r.activite, r.zone)]])]);
   r.fiches.forEach((f, i) => { try { const x = st[i] ? JSON.parse(st[i]) : null; if (x) { f.statut = x.statut; f.note_perso = x.note || ""; f.maj = x.maj; } } catch {} });
+  r.suivi = {}; const a = h[0] || [];
+  for (let k = 0; k + 1 < a.length; k += 2) { try { r.suivi[a[k]] = JSON.parse(a[k + 1]); } catch {} }
   return r;
 }
+
+// Met à jour (ou crée) la ligne de suivi d'un établissement. essai = un appel sans réponse de plus.
+export async function setSuivi(id, { nom, statut, note, telephone, essai }) {
+  const [v] = await redis([["GET", "cible:" + String(id).replace(/[^a-f0-9]/g, "")]]); if (!v) return null;
+  const r = JSON.parse(v), k = cleNom(nom); if (!k) return null;
+  const cle = cleSuivi(r.activite, r.zone), [old] = await redis([["HGET", cle, k]]);
+  const o = old ? JSON.parse(old) : { nom: s(nom, 120), essais: 0, cree: new Date().toISOString() };
+  if (statut && SUIVI_STATUTS.includes(statut)) o.statut = statut;
+  if (note != null && String(note).trim()) o.note = s(note, 400);
+  if (telephone) o.telephone = s(telephone, 30);
+  if (essai) { o.essais = (o.essais || 0) + 1; o.dernier_essai = new Date().toISOString(); if (!statut) o.statut = "a_rappeler"; }
+  o.maj = new Date().toISOString();
+  await redis([["HSET", cle, k, JSON.stringify(o)]]);
+  return o;
+}
+
+// Compte rendu collé (tableau « Entreprise | Situation | Ce que je ferais » ou une ligne par établissement).
+export function lireCompteRendu(texte) {
+  const out = [];
+  for (const brut of String(texte || "").split(/\r?\n/)) {
+    const l = brut.trim(); if (!l || /^\|?\s*[-:]+\s*\|/.test(l) || /^\|?\s*entreprise\s*\|/i.test(l)) continue;
+    const c = l.split("|").map(x => x.replace(/\*\*/g, "").replace(/[\u{1F300}-\u{1FAFF}☀-➿️]/gu, "").trim()).filter(Boolean);
+    if (!c.length) continue;
+    const nom = c[0], situation = c[1] || "", action = (c[2] || c[1] || "").toLowerCase(), tout = (situation + " " + action).toLowerCase();
+    let statut = "";
+    if (/rappeler|retenter/.test(action)) statut = "a_rappeler";
+    else if (/pas int[ée]ress/.test(tout)) statut = "pas_interesse";
+    else if (/mort|sortir|radi[ée]e|ferm[ée]e d[ée]finitivement/.test(action)) statut = "ferme";
+    else if (/surveiller/.test(action)) statut = "a_surveiller";
+    else if (/v[ée]rifier/.test(action)) statut = "a_verifier";
+    else if (/prospecter|appeler/.test(action)) statut = "a_appeler";
+    else if (/rdv|rendez-vous/.test(tout)) statut = "rdv";
+    else if (/client/.test(action)) statut = "client";
+    if (nom.length >= 2 && statut) out.push({ nom: s(nom, 120), statut, note: s(situation, 400), essai: statut === "a_rappeler" && /pas de r[ée]ponse|sonne|pas encore eu/i.test(situation) });
+  }
+  return out;
+}
+export async function importSuivi(id, texte) {
+  const lignes = lireCompteRendu(texte); let n = 0;
+  for (const x of lignes) { if (await setSuivi(id, x)) n++; }
+  return { lus: lignes.length, enregistres: n };
+}
+
 export async function listCibles() {
   const [ids] = await redis([["LRANGE", "cible:list", 0, 29]]);
   if (!ids?.length) return [];
