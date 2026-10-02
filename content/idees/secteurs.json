@@ -52,6 +52,22 @@
           "techno": ["jumeau numérique", "simulation", "données de caisse"],
           "local": "Utile pour préparer l’ouverture d’une terrasse d’été ou le passage d’un service simple à un double service en haute saison.",
           "audace": 3
+        },
+        {
+          "titre": "Le menu qui se compose avec l’invité",
+          "probleme": "Le client découvre la carte à table, signale ses allergies au dernier moment, et le chef ne peut rien préparer de vraiment personnel.",
+          "idee": "À la réservation, un assistant conversationnel échange avec l’invité sur ce qu’il aime, ce qu’il évite et l’occasion qu’il fête. À partir du stock du jour et des fiches recettes du chef, il propose au chef un menu sur mesure que celui-ci valide ou ajuste en un geste. L’invité arrive et trouve à sa place un menu imprimé à son nom, déjà sans ses allergènes.",
+          "techno": ["assistant conversationnel", "fiches recettes et allergènes", "état des stocks", "impression du menu"],
+          "local": "Sur le littoral ou en outre-mer, l’échange se fait dans la langue du visiteur et par WhatsApp, le canal que les clients utilisent déjà au quotidien.",
+          "audace": 3
+        },
+        {
+          "titre": "Le commis de nuit qui contrôle les livraisons",
+          "probleme": "Les factures fournisseurs, les bons de livraison et les commandes se recoupent à la main, et les écarts de prix ou de quantités passent souvent inaperçus.",
+          "idee": "Chaque nuit, un agent rapproche les factures électroniques reçues, que toutes les entreprises doivent pouvoir recevoir depuis septembre 2026, avec les bons de livraison photographiés à la réception. Il signale les prix qui ont bougé et les produits manquants, puis prépare la commande du lendemain à partir des réservations et des stocks. Le matin, le chef relit et valide en un geste.",
+          "techno": ["agent IA autonome", "lecture de documents", "facturation électronique", "vision sur photo"],
+          "local": "À Mayotte, où l’approvisionnement dépend des arrivées par le port et des délais de fret, l’agent anticipe les commandes plus tôt et prévient quand un produit risque de manquer.",
+          "audace": 2
         }
       ]
     },

@@ -6,7 +6,31 @@
     <atom:link href="https://www.groupsolution.fr/lab/actus/rss.xml" rel="self" type="application/rss+xml" />
     <description>Les actualités de l'IA, du numérique et de la réglementation qui comptent pour les entreprises, sourcées et expliquées.</description>
     <language>fr-fr</language>
-    <lastBuildDate>Thu, 01 Oct 2026 08:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 08:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Baromètre France Num 2026 : 40 % des TPE-PME utilisent désormais l'intelligence artificielle</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-02.html#barometre-france-num-2026-40-des-tpe-pme-utilisent-desormais</link>
+      <guid isPermaLink="false">2026-10-02-barometre-france-num-2026-40-des-tpe-pme-utilisent-desormais</guid>
+      <pubDate>Fri, 02 Oct 2026 08:00:00 GMT</pubDate>
+      <category>IA</category>
+      <description>Publié le 28 septembre 2026 par la Direction générale des entreprises, le baromètre France Num, mené auprès de plus de 9 000 entreprises, indique que 40 % des TPE-PME utilisent l'intelligence artificielle, soit 14 points de plus en un an ; la proportion atteint 53 % chez les PME. Les usages les plus cités sont la génération de textes, de voix ou d'images, les assistants conversationnels et la recherche d'informations, puis l'analyse ou le classement de documents. Le même baromètre relève que 39 % des entreprises déclarent avoir subi un incident cyber au cours des douze derniers mois. — Ce que ça change : L'IA n'est plus réservée aux grandes structures : une TPE-PME sur deux parmi les PME l'utilise déjà. Les usages qui progressent le plus (documents, réponses aux clients) sont aussi ceux qui font gagner du temps au quotidien, à condition de les encadrer : données partagées, relecture humaine, sécurité des comptes.</description>
+    </item>
+    <item>
+      <title>Opération REACTIV : l'ANSSI recense 99 violations de données signalées depuis le 1er août</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-02.html#operation-reactiv-l-anssi-recense-99-violations-de-donnees-s</link>
+      <guid isPermaLink="false">2026-10-02-operation-reactiv-l-anssi-recense-99-violations-de-donnees-s</guid>
+      <pubDate>Fri, 02 Oct 2026 08:00:00 GMT</pubDate>
+      <category>Cybersécurité</category>
+      <description>Le 30 septembre 2026, l'ANSSI a publié le premier point de situation de l'opération REACTIV, lancée le 1er septembre à la demande du Premier ministre pour aider les ministères face aux violations de données. L'agence indique que 99 violations lui ont été signalées depuis le 1er août 2026, dont 67 confirmées. Parmi les causes citées figure l'exploitation d'une faille critique (CVE-2026-72898, note maximale de 10) du logiciel de tableaux de bord Metabase, qui a notamment conduit à la compromission de 118 comptes du laboratoire d'innovation de l'ANSSI et de deux instances de la DINUM. — Ce que ça change : Même les services de l'État spécialisés en sécurité sont touchés par des outils mal mis à jour. Pour une PME, les mêmes outils (tableaux de bord, logiciels hébergés sur un serveur, comptes partagés) sont des portes d'entrée si les correctifs ne sont pas appliqués rapidement.</description>
+    </item>
+    <item>
+      <title>Microsoft fusionne ses assistants Copilot et préconfigure la facturation à l'usage pour les nouvelles licences Business</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-02.html#microsoft-fusionne-ses-assistants-copilot-et-preconfigure-la</link>
+      <guid isPermaLink="false">2026-10-02-microsoft-fusionne-ses-assistants-copilot-et-preconfigure-la</guid>
+      <pubDate>Fri, 02 Oct 2026 08:00:00 GMT</pubDate>
+      <category>IA</category>
+      <description>Microsoft a présenté fin septembre 2026 une nouvelle version de Copilot, qui réunit l'assistant grand public et Microsoft 365 Copilot dans une même application, rebaptisée Microsoft Copilot, avec de nouveaux espaces de travail et des agents capables d'agir dans les outils bureautiques. L'éditeur a aussi annoncé qu'à partir du 2 novembre 2026, les nouveaux abonnements Microsoft 365 Copilot Business souscrits auprès d'un partenaire revendeur auront la facturation à l'usage déjà configurée pour certains services d'IA supplémentaires. — Ce que ça change : Pour les entreprises équipées de Microsoft 365, l'outil change de nom et de fonctionnement, et une partie des usages d'IA pourra être facturée en plus de l'abonnement. Mieux vaut savoir ce qui est activé avant de découvrir une ligne inattendue sur la facture.</description>
+    </item>
     <item>
       <title>Cybermois 2026 : 45 % des Français ont déjà été informés d'une fuite de leurs données personnelles</title>
       <link>https://www.groupsolution.fr/lab/actus/2026-10-01.html#cybermois-2026-45-des-francais-ont-deja-ete-informes-d-une-f</link>
