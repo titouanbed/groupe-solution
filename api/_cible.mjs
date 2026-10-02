@@ -65,6 +65,7 @@ function noter(x, medAvis, maxAvis) {
     if (w.ms > 3000) { besoin += 6; manques.push("Site lent"); }
     if (!w.description) { besoin += 4; manques.push("Site sans texte de présentation pour Google (balise description)"); }
   }
+  if (x.mentionsObsoletes) { besoin += 6; manques.push("Mentions légales du site au nom d'une ancienne société dissoute"); }
   if (!x.avis) { besoin += 12; manques.push("Aucun avis Google"); }
   else if (x.avis < medAvis / 2) { besoin += 9; manques.push(`Peu d'avis Google (${x.avis}, contre ${medAvis} pour l'établissement médian du secteur)`); }
   if (x.note != null && x.note < 4) { besoin += 6; manques.push(`Note Google ${String(x.note).replace(".", ",")}`); }
@@ -112,8 +113,10 @@ async function variantes(activite, zone) {
 }
 
 const LISTE_TOOL = { name: "rendre_liste", description: "Rend la liste complète des établissements recensés.", strict: true, input_schema: { type: "object", additionalProperties: false, required: ["etablissements"],
-  properties: { etablissements: { type: "array", items: { type: "object", additionalProperties: false, required: ["nom", "commune", "statut", "source"], properties: {
-    nom: { type: "string" }, commune: { type: "string" }, statut: { type: "string", enum: ["actif", "ferme", "incertain"] }, source: { type: "string", description: "URL où l'établissement est cité" } } } } } } };
+  properties: { etablissements: { type: "array", items: { type: "object", additionalProperties: false, required: ["nom", "commune", "statut", "source", "activite", "telephone", "site"], properties: {
+    nom: { type: "string" }, commune: { type: "string" }, statut: { type: "string", enum: ["actif", "ferme", "incertain"] }, source: { type: "string", description: "URL où l'établissement est cité" },
+    activite: { type: "string", description: "Ce que la source dit de son activité, en quelques mots (ex. « centre de plongée affilié FFESSM à Cavani »)" },
+    telephone: { type: "string", description: "Téléphone professionnel publié par la source, sinon vide" }, site: { type: "string", description: "Site officiel s'il est cité, sinon vide" } } } } } } };
 async function recensementWeb(activite, zone, connus) {
   if (!process.env.ANTHROPIC_API_KEY) return [];
   const client = new Anthropic({ maxRetries: 1, timeout: 120_000 });
@@ -125,7 +128,7 @@ async function recensementWeb(activite, zone, connus) {
         tools: [{ type: "web_search_20250305", name: "web_search", max_uses: 5, user_location: { type: "approximate", country: "FR", timezone: "Europe/Paris" } }, LISTE_TOOL], messages: msgs });
       if (r.stop_reason === "refusal") return [];
       const tu = r.content.find(b => b.type === "tool_use" && b.name === "rendre_liste");
-      if (tu) return (tu.input.etablissements || []).slice(0, 40).map(e => ({ nom: s(e.nom, 100), commune: s(e.commune, 60), statut: e.statut, source: /^https?:\/\//.test(e.source) ? s(e.source, 300) : "" })).filter(e => e.nom);
+      if (tu) return (tu.input.etablissements || []).slice(0, 40).map(e => ({ nom: s(e.nom, 100), commune: s(e.commune, 60), statut: e.statut, source: /^https?:\/\//.test(e.source) ? s(e.source, 300) : "", activite: s(e.activite, 160), telephone: s(e.telephone, 30).replace(/[^\d +.]/g, ""), site: /^https?:\/\//.test(e.site) ? s(e.site, 200) : "" })).filter(e => e.nom);
       msgs.push({ role: "assistant", content: r.content });
       if (r.stop_reason === "pause_turn") continue;
       const autres = r.content.filter(b => b.type === "tool_use");
@@ -138,14 +141,14 @@ async function recensementWeb(activite, zone, connus) {
 // Les entrées sans fiche Google sont-elles vraiment de cette activité ? (ex. « plongée scientifique » ≠ club de loisir)
 async function pertinenceSansFiche(activite, zone, items) {
   if (!items.length) return null;
-  return iaJson(SYS_IA, `Activité cherchée : ${activite} (clientèle de particuliers ou d'entreprises qui achètent cette activité)\nZone : ${zone}\n\nPour chaque entreprise, « statut » : « oui » si son nom ou son code d'activité le prouve, « non » si c'est clairement une autre activité (travaux, recherche, réparation…), « incertain » si on ne peut pas le savoir avec ces seules données (ne devine jamais d'après un nom vague). « raison » : une courte phrase factuelle.\n${items.map((x, i) => `${i}. ${x.nom}${x.commune ? " (" + x.commune + ")" : ""}${x.naf ? " — code d'activité " + x.naf : ""}`).join("\n")}`,
+  return iaJson(SYS_IA, `Activité cherchée : ${activite} (clientèle de particuliers ou d'entreprises qui achètent cette activité)\nZone : ${zone}\n\nPour chaque entreprise, « statut » : « oui » si ce que dit la source, son nom ou son code d'activité le prouve (une source qui la décrit comme exerçant cette activité suffit, même parmi d'autres activités), « non » si c'est clairement une autre activité (travaux, recherche, réparation…), « incertain » si on ne peut pas le savoir avec ces seules données (ne devine jamais d'après un nom vague). « raison » : une courte phrase factuelle.\n${items.map((x, i) => `${i}. ${x.nom}${x.commune ? " (" + x.commune + ")" : ""}${x.naf ? " — code d'activité " + x.naf : ""}${x.activite ? " — selon la source : « " + x.activite + " »" : ""}`).join("\n")}`,
     { type: "object", additionalProperties: false, required: ["items"], properties: { items: { type: "array", items: { type: "object", additionalProperties: false, required: ["i", "statut", "raison"], properties: { i: { type: "integer" }, statut: { type: "string", enum: ["oui", "incertain", "non"] }, raison: { type: "string" } } } } } }, 2000);
 }
 
 async function analyseIA(activite, zone, rows) {
   if (!rows.length) return null;
   const lignes = rows.map((x, i) => `${i}. ${x.nom} — type Google : ${x.type || "?"} — ${x.note ?? "sans note"}★, ${x.avis} avis — site : ${x.site.type === "site" ? `${x.site.url} (${[x.site.mobile ? "mobile" : "pas mobile", x.site.resa ? "réservation en ligne" : "sans réservation en ligne détectée", x.site.annee ? "©" + x.site.annee : "", x.site.titre ? "titre « " + x.site.titre + " »" : ""].filter(Boolean).join(", ")})` : x.site.type === "reseau" ? "page " + x.site.hote : x.site.type === "protege" ? "site présent (non lu)" : x.site.type === "erreur" ? "inaccessible lors du contrôle" : "aucun"} — annuaire : ${x.reg ? `société actuelle créée en ${x.reg.creation?.slice(0, 4) || "?"}${x.reg.effectif ? ", " + x.reg.effectif : ""}` : "non retrouvée"} — manques relevés : ${x.manques.join(" ; ") || "aucun"}`).join("\n");
-  return iaJson(SYS_IA, `Activité cherchée : ${activite}\nZone : ${zone}\n\nÉtablissements relevés (index. nom — faits) :\n${lignes}\n\nRends le JSON : « synthese » = 2 phrases sur ce marché local d'après ces faits ; pour CHAQUE index, « pertinence » : « oui » si c'est son activité principale, « partiel » s'il la propose parmi d'autres (club nautique, hôtel avec centre de plongée…), « non » seulement s'il ne la propose pas du tout ; en cas de doute, « partiel » ; « raison » en une courte phrase factuelle, « manque » (ce qui lui manque le plus, 1 phrase), « offre » (la plus utile), « accroche » (première phrase à dire au téléphone, vouvoiement, appuyée sur un fait relevé, sans prix ni promesse chiffrée, 220 caractères au plus).`, SCHEMA);
+  return iaJson(SYS_IA, `Activité cherchée : ${activite}\nZone : ${zone}\n\nÉtablissements relevés (index. nom — faits) :\n${lignes}\n\nRends le JSON : « synthese » = 2 phrases sur ce marché local d'après ces faits ; pour CHAQUE index, « pertinence » : « oui » si c'est son activité principale, « partiel » s'il la propose parmi d'autres (club nautique, hôtel avec centre de plongée…), « non » seulement s'il ne la propose pas du tout ; en cas de doute, « partiel » ; « raison » en une courte phrase factuelle, « manque » (ce qui lui manque le plus, 1 phrase), « offre » (la plus utile), « accroche » (première phrase à dire au téléphone, vouvoiement, appuyée sur un fait relevé, sans prix ni promesse chiffrée, 220 caractères au plus, et qui amène l'offre choisie : pour un établissement déjà bien équipé, parle de temps gagné sur les demandes, relances ou avis, jamais d'un détail technique du site).`, SCHEMA);
 }
 
 export async function runCible({ activite, zone, pages = 2, force = false }) {
@@ -174,7 +177,7 @@ export async function runCible({ activite, zone, pages = 2, force = false }) {
     if (w.statut === "ferme") { webFermes.push({ nom: w.nom, motif: "fermeture signalée en ligne" + (w.source ? " (" + w.source.replace(/^https?:\/\/(www\.)?/, "").split("/")[0] + ")" : "") }); continue; }
     const g = gl < 8 ? (gl++, await googleFiche(w.nom, w.commune || zone).catch(() => null)) : null;
     if (g && !g.absent && !tous.some(x => x.id === g.id)) { g.source = w.source; tous.push(g); }
-    else if (!g || g.absent) webSans.push({ nom: w.nom, commune: w.commune, source: w.source, statut: w.statut });
+    else if (!g || g.absent) webSans.push({ nom: w.nom, commune: w.commune, source: w.source, statut: w.statut, activite: w.activite, telephone: w.telephone, site: w.site });
   }
   const fermes = tous.filter(x => !x.ouvert), ouverts = tous.filter(x => x.ouvert);
 
@@ -186,7 +189,12 @@ export async function runCible({ activite, zone, pages = 2, force = false }) {
     const site = await lireSite(x.site).catch(() => ({ type: "erreur", url: x.site, erreur: "lecture impossible" }));
     let reg = site.siren ? await registreSiren(site.siren).catch(() => null) : null;
     if (reg && !reg.erreur) reg.via = "mentions légales du site";
-    else reg = await registreNom(x.nom, { cp: cpDe(x.adresse), dep }).catch(() => null);
+    if (reg && !reg.erreur && !reg.actif) {
+      // Mentions légales restées au nom d'une ancienne société dissoute : la structure a pu être reprise sous un autre SIREN.
+      const actif = await registreNom(x.nom, { cp: cpDe(x.adresse), dep }).catch(() => null);
+      if (actif && !actif.erreur && actif.actif) { actif.via = "rapprochement par le nom (les mentions légales du site citent encore une ancienne société dissoute)"; x.mentionsObsoletes = true; reg = actif; }
+    }
+    if (!reg || reg.erreur) reg = await registreNom(x.nom, { cp: cpDe(x.adresse), dep }).catch(() => null);
     x.reg = reg && !reg.erreur ? reg : null; x.site = site;
     // Exploitant au nom différent de l'enseigne (ex. centre de plongée d'un hôtel) : c'est lui qui décide.
     if (x.reg?.nom && scoreNom(x.nom, x.reg.nom) < 0.6) x.exploitant = x.reg.nom;
@@ -227,7 +235,7 @@ export async function runCible({ activite, zone, pages = 2, force = false }) {
   const out = { id: randomBytes(6).toString("hex"), activite, zone, date: new Date().toISOString(),
     requetes: reqs, sans_fiche: sansFiche,
     a_verifier: [...temporaires.map(x => ({ nom: s(x.nom, 100), adresse: s(x.adresse, 140), telephone: s(x.telephone, 30), maps: s(x.maps, 300), motif: "affiché « fermé temporairement » par Google (fermeture saisonnière, travaux ou fiche pas à jour)" })), ...aVerifier.map(x => ({ nom: s(x.nom, 100), adresse: s(x.adresse, 140), telephone: s(x.telephone, 30), maps: s(x.maps, 300), motif: `société dissoute à l'annuaire officiel${x.reg.fermeture ? " le " + x.reg.fermeture.split("-").reverse().join("/") : ""}, alors que Google l'affiche ouverte` }))],
-    web: web.length, stats: { trouves: tous.length, recenses_web: web.length, fermes: fermes.length - temporaires.length, a_verifier: aVerifier.length + temporaires.length, sans_fiche: sansFiche.length, hors: hors.length, retenus: retenus.length, avec_site: avecSite, avec_resa: retenus.filter(x => x.site.resa).length, mediane_avis: med },
+    web: web.length, stats: { trouves: tous.length, recenses_web: web.length, fermes: fermes.length - temporaires.length, a_verifier: aVerifier.length + temporaires.length, sans_fiche: sansFiche.length, hors: hors.length + sfHors.length, retenus: retenus.length, avec_site: avecSite, avec_resa: retenus.filter(x => x.site.resa).length, mediane_avis: med },
     synthese: s(ia?.synthese, 400), ecartes: [...fermes.filter(x => x.statut !== "CLOSED_TEMPORARILY").map(x => ({ nom: s(x.nom, 100), motif: x.statut === "CLOSED_TEMPORARILY" ? "fermé temporairement (Google)" : "fermé définitivement (Google)" })), ...webFermes, ...sfHors, ...hors.map(h => ({ nom: s(h.nom, 100), motif: "hors sujet" + (h.raison ? " : " + h.raison : "") }))].slice(0, 40),
     fiches };
   await redis([["SET", "cible:" + out.id, JSON.stringify(out), "EX", 30 * 86400], ["SET", cle, out.id, "EX", 7 * 86400], ["LPUSH", "cible:list", out.id], ["LTRIM", "cible:list", 0, 49]]);
