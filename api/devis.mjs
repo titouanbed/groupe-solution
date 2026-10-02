@@ -21,7 +21,8 @@ import { sendMail, layout, esc, OWNER, MAIL_OK, lastMailError, explique, diagMai
 import { tagConv, listConvs, getConv, SID_RE, setConvStatus } from "./_conv.mjs";
 import { runRadar, listRadar, setRadarStatus, reverifierRadar } from "./_radar.mjs";
 import { runCible, getCible, listCibles, setCibleStatut, setSuivi, importSuivi } from "./_cible.mjs";
-import { runAppelsDuJour, getAppels } from "./_appels.mjs";
+import { lireTrafic } from "./_trafic.mjs";
+import { runAppelsDuJour, getAppels, ajouterAppels, setAppel } from "./_appels.mjs";
 import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount, nlResend, nlList } from "./_newsletter.mjs";
 import { listReal, previewReal, saveReal, deleteReal, moveReal, realImage, devisEnAttente, marquerRelance, runEntretien, lastEntretien, etatPublic } from "./_site.mjs";
 
@@ -179,6 +180,7 @@ export default async function handler(req, res) {
       if (A === "demande" && ID_RE.test(id)) return send(res, 200, { demande: await get("demande:" + id) });
       if (A === "radar") return send(res, 200, { radar: await listRadar(150), cron: true });
       if (A === "newsletter") return send(res, 200, { abonnes: await nlCount() });
+      if (A === "trafic") return send(res, 200, await lireTrafic(+q.get("j") || 7));
       if (A === "diag") return send(res, 200, { mail: await diagMail() });
       if (A === "convs") return send(res, 200, { convs: await listConvs(120) });
       if (A === "conv") { const sid = q.get("sid") || ""; return send(res, 200, { conv: SID_RE.test(sid) ? await getConv(sid) : null }); }
@@ -299,10 +301,13 @@ export default async function handler(req, res) {
       if (action === "cible_import") return send(res, 200, await importSuivi(String(b.id || ""), String(b.texte || "").slice(0, 20000)));
       return send(res, 400, { error: "action" });
     }
-    if (action === "appels_get" || action === "appels_run") {
+    if (/^appels_/.test(action)) {
       if (!admin) return send(res, 401, { error: "unauthorized" });
-      if (action === "appels_get") return send(res, 200, await getAppels(String(b.date || "")) || { items: [] });
-      await appelsEtResume({ force: !!b.force }); return send(res, 200, await getAppels());
+      if (action === "appels_get") return send(res, 200, await getAppels());
+      if (action === "appels_plus") return send(res, 200, await ajouterAppels({ n: +b.n || 10 }));
+      if (action === "appels_statut") { const x = await setAppel(String(b.id || ""), { statut: String(b.statut || ""), note: b.note == null ? "" : String(b.note) }); return send(res, x ? 200 : 400, x || { error: "introuvable" }); }
+      if (action === "appels_run") { await appelsEtResume({ force: !!b.force }); return send(res, 200, await getAppels()); }
+      return send(res, 400, { error: "action" });
     }
     if (action === "radar_reverif") {
       if (!admin) return send(res, 401, { error: "unauthorized" });

@@ -207,7 +207,8 @@ export async function runCible({ activite, zone, pages = 2, force = false, leger
   const aVerifier = ouverts.filter(x => x.reg && !x.reg.actif);
   const actifs = ouverts.filter(x => !(x.reg && !x.reg.actif));
   // Complément : sociétés actives de l'annuaire pour cette activité et ce département, absentes de Google Maps.
-  const sfAnnuaire = dep ? await annuaireSeul(activite, dep, new Set(ouverts.map(x => x.reg?.siren).filter(Boolean)), ouverts.map(x => x.nom)) : [];
+  // Mode léger : les « sans fiche Google » ne servent pas aux appels (pas de numéro vérifié) : on ne les cherche pas.
+  const sfAnnuaire = dep && !leger ? await annuaireSeul(activite, dep, new Set(ouverts.map(x => x.reg?.siren).filter(Boolean)), ouverts.map(x => x.nom)) : [];
   const sfWeb = await lot(webSans.filter(w => !sfAnnuaire.some(a => memeNom(w.nom, a.nom))), 4, async w => { const r = await registreNom(w.nom, { dep }).catch(() => null); return { ...w, siren: r && !r.erreur ? r.siren : "", creation: r && !r.erreur ? r.creation : "", actif: r && !r.erreur ? r.actif : null }; });
   const sfTous = [...sfAnnuaire.map(x => ({ ...x, origine: "annuaire officiel" })), ...sfWeb.filter(x => x.actif !== false).map(x => ({ ...x, origine: "annuaire web" }))];
   sfWeb.filter(x => x.actif === false).forEach(x => webFermes.push({ nom: x.nom, motif: "cité en ligne, mais société fermée à l'annuaire officiel" }));
@@ -221,9 +222,12 @@ export async function runCible({ activite, zone, pages = 2, force = false, leger
   actifs.sort((a, b) => (a.equipe - b.equipe) || (a.equipe ? b.potentiel - a.potentiel : b.priorite - a.priorite));
 
   // 4) IA : pertinence + manque + accroche, sur les 25 premiers (les faits seulement).
-  const ia = await analyseIA(activite, zone, actifs.slice(0, 25));
+  // Mode léger : l'IA ne lit que les établissements qui peuvent sortir dans les appels (numéro + pas de site ou site ancien).
+  const an = new Date().getFullYear(), candidatAppel = x => x.telephone && !x.equipe && (["aucun", "reseau", "erreur"].includes(x.site.type) || (x.site.type === "site" && (!x.site.mobile || !x.site.https || (x.site.annee && x.site.annee <= an - 3))));
+  const iaRows = leger ? actifs.filter(candidatAppel).slice(0, 12) : actifs.slice(0, 25);
+  const ia = iaRows.length ? await analyseIA(activite, zone, iaRows) : null;
   const hors = [];
-  if (ia?.fiches) for (const f of ia.fiches) { const x = actifs[f.i]; if (!x) continue; x.pertinent = f.pertinence !== "non"; x.partiel = f.pertinence === "partiel"; x.raisonPert = s(f.raison, 140); x.resume = s(f.manque, 220); x.offre = f.offre; x.accroche = s(f.accroche, 260); }
+  if (ia?.fiches) for (const f of ia.fiches) { const x = iaRows[f.i]; if (!x) continue; x.pertinent = f.pertinence !== "non"; x.partiel = f.pertinence === "partiel"; x.raisonPert = s(f.raison, 140); x.resume = s(f.manque, 220); x.offre = f.offre; x.accroche = s(f.accroche, 260); }
   const retenus = actifs.filter(x => x.pertinent !== false); actifs.filter(x => x.pertinent === false).forEach(x => hors.push({ nom: x.nom, raison: x.raisonPert }));
   // Leader local : la notoriété la plus forte (avis × note), pas seulement la taille déclarée.
   const leader = [...retenus].sort((a, b) => (b.avis * (b.note || 3)) - (a.avis * (a.note || 3)))[0];
@@ -266,7 +270,7 @@ async function searchTextPage(body) {
 // ── Suivi des appels ─────────────────────────────────────────────────────────────────────────────
 // Rangé par activité + zone (et non par recherche) : il survit aux nouvelles recherches et couvre aussi les
 // établissements « à vérifier », « sans fiche », écartés ou ajoutés à la main. Clé = nom normalisé.
-export const SUIVI_STATUTS = ["a_appeler", "a_rappeler", "rdv", "client", "pas_interesse", "a_surveiller", "a_verifier", "ferme", "ecarte"];
+export const SUIVI_STATUTS = ["a_appeler", "a_rappeler", "rdv", "client", "pas_interesse", "a_surveiller", "a_verifier", "ferme", "ecarte", "sans_reponse", "pas_decideur", "devis", "deja_prestataire", "hs"];
 const cleSuivi = (activite, zone) => "cible:suivi:" + createHash("sha1").update(norm(activite) + "|" + norm(zone)).digest("hex").slice(0, 16);
 export const cleNom = nom => norm(nom).replace(/\b(sarl|sas|sasu|eurl|club|plongee|centre|le|la|les|l)\b/g, " ").replace(/\s+/g, " ").trim() || norm(nom);
 

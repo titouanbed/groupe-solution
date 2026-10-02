@@ -30,6 +30,42 @@
     }
   } catch (e) {}
 
+  /* Trafic du site (tableau de bord de Titouan, onglet « Trafic ») : mesure maison, sans cookie et sans adresse IP.
+     Tous les visiteurs : compteurs anonymes (page, provenance, appareil ; la ville est estimée par l'hébergeur).
+     Parcours de la visite (pages dans l'ordre, actions) : seulement si le visiteur a accepté la mesure d'audience.
+     Les visites de Titouan lui-même (connecté à son espace) ne sont pas comptées. */
+  var gsT = function () {};
+  (function () {
+    try {
+      if (EMBED || /^\/admin/.test(location.pathname) || localStorage.getItem('gs-admin-token') || navigator.webdriver) return;
+      var nouv = !sessionStorage.getItem('gsT');
+      if (nouv) sessionStorage.setItem('gsT', '1');
+      var vid = function () { var v = sessionStorage.getItem('gsVid'); if (!v) { v = (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)).replace(/[^a-z0-9]/g, '').slice(0, 20); sessionStorage.setItem('gsVid', v); } return v; };
+      var dejaE = {};
+      gsT = function (e, x) {
+        try {
+          if (e !== 'pv' && e !== 'fin') { var k = e + location.pathname; if (dejaE[k]) return; dejaE[k] = 1; }   // une action comptée une fois par page
+          var ok = localStorage.getItem('gs-consent-v1') === 'granted', rf = '';
+          try { rf = document.referrer && new URL(document.referrer).host !== location.host ? new URL(document.referrer).host : ''; } catch (er) {}
+          var body = JSON.stringify({ e: e, p: location.pathname, s: sessionStorage.getItem('gsSrc') || '', d: innerWidth < 760 ? 'mobile' : 'ordi', n: e === 'pv' && nouv ? 1 : 0, v: ok ? vid() : '', t: ok ? document.title.slice(0, 90) : '', r: ok ? rf : '', x: ok && x ? String(x).slice(0, 60) : '' });
+          if (e === 'pv') nouv = false;
+          var blob = new Blob([body], { type: 'application/json' });
+          if (!(navigator.sendBeacon && navigator.sendBeacon('/api/t', blob))) fetch('/api/t', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {});
+        } catch (er) {}
+      };
+      window.gsTrack = gsT;
+      gsT('pv');
+      document.addEventListener('click', function (ev) {
+        var a = ev.target.closest && ev.target.closest('a[href]'); if (!a) return;
+        var h = a.getAttribute('href') || '';
+        if (/^tel:/i.test(h)) gsT('tel'); else if (/^mailto:/i.test(h)) gsT('mail'); else if (/wa\.me|whatsapp/i.test(h)) gsT('whatsapp');
+      }, true);
+      document.addEventListener('submit', function (ev) { var f = ev.target; gsT('form', f && (f.id || f.getAttribute('name')) || ''); }, true);
+      // Durée de la visite (parcours détaillé seulement) : un signal quand la page est quittée.
+      document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden' && localStorage.getItem('gs-consent-v1') === 'granted') gsT('fin'); });
+    } catch (e) {}
+  })();
+
   /* Lieu du visiteur, le même partout sur le site : choix du visiteur > fuseau horaire de l'appareil
      (Mayotte et La Réunion n'ont pas le même) > adresse IP estimée par l'hébergeur. */
   window.gsGeoFix = window.gsGeoFix || function (g) {
@@ -52,6 +88,7 @@
     window.fetch = function (input, init) {
       try {
         var url = typeof input === 'string' ? input : (input && input.url) || '';
+        if (/\/api\/assistant/.test(url)) gsT('chat'); else if (/\/api\/book/.test(url) && init && String(init.method || '').toUpperCase() === 'POST') gsT('rdv'); else if (/\/api\/lead/.test(url)) gsT('lead');
         if (/^https:\/\/formspree\.io\//.test(url) && init && !init.gsDirect && String(init.method || '').toUpperCase() === 'POST' && init.body instanceof FormData) {
           var o = {}; init.body.forEach(function (v, k) { if (typeof v === 'string') o[k] = v; });
           if (!o.page) o.page = location.pathname;
@@ -100,6 +137,8 @@
   var zone = ZONES.indexOf(seg) !== -1 ? seg : 'holding';
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
+  // Les événements déjà prévus pour Google Analytics (inscription, demande…) sont aussi comptés dans « Trafic ».
+  window.gtag = function (a, b) { if (a === 'event' && b) gsT(String(b)); if (read() === 'granted') gtag.apply(null, arguments); };
 
   function loadGA() {
     var s = document.createElement('script');

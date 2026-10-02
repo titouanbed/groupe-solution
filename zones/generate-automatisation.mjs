@@ -154,7 +154,8 @@ function page(c) {
   const near = neighbours(c, 6);
   const E = enrichOf(c);
   const faq = [c.auto.faq, ...(E?.faqAuto ? [E.faqAuto] : []), COMMON_FAQ[c.slug.length % 3], { q: `Intervenez-vous vraiment ${aName(c)} ?`, a: `Oui. Groupe Solution est basé dans la métropole de Montpellier, ${d <= 2 ? 'juste à côté' : `à environ ${d} km`}. Le diagnostic et le suivi se font par téléphone ou visio, et on se déplace ${aName(c)} dès que c'est utile — pour observer un process sur place, former une équipe ou lancer un outil.` }, c.web.faq];
-  const title = `Automatisation & logiciel sur-mesure ${aName(c)} (${c.cp}) | Groupe Solution`;
+  // Titre lisible en entier dans Google (≈ 65 caractères) : on retire d'abord la marque, puis « sur-mesure ».
+  const title = [`Automatisation & logiciel sur-mesure ${aName(c)} (${c.cp}) | Groupe Solution`, `Automatisation & logiciel sur-mesure ${aName(c)} (${c.cp})`, `Automatisation & logiciel ${aName(c)} (${c.cp})`].find(t => t.length <= 65) || `Automatisation & logiciel ${aName(c)}`;
   const adv = pickAvancees(c.slug, [c.tissu, c.profil, c.auto.angle].join(' '), 4);
   // Description ≤ 160 caractères, jamais coupée au milieu d'un mot : on garde la version la plus riche qui tient.
   const lc = t => t.charAt(0).toLowerCase() + t.slice(1);
