@@ -21,6 +21,7 @@ import { sendMail, layout, esc, OWNER, MAIL_OK, lastMailError, explique, diagMai
 import { tagConv, listConvs, getConv, SID_RE, setConvStatus } from "./_conv.mjs";
 import { runRadar, listRadar, setRadarStatus, reverifierRadar } from "./_radar.mjs";
 import { runCible, getCible, listCibles, setCibleStatut, setSuivi, importSuivi } from "./_cible.mjs";
+import { runAppelsDuJour, getAppels } from "./_appels.mjs";
 import { nlSubscribe, nlConfirm, nlStop, nlSend, nlCount, nlResend, nlList } from "./_newsletter.mjs";
 import { listReal, previewReal, saveReal, deleteReal, moveReal, realImage, devisEnAttente, marquerRelance, runEntretien, lastEntretien, etatPublic } from "./_site.mjs";
 
@@ -96,6 +97,15 @@ async function radarEtResume() {
   return r;
 }
 
+// Appels du jour + e-mail à Titouan avec les numéros à appeler (rien n'est envoyé aux prospects).
+async function appelsEtResume({ force = false } = {}) {
+  const r = await runAppelsDuJour({ force });
+  try { await redis([["SET", "cron:last:appels", JSON.stringify({ date: new Date().toISOString(), n: r.items.length, combos: r.combos })]]); } catch {}
+  if (r.items.length && !r.cache) await sendMail({ to: OWNER(), subject: `📞 ${r.items.length} appel(s) à passer aujourd'hui`,
+    html: layout("Vos appels du jour", `<p>Les meilleurs prospects pour un premier appel : un numéro, pas de site (ou un site ancien), une petite structure indépendante.</p><ol>${r.items.slice(0, 10).map(x => `<li><b>${esc(x.nom)}</b> — ${esc(x.activite)} · ${esc(x.zone)}<br><a href="tel:${esc(x.telephone.replace(/[^\d+]/g, ""))}">${esc(x.telephone)}</a>${x.tel_type === "portable" ? " (portable)" : ""}<br><span style="color:#77736A">${x.pourquoi.map(esc).join(" · ")}</span>${x.accroche ? `<br><i>« ${esc(x.accroche)} »</i>` : ""}</li>`).join("")}</ol><p><a href="${SITE}/admin/#radar">Ouvrir les appels du jour →</a></p><p style="font-size:12px;color:#77736A">Recherches du jour : ${r.combos.map(c => `${esc(c.activite)} · ${esc(c.zone)}${c.erreur ? " (" + esc(c.erreur) + ")" : ` (${c.retenus}/${c.trouves})`}`).join(" — ")}.</p>`) });
+  return r;
+}
+
 // Vue publique d'une estimation : jamais de montant, seulement l'envergure (et la part du budget si la jauge est activée).
 function publicEst(rec) {
   const G = rec.grille || {}, budgetMax = rec.budget?.max || 0, gauge = !!G.jauge && budgetMax > 0;
@@ -154,6 +164,10 @@ export default async function handler(req, res) {
         if (!admin && !(await cronOk(req, "entretien"))) return send(res, 401, { error: "unauthorized" });
         const r = await runEntretien();
         return send(res, 200, { ok: r.ok, alertes: r.alertes, corrige: r.corrige });
+      }
+      if (q.get("cron") === "appels") {
+        if (!admin && !(await cronOk(req, "appels"))) return send(res, 401, { error: "unauthorized" });
+        return send(res, 200, await appelsEtResume());
       }
       if (q.get("cron") === "radar") {
         if (!admin && !(await cronOk(req, "radar"))) return send(res, 401, { error: "unauthorized" });
@@ -284,6 +298,11 @@ export default async function handler(req, res) {
       if (action === "cible_suivi") { const o = await setSuivi(String(b.id || ""), { nom: String(b.nom || ""), statut: String(b.statut || ""), note: b.note, telephone: String(b.telephone || ""), essai: !!b.essai }); return send(res, o ? 200 : 400, o || { error: "introuvable" }); }
       if (action === "cible_import") return send(res, 200, await importSuivi(String(b.id || ""), String(b.texte || "").slice(0, 20000)));
       return send(res, 400, { error: "action" });
+    }
+    if (action === "appels_get" || action === "appels_run") {
+      if (!admin) return send(res, 401, { error: "unauthorized" });
+      if (action === "appels_get") return send(res, 200, await getAppels(String(b.date || "")) || { items: [] });
+      await appelsEtResume({ force: !!b.force }); return send(res, 200, await getAppels());
     }
     if (action === "radar_reverif") {
       if (!admin) return send(res, 401, { error: "unauthorized" });

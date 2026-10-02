@@ -58,7 +58,9 @@ function lireRegistre(e) {
     actif: e.etat_administratif === "A" && (!s.etat_administratif || s.etat_administratif === "A"),
     effectif: eff ? eff[1] : "", taille: eff ? eff[0] : null, etablissements: e.nombre_etablissements_ouverts ?? null,
     commune: s.libelle_commune || "", cp: s.code_postal || "", dep: s.departement || "",
-    ca: (() => { const f = e.finances || {}; const y = Object.keys(f).sort().pop(); return y && f[y]?.ca ? { annee: y, ca: f[y].ca } : null; })()
+    ca: (() => { const f = e.finances || {}; const y = Object.keys(f).sort().pop(); return y && f[y]?.ca ? { annee: y, ca: f[y].ca } : null; })(),
+    // Filiale d'un groupe : un des dirigeants est une société (on ne lit que ce type, jamais les noms de personnes).
+    groupe: (e.dirigeants || []).some(d => d && d.type_dirigeant === "personne morale") || ["GE", "ETI"].includes(e.categorie_entreprise || "")
   };
 }
 
