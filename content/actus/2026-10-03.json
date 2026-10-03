@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-03",
+  "titre": "Trois salariés européens sur quatre visés par des cybermenaces, l'UE consulte sur le droit d'auteur et l'IA, OpenAI lance GPT-6.1 Sol",
+  "intro": "Un Eurobaromètre publié par la Commission européenne confirme que l'hameçonnage reste la première menace au travail, y compris dans les petites structures. Bruxelles ouvre une consultation sur l'usage des contenus protégés par l'IA, OpenAI propose un modèle plus économique, et une faille Cisco activement exploitée doit être corrigée sans attendre.",
+  "items": [
+    {
+      "cat": "Cybersécurité",
+      "titre": "Eurobaromètre : trois salariés européens sur quatre ont reçu des messages ou liens suspects au travail",
+      "resume": "La Commission européenne a publié le 30 septembre 2026 un Eurobaromètre consacré à la cybersécurité au travail, mené en ligne du 27 avril au 8 mai auprès de 25 747 personnes dans les 27 États membres. Trois salariés sur quatre déclarent avoir été confrontés à des e-mails, messages ou liens suspects au cours des six mois précédents. L'hameçonnage arrive en tête (39 %), devant les tentatives de vol de données personnelles (18 %), les logiciels malveillants (17 %), les vols de mots de passe (16 %) et les arnaques générées par l'IA (15 %). Si 83 % jugent les conséquences d'une attaque graves, seuls 48 % se disent capables de reconnaître une fausse vidéo créée par IA.",
+      "pourquoi": "La menace passe d'abord par la messagerie des salariés, pas par des attaques techniques sophistiquées. Dans une petite entreprise sans service informatique, un seul clic sur un faux lien peut suffire à exposer les comptes, les factures ou les données clients.",
+      "action": "À faire cette semaine : rappelez à votre équipe la règle simple « un doute, on vérifie par téléphone avant de cliquer ou de payer », et activez la double authentification sur la messagerie de l'entreprise.",
+      "sources": [
+        { "nom": "Commission européenne (stratégie numérique)", "url": "https://digital-strategy.ec.europa.eu/en/news/three-four-eu-employees-faced-cyber-threats-work-new-eurobarometer-finds" },
+        { "nom": "Eunews", "url": "https://www.eunews.it/en/2026/09/30/three-in-four-workers-in-the-eu-face-cyber-threats-and-attacks-in-the-workplace/" },
+        { "nom": "Business World", "url": "https://www.business-world.fr/selon-une-enquete-trois-personnes-sur-quatre-dans-lue-sont-confrontees-a-des-cybermenaces-au-travail/" }
+      ]
+    },
+    {
+      "cat": "Réglementation",
+      "titre": "Droit d'auteur et IA : la Commission européenne ouvre une consultation jusqu'au 3 novembre",
+      "resume": "Le 29 septembre 2026, la Commission européenne a lancé une consultation ciblée sur l'impact des technologies sur le droit d'auteur, ouverte jusqu'au 3 novembre. Elle porte notamment sur l'utilisation de contenus protégés par l'intelligence artificielle, la lutte contre le piratage en ligne d'événements en direct et la rémunération des artistes interprètes et producteurs de musique. La Commission indique vouloir faciliter les licences et le respect des droits dans le contexte de l'IA et améliorer la rémunération des créateurs, tout en permettant aux fournisseurs de modèles d'IA, start-up comprises, d'accéder légalement aux contenus protégés.",
+      "pourquoi": "Les règles sur ce que les outils d'IA ont le droit d'utiliser pour s'entraîner pourraient évoluer. Les entreprises qui produisent des contenus (photos, textes, musique, vidéos) comme celles qui utilisent l'IA pour en créer sont concernées par l'issue de ces travaux.",
+      "action": "À faire cette semaine : si votre activité repose sur des contenus originaux, demandez à votre fédération professionnelle si elle répond à la consultation, et vérifiez les conditions d'utilisation des outils d'IA que vous employez.",
+      "sources": [
+        { "nom": "Agence Europe", "url": "https://agenceurope.eu/en/bulletin/article/13948/16/european-commission-launches-consultation-on-better-protecting-copyright-against-ai-developments" },
+        { "nom": "Écran total", "url": "https://ecran-total.fr/2026/09/30/la-commission-europeenne-lance-une-consultation-sur-les-moyens-de-proteger-le-droit-dauteur-face-a-lia/" },
+        { "nom": "ActuaLitté", "url": "https://actualitte.com/article/133529/politique-publique/usage-de-l-ia-dans-le-secteur-culturel-la-commission-europeenne-consulte" }
+      ],
+      "lien": { "label": "AI Act : ce qui change pour les PME", "url": "../veille/ai-act-pme.html" }
+    },
+    {
+      "cat": "IA",
+      "titre": "OpenAI lance GPT-6.1 Sol, proche de son modèle le plus avancé pour un cinquième du prix",
+      "resume": "Lors de sa conférence DevDay du 29 septembre 2026, OpenAI a présenté GPT-6.1 Sol, une mise à jour de son modèle GPT-6 Sol disponible dans son API et dans ChatGPT. L'entreprise affirme qu'il approche les performances de GPT-6 Astra, son modèle le plus avancé, en programmation, en utilisation d'ordinateur et en travail professionnel, pour environ un cinquième de son prix d'utilisation. Le modèle accepte des documents très longs, avec une fenêtre de contexte d'environ un million de jetons.",
+      "pourquoi": "Le coût d'une tâche confiée à l'IA continue de baisser à niveau de qualité comparable. Des usages jusque-là trop chers pour une petite structure (traitement de longs documents, assistants qui enchaînent plusieurs étapes) deviennent plus accessibles.",
+      "action": "À faire cette semaine : listez une tâche répétitive (tri de documents, réponses types, synthèse de dossiers) et faites-la estimer avec un modèle récent avant de conclure que l'IA coûte trop cher pour vous.",
+      "sources": [
+        { "nom": "The Next Web", "url": "https://thenextweb.com/news/openai-gpt-6-1-sol-price-astra-devday" },
+        { "nom": "Génération NT", "url": "https://www.generation-nt.com/actualites/openai-gpt-6-1-sol-modele-ia-astra-2081984" },
+        { "nom": "Unite.AI", "url": "https://www.unite.ai/openai-unveils-gpt-6-1-sol-at-devday-with-new-codex-and-chatgpt-tools/" }
+      ],
+      "lien": { "label": "Ce qu'on peut automatiser dans une petite entreprise", "url": "../../automatisation/" }
+    },
+    {
+      "cat": "Cybersécurité",
+      "titre": "Cisco Catalyst SD-WAN : une faille critique activement exploitée, corrigez sans attendre",
+      "resume": "Cisco a publié un correctif pour la faille CVE-2026-76504, signalée le 1er octobre 2026, dans Catalyst SD-WAN Manager (anciennement vManage), l'outil qui pilote les réseaux d'entreprise multisites. Notée 9,8 sur 10, elle permet à un attaquant non authentifié d'accéder à distance à l'interface de gestion avec des droits d'administrateur. Cisco a confirmé qu'elle était exploitée dans des attaques, et l'agence américaine de cybersécurité CISA l'a ajoutée le 30 septembre à son catalogue des failles activement exploitées.",
+      "pourquoi": "Les entreprises dont le réseau entre plusieurs sites (agences, magasins, entrepôts) est géré par un prestataire peuvent être concernées sans le savoir. Une prise de contrôle de cet outil donne accès à l'ensemble du réseau.",
+      "action": "À faire cette semaine : demandez à votre prestataire informatique ou opérateur si votre réseau utilise Cisco Catalyst SD-WAN et, si oui, la date d'application du correctif de la faille CVE-2026-76504.",
+      "sources": [
+        { "nom": "Help Net Security", "url": "https://www.helpnetsecurity.com/2026/10/01/new-cisco-sd-wan-zero-day-exploited-in-the-wild-cve-2026-76504/" },
+        { "nom": "SecurityWeek", "url": "https://www.securityweek.com/cisco-patches-exploited-catalyst-sd-wan-zero-day-vulnerability/" },
+        { "nom": "watchTowr", "url": "https://watchtowr.com/intelligence/cisco-catalyst-sd-wan-manager-cve-2026-76504-faq/" }
+      ]
+    }
+  ]
+}

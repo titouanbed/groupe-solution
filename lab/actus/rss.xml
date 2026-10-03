@@ -6,7 +6,39 @@
     <atom:link href="https://www.groupsolution.fr/lab/actus/rss.xml" rel="self" type="application/rss+xml" />
     <description>Les actualités de l'IA, du numérique et de la réglementation qui comptent pour les entreprises, sourcées et expliquées.</description>
     <language>fr-fr</language>
-    <lastBuildDate>Fri, 02 Oct 2026 08:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2026 08:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Eurobaromètre : trois salariés européens sur quatre ont reçu des messages ou liens suspects au travail</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-03.html#eurobarometre-trois-salaries-europeens-sur-quatre-ont-recu-d</link>
+      <guid isPermaLink="false">2026-10-03-eurobarometre-trois-salaries-europeens-sur-quatre-ont-recu-d</guid>
+      <pubDate>Sat, 03 Oct 2026 08:00:00 GMT</pubDate>
+      <category>Cybersécurité</category>
+      <description>La Commission européenne a publié le 30 septembre 2026 un Eurobaromètre consacré à la cybersécurité au travail, mené en ligne du 27 avril au 8 mai auprès de 25 747 personnes dans les 27 États membres. Trois salariés sur quatre déclarent avoir été confrontés à des e-mails, messages ou liens suspects au cours des six mois précédents. L'hameçonnage arrive en tête (39 %), devant les tentatives de vol de données personnelles (18 %), les logiciels malveillants (17 %), les vols de mots de passe (16 %) et les arnaques générées par l'IA (15 %). Si 83 % jugent les conséquences d'une attaque graves, seuls 48 % se disent capables de reconnaître une fausse vidéo créée par IA. — Ce que ça change : La menace passe d'abord par la messagerie des salariés, pas par des attaques techniques sophistiquées. Dans une petite entreprise sans service informatique, un seul clic sur un faux lien peut suffire à exposer les comptes, les factures ou les données clients.</description>
+    </item>
+    <item>
+      <title>Droit d'auteur et IA : la Commission européenne ouvre une consultation jusqu'au 3 novembre</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-03.html#droit-d-auteur-et-ia-la-commission-europeenne-ouvre-une-cons</link>
+      <guid isPermaLink="false">2026-10-03-droit-d-auteur-et-ia-la-commission-europeenne-ouvre-une-cons</guid>
+      <pubDate>Sat, 03 Oct 2026 08:00:00 GMT</pubDate>
+      <category>Réglementation</category>
+      <description>Le 29 septembre 2026, la Commission européenne a lancé une consultation ciblée sur l'impact des technologies sur le droit d'auteur, ouverte jusqu'au 3 novembre. Elle porte notamment sur l'utilisation de contenus protégés par l'intelligence artificielle, la lutte contre le piratage en ligne d'événements en direct et la rémunération des artistes interprètes et producteurs de musique. La Commission indique vouloir faciliter les licences et le respect des droits dans le contexte de l'IA et améliorer la rémunération des créateurs, tout en permettant aux fournisseurs de modèles d'IA, start-up comprises, d'accéder légalement aux contenus protégés. — Ce que ça change : Les règles sur ce que les outils d'IA ont le droit d'utiliser pour s'entraîner pourraient évoluer. Les entreprises qui produisent des contenus (photos, textes, musique, vidéos) comme celles qui utilisent l'IA pour en créer sont concernées par l'issue de ces travaux.</description>
+    </item>
+    <item>
+      <title>OpenAI lance GPT-6.1 Sol, proche de son modèle le plus avancé pour un cinquième du prix</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-03.html#openai-lance-gpt-6-1-sol-proche-de-son-modele-le-plus-avance</link>
+      <guid isPermaLink="false">2026-10-03-openai-lance-gpt-6-1-sol-proche-de-son-modele-le-plus-avance</guid>
+      <pubDate>Sat, 03 Oct 2026 08:00:00 GMT</pubDate>
+      <category>IA</category>
+      <description>Lors de sa conférence DevDay du 29 septembre 2026, OpenAI a présenté GPT-6.1 Sol, une mise à jour de son modèle GPT-6 Sol disponible dans son API et dans ChatGPT. L'entreprise affirme qu'il approche les performances de GPT-6 Astra, son modèle le plus avancé, en programmation, en utilisation d'ordinateur et en travail professionnel, pour environ un cinquième de son prix d'utilisation. Le modèle accepte des documents très longs, avec une fenêtre de contexte d'environ un million de jetons. — Ce que ça change : Le coût d'une tâche confiée à l'IA continue de baisser à niveau de qualité comparable. Des usages jusque-là trop chers pour une petite structure (traitement de longs documents, assistants qui enchaînent plusieurs étapes) deviennent plus accessibles.</description>
+    </item>
+    <item>
+      <title>Cisco Catalyst SD-WAN : une faille critique activement exploitée, corrigez sans attendre</title>
+      <link>https://www.groupsolution.fr/lab/actus/2026-10-03.html#cisco-catalyst-sd-wan-une-faille-critique-activement-exploit</link>
+      <guid isPermaLink="false">2026-10-03-cisco-catalyst-sd-wan-une-faille-critique-activement-exploit</guid>
+      <pubDate>Sat, 03 Oct 2026 08:00:00 GMT</pubDate>
+      <category>Cybersécurité</category>
+      <description>Cisco a publié un correctif pour la faille CVE-2026-76504, signalée le 1er octobre 2026, dans Catalyst SD-WAN Manager (anciennement vManage), l'outil qui pilote les réseaux d'entreprise multisites. Notée 9,8 sur 10, elle permet à un attaquant non authentifié d'accéder à distance à l'interface de gestion avec des droits d'administrateur. Cisco a confirmé qu'elle était exploitée dans des attaques, et l'agence américaine de cybersécurité CISA l'a ajoutée le 30 septembre à son catalogue des failles activement exploitées. — Ce que ça change : Les entreprises dont le réseau entre plusieurs sites (agences, magasins, entrepôts) est géré par un prestataire peuvent être concernées sans le savoir. Une prise de contrôle de cet outil donne accès à l'ensemble du réseau.</description>
+    </item>
     <item>
       <title>Baromètre France Num 2026 : 40 % des TPE-PME utilisent désormais l'intelligence artificielle</title>
       <link>https://www.groupsolution.fr/lab/actus/2026-10-02.html#barometre-france-num-2026-40-des-tpe-pme-utilisent-desormais</link>
